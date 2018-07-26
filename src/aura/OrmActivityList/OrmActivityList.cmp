@@ -17,6 +17,7 @@
                                                                }"/>
     <aura:attribute name="nameEditMode" type="boolean" default="false" />
     <aura:attribute name="statusEditMode" type="boolean" default="false" />
+     <aura:attribute name="periodEditMode" type="boolean" default="false" />
     
 <aura:attribute name="assessmentData" type="Assessment__c" default="{
 						'sobjectType' : 'Assessment__c',
@@ -60,15 +61,41 @@
             </span>
         </td>
        
-        <td>
-            <div class="slds-truncate">{!v.singleRec.orm_startDate__c} to {!v.singleRec.orm_endDate__c}</div>
+        <td ondblclick="{!c.inlineEditPeriod}" class="slds-cell-edit">
+             <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.periodEditMode == false}">
+                      <span class="slds-truncate" title="Period">{!v.singleRec.orm_startDate__c} to {!v.singleRec.orm_endDate__c}</span>
+                    <button onclick="{!c.inlineEditPeriod}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rating">
+                        <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                    </button>
+                       <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                       
+                                    <lightning:input aura:id="startDateid" type="date" label="Start Date"  Onchange="{!c.onStartDateChange}"
+                                                             value="{!v.singleRec.orm_startDate__c}"  />
+                                      <lightning:input aura:id="endDateid" type="date" label="End Date" 
+                                                             value="{!v.singleRec.orm_endDate__c}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set> 
+                 </aura:if>
+            </span>
+          <!--  <div class="slds-truncate">{!v.singleRec.orm_startDate__c} to {!v.singleRec.orm_endDate__c}</div>-->
         </td>
         
         <td ondblclick="{!c.inlineEditStatus}" class="slds-cell-edit">
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.statusEditMode == false}">
-                    <span class="slds-truncate" title="Status">{!v.singleRec.Status}</span>
+                    <span class="slds-truncate" title="Status">{!v.singleRec.orm_activityStatus__c}</span>
                     <button onclick="{!c.inlineEditStatus}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rating">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>

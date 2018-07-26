@@ -6,17 +6,17 @@ public class OrmAssessmentController {
         return recordTypeId;
     }
     public static Id getOrganisationRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Campaign.getRecordTypeInfosByName()
+         Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
                   .get('RT Organisation').getRecordTypeId();
         return recordTypeId;
     }
     public static Id getProjetRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Campaign.getRecordTypeInfosByName()
+         Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
                   .get('RT Projet').getRecordTypeId();
         return recordTypeId;
     }
     public static Id getProcessusRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Campaign.getRecordTypeInfosByName()
+         Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
                   .get('RT Processus').getRecordTypeId();
         return recordTypeId;
     }

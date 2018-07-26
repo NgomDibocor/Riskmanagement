@@ -292,13 +292,16 @@
     onTitleChange : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
+        }
+    },
+    sendValueToFD : function(component,event,helper){ 
+            component.set("v.closeFieldDescription",false);
             var evt = $A.get("e.c:OrmSendValuesToFieldDescriptionEvt");
             evt.setParams({
 				"nomField" : "Title",
 				"descriptionField" : "This field defines the title of assessment"
 			});
 		    evt.fire();
-        }
     },
     onObjectifChange : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 

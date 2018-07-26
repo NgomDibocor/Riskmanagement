@@ -134,7 +134,8 @@
                             <div class="width" >  
                                 <ui:inputText class="slds-input" aura:id="Name" 
                                            value="{!v.assessmentData.Name}" 
-                                           change="{!c.onTitleChange}">
+                                           change="{!c.onTitleChange}"
+                                           keyup="{!c.sendValueToFD}">
                                  </ui:inputText>
                             </div>
                         </td>

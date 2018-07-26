@@ -6,12 +6,13 @@
     
     <div style="color:white;position:relative">
             <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
-    </div>
-    
-    <div style="margin-bottom:50px">
-       {!v.nomField}
-    </div>
-    <div style="margin-bottom:50px">
+         
+         
+           
+        {!v.nomField}</br></br>
+       
        {!v.descriptionField}
     </div>
+    
+   
 </aura:component>

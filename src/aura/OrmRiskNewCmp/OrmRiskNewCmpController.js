@@ -5,7 +5,6 @@
         action.setCallback(this, function(response){
             var state = response.getState();
             if(state === 'SUCCESS' && component.isValid()){
-                alert(JSON.stringify(response.getReturnValue()));
                 component.set('v.allCategorieRisk', response.getReturnValue());
             } else {
                 alert("the element was not found");

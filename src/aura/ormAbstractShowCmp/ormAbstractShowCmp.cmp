@@ -1,0 +1,3 @@
+<aura:component >
+    <aura:attribute name="isOpen" type="boolean" default="false" />
+</aura:component>

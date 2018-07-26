@@ -1,0 +1,21 @@
+<aura:component controller='OrganisationController'
+                access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit }"/>
+	<aura:registerEvent name="OrgShowEvtClicked" 
+                        type="c:OrgShowEvtClicked"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="OrganisationList" type="Account[]"/>
+    <aura:registerEvent name="navigateToOrganisationShow" 
+                        type="c:navigateToOrganisationShow"/>
+    <aura:registerEvent name="navigateToOrganisationEdit" 
+                        type="c:navigateToOrganisationEdit"/>
+    	<aura:handler event="c:eventNewOrganisationCreated" action="{!c.doInit}" />
+
+	 <lightning:datatable data="{! v.OrganisationList }" class="slds-m-top_medium"
+                                 columns="{! v.columns }" 
+                                 keyField="id"
+                                 onrowselection="{! c.getSelectedName }"
+                                 hideCheckboxColumn="true"  
+                                 onrowaction="{! c.handleRowAction }"
+                                 showRowNumberColumn="true"/>
+</aura:component>

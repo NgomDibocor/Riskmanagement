@@ -1,0 +1,10 @@
+.THIS {
+    background-color:black;
+    height:350px;
+}
+.THIS .ico svg{
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill:white;
+}

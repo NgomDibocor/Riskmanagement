@@ -1,0 +1,44 @@
+<aura:component >
+	<aura:attribute name="accRec" type="Account" default="{'sobjectType' : 'Account'}" />
+<aura:attribute name="conRec" type="Contact" default="{'sobjectType' : 'Contact'}" />
+<div aura:id="body">
+<div class="slds-form-stacked">
+<b>Account:</b>
+<div class="slds-form-element">
+<dl class="slds-dl--inline">
+<dt class="slds-dl--inline__label">Name:</dt>
+<dd class="slds-dl--inline__detail">
+<ui:outputText value="{!v.accRec.Name}" />
+</dd>
+<dt class="slds-dl--inline__label">Active:</dt>
+<dd class="slds-dl--inline__detail">
+<ui:outputCheckbox value="{!v.accRec.Active__c}" />
+</dd>
+<dt class="slds-dl--inline__label">Website</dt>
+<dd class="slds-dl--inline__detail">
+<ui:outputURL label="{!v.accRec.Website}" value="{!v.accRec.Website}" />
+</dd>
+</dl></div>
+</div>
+<div class="slds-form-stacked">
+<b>Contact:</b>
+<div class="slds-form-element">
+<dl class="slds-dl--inline">
+<dt class="slds-dl--inline__label">Last Name:</dt>
+<dd class="slds-dl--inline__detail">
+<ui:outputText value="{!v.conRec.LastName}" />
+</dd>
+<dt class="slds-dl--inline__label">Email:</dt>
+<dd class="slds-dl--inline__detail">
+<ui:outputEmail value="{!v.conRec.Email}" />
+</dd>
+<dt class="slds-dl--inline__label">Phone:</dt>
+<dd class="slds-dl--inline__detail">
+<ui:outputPhone value="{!v.conRec.Phone}" />
+</dd>
+</dl></div>
+</div>
+    <lightning:button variant="neutral" label="Back" onclick="{!c.backToContact}" />
+            <lightning:button variant="brand" label="Submit" onclick="{!c.submit}" /></div>
+
+</aura:component>

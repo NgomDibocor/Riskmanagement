@@ -1,0 +1,10 @@
+<aura:component abstract="true" extensible="true" access="public">
+    
+     <aura:attribute name="isOpen" type="boolean"  default="false"/>
+    
+     <aura:method name="openModal"  description="" />
+     <aura:method name="closeModal" description="" />
+    
+			{!v.body}
+    
+</aura:component>

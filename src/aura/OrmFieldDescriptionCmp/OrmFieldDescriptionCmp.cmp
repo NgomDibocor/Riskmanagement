@@ -1,0 +1,9 @@
+<aura:component >
+    <aura:attribute name="nomField" type="String" />
+    <aura:attribute name="descriptionField" type="String"/>
+    <aura:registerEvent name="OrmCloseFieldDescription" type="c:OrmCloseFieldDescriptionEvt"/>
+    
+    <div style="color:white;position:relative">
+            <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
+    </div>
+</aura:component>

@@ -1,0 +1,20 @@
+.THIS {
+}
+.THIS a{
+    text-decoration: none;
+}
+
+.THIS div.organisation {
+    display: inline-block;
+    width:95%;
+}
+.THIS span.btnNewOrg {
+    display: inline-block;
+}
+.THIS div.activity {
+    display: inline-block;
+    width:95%;
+}
+.THIS span.btnNewAct {
+    display: inline-block;
+}

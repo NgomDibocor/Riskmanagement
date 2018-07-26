@@ -1,0 +1,87 @@
+<aura:component extends="c:OrmAbstractNewCmp" controller="OrmRiskController">
+    <aura:handler event="c:OrmOpenNewRiskCmpEvt" action="{!c.openModal}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+     <aura:registerEvent name="OrmRiskCreatedEvt"  type="c:OrmRiskCreatedEvt"/>
+    <aura:attribute name="risk" type="Macro" default="{ 
+                                                             'sobjectType' : 'Macro',
+                                                             'Name' : '',
+                                                             'Description' : '',
+                                                      		 'unknown_custom_field': '',
+                                                             'orm_categorieRisk__c' : ''
+                                                         }" />
+    <aura:attribute name="allCategorieRisk" type="String[]" />
+	  
+     <aura:if isTrue="{!v.isOpen}">
+			<!--###### MODAL BOX Start From Here ######-->
+    		
+			<div role="dialog" tabindex="-1" aria-labelledby="header99"
+				class="slds-modal slds-fade-in-open slds-modal_medium">
+				<div class="slds-modal__container form-style-6">
+					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+					<div class="slds-modal__header">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							title="Close" onclick="{!c.closeModal}">
+							X <span class="slds-assistive-text">Close</span>
+						</button>
+						<h1 id="header99" class="slds-text-heading--medium">New Risk</h1>
+					</div>
+					<!--###### MODAL BOX BODY Part Start From Here ######-->
+					<div class="slds-modal__content slds-p-around--medium">
+
+
+						<!-- CREATE NEW Activity FORM -->
+						<form class="slds-form--stacked">
+							<div class="slds-grid slds-gutters">
+								<div class="slds-col">
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<ui:inputText aura:id="Name" label="Name"
+												class="slds-input" labelClass="slds-form-element__label"
+												value="{!v.risk.Name}" required="true" />
+										</div>
+									</div>
+                                  
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<lightning:select aura:id="categorieRisk"    name="categorie Risk" label="categorie Risk" >
+                                                <option  text="categorie Risk"  ></option>
+                                                <aura:iteration items="{! v.allCategorieRisk}" var="CategorieRisk" >
+                                                    <option  text="{!CategorieRisk }"  ></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+										</div>
+									</div>
+									
+                                    <div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<ui:inputTextArea aura:id="description" label="Description"
+                                                              class="slds-input" labelClass="slds-form-element__label"
+                                                              value="{!v.risk.Description}" />
+										</div>
+									</div>
+                                   
+                                    
+                                    
+								</div>
+							</div>
+						</form>
+						<!-- / CREATE NEW Item FORM -->
+
+					</div>
+					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+					<div class="slds-modal__footer">
+						<button class="slds-button slds-button--neutral"
+							onclick="{!c.closeModal}">Cancel</button>
+						<button class="slds-button slds-button--brand"
+							onclick="{!c.createItem}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Save
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+			<!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
+    
+</aura:component>

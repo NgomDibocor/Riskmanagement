@@ -1,0 +1,8 @@
+<aura:component abstract="true" extensible="true" access="public" >
+    <aura:attribute name="isOpen" type="boolean" default="false" />
+    <!--     methods -->
+    <aura:method name="openModel" description="" />
+    <aura:method name="closeModel" description="" />
+    
+	
+</aura:component>

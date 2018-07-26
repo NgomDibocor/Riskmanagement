@@ -1,0 +1,125 @@
+<aura:component access="GLOBAL" controller="SalesforceLightningWizardController">
+    <aura:attribute name="accountData" type="Account" default="{ 'sobjectType': 'Account','Name': ''}"/>
+    <aura:attribute name="contactData" type="Contact" default="{ 'sobjectType': 'Contact','LastName': ''}"/>
+    <aura:attribute name="opportunityData" type="Opportunity" default="{ 'sobjectType': 'Opportunity','StageName' : 'prospecting'}"/>
+    <aura:attribute name="showAccount" type="boolean" default="true"/> '
+    <aura:attribute name="showContact" type="boolean" default="false"/> 
+    <aura:attribute name="showOpportunity" type="boolean" default="false"/>
+    <aura:attribute name="setMessage" type="String"/> 
+    <aura:attribute name="showError" type="boolean" default="false"/>
+    <aura:attribute name="showData" type="boolean" default="false"/>
+    <aura:attribute name="message" type="String" default="NoError"/> 
+   
+    
+    <div class="slds-tabs--path" role="application">
+      <ul class="slds-tabs--path__nav" role="tablist">
+        <li class="slds-tabs--path__item slds-is-current" role="presentation">
+          <a class="slds-tabs--path__link" id="tabs-path-438" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
+             href="javascript:void(0);" aria-live="assertive" onclick="{!c.navigateToDashbord}">
+            <span class="slds-tabs--path__stage">
+              <lightning:icon iconName="utility:sprite" size="xx-small" />  
+            </span>
+            <span class="slds-tabs--path__title">Dashbord</span>
+          </a>
+        </li>
+        <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+          <a class="slds-tabs--path__link" id="tabs-path-439" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+            <span class="slds-tabs--path__stage">
+              <lightning:icon iconName="utility:sprite" size="xx-small" />
+            </span>
+            <span class="slds-tabs--path__title">Reporting</span>
+          </a>
+        </li>
+        <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+          <a class="slds-tabs--path__link" id="tabs-path-440" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+            <span class="slds-tabs--path__stage">
+              <lightning:icon iconName="utility:sprite" size="xx-small" />
+            </span>
+            <span class="slds-tabs--path__title">RiskManagement</span>
+          </a>
+        </li>
+        <li class="slds-tabs--path__item slds-is-current" role="presentation">
+            <a class="slds-tabs--path__link" id="tabs-path-438" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
+               href="javascript:void(0);" aria-live="assertive" onclick="{!c.navigateToCategorieRisqueList}">
+                <span class="slds-tabs--path__stage">
+                    <lightning:icon iconName="utility:sprite" size="xx-small" />  
+                </span>
+                <span class="slds-tabs--path__title">Calendar</span>
+            </a>
+        </li>
+      </ul>
+    </div>
+    
+    
+    <div class="slds-grid slds-grid--vertical forceListViewManager adapetr-config-main">
+        <!--********* HEADER ********* -->
+        <div class="slds-page-header adapetr-header">
+            <div class="slds-media">
+                <div class="slds-media__body">
+                    <aura:renderIf isTrue="{!v.showAccount}">
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate">Salesforce Wizard 1 of 4</h1>
+                        <p class="slds-text-title--caps slds-line-height--reset">Account Creation</p>
+                    </aura:renderIf>
+                    
+                    <aura:renderIf isTrue="{!v.showContact}">
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate">Salesforce Wizard 2 of 4</h1>
+                        <p class="slds-text-title--caps slds-line-height--reset">Contact Creation</p>
+                    </aura:renderIf>
+                    <aura:renderIf isTrue="{!v.showOpportunity}">
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate">Salesforce Wizard 3 of 4</h1>
+                        <p class="slds-text-title--caps slds-line-height--reset">Opportunity Creation</p>
+                    </aura:renderIf>
+                    <aura:renderIf isTrue="{!v.showData}">
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate">Salesforce Wizard 4 of 4</h1>
+                        <p class="slds-text-title--caps slds-line-height--reset">Record Insertion</p>
+                    </aura:renderIf>
+                    <div id="showErrorrTractConfig" class="cmn_error_msg " style="display:none; text-align:center;font-weight:700">
+                        <ui:outputText value="{!v.message}"/>
+                    </div>
+                    <div id="showMessageTractConfig" class="cmn_message " style="display:none;text-align:center;font-weight:700">
+                        <ui:outputText value="{!v.message}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="adapetr-config-sec">
+            <h3 class="slds-text-heading--small">Please provide the following information. All the fields marked with <span class="cmn_mandatory_indicator">*</span> are required.</h3>
+            <div class="slds-box config-table-details">
+				 <form class="slds-form--stacked">
+                    <div class="slds-form-element">
+    <label class="slds-form-element__label" for="input-id-01">Libellé</label>
+    <div class="slds-form-element__control">
+      <input type="text" id="input-id-01" class="slds-input" placeholder="Placeholder Text" />
+    </div>
+  </div>
+                     <div class="sld-form-element">
+                         
+                     </div>
+                </form>
+            </div>   
+            
+            <div class="slds-grid  slds-grid--align-center">
+                <aura:renderIf isTrue="{!v.showAccount}">
+                    <button class="slds-button slds-button--brand" onclick="{!c.nextTab}">Next</button>
+                </aura:renderIf>
+                
+                <aura:renderIf isTrue="{!v.showContact}">
+                    <button class="slds-button slds-button--brand" onclick="{!c.prevTab}" >Back</button>
+                    <button class="slds-button slds-button--brand" onclick="{!c.nextTab}" >Next</button>
+                </aura:renderIf>
+                
+                <aura:renderIf isTrue="{!v.showOpportunity}">        
+                    <button class="slds-button slds-button--brand" onclick="{!c.prevTab}" >Back</button> 
+                    <button class="slds-button slds-button--brand" onclick="{!c.nextTab}" >Next</button>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.showData}">        
+                    <button class="slds-button slds-button--brand" onclick="{!c.prevTab}" >Back</button> 
+                    <button class="slds-button slds-button--brand" onclick="{!c.saveRecord}" >Save</button>
+                </aura:renderIf>
+                
+            </div>
+        </div>
+    </div>
+</aura:component>

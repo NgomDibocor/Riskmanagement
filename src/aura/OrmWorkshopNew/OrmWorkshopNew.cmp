@@ -1,0 +1,18 @@
+<aura:component extends="c:OrmAbstractNewCmp" access="global" controller="WorkshopController">
+	<aura:attribute name="item" type="Contract" default="{
+						'sobjectType' : 'Contract',
+                        'Name': '',
+                        'StartDate':'',
+                        'EndDate':'', 
+                        'CompanySignedDate':'',
+                        'orm_assessment__c':'',                               
+						'Description':''
+						
+					}" />
+    <aura:attribute name="assessmentData" type="Assessment__c" default="{
+						'sobjectType' : 'Assessment__c',
+						'Description':''
+						
+					}" />
+    
+</aura:component>

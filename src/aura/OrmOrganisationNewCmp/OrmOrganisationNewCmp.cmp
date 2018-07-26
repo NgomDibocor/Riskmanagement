@@ -1,0 +1,126 @@
+<aura:component extends="c:OrmAbstractNewCmp"
+	controller="OrmOrganisationController">
+    
+    <aura:registerEvent name="eventNewOrganisationCreated" type="c:eventNewOrganisationCreated"/>
+    
+    <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+    <aura:handler event="c:OrmOpenNewOrganisationEvt" action="{!c.openModal}" />
+    <aura:attribute name="regions" type="String[]" />
+    <aura:attribute name="lespays" type="String[]"/>
+    <aura:attribute name="allIndustrySector" type="String[]"/>
+    <aura:attribute name="allCurrency" type="String[]"/>
+    <aura:attribute name="objInfo" type="Account" default="{sobjectType : 'Account'}" />
+    <aura:attribute name="item" type="Account"
+		default="{
+                   'sobjectType' : 'Account',
+                   'Name' : '',
+				}" />
+	
+    
+    <aura:if isTrue="{!v.isOpen}">
+
+			<!--###### MODAL BOX Start From Here ######-->
+			<div role="dialog" tabindex="-1" aria-labelledby="header99"
+				class="slds-modal slds-fade-in-open  slds-modal_medium">
+				<div class="slds-modal__container form-style-6">
+					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+					<div class="slds-modal__header">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							title="close" onclick="{!c.closeModal}">
+							X <span class="slds-assistive-text">Close</span>
+						</button>
+						<h1 id="header99" class="slds-text-heading--medium">New Organisation</h1>
+					</div>
+					<!--###### MODAL BOX BODY Part Start From Here ######-->
+					<div class="slds-modal__content slds-p-around--medium">
+
+
+						<!-- CREATE NEW Entite FORM -->
+						<form class="slds-form--stacked">
+							<div class="slds-grid slds-gutters">
+								<div class="slds-col">
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<ui:inputText aura:id="Name" label="Name"
+												class="slds-input" labelClass="slds-form-element__label"
+												value="{!v.item.Name}" required="true" />
+										</div>
+									</div>
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<lightning:select aura:id="region" onchange="{!c.onChangeRegion}"   name="region" label="region" >
+                                                <option  text="selectionnez la region"  ></option>
+                                                <aura:iteration items="{! v.regions}" var="region" >
+                                                    <option  text="{!region }"  ></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+										</div>
+									</div>
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<lightning:select aura:id="pays"  onchange="{!c.onChangePays}" name="pays"  label="pays" >
+                                                <option text="selectionnez le pays"  ></option>
+                                                <aura:iteration items="{! v.lespays}" var="pays" >
+                                                    <option  text="{!pays}"></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+										</div>
+									</div>
+                                    <div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<lightning:select aura:id="currency"  onchange="{!c.onChangeCurrency}" label="Currency" >
+                                                <option text="selectionnez la monnaie"  ></option>
+                                                <aura:iteration items="{! v.allCurrency}" var="currency" >
+                                                    <option  text="{!currency}"></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+										</div>
+									</div>
+                                    <div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<lightning:select aura:id="industrySector"  onchange="{!c.onChangeIndSector}"   label="industrySector" >
+                                                <option text="selectionnez le secteur d'industrie"  ></option>
+                                                <aura:iteration items="{! v.allIndustrySector}" var="indSec" >
+                                                    <option  text="{!indSec}"></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+										</div>
+									</div>
+                                    <div class="slds-form-element">
+										<div class="slds-form-element__control">
+											<ui:inputText aura:id="website" label="Website"
+												class="slds-input" labelClass="slds-form-element__label"
+												value="{!v.item.Website__c}" required="true" />
+										</div>
+									</div>
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <ui:inputTextArea aura:id="description" label="Description"
+                                                              class="slds-input" labelClass="slds-form-element__label"
+                                                              value="{!v.item.Description}" />
+                                            
+                                        </div>
+                                    </div>
+								</div>
+							</div>
+						</form>
+						<!-- / CREATE NEW Item FORM -->
+
+					</div>
+					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+					<div class="slds-modal__footer">
+						<button class="slds-button slds-button--neutral"
+							onclick="{!c.closeModal}">Close</button>
+						<button class="slds-button slds-button--brand"
+							onclick="{!c.createItem}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i> Add
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+			<!--###### MODAL BOX Part END Here ######-->
+
+		</aura:if>
+</aura:component>

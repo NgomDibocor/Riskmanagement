@@ -1,0 +1,38 @@
+<aura:component >
+	<table style="width:100%">
+      <tr style="height:50px"></tr>
+      <tr style="height:100px">
+        <td width="7%"></td>  
+        <td width="35%">
+           <a href="javascript:void(0);" onclick="{!c.ListAssessment}">
+               <lightning:card class="slds-text-heading_small" 
+                    title="My Assessments" iconName="utility:table">
+               </lightning:card> 
+           </a>
+        </td>
+        <td width="6%"></td>
+        <td width="35%">
+            <a href="javascript:void(0);" onclick="{!c.ListAssessmentRisk}">
+                <lightning:card class="slds-text-heading_small" 
+                                title="My Risks" iconName="utility:list">
+                </lightning:card>
+            </a>
+        </td>
+        <td width="7%"></td>    
+      </tr>
+      <tr style="height:20px"></tr>
+      <tr style="height:100px">
+        <td width="7%"></td> 
+        <td width="35%">
+            <a href="javascript:void(0);" onclick="{!c.test3}">
+                <lightning:card class="slds-text-heading_small" 
+                                title="My Measures" iconName="utility:table">
+                </lightning:card>
+            </a>
+        </td>
+        <td width="6%"></td>
+        <td width="35%"></td>
+        <td width="7%"></td>  
+      </tr>
+    </table> 
+</aura:component>

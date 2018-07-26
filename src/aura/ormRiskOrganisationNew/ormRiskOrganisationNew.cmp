@@ -1,0 +1,39 @@
+<aura:component access="global" extends="c:OrmAbstractNewCmp" controller="OrmRiskController" >
+<aura:attribute name="item" type="Macro" default="{
+						'sobjectType' : 'Macro',
+                        'unknown_custom_field': '',                          
+						'Description':''
+						
+					}" />
+<aura:attribute name="assessmentData" type="Campaign" default="{
+						'sobjectType' : 'Campaign',
+						'Description':''
+						
+					}" />
+ <aura:registerEvent name="evntAddRiskOrg" type="c:evntAddRiskOrg" />
+
+	    <form class="slds-form--stacked">
+            <div class="slds-grid">
+  <div class="slds-col">
+    <span>
+             <div class="slds-form-element ">
+                                <div class="slds-form-element__control">
+                                    <ui:inputText aura:id="riskid" label="Risk" class="slds-input" labelClass="slds-form-element__label" value="{!v.item.Name}" required="true" />
+                                </div>
+        </div>
+    </span>
+  </div>
+  <div class="slds-col">
+    <span>
+          <lightning:button onclick="{!c.saveRisk}"
+							class="slds-button slds-button_icon slds-button_icon-border-filled">
+                              <lightning:icon iconName="utility:add" size="xx-small" />
+                           </lightning:button> 
+    </span>
+                </div>
+  </div>
+       
+                	
+                           
+    </form>
+</aura:component>

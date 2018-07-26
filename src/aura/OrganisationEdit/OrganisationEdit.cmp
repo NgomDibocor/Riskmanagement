@@ -1,0 +1,53 @@
+<aura:component  controller='OrganisationController'>
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
+    <aura:attribute name="id" type="String" />
+    <aura:attribute name="item" type="Account" />
+    <aura:attribute name="objInfo" type="Account" default="{sobjectType : 'Account'}" />
+    
+    <aura:attribute name="allRegions" type="String[]" />
+    <aura:attribute name="allPays" type="String[]"/>
+    <form class="slds-form--stacked">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <ui:inputText aura:id="nom" label="NAME"
+                                      class="slds-input" labelClass="slds-form-element__label"
+                                      value="{!v.item.Name}" required="true" />
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <ui:inputTextArea aura:id="description" label="description"
+                                          class="slds-input" labelClass="slds-form-element__label"
+                                          value="{!v.item.Description}"/>
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="region"   name="region" onchange="{!c.onChange}" label="region" >
+                            <aura:iteration items="{! v.allRegions}" var="region" >
+                                <option  text="{!region}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="pays"   name="pays" onchange="{!c.onChange2}" label="pays" >
+                            <aura:iteration items="{! v.allPays}" var="pays">
+                                <option  text="{!pays }"  ></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/><br/>
+        <button class="slds-button slds-button--neutral" onclick="{!}">Annuler</button>
+        <button class="slds-button slds-button--brand" onclick="{!c.editItem}">
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+            editer</button>
+    </form>
+    
+</aura:component>

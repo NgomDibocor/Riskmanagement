@@ -1,0 +1,32 @@
+<aura:component  extends="c:OrmAbstractNewCmp" controller="AssessmentRiskController" >
+	<aura:registerEvent name="NewAssessmentRisk" type="c:EventAddAssessmentRisk" />
+    <aura:attribute name="item" type="orm_assessmentRisk__c" default="{
+						'sobjectType' : 'orm_assessmentRisk__c',
+                        'unknown_custom_field': '',  
+                         'orm_Risk__c':'',
+                          'Name':''   
+					}" />
+
+
+	    <form class="slds-form--stacked">
+            <div class="slds-grid">
+                  <div class="slds-col">
+                    <span>
+                             <div class="slds-form-element ">
+                                                <div class="slds-form-element__control">
+                                                    <ui:inputText aura:id="assessmentRisk" label="Name Assessment Risk" class="slds-input" labelClass="slds-form-element__label" value="{!v.item.Name}" required="true" />
+                                                </div>
+                            </div>
+                    </span>
+                  </div>
+                  <div class="slds-col">
+                    <span>
+                          <lightning:button onclick="{!c.saveRisk}"
+                                            class="slds-button slds-button_icon slds-button_icon-border-filled">
+                                              <lightning:icon iconName="utility:add" size="xx-small" />
+                          </lightning:button> 
+                    </span>
+                  </div>
+             </div>                   
+    </form>
+</aura:component>

@@ -1,0 +1,11 @@
+<aura:component access="GLOBAL" implements="force:appHostable,flexipage:availableForAllPageTypes" >
+    <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+    <aura:handler event="c:OrmDisplayListAssessmentEvt" action=";{!c.showAssessmentList}"/>
+    <aura:handler event="c:OrmDisplayAssessmentEvt"   action=";{!c.showAssessment}"/>
+    <aura:handler event="c:OrmDisplayAssessmentRiskEvt" action=";{!c.ShowAssessmentRiskList}" />
+    
+    
+    <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:450px;width:80%;margin:auto">
+        {!v.body}
+    </div>  
+</aura:component>

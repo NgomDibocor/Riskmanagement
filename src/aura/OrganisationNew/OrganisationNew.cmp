@@ -1,0 +1,117 @@
+<aura:component controller="OrganisationController" access="global">
+	    <aura:attribute name="item" type="Account" default="{
+						'sobjectType' : 'Account',
+						'Name':'',
+						'orm_region__c':'',
+						'orm_pays__c':'',
+						'testOrganisation__c':'',
+						'Description':''
+						
+					}" />
+     <aura:attribute name="organisations" type="Account[]" description="liste des organisations" />
+     <aura:attribute name="regions" type="String[]" />
+    <aura:attribute name="lespays" type="String[]"/>
+    <aura:attribute name="testorganisation" type="ormtestOrganisation__c" default="{'sobjectType':'ormtestOrganisation__c','Name':''}"/>
+    <aura:attribute name="testsorganisation" type="ormtestOrganisation__c[]"/>
+    <aura:attribute name="isOpen" type="boolean" default="false" />
+    <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+    <aura:registerEvent name="evntAddTestOrg" type="c:evntAddTestOrg" />
+	<aura:registerEvent name="eventNewOrganisationCreated" type="c:eventNewOrganisationCreated" />
+    <aura:handler event="c:evntAddTestOrg" action="{!c.refreshListTestOrg}" />
+
+    <div class="adapetr-config-sec">
+            <div class="slds-box config-table-details"> 
+    <form class="slds-form--stacked">
+
+                            <div class="slds-form-element ">
+                                <div class="slds-form-element__control">
+                                    <ui:inputText aura:id="nomporg" label="Name" class="slds-input" labelClass="slds-form-element__label" value="{!v.item.Name}" required="true" />
+                                </div>
+                            </div>
+        
+					  <div class="slds-form-element__control">
+                        <lightning:select aura:id="region" onchange="{!c.onChange}"   name="region" label="region" >
+                            <option  text="selectionnez la region"  ></option>
+                            <aura:iteration items="{! v.regions}" var="region" >
+                                <option  text="{!region }"  ></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+										
+							<div class="slds-form-element">
+                  <div class="slds-form-element__control">
+                        <lightning:select aura:id="pays"  onchange="{!c.onChange2}" name="pays"  label="pays" >
+                    <option  text="selectionnez le pays"  ></option>
+                            <aura:iteration items="{! v.lespays}" var="pays" >
+                                <option  text="{!pays}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                            </div>
+        
+        	<div class="slds-form-element">
+                                <div class="slds-form-element__control" >
+                            			
+                                        <lightning:select aura:id="testOrgId"   name="testOrg"  label="testOrganisation">
+                             <option>Selectionnez test org</option>
+                                            <aura:iteration items="{! v.testsorganisation}"  var="testOrg" >
+                                <option  text="{!testOrg.Name}" value="{!testOrg.Id}"  ></option>
+                            </aura:iteration>
+                                            
+                        </lightning:select>
+                                          
+                                  
+                        <lightning:button onclick="{!c.openModal}"
+							class="slds-button slds-button_icon slds-button_icon-border-filled">
+                              <lightning:icon iconName="utility:add" size="xx-small" />
+                           </lightning:button>
+                                      
+                                </div>
+                            </div>
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <ui:inputTextArea aura:id="description" label="Description" class="slds-input" labelClass="slds-form-element__label" value="{!v.item.Description}"  />
+                                </div>
+                            </div>
+
+                            
+                        
+
+                        </form>
+                  <button class="slds-button slds-button--brand" onclick="{!c.createItem}">
+                        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                        Save</button>
+        </div>
+    </div>
+    <!--Use aura:if tag to display Model Box, on the bese of conditions. [isOpen boolean attribute] -->
+        <aura:if isTrue="{!v.isOpen}">
+    <div class="demo-only" style="height: 640px;">
+<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+<div class="slds-modal__container">
+<header class="slds-modal__header">
+<button onclick="{!c.closeModal}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+ <lightning:icon iconName="utility:close" size="xx-small" />
+<span class="slds-assistive-text">Close</span>
+</button>
+<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add testOrganisation</h2>
+</header>
+<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+ <form class="slds-form--stacked">
+<div class="slds-form-element">
+  <label class="slds-form-element__label">Name</label>
+  <div class="slds-form-element__control">
+    <ui:inputText aura:id="nameid"  class="slds-input" placeholder="Name" />
+  </div>
+</div>
+    </form>
+</div>
+<footer class="slds-modal__footer">
+<button class="slds-button slds-button_neutral" onclick="{!c.closeModal}">Cancel</button>
+<button class="slds-button slds-button_brand" onclick="{!c.saveTestOrg}">Save</button>
+</footer>
+</div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
+</div>
+    </aura:if>
+</aura:component>

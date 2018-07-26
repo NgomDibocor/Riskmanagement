@@ -13,8 +13,7 @@
         $A.enqueueAction(action);        
 	},
     openCurrentCmp : function(component, event){
-        component.set("v.isOpen", true); 
-        //alert(event.getParam('idAssessment') + 'laye');
+        component.set("v.isOpen", true);
         component.set('v.assessmentId', event.getParam('idAssessment'));
 	},
     
@@ -40,8 +39,8 @@
             newActivity.orm_activityStatus__c = status;
             newActivity.orm_startDate__c = startDate;
             newActivity.orm_endDate__c = endDate;
-            //newActivity.orm_user__c = component.get('v.user').get('v.value');
-            //newActivity.orm_assessment__c = component.get('v.assessment').get('v.value');
+            //newActivity.orm_user__c = component.get('v.user');
+            newActivity.orm_assessment__c = component.get('v.assessmentId');
             
             var action = component.get('c.add');
             action.setParams({

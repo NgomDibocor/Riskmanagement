@@ -208,7 +208,7 @@
                 <aura:if isTrue="{!v.showRiskIdentif}">
                     <tr>
                         <td >
-                            <!--<c:OrmRiskIdentificationLayoutCmp />-->
+                            <c:OrmRiskIdentificationLayoutCmp />
                         </td>
                     </tr>
                     

@@ -1,7 +1,7 @@
 public class OrmAssessmentController {
 	
     public static Id getAssessmentRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Campaign.getRecordTypeInfosByName()
+         Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
                   .get('RT Assessment').getRecordTypeId();
         return recordTypeId;
     }
@@ -91,7 +91,7 @@ public class OrmAssessmentController {
     
     @AuraEnabled
     public static Assessment__c getSingleAssessment(){
-        return [SELECT Id FROM Assessment__c 
+        return [SELECT Id FROM Assessment__c
                        WHERE RecordTypeId=:OrmAssessmentController.getAssessmentRecordTypeId() LIMIT 1];
     }   
     

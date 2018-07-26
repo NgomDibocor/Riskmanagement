@@ -213,26 +213,30 @@
     },
     activeActionPlan : function(component, event, helper) {
         helper.activeActionPlan(component, event);
-    },    
+    },
+    
     openActivityNewCmp : function(component, event, helper){
-        /*var assessment = null;       
+        /* after created the assessment we must get the assessment id
+			var assessment = component,get('v.assessmentData');
+         */
         var action = component.get('c.getSingleAssessment');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
-                alert('success');
-                assessment = response.getReturnValue();                
+                 var assessment = response.getReturnValue();
+                 var evt = $A.get("e.c:OrmOpenNewActivityCmpEvt");
+			     evt.setParams({
+			        "idAssessment" : assessment.Id
+			     });
+			     evt.fire();
             } else {
                 alert('error');
             }            
         });
-        $A.enqueueAction(action);*/
-        var evt = $A.get("e.c:OrmOpenNewActivityCmpEvt");
-        evt.setParams({
-        	"idAssessment" : null
-        });
-        evt.fire();
+        $A.enqueueAction(action);
+        
         //var assessment = component.get('v.assessmentData');
     },
+    
     openOrganisationNew : function(component, event, helper){
         var assessment = component.get('v.assessmentData');
 		var evt = $A.get("e.c:OrmOpenNewOrganisationEvt");
@@ -241,7 +245,9 @@
 		});
 		evt.fire();
     },
+    
     refreshListActivity : function(component, event, helper){
+        
         /*var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.activity"), 'fld' : 'Status'});
         action.setCallback(this, function(response){
@@ -253,6 +259,7 @@
             }
         });
         $A.enqueueAction(action);*/
+        
         var action = component.get('c.findAllActiviteByAssessment');
         action.setParams({'idAssessment' : null});
         action.setCallback(this, function(response){
@@ -264,6 +271,7 @@
         });
         $A.enqueueAction(action);
     },
+    
     refreshListOrganisation : function(component, event, helper){
         var actionOrgs = component.get("c.getOrganisations");
         actionOrgs.setCallback(this, function(response){

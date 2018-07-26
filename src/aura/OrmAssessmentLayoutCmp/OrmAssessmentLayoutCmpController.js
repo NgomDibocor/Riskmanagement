@@ -286,11 +286,18 @@
         if(event.getSource().get("v.value").trim() != ''){ 
             component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));
             component.set("v.displaySaveCancelBtn",true);
+            
         }
     },
     onTitleChange : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
+            var evt = $A.get("e.c:OrmSendValuesToFieldDescriptionEvt");
+            evt.setParams({
+				"nomField" : "Title",
+				"descriptionField" : "This field defines the title of assessment"
+			});
+		    evt.fire();
         }
     },
     onObjectifChange : function(component,event,helper){ 

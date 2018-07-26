@@ -34,6 +34,7 @@
     <aura:handler event="c:OrmActivityCreatedEvt" action="{!c.refreshListActivity}" />
     <aura:registerEvent name="OrmOpenNewOrganisation"
 		type="c:OrmOpenNewOrganisationEvt" />
+    <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
     
     
     <!-- menu -->

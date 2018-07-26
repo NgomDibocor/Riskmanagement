@@ -12,9 +12,9 @@
            			  <div class="slds-card__header slds-grid">
            				<header class="slds-media slds-media_center slds-has-flexi-truncate">
            				 <div class="slds-media__figure">
-                             <span class="slds-icon_container " title="account">
+                             <span class="slds-icon_container " title="risk">
                              <lightning:icon iconName="utility:trail" size="medium" />
-                             <span class="slds-assistive-text">account</span>
+                             <span class="slds-assistive-text">risk</span>
                              </span>
                          </div>
             			<div class="slds-media__body">

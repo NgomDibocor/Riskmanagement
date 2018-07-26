@@ -1,6 +1,3 @@
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>>=a36982fa235d184fdd458ebc3b8597f30be0be49
 eclipse.preferences.version=1
 endpointApiVersion=38.0
 endpointEnvironment=Production/Developer Edition
@@ -13,6 +10,6 @@ namespacePrefix=
 packageName=unpackaged
 preferToolingDeployment=true
 projectIdentifier=IDE6509950614262728579
-readTimeout=600
+readTimeout=400
 sessionId=
-username=salimata.ngom@terangacloud.com
+username=dibocor.ngom@terangacloud.com

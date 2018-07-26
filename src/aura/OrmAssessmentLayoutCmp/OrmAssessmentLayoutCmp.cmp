@@ -144,7 +144,10 @@
                                 <label class="slds-form-element__label">Objectif<span class="cmn_mandatory_indicator">*</span></label>
                             </div>
                             <div class="width">  
-                                <ui:inputText class="slds-input"  value="{!v.assessmentData.orm_objectif__c}"></ui:inputText>
+                                <ui:inputText class="slds-input"  
+                                          value="{!v.assessmentData.orm_objectif__c}"
+                                          change="{!c.onObjectifChange}">
+                                </ui:inputText>
                             </div>
                         </td>
                     </tr>
@@ -156,7 +159,10 @@
                             </div>
                             
                             <div class="width">
-                                <ui:inputTextArea class="slds-input" value="{!v.assessmentData.orm_description__c}"></ui:inputTextArea>
+                                <ui:inputTextArea class="slds-input" 
+                                         value="{!v.assessmentData.orm_description__c}"
+                                         change="{!c.onDesciptionChange}">
+                                </ui:inputTextArea>
                             </div>
                         </td>    
                     </tr>

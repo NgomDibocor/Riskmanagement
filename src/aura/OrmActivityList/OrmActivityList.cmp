@@ -76,15 +76,9 @@
                                 <div class="slds-form-element slds-grid slds-wrap">
                                     <div class="slds-form-element__control slds-grow">
                                        
-<<<<<<< HEAD
                                     <lightning:input aura:id="startDateid" type="date" label="Start Date"  onchange="{!c.onStartDateChange}"
                                                              value="{!v.singleRec.orm_startDate__c}"  />
                                       <lightning:input aura:id="endDateid" type="date" label="End Date" onchange="{!c.onStartDateChange}"
-=======
-                                    <lightning:input aura:id="startDateid" type="date" label="Start Date"  Onchange="{!c.onStartDateChange}"
-                                                             value="{!v.singleRec.orm_startDate__c}"  />
-                                      <lightning:input aura:id="endDateid" type="date" label="End Date" 
->>>>>>> a36982fa235d184fdd458ebc3b8597f30be0be49
                                                              value="{!v.singleRec.orm_endDate__c}" />
                                     </div>
                                 </div>

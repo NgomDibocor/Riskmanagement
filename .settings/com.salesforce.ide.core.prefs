@@ -1,3 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=a36982fa235d184fdd458ebc3b8597f30be0be49
 eclipse.preferences.version=1
 endpointApiVersion=38.0
 endpointEnvironment=Production/Developer Edition
@@ -12,8 +15,4 @@ preferToolingDeployment=true
 projectIdentifier=IDE6509950614262728579
 readTimeout=600
 sessionId=
-<<<<<<< HEAD
 username=salimata.ngom@terangacloud.com
-=======
-username=abdoulaye.diop@terangacloud.com
->>>>>>> a36982fa235d184fdd458ebc3b8597f30be0be49

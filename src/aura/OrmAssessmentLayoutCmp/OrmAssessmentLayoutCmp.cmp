@@ -16,10 +16,14 @@
     <aura:attribute name="allTypeAssessment" type="String[]" />
     <aura:attribute name="allOrganisation" type="Account[]" />
     <aura:attribute name="allActivities" type="Assessment__c[]" />
-    
-    
+       
     <aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
     <aura:attribute name="closeFieldDescription" type="boolean" default="true"/>
+    <aura:attribute name="displaySaveCancelBtn" type="boolean" default="false"/>
+    
+    
+    
+    
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
     <aura:handler event="c:OrmCloseFieldDescriptionEvt"  action="{!c.closeFielDescript}" />
     <aura:handler event="c:eventNewOrganisationCreated" action="{!c.refreshListOrganisation}" />
@@ -85,6 +89,14 @@
     <!-- menu -->
     
     
+    <aura:if isTrue="{!v.displaySaveCancelBtn}">
+        <lightning:buttonGroup class="slds-m-around_medium">
+            <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+            <lightning:button label="Save" onclick="{!c.createAssessment}" variant="success"/>
+        </lightning:buttonGroup>
+    </aura:if> 
+    
+    
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}">
         <table class="slds-table" style="margin-top:50px">
             <aura:if isTrue="{!v.showError}">
@@ -95,13 +107,19 @@
             <aura:if isTrue="{!v.showContext}">
                     <tr>
                         <td >
+                           <div class="topSpacing"> 
+                              <label class="slds-form-element__label">Assessment Type*</label>
+                           </div>
                             <div class="slds-form-element">
                                 <div class="slds-form-element__control">
-                                    <lightning:select aura:id="typeAssessment"   name="assessment" onchange="{!c.onChangeTA}" label="Assessment Type*" >
+                                    <ui:inputSelect aura:id="typeAssessment" 
+                                          change="{!c.onTypeAssessmentChange}" class="slds-select"
+                                          labelClass="slds-form-element__label" >
                                         <aura:iteration items="{! v.allTypeAssessment}" var="typeAssessment" >
-                                            <option  text="{!typeAssessment}"></option>
+                                            <ui:inputSelectOption  text="{!typeAssessment}"
+                                                                   label="{!typeAssessment}"/>
                                         </aura:iteration>
-                                    </lightning:select>
+                                    </ui:inputSelect>
                                 </div>
                             </div>
                         </td>
@@ -111,8 +129,12 @@
                             <div class="topSpacing">
                                 <label class="slds-form-element__label">Title<span class="cmn_mandatory_indicator">*</span></label>
                             </div>
+                            <!-- blur="{!c.createAssessment}" -->
                             <div class="width" >  
-                                <ui:inputText class="slds-input" aura:id="Name" value="{!v.assessmentData.Name}" blur="{!c.createAssessment}"></ui:inputText>
+                                <ui:inputText class="slds-input" aura:id="Name" 
+                                           value="{!v.assessmentData.Name}" 
+                                           change="{!c.onTitleChange}">
+                                 </ui:inputText>
                             </div>
                         </td>
                     </tr>

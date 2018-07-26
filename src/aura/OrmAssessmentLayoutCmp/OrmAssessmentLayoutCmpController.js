@@ -282,4 +282,20 @@
         });
         $A.enqueueAction(actionOrgs);
     },
+    onTypeAssessmentChange : function(component,event,helper){ 
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));
+            component.set("v.displaySaveCancelBtn",true);
+        }
+    },
+    onTitleChange : function(component,event,helper){ 
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.displaySaveCancelBtn",true);
+        }
+    },
+    cancel : function(component,event,helper){
+       // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
+        $A.get('e.force:refreshView').fire(); 
+    },
+    
 })

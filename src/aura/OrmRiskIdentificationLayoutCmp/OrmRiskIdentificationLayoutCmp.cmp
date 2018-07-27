@@ -82,7 +82,7 @@
 							</div>
 						</td>
 						<td data-label="Action">
-							<center><input type="checkbox" name="options" id="checkbox-2" value="checkbox-2" default="true"/></center>
+							<center><input type="checkbox" name="options" id="checkbox-2" value="checkbox-2"  onclick="{!c.association}"/></center>
 						</td>
 					</tr>
 				</aura:iteration>

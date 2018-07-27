@@ -37,12 +37,12 @@
                     <div class="slds-card__body slds-card__body_inner">
                         <ui:outputRichText value="{!item.Name}" />
                     </div>
-                    <footer class="slds-card__footer">
-                        <a class="slds-card__footer-action" href="javascript:void(0);">View All
+                    <footer class="slds-card__footer" style=" border-top:2px solid black; height:10px;">
+                         <a class="slds-card__footer-action" href="javascript:void(0);">
                         <span class="slds-assistive-text">
                             details
                         </span>
-                        </a>
+                        </a> 
                     </footer>
                 </article>
             </div>

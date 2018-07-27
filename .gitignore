@@ -1,8 +1,6 @@
 # GitIgnore for Salesforce Projects
 # Project Settings and MetaData
 
-salesforce.schema
+Riskmanagement/salesforce.schema
 
-.tern-project
-
-.settings/com.salesforce.ide.core.prefs
+Riskmanagement/.settings/com.salesforce.ide.core.prefs

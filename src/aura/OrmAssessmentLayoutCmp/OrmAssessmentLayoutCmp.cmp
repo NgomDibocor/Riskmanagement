@@ -108,8 +108,8 @@
             <aura:if isTrue="{!v.showContext}">
                    <tr>
                         <td >
-                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:50px"> 
-                                <p>Contexte description </p>
+                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
+                                <p>Contexte1 description </p>
                            </div>
                         </td>
                     </tr>
@@ -179,6 +179,13 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showContext2}">
                   <tr>
+                      <td >
+                         <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
+                              <p>Contexte 2 description </p>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
                         <td >
                                 <div class="topSpacing"> 
                                     <label class="slds-form-element__label">Organisation</label>
@@ -215,6 +222,13 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showContextActivity}">
                     <tr>
+                        <td >
+                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
+                                <p>Contexte 3 description </p>
+                           </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             <div class="activity slds-form-element">
                                 <div class="slds-form-element__control">
@@ -240,6 +254,13 @@
                     </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showContextWorkshop}">
+	                <tr>
+                        <td >
+                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
+                                <p>Contexte 4 description </p>
+                           </div>
+                        </td>
+                    </tr>
                      <p>Pour Workshop</p>
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskIdentif}">

@@ -75,11 +75,16 @@
                             <div class="slds-popover__body">
                                 <div class="slds-form-element slds-grid slds-wrap">
                                     <div class="slds-form-element__control slds-grow">
-                                       
-                                    <lightning:input aura:id="startDateid" type="date" label="Start Date"  onchange="{!c.onStartDateChange}"
-                                                             value="{!v.singleRec.orm_startDate__c}"  />
+                                     <!--  <ui:inputDate aura:id="startDateid" label="Start Date"
+                                      displayDatePicker="true"  change="{!c.onStartDateChange}"
+                                       value="{!v.singleRec.orm_startDate__c}" ></ui:inputDate>-->
+                                    <lightning:input aura:id="startDateid"
+                                     type="date" 
+                                     label="Start Date"
+                                     onchange="{!c.onStartDateChange}" 
+                                      value="{!v.singleRec.orm_startDate__c}"  /> 
                                       <lightning:input aura:id="endDateid" type="date" label="End Date" onchange="{!c.onStartDateChange}"
-                                                             value="{!v.singleRec.orm_endDate__c}" />
+                                                             value="{!v.singleRec.orm_endDate__c}" /> 
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +93,6 @@
                     </aura:set> 
                  </aura:if>
             </span>
-          <!--  <div class="slds-truncate">{!v.singleRec.orm_startDate__c} to {!v.singleRec.orm_endDate__c}</div>-->
         </td>
         
         <td ondblclick="{!c.inlineEditStatus}" class="slds-cell-edit">

@@ -81,8 +81,9 @@
 								<ui:outputText value="{!risk.orm_categorieRisk__c}" />
 							</div>
 						</td>
+						
 						<td data-label="Action">
-							<center><input type="checkbox" name="options" id="checkbox-2" value="checkbox-2" default="true"/></center>
+							<center><input type="checkbox" name="options" id="checkbox-2" value="checkbox-2" /></center>
 						</td>
 					</tr>
 				</aura:iteration>

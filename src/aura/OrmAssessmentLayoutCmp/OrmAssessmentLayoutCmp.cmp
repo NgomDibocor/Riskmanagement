@@ -90,22 +90,31 @@
     <!-- menu -->
     
     
-    <aura:if isTrue="{!v.displaySaveCancelBtn}">
+    <!-- <aura:if isTrue="{!v.displaySaveCancelBtn}">
         <lightning:buttonGroup class="slds-m-around_medium">
             <lightning:button label="Cancel" onclick="{!c.cancel}"/>
             <lightning:button label="Save" onclick="{!c.createAssessment}" variant="success"/>
         </lightning:buttonGroup>
-    </aura:if> 
+    </aura:if>  -->
     
     
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}">
-        <table class="slds-table" style="margin-top:50px">
+        <table class="slds-table" style="margin-top:5px">
             <aura:if isTrue="{!v.showError}">
                 <ui:message title="Warning" severity="warning" closable="true">
                     Please Fill required field first </ui:message>
             </aura:if>
                 
             <aura:if isTrue="{!v.showContext}">
+            
+                    <tr>
+                        <td >
+                           <div style="height:15px"> 
+                                <p>petite description de l'onglet</p>
+                           </div>
+                        </td>
+                    </tr>
+                    <tr>
                     <tr>
                         <td >
                            <div class="topSpacing"> 
@@ -238,7 +247,7 @@
                 <aura:if isTrue="{!v.showRiskIdentif}">
                     <tr>
                         <td >
-                            <c:OrmRiskIdentificationLayoutCmp />
+                             <c:OrmRiskIdentificationLayoutCmp /> 
                         </td>
                     </tr>
                     
@@ -356,7 +365,7 @@
                        class="slds-button"
                        onclick="{!c.showFieldDescriptionCmp}"/>
     
-    <c:OrmActivityNewCmp/>
+    <!-- <c:OrmActivityNewCmp/> -->
     <!--<c:OrmOrganisationNewCmp/>-->
   
 </aura:component>

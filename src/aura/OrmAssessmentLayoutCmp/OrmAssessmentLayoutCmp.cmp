@@ -99,11 +99,11 @@
     
     
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}">
-        <table class="slds-table" style="margin-top:5px">
-            <aura:if isTrue="{!v.showError}">
+        <table class="slds-table">
+            <!-- <aura:if isTrue="{!v.showError}">
                 <ui:message title="Warning" severity="warning" closable="true">
                     Please Fill required field first </ui:message>
-            </aura:if>
+            </aura:if> -->
                 
             <aura:if isTrue="{!v.showContext}">
                    <tr>
@@ -137,13 +137,14 @@
                             <div class="topSpacing">
                                 <label class="slds-form-element__label">Title<span class="cmn_mandatory_indicator">*</span></label>
                             </div>
-                            
-                            <div class="width">  
-                                <ui:inputText class="slds-input" aura:id="Name" 
+                            <!-- keyup="{!c.sendValueToFD}" -->
+                            <div class="width"> 
+                              <a href="javascript:void(0);"  onclick="{!c.sendTitleToFD}">
+                                  <ui:inputText class="slds-input" aura:id="Name" 
                                            value="{!v.assessmentData.Name}" 
-                                           change="{!c.onTitleChange}"
-                                           keyup="{!c.sendValueToFD}">
+                                           change="{!c.onTitleChange}">
                                  </ui:inputText>
+                              </a> 
                             </div>
                         </td>
                     </tr>
@@ -375,14 +376,14 @@
             </div>
     </div>
     <aura:if isTrue="{!v.closeFieldDescription == false}">
-        <div class="slds-size--2-of-7" style="margin-top:30px;padding-left:20px;padding-right:20px">
+        <div class="slds-size--2-of-7" style="margin-top:20px;padding-left:20px;padding-right:20px">
             <c:OrmFieldDescriptionCmp/>
         </div>
     </aura:if>
      <lightning:button label="affiche Field Description" 
-                       variant="brand"
-                       class="slds-button"
-                       onclick="{!c.showFieldDescriptionCmp}"/>
+                variant="brand"
+                class="slds-button"
+                onclick="{!c.showFieldDescriptionCmp}"/>
     
     <!-- <c:OrmActivityNewCmp/> -->
     <!--<c:OrmOrganisationNewCmp/>-->

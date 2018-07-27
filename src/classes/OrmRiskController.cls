@@ -9,6 +9,18 @@ public with sharing class OrmRiskController {
     {
        return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro];
     }
+    /*
+    *David mignane diop
+    *fonction pourle filtre des risques
+    *le 27/07/2018
+    */
+     @AuraEnabled 
+    public static List<Macro> findAllResearch(String Research)
+    {
+        return (List<Macro>)[FIND:Research IN ALL FIELDS RETURNING Macro
+                                        (Name,Description,orm_categorieRisk__c,orm_assessment__r.name)][0];
+                                        
+    }
      @AuraEnabled
     public static Macro add (Macro item){
         if(item!=null){

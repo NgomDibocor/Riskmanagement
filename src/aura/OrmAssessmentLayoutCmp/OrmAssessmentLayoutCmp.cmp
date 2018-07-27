@@ -46,7 +46,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />  
             </span>
-            <span class="slds-tabs--path__title">Context</span>
+            <span class="slds-tabs--path__title">{!$Label.c.orm_context_menu}</span>
           </a>
         </li>
         <li aura:id="riskIdentifId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -55,7 +55,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">Risk Identification</span>
+            <span class="slds-tabs--path__title">{!$Label.c.orm_risk_identification_menu}</span>
           </a>
         </li>
         <li aura:id="riskAnalyseId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -64,7 +64,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">Risk Analysis</span>
+            <span class="slds-tabs--path__title">{!$Label.c.orm_risk_analysis_menu}</span>
           </a>
         </li>
         <li aura:id="riskTreatmentId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -73,7 +73,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">Risk Treatment</span>
+            <span class="slds-tabs--path__title">{!$Label.c.orm_risk_treatment_menu}</span>
           </a>
         </li>
         <li aura:id="actionPlanId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -82,7 +82,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">Action Plan</span>
+            <span class="slds-tabs--path__title">{!$Label.c.orm_action_plan_menu}</span>
           </a>
         </li>
       </ul>
@@ -116,7 +116,7 @@
                     <tr>
                         <td >
                            <div class="topSpacing"> 
-                              <label class="slds-form-element__label">Assessment Type*</label>
+                              <label class="slds-form-element__label">{!$Label.c.orm_type_assessment}*</label>
                            </div>
                             <div class="slds-form-element">
                                 <div class="slds-form-element__control">
@@ -135,7 +135,7 @@
                     <tr>
                         <td>
                             <div class="topSpacing">
-                                <label class="slds-form-element__label">Title<span class="cmn_mandatory_indicator">*</span></label>
+                                <label class="slds-form-element__label">{!$Label.c.orm_title_assessment}*<span class="cmn_mandatory_indicator">*</span></label>
                             </div>
                             <!-- keyup="{!c.sendValueToFD}" -->
                             <div class="width"> 
@@ -151,7 +151,7 @@
                     <tr>
                         <td>
                             <div class="topSpacing">
-                                <label class="slds-form-element__label">Objectif<span class="cmn_mandatory_indicator">*</span></label>
+                                <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
                             </div>
                             <div class="width">  
                                 <ui:inputText class="slds-input"  
@@ -165,7 +165,7 @@
                     <tr>
                         <td>
                             <div class="topSpacing"> 
-                                <label class="slds-form-element__label">Description</label>
+                                <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
                             </div>
                             
                             <div class="width">

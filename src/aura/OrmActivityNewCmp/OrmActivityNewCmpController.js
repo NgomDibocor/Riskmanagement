@@ -25,12 +25,11 @@
         var endDate = component.find('endDate').get('v.value');
         
         /* ici on test la validité des données ajoutées */
-        var isItemsValid = false;
-        if(true){
-            isItemsValid = true;
-        } else (
-            alert("les données ne sont pas valides")
-        )
+        var isItemsValid = true;
+        if($A.util.isEmpty(name) || $A.util.isEmpty(description) || $A.util.isEmpty(status)  
+        		|| $A.util.isEmpty(startDate) || $A.util.isEmpty(endDate)){
+            isItemsValid = false;           
+        }
         
          if(isItemsValid){
             var newActivity = component.get('v.activity');
@@ -48,18 +47,27 @@
             });
             action.setCallback(this, function(response) {
                 var state = response.getState();
-                //alert(state);
-                //console.log("resp ", response);
                 if ( state == "SUCCESS") {
                    alert("ajout réussie");
                    var evt = $A.get("e.c:OrmActivityCreatedEvt");
 				   evt.fire();
                    helper.closeModal(component);
+                   component.set('v.activity', {        	'sobjectType' : 'Assessment__c',
+                                                             'Name' : '',
+                                                             'orm_description__c' : '',
+                                                             'orm_activityStatus__c' : '',
+                                                             'orm_endDate__c' : '',
+                                                             'orm_startDate__c' : '',
+                                                             'orm_user__c' : '',
+                                                             'orm_assessment__c' : ''
+                                                         });
                 } else {
-                    alert("ajout échouée");
+                    alert("ERROR");
                 }
             });            
             $A.enqueueAction(action);
-        }
+        } else {
+			 alert("No Field Should be Empty");
+		}
     }    
 })

@@ -217,7 +217,7 @@
     
     openActivityNewCmp : function(component, event, helper){
         /* after created the assessment we must get the assessment id
-			var assessment = component,get('v.assessmentData');
+			var assessment = component.get('v.assessmentData');
          */
         var action = component.get('c.getSingleAssessment');
         action.setCallback(this, function(response){
@@ -233,8 +233,6 @@
             }            
         });
         $A.enqueueAction(action);
-        
-        //var assessment = component.get('v.assessmentData');
     },
     
     openOrganisationNew : function(component, event, helper){

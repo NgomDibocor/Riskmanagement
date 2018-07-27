@@ -109,12 +109,11 @@
             
                     <tr>
                         <td >
-                           <div style="height:15px"> 
-                                <p>petite description de l'onglet</p>
+                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:50px"> 
+                                <p>Contexte description </p>
                            </div>
                         </td>
                     </tr>
-                    <tr>
                     <tr>
                         <td >
                            <div class="topSpacing"> 
@@ -139,8 +138,8 @@
                             <div class="topSpacing">
                                 <label class="slds-form-element__label">Title<span class="cmn_mandatory_indicator">*</span></label>
                             </div>
-                            <!-- blur="{!c.createAssessment}" -->
-                            <div class="width" >  
+                            
+                            <div class="width">  
                                 <ui:inputText class="slds-input" aura:id="Name" 
                                            value="{!v.assessmentData.Name}" 
                                            change="{!c.onTitleChange}"
@@ -356,7 +355,7 @@
             </div>
     </div>
     <aura:if isTrue="{!v.closeFieldDescription == false}">
-        <div class="slds-size--2-of-7" style="margin-top:50px;padding-left:20px;padding-right:20px">
+        <div class="slds-size--2-of-7" style="margin-top:30px;padding-left:20px;padding-right:20px">
             <c:OrmFieldDescriptionCmp/>
         </div>
     </aura:if>

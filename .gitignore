@@ -1,24 +1,6 @@
 # GitIgnore for Salesforce Projects
 # Project Settings and MetaData
-.project
-/.settings/
-.metadata
-build.properties
-config
 
-# Apex Log as optional
-apex-scripts/log
+Riskmanagement/salesforce.schema
 
-# Eclipse specific 
-salesforce.schema
-Referenced Packages
-bin/
-tmp/
-config/
-*.tmp
-*.bak 
-local.properties
-.settings
-.loadpath
-.classpath
-*.cache
+Riskmanagement/.settings/com.salesforce.ide.core.prefs

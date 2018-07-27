@@ -7,7 +7,7 @@ public with sharing class OrmRiskController {
     @AuraEnabled 
     public static List<Macro> findAll()
     {
-       return  [Select Id,Name,orm_categorieRisk__c,orm_assessment__r.name From Macro];
+       return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro];
     }
      @AuraEnabled
     public static Macro add (Macro item){

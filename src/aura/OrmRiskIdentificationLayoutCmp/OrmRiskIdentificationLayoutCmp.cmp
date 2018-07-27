@@ -13,11 +13,74 @@
             <aura:iteration items="{!v.allRisk}" var="risk">
                 <ui:inputSelectOption text="{!risk.Id}" label="{!risk.Name}" />
              </aura:iteration>
-       </ui:inputSelect>
+       </ui:inputSelect><br/>
+       <!-- test -->
+  <table
+			class="slds-table slds-table_bordered slds-max-medium-table_stacked-horizontal slds-table_col-bordered slds-table_striped">
+			<thead>
+				<tr class="slds-text-title_caps">
+
+					<th scope="col"
+						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
+						<div class="slds-truncate" title="Nom">Name Assessment</div>
+					</th>
+					<th scope="col"
+						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
+						<div class="slds-truncate" title="Type">Name Risk</div>
+					</th>
+					<th scope="col"
+						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
+						<div class="slds-truncate" title="Tel">Description</div>
+					</th>
+					<th scope="col"
+						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
+						<div class="slds-truncate" title="Tel">Categorie Risk</div>
+					</th>
+					<th scope="col"
+						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
+						<div class="slds-truncate" title="Actions">Actions</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<aura:iteration items="{!v.allRisk}" var="risk" indexVar="i">
+					<tr>
+						<td data-label="Nom">
+							<div class="slds-truncate" title="{!risk.Name}">
+								<a data-index="{!i}">{!risk.orm_assessment__r.Name}</a>
+							</div>
+						</td>
+						<td data-label="Phone">
+							<div class="slds-truncate" title="{!risk.Name}">
+								<ui:outputText value="{!risk.Name}" />
+							</div>
+						</td>
+						<td data-label="Website">
+							<div class="slds-truncate" title="{!risk.Description}">
+								<ui:outputTextArea value="{!risk.Description}" />
+							</div>
+						</td>
+						<td data-label="ParentId">
+							<div class="slds-truncate" title="{!risk.Name}">
+								<ui:outputText value="{!risk.Name}" />
+							</div>
+						</td>
+						<td data-label="Description">
+							<div class="slds-truncate" title="{!risk.Name}">
+								<ui:outputText value="{!risk.Name}" />
+							</div>
+						</td>
+					</tr>
+				</aura:iteration>
+			</tbody>
+			
+		</table>
+  <!-- fin test -->
      </div>
       <div class="slds-col slds-size_2-of-12">
           <span class="btnNewRisk" onclick="{!c.openModalNewRisk}"><lightning:icon iconName="utility:new" size="medium" /></span>
     </div>
-  </div>
+  </div><br/>
+  
     <c:OrmRiskNewCmp/>
 </aura:component>

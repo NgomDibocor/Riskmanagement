@@ -303,6 +303,7 @@
 			});
 		    evt.fire();
     },
+    
     onObjectifChange : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
@@ -317,5 +318,25 @@
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
     },
+    openCauseNewCmp : function(component,event,helper){
+    	alert('evt button create');
+    	/* after created the assessment we must get the assessment id
+			var assessment = component.get('v.assessmentData');
+         */
+        var action = component.get('c.getSingleAssessment');
+        action.setCallback(this, function(response){
+            if(response.getState() == 'SUCCESS'){
+                 var assessment = response.getReturnValue();
+                 var evt = $A.get("e.c:OrmNewCauseClickedEvt");
+			     evt.setParams({
+			        "idAssessment" : assessment.Id
+			     });
+			     evt.fire();
+            } else {
+                alert('error');
+            }            
+        });
+        $A.enqueueAction(action);
+    }
     
 })

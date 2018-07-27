@@ -1,0 +1,73 @@
+<aura:component controller="OrmCauseController" extends="c:OrmAbstractNewCmp">
+	/**
+	 * @author: Laye
+	 * @date: Creation: 27/07/2018
+	 * @description: Component to add new Cause
+	 */
+	
+	<!-- methodes -->
+	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+	<aura:handler action="{!c.openOrmCauseNewCmp}" event="c:OrmNewCauseClickedEvt" />
+	
+	<!-- attributes -->
+	<aura:attributes name="cause" type="Macro" default="{ 'sobjectType' : 'Macro',
+														  'Name' : '',
+														  'Description' : '',
+														  'orm_assessmentRisk__c' : ''
+														}"/>
+	
+	<aura:attribute name="assessmentId" type="String" />
+	
+	<aura:if isTrue="{!v.isOpen}">
+			<!--###### MODAL BOX Start From Here ######-->    		
+			<div role="dialog" tabindex="-1" aria-labelledby="header99"
+				class="slds-modal slds-fade-in-open slds-modal_medium">
+				<div class="slds-modal__container form-style-6">
+					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+					<div class="slds-modal__header">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							title="Close" onclick="{!c.closeModal}">
+							X <span class="slds-assistive-text">Close</span>
+						</button>
+						<h1 id="header99" class="slds-text-heading--medium">New Cause</h1>
+					</div>
+					<!--###### MODAL BOX BODY Part Start From Here ######-->
+					<div class="slds-modal__content slds-p-around--medium">
+						<!-- CREATE NEW Activity FORM -->
+						<form class="slds-form--stacked">
+							<div class="slds-grid slds-gutters">
+								<div class="slds-col">
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+                                            <lightning:input aura:id="name" type="text" label="Name" class="slds-input"
+                                     			value="{!v.cause.Name}" required="true"/>
+										</div>
+									</div>
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+											<lightning:input aura:id="description" type="text" label="Description" class="slds-input"
+                                     			value="{!v.cause.Description}" required="true"/>
+										</div>
+									</div>                          
+								</div>								
+							</div>
+						</form>
+						<!-- / CREATE NEW Item FORM -->
+
+					</div>
+					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+					<div class="slds-modal__footer">
+						<button class="slds-button slds-button--neutral"
+							onclick="{!c.closeModal}">Cancel</button>
+						<button class="slds-button slds-button--brand"
+							onclick="{!c.createItem}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Save
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+			<!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
+</aura:component>

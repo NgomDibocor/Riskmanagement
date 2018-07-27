@@ -12,10 +12,12 @@
     <aura:attribute name="showError" type="boolean" default="false"/>
     <aura:attribute name="showData" type="boolean" default="false"/>
     <aura:attribute name="message" type="String" default="NoError"/> 
+    
     <!-- PickList -->
     <aura:attribute name="allTypeAssessment" type="String[]" />
     <aura:attribute name="allOrganisation" type="Account[]" />
     <aura:attribute name="allActivities" type="Assessment__c[]" />
+    <aura:attribute name="allCauses" type="Macro[]"
        
     <aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
     <aura:attribute name="closeFieldDescription" type="boolean" default="true"/>
@@ -35,6 +37,7 @@
     <aura:registerEvent name="OrmOpenNewOrganisation"
 		type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
+    <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     
     
     <!-- menu -->
@@ -90,16 +93,16 @@
     <!-- menu -->
     
     
-    <aura:if isTrue="{!v.displaySaveCancelBtn}">
+    <!-- <aura:if isTrue="{!v.displaySaveCancelBtn}">
         <lightning:buttonGroup class="slds-m-around_medium">
             <lightning:button label="Cancel" onclick="{!c.cancel}"/>
             <lightning:button label="Save" onclick="{!c.createAssessment}" variant="success"/>
         </lightning:buttonGroup>
-    </aura:if> 
+    </aura:if>  -->
     
     
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}">
-        <table class="slds-table" style="margin-top:50px">
+        <table class="slds-table" style="margin-top:5px">
             <aura:if isTrue="{!v.showError}">
                 <ui:message title="Warning" severity="warning" closable="true">
                     Please Fill required field first </ui:message>
@@ -238,7 +241,7 @@
                 <aura:if isTrue="{!v.showRiskIdentif}">
                     <tr>
                         <td >
-                            <c:OrmRiskIdentificationLayoutCmp />
+                             <c:OrmRiskIdentificationLayoutCmp /> 
                         </td>
                     </tr>
                     
@@ -257,6 +260,8 @@
                                     <ui:inputSelectOption text="Needs Analysis" label="Cause3"/>
                                 </ui:inputSelect>
                             </div>
+                            <span class="btnNewAct" onclick="{!c.openCauseNewCmp}">
+                                <lightning:icon iconName="utility:new" size="medium" /></span>
                         </td>
                     </tr>
                     
@@ -356,7 +361,7 @@
                        class="slds-button"
                        onclick="{!c.showFieldDescriptionCmp}"/>
     
-    <c:OrmActivityNewCmp/>
+    <!-- <c:OrmActivityNewCmp/> -->
     <!--<c:OrmOrganisationNewCmp/>-->
   
 </aura:component>

@@ -1,10 +1,5 @@
 <aura:component controller="OrmCauseController" extends="c:OrmAbstractNewCmp">
-	/**
-	 * @author: Laye
-	 * @date: Creation: 27/07/2018
-	 * @description: Component to add new Cause
-	 */
-	
+		
 	<!-- methodes -->
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:handler action="{!c.openOrmCauseNewCmp}" event="c:OrmNewCauseClickedEvt" />

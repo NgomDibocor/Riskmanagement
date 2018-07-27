@@ -5,7 +5,7 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 component.set('v.allRisk', response.getReturnValue());
-                alert(JSON.stringify(response.getReturnValue()));
+               // alert(JSON.stringify(response.getReturnValue()));
             } else {
                 alert("l'Element n'a pas été retrouvé");
             }

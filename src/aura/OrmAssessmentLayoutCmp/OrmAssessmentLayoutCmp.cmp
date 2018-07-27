@@ -17,13 +17,11 @@
     <aura:attribute name="allTypeAssessment" type="String[]" />
     <aura:attribute name="allOrganisation" type="Account[]" />
     <aura:attribute name="allActivities" type="Assessment__c[]" />
-    <aura:attribute name="allCauses" type="Macro[]"
+    <aura:attribute name="allCauses" type="Macro[]" />
        
     <aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
     <aura:attribute name="closeFieldDescription" type="boolean" default="true"/>
     <aura:attribute name="displaySaveCancelBtn" type="boolean" default="false"/>
-    
-    
     
     
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
@@ -117,7 +115,7 @@
                            </div>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- tr-->
                     <tr>
                         <td >
                            <div class="topSpacing"> 
@@ -258,16 +256,16 @@
                 <aura:if isTrue="{!v.showRiskAnalyse}">
                     
                     <tr>
-                        <td >
+                        <td>
                             <div class="topSpacing">
                                 <label class="slds-form-element__label ">Cause<span class="cmn_mandatory_indicator">*</span></label>
                             </div>                                        
-	                            <div class="cause">
-	                                <ui:inputSelect class="slds-input" aura:id="Cause" change="{!c.onSelectChange}">
-                                    <ui:inputSelectOption text="Prospecting" label="Cause1" value="true"/>
-                                    <ui:inputSelectOption text="Qualification" label="Cause2"/>
-                                    <ui:inputSelectOption text="Needs Analysis" label="Cause3"/>
-                                </ui:inputSelect>
+	                        <div class="cause">
+	                        	<ui:inputSelect class="slds-input" aura:id="Cause" change="{!c.onSelectChange}">
+	                            	<ui:inputSelectOption text="Prospecting" label="Cause1" value="true"/>
+	                            	<ui:inputSelectOption text="Qualification" label="Cause2"/>
+	                            	<ui:inputSelectOption text="Needs Analysis" label="Cause3"/>
+	                            </ui:inputSelect>
                             </div>
                             <span class="btnNewCause" onclick="{!c.openCauseNewCmp}">
                                 <lightning:icon iconName="utility:new" size="medium" /></span>

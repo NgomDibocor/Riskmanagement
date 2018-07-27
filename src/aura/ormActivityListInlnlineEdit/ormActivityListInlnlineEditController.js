@@ -1,6 +1,7 @@
 ({
 	
      initRecords: function(component, event, helper) {
+      
       // call the apex class method and fetch account list  
          var action = component.get("c.findAllActivity");
              action.setCallback(this, function(response) {

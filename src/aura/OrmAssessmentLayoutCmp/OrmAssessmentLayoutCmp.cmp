@@ -106,8 +106,7 @@
             </aura:if>
                 
             <aura:if isTrue="{!v.showContext}">
-            
-                    <tr>
+                   <tr>
                         <td >
                            <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:50px"> 
                                 <p>Contexte description </p>

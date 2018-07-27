@@ -2,8 +2,17 @@
     <aura:attribute name="nomField" type="String" />
     <aura:attribute name="descriptionField" type="String"/>
     <aura:registerEvent name="OrmCloseFieldDescription" type="c:OrmCloseFieldDescriptionEvt"/>
+    <aura:handler event="c:OrmSendValuesToFieldDescriptionEvt" action="{!c.showDescriptionField}" />
     
     <div style="color:white;position:relative">
             <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
+         
+         
+           
+        {!v.nomField}</br></br>
+       
+       {!v.descriptionField}
     </div>
+    
+   
 </aura:component>

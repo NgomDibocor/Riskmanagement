@@ -10,7 +10,7 @@
 	<aura:handler action="{!c.openOrmCauseNewCmp}" event="c:OrmNewCauseClickedEvt" />
 	
 	<!-- attributes -->
-	<aura:attributes name="cause" type="Macro" default="{ 'sobjectType' : 'Macro',
+	<aura:attribute name="cause" type="Macro" default="{ 'sobjectType' : 'Macro',
 														  'Name' : '',
 														  'Description' : '',
 														  'orm_assessmentRisk__c' : ''

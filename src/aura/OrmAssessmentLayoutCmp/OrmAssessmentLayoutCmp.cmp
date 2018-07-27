@@ -262,14 +262,14 @@
                             <div class="topSpacing">
                                 <label class="slds-form-element__label ">Cause<span class="cmn_mandatory_indicator">*</span></label>
                             </div>                                        
-                            <div class="width">
-                                <ui:inputSelect class="slds-input" aura:id="Cause" change="{!c.onSelectChange}">
+	                            <div class="cause">
+	                                <ui:inputSelect class="slds-input" aura:id="Cause" change="{!c.onSelectChange}">
                                     <ui:inputSelectOption text="Prospecting" label="Cause1" value="true"/>
                                     <ui:inputSelectOption text="Qualification" label="Cause2"/>
                                     <ui:inputSelectOption text="Needs Analysis" label="Cause3"/>
                                 </ui:inputSelect>
                             </div>
-                            <span class="btnNewAct" onclick="{!c.openCauseNewCmp}">
+                            <span class="btnNewCause" onclick="{!c.openCauseNewCmp}">
                                 <lightning:icon iconName="utility:new" size="medium" /></span>
                         </td>
                     </tr>
@@ -372,5 +372,5 @@
     
     <!-- <c:OrmActivityNewCmp/> -->
     <!--<c:OrmOrganisationNewCmp/>-->
-  
+    <c:OrmCauseNewCmp />
 </aura:component>

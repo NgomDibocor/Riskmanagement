@@ -109,6 +109,15 @@
             </aura:if>
                 
             <aura:if isTrue="{!v.showContext}">
+            
+                    <tr>
+                        <td >
+                           <div style="height:15px"> 
+                                <p>petite description de l'onglet</p>
+                           </div>
+                        </td>
+                    </tr>
+                    <tr>
                     <tr>
                         <td >
                            <div class="topSpacing"> 

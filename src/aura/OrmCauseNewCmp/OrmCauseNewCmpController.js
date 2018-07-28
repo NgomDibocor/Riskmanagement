@@ -12,7 +12,6 @@
 	openOrmCauseNewCmp : function(component, event, helper) {
 		component.set("v.isOpen", true);
         component.set('v.assessmentId', event.getParam('idAssessment'));
-        alert('id assessment ' + event.getParam('idAssessment'));
 	},
 	
 	/** @author: Laye
@@ -39,12 +38,24 @@
             });
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
-            		alert('Ajout Réussie');
+            		alert('SUCCESS');
+            		helper.closeModal(component);
+                    component.set('v.cause', {  'sobjectType' : 'Macro',
+                                               'Name' : '',
+                                               'Description' : '',
+                                               'orm_assessmentRisk__c' : ''
+                    });
+                   
+                   var evt = $A.get("e.c:OrmCauseCreatedEvt");
+                   evt.fire();
+            	} else {
+            		alert('ERROR');
             	}
             });
+            $A.enqueueAction(action);
         	
         } else {
-        
+        	alert('No Field should be Empty');
         }
 	}
 })

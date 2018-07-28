@@ -36,6 +36,7 @@
 		type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
+    <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshListCause}" />
     
     
     <!-- menu -->
@@ -281,11 +282,22 @@
                                 <label class="slds-form-element__label ">Cause<span class="cmn_mandatory_indicator">*</span></label>
                             </div>                                        
 	                        <div class="cause">
+	                        
+	                        	<lightning:select aura:id="cause" name="cause" onchange="{!c.onChangeCause}">
+                                        <aura:iteration items="{!v.allCauses}" var="cause">
+                                            <option text="{!cause.Name}"
+                                                    label="{!cause.Id}"
+                                                    value="{!cause.Id}">
+                                            </option>
+                                        </aura:iteration>
+                                </lightning:select>	  
+	                        	<!--
 	                        	<ui:inputSelect class="slds-input" aura:id="Cause" change="{!c.onSelectChange}">
 	                            	<ui:inputSelectOption text="Prospecting" label="Cause1" value="true"/>
 	                            	<ui:inputSelectOption text="Qualification" label="Cause2"/>
 	                            	<ui:inputSelectOption text="Needs Analysis" label="Cause3"/>
 	                            </ui:inputSelect>
+	                            -->
                             </div>
                             <span class="btnNewCause" onclick="{!c.openCauseNewCmp}">
                                 <lightning:icon iconName="utility:new" size="medium" /></span>

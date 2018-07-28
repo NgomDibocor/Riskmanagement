@@ -318,8 +318,8 @@
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
     },
+    
     openCauseNewCmp : function(component,event,helper){
-    	alert('evt button create');
     	/* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
@@ -337,6 +337,27 @@
             }            
         });
         $A.enqueueAction(action);
+    },
+    
+    /* @cretedBy: laye
+	   @createdDate: 28/07/2018
+     */
+    refreshListCause : function(component, event, helper){
+    	var action = component.get('c.findAllCauseByAssessment');
+        action.setParams({'idAssessment' : null});
+        action.setCallback(this, function(response){
+            if(response.getState() == 'SUCCESS'){
+            	alert('SUCCESS');
+                component.set('v.allCauses', response.getReturnValue());
+            } else {
+                alert('ERROR');
+            }            
+        });
+        $A.enqueueAction(action);
+    },
+    
+    onChangeCause : function(component, event, helper) {
+    
     }
     
 })

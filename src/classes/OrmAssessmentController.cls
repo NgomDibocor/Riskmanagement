@@ -90,6 +90,15 @@ public class OrmAssessmentController {
     }
     
     @AuraEnabled
+    public static List<Macro> findAllCauseByAssessment(string idAssessment){
+    	
+    	/*List<Macro> causes = [SELECT Id, Name, Description FROM Macro];    	
+    	return causes;*/
+    	
+    	return OrmCauseController.findAll();
+    }
+    
+    @AuraEnabled
     public static Assessment__c getSingleAssessment(){
         return [SELECT Id FROM Assessment__c
                        WHERE RecordTypeId=:OrmAssessmentController.getAssessmentRecordTypeId() LIMIT 1];

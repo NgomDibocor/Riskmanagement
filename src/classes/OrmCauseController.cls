@@ -18,7 +18,7 @@ public with sharing class OrmCauseController {
     
     /**
 	 * @author: Laye
-	 * @date: Creation: 27/07/2018
+	 * @date: Creation: 28/07/2018
 	 * @description: add Cause
 	*/
 	@AuraEnabled
@@ -26,6 +26,16 @@ public with sharing class OrmCauseController {
         item.RecordTypeId = OrmCauseController.getCauseRecordTypeId();
 		upsert item;
 		return item;
+	}
+	
+	/**
+	 * @author: Laye
+	 * @date: Creation: 28/07/2018
+	 * @description: find all Cause
+	*/
+	@AuraEnabled
+	public static List<Macro> findAll(){
+		return [SELECT Id, Name, Description FROM Macro WHERE RecordTypeId =: OrmCauseController.getCauseRecordTypeId()];
 	}
     
 }

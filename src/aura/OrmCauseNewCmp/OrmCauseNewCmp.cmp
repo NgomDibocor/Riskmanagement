@@ -3,6 +3,7 @@
 	<!-- methodes -->
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:handler action="{!c.openOrmCauseNewCmp}" event="c:OrmNewCauseClickedEvt" />
+	<aura:registerEvent name="OrmCauseCreatedEvt" type="c:OrmCauseCreatedEvt" />
 	
 	<!-- attributes -->
 	<aura:attribute name="cause" type="Macro" default="{ 'sobjectType' : 'Macro',

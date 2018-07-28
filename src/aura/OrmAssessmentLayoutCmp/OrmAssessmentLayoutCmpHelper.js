@@ -275,4 +275,14 @@
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", true);
     },  
+    
+    sendValuesToFieldDescription  : function(component, event, helper, field, description) {
+       component.set("v.closeFieldDescription",false);
+            var evt = $A.get("e.c:OrmSendValuesToFieldDescriptionEvt");
+            evt.setParams({
+				"nomField" : field,
+				"descriptionField" : description
+			});
+		    evt.fire();
+    }
 })

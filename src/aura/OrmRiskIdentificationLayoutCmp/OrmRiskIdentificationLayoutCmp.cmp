@@ -10,7 +10,7 @@
 			
 		</div>
 		<div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
-			<lightning:input aura:id="Name" type="search" label="Search" name="search"  onkeyup="{!c.openFilterRisk}"/>
+			<lightning:input aura:id="Name" type="search" label="{!$Label.c.search_button_title}" name="search"  onkeyup="{!c.openFilterRisk}"/>
 		</div>
 		<div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
 		<br/>
@@ -41,15 +41,15 @@
 					</th>
 					<th scope="col"
 						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
-						<div class="slds-truncate" title="Type">Name Risk</div>
+						<div class="slds-truncate" title="{!$Label.c.orm_name_risk}">{!$Label.c.orm_name_risk}</div>
 					</th>
 					<th scope="col"
 						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
-						<div class="slds-truncate" title="Tel">Description</div>
+						<div class="slds-truncate" title="{!$Label.c.orm_description_risk}">{!$Label.c.orm_description_risk}</div>
 					</th>
 					<th scope="col"
 						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
-						<div class="slds-truncate" title="Tel">Categorie Risk</div>
+						<div class="slds-truncate" title="{!$Label.c.orm_risk_category}">{!$Label.c.orm_risk_category}</div>
 					</th>
 					<th scope="col"
 						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">

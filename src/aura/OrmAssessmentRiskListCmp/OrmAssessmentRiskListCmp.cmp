@@ -4,25 +4,21 @@
     <aura:handler event="c:EventAddAssessmentRisk" action="{!c.refreshList}" />
     <!--debut card-->
     
+    
+  <div class="slds-grid slds-wrap">
     <aura:iteration items="{!v.assessmentRisks}" var="item" indexVar="i">
-        <div class="slds-col slds-size_1-of-2">
-            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="border-top: 2px solid black;margin-bottom:0px;">
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small">
 
-                <article class="slds-card">
+                <article class="slds-card" style="height:120px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
                             <div class="slds-media__figure">
-                                <span class="slds-icon_container " title="Risk">
-                             <lightning:icon iconName="utility:trail" size="medium" />
-                             <span class="slds-assistive-text">Risk</span>
+                                <span class="slds-icon_container " title="Assessment Risk">
+                                   <lightning:icon iconName="utility:trail" size="medium" />
                                 </span>
                             </div>
                             <div class="slds-media__body">
-                                <h2>
-                                <a href="javascript:void(0);" class="slds-card__header-link"
-                                    title="{!item.orm_Risk__r.Name}"><ui:outputText value="{!item.orm_Risk__r.Name}" />
-                                </a>
-                             </h2>
                                 <h2>
                                 <a href="javascript:void(0);" class="slds-card__header-link"
                                     title="{!item.orm_assessment__r.Name}"><ui:outputText value="{!item.orm_assessment__r.Name}" />
@@ -37,19 +33,15 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                        <ui:outputRichText value="{!item.Name}" />
+                        <ui:outputRichText value="{!item.orm_assessment__r.orm_description__c}" />
                     </div>
-                    <footer class="slds-card__footer" style="height:10px;">
-                         <a class="slds-card__footer-action" href="javascript:void(0);">
-                        <span class="slds-assistive-text">
-                            details
-                        </span>
-                        </a> 
-                    </footer>
+                    
                 </article>
             </div>
         </div>
     </aura:iteration>
+  </div>  
+  
     <!--fin card-->
     <!--<c:OrmAssessmentRiskNewCmp/>-->
 </aura:component>

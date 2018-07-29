@@ -40,7 +40,7 @@ public class OrmAssessmentController {
     public static List<Assessment__c> findAll(){
         List<Assessment__c> assessments = new List<Assessment__c>();
         assessments = [Select Id, Name, orm_description__c From Assessment__c 
-                       order by Name desc LIMIT 4 ];
+                       order by Name desc LIMIT 6 ];
                        //where RecordTypeId=: OrmAssessmentController.getAssessmentRecordTypeId() 
         return assessments;
     }

@@ -1,4 +1,4 @@
-<aura:component controller="OrmAssessmentController">
+<aura:component controller="AssessmentRiskController">
     <aura:registerEvent name="DisplayAssessment"
 		type="c:OrmDisplayAssessmentEvt"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
@@ -6,13 +6,13 @@
 	<!--<p>Liste des Assessment de l'utilisateur</p>-->
 	
 
-  
+  <div class="slds-grid slds-wrap">
     
    <aura:iteration items="{!v.assessments}" var="item" indexVar="i">
-        <div class="slds-col slds-size_1-of-2" style="margin-bottom:20px">
-            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" >
-
-                <article class="slds-card" style="height:120px">
+   
+        <div class="slds-size_1-of-3">
+            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small">
+                <article class="slds-card" style="height:120px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
                             <div class="slds-media__figure">
@@ -23,7 +23,7 @@
                             <div class="slds-media__body">
                                 <h2>
 	                                <a href="javascript:void(0);" class="slds-card__header-link"
-	                                    title="{!item.Name}"><ui:outputText value="{!item.Name}" />
+	                                    title="{!item.orm_assessment__r.Name}"><ui:outputText value="{!item.orm_assessment__r.Name}" />
 	                                </a>
 	                            </h2>
                                 
@@ -36,7 +36,7 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                        <ui:outputRichText value="{!item.orm_description__c}" />
+                        <ui:outputRichText value="{!item.orm_assessment__r.orm_description__c}" />
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
                      <span>Risk <b>2</b></span>
@@ -45,7 +45,9 @@
                 </article>
             </div>
         </div>
+       
     </aura:iteration>
+  </div>
     
     <div class="slds-grid" style="margin-bottom:30px">
 		 <lightning:button label="New Assessment" 

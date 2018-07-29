@@ -99,7 +99,7 @@
         </lightning:buttonGroup>
     </aura:if>  -->
     
-    
+  
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}">
         <table class="slds-table">
             <!-- <aura:if isTrue="{!v.showError}">

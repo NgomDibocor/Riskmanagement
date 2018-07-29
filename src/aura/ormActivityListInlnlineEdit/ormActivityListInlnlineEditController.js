@@ -2,8 +2,11 @@
 	
      initRecords: function(component, event, helper) {
       
-      // call the apex class method and fetch account list  
-         var action = component.get("c.findAllActivity");
+      // call the apex class method and fetch activity list  
+         var action = component.get("c.findActivityByAssessment");
+        // var assmntDataId=component.get('v.assessmentData').Id;
+         var assmntDataId='a051H00000aQvq3QAC';
+         action.setParam('assessmt',assmntDataId);
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
@@ -11,12 +14,10 @@
                   console.log(JSON.stringify(storeResponse));
                // set ActivityList list with return value from server.
                   component.set("v.ActivityList", storeResponse);
-              }else{
-                  alert('error');
               }
         });
         $A.enqueueAction(action);
-    },
+    },  
     
     Save: function(component, event, helper) {
       // Check required fields(Name) first in helper method which is return true/false

@@ -400,7 +400,7 @@
                 class="slds-button"
                 onclick="{!c.showFieldDescriptionCmp}"/>
     
-    <!-- <c:OrmActivityNewCmp/> -->
+    <c:OrmActivityNewCmp/>
     <!--<c:OrmOrganisationNewCmp/>-->
     <c:OrmCauseNewCmp />
 </aura:component>

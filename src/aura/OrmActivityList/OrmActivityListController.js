@@ -5,7 +5,7 @@
         helper.fetchPickListVal(component, 'orm_activityStatus__c', 'statusPicklistOpts');
     },
      inlineEditName : function(component,event,helper){   
-        // show the name edit field popup 
+        // show the name edit field 
         component.set("v.nameEditMode", true); 
         // after the 100 millisecond set focus to input field   
         setTimeout(function(){ 
@@ -13,9 +13,9 @@
         }, 100);
     },
       inlineEditPeriod : function(component,event,helper){   
-        // show the name edit field popup 
+        // show the period edit field 
         component.set("v.periodEditMode", true); 
-        // after the 100 millisecond set focus to input field   
+        // after the 100 millisecond set focus to input field startDate and endDate
         setTimeout(function(){ 
             component.find("startDateid").focus();
         }, 100);
@@ -25,7 +25,7 @@
     },
     
     inlineEditStatus : function(component,event,helper){   
-        // show the status edit field popup 
+        // show the status edit field 
         component.set("v.statusEditMode", true); 
         // after set ratingEditMode true, set picklist options to picklist field 
         component.find("accStatus").set("v.options" , component.get("v.statusPicklistOpts"));
@@ -66,7 +66,7 @@
         }
     }, 
     closeStartDateBox : function (component, event, helper) {
-      // on focus out, close the input section by setting the 'nameEditMode' att. as false   
+      // on focus out, close the input section by setting the 'periodEditMode' att. as false   
         component.set("v.periodEditMode", false); 
       
     }, 

@@ -39,7 +39,7 @@
                         <ui:outputRichText value="{!item.orm_description__c}" />
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                     <span>Risk <b> 2</b></span>
+                     <span>Risk <b>2</b></span>
                     </div>
                    
                 </article>

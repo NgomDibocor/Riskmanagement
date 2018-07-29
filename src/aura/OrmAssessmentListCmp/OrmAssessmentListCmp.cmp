@@ -38,13 +38,10 @@
                     <div class="slds-card__body slds-card__body_inner">
                         <ui:outputRichText value="{!item.orm_description__c}" />
                     </div>
-                    <footer class="slds-card__footer">
-                         <a class="slds-card__footer-action" href="javascript:void(0);">
-                        <span class="slds-assistive-text">
-                            details
-                        </span>
-                        </a> 
-                    </footer>
+                    <div class="slds-card__body slds-card__body_inner">
+                     <span>Risk <b> 2</b></span>
+                    </div>
+                   
                 </article>
             </div>
         </div>

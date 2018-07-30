@@ -35,6 +35,7 @@
                     <div class="slds-card__body slds-card__body_inner">
                         <ui:outputRichText value="{!item.orm_assessment__r.orm_description__c}" />
                     </div> 
+                    </div>
                 </article>
             </div>
         </div>

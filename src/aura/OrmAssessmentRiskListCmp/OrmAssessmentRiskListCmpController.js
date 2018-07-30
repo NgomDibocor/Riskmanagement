@@ -9,6 +9,8 @@
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
                 component.set('v.assessmentRisks', response.getReturnValue());
+                alert(JSON.stringify(response.getReturnValue()));
+                console.log(response.getReturnValue());
             }
             else
             {

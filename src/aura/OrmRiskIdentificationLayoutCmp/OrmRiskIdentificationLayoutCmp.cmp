@@ -1,6 +1,7 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController">
     <aura:registerEvent name="OrmOpenNewRiskCmpEvt"
 		type="c:OrmOpenNewRiskCmpEvt" description="" />
+	<aura:handler event="c:OrmRiskCreatedEvt" action="{!c.doInit}" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
     <aura:attribute name="allRisk" type="Macro[]" />
     <aura:attribute name="Research" type="String" />

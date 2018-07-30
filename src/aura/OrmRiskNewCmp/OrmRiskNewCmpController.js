@@ -40,12 +40,6 @@
                     var evt = $A.get("e.c:OrmRiskCreatedEvt");
 				   	evt.fire();   
                     helper.closeModal(component);
-                    component.set("v.item",{
-                        'sobjectType':'Macro',
-                        'Name':'',
-                        'Description':'',
-                        'orm_assessment__c':''
-                    });
                     alert("ajout réussie");
                      }
                   else {

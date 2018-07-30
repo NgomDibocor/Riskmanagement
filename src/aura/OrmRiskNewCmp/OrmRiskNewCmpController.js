@@ -40,6 +40,12 @@
                     var evt = $A.get("e.c:OrmRiskCreatedEvt");
 				   	evt.fire();   
                     helper.closeModal(component);
+                    component.set('v.risk', {'sobjectType' : 'Macro',
+                                                             'Name' : '',
+                                                             'Description' : '',
+                                                      		 'orm_assessment__c': '',
+                                                             'orm_categorieRisk__c' : ''
+                                                         });
                     alert("ajout réussie");
                      }
                   else {

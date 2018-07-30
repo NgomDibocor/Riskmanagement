@@ -6,16 +6,36 @@ public class OrmActivityController {
         return RecordTypeId;
     }
     
-    @AuraEnabled 
+ /**
+ * find all activity 
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get All activity of Unit
+ * @history 
+ * 2018-07-24 : Salimata NGOM - Implementation
+ */
+   
+ @AuraEnabled 
     public static List<Assessment__c> findAllActivity(){
         List<Assessment__c> allActivity = new List<Assessment__c>();
         allActivity = [Select Id, Name, orm_startDate__c, orm_endDate__c, orm_activityStatus__c
                     From Assessment__c where RecordTypeId=:OrmActivityController.getActivityRecordTypeId() 
                     order by Name];
         return allActivity;
-    }      
+    }     
+    
+ /**
+ * find all activity Assessment 
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get All activity of Unit By assessment
+ * @history 
+ * 2018-07-24 : Salimata NGOM - Implementation
+ */ 
     @AuraEnabled 
-    public static List<Assessment__c> findActivityByAssessment(String assessment){
+    public static List<Assessment__c> findActivityByAssessment(String assessmt){
         List<Assessment__c> activities = new List<Assessment__c>();
         activities = [Select Id, Name, orm_startDate__c, orm_endDate__c, orm_activityStatus__c, orm_user__c,
                        orm_user__r.Name, orm_description__c, orm_assessment__c,orm_assessment__r.Name
@@ -24,13 +44,34 @@ public class OrmActivityController {
                     order by Name];
         return activities;
     }
-     // method for update records after inline editing  
+    
+ 
+ /**
+ * save List activity
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method for update records after inline editing
+ * @history 
+ * 2018-07-24 : Salimata NGOM - Implementation
+ */ 
+     
     @AuraEnabled
     public static List <Assessment__c> saveActivity(List<Assessment__c> lstActivity) {
         update lstActivity;
         return lstActivity;
     }
-   // method for fetch picklist values dynamic  
+ /**
+ * get select options picklist
+ 
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description  method for fetch picklist values dynamic 
+ * @history 
+ * 2018-07-24 : Salimata NGOM - Implementation
+ */
+   
     @AuraEnabled
     public static List <String> getSelectOptions(sObject objObject, string fld) {
         system.debug('objObject --->' + objObject);
@@ -64,4 +105,6 @@ public class OrmActivityController {
 		upsert item;
 		return item;
 	}
+	
+  
 }

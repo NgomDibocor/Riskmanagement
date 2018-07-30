@@ -3,7 +3,7 @@ implements="force:appHostable,flexipage:availableForAllPageTypes">
     <!-- 	attributes -->
     <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> -->
     <aura:attribute name="currentIndex" type="Integer" description="" />
- 	<aura:attribute name="items" type="SObject[]" description="" />
+ 	<aura:attribute name="items" type="SObject[]" description="" /> 	
 	
     <!--     methods -->
 	<aura:method name="removeItem" description="" />

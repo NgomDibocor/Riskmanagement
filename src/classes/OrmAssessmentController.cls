@@ -39,9 +39,9 @@ public class OrmAssessmentController {
     @AuraEnabled 
     public static List<Assessment__c> findAll(){
         List<Assessment__c> assessments = new List<Assessment__c>();
-        assessments = [Select Id, Name, orm_description__c From Assessment__c];
-        //where RecordTypeId=: OrmAssessmentController.getAssessmentRecordTypeId() 
-                    //order by Name desc LIMIT 8 
+        assessments = [Select Id, Name, orm_description__c From Assessment__c 
+                       order by Name desc LIMIT 6 ];
+                       //where RecordTypeId=: OrmAssessmentController.getAssessmentRecordTypeId() 
         return assessments;
     }
     
@@ -87,6 +87,15 @@ public class OrmAssessmentController {
                     order by Name];
         return activities;*/ 
         return OrmActivityController.findAllActivity();
+    }
+    
+    @AuraEnabled
+    public static List<Macro> findAllCauseByAssessment(string idAssessment){
+    	
+    	/*List<Macro> causes = [SELECT Id, Name, Description FROM Macro];    	
+    	return causes;*/
+    	
+    	return OrmCauseController.findAll();
     }
     
     @AuraEnabled

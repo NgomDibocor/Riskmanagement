@@ -20,10 +20,10 @@
 					<div class="slds-modal__header">
 						<button
 							class="slds-button slds-modal__close slds-button--icon-inverse"
-							title="Close" onclick="{!c.closeModal}">
-							X <span class="slds-assistive-text">Close</span>
+							title="{!$Label.c.close_button_title}" onclick="{!c.closeModal}">
+							X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 						</button>
-						<h1 id="header99" class="slds-text-heading--medium">New Activity</h1>
+						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label} Risk</h1>
 					</div>
 					<!--###### MODAL BOX BODY Part Start From Here ######-->
 					<div class="slds-modal__content slds-p-around--medium">
@@ -64,10 +64,10 @@
 					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 					<div class="slds-modal__footer">
 						<button class="slds-button slds-button--neutral"
-							onclick="{!c.closeModal}">Cancel</button>
+							onclick="{!c.closeModal}">{!$Label.c.close_button_title}</button>
 						<button class="slds-button slds-button--brand"
 							onclick="{!c.createItem}">
-							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Save
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.create_button_title}
 						</button>
 					</div>
 				</div>

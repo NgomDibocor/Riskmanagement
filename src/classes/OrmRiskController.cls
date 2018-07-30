@@ -4,10 +4,28 @@ public with sharing class OrmRiskController {
                   .get('RT Risk').getRecordTypeId();
         return recordTypeId;
     }
+    /*
+    *David mignane diop
+    *fonction liste risque
+    *le 27/07/2018
+    */
     @AuraEnabled 
     public static List<Macro> findAll()
     {
-       return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro];
+       return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
+       RecordTypeId=:OrmRiskController.getRiskRecordTypeId()];
+    }
+    /*
+    *David mignane diop
+    *fonction pour le filtre des risques
+    *le 27/07/2018
+    */
+     @AuraEnabled 
+    public static List<Macro> findAllResearch(String Research)
+    {
+        return (List<Macro>)[FIND:Research IN ALL FIELDS RETURNING Macro
+                                        (Name,Description,orm_categorieRisk__c,orm_assessment__r.name)][0];
+                                        
     }
      @AuraEnabled
     public static Macro add (Macro item){

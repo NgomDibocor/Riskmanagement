@@ -13,7 +13,7 @@
         var showRiskTreatment = component.get("v.showRiskTreatment");
         var showData = component.get("v.showData");
         if(showContext == true){
-            var assessmentName = component.find("Name").get("v.value");
+           /* var assessmentName = component.find("Name").get("v.value");
             //console.log('assessmentName:::'+assessmentName);
             if(assessmentName =='' || assessmentName == null){
                 component.set("v.setMessage",'error');           
@@ -28,13 +28,13 @@
                 
             }
             else
-            { 
+            { */
                 component.set("v.showContext", false);
                 component.set("v.showContext2", true);
                 component.set("v.showError", false);
                 helper.activeContext2(component, event);
                 
-            }
+           // }
             
         }  
         if(showContext2 == true){
@@ -284,25 +284,26 @@
     },
     onTypeAssessmentChange : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
-            component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));
-            component.set("v.displaySaveCancelBtn",true);
-            
+            component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));            
         }
+        var field = $A.get("$Label.c.orm_type_assessment");
+        var description = $A.get("$Label.c.orm_description_type_assessment");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+        
     },
+    
     onTitleChange : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
         }
     },
-    sendValueToFD : function(component,event,helper){ 
-            component.set("v.closeFieldDescription",false);
-            var evt = $A.get("e.c:OrmSendValuesToFieldDescriptionEvt");
-            evt.setParams({
-				"nomField" : "Title",
-				"descriptionField" : "This field defines the title of assessment"
-			});
-		    evt.fire();
+    sendTitleToFD : function(component,event,helper){ 
+    	
+        var field = $A.get("$Label.c.orm_title_assessment");
+        var description = $A.get("$Label.c.orm_description_assessment");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
+    
     onObjectifChange : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
@@ -317,5 +318,46 @@
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
     },
+    
+    openCauseNewCmp : function(component,event,helper){
+    	/* after created the assessment we must get the assessment id
+			var assessment = component.get('v.assessmentData');
+         */
+        var action = component.get('c.getSingleAssessment');
+        action.setCallback(this, function(response){
+            if(response.getState() == 'SUCCESS'){
+                 var assessment = response.getReturnValue();
+                 var evt = $A.get("e.c:OrmNewCauseClickedEvt");
+			     evt.setParams({
+			        "idAssessment" : assessment.Id
+			     });
+			     evt.fire();
+            } else {
+                alert('error');
+            }            
+        });
+        $A.enqueueAction(action);
+    },
+    
+    /* @cretedBy: laye
+	   @createdDate: 28/07/2018
+     */
+    refreshListCause : function(component, event, helper){
+    	var action = component.get('c.findAllCauseByAssessment');
+        action.setParams({'idAssessment' : null});
+        action.setCallback(this, function(response){
+            if(response.getState() == 'SUCCESS'){
+            	alert('SUCCESS');
+                component.set('v.allCauses', response.getReturnValue());
+            } else {
+                alert('ERROR');
+            }            
+        });
+        $A.enqueueAction(action);
+    },
+    
+    onChangeCause : function(component, event, helper) {
+    
+    }
     
 })

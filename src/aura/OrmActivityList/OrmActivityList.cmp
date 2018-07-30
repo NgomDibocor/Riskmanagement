@@ -70,6 +70,7 @@
                 <aura:if isTrue="{!v.periodEditMode == false}">
                       <span class="slds-truncate" title="Period">
                       <ui:outputDate format="dd/MM/yyyy"  value="{!v.singleRec.orm_startDate__c}"/>
+                      <span> - </span>
                       <ui:outputDate format="dd/MM/yyyy" value="{!v.singleRec.orm_endDate__c}" />
                       </span>
                     <button onclick="{!c.inlineEditPeriod}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rating">

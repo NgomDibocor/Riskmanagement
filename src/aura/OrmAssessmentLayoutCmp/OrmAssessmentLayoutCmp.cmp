@@ -233,6 +233,7 @@
                     </tr>
                     <tr>
                         <td>
+                        <!--  
                             <div class="activity slds-form-element">
                                 <div class="slds-form-element__control">
                                     <lightning:select aura:id="activity"   name="activity" onchange="{!c.onChangeActivity}" label="Activity" >
@@ -245,14 +246,14 @@
                                     </lightning:select>
                                 </div>
                                 
-                            </div>
+                            </div>-->
                             <span class="btnNewAct" onclick="{!c.openActivityNewCmp}">
                                 <lightning:icon iconName="utility:new" size="medium" /></span>
                         </td>
                    </tr>
                     <tr>
                         <td>
-                            <!--<c:ormActivityListInlnlineEdit/>-->
+                            <c:ormActivityListInlnlineEdit/>
                         </td>
                     </tr>
                 </aura:if>

@@ -35,7 +35,7 @@ public class OrmActivityController {
  * 2018-07-24 : Salimata NGOM - Implementation
  */ 
     @AuraEnabled 
-    public static List<Assessment__c> findActivityByAssessment(String assessmt){
+    public static List<Assessment__c> findActivityByAssessment(String assessment){
         List<Assessment__c> activities = new List<Assessment__c>();
         activities = [Select Id, Name, orm_startDate__c, orm_endDate__c, orm_activityStatus__c, orm_user__c,
                        orm_user__r.Name, orm_description__c, orm_assessment__c,orm_assessment__r.Name

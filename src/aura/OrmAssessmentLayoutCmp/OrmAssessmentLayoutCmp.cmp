@@ -10,6 +10,7 @@
      <aura:attribute name="showActionPlan" type="boolean" default="false"/>
     <aura:attribute name="setMessage" type="String"/> 
     <aura:attribute name="showError" type="boolean" default="false"/>
+    <aura:attribute name="checkUpdateActivity" type="boolean" default="false"/>
     <aura:attribute name="showData" type="boolean" default="false"/>
     <aura:attribute name="message" type="String" default="NoError"/> 
     
@@ -92,12 +93,7 @@
     <!-- menu -->
     
     
-    <!-- <aura:if isTrue="{!v.displaySaveCancelBtn}">
-        <lightning:buttonGroup class="slds-m-around_medium">
-            <lightning:button label="Cancel" onclick="{!c.cancel}"/>
-            <lightning:button label="Save" onclick="{!c.createAssessment}" variant="success"/>
-        </lightning:buttonGroup>
-    </aura:if>  -->
+    <!--   -->
     
   
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}">
@@ -253,7 +249,7 @@
                    </tr>
                     <tr>
                         <td>
-                            <c:ormActivityListInlnlineEdit/>
+                            <c:OrmActivityList assessmentData="{!v.assessmentData}"/>
                         </td>
                     </tr>
                 </aura:if>
@@ -400,6 +396,13 @@
                 variant="brand"
                 class="slds-button"
                 onclick="{!c.showFieldDescriptionCmp}"/>
+                
+                <aura:if isTrue="{!v.displaySaveCancelBtn}">
+        <lightning:buttonGroup class="slds-m-around_medium">
+            <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+            <lightning:button label="Save" onclick="{!c.createAssessment}" variant="success"/>
+        </lightning:buttonGroup>
+    </aura:if>
     
     <c:OrmActivityNewCmp/>
     <c:OrmOrganisationNewCmp/>

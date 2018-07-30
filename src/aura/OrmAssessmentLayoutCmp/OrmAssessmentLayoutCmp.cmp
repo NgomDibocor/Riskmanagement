@@ -401,6 +401,6 @@
                 onclick="{!c.showFieldDescriptionCmp}"/>
     
     <c:OrmActivityNewCmp/>
-    <!--<c:OrmOrganisationNewCmp/>-->
+    <c:OrmOrganisationNewCmp/>
     <c:OrmCauseNewCmp />
 </aura:component>

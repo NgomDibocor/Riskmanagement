@@ -12,6 +12,15 @@ public class AssessmentRiskController {
                           orm_schedule__c,orm_status__c,orm_vulnerability__c,orm_assessment__c,
                           orm_Risk__r.Name,orm_assumption__r.Name,orm_assessment__r.Name, orm_assessment__r.orm_description__c From orm_assessmentRisk__c];
     }
+    
+   @AuraEnabled 
+    public static AggregateResult[] getAssessmentRisks()
+    {
+       return  [Select orm_assessment__r.Name,orm_assessment__r.orm_description__c, COUNT(orm_Risk__c) nb_risk
+                From orm_assessmentRisk__c 
+                GROUP BY orm_assessment__r.Name, orm_assessment__r.orm_description__c];
+    }
+    
      @AuraEnabled
     public static orm_assessmentRisk__c add (orm_assessmentRisk__c item){
         if(item!=null){

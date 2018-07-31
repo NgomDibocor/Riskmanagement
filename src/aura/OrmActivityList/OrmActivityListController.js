@@ -2,7 +2,7 @@
 	
     
      initRecords: function(component, event, helper) {
-     
+    
       // call the apex class method and fetch activity list  
          var action = component.get("c.findAllActivity");
        // var assmntDataId=component.get('v.assessmentData').Id;
@@ -19,6 +19,9 @@
               }
         });
         $A.enqueueAction(action);
+         // set deafult count and select all checkbox value to false on load 
+    component.set("v.selectedCount", 0);
+    component.find("box3").set("v.value", false);
     },  
    
     Save: function(component, event, helper) {
@@ -48,8 +51,26 @@
     cancel : function(component,event,helper){
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
-    } 
+    },
+    removeActivity:function(component,event,helper){
+    //is checked delete activity show popup  message confirmation
+    component.set("v.showConfirmRemoveActivity",true);
     
-
+    },
+    closeModalRemove:function(component,event,helper){
+    component.set("v.showConfirmRemoveActivity",false);
+    },
+    
+    removeActSelected: function(component,event,helper){
+    component.set("v.showConfirmRemoveActivity",false);
+    //fire event to childActivityList
+  
+		var evt = $A.get("e.c:OrmRemoveRecordActivityEvnt");
+	
+		evt.setParams({
+			"countSelected" :component.get("v.selectedCount") 
+		});
+		evt.fire();
+    }
  
 })

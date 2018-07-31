@@ -1,9 +1,17 @@
 ({
+<<<<<<< HEAD
+	initRecords : function(component, event, helper) {
+		
+		// call the apex class method and fetch activity list  
+         var action = component.get("c.findAllCausesByAssessmentRisk");
+         var assesmentRiskId='a001H00000kbj0vQAA';
+=======
 	doInit : function(component, event, helper) {
 		
 		// call the apex class method and fetch activity list  
          var action = component.get("c.findAllCausesByAssessmentRisk");
          var assesmentRiskId = 'a001H00000kbj0vQAA';
+>>>>>>> 7cb652635e30c487a99b0bf1fd6a9508c0e6c010
          action.setParam('idAssRisk', assesmentRiskId);
              action.setCallback(this, function(response) {
               var state = response.getState();
@@ -12,6 +20,9 @@
               }
         });
         $A.enqueueAction(action);
+<<<<<<< HEAD
+	}
+=======
 	},
 	
 	save: function(component, event, helper) {
@@ -42,4 +53,5 @@
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
     } 
+>>>>>>> 7cb652635e30c487a99b0bf1fd6a9508c0e6c010
 })

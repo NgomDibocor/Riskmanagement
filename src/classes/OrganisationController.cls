@@ -5,6 +5,7 @@ public with sharing class OrganisationController {
         return recordTypeId;
     }
     
+    
     @AuraEnabled 
     public static List<Account> getOrganisations(){
         List<Account> accountList = new List<Account>();
@@ -12,10 +13,13 @@ public with sharing class OrganisationController {
         return accountList;
     }
     
+    
     @AuraEnabled 
     public static Account getOrganisation(String id){
         return [Select Id, Name, Description, orm_region__c, orm_pays__c From Account where Id=:id];
     }
+    
+    
     @AuraEnabled 
     public static Account editOrganisation(Account item)
     {
@@ -23,12 +27,14 @@ public with sharing class OrganisationController {
       upsert item;
       return item; 
     }
-          @AuraEnabled
+    
+    
+    @AuraEnabled
     public static Account add(Account item){
         if(item!=null){
            item.RecordTypeId=OrganisationController.getOrganisationRecordTypeId();
             upsert item;
-           return item;
+            return item;
         }
        
         return item;

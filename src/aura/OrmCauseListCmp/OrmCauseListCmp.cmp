@@ -2,12 +2,22 @@
 	
 	<!-- methodes -->
 	<!--Init handler which is call initRecords js function on component Load-->  
+<<<<<<< HEAD
+    <aura:handler name="init" value="{!this}" action="{!c.initRecords}"/>
+=======
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+>>>>>>> 7cb652635e30c487a99b0bf1fd6a9508c0e6c010
 	
 	<!-- attributes -->
 	<aura:attribute name="causes" type="Macro[]" description="" />
 	<aura:attribute name="assessmentRiskId" type="string" description="" />
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" 
+<<<<<<< HEAD
+		description="flag for rendered save and cancel buttons in aura:if "/>
+	
+	
+</aura:component>
+=======
 		description="flag for rendered save and cancel buttons in aura:if "/>	
 	
 	<div class="slds-m-around_large">
@@ -45,3 +55,4 @@
  
     </div>	
 </aura:component>
+>>>>>>> 7cb652635e30c487a99b0bf1fd6a9508c0e6c010

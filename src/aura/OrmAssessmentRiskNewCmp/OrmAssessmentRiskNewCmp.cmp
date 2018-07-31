@@ -1,4 +1,4 @@
-<aura:component  extends="c:OrmAbstractNewCmp" controller="AssessmentRiskController" >
+<aura:component  extends="c:OrmAbstractNewCmp" controller="OrmAssessmentRiskController" >
 	<aura:registerEvent name="NewAssessmentRisk" type="c:EventAddAssessmentRisk" />
     <aura:attribute name="item" type="orm_assessmentRisk__c" default="{
 						'sobjectType' : 'orm_assessmentRisk__c',

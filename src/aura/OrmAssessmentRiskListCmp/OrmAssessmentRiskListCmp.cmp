@@ -1,4 +1,4 @@
-<aura:component controller="AssessmentRiskController" extends="c:ormAbstractListCmp">
+<aura:component controller="OrmAssessmentRiskController" extends="c:ormAbstractListCmp">
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c[]" description="" />
     <aura:handler event="c:EventAddAssessmentRisk" action="{!c.refreshList}" />

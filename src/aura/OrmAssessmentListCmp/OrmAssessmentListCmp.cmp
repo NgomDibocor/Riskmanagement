@@ -1,4 +1,4 @@
-<aura:component controller="AssessmentRiskController">
+<aura:component controller="OrmAssessmentRiskController">
     <aura:registerEvent name="DisplayAssessment"
 		type="c:OrmDisplayAssessmentEvt"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />

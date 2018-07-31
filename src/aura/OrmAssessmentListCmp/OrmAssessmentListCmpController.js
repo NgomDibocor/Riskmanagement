@@ -1,6 +1,6 @@
 ({
     doInit : function(component, event, helper){
-        var action = component.get('c.getAssessmentRisks');
+        var action = component.get('c.findAll');
         action.setCallback(this, function(response){
             var state = response.getState();
             if(state === 'SUCCESS'){
@@ -10,7 +10,7 @@
                     custs.push({value:conts[key], key:key});
                 }
                  component.set("v.assessments", custs);
-                alert(JSON.stringify(response.getReturnValue()));
+                //alert(JSON.stringify(response.getReturnValue()));
             } else {
                 alert("l'élément n'a pas été chargé");
             }

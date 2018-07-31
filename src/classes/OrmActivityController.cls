@@ -1,3 +1,8 @@
+/**
+ * @author Abdoulaye
+ * @version 1.0
+ * @description class for managing Activity
+ */ 
 public class OrmActivityController {
 	
     public static Id getActivityRecordTypeId(){
@@ -99,6 +104,11 @@ public class OrmActivityController {
         return allOpts;
     }
     
+    /**
+	 * @author Abdoulaye
+	 * @version 1.0
+	 * @description method to add an Activity
+	 */
     @AuraEnabled
 	public static Assessment__c add(Assessment__c item){        
         item.RecordTypeId = OrmActivityController.getActivityRecordTypeId();

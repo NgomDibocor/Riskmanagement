@@ -1,4 +1,7 @@
 ({
+	/* @CreatedBy: laye
+	 * @Description: method for initialize the compeonents
+	 */
 	doInit : function(component, event, helper) {
         var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.activity"), 'fld' : 'orm_activityStatus__c'});
@@ -12,11 +15,18 @@
         });
         $A.enqueueAction(action);        
 	},
+	
+	/* @CreatedBy: laye
+	 * @Description: method for opening the compeonents
+	 */
     openCurrentCmp : function(component, event){
         component.set("v.isOpen", true);
         component.set('v.assessmentId', event.getParam('idAssessment'));
 	},
     
+    /* @CreatedBy: laye
+	 * @Description: method for adding an activity
+	 */
     createItem : function(component, event, helper) {
         var name = component.find('name').get('v.value');
         var description = component.find('description').get('v.value');
@@ -24,14 +34,13 @@
         var startDate = component.find('startDate').get('v.value');
         var endDate = component.find('endDate').get('v.value');
         
-        /* ici on test la validité des données ajoutées */
         var isItemsValid = true;
         if($A.util.isEmpty(name) || $A.util.isEmpty(description) || $A.util.isEmpty(status)  
         		|| $A.util.isEmpty(startDate) || $A.util.isEmpty(endDate)){
             isItemsValid = false;           
         }
         
-         if(isItemsValid){
+        if(isItemsValid){
             var newActivity = component.get('v.activity');
             newActivity.Name = name;
             newActivity.orm_description__c = description;

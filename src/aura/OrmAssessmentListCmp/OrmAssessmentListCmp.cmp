@@ -1,18 +1,19 @@
-<aura:component controller="AssessmentRiskController">
+<aura:component controller="OrmAssessmentRiskController">
     <aura:registerEvent name="DisplayAssessment"
 		type="c:OrmDisplayAssessmentEvt"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
-    <aura:attribute name="assessments" type="Assessment__c[]" description="" />
+    <!-- <aura:attribute name="assessments" type="Assessment__c[]" description="" /> -->
+    <aura:attribute name="assessments" type="List" />
 	<!--<p>Liste des Assessment de l'utilisateur</p>-->
 	
 
   <div class="slds-grid slds-wrap">
-    
-   <aura:iteration items="{!v.assessments}" var="item" indexVar="i">
+   
+   <aura:iteration items="{!v.assessments}" var="item" indexVar="key">
    
         <div class="slds-size_1-of-3">
             <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small">
-                <article class="slds-card" style="height:120px;">
+                <article class="slds-card" style="height:130px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
                             <div class="slds-media__figure">
@@ -23,7 +24,7 @@
                             <div class="slds-media__body">
                                 <h2>
 	                                <a href="javascript:void(0);" class="slds-card__header-link"
-	                                    title="{!item.orm_assessment__r.Name}"><ui:outputText value="{!item.orm_assessment__r.Name}" />
+	                                    title="{!item.value.Name}"><ui:outputText value="{!item.value.Name}" />
 	                                </a>
 	                            </h2>
                                 
@@ -36,10 +37,10 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                        <ui:outputRichText value="{!item.orm_assessment__r.orm_description__c}" />
+                        <ui:outputRichText value="{!item.value.orm_description__c}" />
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                     <span>Risk <b>2</b></span>
+                     <span>Risk <b>{!item.key}</b></span>
                     </div>
                    
                 </article>

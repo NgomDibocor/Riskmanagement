@@ -10,6 +10,7 @@
 	 *  @date: Creation: 27/07/2018
 	 *  @description: method for opening the component and initilizing its attributes */
 	openOrmCauseNewCmp : function(component, event, helper) {
+		alert('capturé');
 		component.set("v.isOpen", true);
         component.set('v.assessmentId', event.getParam('idAssessment'));
 	},
@@ -31,6 +32,7 @@
         	var newCause = component.get('v.cause');
         	newCause.Name = name;
         	newCause.Description = description;
+        	newCause.orm_assessmentRisk__c = "a001H00000kbj0vQAA";
         	
         	var action = component.get('c.add');
             action.setParams({

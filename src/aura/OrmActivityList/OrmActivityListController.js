@@ -1,77 +1,55 @@
 ({
-	doInit: function(component, event, helper) {
-      // call the fetchPickListVal(component, field_API_Name, aura_attribute_name_for_store_options) -
-      // method for get picklist values dynamic   
-        helper.fetchPickListVal(component, 'orm_activityStatus__c', 'statusPicklistOpts');
-    },
-     inlineEditName : function(component,event,helper){   
-        // show the name edit field 
-        component.set("v.nameEditMode", true); 
-        // after the 100 millisecond set focus to input field   
-        setTimeout(function(){ 
-            component.find("inputId").focus();
-        }, 100);
-    },
-      inlineEditPeriod : function(component,event,helper){   
-        // show the period edit field 
-        component.set("v.periodEditMode", true); 
-        // after the 100 millisecond set focus to input field startDate and endDate
-        setTimeout(function(){ 
-            component.find("startDateid").focus();
-        }, 100);
-          setTimeout(function(){ 
-            component.find("endDateid").focus();
-        }, 100);
-    },
+	
     
-    inlineEditStatus : function(component,event,helper){   
-        // show the status edit field 
-        component.set("v.statusEditMode", true); 
-        // after set ratingEditMode true, set picklist options to picklist field 
-        component.find("accStatus").set("v.options" , component.get("v.statusPicklistOpts"));
-        // after the 100 millisecond set focus to input field   
-        setTimeout(function(){ 
-            component.find("accStatus").focus();
-        }, 100);
-    },
-    
-     onNameChange : function(component,event,helper){ 
-        // if edit field value changed and field not equal to blank,
-        // then show save and cancel button by set attribute to true
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.set("v.showSaveCancelBtn",true);
-        }
-    },
- 
-    onStatusChange : function(component,event,helper){ 
-        // if picklist value change,
-        // then show save and cancel button by set attribute to true
-        component.set("v.showSaveCancelBtn",true);
-    },    
-        onStartDateChange : function(component,event,helper){ 
-        // if picklist value change,
-        // then show save and cancel button by set attribute to true
-        component.set("v.showSaveCancelBtn",true);
+     initRecords: function(component, event, helper) {
+     
+      // call the apex class method and fetch activity list  
+         var action = component.get("c.findAllActivity");
+       // var assmntDataId=component.get('v.assessmentData').Id;
+        // alert('assesmment= '+assmntDataId);
+        // var assmntDataId='a051H00000aQvq3QAC';
+        // action.setParam('assessmt',assmntDataId);
+             action.setCallback(this, function(response) {
+              var state = response.getState();
+              if (state === "SUCCESS") {
+                  var storeResponse = response.getReturnValue();
+                  console.log(JSON.stringify(storeResponse));
+               // set ActivityList list with return value from server.
+                  component.set("v.ActivityList", storeResponse);
+              }
+        });
+        $A.enqueueAction(action);
     },  
-    
-    closeNameBox : function (component, event, helper) {
-      // on focus out, close the input section by setting the 'nameEditMode' att. as false   
-        component.set("v.nameEditMode", false); 
-      // check if change/update Name field is blank, then add error class to column -
-      // by setting the 'showErrorClass' att. as True , else remove error class by setting it False   
-        if(event.getSource().get("v.value").trim() == ''){
-            component.set("v.showErrorClass",true);
-        }else{
-            component.set("v.showErrorClass",false);
-        }
-    }, 
-    closeStartDateBox : function (component, event, helper) {
-      // on focus out, close the input section by setting the 'periodEditMode' att. as false   
-        component.set("v.periodEditMode", false); 
-      
-    }, 
-    closeStatusBox : function (component, event, helper) {
-       // on focus out, close the input section by setting the 'statusEditMode' att. as false
-        component.set("v.statusEditMode", false); 
+   
+    Save: function(component, event, helper) {
+      // Check required fields(Name) first in helper method which is return true/false
+        if (helper.requiredValidation(component, event)){
+              // call the saveActivity apex method for update inline edit fields update 
+               var action = component.get("c.saveActivity");
+                  action.setParams({
+                    'lstActivity': component.get("v.ActivityList")
+                  });
+            action.setCallback(this, function(response) {
+                var state = response.getState();
+                if (state === "SUCCESS") {
+                    var storeResponse = response.getReturnValue();
+                    // set ActivityList list with return value from server.
+                        console.log(JSON.stringify(storeResponse));
+                    component.set("v.ActivityList", storeResponse);
+                    // Hide the save and cancel buttons by setting the 'showSaveCancelBtn' false 
+                    component.set("v.showSaveCancelBtn",false);
+                    alert('Updated...');
+                }
+            });
+            $A.enqueueAction(action);
+        } 
     },
+    
+    cancel : function(component,event,helper){
+       // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
+        $A.get('e.force:refreshView').fire(); 
+    } 
+    
+
+ 
 })

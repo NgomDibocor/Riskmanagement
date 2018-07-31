@@ -301,6 +301,14 @@
                         </td>
                     </tr>
                     
+                    <!-- list of causee -->
+                    <tr>
+                    	<td>
+                    		<c:OrmCauseListCmp />
+                    	</td>
+                    </tr>
+                    <!-- /causes -->
+                    
                     <tr>
                         <td >
                             <div class="topSpacing">

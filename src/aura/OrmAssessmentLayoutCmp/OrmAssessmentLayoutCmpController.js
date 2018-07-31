@@ -330,6 +330,7 @@
     	/* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
+         alert('déclenche evt');
         var action = component.get('c.getSingleAssessment');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){

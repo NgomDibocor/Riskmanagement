@@ -99,7 +99,7 @@ public class OrmAssessmentController {
     }
     
     @AuraEnabled
-    public static Assessment__c getSingleAssessment(){
+    public static Assessment__c getSingleAssessment() {
         return [SELECT Id FROM Assessment__c
                        WHERE RecordTypeId=:OrmAssessmentController.getAssessmentRecordTypeId() LIMIT 1];
     }   

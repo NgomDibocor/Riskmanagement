@@ -109,10 +109,10 @@
   <lightning:datatable data="{! v.allRisk }" class="slds-m-top_medium"
                                  columns="{! v.columns }" 
                                  keyField="id"
-                                 onrowselection="{! c.getSelectedName }"
-                                 hideCheckboxColumn="true"  
+                                 resizeColumnDisabled="false"
+                                 onrowselection="{!c.OpenPopupAssociation}"
                                  onrowaction="{! c.handleRowAction }"
-                                 showRowNumberColumn="true"/>
+                                 showRowNumberColumn="false"/>
      </div>   
   </div><br/>
   

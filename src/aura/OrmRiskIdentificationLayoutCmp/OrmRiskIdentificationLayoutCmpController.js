@@ -1,8 +1,16 @@
 ({
+	/*
+	 * CreatedBy @David Diop
+	 *
+	 */
 	 openModalNewRisk : function(component, event, helper){
         var evt = $A.get("e.c:OrmOpenNewRiskCmpEvt");
 		evt.fire();
     },
+    /*
+	 * CreatedBy @David Diop
+	 *
+	 */
      doInit : function(component, event, helper) {
       // Set the columns of the Table
       
@@ -13,6 +21,10 @@
         ]);
        helper.fetchPicklist(component, event);
 	},
+	/*
+	 * CreatedBy @David Diop
+	 *
+	 */
 	
 	filterByPicklist:function(component,event,helper)
 	{
@@ -42,6 +54,10 @@
             $A.enqueueAction(action);
         }
 	},
+	/*
+	 * CreatedBy @David Diop
+	 *
+	 */
 	/*
 	openFilterRisk:function(component,event,helper)
 	{
@@ -76,15 +92,22 @@
 	{
 	alert("association");
 	},
-	
+	/*
+	 * CreatedBy @David Diop
+	 *
+	 */
 	filter: function (component, event, helper) {
     var data = component.get("v.allRisk");
         var term = component.get("v.filter");
+        
+       
         var  results = data;
         var regex;
         if ($A.util.isEmpty(term)) {
              helper.fetchPicklist(component, event);
-        } 
+        } else{
+          term="^"+term;
+         }
     try {
         regex = new RegExp(term, "i");
         // filter checks each row, constructs new array where function returns true

@@ -1,10 +1,17 @@
 ({
-	 fetchPicklist : function(component, event) {   
+	 fetchPicklist : function(component, event) { 
         var actionOrgs = component.get("c.findAll");
         actionOrgs.setCallback(this, function(response){
             var state = response.getState();
             if(state === 'SUCCESS'){
-                component.set('v.allRisk', response.getReturnValue());
+               
+                var rows = response.getReturnValue();
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+              //  if (row.testOrganisation__c) row.testOrganisationName = row.testOrganisation__r.Name;
+              
+            }
+             component.set('v.allRisk',rows);
                // alert(JSON.stringify(response.getReturnValue()));
             } else {
                 alert("l'Element n'a pas été retrouvé");

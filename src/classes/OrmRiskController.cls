@@ -1,4 +1,14 @@
+/*
+    *David mignane diop
+    *controller class for the risk object
+    *le 27/07/2018
+    */
 public with sharing class OrmRiskController {
+	/*
+    *David mignane diop
+    *function for the recovery of the ricord type
+    *le 27/07/2018
+    */
        public static Id getRiskRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
                   .get('RT Risk').getRecordTypeId();
@@ -6,7 +16,7 @@ public with sharing class OrmRiskController {
     }
     /*
     *David mignane diop
-    *fonction liste risque
+    *risk list function
     *le 27/07/2018
     */
     @AuraEnabled 
@@ -17,16 +27,31 @@ public with sharing class OrmRiskController {
     }
     /*
     *David mignane diop
-    *fonction pour le filtre des risques
+    *function for the risk filter
     *le 27/07/2018
     */
      @AuraEnabled 
     public static List<Macro> findAllResearch(String Research)
     {
         return (List<Macro>)[FIND:Research IN ALL FIELDS RETURNING Macro
-                                        (Name,Description,orm_categorieRisk__c,orm_assessment__r.name)][0];
-                                        
+                                        (Name,Description,orm_categorieRisk__c,orm_assessment__r.name where orm_categorieRisk__c =:'Educational' )][0];                                
     }
+     /*
+    *David mignane diop
+    *function for the risk filter
+    *le 27/07/2018
+    */
+     @AuraEnabled 
+    public static List<Macro> findAllResearchPicklist(String Research)
+    {
+         return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
+       orm_categorieRisk__c=:Research];                               
+    }
+    /*
+    *David mignane diop
+    *function of adding a new risk
+    *le 27/07/2018
+    */
      @AuraEnabled
     public static Macro add (Macro item){
         if(item!=null){
@@ -37,6 +62,11 @@ public with sharing class OrmRiskController {
         return item;
         
     }
+     /*
+    *David mignane diop
+    *  picklist recovery function
+    *le 27/07/2018
+    */
      // method for fetch picklist values dynamic  
     @AuraEnabled
     public static List < String > getSelectOptions(sObject objObject, string fld) {

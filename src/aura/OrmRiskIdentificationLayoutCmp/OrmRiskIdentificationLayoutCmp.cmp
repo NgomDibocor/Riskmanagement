@@ -1,13 +1,28 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController">
     <aura:registerEvent name="OrmOpenNewRiskCmpEvt"
 		type="c:OrmOpenNewRiskCmpEvt" description="" />
+	<aura:handler event="c:OrmRiskCreatedEvt" action="{!c.doInit}" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
     <aura:attribute name="allRisk" type="Macro[]" />
     <aura:attribute name="Research" type="String" />
+    <aura:attribute name="allCategorieRisk" type="String[]" />
+    <aura:attribute name="risk" type="Macro" default="{ 
+                                                             'sobjectType' : 'Macro',
+                                                             'Name' : '',
+                                                             'Description' : '',
+                                                      		 'orm_assessment__c': '',
+                                                             'orm_categorieRisk__c' : ''
+                                                         }" />
     
      <div class="slds-grid slds-gutters">
 	    <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
-			
+			<div class="slds-form-element__control">
+											<lightning:select aura:id="categorieRisk" name="categorie Risk" label="categorie Risk" onchange="{!c.filterByPicklist}" >
+                                                <aura:iteration items="{!v.allCategorieRisk}" var="CategorieRisk" >
+                                                    <option  text="{!CategorieRisk}" ></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+			</div>
 		</div>
 		<div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
 			<lightning:input aura:id="Name" type="search" label="{!$Label.c.search_button_title}" name="search"  onkeyup="{!c.openFilterRisk}"/>
@@ -35,10 +50,7 @@
 			<thead>
 				<tr class="slds-text-title_caps">
 
-					<th scope="col"
-						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
-						<div class="slds-truncate" title="Nom">Name Assessment</div>
-					</th>
+					
 					<th scope="col"
 						class="slds-cell-wrap slds-cell-buffer_left slds-cell-buffer_right">
 						<div class="slds-truncate" title="{!$Label.c.orm_name_risk}">{!$Label.c.orm_name_risk}</div>
@@ -60,11 +72,7 @@
 			<tbody>
 				<aura:iteration items="{!v.allRisk}" var="risk" indexVar="i">
 					<tr>
-						<td data-label="NameAssessment">
-							<div class="slds-truncate" title="{!risk.orm_assessment__r.Name}">
-								<ui:outputText value="{!risk.orm_assessment__r.Name}" />
-							</div>
-						</td>
+						
 						
 						<td data-label="NameRisk">
 							<div class="slds-truncate" title="{!risk.Name}">
@@ -83,7 +91,7 @@
 						</td>
 						
 						<td data-label="Action">
-							<center><input type="checkbox" name="options" id="checkbox-2" value="checkbox-2" /></center>
+							<center><input type="checkbox" name="options" id="checkbox-2" value="checkbox-2" onclick="{!c.OpenPopupAssociation}"/></center>
 						</td>
 					</tr>
 				</aura:iteration>

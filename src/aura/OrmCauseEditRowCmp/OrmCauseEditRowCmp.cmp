@@ -1,0 +1,18 @@
+<aura:component>
+	
+	<!-- methods -->
+	<!-- on component load, fetch picklist values dynamically from apex controller -->   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!--attributes-->
+    <aura:attribute name="showSaveCancelBtn" type="boolean"/>
+    <aura:attribute name="showErrorClass" type="boolean" default="false"/>
+    <aura:attribute name="sNo" type="string" />
+    <aura:attribute name="cause" type="sobject" default="{'sobjectType' : 'Macro',
+                                                               'Name' : '',
+                                                               'Description' : ''
+                                                               }"/>
+    <aura:attribute name="nameEditMode" type="boolean" default="false" />
+    <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
+    
+</aura:component>

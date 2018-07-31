@@ -1,12 +1,14 @@
 ({
 	
+    
      initRecords: function(component, event, helper) {
-      
+     
       // call the apex class method and fetch activity list  
-         var action = component.get("c.findActivityByAssessment");
-        // var assmntDataId=component.get('v.assessmentData').Id;
-         var assmntDataId='a051H00000aQvq3QAC';
-         action.setParam('assessmt',assmntDataId);
+         var action = component.get("c.findAllActivity");
+       // var assmntDataId=component.get('v.assessmentData').Id;
+        // alert('assesmment= '+assmntDataId);
+        // var assmntDataId='a051H00000aQvq3QAC';
+        // action.setParam('assessmt',assmntDataId);
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
@@ -18,7 +20,7 @@
         });
         $A.enqueueAction(action);
     },  
-    
+   
     Save: function(component, event, helper) {
       // Check required fields(Name) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)){

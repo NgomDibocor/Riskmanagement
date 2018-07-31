@@ -31,6 +31,7 @@
         	var newCause = component.get('v.cause');
         	newCause.Name = name;
         	newCause.Description = description;
+        	newCause.orm_assessmentRisk__c = "a001H00000kbj0vQAA";
         	
         	var action = component.get('c.add');
             action.setParams({

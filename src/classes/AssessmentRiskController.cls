@@ -14,11 +14,23 @@ public class AssessmentRiskController {
     }
     
    @AuraEnabled 
-    public static AggregateResult[] getAssessmentRisks()
+    public static Map<Integer, sObject> getAssessmentRisks()
     {
-       return  [Select orm_assessment__r.Name,orm_assessment__r.orm_description__c, COUNT(orm_Risk__c) nb_risk
-                From orm_assessmentRisk__c 
-                GROUP BY orm_assessment__r.Name, orm_assessment__r.orm_description__c];
+        List<AggregateResult> agrResults =  [Select orm_assessment__r.Id, orm_assessment__r.Name,  
+                                             count(orm_Risk__c) nbRisk
+                                             From orm_assessmentRisk__c 
+                                             GROUP BY orm_assessment__r.Name, orm_assessment__r.Id ];
+        
+        system.debug('dibo1: '+agrResults.size()) ;     
+        Map<Integer, sObject> mapObjects = new Map<Integer, sObject>();  
+        for (AggregateResult ar: agrResults){
+           mapObjects.put((Integer)ar.get('nbRisk'), [Select Id, Name, orm_description__c, orm_objectif__c 
+                           From Assessment__c  
+                           WHERE Id =: ar.get('Id').toString() ]);   
+        }     
+        system.debug('dibo2:  '+mapObjects.size()) ;
+        return mapObjects;
+        
     }
     
      @AuraEnabled

@@ -1,26 +1,54 @@
 public class OrmAssessmentController {
 	
-    public static Id getAssessmentRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
-                  .get('RT Assessment').getRecordTypeId();
-        return recordTypeId;
-    }
+  /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns the recordTypeId of Organisation
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     public static Id getOrganisationRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
                   .get('RT Organisation').getRecordTypeId();
         return recordTypeId;
     }
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns the recordTypeId of Projet
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     public static Id getProjetRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
                   .get('RT Projet').getRecordTypeId();
         return recordTypeId;
     }
+    
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns the recordTypeId of Processus
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     public static Id getProcessusRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
                   .get('RT Processus').getRecordTypeId();
         return recordTypeId;
     }
     
+	/**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method adds and modifies an assessment
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     @AuraEnabled
 	public static Assessment__c add(Assessment__c item){
         if( item.orm_typeAssessment__c == 'Organisation'){
@@ -45,6 +73,15 @@ public class OrmAssessmentController {
         return assessments;
     }
     
+    
+ 	/**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns the i
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */    
     @AuraEnabled
 	public static List <String> getSelectOptions(sObject objObject, string fld) {
       List <String> allOpts = new list <String> ();
@@ -70,6 +107,14 @@ public class OrmAssessmentController {
       return allOpts;
  	}
     
+	/**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns the Organisation
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     @AuraEnabled 
     public static List<Account> getOrganisations(){
         return OrmOrganisationController.getOrganisations();
@@ -98,10 +143,10 @@ public class OrmAssessmentController {
     	return OrmCauseController.findAll();
     }
     
-    @AuraEnabled
+    /*@AuraEnabled
     public static Assessment__c getSingleAssessment(){
-        return [SELECT Id FROM Assessment__c
+        return [SELECT Id FROM Assessment__c 
                        WHERE RecordTypeId=:OrmAssessmentController.getAssessmentRecordTypeId() LIMIT 1];
-    }   
+    }  */ 
     
 }

@@ -38,6 +38,7 @@
             
         }  
         if(showContext2 == true){
+       
             component.set("v.showContext2", false);
             component.set("v.showContextActivity", true);
             component.set("v.showError", false);
@@ -45,6 +46,7 @@
             
         }
         if(showContextActivity == true){
+       
             component.set("v.showContextActivity", false);
             component.set("v.showContextWorkshop", true);
             component.set("v.showError", false);
@@ -52,6 +54,7 @@
             
         }
         if(showContextWorkshop == true){
+      
             component.set("v.showContextWorkshop", false);
             component.set("v.showRiskIdentif", true);
             component.set("v.showError", false);
@@ -60,6 +63,7 @@
         
         
         if(showRiskIdentif == true){
+        
                 component.set("v.showRiskIdentif", false);
                 component.set("v.showRiskAnalyse", true);
                 component.set("v.showError", false);
@@ -69,6 +73,7 @@
         }   
         
         if(showRiskAnalyse == true){
+        
                 component.set("v.showRiskTreatment", true);
                 component.set("v.showRiskIdentif", false);
                 component.set("v.showError", false);
@@ -77,6 +82,7 @@
                 
         }
         if(showRiskTreatment == true){
+       
             component.set("v.showActionPlan", true);
             component.set("v.showRiskTreatment", false);
             component.set("v.showError", false);
@@ -151,7 +157,7 @@
         var newItem = component.get("v.assessmentData");
         newItem.orm_typeAssessment__c = ta.get("v.value");
         //alert(JSON.stringify(newItem))
-        /*var action = component.get('c.add');
+        var action = component.get('c.add');
         action.setParams({
             "item": newItem
         });
@@ -161,6 +167,7 @@
             function(response) {
                 var state = response.getState();
                 if (state == "SUCCESS") {
+                component.set("v.assessmentData",response.getReturnValue());
                     var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
                             'message' : newItem.orm_typeAssessment__c+' '+'crée avec success',
@@ -172,7 +179,7 @@
                     
                 }
             });
-        $A.enqueueAction(action);*/
+        $A.enqueueAction(action);
     },
     onChangeTA : function(component, event, helper)
     {

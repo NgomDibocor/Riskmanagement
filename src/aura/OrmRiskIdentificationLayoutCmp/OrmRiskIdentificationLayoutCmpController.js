@@ -4,11 +4,12 @@
 		evt.fire();
     },
      doInit : function(component, event, helper) {
-      // Set the columns of the Table 
+      // Set the columns of the Table
+      
         component.set('v.columns', [
             {label: 'Risk Name', fieldName: 'Name', type: 'text'},
             {label: 'Description', fieldName: 'Description', type: 'text'},
-            {label: 'Risk category', fieldName: 'orm_categorieRisk__c', type: 'text'} 
+            {label: 'Risk category', fieldName: 'orm_categorieRisk__c', type: 'text'}
         ]);
        helper.fetchPicklist(component, event);
 	},

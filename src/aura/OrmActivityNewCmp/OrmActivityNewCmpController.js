@@ -10,7 +10,13 @@
             if(state === 'SUCCESS' && component.isValid()){
                 component.set('v.allStatus', response.getReturnValue());
             } else {
-                alert("the element was not found");
+            	var toast = $A.get('e.force:showToast');
+	            toast.setParams({
+	            	'message' : 'The Element was not Found',
+	                'type' : 'warning',
+	                'mode' : 'dismissible'
+	            });	
+	            toast.fire();
             }
         });
         $A.enqueueAction(action);        
@@ -56,8 +62,16 @@
             });
             action.setCallback(this, function(response) {
                 var state = response.getState();
+                var toast = $A.get('e.force:showToast');
                 if ( state == "SUCCESS") {
-                   alert("ajout réussie");
+                                   
+		           toast.setParams({
+			           'message' : newActivity.Name +' has been added',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+		           });	
+		           toast.fire();
+		           
                    var evt = $A.get("e.c:OrmActivityCreatedEvt");
 				   evt.fire();
                    helper.closeModal(component);
@@ -71,12 +85,24 @@
                                                              'orm_assessment__c' : ''
                                                          });
                 } else {
-                    alert("ERROR");
+                   //var toast = $A.get('e.force:showToast');
+		           toast.setParams({
+			           'message' : newActivity.Name +' has been added',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+		           });	
+		           toast.fire();
                 }
             });            
             $A.enqueueAction(action);
         } else {
-			 alert("No Field Should be Empty");
+        	var toast = $A.get('e.force:showToast');
+        	toast.setParams({
+        		'message' : 'No Field Should be Empty',
+			    'type' : 'success',
+			    'mode' : 'dismissible'
+		    });	
+		    toast.fire();
 		}
     }    
 })

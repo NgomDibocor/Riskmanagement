@@ -226,7 +226,7 @@
         /* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
-        var action = component.get('c.getSingleAssessment');
+        /*var action = component.get('c.getSingleAssessment');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
                  var assessment = response.getReturnValue();
@@ -239,7 +239,27 @@
                 alert('error');
             }            
         });
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
+        
+        var idAssessment = component.get("v.assessmentData").Id;
+        //alert("idAssessment " + idAssessment);
+        if(idAssessment == null){
+        	//alert("check if you have created the assessment");
+        	var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : 'Check if you Have Created the Assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });
+
+            toast.fire();
+        } else {
+        	var evt = $A.get("e.c:OrmOpenNewActivityCmpEvt");
+			evt.setParams({
+			   "idAssessment" : idAssessment
+			});
+			evt.fire();
+        }
     },
     
     openOrganisationNew : function(component, event, helper){

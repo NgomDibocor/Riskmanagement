@@ -1,4 +1,5 @@
 ({
+
     requiredValidation : function(component,event) {
         // get all activity.. 	
         var allRecords = component.get("v.ActivityList");

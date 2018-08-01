@@ -160,9 +160,7 @@ public class OrmAssessmentController {
     	return OrmCauseController.findAll();
     }
     
-    @AuraEnabled
     public static Assessment__c getSingleAssessment(){
         return [SELECT Id FROM Assessment__c LIMIT 1];
     } 
-    
 }

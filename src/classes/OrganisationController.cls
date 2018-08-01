@@ -1,4 +1,3 @@
-
 public with sharing class OrganisationController {
     public static Id getOrganisationRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName()

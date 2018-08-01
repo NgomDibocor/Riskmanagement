@@ -10,6 +10,7 @@
 	 *  @date: Creation: 27/07/2018
 	 *  @description: method for opening the component and initilizing its attributes */
 	openOrmCauseNewCmp : function(component, event, helper) {
+		alert('capturé');
 		component.set("v.isOpen", true);
         component.set('v.assessmentId', event.getParam('idAssessment'));
 	},

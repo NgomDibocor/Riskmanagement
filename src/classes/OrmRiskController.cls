@@ -1,4 +1,4 @@
-	/*
+/*
     *David mignane diop
     *controller class for the risk object
     *le 27/07/2018
@@ -20,10 +20,10 @@ public with sharing class OrmRiskController {
     *le 27/07/2018
     */
     @AuraEnabled 
-    public static List<Macro> findAll()
+    public static List<Macro> findAll(String item)
     {
        return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
-       RecordTypeId=:OrmRiskController.getRiskRecordTypeId()];
+       RecordTypeId=:OrmRiskController.getRiskRecordTypeId() and orm_categorieRisk__c=: item ];
     }
     /*
     *David mignane diop
@@ -31,10 +31,10 @@ public with sharing class OrmRiskController {
     *le 27/07/2018
     */
      @AuraEnabled 
-    public static List<Macro> findAllResearch(String Research)
+    public static List<Macro> findAllResearch(String Research,String Research2)
     {
         return (List<Macro>)[FIND:Research IN ALL FIELDS RETURNING Macro
-                                        (Name,Description,orm_categorieRisk__c,orm_assessment__r.name where orm_categorieRisk__c =:'Educational' )][0];                                
+                                        (Name,Description,orm_categorieRisk__c,orm_assessment__r.name where orm_categorieRisk__c =:Research2 )][0];                                
     }
      /*
     *David mignane diop

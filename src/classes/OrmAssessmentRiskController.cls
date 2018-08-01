@@ -13,30 +13,32 @@ public with sharing class OrmAssessmentRiskController {
                           orm_Risk__r.Name,orm_assumption__r.Name,orm_assessment__r.Name, orm_assessment__r.orm_description__c From orm_assessmentRisk__c];
     }
     
-  /* @AuraEnabled 
-    public static Map<Integer, sObject> getAssessmentRisks()
+    @AuraEnabled 
+    public static Map<Object, Integer> getAssessmentRisks()
     {
         List<AggregateResult> agrResults =  [Select orm_assessment__r.Id, orm_assessment__r.Name,  
                                              count(orm_Risk__c) nbRisk
                                              From orm_assessmentRisk__c 
                                              GROUP BY orm_assessment__r.Name, orm_assessment__r.Id ];
-                                             //Map<Id,nbre>*/
-       /* Map<Id, Integer> maiIdNbre = new Map<Id, Integer>();
+
+        // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment
+        Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
         for (AggregateResult ar: agrResults){
-        	maiIdNbre.put(ar.get('Id').toString(), (Integer)ar.get('nbRisk'));
-        } */  //maiIdNbre.keySet()                                   
+        	mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbRisk'));
+        }   
+        //get all assessment with Id in mapIdAssessmentNbRisk
+        List<Assessment__c> assessments = [Select Id, Name, orm_description__c, orm_objectif__c 
+                              From Assessment__c  
+                              WHERE Id IN : mapIdAssessmentNbRisk.keySet() ];                                 
          
-      /*  system.debug('dibo1: '+agrResults.size()) ;     
-        Map<sObject, Integer> mapObjects = new Map<sObject, Integer>();  
-        for (AggregateResult ar: agrResults){
-           mapObjects.put((Integer)ar.get('nbRisk'), [Select Id, Name, orm_description__c, orm_objectif__c 
-                           From Assessment__c  
-                           WHERE Id =: ar.get('Id').toString() ]);   
-        }     
-        system.debug('dibo2:  '+mapObjects.size()) ;
-        return mapObjects;*/
+        Map<Object, Integer> mapObjects = new Map<Object, Integer>();  
+        for (Assessment__c assess: assessments){
+           mapObjects.put(assess, mapIdAssessmentNbRisk.get(assess.Id));   
+        }    
         
-    //}
+        return mapObjects;
+        
+    }
     
     @AuraEnabled
     public static orm_assessmentRisk__c add (orm_assessmentRisk__c item){

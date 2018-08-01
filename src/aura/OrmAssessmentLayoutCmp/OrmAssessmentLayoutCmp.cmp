@@ -106,8 +106,8 @@
             <aura:if isTrue="{!v.showContext}">
                    <tr>
                         <td >
-                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
-                                <p>Contexte1 description </p>
+                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px; width:100%"> 
+                                <p>{!$Label.c.orm_context}</p>
                            </div>
                         </td>
                     </tr>
@@ -152,10 +152,11 @@
                                 <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
                             </div>
                             <div class="width">  
+                              <a href="javascript:void(0);"  onclick="{!c.sendToObjectifFD}">
                                 <ui:inputText class="slds-input"  
-                                          value="{!v.assessmentData.orm_objectif__c}"
-                                          change="{!c.onObjectifChange}">
+                                       value="{!v.assessmentData.orm_objectif__c}">
                                 </ui:inputText>
+                              </a>
                             </div>
                         </td>
                     </tr>
@@ -167,10 +168,11 @@
                             </div>
                             
                             <div class="width">
+                              <a href="javascript:void(0);"  onclick="{!c.sendToDesciptionFD}">
                                 <ui:inputTextArea class="slds-input" 
-                                         value="{!v.assessmentData.orm_description__c}"
-                                         change="{!c.onDesciptionChange}">
+                                         value="{!v.assessmentData.orm_description__c}">
                                 </ui:inputTextArea>
+                              </a>
                             </div>
                         </td>    
                     </tr>

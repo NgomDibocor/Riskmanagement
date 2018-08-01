@@ -214,6 +214,7 @@
     	alert(component.get("v.assessmentData").Id);
         var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
         evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
+        
         evt.fire();
         helper.activeRiskIdentif(component, event);
     },
@@ -336,19 +337,16 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     
-    sendToObjectifFD  : function(component,event,helper){ 
-    	
-        var field = $A.get("$Label.c.orm_objectif_assessment");
-        var description = $A.get("$Label.c.orm_description_objectif");
-        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    onObjectifChange : function(component,event,helper){ 
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.displaySaveCancelBtn",true);
+        }
     },
-   
-    sendToDesciptionFD : function(component,event,helper){ 
-        var field = $A.get("$Label.c.orm_description_object_assessment");
-        var description = $A.get("$Label.c.orm_description_description");
-        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    onDesciptionChange : function(component,event,helper){ 
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.displaySaveCancelBtn",true);
+        }
     },
-    
     cancel : function(component,event,helper){
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 

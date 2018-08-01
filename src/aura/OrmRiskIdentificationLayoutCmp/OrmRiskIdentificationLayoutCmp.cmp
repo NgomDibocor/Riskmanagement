@@ -13,17 +13,18 @@
                                                       		 'orm_assessment__c': '',
                                                              'orm_categorieRisk__c' : ''
                                                          }" />
+      <aura:attribute name="categorieRisk" type="String" default="Educational"/>
       <aura:attribute name="testBoolean" type="Boolean" default="true" />
       <aura:attribute name="filter" type="String" />
-     
-     <aura:attribute name="columns" type="List"/>
+      <aura:attribute name="columns" type="List"/>
+      <aura:attribute name="isOpen" type="Boolean"  description="value to test if a given element is detected" />
     
      <div class="slds-grid slds-gutters">
 	    <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
 			<div class="slds-form-element__control">
 											<lightning:select aura:id="categorieRisk" name="categorie Risk" label="categorie Risk" onchange="{!c.filterByPicklist}" >
                                                 <aura:iteration items="{!v.allCategorieRisk}" var="CategorieRisk" >
-                                                    <option  text="{!CategorieRisk}"></option>
+                                                    <option  text="{!CategorieRisk}" value="{!v.categorieRisk}" ></option>
                                                 </aura:iteration>
                                             </lightning:select>
 			</div>
@@ -115,6 +116,38 @@
                                  showRowNumberColumn="false"/>
      </div>   
   </div><br/>
+  <aura:if isTrue="{!v.isOpen}">
+			<!-- alert model -->
+			<!--###### MODAL BOX Start From Here ######-->
+			<div role="dialog" tabindex="-1" aria-labelledby="header99"
+				class="slds-modal slds-fade-in-open ">
+				<div class="slds-modal__container form-style-duplicate">
+					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+					<div class="slds-modal__header">
+ 						<button 
+							class="slds-button slds-modal__close slds-button--icon-inverse" 
+							title="{!$Label.c.close_button_title}" onclick="{!c.closeAlertMissed}"> 
+						 <span class="slds-assistive-text">{!$Label.c.close_button_title}</span> 
+						</button> 
+						<h1 id="header99" class="slds-text-heading--medium">confirmation </h1>
+					</div>
+					<!--###### MODAL BOX BODY Part Start From Here ######-->
+					<div class="slds-modal__content slds-p-around--medium">
+						<p>
+						
+							<b style="font-size:15px;"><center> message </center></b>
+						</p>
+					</div>
+					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+					<div class="slds-modal__footer">
+						<button class="slds-button slds-button--neutral buttonClose"
+							onclick="{!c.closeAlert}">{!$Label.c.close_button_title}</button>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+			<!--###### MODAL BOX Part END Here ######-->
+		</aura:if>
   
     <c:OrmRiskNewCmp/>
 </aura:component>

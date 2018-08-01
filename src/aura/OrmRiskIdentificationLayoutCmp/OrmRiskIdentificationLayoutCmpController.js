@@ -30,7 +30,6 @@
 	{
 	var nomfield=component.find("categorieRisk");
 	var item = nomfield.get("v.value");
-	alert(item);
 	var isItemValid = true;
         if ($A.util.isEmpty(item)) {
             isItemValid = false;
@@ -90,7 +89,11 @@
 	},*/
 	OpenPopupAssociation:function(component,event,helper)
 	{
-	alert("association");
+	component.set("v.isOpen", true);
+	},
+	closeAlert:function(component,event,helper)
+	{
+	component.set("v.isOpen", false);
 	},
 	/*
 	 * CreatedBy @David Diop
@@ -104,6 +107,9 @@
         var  results = data;
         var regex;
         if ($A.util.isEmpty(term)) {
+        var nomfield=component.find("categorieRisk");
+	    var item = nomfield.get("v.value");
+	    component.set("v.categorieRisk",item);
              helper.fetchPicklist(component, event);
         } else{
           term="^"+term;

@@ -50,12 +50,12 @@
     </aura:iteration>
   </div>
     
-    <div class="slds-grid" style="margin-bottom:30px">
+    
 		 <lightning:button label="New Assessment" 
                           variant="brand"
                           class="slds-button"
                           onclick="{!c.newAssessment}"/>        
-    </div>
+ 
     
    
     

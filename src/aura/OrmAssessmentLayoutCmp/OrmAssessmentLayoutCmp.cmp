@@ -91,10 +91,8 @@
       </ul>
     </div>
     <!-- menu -->
-    
-    
-    <!--   -->
-    
+     <!-- overflow-wrap: break-word; -->
+        
   
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}" >
         <table class="slds-table">
@@ -104,12 +102,12 @@
             </aura:if> -->
                 
             <aura:if isTrue="{!v.showContext}">
+           
                    <tr>
-                        <td >
-                             <div style="width:100%">
-                                <!--{!$Label.c.orm_context}  -->
-                             
-                             </div>
+                        <td class="textInDiv">
+                           <div style="margin-bottom:20px">
+                               {!$Label.c.orm_context}
+                           </div>
                         </td>
                     </tr>
                     <tr>
@@ -181,11 +179,11 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showContext2}">
                   <tr>
-                      <td >
-                         <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
-                              <p>Contexte 2 description </p>
-                         </div>
-                      </td>
+                     <td class="textInDiv">
+                           <div style="margin-bottom:20px">
+                               {!$Label.c.orm_context}
+                           </div>
+                        </td>
                   </tr>
                   <tr>
                         <td >
@@ -259,7 +257,7 @@
                 <aura:if isTrue="{!v.showContextWorkshop}">
 	                <tr>
                         <td >
-                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
+                           <div class=""> 
                                 <p>Contexte 4 description </p>
                            </div>
                         </td>
@@ -269,7 +267,7 @@
                 <aura:if isTrue="{!v.showRiskIdentif}">
                     <tr>
                         <td >
-                             <c:OrmRiskIdentificationLayoutCmp/> 
+                             <c:OrmRiskIdentificationLayoutCmp idAssessment="{!v.assessmentData.Id}" /> 
                         </td>
                     </tr>
                     

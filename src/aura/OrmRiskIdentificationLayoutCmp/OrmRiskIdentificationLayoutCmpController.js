@@ -19,6 +19,7 @@
 	 */
      doInit : function(component, event, helper) {
       // Set the columns of the Table
+      alert(component.get("v.idAssessment"));
     	
         component.set('v.columns', [
             {label: 'Risk Name', fieldName: 'Name', type: 'text'},

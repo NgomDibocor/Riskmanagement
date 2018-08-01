@@ -3,7 +3,9 @@
 .THIS a{
     text-decoration: none;
 }
-
+.THIS .textInDiv{
+	white-space: normal;
+ }
 .THIS div.organisation {
     display: inline-block;
     width:95%;

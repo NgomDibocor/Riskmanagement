@@ -5,7 +5,7 @@
     <aura:handler event="c:OrmDisplayAssessmentRiskEvt" action=";{!c.ShowAssessmentRiskList}" />
     
     
-    <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:550px;width:80%;margin:auto">
+    <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="width:80%;margin:auto;">
         {!v.body}
     </div>  
 </aura:component>

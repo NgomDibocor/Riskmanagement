@@ -21,14 +21,8 @@
 		            }
                 component.set('v.allRisk',rows);
                // alert(JSON.stringify(response.getReturnValue()));
-            	}
-            	 else
-            	  {
-                
-               alert("l'Element n'a pas été retrouvé");
-            	  }
-        });
-        var action = component.get('c.getSelectOptions');    
+               
+                  var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.risk"), 'fld' : 'orm_categorieRisk__c'});
         action.setCallback(this, function(response){
             var state = response.getState();
@@ -39,6 +33,14 @@
             }
         });
         $A.enqueueAction(action);
+            }
+            	 else
+            	  {
+                
+               alert("l'Element n'a pas été retrouvé");
+            	  }
+        });
+     
         $A.enqueueAction(actionOrgs);
-	},
+	}
 })

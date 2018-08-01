@@ -89,7 +89,12 @@
 	},*/
 	OpenPopupAssociation:function(component,event,helper)
 	{
-	component.set("v.isOpen", true);
+	 var selectedRows = event.getParam('selectedRows');
+    // Display that fieldName of the selected rows
+    for (var i = 0; i < selectedRows.length; i++){
+        alert("You selected: " + JSON.stringify(selectedRows[i]));
+    }
+	//component.set("v.isOpen", true);
 	},
 	closeAlert:function(component,event,helper)
 	{
@@ -110,6 +115,7 @@
         var nomfield=component.find("categorieRisk");
 	    var item = nomfield.get("v.value");
 	    component.set("v.categorieRisk",item);
+	   
              helper.fetchPicklist(component, event);
         } else{
           term="^"+term;

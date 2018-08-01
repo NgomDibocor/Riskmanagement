@@ -107,10 +107,11 @@
 		</table>
 		-->
   <!-- fin test -->
-  <lightning:datatable data="{! v.allRisk }" class="slds-m-top_medium"
+  <lightning:datatable aura:id="datatableRisk" data="{! v.allRisk }" class="slds-m-top_medium"
                                  columns="{! v.columns }" 
                                  keyField="id"
                                  resizeColumnDisabled="false"
+                                 selectedRows="{! v.risk }" 
                                  onrowselection="{!c.OpenPopupAssociation}"
                                  onrowaction="{! c.handleRowAction }"
                                  showRowNumberColumn="false"/>

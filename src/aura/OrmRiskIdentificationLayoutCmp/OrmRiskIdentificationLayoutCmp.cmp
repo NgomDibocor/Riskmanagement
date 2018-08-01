@@ -2,6 +2,7 @@
     <aura:registerEvent name="OrmOpenNewRiskCmpEvt"
 		type="c:OrmOpenNewRiskCmpEvt" description="" />
 	<aura:handler event="c:OrmRiskCreatedEvt" action="{!c.doInit}" />
+	<aura:handler event="c:OrmRiskIdentificationClickedEvt" action="{!c.initialiseAssessment}" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
     <aura:attribute name="allRisk" type="Macro[]" />
     <aura:attribute name="Research" type="String" />
@@ -18,6 +19,8 @@
       <aura:attribute name="filter" type="String" />
       <aura:attribute name="columns" type="List"/>
       <aura:attribute name="isOpen" type="Boolean"  description="value to test if a given element is detected" />
+      <aura:attribute name="ids" type="String[]" />
+      <aura:attribute name="idAssessment" type="String" />
     
      <div class="slds-grid slds-gutters">
 	    <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
@@ -111,9 +114,8 @@
                                  columns="{! v.columns }" 
                                  keyField="id"
                                  resizeColumnDisabled="false"
-                                 selectedRows="{! v.risk }" 
-                                 onrowselection="{!c.OpenPopupAssociation}"
-                                 onrowaction="{! c.handleRowAction }"
+                                 selectedRows="{! v.risk}" 
+                                 onrowselection="{!c.openPopupAssociation}"
                                  showRowNumberColumn="false"/>
      </div>   
   </div><br/>

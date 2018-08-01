@@ -38,7 +38,7 @@
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshListCause}" />
-    
+    <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     
     <!-- menu -->
     <div class="slds-tabs--path" role="application">
@@ -266,7 +266,7 @@
                 <aura:if isTrue="{!v.showRiskIdentif}">
                     <tr>
                         <td >
-                             <c:OrmRiskIdentificationLayoutCmp /> 
+                             <c:OrmRiskIdentificationLayoutCmp/> 
                         </td>
                     </tr>
                     

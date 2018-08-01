@@ -67,9 +67,9 @@
                 component.set("v.showRiskIdentif", false);
                 component.set("v.showRiskAnalyse", true);
                 component.set("v.showError", false);
-                component.set("v.showData", false);
+                component.set("v.showData", false);                
                 helper.activeRiskAnalye(component, event);
-            
+                
         }   
         
         if(showRiskAnalyse == true){
@@ -209,7 +209,12 @@
     activeContext : function(component, event, helper) {
         helper.activeContext(component, event);
     },
+    /* laye */
     activeRiskIdentif : function(component, event, helper) {
+    	alert(component.get("v.assessmentData").Id);
+        var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
+        evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
+        evt.fire();
         helper.activeRiskIdentif(component, event);
     },
     activeRiskAnalye : function(component, event, helper) {

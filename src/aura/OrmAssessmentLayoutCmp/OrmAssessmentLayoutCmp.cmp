@@ -94,7 +94,7 @@
      <!-- overflow-wrap: break-word; -->
         
   
-    <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}" >
+    <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}" style="margin-top:20px;">
         <table class="slds-table">
             <!-- <aura:if isTrue="{!v.showError}">
                 <ui:message title="Warning" severity="warning" closable="true">

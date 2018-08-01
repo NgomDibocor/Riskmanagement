@@ -9,7 +9,7 @@
 
   <div class="slds-grid slds-wrap">
    
-   <aura:iteration items="{!v.assessments}" var="item" indexVar="key">
+   <aura:iteration items="{!v.assessments}" var="item">
    
         <div class="slds-size_1-of-3">
             <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small">
@@ -24,7 +24,7 @@
                             <div class="slds-media__body">
                                 <h2>
 	                                <a href="javascript:void(0);" class="slds-card__header-link"
-	                                    title="{!item.value.Name}"><ui:outputText value="{!item.value.Name}" />
+	                                    title=""><ui:outputText value="{!item.key}" /><!-- {!item.value.Name} -->
 	                                </a>
 	                            </h2>
                                 
@@ -37,10 +37,10 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                        <ui:outputRichText value="{!item.value.orm_description__c}" />
+                        <ui:outputRichText value="" /> <!-- {!item.value.orm_description__c} -->
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                     <span>Risk <b>{!item.key}</b></span>
+                     <span>Risk <b>{!item.value}</b></span>
                     </div>
                    
                 </article>

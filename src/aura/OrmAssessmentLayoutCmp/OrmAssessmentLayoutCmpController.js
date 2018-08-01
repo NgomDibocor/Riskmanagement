@@ -189,10 +189,7 @@
     {
     	alert(component.find("organisation").get("v.value"));
 	},
-    showFieldDescriptionCmp : function(component, event, helper)
-    {
-    	component.set("v.closeFieldDescription", false);
-	},
+    
     closeFielDescript : function(component, event, helper) {
         component.set("v.closeFieldDescription", true);
     },
@@ -337,16 +334,19 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     
-    onObjectifChange : function(component,event,helper){ 
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.set("v.displaySaveCancelBtn",true);
-        }
+    sendObjectifToFD  : function(component,event,helper){ 
+    	
+        var field = $A.get("$Label.c.orm_objectif_assessment");
+        var description = $A.get("$Label.c.orm_description_objectif");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    onDesciptionChange : function(component,event,helper){ 
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.set("v.displaySaveCancelBtn",true);
-        }
+   
+    sendDesciptionToFD : function(component,event,helper){ 
+        var field = $A.get("$Label.c.orm_description");
+        var description = $A.get("$Label.c.orm_description_description");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
+    
     cancel : function(component,event,helper){
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 

@@ -96,7 +96,7 @@
     <!--   -->
     
   
-    <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}">
+    <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}" >
         <table class="slds-table">
             <!-- <aura:if isTrue="{!v.showError}">
                 <ui:message title="Warning" severity="warning" closable="true">
@@ -106,12 +106,10 @@
             <aura:if isTrue="{!v.showContext}">
                    <tr>
                         <td >
-                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px;"> 
-                                <div style="width:100%">
-                                   {!$Label.c.orm_context}
-                                
-                                </div>
-                           </div>
+                             <div style="width:100%">
+                                <!--{!$Label.c.orm_context}  -->
+                             
+                             </div>
                         </td>
                     </tr>
                     <tr>
@@ -155,7 +153,7 @@
                                 <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
                             </div>
                             <div class="width">  
-                              <a href="javascript:void(0);"  onclick="{!c.sendToObjectifFD}">
+                              <a href="javascript:void(0);"  onclick="{!c.sendObjectifToFD}">
                                 <ui:inputText class="slds-input"  
                                        value="{!v.assessmentData.orm_objectif__c}">
                                 </ui:inputText>
@@ -171,7 +169,7 @@
                             </div>
                             
                             <div class="width">
-                              <a href="javascript:void(0);"  onclick="{!c.sendToDesciptionFD}">
+                              <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
                                 <ui:inputTextArea class="slds-input" 
                                          value="{!v.assessmentData.orm_description__c}">
                                 </ui:inputTextArea>
@@ -405,12 +403,9 @@
             <c:OrmFieldDescriptionCmp/>
         </div>
     </aura:if>
-     <lightning:button label="affiche Field Description" 
-                variant="brand"
-                class="slds-button"
-                onclick="{!c.showFieldDescriptionCmp}"/>
+    
                 
-                <aura:if isTrue="{!v.displaySaveCancelBtn}">
+    <aura:if isTrue="{!v.displaySaveCancelBtn}">
         <lightning:buttonGroup class="slds-m-around_medium">
             <lightning:button label="Cancel" onclick="{!c.cancel}"/>
             <lightning:button label="Save" onclick="{!c.createAssessment}" variant="success"/>

@@ -14,7 +14,7 @@
                                                                }"/>
     <aura:attribute name="nameEditMode" type="boolean" default="false" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
- 
+    
     <!--Table Row Start-->  
     <tr>
         <td><div class="slds-truncate">{!v.sNo}</div></td>
@@ -74,12 +74,12 @@
                                     <div class="slds-form-element__control slds-grow">
                                         <ui:inputText class="slds-input inputFieldWidth"
                                                       labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
-                                                      aura:id="idDesc"
+                                                      aura:id="inputId"
                                                       blur="{!c.closeDescriptionBox}"
-                                                      change="{!c.onDescriptionChange}"
+                                                      change="{!c.onNameChange}"
                                                       required="true"
-                                                      label="{$Label.c.Description}"
-                                                      value="{!v.cause.Description}" />
+                                                      label="Name"
+                                                      value="{!v.cause.Name}" />
                                     </div>
                                 </div>
                             </div>

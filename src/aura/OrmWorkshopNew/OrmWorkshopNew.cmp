@@ -1,5 +1,7 @@
-<aura:component extends="c:OrmAbstractNewCmp" access="global" controller="WorkshopController">
-	<aura:attribute name="item" type="Contract" default="{
+<aura:component extends="c:OrmAbstractNewCmp" access="global"
+	controller="OrmWorkshopController">
+	<aura:attribute name="item" type="Contract"
+		default="{
 						'sobjectType' : 'Contract',
                         'Name': '',
                         'StartDate':'',
@@ -9,10 +11,41 @@
 						'Description':''
 						
 					}" />
-    <aura:attribute name="assessmentData" type="Assessment__c" default="{
+	<aura:attribute name="assessmentData" type="Assessment__c"
+		default="{
 						'sobjectType' : 'Assessment__c',
 						'Description':''
 						
 					}" />
-    
+					<aura:attribute name="titleEditMode" type="boolean" default="false" />
+			<aura:attribute name="startEditMode" type="boolean" default="false" />
+			<aura:attribute name="enddateEditMode" type="boolean" default="false" />
+			<aura:attribute name="invitationEditMode" type="boolean" default="false" />
+			<aura:attribute name="messageEditMode" type="boolean" default="false" />
+	<!--  start table inline edit-->
+	<table class="slds-table slds-form slds-form_horizontal">
+		<tr>
+			
+			<aura:if isTrue="{!v.titleEditMode == false}">
+			<div class="slds-form-element">
+				<label class="slds-form-element__label">{!$Label.c.orm_title_workshop}</label>
+				<div class="slds-form-element__control">
+					<ui:outputText aura:id="" value=""  />
+				</div>
+			</div>
+				
+			</aura:if>
+		</tr>
+		<tr>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="input-id-01">Start</label>
+				<div class="slds-form-element__control">
+					<ui:outputDate format="dd/MM/yyyy" value="" />
+				</div>
+			</div>
+		</tr>
+
+	</table>
+	<!--  end table inline edit-->
+
 </aura:component>

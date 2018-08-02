@@ -1,4 +1,10 @@
 ({
+	initialiseAssessment : function(component, event, helper){
+        alert('id Assessment ', event.getParam('idAssessment'));
+    	component.set("v.idAssessment", event.getParam('idAssessment'));
+        alert(component.get("v.idAssessment"));
+    },
+    
 	/*
 	 * CreatedBy @David Diop
 	 *
@@ -13,7 +19,8 @@
 	 */
      doInit : function(component, event, helper) {
       // Set the columns of the Table
-      
+      alert(component.get("v.idAssessment"));
+    	
         component.set('v.columns', [
             {label: 'Risk Name', fieldName: 'Name', type: 'text'},
             {label: 'Description', fieldName: 'Description', type: 'text'},
@@ -87,13 +94,21 @@
             $A.enqueueAction(action);
         }
 	},*/
-	OpenPopupAssociation:function(component,event,helper)
+	
+	openPopupAssociation: function(component,event,helper)
 	{
-	component.set("v.isOpen", true);
+		alert(component.get("v.idAssessment"));
+		var selectedRows = event.getParam('selectedRows');
+		alert(JSON.stringify(selectedRows));
+		// Display that fieldName of the selected rows
+   
+    	component.set("v.ids", selectedRows);
+    	console.log(component.get("v.ids"));
+    	//component.set("v.isOpen", true);
 	},
 	closeAlert:function(component,event,helper)
 	{
-	component.set("v.isOpen", false);
+		component.set("v.isOpen", false);
 	},
 	/*
 	 * CreatedBy @David Diop
@@ -110,6 +125,7 @@
         var nomfield=component.find("categorieRisk");
 	    var item = nomfield.get("v.value");
 	    component.set("v.categorieRisk",item);
+	   
              helper.fetchPicklist(component, event);
         } else{
           term="^"+term;

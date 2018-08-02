@@ -12,4 +12,8 @@ preferToolingDeployment=true
 projectIdentifier=IDE-3844329170386206678
 readTimeout=400
 sessionId=
+<<<<<<< HEAD
 username=abdoulaye.diop@terangacloud.com
+=======
+username=dibocor.ngom@terangacloud.com
+>>>>>>> 9412e3e6064d1d71f5ef21e4484e4cbba4a7fd8e

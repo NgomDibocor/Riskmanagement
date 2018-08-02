@@ -11,7 +11,7 @@
 	 *  @description: method for opening the component and initilizing its attributes */
 	openOrmCauseNewCmp : function(component, event, helper) {
 		component.set("v.isOpen", true);
-        component.set('v.assessmentId', event.getParam('idAssessment'));
+        component.set('v.idAssessmentRisk', event.getParam('idAssessmentRisk'));
 	},
 	
 	/** @author: Laye
@@ -31,7 +31,7 @@
         	var newCause = component.get('v.cause');
         	newCause.Name = name;
         	newCause.Description = description;
-        	newCause.orm_assessmentRisk__c = "a001H00000kbj0vQAA";
+        	newCause.orm_assessmentRisk__c = component.get('v.idAssessmentRisk');
         	
         	var action = component.get('c.add');
             action.setParams({

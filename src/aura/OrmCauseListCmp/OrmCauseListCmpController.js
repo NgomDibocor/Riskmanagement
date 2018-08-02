@@ -1,5 +1,4 @@
 ({
-	
 	doInit : function(component, event, helper) {
 		
 		// call the apex class method and fetch activity list  
@@ -48,5 +47,5 @@
     cancel : function(component,event,helper){
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
-    } 
+    }
 })

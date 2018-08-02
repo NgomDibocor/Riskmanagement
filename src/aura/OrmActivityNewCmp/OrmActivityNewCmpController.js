@@ -1,7 +1,4 @@
 ({
-	/* @CreatedBy: laye
-	 * @Description: method for initialize the compeonents
-	 */
 	doInit : function(component, event, helper) {
         var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.activity"), 'fld' : 'orm_activityStatus__c'});
@@ -10,29 +7,16 @@
             if(state === 'SUCCESS' && component.isValid()){
                 component.set('v.allStatus', response.getReturnValue());
             } else {
-            	var toast = $A.get('e.force:showToast');
-	            toast.setParams({
-	            	'message' : 'The Element was not Found',
-	                'type' : 'warning',
-	                'mode' : 'dismissible'
-	            });	
-	            toast.fire();
+                alert("the element was not found");
             }
         });
         $A.enqueueAction(action);        
 	},
-	
-	/* @CreatedBy: laye
-	 * @Description: method for opening the compeonents
-	 */
     openCurrentCmp : function(component, event){
         component.set("v.isOpen", true);
         component.set('v.assessmentId', event.getParam('idAssessment'));
 	},
     
-    /* @CreatedBy: laye
-	 * @Description: method for adding an activity
-	 */
     createItem : function(component, event, helper) {
         var name = component.find('name').get('v.value');
         var description = component.find('description').get('v.value');
@@ -40,13 +24,14 @@
         var startDate = component.find('startDate').get('v.value');
         var endDate = component.find('endDate').get('v.value');
         
+        /* ici on test la validité des données ajoutées */
         var isItemsValid = true;
         if($A.util.isEmpty(name) || $A.util.isEmpty(description) || $A.util.isEmpty(status)  
         		|| $A.util.isEmpty(startDate) || $A.util.isEmpty(endDate)){
             isItemsValid = false;           
         }
         
-        if(isItemsValid){
+         if(isItemsValid){
             var newActivity = component.get('v.activity');
             newActivity.Name = name;
             newActivity.orm_description__c = description;
@@ -62,16 +47,8 @@
             });
             action.setCallback(this, function(response) {
                 var state = response.getState();
-                var toast = $A.get('e.force:showToast');
                 if ( state == "SUCCESS") {
-                                   
-		           toast.setParams({
-			           'message' : newActivity.Name +' has been added',
-			           'type' : 'success',
-			           'mode' : 'dismissible'
-		           });	
-		           toast.fire();
-		           
+                   alert("ajout réussie");
                    var evt = $A.get("e.c:OrmActivityCreatedEvt");
 				   evt.fire();
                    helper.closeModal(component);
@@ -85,24 +62,12 @@
                                                              'orm_assessment__c' : ''
                                                          });
                 } else {
-                   //var toast = $A.get('e.force:showToast');
-		           toast.setParams({
-			           'message' : newActivity.Name +' has been added',
-			           'type' : 'success',
-			           'mode' : 'dismissible'
-		           });	
-		           toast.fire();
+                    alert("ERROR");
                 }
             });            
             $A.enqueueAction(action);
         } else {
-        	var toast = $A.get('e.force:showToast');
-        	toast.setParams({
-        		'message' : 'No Field Should be Empty',
-			    'type' : 'success',
-			    'mode' : 'dismissible'
-		    });	
-		    toast.fire();
+			 alert("No Field Should be Empty");
 		}
     }    
 })

@@ -2,7 +2,7 @@
 	initialiseAssessment : function(component, event, helper){
         alert('id Assessment ', event.getParam('idAssessment'));
     	component.set("v.idAssessment", event.getParam('idAssessment'));
-        alert(component.get("v.idAssessment"));
+      //  alert(component.get("v.idAssessment"));
     },
     
 	/*
@@ -19,8 +19,6 @@
 	 */
      doInit : function(component, event, helper) {
       // Set the columns of the Table
-      alert(component.get("v.idAssessment"));
-    	
         component.set('v.columns', [
             {label: 'Risk Name', fieldName: 'Name', type: 'text'},
             {label: 'Description', fieldName: 'Description', type: 'text'},
@@ -97,37 +95,69 @@
 	
 	openPopupAssociation: function(component,event,helper)
 	{
-		alert(component.get("v.idAssessment"));
+		//alert(component.get("v.idAssessment"));
 		var selectedRows = event.getParam('selectedRows');
-		alert(JSON.stringify(selectedRows));
+		//alert(JSON.stringify(selectedRows));
+		
+		selectedRows.forEach(function(selectedRow) {
+		  console.log(selectedRow.Id);
+		});
+		
+		
+		
 		// Display that fieldName of the selected rows
-   
-    	component.set("v.ids", selectedRows);
-    	console.log(component.get("v.ids"));
-    	//component.set("v.isOpen", true);
+    	component.set("v.relatedRisk", selectedRows);
+    	console.log('v.relatedRisk  nbre' + component.get("v.relatedRisk").length);
+    	/*if ($A.util.isEmpty(selectedRows))
+    	 {
+            alert("association supprimer");
+    	 } 
+    	 else
+    	 {
+    	    component.set("v.isOpen", true);
+    	 }*/
 	},
-	closeAlert:function(component,event,helper)
+	closeModal:function(component,event,helper)
 	{
 		component.set("v.isOpen", false);
+	},
+	createAssessmentRisk:function(component,event,helper)
+	{
+	var newAssessmentRisk = component.get("v.assessmentRisk");
+	newAssessmentRisk.orm_assessment__c= component.get("v.idAssessment") ;
+    newAssessmentRisk.orm_Risk__c=idRisk 
+            var action = component.get('c.addAssessmentRisk');
+            action.setParams({
+                "item": newAssessmentRisk
+            });
+            action.setCallback(this, function(response) {
+                var state = response.getState();
+                if ( state == "SUCCESS") {
+                   alert("ajout réussie");
+                } else {
+                    alert("ajout échouée");
+                }
+            });
+            $A.enqueueAction(action);
 	},
 	/*
 	 * CreatedBy @David Diop
 	 *
 	 */
 	filter: function (component, event, helper) {
-    var data = component.get("v.allRisk");
+		var data = component.get("v.allRisk");
         var term = component.get("v.filter");
-        
-       
         var  results = data;
         var regex;
-        if ($A.util.isEmpty(term)) {
-        var nomfield=component.find("categorieRisk");
-	    var item = nomfield.get("v.value");
-	    component.set("v.categorieRisk",item);
-	   
-             helper.fetchPicklist(component, event);
-        } else{
+        if ($A.util.isEmpty(term)) 
+         {
+	        var nomfield=component.find("categorieRisk");
+		    var item = nomfield.get("v.value");
+		    component.set("v.categorieRisk",item);
+	        helper.fetchPicklist(component, event);
+         }
+         else
+         {
           term="^"+term;
          }
     try {
@@ -140,6 +170,37 @@
     }
     
     component.set("v.allRisk", results);
-}
+	},
 	
+	relatedRiskfunction : function(component,event,helper)
+	{
+		var idRelatedRisks = [];
+    	var relatedRisks = component.get("v.relatedRisk");
+    	var assessmentRisks = [];
+		relatedRisks.forEach(function(relatedRisk) {
+			var newAssessmentRisk = component.get("v.assessmentRisk");
+			newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
+			newAssessmentRisk.orm_Risk__c = relatedRisk.Id;
+			assessmentRisks.push(newAssessmentRisk);
+		});
+		
+			alert(JSON.stringify(assessmentRisks));
+		var action = component.get('c.addAssessmentRisks');
+		action.setParams({
+			"items": assessmentRisks
+		});
+		action.setCallback(this, function(response) 
+		{
+			var state = response.getState();
+			console.log(state);
+            if (component.isValid() && state == "SUCCESS") {
+                    
+                alert("association  réussie");
+            }
+            else {
+              alert("association échouée");
+            }
+		});
+        $A.enqueueAction(action);	
+	}
 })

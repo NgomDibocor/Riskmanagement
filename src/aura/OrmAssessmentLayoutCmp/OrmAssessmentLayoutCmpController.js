@@ -209,17 +209,18 @@
     /* laye */
     activeRiskIdentif : function(component, event, helper) {
     	alert(component.get("v.assessmentData").Id);
-<<<<<<< HEAD
         /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
         evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
         
         evt.fire();*/
-=======
         var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
         evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
         
         evt.fire();
->>>>>>> 9412e3e6064d1d71f5ef21e4484e4cbba4a7fd8e
+        /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
+        evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
+        
+        evt.fire();*/
         helper.activeRiskIdentif(component, event);
     },
     activeRiskAnalye : function(component, event, helper) {

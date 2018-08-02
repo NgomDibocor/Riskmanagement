@@ -14,7 +14,7 @@ public with sharing class OrmAssessmentRiskController {
     }
     
     @AuraEnabled 
-    public static Map<Object, Integer> getAssessmentRisks()
+    public static Map<String, Map<String, Object>> getAssessmentRisks()
     {
         List<AggregateResult> agrResults =  [Select orm_assessment__r.Id, orm_assessment__r.Name,  
                                              count(orm_Risk__c) nbRisk
@@ -31,9 +31,9 @@ public with sharing class OrmAssessmentRiskController {
                               From Assessment__c  
                               WHERE Id IN : mapIdAssessmentNbRisk.keySet() ];                                 
          
-        Map<Object, Integer> mapObjects = new Map<Object, Integer>();  
+        Map<String, Map<String, Object>> mapObjects = new Map<String, Map<String, Object>>();  
         for (Assessment__c assess: assessments){
-           mapObjects.put(assess, mapIdAssessmentNbRisk.get(assess.Id));   
+           mapObjects.put(assess.Id,  new Map<String, Object>{'nbreRisk' => mapIdAssessmentNbRisk.get(assess.Id), 'assessment' => assess});   
         }    
         
         return mapObjects;

@@ -4,14 +4,14 @@
         action.setCallback(this, function(response){
             var state = response.getState();
             if(state === 'SUCCESS'){
-                var custs = [];
+                /*var custs = [];
                 var conts = response.getReturnValue();
                 for(var item in conts){
                     custs.push({value:conts[item], key:item});
                     //alert(JSON.stringify(custs));
-                }
-                alert(JSON.stringify(custs))
-                component.set("v.assessments", custs);
+                }*/
+                alert(JSON.stringify(response.getReturnValue()))
+                //component.set("v.assessments", custs);
                 
             } else {
                 alert("l'élément n'a pas été chargé");

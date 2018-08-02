@@ -57,7 +57,7 @@
 										</div>
 									</div>
 									<div class="slds-form-element">
-										<div class="slds-form-element__control slds-is-required">
+										<div class="slds-form-element__control">
 											<lightning:select aura:id="status"   name="status" onchange="{!c.onChange}" label="{!$Label.c.orm_activity_status}" >
                                                 <aura:iteration items="{!v.allStatus}" var="status" >
                                                     <option  text="{!status}"></option>

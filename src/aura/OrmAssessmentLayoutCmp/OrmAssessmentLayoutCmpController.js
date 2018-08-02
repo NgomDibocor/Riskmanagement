@@ -67,9 +67,9 @@
                 component.set("v.showRiskIdentif", false);
                 component.set("v.showRiskAnalyse", true);
                 component.set("v.showError", false);
-                component.set("v.showData", false);
+                component.set("v.showData", false);                
                 helper.activeRiskAnalye(component, event);
-            
+                
         }   
         
         if(showRiskAnalyse == true){
@@ -167,6 +167,7 @@
             function(response) {
                 var state = response.getState();
                 if (state == "SUCCESS") {
+                component.set("v.displaySaveCancelBtn", false);
                 component.set("v.assessmentData",response.getReturnValue());
                     var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
@@ -175,7 +176,7 @@
                             'mode' : 'dismissible'
                         });
 
-		toastEvent.fire();
+		                toastEvent.fire();
                     
                 }
             });
@@ -189,10 +190,7 @@
     {
     	alert(component.find("organisation").get("v.value"));
 	},
-    showFieldDescriptionCmp : function(component, event, helper)
-    {
-    	component.set("v.closeFieldDescription", false);
-	},
+    
     closeFielDescript : function(component, event, helper) {
         component.set("v.closeFieldDescription", true);
     },
@@ -209,7 +207,21 @@
     activeContext : function(component, event, helper) {
         helper.activeContext(component, event);
     },
+    /* laye */
     activeRiskIdentif : function(component, event, helper) {
+    	alert(component.get("v.assessmentData").Id);
+        /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
+        evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
+        
+        evt.fire();*/
+        var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
+        evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
+        
+        evt.fire();
+        /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
+        evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
+        
+        evt.fire();*/
         helper.activeRiskIdentif(component, event);
     },
     activeRiskAnalye : function(component, event, helper) {
@@ -226,7 +238,7 @@
         /* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
-        var action = component.get('c.getSingleAssessment');
+        /*var action = component.get('c.getSingleAssessment');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
                  var assessment = response.getReturnValue();
@@ -239,7 +251,27 @@
                 alert('error');
             }            
         });
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
+        
+        var idAssessment = component.get("v.assessmentData").Id;
+        //alert("idAssessment " + idAssessment);
+        if(idAssessment == null){
+        	//alert("check if you have created the assessment");
+        	var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : 'Check if you Have Created the Assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });
+
+            toast.fire();
+        } else {
+        	var evt = $A.get("e.c:OrmOpenNewActivityCmpEvt");
+			evt.setParams({
+			   "idAssessment" : idAssessment
+			});
+			evt.fire();
+        }
     },
     
     openOrganisationNew : function(component, event, helper){
@@ -311,26 +343,33 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     
-    onObjectifChange : function(component,event,helper){ 
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.set("v.displaySaveCancelBtn",true);
-        }
+    sendObjectifToFD  : function(component,event,helper){ 
+    	
+        var field = $A.get("$Label.c.orm_objectif_assessment");
+        var description = $A.get("$Label.c.orm_description_objectif");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    onDesciptionChange : function(component,event,helper){ 
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.set("v.displaySaveCancelBtn",true);
-        }
+   
+    sendDesciptionToFD : function(component,event,helper){ 
+        var field = $A.get("$Label.c.orm_description");
+        var description = $A.get("$Label.c.orm_description_description");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
+    
     cancel : function(component,event,helper){
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
     },
     
-    openCauseNewCmp : function(component,event,helper){
+    /* @cretedBy: laye
+	   @createdDate: 28/07/2018
+     */
+    openCauseNewCmp : function(component, event, helper){
     	/* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
-        var action = component.get('c.getSingleAssessment');
+        alert('déclenche evt');
+        /*var action = component.get('c.getSingleAssessment');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
                  var assessment = response.getReturnValue();
@@ -343,7 +382,14 @@
                 alert('error');
             }            
         });
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
+        
+        var assessmentRiskId = "";
+        var evt = $A.get("e.c:OrmNewCauseClickedEvt");
+        evt.setParams({
+        	"idAssessmentRisk" : assessmentRiskId
+		});
+		evt.fire();
     },
     
     /* @cretedBy: laye

@@ -4,10 +4,16 @@
 						'sobjectType' : 'Contract',
                         'Name': '',
                         'StartDate':'',
+<<<<<<< HEAD
                         'Contract_End_Date__c':'', 
                         'CompanySignedDate':'',
                         'Assessment__c':'', 
                         'AccountId':'',                              
+=======
+                        'EndDate':'', 
+                        'CompanySignedDate':'',
+                        'orm_assessment__c':'',                               
+>>>>>>> 2bb701fc4ae710edc8c11654a284149230663cae
 						'Description':''
 						
 					}" />

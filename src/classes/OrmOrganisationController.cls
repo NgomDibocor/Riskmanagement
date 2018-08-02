@@ -1,10 +1,35 @@
+/**
+ *
+ * @author Dibocor NGOM
+ * @version 1.0
+ * @description  this class contains methods of Organisation
+ * @history 
+ */
 public class OrmOrganisationController {
+	
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns the recordTypeId of Organisation
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
 	public static Id getOrganisationRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName()
                   .get('RT organisation').getRecordTypeId();
         return recordTypeId;
     }
     
+    
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns all Organisations
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     @AuraEnabled 
     public static List<Account> getOrganisations(){
         List<Account> accounts = new List<Account>();
@@ -14,19 +39,27 @@ public class OrmOrganisationController {
         return accounts;
     }
     
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns one Organisation
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     @AuraEnabled 
     public static Account getOrganisation(String id){
         return [Select Id, Name, Description, orm_region__c, orm_pays__c From Account where Id=: id];
     }
     
-    @AuraEnabled 
-    public static Account editOrganisation(Account item)
-    {
-      item.RecordTypeId=OrganisationController.getOrganisationRecordTypeId();
-      upsert item;
-      return item; 
-    }
-    
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method adds and modifies an organisation
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     @AuraEnabled
     public static Account add(Account item){
     	item.RecordTypeId=OrganisationController.getOrganisationRecordTypeId();
@@ -34,6 +67,14 @@ public class OrmOrganisationController {
     	return item;
     }
     
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns all items of PickList
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */  
     @AuraEnabled
 	public static List <String> getSelectOptions(sObject objObject, string fld) {
       List <String> allOpts = new list <String> ();
@@ -59,10 +100,5 @@ public class OrmOrganisationController {
       allOpts.sort();
       return allOpts;
  	}
-    
-    @AuraEnabled
-    public static Account deleteOrg(Account item){
-        delete item;
-        return item;
-    }    
+  
 }

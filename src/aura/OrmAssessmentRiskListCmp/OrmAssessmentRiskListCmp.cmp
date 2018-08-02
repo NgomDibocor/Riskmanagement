@@ -1,16 +1,16 @@
-<aura:component controller="AssessmentRiskController" extends="c:ormAbstractListCmp">
+<aura:component controller="OrmAssessmentRiskController" extends="c:ormAbstractListCmp">
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c[]" description="" />
-    <aura:handler event="c:EventAddAssessmentRisk" action="{!c.refreshList}" />
+    <!--  <aura:handler event="c:EventAddAssessmentRisk" action="{!c.refreshList}" /> -->
     <!--debut card-->
     
     
   <div class="slds-grid slds-wrap">
     <aura:iteration items="{!v.assessmentRisks}" var="item" indexVar="i">
-        <div class="slds-col slds-size_1-of-3">
+        <div class="slds-col slds-size_1-of-2">
             <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small">
 
-                <article class="slds-card" style="height:120px;">
+                <article class="slds-card" style="height:120px; width:300px; border-bottom:2px solid black;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
                             <div class="slds-media__figure">
@@ -43,5 +43,5 @@
   </div>  
   
     <!--fin card-->
-    <c:OrmAssessmentRiskNewCmp/>
+    
 </aura:component>

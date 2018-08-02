@@ -7,8 +7,8 @@
             {!v.body}
         </div>
        <!-- <c:OrmRiskManagementCmp />-->
-        <c:ormRiskOrganisationNew/>
-              <c:ormActivityListInlnlineEdit /> 
+        <!-- <c:ormRiskOrganisationNew/>-->
+              <c:OrmWorkShopNewCmp /> 
 
     </div>
 </aura:application>

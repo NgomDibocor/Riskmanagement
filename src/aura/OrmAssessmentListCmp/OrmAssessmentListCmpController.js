@@ -1,12 +1,16 @@
 ({
     doInit : function(component, event, helper){
-        var action = component.get('c.findAll');
+        var action = component.get('c.getAssessmentRisks');
         action.setCallback(this, function(response){
             var state = response.getState();
-            console.log(state);
             if(state === 'SUCCESS'){
-                component.set('v.assessments', response.getReturnValue());
-                //alert(JSON.stringify(component.get('v.assessments')));
+                var custs = [];
+                var conts = response.getReturnValue();
+                for(var idAss in conts){
+                    custs.push({value:conts[idAss]});
+                }
+                component.set("v.assessments", custs);
+                
             } else {
                 alert("l'élément n'a pas été chargé");
             }

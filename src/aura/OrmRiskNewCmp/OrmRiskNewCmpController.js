@@ -27,8 +27,8 @@
         } 
         if (isItemValid) {
             //var idAssessment=component.get("v.assessmentData").Id;
-          var  idAssessment="a051H00000aQvjWQAS";
-           newItem.orm_assessment__c= idAssessment; 
+         // var  idAssessment="a051H00000aQvjWQAS";
+           //newItem.orm_assessment__c= idAssessment; 
             var action = component.get('c.add');
             action.setParams({
                 "item": newItem

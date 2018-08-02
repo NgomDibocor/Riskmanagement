@@ -11,7 +11,7 @@
 	 *  @description: method for opening the component and initilizing its attributes */
 	openOrmCauseNewCmp : function(component, event, helper) {
 		component.set("v.isOpen", true);
-        component.set('v.assessmentId', event.getParam('idAssessment'));
+        component.set('v.idAssessmentRisk', event.getParam('idAssessmentRisk'));
 	},
 	
 	/** @author: Laye
@@ -31,6 +31,7 @@
         	var newCause = component.get('v.cause');
         	newCause.Name = name;
         	newCause.Description = description;
+        	newCause.orm_assessmentRisk__c = component.get('v.idAssessmentRisk');
         	
         	var action = component.get('c.add');
             action.setParams({
@@ -38,7 +39,13 @@
             });
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
-            		alert('SUCCESS');
+            		var toast = $A.get('e.force:showToast');
+            		toast.setParams({
+			           'message' : newCause.Name +' has been added',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+		            });	
+		            toast.fire();
             		helper.closeModal(component);
                     component.set('v.cause', {  'sobjectType' : 'Macro',
                                                'Name' : '',
@@ -55,7 +62,13 @@
             $A.enqueueAction(action);
         	
         } else {
-        	alert('No Field should be Empty');
+        	var toast = $A.get('e.force:showToast');
+        	toast.setParams({
+			   'message' : 'No Field should be Empty',
+			   'type' : 'error',
+			   'mode' : 'dismissible'
+		    });	
+		    toast.fire();
         }
 	}
 })

@@ -37,5 +37,27 @@ public with sharing class OrmCauseController {
 	public static List<Macro> findAll(){
 		return [SELECT Id, Name, Description FROM Macro WHERE RecordTypeId =: OrmCauseController.getCauseRecordTypeId()];
 	}
+	
+	/**
+	 * @author: Laye
+	 * @date: Creation: 30/07/2018
+	 * @description: find all causes related to the assessmentRisk
+	*/
+	@AuraEnabled
+	public static List<Macro> findAllCausesByAssessmentRisk(String idAssRisk){
+		return [SELECT Id, Name, Description FROM Macro WHERE orm_assessmentRisk__c=: idAssRisk];
+	
+	}
+	
+	/**
+	 * @author: Laye
+	 * @date: Creation: 31/07/2018
+	 * @description: method for update records after inline editing
+	*/
+    @AuraEnabled
+    public static List <Macro> updateCauses(List<Macro> causes) {
+        update causes;
+        return causes;
+    }
     
 }

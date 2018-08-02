@@ -1,10 +1,10 @@
 <aura:component>
 	
 	<!-- methods -->
-	<!-- on component load, fetch picklist values dynamically from apex controller -->   
+	<!-- on component load, fetch picklist values dynamically from  apex controller -->   
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
-    <!--attributes-->
+    <!-- attributes -->
     <aura:attribute name="showSaveCancelBtn" type="boolean"/>
     <aura:attribute name="showErrorClass" type="boolean" default="false"/>
     <aura:attribute name="sNo" type="string" />
@@ -14,10 +14,7 @@
                                                                }"/>
     <aura:attribute name="nameEditMode" type="boolean" default="false" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
-    
-<<<<<<< HEAD
-</aura:component>
-=======
+ 
     <!--Table Row Start-->  
     <tr>
         <td><div class="slds-truncate">{!v.sNo}</div></td>
@@ -42,7 +39,7 @@
                                     <div class="slds-form-element__control slds-grow">
                                         <ui:inputText class="slds-input inputFieldWidth"
                                                       labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
-                                                      aura:id="inputId"
+                                                      aura:id="idName"
                                                       blur="{!c.closeNameBox}"
                                                       change="{!c.onNameChange}"
                                                       required="true"
@@ -96,4 +93,3 @@
     </tr>
     
 </aura:component>
->>>>>>> 7cb652635e30c487a99b0bf1fd6a9508c0e6c010

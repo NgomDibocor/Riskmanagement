@@ -1,9 +1,5 @@
 ({
 	doInit : function(component, event, helper) {
-		
-<<<<<<< HEAD
-	}
-=======
 	},
 	
 	inlineEditName : function(component, event, helper) {
@@ -11,7 +7,7 @@
         component.set("v.nameEditMode", true); 
         // after the 100 millisecond set focus to input field   
         setTimeout(function(){ 
-            component.find("inputId").focus();
+            component.find("idName").focus();
         }, 100);
 	},
 	
@@ -56,5 +52,4 @@
             component.set("v.showErrorClass", false);
         }
     },
->>>>>>> 7cb652635e30c487a99b0bf1fd6a9508c0e6c010
 })

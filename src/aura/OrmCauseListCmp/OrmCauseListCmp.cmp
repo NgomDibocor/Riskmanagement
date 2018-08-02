@@ -34,7 +34,7 @@
              <!--### display all records of causes attribute one by one by aura:iteration ###-->
                 <aura:iteration items="{!v.causes}" var="cause" indexVar="sNo">
                    <!-- Child Lightning Component --> 
-                    <c:OrmActivityList singleRec="{!cause}"
+                    <c:OrmCauseEditRow cause="{!cause}"
                                      showSaveCancelBtn="{!v.showSaveCancelBtn}"
                                      sNo="{!sNo + 1}" />
                        

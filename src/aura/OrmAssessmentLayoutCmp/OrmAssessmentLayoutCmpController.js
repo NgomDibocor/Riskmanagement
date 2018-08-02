@@ -367,22 +367,6 @@
     	/* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
-        alert('déclenche evt');
-        /*var action = component.get('c.getSingleAssessment');
-        action.setCallback(this, function(response){
-            if(response.getState() == 'SUCCESS'){
-                 var assessment = response.getReturnValue();
-                 var evt = $A.get("e.c:OrmNewCauseClickedEvt");
-			     evt.setParams({
-			        "idAssessment" : assessment.Id
-			     });
-			     evt.fire();
-            } else {
-                alert('error');
-            }            
-        });
-        $A.enqueueAction(action);*/
-        
         var assessmentRiskId = "";
         var evt = $A.get("e.c:OrmNewCauseClickedEvt");
         evt.setParams({

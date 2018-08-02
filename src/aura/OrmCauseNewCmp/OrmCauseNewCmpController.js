@@ -56,7 +56,13 @@
                    var evt = $A.get("e.c:OrmCauseCreatedEvt");
                    evt.fire();
             	} else {
-            		alert('ERROR');
+            		var toast = $A.get('e.force:showToast');
+            		toast.setParams({
+			           'message' : 'ERROR',
+			           'type' : 'error',
+			           'mode' : 'dismissible'
+		            });	
+		            toast.fire();
             	}
             });
             $A.enqueueAction(action);

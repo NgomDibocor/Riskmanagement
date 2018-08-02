@@ -187,6 +187,7 @@
 			alert(JSON.stringify(assessmentRisks));
 		var action = component.get('c.addAssessmentRisks');
 		action.setParams({
+		
 			"items": assessmentRisks
 		});
 		action.setCallback(this, function(response) 

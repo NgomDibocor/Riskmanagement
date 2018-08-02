@@ -167,6 +167,7 @@
             function(response) {
                 var state = response.getState();
                 if (state == "SUCCESS") {
+                component.set("v.displaySaveCancelBtn", false);
                 component.set("v.assessmentData",response.getReturnValue());
                     var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
@@ -175,7 +176,7 @@
                             'mode' : 'dismissible'
                         });
 
-		toastEvent.fire();
+		                toastEvent.fire();
                     
                 }
             });

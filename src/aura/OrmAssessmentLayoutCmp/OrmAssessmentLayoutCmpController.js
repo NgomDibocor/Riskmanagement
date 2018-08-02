@@ -322,8 +322,11 @@
         $A.enqueueAction(actionOrgs);
     },
     onTypeAssessmentChange : function(component,event,helper){ 
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));            
+        
+        if(event.getSource().get("v.value").trim() != '' || event.getSource().get("v.value").trim() != '---None---'){ 
+            component.find("typeAssessment").set("v.value", event.getSource().get("v.value")); 
+             var typeAss = event.getSource().get("v.value");
+             helper.verifTypeAssessment(component, event, helper, typeAss);          
         }
         var field = $A.get("$Label.c.orm_type_assessment");
         var description = $A.get("$Label.c.orm_description_type_assessment");

@@ -9,7 +9,8 @@
                 var allValues = response.getReturnValue();
  
                 if (allValues != undefined && allValues.length > 0) {
-                    opts.push("--- None ---");
+                    var none="---None---";
+                    opts.push(none);
                 }
                 for (var i = 0; i < allValues.length; i++) {
                     opts.push(allValues[i]);
@@ -284,5 +285,24 @@
 				"descriptionField" : description
 			});
 		    evt.fire();
+    },
+    
+    verifTypeAssessment  : function(component, event, helper, typeAssessment) {
+    if(typeAssessment == 'Organisation'){
+      component.set("v.typeOrganisation", true);
+      component.set("v.typeProcessus", false);
+      component.set("v.typeProjet", false);
+    }
+    if(typeAssessment == 'Processus'){
+      component.set("v.typeOrganisation", false);
+      component.set("v.typeProcessus", true);
+      component.set("v.typeProjet", false);
+    }
+    if(typeAssessment == 'Projet'){
+      component.set("v.typeOrganisation", false);
+      component.set("v.typeProcessus", false);
+      component.set("v.typeProjet", true);
+    }
+       
     }
 })

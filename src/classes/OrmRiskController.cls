@@ -64,6 +64,30 @@ public with sharing class OrmRiskController {
     }
      /*
     *David mignane diop
+    *function of adding a new assessment risk
+    *le 02/08/2018
+    */
+     @AuraEnabled
+    public static orm_assessmentRisk__c addAssessmentRisk (orm_assessmentRisk__c item)
+    {
+            upsert item;
+            return item;   
+    }
+    
+     /*
+    *David mignane diop
+    *function of adding a new assessment risk
+    *le 02/08/2018
+    */
+     @AuraEnabled
+    public static List<orm_assessmentRisk__c> addAssessmentRisks (List<orm_assessmentRisk__c> items)
+    {
+            insert items;
+            return items;   
+    }
+    
+     /*
+    *David mignane diop
     *  picklist recovery function
     *le 27/07/2018
     */

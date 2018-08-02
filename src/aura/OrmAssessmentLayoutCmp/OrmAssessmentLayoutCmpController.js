@@ -209,10 +209,10 @@
     /* laye */
     activeRiskIdentif : function(component, event, helper) {
     	alert(component.get("v.assessmentData").Id);
-        var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
+        /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
         evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
         
-        evt.fire();
+        evt.fire();*/
         helper.activeRiskIdentif(component, event);
     },
     activeRiskAnalye : function(component, event, helper) {

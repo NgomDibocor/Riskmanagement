@@ -19,8 +19,13 @@
       <aura:attribute name="filter" type="String" />
       <aura:attribute name="columns" type="List"/>
       <aura:attribute name="isOpen" type="Boolean"  description="value to test if a given element is detected" />
-      <aura:attribute name="ids" type="String[]" />
+      <aura:attribute name="relatedRisk" type="Macro[]" />
       <aura:attribute name="idAssessment" type="String" />
+      <aura:attribute name="assessmentRisk" type="orm_assessmentRisk__c" default="{
+						'sobjectType' : 'orm_assessmentRisk__c',
+                         'orm_assessment__c': '',  
+                         'orm_Risk__c':''   
+					}" />
     
      <div class="slds-grid slds-gutters">
 	    <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
@@ -119,6 +124,10 @@
                                  showRowNumberColumn="false"/>
      </div>   
   </div><br/>
+  <button class="slds-button slds-button--brand"
+							onclick="{!c.relatedRiskfunction}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.create_button_title}
+						</button>
   <aura:if isTrue="{!v.isOpen}">
 			<!-- alert model -->
 			<!--###### MODAL BOX Start From Here ######-->
@@ -138,13 +147,19 @@
 					<div class="slds-modal__content slds-p-around--medium">
 						<p>
 						
-							<b style="font-size:15px;"><center> message </center></b>
+							<b style="font-size:15px;"><center> 
+							id Assessment  {!v.idAssessment}
+							id Risk : {!v.ids.Id}							</center></b>
 						</p>
 					</div>
 					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 					<div class="slds-modal__footer">
-						<button class="slds-button slds-button--neutral buttonClose"
-							onclick="{!c.closeAlert}">{!$Label.c.close_button_title}</button>
+						<button class="slds-button slds-button--neutral"
+							onclick="{!c.closeModal}">{!$Label.c.close_button_title}</button>
+						<button class="slds-button slds-button--brand"
+							onclick="{!c.createItem}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.create_button_title}
+						</button>
 					</div>
 				</div>
 			</div>

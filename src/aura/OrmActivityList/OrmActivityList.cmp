@@ -3,8 +3,10 @@
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!--Init handler which is call initRecords js function on component Load-->
 
-	<aura:handler name="init" value="{!this}" action="{!c.initRecords}" />
 	<!--declare aura handler-->
+	<aura:handler name="init" value="{!this}" action="{!c.initRecords}" />
+	 <aura:handler event="c:OrmRefreshActivityEvnt" action="{!c.initRecords}"  /> 
+	
 	<!-- on component load, fetch picklist values dynamically from apex controller -->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 

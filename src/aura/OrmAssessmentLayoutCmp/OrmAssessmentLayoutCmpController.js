@@ -213,6 +213,14 @@
         evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
         
         evt.fire();*/
+        var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
+        evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
+        
+        evt.fire();
+        /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
+        evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
+        
+        evt.fire();*/
         helper.activeRiskIdentif(component, event);
     },
     activeRiskAnalye : function(component, event, helper) {
@@ -352,12 +360,15 @@
         $A.get('e.force:refreshView').fire(); 
     },
     
-    openCauseNewCmp : function(component,event,helper){
+    /* @cretedBy: laye
+	   @createdDate: 28/07/2018
+     */
+    openCauseNewCmp : function(component, event, helper){
     	/* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
-         alert('déclenche evt');
-        var action = component.get('c.getSingleAssessment');
+        alert('déclenche evt');
+        /*var action = component.get('c.getSingleAssessment');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
                  var assessment = response.getReturnValue();
@@ -370,7 +381,14 @@
                 alert('error');
             }            
         });
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
+        
+        var assessmentRiskId = "";
+        var evt = $A.get("e.c:OrmNewCauseClickedEvt");
+        evt.setParams({
+        	"idAssessmentRisk" : assessmentRiskId
+		});
+		evt.fire();
     },
     
     /* @cretedBy: laye

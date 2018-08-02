@@ -1,14 +1,13 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmCauseController">
 	
 	<!-- methodes -->
-	<!--Init handler which is call initRecords js function on component Load-->  
-    <aura:handler name="init" value="{!this}" action="{!c.initRecords}"/>
-	
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
 	<!-- attributes -->
 	<aura:attribute name="causes" type="Macro[]" description="" />
 	<aura:attribute name="assessmentRiskId" type="string" description="" />
-	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" 
-		description="flag for rendered save and cancel buttons in aura:if "/>	
+	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false"
+
 	
 	<div class="slds-m-around_large">
 	
@@ -50,9 +49,5 @@
                 <lightning:button label="{!$Label.c.save_button_title}" onclick="{!c.Save}" variant="success"/>
             </lightning:buttonGroup>
         </aura:if> 
- 
     </div>
-	
-	
-	
 </aura:component>

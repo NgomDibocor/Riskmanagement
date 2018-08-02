@@ -1,6 +1,5 @@
 ({
 	doInit : function(component, event, helper) {
-		
 	},
 	
 	inlineEditName : function(component, event, helper) {
@@ -8,7 +7,7 @@
         component.set("v.nameEditMode", true); 
         // after the 100 millisecond set focus to input field   
         setTimeout(function(){ 
-            component.find("inputId").focus();
+            component.find("idName").focus();
         }, 100);
 	},
 	
@@ -44,5 +43,17 @@
     closeDescriptionBox : function (component, event, helper) {
        // on focus out, close the input section by setting the 'ratingEditMode' att. as false
         component.set("v.descriptionEditMode", false); 
+    },
+    
+    closeNameBox : function (component, event, helper) {
+      // on focus out, close the input section by setting the 'nameEditMode' att. as false   
+        component.set("v.nameEditMode", false); 
+      // check if change/update Name field is blank, then add error class to column -
+      // by setting the 'showErrorClass' att. as True , else remove error class by setting it False   
+        if(event.getSource().get("v.value").trim() == ''){
+            component.set("v.showErrorClass", true);
+        } else {
+            component.set("v.showErrorClass", false);
+        }
     },
 })

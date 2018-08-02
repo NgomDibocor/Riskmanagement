@@ -12,7 +12,7 @@
 														  'orm_assessmentRisk__c' : ''
 														}"/>
 	
-	<aura:attribute name="assessmentId" type="String" />
+	<aura:attribute name="idAssessmentRisk" type="String" />
 	
 	<aura:if isTrue="{!v.isOpen}">
 			<!--###### MODAL BOX Start From Here ######-->    		

@@ -250,7 +250,7 @@
                    </tr>
                     <tr>
                         <td>
-                            <c:OrmActivityList assessmentData="{!v.assessmentData}"/>
+                            <!-- <c:OrmActivityList assessmentData="{!v.assessmentData}"/> -->
                         </td>
                     </tr>
                 </aura:if>

@@ -1,10 +1,10 @@
 <aura:component>
 	
 	<!-- methods -->
-	<!-- on component load, fetch picklist values dynamically from apex controller -->   
+	<!-- on component load, fetch picklist values dynamically from  apex controller -->   
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
-    <!--attributes-->
+    <!-- attributes -->
     <aura:attribute name="showSaveCancelBtn" type="boolean"/>
     <aura:attribute name="showErrorClass" type="boolean" default="false"/>
     <aura:attribute name="sNo" type="string" />
@@ -39,7 +39,7 @@
                                     <div class="slds-form-element__control slds-grow">
                                         <ui:inputText class="slds-input inputFieldWidth"
                                                       labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
-                                                      aura:id="inputId"
+                                                      aura:id="idName"
                                                       blur="{!c.closeNameBox}"
                                                       change="{!c.onNameChange}"
                                                       required="true"

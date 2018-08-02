@@ -20,5 +20,11 @@
 	newAssessment : function(component, event, helper) {
         var evt = $A.get("e.c:OrmDisplayAssessmentEvt");
 		evt.fire();
-	}
+	},
+	
+	showAssessment : function(component, event, helper) {
+        //var evt = $A.get("e.c:OrmDisplayAssessmentEvt");
+		//evt.fire();
+		alert('show this assessment')
+	},
 })

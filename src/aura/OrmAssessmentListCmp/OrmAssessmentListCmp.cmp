@@ -29,7 +29,8 @@
 	                            </h2>
                             </div>
                             <div class="slds-no-flex">
-                                <button class="slds-button slds-button_neutral">
+                                <button class="slds-button slds-button_neutral" 
+                                        onclick="{!c.showAssessment}">
 							       {!$Label.c.show_button_title}
                                 </button>
                             </div>

@@ -138,7 +138,7 @@ public class OrmAssessmentController {
 	 *
 	 * @author Dibocor NGOM
 	 * @version 1.0
-	 * @description  this method returns all activities of assessment
+	 * @description  this method returns a single assessment
 	 * @history 
 	 * 2018-07-24 : Dibocor NGOM - Implementation
 	 */
@@ -163,4 +163,20 @@ public class OrmAssessmentController {
     public static Assessment__c getSingleAssessment(){
         return [SELECT Id FROM Assessment__c LIMIT 1];
     } 
+    
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns all assessments
+	 * @history 
+	 * 2018-08-02 : Dibocor NGOM - Implementation
+	 */
+    @AuraEnabled 
+    public static Assessment__c getAssessment(String idAss){
+        return [Select Id, Name, orm_description__c 
+                From Assessment__c 
+                Where Id = : idAss ];
+         
+    }
 }

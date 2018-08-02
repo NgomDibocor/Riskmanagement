@@ -24,10 +24,9 @@
                             <div class="slds-media__body">
                                 <h2>
 	                                <a href="javascript:void(0);" class="slds-card__header-link"
-	                                    title=""><ui:outputText value="{!item.key}" /><!-- {!item.value.Name} -->
+	                                    title=""><ui:outputText value="{!item.value.assessment.Name}" /><!-- {!item.value.Name} -->
 	                                </a>
 	                            </h2>
-                                
                             </div>
                             <div class="slds-no-flex">
                                 <button class="slds-button slds-button_neutral">
@@ -37,10 +36,10 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                        <ui:outputRichText value="" /> <!-- {!item.value.orm_description__c} -->
+                        <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> <!-- {!item.value.orm_description__c} -->
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                     <span>Risk <b>{!item.value}</b></span>
+                     <span>Risk <b>{!item.value.nbreRisk}</b></span>
                     </div>
                    
                 </article>

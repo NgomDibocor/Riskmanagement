@@ -6,11 +6,9 @@
             if(state === 'SUCCESS'){
                 var custs = [];
                 var conts = response.getReturnValue();
-                for(var item in conts){
-                    custs.push({value:conts[item], key:item});
-                    //alert(JSON.stringify(custs));
+                for(var idAss in conts){
+                    custs.push({value:conts[idAss]});
                 }
-                alert(JSON.stringify(custs))
                 component.set("v.assessments", custs);
                 
             } else {

@@ -4,7 +4,8 @@
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <!-- <aura:attribute name="assessments" type="Assessment__c[]" description="" /> -->
     <aura:attribute name="assessments" type="List" />
-	<!--<p>Liste des Assessment de l'utilisateur</p>-->
+	
+	<aura:registerEvent name="ShowAssessmentClicked" type="c:OrmShowAssessmentClickedEvt" description="" />
 	
 
   <div class="slds-grid slds-wrap">

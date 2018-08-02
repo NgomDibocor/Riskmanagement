@@ -5,6 +5,8 @@
 	<!-- on component load, fetch picklist values dynamically from apex controller -->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmRemoveRecordActivityEvnt" action="{!c.deleteSelected}"  />
+  <aura:registerEvent name="OrmRefreshActivityEvnt" type="c:OrmRefreshActivityEvnt" /> 
+	
 	<!--declare aura attributes-->
 	<aura:attribute name="objInfoForPicklistValues" type="Assessment__c"
 		default="{sobjectType : 'Assessment__c'}"

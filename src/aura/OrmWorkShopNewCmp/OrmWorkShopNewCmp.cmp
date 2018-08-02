@@ -1,12 +1,13 @@
-<aura:component extends="c:OrmAbstractNewCmp" access="global" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" controller="OrmWorkshopController">
+<aura:component extends="c:OrmAbstractNewCmp" access="global" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" controller="WorkshopController">
 	<aura:attribute name="item" type="Contract"
 		default="{
 						'sobjectType' : 'Contract',
                         'Name': '',
                         'StartDate':'',
-                        'EndDate':'', 
+                        'Contract_End_Date__c':'', 
                         'CompanySignedDate':'',
-                        'orm_assessment__c':'',                               
+                        'Assessment__c':'', 
+                        'AccountId':'',                              
 						'Description':''
 						
 					}" />

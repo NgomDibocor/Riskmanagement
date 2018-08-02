@@ -24,9 +24,10 @@
          newItem.orm_assessment__c=  "a051H00000aQzDNQA0";
             newItem.Name=name.get('v.value');
             newItem.StartDate=datestart.get('v.value');
-           newItem.EndDate=dateend.get('v.value');
+           newItem.Contract_End_Date__c=dateend.get('v.value');
            newItem.CompanySignedDate=dateinvitation.get('v.value');
            newItem.Description=message.get('v.value');
+           newItem.AccountId="0011H00001RnBahQAF";
            alert(JSON.stringify(newItem));
             var action = component.get('c.addWorkShop');
             action.setParams({
@@ -46,9 +47,10 @@
                                 'sobjectType' : 'Contract',
                         'Name': '',
                         'StartDate':'',
-                        'EndDate':'', 
+                        'Contract_End_Date__c':'', 
                         'CompanySignedDate':'',
-                        'orm_assessment__c':'',                               
+                        'Assessment__c':'',
+                        'AccountId':'',                               
 						'Description':''
                             });
                         }else

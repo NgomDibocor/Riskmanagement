@@ -49,8 +49,10 @@
     } else {
      console.log('check it--> delete successful');
     }
-    // call the onLoad function for refresh the List view    
+    // fire the event function for refresh the List view    
  //   this.onLoad(component, event);
+var evt = $A.get("e.c:OrmRefreshActivityEvnt");
+ 	evt.fire();
    }
   });
   $A.enqueueAction(action);

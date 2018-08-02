@@ -66,10 +66,10 @@
     //fire event to childActivityList
   
 		var evt = $A.get("e.c:OrmRemoveRecordActivityEvnt");
-	
+	/*
 		evt.setParams({
 			"countSelected" :component.get("v.selectedCount") 
-		});
+		});*/
 		evt.fire();
     }
  

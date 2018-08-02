@@ -12,7 +12,7 @@
    <aura:iteration items="{!v.assessments}" var="item">
    
         <div class="slds-size_1-of-3">
-            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small">
+            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word">
                 <article class="slds-card" style="height:130px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
@@ -35,7 +35,7 @@
                             </div>
                         </header>
                     </div>
-                    <div class="slds-card__body slds-card__body_inner">
+                    <div class=" slds-card__body slds-card__body_inner" style="height:20px">
                         <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> <!-- {!item.value.orm_description__c} -->
                     </div>
                     <div class="slds-card__body slds-card__body_inner">

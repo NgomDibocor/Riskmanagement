@@ -1,11 +1,10 @@
 ({
 	doInit : function(component, event, helper) {
 		
-		// call the apex class method and fetch activity list  
+		var idAssessmentRisk = 'a001H00000kcU5ZQAU';
         var action = component.get("c.findAllCausesByAssessmentRisk");
-        var assesmentRiskId = 'a001H00000kcU5ZQAU';
-        action.setParam('idAssRisk', assesmentRiskId);
-            action.setCallback(this, function(response) {
+        action.setParam('idAssRisk', idAssessmentRisk);
+        action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {                 
             	component.set("v.causes", response.getReturnValue());
@@ -60,8 +59,30 @@
         } 
     },
     
-    cancel : function(component,event,helper){
+    cancel : function(component,event,helper) {
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
+    },
+    
+    filter : function (component, event, helper){
+    	
+    	var causes = component.get('v.causes');
+    	var data = causes;
+    	var key = component.get('v.key');
+    	var regex;
+    	key = "^" + key;
+    	
+    	if ($A.util.isEmpty(key)) {
+	        component.set("v.causes", causes);	        
+         } else {
+        	try {
+        	 		regex = new RegExp(key, "i");
+        	 		// filter checks each row, constructs new array where function returns true
+        	 		data = data.filter(row => regex.test(row.Name)|| regex.test(row.Description));
+		        } catch (e) {
+		    	   
+		        }
+		   component.set("v.causes", data);
+         }        	
     }
 })

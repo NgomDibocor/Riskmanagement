@@ -8,8 +8,11 @@
 	<aura:attribute name="causes" type="Macro[]" description="" />
 	<aura:attribute name="assessmentRiskId" type="string" description="" />
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+	<aura:attribute name="key" type="string" description="" />
 	
 	<div class="slds-m-around_large">
+	
+		<lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
 	
 		<!-- use aura:if for show/hide buttons --> 
         <aura:if isTrue="{!v.showSaveCancelBtn}">

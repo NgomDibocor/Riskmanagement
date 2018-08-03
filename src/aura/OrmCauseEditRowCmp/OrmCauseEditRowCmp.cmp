@@ -43,7 +43,7 @@
                                                       blur="{!c.closeNameBox}"
                                                       change="{!c.onNameChange}"
                                                       required="true"
-                                                      label="Name"
+                                                      label="{!$Label.c.orm_label_cause}"
                                                       value="{!v.cause.Name}" />
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                                       blur="{!c.closeDescriptionBox}"
                                                       change="{!c.onDescriptionChange}"
                                                       required="true"
-                                                      label="Description"
+                                                      label="{!$Label.c.orm_description}"
                                                       value="{!v.cause.Description}" />
                                     </div>
                                 </div>

@@ -235,26 +235,8 @@
     },
     
     openActivityNewCmp : function(component, event, helper){
-        /* after created the assessment we must get the assessment id
-			var assessment = component.get('v.assessmentData');
-         */
-        /*var action = component.get('c.getSingleAssessment');
-        action.setCallback(this, function(response){
-            if(response.getState() == 'SUCCESS'){
-                 var assessment = response.getReturnValue();
-                 var evt = $A.get("e.c:OrmOpenNewActivityCmpEvt");
-			     evt.setParams({
-			        "idAssessment" : assessment.Id
-			     });
-			     evt.fire();
-            } else {
-                alert('error');
-            }            
-        });
-        $A.enqueueAction(action);*/
-        
+                
         var idAssessment = component.get("v.assessmentData").Id;
-        //alert("idAssessment " + idAssessment);
         if(idAssessment == null){
         	//alert("check if you have created the assessment");
         	var toast = $A.get('e.force:showToast');
@@ -383,17 +365,12 @@
 	   @createdDate: 28/07/2018
      */
     refreshListCause : function(component, event, helper){
-    	/*var action = component.get('c.findAllCauseByAssessment');
-        action.setParams({'idAssessment' : null});
-        action.setCallback(this, function(response){
-            if(response.getState() == 'SUCCESS'){
-            	alert('SUCCESS');
-                component.set('v.allCauses', response.getReturnValue());
-            } else {
-                alert('ERROR');
-            }            
-        });
-        $A.enqueueAction(action);*/
+    	
+        console.log("test publication event");
+        var evt = $A.get('e.c:OrmEvtRefreshListCause');
+        evt.setParams({'idAssessmentRisk': event.getParam('idAssessmentRisk')});
+        evt.fire();
+       
     },
     
     onChangeCause : function(component, event, helper) {

@@ -14,8 +14,9 @@
         $A.enqueueAction(action);
 	},
 	
-	/*
-	refreshList : function(component, event, helper) {		
+	
+	refreshList : function(component, event, helper) {	
+		console.log("test event refreshList cause in list CMP");
 		string idAssessmentRisk = event.getParam('idAssessmentRisk');
         var action = component.get("c.findAllCausesByAssessmentRisk");
         var assesmentRiskId = idAssessmentRisk;
@@ -28,7 +29,7 @@
         });
         $A.enqueueAction(action);
 	},
-	*/
+	
 	
 	save: function(component, event, helper) {
 		// Check required fields(Name) first in helper method which is return true/false

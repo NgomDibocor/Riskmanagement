@@ -39,10 +39,9 @@
 		type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
-    <!-- 
     <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshListCause}" />
-    -->
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
+    <aura:registerEvent name="OrmEvtRefreshListCause" type="c:OrmEvtRefreshListCause" description="" />
     
     <!-- menu -->
     <div class="slds-tabs--path" role="application">
@@ -243,9 +242,26 @@
 		                            <div class="topSpacing"> 
 		                                <label class="slds-form-element__label">Reference</label>
 		                            </div>
-		                            
+		                            <div class="width">
+		                              <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
+		                                <ui:inputTextArea class="slds-input" 
+		                                         value="{!v.assessmentData.orm_referenceProcessus__c}">
+		                                </ui:inputTextArea>
+		                              </a>
+		                            </div>
 		                        </td>    
 		                    </tr>
+		                    <tr>
+	                            <td>
+	                                <div class="topSpacing"> 
+	                                    <label class="slds-form-element__label">Application Date<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>
+	                                
+	                                <div class="width">
+	                                    <ui:inputDate class="slds-input" aura:id="applicationDate" value="{!v.assessmentData.orm_applicationDateProcessus__c}" displayDatePicker="true"></ui:inputDate>
+	                                </div>
+	                            </td>    
+	                        </tr>
 				    </aura:if>
 				    <aura:if isTrue="{!v.typeOrganisation}">
 		                  <tr>
@@ -368,19 +384,17 @@
                    </tr>
                     <tr>
                         <td>
-                            <!-- <c:OrmActivityList assessmentData="{!v.assessmentData}"/> -->
+                             <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
                         </td>
                     </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showContextWorkshop}">
 	                <tr>
-                        <td >
-                           <div class=""> 
-                                <p>Contexte 4 description </p>
-                           </div>
+                        <td>
+                        <c:ormworkshopnewcmp />
                         </td>
                     </tr>
-                     <p>Pour Workshop</p>
+                     
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskIdentif}">
                     <tr>

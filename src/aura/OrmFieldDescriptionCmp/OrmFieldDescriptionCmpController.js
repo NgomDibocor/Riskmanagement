@@ -8,4 +8,5 @@
 		component.set("v.nomField", event.getParam("nomField"));
 		component.set("v.descriptionField", event.getParam("descriptionField"));
 	},
+	
 })

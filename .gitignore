@@ -1,6 +1,5 @@
 # GitIgnore for Salesforce Projects
-# Project Settings and MetaData
 
-Riskmanagement/salesforce.schema
-
-Riskmanagement/.settings/com.salesforce.ide.core.prefs
+.project
+.classpath
+.settings/

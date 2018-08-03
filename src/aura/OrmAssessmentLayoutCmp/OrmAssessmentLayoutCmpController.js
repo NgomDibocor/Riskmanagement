@@ -361,20 +361,14 @@
 		evt.fire();
     },
     
-    /* @cretedBy: laye
-	   @createdDate: 28/07/2018
-     */
-    refreshListCause : function(component, event, helper){
-    	
-        console.log("test publication event");
-        var evt = $A.get('e.c:OrmEvtRefreshListCause');
-        evt.setParams({'idAssessmentRisk': event.getParam('idAssessmentRisk')});
-        evt.fire();
-       
-    },
-    
     onChangeCause : function(component, event, helper) {
     
-    }
+    },
+    sendDescriptionSearchToFD : function(component,event,helper){ 
+    	component.set("v.closeFieldDescription",false);
+        var field =  event.getParam("nomField");
+        var description = event.getParam("descriptionField");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
     
 })

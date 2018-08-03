@@ -39,9 +39,8 @@
 		type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
-    <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshListCause}" />
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
-    <aura:registerEvent name="OrmEvtRefreshListCause" type="c:OrmEvtRefreshListCause" description="" />
+    <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     
     <!-- menu -->
     <div class="slds-tabs--path" role="application">
@@ -320,23 +319,23 @@
                         </td>
                   </tr>
                   <tr>
-                        <td >
-                                <div class="topSpacing"> 
-                                    <label class="slds-form-element__label">Organisation</label>
-                                </div>
-                                <div class="organisation slds-form-element">
-                                    <div class="slds-form-element__control">
-                                        <ui:inputSelect aura:id="organisation" 
-                                                change="{!c.onChangeOrg}" class="slds-select"
-                                                labelClass="slds-form-element__label">
-                                            <aura:iteration items="{!v.allOrganisation}" var="organisation">
-                                                <ui:inputSelectOption text="{!organisation.Id}"
-                                                                      label="{!organisation.Name}" />
-                                            </aura:iteration>
-                                       </ui:inputSelect>
-                                    </div>
-                                </div>
-                                <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
+                       <td>
+                             <div class="topSpacing"> 
+                                 <label class="slds-form-element__label">Organisation</label>
+                             </div>
+                             <div class="organisation slds-form-element">
+                                 <div class="slds-form-element__control">
+                                     <ui:inputSelect aura:id="organisation" 
+                                             change="{!c.onChangeOrg}" class="slds-select"
+                                             labelClass="slds-form-element__label">
+                                         <aura:iteration items="{!v.allOrganisation}" var="organisation">
+                                             <ui:inputSelectOption text="{!organisation.Id}"
+                                                                   label="{!organisation.Name}" />
+                                         </aura:iteration>
+                                    </ui:inputSelect>
+                                 </div>
+                             </div>
+                             <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
                         </td>
                    </tr>
                    <tr>

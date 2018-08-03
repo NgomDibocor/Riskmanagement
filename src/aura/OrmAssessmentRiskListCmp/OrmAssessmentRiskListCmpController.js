@@ -9,12 +9,10 @@
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
                 component.set('v.assessmentRisks', response.getReturnValue());
-                alert(JSON.stringify(response.getReturnValue()));
-                console.log(response.getReturnValue());
             }
             else
             {
-                alert("l'élément n'a pas été chargé");
+                 alert($A.get("$Label.c.loaded_message"));
             }
         });
         $A.enqueueAction(action);

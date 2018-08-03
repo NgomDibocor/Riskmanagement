@@ -2,7 +2,7 @@
 	doInit : function(component, event, helper) {
 		
 		// call the apex class method and fetch activity list  
-      /*  var action = component.get("c.findAllCausesByAssessmentRisk");
+        var action = component.get("c.findAllCausesByAssessmentRisk");
         var assesmentRiskId = 'a001H00000kcU5ZQAU';
         action.setParam('idAssRisk', assesmentRiskId);
             action.setCallback(this, function(response) {
@@ -11,13 +11,12 @@
             	component.set("v.causes", response.getReturnValue());
             }
         });
-        $A.enqueueAction(action);*/
+        $A.enqueueAction(action);
 	},
 	
 	
 	refreshList : function(component, event, helper) {	
 		var idAssessmentRisk = event.getParam('idAssessmentRisk');
-		alert(idAssessmentRisk);
         var action = component.get("c.findAllCausesByAssessmentRisk");
         var assesmentRiskId = idAssessmentRisk;
         action.setParam('idAssRisk', assesmentRiskId);

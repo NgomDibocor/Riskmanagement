@@ -10,6 +10,15 @@
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	
 	<div class="slds-m-around_large">
+	
+		<!-- use aura:if for show/hide buttons --> 
+        <aura:if isTrue="{!v.showSaveCancelBtn}">
+            <!--button for save and cancel Record after Inline Edit-->
+            <lightning:buttonGroup class="slds-m-around_medium">
+                <lightning:button label="{!$Label.c.cancel_button_title}" onclick="{!c.cancel}"/>
+                <lightning:button label="{!$Label.c.save_button_title}" onclick="{!c.save}" variant="success"/>
+            </lightning:buttonGroup>
+        </aura:if> 
         
         <!--Data Table-->     
         <table class="slds-table slds-table_bordered slds-table_cell-buffer">
@@ -30,14 +39,7 @@
                                      sNo="{!sNo + 1}" />                       
                 </aura:iteration>
             </tbody>
-        </table>
-               <!-- use aura:if for show/hide buttons --> 
-        <aura:if isTrue="{!v.showSaveCancelBtn}">
-            <!--button for save and cancel Record after Inline Edit-->
-            <lightning:buttonGroup class="slds-m-around_medium">
-                <lightning:button label="{!$Label.c.cancel_button_title}" onclick="{!c.cancel}"/>
-                <lightning:button label="{!$Label.c.save_button_title}" onclick="{!c.save}" variant="success"/>
-            </lightning:buttonGroup>
-        </aura:if> 
+        </table>       
+        
     </div>
 </aura:component>

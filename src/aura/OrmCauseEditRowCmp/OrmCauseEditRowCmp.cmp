@@ -74,12 +74,12 @@
                                     <div class="slds-form-element__control slds-grow">
                                         <ui:inputText class="slds-input inputFieldWidth"
                                                       labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
-                                                      aura:id="inputId"
+                                                      aura:id="idDescription"
                                                       blur="{!c.closeDescriptionBox}"
-                                                      change="{!c.onNameChange}"
+                                                      change="{!c.onDescriptionChange}"
                                                       required="true"
-                                                      label="Name"
-                                                      value="{!v.cause.Name}" />
+                                                      label="Description"
+                                                      value="{!v.cause.Description}" />
                                     </div>
                                 </div>
                             </div>

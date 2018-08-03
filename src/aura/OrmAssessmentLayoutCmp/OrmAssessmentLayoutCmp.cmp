@@ -246,6 +246,17 @@
 		                            
 		                        </td>    
 		                    </tr>
+		                    <tr>
+	                            <td>
+	                                <div class="topSpacing"> 
+	                                    <label class="slds-form-element__label">Application Date<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>
+	                                
+	                                <div class="width">
+	                                    <ui:inputDate class="slds-input" aura:id="applicationDate" value="{!v.assessmentData.orm_applicationDateProcessus__c}" displayDatePicker="true"></ui:inputDate>
+	                                </div>
+	                            </td>    
+	                        </tr>
 				    </aura:if>
 				    <aura:if isTrue="{!v.typeOrganisation}">
 		                  <tr>

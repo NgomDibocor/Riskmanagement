@@ -22,11 +22,18 @@
     inlineEditMessage : function(component,event,helper){   
         // show the status edit field 
         component.set("v.messageEditMode", true); 
-        // after set ratingEditMode true, set picklist options to picklist field 
-        //component.find("accMessage").set("v.options" , component.get("v.statusPicklistOpts"));
+        
         // after the 100 millisecond set focus to input field   
         setTimeout(function(){ 
             component.find("accMessage").focus();
+        }, 100);
+    },
+      inlineEditInvitation : function(component,event,helper){   
+        // show the status edit field 
+        component.set("v.invitationEditMode", true);
+        // after the 100 millisecond set focus to input field   
+        setTimeout(function(){ 
+            component.find("invitationid").focus();
         }, 100);
     },
     onNameChange : function(component,event,helper){ 
@@ -35,6 +42,11 @@
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.showSaveCancelBtn",true);
         }
+    },
+      onDataChange : function(component,event,helper){ 
+        // if date  start or end change,
+        // then show save and cancel button by set attribute to true
+        component.set("v.showSaveCancelBtn",true);
     },
      closeNameBox : function (component, event, helper) {
       // on focus out, close the input section by setting the 'nameEditMode' att. as false   
@@ -47,4 +59,22 @@
             component.set("v.showErrorClass",false);
         }
     }, 
+       closePeriodBox : function (component, event, helper) {
+  
+      // on focus out, close the input section by setting the 'periodEditMode' att. as false   
+        component.set("v.periodEditMode", false); 
+      
+    }, 
+     closeMessageBox : function (component, event, helper) {
+  
+      // on focus out, close the input section by setting the 'messageEditMode' att. as false   
+        component.set("v.messageEditMode", false); 
+      
+    }, 
+     closeInvitationBox : function (component, event, helper) {
+  
+      // on focus out, close the input section by setting the 'messageEditMode' att. as false   
+        component.set("v.invitationEditMode", false); 
+      
+    },
 })

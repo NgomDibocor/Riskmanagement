@@ -20,9 +20,10 @@
 						
 					}" />
 
-	<!-- 					handler event  workshop  -->
+	<!-- handler event  workshop  -->
 	
   <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.openModalWorkshop}" />
+    <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
 	<!--  start form workshop-->
 
   <aura:if isTrue="{!v.isOpen}">
@@ -90,7 +91,7 @@
 	</form>
 
 </div>
-					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+		<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 					<div class="slds-modal__footer">
 						<button class="slds-button slds-button--neutral"
 							onclick="{!c.closeModal}">{!$Label.c.cancel_button_title}</button>

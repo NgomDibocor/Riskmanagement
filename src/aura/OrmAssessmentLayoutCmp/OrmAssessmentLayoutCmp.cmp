@@ -145,7 +145,8 @@
                         </td>
                     </tr>
                     <aura:if isTrue="{!v.typeProjet}">
-		                  <tr>
+                       <!-- <c:OrmFormForProjetCmp assessmentData ="{!v.assessmentData}" />-->
+		                 <tr>
 		                        <td>
 		                            <div class="topSpacing">
 		                                <label class="slds-form-element__label">Project Name<span class="cmn_mandatory_indicator">*</span></label>
@@ -206,7 +207,8 @@
 	                        </tr>
 				    </aura:if>
 				    <aura:if isTrue="{!v.typeProcessus}">
-		                  <tr>
+				         <!-- <c:OrmFormForProcessusCmp assessmentData ="{!v.assessmentData}" />-->
+		                 <tr>
 		                        <td>
 		                            <div class="topSpacing">
 		                                <label class="slds-form-element__label">Name<span class="cmn_mandatory_indicator">*</span></label>
@@ -263,6 +265,7 @@
 	                        </tr>
 				    </aura:if>
 				    <aura:if isTrue="{!v.typeOrganisation}">
+				        <!--<c:OrmFormForOrganisationCmp assessmentData ="{!v.assessmentData}" />-->
 		                  <tr>
 		                        <td>
 		                            <div class="topSpacing">

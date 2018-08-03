@@ -2,7 +2,7 @@
 	
 	<!-- methodes -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>    
-    <!-- aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshList}"  / -->
+    <aura:handler event="c:OrmEvtRefreshListCause" action="{!c.refreshList}"  />
 
 	<!-- attributes -->
 	<aura:attribute name="causes" type="Macro[]" description="" />

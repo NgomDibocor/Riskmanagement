@@ -361,18 +361,6 @@
 		evt.fire();
     },
     
-    /* @cretedBy: laye
-	   @createdDate: 28/07/2018
-     */
-    refreshListCause : function(component, event, helper){
-    	
-        console.log("test publication event");
-        var evt = $A.get('e.c:OrmEvtRefreshListCause');
-        evt.setParams({'idAssessmentRisk': event.getParam('idAssessmentRisk')});
-        evt.fire();
-       
-    },
-    
     onChangeCause : function(component, event, helper) {
     
     }

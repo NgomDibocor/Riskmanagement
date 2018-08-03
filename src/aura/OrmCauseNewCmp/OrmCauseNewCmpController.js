@@ -56,7 +56,7 @@
                     });
                    
                    var evt = $A.get("e.c:OrmCauseCreatedEvt");
-                   evt.setParams({'idAssessmentRisk': newCause.orm_assessmentRisk__c});
+                   evt.setParams({'idAssessmentRisk': 'a001H00000kcU5ZQAU'});
                    evt.fire();
             	} else {
             		var toast = $A.get('e.force:showToast');

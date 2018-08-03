@@ -80,5 +80,21 @@ public with sharing class OrmWorkshopController {
 		upsert item;
 		return item;
 	}
+	
+/**
+ * save List workshop
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method for update records workshop after inline editing
+ * @history 
+ * 2018-08-03 : Salimata NGOM - Implementation
+ */ 
+     
+    @AuraEnabled
+    public static List <Contract> saveWorkShop(List<Contract> lstWorkshop) {
+        update lstWorkshop;
+        return lstWorkshop;
+    }
     
 }

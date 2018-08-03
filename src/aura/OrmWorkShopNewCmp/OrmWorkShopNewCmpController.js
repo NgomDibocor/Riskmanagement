@@ -1,7 +1,7 @@
 ({
 
     createWorkshop: function(component, event, helper) {
- 
+    	  alert(JSON.stringify(component.get('v.assessmentData')));
         var name = component.find("idtitre");
         var datestart = component.find('datestart');
         var dateend = component.find('dateend');
@@ -65,5 +65,9 @@
           //  alert("ajout échouée");
         }
        
-    }
+    },
+    openModalWorkshop : function(component, event){
+        component.set("v.isOpen", true);
+        component.set('v.assessmentData', event.getParam('Assessmentdata'));
+	},
 })

@@ -60,4 +60,18 @@ public with sharing class OrmCauseController {
         return causes;
     }
     
+    
+    /**
+     * @author: Laye
+     * @dateCreation: 03/08/2018
+     * @description: method for filtering cause related to an AssessmentRisk
+    */
+    @AuraEnabled 
+    public static List<Macro> filter(String key, String idAssessmentRisk) {
+    	
+        return (List<Macro>)[FIND:key IN ALL FIELDS RETURNING Macro
+                                        (Name,Description WHERE Id=: idAssessmentRisk AND 
+                                        	RecordTypeId =: OrmCauseController.getCauseRecordTypeId() )][0];                                
+    }
+    
 }

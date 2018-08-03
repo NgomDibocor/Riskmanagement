@@ -4,7 +4,8 @@
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <!-- <aura:attribute name="assessments" type="Assessment__c[]" description="" /> -->
     <aura:attribute name="assessments" type="List" />
-	<!--<p>Liste des Assessment de l'utilisateur</p>-->
+	
+	<aura:registerEvent name="ShowAssessmentClicked" type="c:OrmShowAssessmentClickedEvt" description="" />
 	
 
   <div class="slds-grid slds-wrap">
@@ -29,7 +30,8 @@
 	                            </h2>
                             </div>
                             <div class="slds-no-flex">
-                                <button class="slds-button slds-button_neutral">
+                                <button class="slds-button slds-button_neutral" 
+                                        onclick="{!c.showAssessment}">
 							       {!$Label.c.show_button_title}
                                 </button>
                             </div>

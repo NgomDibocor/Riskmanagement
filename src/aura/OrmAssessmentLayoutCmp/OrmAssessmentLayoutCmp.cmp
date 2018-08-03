@@ -368,19 +368,17 @@
                    </tr>
                     <tr>
                         <td>
-                            <!-- <c:OrmActivityList assessmentData="{!v.assessmentData}"/> -->
+                             <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
                         </td>
                     </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showContextWorkshop}">
 	                <tr>
-                        <td >
-                           <div class=""> 
-                                <p>Contexte 4 description </p>
-                           </div>
+                        <td>
+                        <c:ormworkshopnewcmp />
                         </td>
                     </tr>
-                     <p>Pour Workshop</p>
+                     
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskIdentif}">
                     <tr>

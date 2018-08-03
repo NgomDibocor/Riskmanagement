@@ -390,7 +390,7 @@
                 <aura:if isTrue="{!v.showContextWorkshop}">
 	                <tr>
                         <td>
-                        <c:ormworkshopnewcmp />
+                        <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
                         </td>
                     </tr>
                      
@@ -539,4 +539,5 @@
     <c:OrmActivityNewCmp/>
     <c:OrmOrganisationNewCmp/>
     <c:OrmCauseNewCmp />
+    <c:OrmWorkShopNewCmp/>
 </aura:component>

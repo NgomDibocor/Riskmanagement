@@ -48,4 +48,26 @@
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire(); 
     },
+    
+    openNewWorkshop : function(component, event, helper){
+                
+        var idAssessment = component.get("v.assessmentData").Id;
+        if(idAssessment == null){
+        	//alert("check if you have created the assessment");
+        	var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : 'Check if you Have Created the Assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });
+
+            toast.fire();
+        } else {
+        	var evt = $A.get("e.c:OrmNewWorkShopEvt");
+			evt.setParams({
+			   "Assessmentdata" : component.get("v.assessmentData")
+			});
+			evt.fire();
+        }
+    },
 })

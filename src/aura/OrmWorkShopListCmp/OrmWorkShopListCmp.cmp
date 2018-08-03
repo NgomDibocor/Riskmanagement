@@ -20,7 +20,13 @@
 						'Description':''
 						
 					}" />
-
+<aura:attribute name="assessmentData" type="Assessment__c"
+		default="{
+						'sobjectType' : 'Assessment__c',
+						'Description':''
+						
+					}" />
+	  <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
 	<div class="slds-m-around_large">
 		<!--Data Table-->
 		<!-- use aura:if for show/hide buttons -->
@@ -33,9 +39,7 @@
 					onclick="{!c.Save}" variant="success" />
 			</lightning:buttonGroup>
 		</aura:if>
-		<span class="btnDeleteworkshop" onclick="">
-			<lightning:icon iconName="utility:delete" size="small" />
-		</span>
+	
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
@@ -54,12 +58,8 @@
 					<th style="width:3.25rem;" class="slds-text-align--right">
                <div class="slds-form-element">
                   <div class="slds-form-element__control">
-                     <label class="slds-checkbox">
-                        <!--header checkbox for select all activity-->
-                        <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
-                        <span class="slds-checkbox--faux"></span>
-                        <span class="slds-form-element__label text"></span>
-                     </label>
+                     <span class="btnNewWorkshop" onclick="{!c.openNewWorkshop}">
+                                <lightning:icon iconName="utility:new" size="small" /></span>
                   </div>
                </div>
             </th>

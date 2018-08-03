@@ -65,5 +65,9 @@
           //  alert("ajout échouée");
         }
        
-    }
+    },
+    openModalWorkshop : function(component, event){
+        component.set("v.isOpen", true);
+        component.set('v.assessmentData', event.getParam('Assessmentdata'));
+	},
 })

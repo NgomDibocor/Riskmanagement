@@ -39,10 +39,9 @@
 		type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
-    <!-- 
     <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshListCause}" />
-    -->
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
+    <aura:registerEvent name="OrmEvtRefreshListCause" type="c:OrmEvtRefreshListCause" description="" />
     
     <!-- menu -->
     <div class="slds-tabs--path" role="application">

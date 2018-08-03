@@ -21,10 +21,10 @@
             var newItem = component.get("v.item");
            
            //newItem.orm_assessment__c = component.get('v.assessmentData').Id;
-         newItem.orm_assessment__c=  "a051H00000aQzDNQA0";
+         newItem.orm_Assessment__c=  "a051H00000d94cDQAQ";
             newItem.Name=name.get('v.value');
             newItem.StartDate=datestart.get('v.value');
-           newItem.Contract_End_Date__c=dateend.get('v.value');
+           newItem.orm_Contract_End_Date__c=dateend.get('v.value');
            newItem.CompanySignedDate=dateinvitation.get('v.value');
            newItem.Description=message.get('v.value');
            newItem.AccountId="0011H00001RnBahQAF";
@@ -40,22 +40,22 @@
                         var state = response.getState();
                         if (state == "SUCCESS") {
                         alert('success');
-                            var evt = $A.get("e.c:OrmNewWorkShopEvt");
-                            evt.fire();
+                           // var evt = $A.get("e.c:OrmNewWorkShopEvt");
+                         //   evt.fire();
 
                             component.set("v.item", {
-                                'sobjectType' : 'Contract',
+                        'sobjectType' : 'Contract',
                         'Name': '',
                         'StartDate':'',
-                        'Contract_End_Date__c':'', 
+                        'orm_Contract_End_Date__c':'', 
                         'CompanySignedDate':'',
-                        'Assessment__c':'',
+                        'orm_Assessment__c':'',
                         'AccountId':'',                               
 						'Description':''
                             });
                         }else
                         {
-                             alert('work');
+                             alert('error');
                         }
                     });
             $A.enqueueAction(action);

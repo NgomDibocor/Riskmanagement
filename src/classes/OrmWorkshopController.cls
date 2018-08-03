@@ -17,7 +17,7 @@ public with sharing class OrmWorkshopController {
  * @history 
  * 2018-07-31 : Salimata NGOM - Implementation
  */
- 
+  @AuraEnabled 
     public static Id getWorkshopRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Contract.getRecordTypeInfosByName()
                   .get('orm RT workShop').getRecordTypeId();
@@ -33,11 +33,13 @@ public with sharing class OrmWorkshopController {
  * @history 
  * 2018-08-02 : Salimata NGOM - Implementation
  */
+ 
+ 
   @AuraEnabled 
     public static List<Contract> findWorkshopByAssessment(String asssessment){
         List<Contract> allworkshop = new List<Contract>();
-        allworkshop = [Select Id, Name,StartDate,Contract_End_Date__c, CompanySignedDate, Assessment__c,Description
-                    From Contract where Assessment__c=:asssessment and RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId() 
+        allworkshop = [Select Id, Name,StartDate,orm_Contract_End_Date__c, CompanySignedDate, orm_Assessment__c,Description
+                    From Contract where orm_Assessment__c=:asssessment and RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId() 
                     order by Name];
         return allworkshop; 
     }
@@ -51,11 +53,13 @@ public with sharing class OrmWorkshopController {
  * @history 
  * 2018-08-02 : Salimata NGOM - Implementation
  */
+  
+  
   @AuraEnabled 
     public static List<Contract> findAccountByAssessment(String asssessment){
         List<Contract> allworkshop = new List<Contract>();
-        allworkshop = [Select Id, Name,StartDate,Contract_End_Date__c, CompanySignedDate, Assessment__c,Description
-                    From Contract where Assessment__c=:asssessment and RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId() 
+        allworkshop = [Select Id, Name,StartDate,orm_Contract_End_Date__c, CompanySignedDate, orm_Assessment__c,Description
+                    From Contract where orm_Assessment__c=:asssessment and RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId() 
                     order by Name];
         return allworkshop; 
     }
@@ -69,9 +73,10 @@ public with sharing class OrmWorkshopController {
  * @history 
  * 2018-08-01 : Salimata NGOM - Implementation
  */   
+ 
     @AuraEnabled
 	public static Contract addWorkShop(Contract item){        
-       item.RecordTypeId = OrmWorkshopController.getWorkshopRecordTypeId();
+      // item.RecordTypeId = OrmWorkshopController.getWorkshopRecordTypeId();
 		upsert item;
 		return item;
 	}

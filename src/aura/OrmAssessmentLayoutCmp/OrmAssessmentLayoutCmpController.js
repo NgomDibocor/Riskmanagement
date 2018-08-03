@@ -363,6 +363,12 @@
     
     onChangeCause : function(component, event, helper) {
     
-    }
+    },
+    sendDescriptionSearchToFD : function(component,event,helper){ 
+    	component.set("v.closeFieldDescription",false);
+        var field =  event.getParam("nomField");
+        var description = event.getParam("descriptionField");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
     
 })

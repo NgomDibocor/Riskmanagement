@@ -40,6 +40,7 @@
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
+    <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     
     <!-- menu -->
     <div class="slds-tabs--path" role="application">

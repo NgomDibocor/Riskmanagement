@@ -121,25 +121,6 @@
 	{
 		component.set("v.isOpen", false);
 	},
-	createAssessmentRisk:function(component,event,helper)
-	{
-	var newAssessmentRisk = component.get("v.assessmentRisk");
-	newAssessmentRisk.orm_assessment__c= component.get("v.idAssessment") ;
-    newAssessmentRisk.orm_Risk__c=idRisk 
-            var action = component.get('c.addAssessmentRisk');
-            action.setParams({
-                "item": newAssessmentRisk
-            });
-            action.setCallback(this, function(response) {
-                var state = response.getState();
-                if ( state == "SUCCESS") {
-                   alert("ajout réussie");
-                } else {
-                    alert("ajout échouée");
-                }
-            });
-            $A.enqueueAction(action);
-	},
 	/*
 	 * CreatedBy @David Diop
 	 *
@@ -187,7 +168,6 @@
 			alert(JSON.stringify(assessmentRisks));
 		var action = component.get('c.addAssessmentRisks');
 		action.setParams({
-		
 			"items": assessmentRisks
 		});
 		action.setCallback(this, function(response) 
@@ -203,5 +183,11 @@
             }
 		});
         $A.enqueueAction(action);	
-	}
+	},
+	 sendTitleToFD : function(component,event,helper){ 
+    	alert("description");
+        var field = $A.get("$Label.c.orm_title_assessment");
+        var description = $A.get("$Label.c.orm_description_assessment");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
 })

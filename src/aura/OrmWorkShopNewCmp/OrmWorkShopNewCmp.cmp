@@ -1,4 +1,6 @@
-<aura:component extends="c:OrmAbstractNewCmp" access="global" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" controller="OrmWorkshopController">
+<aura:component extends="c:OrmAbstractNewCmp" access="global"
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable"
+	controller="OrmWorkshopController">
 	<aura:attribute name="item" type="Contract"
 		default="{
 						'sobjectType' : 'Contract',
@@ -32,10 +34,8 @@
 			<div class="slds-col">
 				<div class="slds-form-element slds-is-required">
 					<div class="slds-form-element__control">
-						<lightning:input type="text" 
-						 aura:id="idtitre"
-							label="{!$Label.c.orm_title_workshop}" 
-							 value="{!v.item.Name}"
+						<lightning:input type="text" aura:id="idtitre"
+							label="{!$Label.c.orm_title_workshop}" value="{!v.item.Name}"
 							required="true" />
 					</div>
 				</div>
@@ -55,7 +55,8 @@
 				</div>
 				<div class="slds-form-element">
 					<div class="slds-form-element__control">
-					<lightning:inputrichtext aura:id="message"
+						<label class="slds-form-element__label">{!$Label.c.orm_message_workshop}</label>
+						<lightning:inputrichtext aura:id="message"
 							label="{!$Label.c.orm_message_workshop}"
 							value="{!v.item.Description}" />
 					</div>

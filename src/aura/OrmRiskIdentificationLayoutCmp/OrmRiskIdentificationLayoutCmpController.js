@@ -188,8 +188,8 @@
 	sendDescriptionSearchToFD  : function(component, event, helper) {
             var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
             evt.setParams({
-				"nomField" : 'Search',
-				"descriptionField" : 'description Search'
+				"nomField" : $A.get("$Label.c.search_title_label"),
+				"descriptionField" : $A.get("$Label.c.search_description_title")
 			});
 		    evt.fire();
     }

@@ -243,7 +243,13 @@
 		                            <div class="topSpacing"> 
 		                                <label class="slds-form-element__label">Reference</label>
 		                            </div>
-		                            
+		                            <div class="width">
+		                              <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
+		                                <ui:inputTextArea class="slds-input" 
+		                                         value="{!v.assessmentData.orm_referenceProcessus__c}">
+		                                </ui:inputTextArea>
+		                              </a>
+		                            </div>
 		                        </td>    
 		                    </tr>
 		                    <tr>

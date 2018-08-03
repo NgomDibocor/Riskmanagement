@@ -3,7 +3,7 @@
 		
 		// call the apex class method and fetch activity list  
         var action = component.get("c.findAllCausesByAssessmentRisk");
-        var assesmentRiskId = 'a001H00000kbj0vQAA';
+        var assesmentRiskId = 'a001H00000kcU5ZQAU';
         action.setParam('idAssRisk', assesmentRiskId);
             action.setCallback(this, function(response) {
             var state = response.getState();
@@ -13,6 +13,22 @@
         });
         $A.enqueueAction(action);
 	},
+	
+	/*
+	refreshList : function(component, event, helper) {		
+		string idAssessmentRisk = event.getParam('idAssessmentRisk');
+        var action = component.get("c.findAllCausesByAssessmentRisk");
+        var assesmentRiskId = idAssessmentRisk;
+        action.setParam('idAssRisk', assesmentRiskId);
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {                 
+            	component.set("v.causes", response.getReturnValue());
+            }
+        });
+        $A.enqueueAction(action);
+	},
+	*/
 	
 	save: function(component, event, helper) {
 		// Check required fields(Name) first in helper method which is return true/false

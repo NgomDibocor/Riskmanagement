@@ -1,5 +1,4 @@
 ({
-<<<<<<< HEAD
 	requiredValidation : function(component,event) {
         // get all accounts.. 	
         var allRecords = component.get("v.causes");
@@ -12,10 +11,5 @@
             }  
         }
         return isValid;
-    },
-=======
-	helperMethod : function() {
-		
-	}
->>>>>>> 9412e3e6064d1d71f5ef21e4484e4cbba4a7fd8e
+    }
 })

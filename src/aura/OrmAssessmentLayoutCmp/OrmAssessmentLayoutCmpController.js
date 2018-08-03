@@ -383,7 +383,7 @@
 	   @createdDate: 28/07/2018
      */
     refreshListCause : function(component, event, helper){
-    	var action = component.get('c.findAllCauseByAssessment');
+    	/*var action = component.get('c.findAllCauseByAssessment');
         action.setParams({'idAssessment' : null});
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
@@ -393,7 +393,7 @@
                 alert('ERROR');
             }            
         });
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
     },
     
     onChangeCause : function(component, event, helper) {

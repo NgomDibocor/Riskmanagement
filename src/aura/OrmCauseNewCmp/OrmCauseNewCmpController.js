@@ -31,7 +31,8 @@
         	var newCause = component.get('v.cause');
         	newCause.Name = name;
         	newCause.Description = description;
-        	newCause.orm_assessmentRisk__c = component.get('v.idAssessmentRisk');
+        	//newCause.orm_assessmentRisk__c = component.get('v.idAssessmentRisk');
+        	newCause.orm_assessmentRisk__c = "a001H00000kcU5ZQAU";
         	
         	var action = component.get('c.add');
             action.setParams({
@@ -39,6 +40,7 @@
             });
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
+            		newCause = response.getReturnValue();
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
 			           'message' : newCause.Name +' has been added',
@@ -54,6 +56,7 @@
                     });
                    
                    var evt = $A.get("e.c:OrmCauseCreatedEvt");
+                   evt.setParams({'idAssessmentRisk': newCause.orm_assessmentRisk__c});
                    evt.fire();
             	} else {
             		var toast = $A.get('e.force:showToast');

@@ -46,7 +46,7 @@
 	  sendValuesToFieldDescription  : function(component, event, helper, field, description) {
        component.set("v.closeFieldDescription",false);
        var  closeFieldDescription = component.get("v.closeFieldDescription"); 
-            var evt = $A.get("e.c:OrmSendValuesToFieldDescriptionEvt");
+            var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
             evt.setParams({
             	"closeFieldDescription": closeFieldDescription,
 				"nomField" : field,

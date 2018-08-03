@@ -23,7 +23,8 @@
 .THIS .form-style-6 input[type="time"],
 .THIS .form-style-6 input[type="url"],
 .THIS .form-style-6 textarea,
-.THIS .form-style-6 select 
+.THIS .form-style-6 select,
+.THIS .form-style-6 lightning:select 
 {
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
@@ -56,6 +57,7 @@
 /*     padding: 3%; */
 /*     border: 1px solid #43D1AF; */
 /* } */
+
 
 .THIS .form-style-6 input[type="submit"],
 .THIS .form-style-6 input[type="button"]{

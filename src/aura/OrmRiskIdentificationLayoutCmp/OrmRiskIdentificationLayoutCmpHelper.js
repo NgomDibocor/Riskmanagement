@@ -42,5 +42,16 @@
         });
      
         $A.enqueueAction(actionOrgs);
-	}
+	},
+	  sendValuesToFieldDescription  : function(component, event, helper, field, description) {
+       component.set("v.closeFieldDescription",false);
+       var  closeFieldDescription = component.get("v.closeFieldDescription"); 
+            var evt = $A.get("e.c:OrmSendValuesToFieldDescriptionEvt");
+            evt.setParams({
+            	"closeFieldDescription": closeFieldDescription,
+				"nomField" : field,
+				"descriptionField" : description
+			});
+		    evt.fire();
+    }
 })

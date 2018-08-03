@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template" >
+  <aura:attribute name="closeFieldDescription" type="boolean" />
+  <aura:attribute name="nomField" type="String" />
+   <aura:attribute name="descriptionField" type="String"/>
+</aura:event>

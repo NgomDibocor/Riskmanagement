@@ -1,12 +1,12 @@
-<aura:component extends="c:OrmAbstractNewCmp" access="global" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" controller="WorkshopController">
+<aura:component extends="c:OrmAbstractNewCmp" access="global" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" controller="OrmWorkshopController">
 	<aura:attribute name="item" type="Contract"
 		default="{
 						'sobjectType' : 'Contract',
                         'Name': '',
                         'StartDate':'',
-                        'Contract_End_Date__c':'', 
+                        'orm_Contract_End_Date__c':'', 
                         'CompanySignedDate':'',
-                        'Assessment__c':'', 
+                        'orm_Assessment__c':'', 
                         'AccountId':'',                              
 						'Description':''
 						
@@ -32,10 +32,10 @@
 			<div class="slds-col">
 				<div class="slds-form-element slds-is-required">
 					<div class="slds-form-element__control">
-
-						<ui:inputText aura:id="idtitre"
-							label="{!$Label.c.orm_title_workshop}" class="slds-input"
-							labelClass="slds-form-element__label" value="{!v.item.Name}"
+						<lightning:input type="text" 
+						 aura:id="idtitre"
+							label="{!$Label.c.orm_title_workshop}" 
+							 value="{!v.item.Name}"
 							required="true" />
 					</div>
 				</div>
@@ -50,14 +50,13 @@
 					<div class="slds-form-element__control">
 						<lightning:input aura:id="dateend" type="date"
 							label="{!$Label.c.orm_end_date}" required="true"
-							value="{!v.item.EndDate}" />
+							value="{!v.item.orm_Contract_End_Date__c}" />
 					</div>
 				</div>
 				<div class="slds-form-element">
 					<div class="slds-form-element__control">
-						<ui:inputTextArea aura:id="message"
-							label="{!$Label.c.orm_message_workshop}" class="slds-input"
-							labelClass="slds-form-element__label"
+					<lightning:inputrichtext aura:id="message"
+							label="{!$Label.c.orm_message_workshop}"
 							value="{!v.item.Description}" />
 					</div>
 				</div>

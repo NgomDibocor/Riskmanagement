@@ -1,9 +1,24 @@
+/*
+    *David mignane diop
+    *controller class for the risk object
+    *le 27/07/2018
+    */
 public with sharing class OrmAssessmentRiskController {
+	/*
+    *David mignane diop
+    *function for the recovery of the ricord type
+    *le 27/07/2018
+    */
     public static Id getAssessmentRiskRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.orm_assessmentRisk__c.getRecordTypeInfosByName()
                   .get('orm RT asssessmentRisk').getRecordTypeId();
         return recordTypeId;
     }
+    /*
+    *David mignane diop
+    *risk list function
+    *le 27/07/2018
+    */
     @AuraEnabled 
     public static List<orm_assessmentRisk__c> findAll()
     {
@@ -13,6 +28,11 @@ public with sharing class OrmAssessmentRiskController {
                           orm_Risk__r.Name,orm_assumption__r.Name,orm_assessment__r.Name, orm_assessment__r.orm_description__c From orm_assessmentRisk__c];
     }
     
+      /*
+    *David mignane diop
+    * picklist recovery function
+    *le 27/07/2018
+    */
     @AuraEnabled 
     public static Map<String, Map<String, Object>> getAssessmentRisks()
     {

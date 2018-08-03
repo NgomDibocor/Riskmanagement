@@ -9,6 +9,7 @@
        <!-- <c:OrmRiskManagementCmp />-->
         <!-- <c:ormRiskOrganisationNew/>-->
               <c:OrmWorkShopNewCmp /> 
+              <c:OrmWorkShopListCmp/>
 
     </div>
 </aura:application>

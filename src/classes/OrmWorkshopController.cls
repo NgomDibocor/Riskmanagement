@@ -76,7 +76,7 @@ public with sharing class OrmWorkshopController {
  
     @AuraEnabled
 	public static Contract addWorkShop(Contract item){        
-      // item.RecordTypeId = OrmWorkshopController.getWorkshopRecordTypeId();
+       item.RecordTypeId = OrmWorkshopController.getWorkshopRecordTypeId();
 		upsert item;
 		return item;
 	}

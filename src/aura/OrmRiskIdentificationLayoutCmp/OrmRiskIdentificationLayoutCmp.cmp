@@ -41,7 +41,7 @@
 		</div>
 		<div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
 			<!-- <lightning:input aura:id="Name" type="search" label="{!$Label.c.search_button_title}" name="search"  onkeyup="{!c.openFilterRisk}" />  -->
-		<a  href="javascript:void(0);"  onclick="{!c.sendTitleToFD}">
+		<a  href="javascript:void(0);"  onclick="{!c.sendDescriptionSearchToFD}">
 		<lightning:input type="text" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}"  />
 		</a>
 		</div>

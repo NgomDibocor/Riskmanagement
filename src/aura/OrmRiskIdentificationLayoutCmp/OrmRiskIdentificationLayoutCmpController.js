@@ -184,10 +184,14 @@
 		});
         $A.enqueueAction(action);	
 	},
-	 sendTitleToFD : function(component,event,helper){ 
-    	alert("description");
-        var field = $A.get("$Label.c.orm_title_assessment");
-        var description = $A.get("$Label.c.orm_description_assessment");
-        helper.sendValuesToFieldDescription(component, event, helper, field, description);
-    },
+	
+	sendDescriptionSearchToFD  : function(component, event, helper) {
+            var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+            evt.setParams({
+				"nomField" : $A.get("$Label.c.search_title_label"),
+				"descriptionField" : $A.get("$Label.c.search_description_title")
+			});
+		    evt.fire();
+    }
+	 
 })

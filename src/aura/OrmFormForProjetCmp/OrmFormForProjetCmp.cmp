@@ -1,0 +1,4 @@
+<aura:component>
+   <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}"/>
+	
+</aura:component>

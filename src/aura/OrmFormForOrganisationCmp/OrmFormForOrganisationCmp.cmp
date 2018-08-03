@@ -1,4 +1,49 @@
 <aura:component>
    <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}"/>
 	
+	
+	      <tr>
+              <td>
+                  <div class="topSpacing">
+                      <label class="slds-form-element__label">Organisation Name<span class="cmn_mandatory_indicator">*</span></label>
+                  </div>
+                  <div class="width"> 
+                    <a href="javascript:void(0);"  onclick="{!c.sendOrganisationNameToFD}">
+                        <ui:inputText class="slds-input" aura:id="Name" 
+                                 value="{!v.assessmentData.Name}" 
+                                 change="{!c.onTitleChange}">
+                       </ui:inputText>
+                    </a> 
+                  </div>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <div class="topSpacing">
+                      <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
+                  </div>
+                  <div class="width">  
+                    <a href="javascript:void(0);"  onclick="{!c.sendObjectifToFD}">
+                      <ui:inputText class="slds-input"  
+                             value="{!v.assessmentData.orm_objectif__c}">
+                      </ui:inputText>
+                    </a>
+                  </div>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <div class="topSpacing"> 
+                      <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
+                  </div>
+                  
+                  <div class="width">
+                    <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
+                      <ui:inputTextArea class="slds-input" 
+                               value="{!v.assessmentData.orm_description__c}">
+                      </ui:inputTextArea>
+                    </a>
+                  </div>
+              </td>    
+          </tr>
 </aura:component>

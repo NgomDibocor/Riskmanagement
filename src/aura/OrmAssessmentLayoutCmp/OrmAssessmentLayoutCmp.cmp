@@ -109,6 +109,15 @@
                            </div>
                         </td>
                     </tr>
+                    <!--  <aura:renderIf isTrue="{!v.showError}">
+                        <tr>
+	                        <td class="textInDiv">
+			                        <ui:message title="Warning" severity="warning" closable="true">
+			                            Please create an Assessment first </ui:message>
+	                        </td>
+	                    </tr>
+                    </aura:renderIf>-->
+                    <!-- isTrue="{!and(v.displaySaveCancelBtn == true, v.showError == false)}" -->
                     <aura:if isTrue="{!v.displaySaveCancelBtn}">
 		                  <tr>
 		                      <td class="textInDiv">

@@ -13,28 +13,32 @@
         var showRiskTreatment = component.get("v.showRiskTreatment");
         var showData = component.get("v.showData");
         if(showContext == true){
-           /* var assessmentName = component.find("Name").get("v.value");
+            var newItem = component.get("v.assessmentData");
+            var assessmentName = component.find("Name").get("v.value");
             //console.log('assessmentName:::'+assessmentName);
-            if(assessmentName =='' || assessmentName == null){
+            /*if(assessmentName =='' || assessmentName == null || newItem.Id == null ){
                 component.set("v.setMessage",'error');           
             }
 
             if(component.get("v.setMessage")=='error')
             { 
+                component.set("v.showContext", true);
+                component.set("v.showContextWorkshop", false);
                 component.set("v.showRiskIdentif",false);
                 component.set("v.showRiskAnalyse", false);
+                component.set("v.showContextActivity", false);
                 component.set("v.showError", true);
                 component.set("v.showData", false);
                 
-            }
-            else
-            { */
+            }*/
+            //else
+            //{ 
                 component.set("v.showContext", false);
                 component.set("v.showContext2", true);
                 component.set("v.showError", false);
                 helper.activeContext2(component, event);
                 
-           // }
+          //  }
             
         }  
         if(showContext2 == true){
@@ -229,7 +233,6 @@
     },
     /* laye */
     activeRiskIdentif : function(component, event, helper) {
-    	alert(component.get("v.assessmentData").Id);
         /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
         evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
         

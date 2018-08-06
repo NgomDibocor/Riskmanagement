@@ -1,6 +1,6 @@
 ({
 	refreshList : function(component, event) {
-		var action = component.get("c.findAll");
+		var action = component.get("c.getRisks");
 		action
 				.setCallback(
 						this,

@@ -20,7 +20,6 @@
        
             var newItem = component.get("v.item");
            
-           component.set("v.isOpen", true);
            newItem.orm_Assessment__c = component.get('v.assessmentData').Id;
         // newItem.orm_Assessment__c=  "a051H00000d94cDQAQ";
             newItem.Name=name.get('v.value');

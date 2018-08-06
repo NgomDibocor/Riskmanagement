@@ -77,4 +77,8 @@
         component.set("v.invitationEditMode", false); 
       
     },
+    openModalContactWorkshop: function (component, event, helper) {
+    //open modal list contact workshop
+    
+    }
 })

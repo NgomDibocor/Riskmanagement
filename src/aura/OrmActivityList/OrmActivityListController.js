@@ -23,7 +23,27 @@
     component.set("v.selectedCount", 0);
     component.find("box3").set("v.value", false);
     },  
-   
+       openActivityNewCmp : function(component, event, helper){
+                
+        var idAssessment = component.get("v.assessmentData").Id;
+        if(idAssessment == null){
+        	//alert("check if you have created the assessment");
+        	var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : 'Check if you Have Created the Assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });
+
+            toast.fire();
+        } else {
+        	var evt = $A.get("e.c:OrmOpenNewActivityCmpEvt");
+			evt.setParams({
+			   "idAssessment" : idAssessment
+			});
+			evt.fire();
+        }
+    },
     Save: function(component, event, helper) {
       // Check required fields(Name) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)){

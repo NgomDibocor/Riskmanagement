@@ -264,31 +264,6 @@
 		evt.fire();
     },
     
-    refreshListActivity : function(component, event, helper){
-        
-        /*var action = component.get('c.getSelectOptions');    
-        action.setParams({'objObject' : component.get("v.activity"), 'fld' : 'Status'});
-        action.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS' && component.isValid()){
-                component.set('v.allStatus', response.getReturnValue());
-            } else {
-                alert("the element was not found");
-            }
-        });
-        $A.enqueueAction(action);*/
-        
-        var action = component.get('c.findAllActiviteByAssessment');
-        action.setParams({'idAssessment' : null});
-        action.setCallback(this, function(response){
-            if(response.getState() == 'SUCCESS'){
-                component.set('v.allActivities', response.getReturnValue());
-            } else {
-                alert('ERROR');
-            }            
-        });
-        $A.enqueueAction(action);
-    },
     
     refreshListOrganisation : function(component, event, helper){
         var actionOrgs = component.get("c.getOrganisations");

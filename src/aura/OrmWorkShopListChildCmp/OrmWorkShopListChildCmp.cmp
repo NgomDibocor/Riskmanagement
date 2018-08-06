@@ -14,11 +14,19 @@
 						'Description':''
 						
 					}" />
+					<aura:attribute name="assessmentData" type="Assessment__c"
+		default="{
+						'sobjectType' : 'Assessment__c',
+						'Description':''
+						}" />
+						
 	<aura:attribute name="showSaveCancelBtn" type="boolean" />
 	<aura:attribute name="nameEditMode" type="boolean" default="false" />
 	<aura:attribute name="messageEditMode" type="boolean" default="false" />
 	<aura:attribute name="periodEditMode" type="boolean" default="false" />
 	<aura:attribute name="invitationEditMode" type="boolean" default="false" />
+  <aura:registerEvent name="OrmNewContactEvt"  type="c:OrmNewContactEvt"/>
+	
 	<!--Table Row Start-->
 	<tr>
 

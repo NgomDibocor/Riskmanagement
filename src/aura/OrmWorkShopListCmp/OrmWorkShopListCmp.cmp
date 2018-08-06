@@ -28,7 +28,6 @@
 					}" />
 	  <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
 	  <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
-	  <aura:registerEvent name="OrmNewContactEvt"  type="c:OrmNewContactEvt"/>
 	  <aura:handler event="c:OrmNewContactEvt" action="{!c.RefreshContacts}" />
 	   <!-- start header page content search bar and action button -->
   <div class="slds-grid slds-gutters">
@@ -94,7 +93,7 @@
 				<aura:iteration items="{!v.WorkshopList}" var="workshop"
 					indexVar="sNo">
 					<!-- start iteration -->
-					  <c:OrmWorkShopListChildCmp singleRec="{!workshop}"
+					  <c:OrmWorkShopListChildCmp singleRec="{!workshop}" assessmentData="{!v.assessmentData}"
 						showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
 
 

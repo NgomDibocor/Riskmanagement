@@ -13,5 +13,9 @@
         });
         $A.enqueueAction(action);
 		
-	}
+	},
+	
+	openModalContacts : function(component, event, helper) {
+	 component.set("v.isOpenModalContactWorkshop", true);
+	},
 })

@@ -258,27 +258,6 @@
         helper.activeActionPlan(component, event);
     },
     
-    openActivityNewCmp : function(component, event, helper){
-                
-        var idAssessment = component.get("v.assessmentData").Id;
-        if(idAssessment == null){
-        	//alert("check if you have created the assessment");
-        	var toast = $A.get('e.force:showToast');
-            toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
-                'type' : 'warning',
-                'mode' : 'dismissible'
-            });
-
-            toast.fire();
-        } else {
-        	var evt = $A.get("e.c:OrmOpenNewActivityCmpEvt");
-			evt.setParams({
-			   "idAssessment" : idAssessment
-			});
-			evt.fire();
-        }
-    },
     
     openOrganisationNew : function(component, event, helper){
         var assessment = component.get('v.assessmentData');
@@ -289,31 +268,6 @@
 		evt.fire();
     },
     
-    refreshListActivity : function(component, event, helper){
-        
-        /*var action = component.get('c.getSelectOptions');    
-        action.setParams({'objObject' : component.get("v.activity"), 'fld' : 'Status'});
-        action.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS' && component.isValid()){
-                component.set('v.allStatus', response.getReturnValue());
-            } else {
-                alert("the element was not found");
-            }
-        });
-        $A.enqueueAction(action);*/
-        
-        var action = component.get('c.findAllActiviteByAssessment');
-        action.setParams({'idAssessment' : null});
-        action.setCallback(this, function(response){
-            if(response.getState() == 'SUCCESS'){
-                component.set('v.allActivities', response.getReturnValue());
-            } else {
-                alert('ERROR');
-            }            
-        });
-        $A.enqueueAction(action);
-    },
     
     refreshListOrganisation : function(component, event, helper){
         var actionOrgs = component.get("c.getOrganisations");

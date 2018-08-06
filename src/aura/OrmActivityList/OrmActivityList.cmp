@@ -6,7 +6,9 @@
 	<!--declare aura handler-->
 	<aura:handler name="init" value="{!this}" action="{!c.initRecords}" />
 	 <aura:handler event="c:OrmRefreshActivityEvnt" action="{!c.initRecords}"  /> 
-	
+	 <aura:registerEvent name="OrmOpenNewActivityCmpEvt"
+		type="c:OrmOpenNewActivityCmpEvt" description="" />
+    <aura:handler event="c:OrmActivityCreatedEvt" action="{!c.initRecords}" />
 	<!-- on component load, fetch picklist values dynamically from apex controller -->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
@@ -47,9 +49,25 @@
 <aura:attribute name="showConfirmRemoveActivity" type="boolean" default="false" description="is true show popup  message confirmation" />
  <aura:attribute name="selectedCount" type="integer" default="0"/>
  <aura:registerEvent name="OrmRemoveRecordActivityEvnt" type="c:OrmRemoveRecordActivityEvnt" />
-	<div class="slds-m-around_large">
-		<!--Data Table-->
-		<!-- use aura:if for show/hide buttons -->
+  <div class="slds-grid slds-gutters">
+    <div class=" slds-size--2-of-12   slds-p-horizontal--small">
+    </div>
+        <div class=" slds-size--6-of-12   slds-p-horizontal--small">
+         <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
+                <lightning:input type="text" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}" />
+          </a>
+        </div>
+        
+        <div class=" slds-size--4-of-12   slds-p-horizontal--small">
+          <br/>
+         <span class="btnNewAct" onclick="{!c.openActivityNewCmp}">
+          <lightning:icon iconName="utility:new" size="medium" />
+          </span>
+       	<span></span>
+         <span class="btnDeleteActivity" onclick="{!c.removeActivity}">
+			<lightning:icon iconName="utility:delete" size="medium" />
+		</span>
+        <!-- use aura:if for show/hide buttons -->
 		<aura:if isTrue="{!v.showSaveCancelBtn}">
 			<!--button for save and cancel Record after Inline Edit-->
 			<lightning:buttonGroup class="slds-m-around_medium">
@@ -59,9 +77,12 @@
 					onclick="{!c.Save}" variant="success" />
 			</lightning:buttonGroup>
 		</aura:if>
-		<span class="btnDeleteActivity" onclick="{!c.removeActivity}">
-			<lightning:icon iconName="utility:delete" size="small" />
-		</span>
+        </div>
+        </div>
+	<div class="slds-m-around_large">
+		<!--Data Table-->
+		
+		
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
@@ -83,6 +104,7 @@
                         <span class="slds-checkbox--faux"></span>
                         <span class="slds-form-element__label text"></span>
                      </label>
+                 
                   </div>
                </div>
             </th>
@@ -133,4 +155,5 @@ Are you sure you wish to delete these objects?
 </div>
 <!--###### MODAL BOX End  Here ######-->
 </aura:if>
+ <c:OrmActivityNewCmp/>
 </aura:component>

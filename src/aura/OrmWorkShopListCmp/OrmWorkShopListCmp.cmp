@@ -26,6 +26,7 @@
 						'Description':''
 						
 					}" />
+	  <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
 	  <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
 	<div class="slds-m-around_large">
 		<!--Data Table-->

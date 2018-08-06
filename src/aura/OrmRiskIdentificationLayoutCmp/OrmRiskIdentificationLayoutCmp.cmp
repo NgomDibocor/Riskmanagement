@@ -1,11 +1,10 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController">
-    <aura:registerEvent name="OrmOpenNewRiskCmpEvt"
-		type="c:OrmOpenNewRiskCmpEvt" description="" />
-	<aura:handler event="c:OrmRiskCreatedEvt" action="{!c.doInit}" />
-	<aura:handler event="c:OrmRiskIdentificationClickedEvt" action="{!c.initialiseAssessment}" />
-    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
-    <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt"/>
-    <aura:attribute name="closeFieldDescription" type="boolean" default="true"/>
+    <aura:registerEvent name="OrmOpenNewRiskCmpEvt" type="c:OrmOpenNewRiskCmpEvt" description="" />
+    <aura:handler event="c:OrmRiskCreatedEvt" action="{!c.doInit}" />
+    <aura:handler event="c:OrmRiskIdentificationClickedEvt" action="{!c.initialiseAssessment}" />
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
+    <aura:attribute name="closeFieldDescription" type="boolean" default="true" />
     <aura:attribute name="allRisk" type="Macro[]" />
     <aura:attribute name="Research" type="String" />
     <aura:attribute name="allCategorieRisk" type="String[]" />
@@ -16,45 +15,45 @@
                                                       		 'orm_assessment__c': '',
                                                              'orm_categorieRisk__c' : ''
                                                          }" />
-      <aura:attribute name="categorieRisk" type="String" default="Educational"/>
-      <aura:attribute name="testBoolean" type="Boolean" default="true" />
-      <aura:attribute name="filter" type="String" />
-      <aura:attribute name="columns" type="List"/>
-      <aura:attribute name="isOpen" type="Boolean"  description="value to test if a given element is detected" />
-      <aura:attribute name="relatedRisk" type="Macro[]" />
-      <aura:attribute name="idAssessment" type="String" />
-      <aura:attribute name="assessmentRisk" type="orm_assessmentRisk__c" default="{
+    <aura:attribute name="categorieRisk" type="String" default="Educational" />
+    <aura:attribute name="testBoolean" type="Boolean" default="true" />
+    <aura:attribute name="filter" type="String" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="isOpen" type="Boolean" description="value to test if a given element is detected" />
+    <aura:attribute name="relatedRisk" type="Macro[]" />
+    <aura:attribute name="idAssessment" type="String" />
+    <aura:attribute name="assessmentRisk" type="orm_assessmentRisk__c" default="{
 						'sobjectType' : 'orm_assessmentRisk__c',
                          'orm_assessment__c': '',  
                          'orm_Risk__c':''   
 					}" />
-    
-     <div class="slds-grid slds-gutters">
-	    <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
-			<div class="slds-form-element__control">
-											<lightning:select aura:id="categorieRisk" name="categorie Risk" label="{!$Label.c.orm_risk_category}" onchange="{!c.filterByPicklist}" >
-                                                <aura:iteration items="{!v.allCategorieRisk}" var="CategorieRisk" >
-                                                    <option  text="{!CategorieRisk}" value="{!v.categorieRisk}" ></option>
-                                                </aura:iteration>
-                                            </lightning:select>
-			</div>
-		</div>
-		<div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
-			<!-- <lightning:input aura:id="Name" type="search" label="{!$Label.c.search_button_title}" name="search"  onkeyup="{!c.openFilterRisk}" />  -->
-		<a  href="javascript:void(0);"  onclick="{!c.sendDescriptionSearchToFD}">
-		<lightning:input type="text" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}"  />
-		</a>
-		</div>
-		<div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
-		<br/>
-			<span class="btnNewRisk" onclick="{!c.openModalNewRisk}"><lightning:icon iconName="utility:new" size="medium" /></span>
-		</div>
-		<div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
-		</div>	
-	 </div> <br/><br/>                                 
-  <div class="slds-grid slds-gutters">
-    <div class="slds-col slds-size_10-of-12">
-        <!--
+
+    <div class="slds-grid slds-gutters">
+        <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
+            <div class="slds-form-element__control">
+                <lightning:select aura:id="categorieRisk" name="categorie Risk" label="{!$Label.c.orm_risk_category}" onchange="{!c.filterByPicklist}">
+                    <aura:iteration items="{!v.allCategorieRisk}" var="CategorieRisk">
+                        <option text="{!CategorieRisk}" value="{!v.categorieRisk}"></option>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </div>
+        <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
+            <!-- <lightning:input aura:id="Name" type="search" label="{!$Label.c.search_button_title}" name="search"  onkeyup="{!c.openFilterRisk}" />  -->
+            <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
+                <lightning:input type="text" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}" />
+            </a>
+        </div>
+        <div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
+            <br/>
+            <span class="btnNewRisk" onclick="{!c.openModalNewRisk}"><lightning:icon iconName="utility:new" size="medium" /></span>
+        </div>
+        <div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
+        </div>
+    </div> <br/><br/>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_10-of-12">
+            <!--
          <ui:inputSelect aura:id="organisation" change="{!c.onChangeOrg}" class="slds-select"
                               labelClass="slds-form-element__label">
             <aura:iteration items="{!v.allRisk}" var="risk">
@@ -62,8 +61,8 @@
              </aura:iteration>
        </ui:inputSelect><br/>
         -->
-       <!-- test -->
-       <!--  
+            <!-- test -->
+            <!--  
   <table
 			class="slds-table slds-table_bordered slds-max-medium-table_stacked-horizontal slds-table_col-bordered slds-table_striped">
 			<thead>
@@ -118,58 +117,47 @@
 			
 		</table>
 		-->
-  <!-- fin test -->
-  <lightning:datatable aura:id="datatableRisk" data="{! v.allRisk }" class="slds-m-top_medium"
-                                 columns="{! v.columns }" 
-                                 keyField="id"
-                                 resizeColumnDisabled="false"
-                                 selectedRows="{! v.risk}" 
-                                 onrowselection="{!c.openPopupAssociation}"
-                                 showRowNumberColumn="false"/>
-     </div>   
-  </div><br/>
-  <button class="slds-button slds-button--brand"
-							onclick="{!c.relatedRiskfunction}">
+            <!-- fin test -->
+            <lightning:datatable aura:id="datatableRisk" data="{! v.allRisk }" class="slds-m-top_medium" columns="{! v.columns }" keyField="id" resizeColumnDisabled="false" selectedRows="{! v.risk}" onrowselection="{!c.openPopupAssociation}" showRowNumberColumn="false"
+            />
+        </div>
+    </div><br/>
+    <button class="slds-button slds-button--brand" onclick="{!c.relatedRiskfunction}">
 							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
 						</button>
-  <aura:if isTrue="{!v.isOpen}">
-			<!-- alert model -->
-			<!--###### MODAL BOX Start From Here ######-->
-			<div role="dialog" tabindex="-1" aria-labelledby="header99"
-				class="slds-modal slds-fade-in-open ">
-				<div class="slds-modal__container form-style-duplicate">
-					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
-					<div class="slds-modal__header">
- 						<button 
-							class="slds-button slds-modal__close slds-button--icon-inverse" 
-							title="{!$Label.c.close_button_title}" onclick="{!c.closeAlertMissed}"> 
+    <aura:if isTrue="{!v.isOpen}">
+        <!-- alert model -->
+        <!--###### MODAL BOX Start From Here ######-->
+        <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open ">
+            <div class="slds-modal__container form-style-duplicate">
+                <!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.c.close_button_title}" onclick="{!c.closeAlertMissed}"> 
 						 <span class="slds-assistive-text">{!$Label.c.close_button_title}</span> 
-						</button> 
-						<h1 id="header99" class="slds-text-heading--medium">confirmation </h1>
-					</div>
-					<!--###### MODAL BOX BODY Part Start From Here ######-->
-					<div class="slds-modal__content slds-p-around--medium">
-						<p>
-						
-							<b style="font-size:15px;"><center> 
+						</button>
+                    <h1 id="header99" class="slds-text-heading--medium">confirmation </h1>
+                </div>
+                <!--###### MODAL BOX BODY Part Start From Here ######-->
+                <div class="slds-modal__content slds-p-around--medium">
+                    <p>
+
+                        <b style="font-size:15px;"><center> 
 							id Assessment  {!v.idAssessment}
 							id Risk : {!v.ids.Id}							</center></b>
-						</p>
-					</div>
-					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
-					<div class="slds-modal__footer">
-						<button class="slds-button slds-button--neutral"
-							onclick="{!c.closeModal}">{!$Label.c.close_button_title}</button>
-						<button class="slds-button slds-button--brand"
-							onclick="{!c.createItem}">
+                    </p>
+                </div>
+                <!--###### MODAL BOX FOOTER Part Start From Here ######-->
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.closeModal}">{!$Label.c.close_button_title}</button>
+                    <button class="slds-button slds-button--brand" onclick="{!c.createItem}">
 							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.create_button_title}
 						</button>
-					</div>
-				</div>
-			</div>
-			<div class="slds-backdrop slds-backdrop--open"></div>
-			<!--###### MODAL BOX Part END Here ######-->
-		</aura:if>
-  
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop--open"></div>
+        <!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
+
     <c:OrmRiskNewCmp/>
 </aura:component>

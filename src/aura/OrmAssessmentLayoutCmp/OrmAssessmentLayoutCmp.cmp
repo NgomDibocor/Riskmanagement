@@ -35,9 +35,6 @@
     <aura:handler event="c:eventNewOrganisationCreated" action="{!c.refreshListOrganisation}" />
     
     <!-- events -->
-    <aura:registerEvent name="OrmOpenNewActivityCmpEvt"
-		type="c:OrmOpenNewActivityCmpEvt" description="" />
-    <aura:handler event="c:OrmActivityCreatedEvt" action="{!c.refreshListActivity}" />
     <aura:registerEvent name="OrmOpenNewOrganisation"
 		type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
@@ -456,8 +453,7 @@
                                 </div>
                                 
                             </div>-->
-                            <span class="btnNewAct" onclick="{!c.openActivityNewCmp}">
-                                <lightning:icon iconName="utility:new" size="medium" /></span>
+                            
                         </td>
                    </tr>
                     <tr>
@@ -615,7 +611,6 @@
                 
     
     
-    <c:OrmActivityNewCmp/>
     <c:OrmOrganisationNewCmp/>
     <c:OrmCauseNewCmp />
     <c:OrmWorkShopNewCmp/>

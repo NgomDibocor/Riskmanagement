@@ -1,6 +1,6 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController">
     <aura:registerEvent name="OrmOpenNewRiskCmpEvt" type="c:OrmOpenNewRiskCmpEvt" description="" />
-    <aura:handler event="c:OrmRiskCreatedEvt" action="{!c.doInit}" />
+    <aura:handler event="c:OrmRiskCreatedEvt" action="{!c.ormRiskCreatedEvent}" />
     <aura:handler event="c:OrmRiskIdentificationClickedEvt" action="{!c.initialiseAssessment}" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />

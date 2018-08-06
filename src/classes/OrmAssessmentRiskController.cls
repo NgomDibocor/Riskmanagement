@@ -91,18 +91,13 @@ public with sharing class OrmAssessmentRiskController {
                                              count(Name) nbCause
                                              From Macro WHERE  RecordTypeId =:OrmAssessmentRiskController.getCauseRecordTypeId()
                                              GROUP BY orm_assessmentRisk__r.Id ];
-        List<AggregateResult> agrResultsImpacts =  [Select orm_assessmentRisk__r.Id, 
-                                             count(Name) nbImpact
-                                             From Macro WHERE  RecordTypeId =:OrmAssessmentRiskController.getImpactRecordTypeId()
-                                             GROUP BY orm_assessmentRisk__r.Id ];
+        
         // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment
         Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
         for (AggregateResult ar: agrResults){
         	mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbCause'));
         }   
-        for (AggregateResult arI: agrResultsImpacts){
-        	mapIdAssessmentNbRisk.put(arI.get('Id').toString(), (Integer)arI.get('nbImpact'));
-        } 
+       
          
         //get all assessment with Id in mapIdAssessmentNbRisk
         List<orm_assessmentRisk__c> assessmentRisks = [Select Id,orm_assessment__r.Name,orm_Risk__r.Name

@@ -54,5 +54,9 @@
             });
             $A.enqueueAction(action);
         }
-        }
+        },
+         onChange2 : function(component, event, helper)
+    {
+    	component.find("allCategorieRisk").set("v.value", event.getSource().get("v.value")); 
+	}
 })

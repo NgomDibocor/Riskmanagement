@@ -14,6 +14,16 @@ public with sharing class OrmAssessmentRiskController {
                   .get('orm RT asssessmentRisk').getRecordTypeId();
         return recordTypeId;
     }
+    /**
+	 * @author: david
+	 * @date: Creation: 06/08/2018
+	 * @description: get recordType Cause
+	*/
+    public static Id getCauseRecordTypeId(){
+         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
+                  .get('RT cause').getRecordTypeId();
+        return RecordTypeId;
+    }
     /*
     *David mignane diop
     *risk list function
@@ -54,6 +64,37 @@ public with sharing class OrmAssessmentRiskController {
         Map<String, Map<String, Object>> mapObjects = new Map<String, Map<String, Object>>();  
         for (Assessment__c assess: assessments){
            mapObjects.put(assess.Id,  new Map<String, Object>{'nbreRisk' => mapIdAssessmentNbRisk.get(assess.Id), 'assessment' => assess});   
+        }    
+        
+        return mapObjects;
+        
+    }
+     /*
+    *David mignane diop
+    * 
+    *le 06/08/2018
+    */
+    @AuraEnabled 
+    public static Map<String, Map<String, Object>> getRisks()
+    {
+        List<AggregateResult> agrResults =  [Select orm_assessmentRisk__r.Id, 
+                                             count(Name) nbCause
+                                             From Macro WHERE  RecordTypeId =:OrmAssessmentRiskController.getCauseRecordTypeId()
+                                             GROUP BY orm_assessmentRisk__r.Id ];
+        // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment
+        Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
+        for (AggregateResult ar: agrResults){
+        	mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbCause'));
+        }   
+        //get all assessment with Id in mapIdAssessmentNbRisk
+        List<orm_assessmentRisk__c> assessmentRisks = [Select Id,orm_assessment__r.Name,orm_Risk__r.Name
+                              From orm_assessmentRisk__c  
+                              WHERE Id IN : mapIdAssessmentNbRisk.keySet() ];                               
+         
+        Map<String, Map<String, Object>> mapObjects = new Map<String, Map<String, Object>>();  
+        for (orm_assessmentRisk__c assess: assessmentRisks){
+        	
+           mapObjects.put(assess.Id,  new Map<String, Object>{'nbreCause' => mapIdAssessmentNbRisk.get(assess.Id), 'assessmentRisk' => assess});   
         }    
         
         return mapObjects;

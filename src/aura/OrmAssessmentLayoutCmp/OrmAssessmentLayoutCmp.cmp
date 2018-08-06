@@ -16,6 +16,7 @@
     
     <!-- PickList -->
     <aura:attribute name="allTypeAssessment" type="String[]" />
+    <aura:attribute name="allTypeProjet" type="String[]" />
     <aura:attribute name="allOrganisation" type="Account[]" />
     <aura:attribute name="allActivities" type="Assessment__c[]" />
     <aura:attribute name="allCauses" type="Macro[]" />
@@ -26,6 +27,8 @@
     <aura:attribute name="typeProjet" type="boolean" default="false"/>
     <aura:attribute name="typeProcessus" type="boolean" default="false"/>
     <aura:attribute name="typeOrganisation" type="boolean" default="false"/>
+    <!-- slider -->
+    <aura:attribute name="val" type="Integer" default="100"/>
     
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
     <aura:handler event="c:OrmCloseFieldDescriptionEvt"  action="{!c.closeFielDescript}" />
@@ -145,8 +148,26 @@
                         </td>
                     </tr>
                     <aura:if isTrue="{!v.typeProjet}">
-                       <!-- <c:OrmFormForProjetCmp assessmentData ="{!v.assessmentData}" />-->
-		                 <tr>
+                         <tr>
+	                        <td >
+	                           <div class="topSpacing"> 
+	                              <label class="slds-form-element__label">Project Type*</label>
+	                           </div>
+	                            <div class="slds-form-element">
+	                                <div class="slds-form-element__control">
+	                                    <ui:inputSelect aura:id="typeProjet" 
+	                                          change="{!c.onChangeTypeProjet}" class="slds-select"
+	                                          labelClass="slds-form-element__label" >
+	                                        <aura:iteration items="{! v.allTypeProjet}" var="typeProjet" >
+	                                            <ui:inputSelectOption  text="{!typeProjet}"
+	                                                                   label="{!typeProjet}"/>
+	                                        </aura:iteration>
+	                                    </ui:inputSelect>
+	                                </div>
+	                            </div>
+	                        </td>
+	                      </tr>
+		                  <tr>
 		                        <td>
 		                            <div class="topSpacing">
 		                                <label class="slds-form-element__label">Project Name<span class="cmn_mandatory_indicator">*</span></label>
@@ -161,6 +182,32 @@
 		                            </div>
 		                        </td>
 		                    </tr>
+		                    <tr>
+	                            <td >
+	                                <div class="topSpacing">
+	                                    <label class="slds-form-element__label ">Project Manager<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>                                        
+	                                <div class="width">
+	                                    <ui:inputSelect class="slds-input" aura:id="projectManager" change="{!c.onSelectChange}">
+	                                        <ui:inputSelectOption text="Moussa Fofana" label="Moussa Fofana"/>
+	                                        <ui:inputSelectOption text="Dibocor NGOM" label="Dibocor NGOM"/>
+	                                    </ui:inputSelect>
+	                                </div>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <td >
+	                                <div class="topSpacing">
+	                                    <label class="slds-form-element__label ">Risk Manager<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>                                        
+	                                <div class="width">
+	                                    <ui:inputSelect class="slds-input" aura:id="riskManager" change="{!c.onSelectChange}">
+	                                        <ui:inputSelectOption text="Moussa Fofana" label="Moussa Fofana"/>
+	                                        <ui:inputSelectOption text="Dibocor NGOM" label="Dibocor NGOM"/>
+	                                    </ui:inputSelect>
+	                                </div>
+	                            </td>
+	                        </tr>
 		                    <tr>
 	                            <td>
 	                                <div class="topSpacing"> 
@@ -191,6 +238,28 @@
 	                                
 	                                <div class="width">
 	                                    <ui:inputnumber class="slds-input" aura:id="commercialBudget" value="{!v.assessmentData.orm_commercialBudget__c}"></ui:inputnumber>
+	                                </div>
+	                            </td>    
+	                        </tr>
+	                        <tr>
+	                            <td>
+	                                <div class="topSpacing"> 
+	                                    <label class="slds-form-element__label">Max Cost Exposture<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>
+	                                
+	                                <div class="width">
+	                                    <ui:inputnumber class="slds-input" aura:id="maxCostExposture" value="{!v.assessmentData.orm_maxCostExposture__c}"></ui:inputnumber>
+	                                </div>
+	                            </td>    
+	                        </tr>
+	                        <tr>
+	                            <td>
+	                                <div class="topSpacing"> 
+	                                    <label class="slds-form-element__label">Max Schedule Exposture<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>
+	                                
+	                                <div class="width">
+	                                    <ui:inputnumber class="slds-input" aura:id="maxSheduleExposture" value="{!v.assessmentData.orm_max_schedule_exposture__c}"></ui:inputnumber>
 	                                </div>
 	                            </td>    
 	                        </tr>
@@ -315,6 +384,12 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showContext2}">
                   <tr>
+                    <td>
+                          <lightning:slider label="Volume" value="{!v.val}" min="100" />
+                          <!-- <lightning:slider label="Volume" variant="label-hidden" type="vertical"/> -->
+                     </td>
+                  </tr>
+                  <tr>
                      <td class="textInDiv">
                            <div style="margin-bottom:20px">
                                {!$Label.c.orm_context}
@@ -357,6 +432,7 @@
                     </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showContextActivity}">
+                    
                     <tr>
                         <td >
                            <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 

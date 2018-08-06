@@ -48,8 +48,8 @@
                                 <p class="slds-text-body_regular"><span class="slds-badge"><b>{!item.value.nbreCause}</b></span></p>
                             </li>
                             <li class="slds-page-header__detail-block">
-                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"><u>Impact</u></p>
-                                <span class="slds-badge">15</span></li>
+                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"> <span class="slds-badge">Impact 15</span></p>
+                            </li>
                         </ul>
                     </div>
                 </div>

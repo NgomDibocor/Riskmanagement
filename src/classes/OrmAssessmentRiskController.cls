@@ -111,7 +111,6 @@ public with sharing class OrmAssessmentRiskController {
          
         Map<String, Map<String, Object>> mapObjects = new Map<String, Map<String, Object>>();  
         for (orm_assessmentRisk__c assess: assessmentRisks){
-        	
            mapObjects.put(assess.Id ,  new Map<String, Object>{'nbreCause' => mapIdAssessmentNbRisk.get(assess.Id), 'assessmentRisk' => assess});  
         }  
       

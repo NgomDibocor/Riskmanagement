@@ -233,7 +233,6 @@
     },
     /* laye */
     activeRiskIdentif : function(component, event, helper) {
-    	alert(component.get("v.assessmentData").Id);
         /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
         evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
         

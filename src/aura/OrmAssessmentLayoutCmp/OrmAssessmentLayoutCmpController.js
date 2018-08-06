@@ -13,28 +13,32 @@
         var showRiskTreatment = component.get("v.showRiskTreatment");
         var showData = component.get("v.showData");
         if(showContext == true){
-           /* var assessmentName = component.find("Name").get("v.value");
+            var newItem = component.get("v.assessmentData");
+            var assessmentName = component.find("Name").get("v.value");
             //console.log('assessmentName:::'+assessmentName);
-            if(assessmentName =='' || assessmentName == null){
+            /*if(assessmentName =='' || assessmentName == null || newItem.Id == null ){
                 component.set("v.setMessage",'error');           
             }
 
             if(component.get("v.setMessage")=='error')
             { 
+                component.set("v.showContext", true);
+                component.set("v.showContextWorkshop", false);
                 component.set("v.showRiskIdentif",false);
                 component.set("v.showRiskAnalyse", false);
+                component.set("v.showContextActivity", false);
                 component.set("v.showError", true);
                 component.set("v.showData", false);
                 
-            }
-            else
-            { */
+            }*/
+            //else
+            //{ 
                 component.set("v.showContext", false);
                 component.set("v.showContext2", true);
                 component.set("v.showError", false);
                 helper.activeContext2(component, event);
                 
-           // }
+          //  }
             
         }  
         if(showContext2 == true){
@@ -186,9 +190,29 @@
     {
     	component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));
 	},
-    onChangeOrg : function(component, event, helper)
+    onChangeOrganisation : function(component, event, helper)
     {
-    	alert(component.find("organisation").get("v.value"));
+    	var newItem = component.get("v.assessmentData");
+    	newItem.orm_organisation__c = component.find("organisation").get("v.value");
+        var action = component.get('c.add');
+        action.setParams({"item": newItem});
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.assessmentData', response.getReturnValue());
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+            	'message' : newItem.orm_organisation__c+' associated with success',
+                'type' : 'success',
+                'mode' : 'dismissible'
+            });
+            toast.fire();
+            
+            } else {
+                alert("mise a jour echouée");
+            }
+        });
+        $A.enqueueAction(action);
 	},
     
     closeFielDescript : function(component, event, helper) {
@@ -234,27 +258,6 @@
         helper.activeActionPlan(component, event);
     },
     
-    openActivityNewCmp : function(component, event, helper){
-                
-        var idAssessment = component.get("v.assessmentData").Id;
-        if(idAssessment == null){
-        	//alert("check if you have created the assessment");
-        	var toast = $A.get('e.force:showToast');
-            toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
-                'type' : 'warning',
-                'mode' : 'dismissible'
-            });
-
-            toast.fire();
-        } else {
-        	var evt = $A.get("e.c:OrmOpenNewActivityCmpEvt");
-			evt.setParams({
-			   "idAssessment" : idAssessment
-			});
-			evt.fire();
-        }
-    },
     
     openOrganisationNew : function(component, event, helper){
         var assessment = component.get('v.assessmentData');
@@ -265,31 +268,6 @@
 		evt.fire();
     },
     
-    refreshListActivity : function(component, event, helper){
-        
-        /*var action = component.get('c.getSelectOptions');    
-        action.setParams({'objObject' : component.get("v.activity"), 'fld' : 'Status'});
-        action.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS' && component.isValid()){
-                component.set('v.allStatus', response.getReturnValue());
-            } else {
-                alert("the element was not found");
-            }
-        });
-        $A.enqueueAction(action);*/
-        
-        var action = component.get('c.findAllActiviteByAssessment');
-        action.setParams({'idAssessment' : null});
-        action.setCallback(this, function(response){
-            if(response.getState() == 'SUCCESS'){
-                component.set('v.allActivities', response.getReturnValue());
-            } else {
-                alert('ERROR');
-            }            
-        });
-        $A.enqueueAction(action);
-    },
     
     refreshListOrganisation : function(component, event, helper){
         var actionOrgs = component.get("c.getOrganisations");

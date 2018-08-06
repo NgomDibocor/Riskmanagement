@@ -1,9 +1,9 @@
 ({
     fetchPicklist : function(component, event) {        
-        var action = component.get('c.getSelectOptions');
-        action.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_typeAssessment__c'});
+        var actionTypeAssessment = component.get('c.getSelectOptions');
+        actionTypeAssessment.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_typeAssessment__c'});
         var opts = [];
-        action.setCallback(this, function(response){
+        actionTypeAssessment.setCallback(this, function(response){
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValues = response.getReturnValue();
@@ -29,8 +29,29 @@
                 alert("l'Element n'a pas été retrouvé");
             }
         });
-        $A.enqueueAction(action);
+        var actionTypeProjet = component.get('c.getSelectOptions');
+        actionTypeProjet.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_typeProjet__c'});
+        var opts2 = [];
+        actionTypeProjet.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                var allValuesTP = response.getReturnValue();
+ 
+                if (allValuesTP != undefined && allValuesTP.length > 0) {
+                    var none="---None---";
+                    opts2.push(none);
+                }
+                for (var i = 0; i < allValuesTP.length; i++) {
+                    opts2.push(allValuesTP[i]);
+                }
+                component.set('v.allTypeProjet', opts2);
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        $A.enqueueAction(actionTypeAssessment);
         $A.enqueueAction(actionOrgs);
+        $A.enqueueAction(actionTypeProjet);
 	},
    
     activeContext : function(component, event, helper) {

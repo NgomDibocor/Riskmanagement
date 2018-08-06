@@ -1,4 +1,4 @@
-<aura:component controller="OrmActivityController" extends="c:OrmAbstractNewCmp">
+<aura:component controller="OrmActivityController" extends="c:AbstractNewCmp">
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:OrmOpenNewActivityCmpEvt" action="{!c.openCurrentCmp}" />

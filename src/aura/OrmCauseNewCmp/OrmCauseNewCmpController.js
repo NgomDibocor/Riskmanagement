@@ -32,7 +32,7 @@
         	newCause.Name = name;
         	newCause.Description = description;
         	//newCause.orm_assessmentRisk__c = component.get('v.idAssessmentRisk');
-        	newCause.orm_assessmentRisk__c = "a001H00000kcU5ZQAU";
+        	newCause.orm_assessmentRisk__c = "a001H00000kcdy9QAA";
         	
         	var action = component.get('c.add');
             action.setParams({
@@ -56,7 +56,7 @@
                     });
                    
                    var evt = $A.get("e.c:OrmCauseCreatedEvt");
-                   evt.setParams({'idAssessmentRisk': 'a001H00000kcU5ZQAU'});
+                   evt.setParams({'idAssessmentRisk': 'a001H00000kcdy9QAA'});
                    evt.fire();
             	} else {
             		var toast = $A.get('e.force:showToast');

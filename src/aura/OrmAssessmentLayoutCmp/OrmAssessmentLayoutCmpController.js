@@ -186,9 +186,29 @@
     {
     	component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));
 	},
-    onChangeOrg : function(component, event, helper)
+    onChangeOrganisation : function(component, event, helper)
     {
-    	alert(component.find("organisation").get("v.value"));
+    	var newItem = component.get("v.assessmentData");
+    	newItem.orm_organisation__c = component.find("organisation").get("v.value");
+        var action = component.get('c.add');
+        action.setParams({"item": newItem});
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.assessmentData', response.getReturnValue());
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+            	'message' : newItem.orm_organisation__c+' associated with success',
+                'type' : 'success',
+                'mode' : 'dismissible'
+            });
+            toast.fire();
+            
+            } else {
+                alert("mise a jour echouée");
+            }
+        });
+        $A.enqueueAction(action);
 	},
     
     closeFielDescript : function(component, event, helper) {

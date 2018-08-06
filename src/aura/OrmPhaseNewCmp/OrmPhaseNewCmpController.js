@@ -1,6 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
-		
+	
 		var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.phase"), 'fld' : 'orm_phase__c'});
         action.setCallback(this, function(response) {
@@ -14,7 +14,58 @@
         $A.enqueueAction(action); 
 	},
 	
-	createItem : function(component, event, helper) {
+	openPhaseNewCmp : function (component, event, helper) {
+		helper.openModal(component, event, helper);
+	},
 	
+	createItem : function(component, event, helper) {
+		var phaseStatus = component.find('phase').get('v.value');
+        
+        /* we test the validity of data */
+        var isItemsValid = true;
+        if($A.util.isEmpty(phaseStatus)) {
+            isItemsValid = false;           
+        }
+        
+        if(isItemsValid){
+        	var newPhase = component.get('v.phase');
+        	newPhase.Name = "XXXX"; // not used but it's required for Macro
+        	newPhase.orm_phase__c = phaseStatus;
+        	console.log("id Assessment in add ", component.get('v.assessmentId'));
+        	newPhase.orm_assessment__c = component.get('v.assessmentId');
+        	
+        	
+        	var action = component.get('c.add');
+            action.setParams({
+                "item": newPhase
+            });
+            action.setCallback(this, function(response) {
+            	if(response.getState() == 'SUCCESS'){
+            		newPhase = response.getReturnValue();
+            		var toast = $A.get('e.force:showToast');
+            		toast.setParams({
+			           'message' : newPhase.orm_phase__c +' has been added',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+		            });	
+		            toast.fire();
+            		helper.closeModal(component, event);
+                    component.set('v.phase', { 'sobjectType' : 'Macro',
+											   'orm_phase__c': '',
+											   'orm_assessment__c': ''
+                    });
+            	} else {
+            		var toast = $A.get('e.force:showToast');
+            		toast.setParams({
+			           'message' : 'ERROR',
+			           'type' : 'error',
+			           'mode' : 'dismissible'
+		            });	
+		            toast.fire();
+            	}
+            });
+            $A.enqueueAction(action);
+        	
+        }
 	}
 })

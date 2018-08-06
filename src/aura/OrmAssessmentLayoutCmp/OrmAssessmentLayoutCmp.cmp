@@ -427,6 +427,13 @@
                             </div>
                         </td>
                     </tr>
+                    
+                    <!-- phase -->
+                    <tr>
+                     	<td>
+                     		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+                     	</td>
+                    </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showContextActivity}">
                     

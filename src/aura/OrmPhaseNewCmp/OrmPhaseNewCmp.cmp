@@ -1,15 +1,16 @@
-<aura:component extends="c:AbstractNewCmp" controller="OrmPhaseController">
+<aura:component extends="c:OrmAbstractNewCmp" controller="OrmPhaseController">
 	
 	<!-- methodes -->
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+	<aura:handler event="c:OrmEventNewPhaseClicked" action="{!c.openPhaseNewCmp}" />
 	
 	<!-- attributes -->	
 	<aura:attribute name="phase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
-																		'orm_phase__c': ''
+																		'orm_phase__c': '',
+																		'orm_assessment__c': ''
 																		}" />
 	<aura:attribute name="assessmentId" type="String" description="" />
-	<aura:attribute name="allPhases" type="String[]" description="" />
-	
+	<aura:attribute name="allPhases" type="String[]" description="" />	
 	
 	<aura:if isTrue="{!v.isOpen}">
 			<!--###### MODAL BOX Start From Here ######-->    		

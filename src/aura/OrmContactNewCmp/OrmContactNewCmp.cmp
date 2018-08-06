@@ -1,0 +1,21 @@
+<aura:component extends="c:OrmAbstractNewCmp" access="global"
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable"
+	controller="OrmcontactController">
+	<aura:attribute name="item" type="Contact"
+		default="{
+						'sobjectType' : 'Contact',
+                        'Name': '',
+                        'Phone':'',
+                        'Email':'', 
+                        'orm_organisation__c':''
+                        
+						
+					}" />
+	<aura:attribute name="assessmentData" type="Assessment__c"
+		default="{
+						'sobjectType' : 'Assessment__c',
+					
+						
+					}" />
+	
+</aura:component>

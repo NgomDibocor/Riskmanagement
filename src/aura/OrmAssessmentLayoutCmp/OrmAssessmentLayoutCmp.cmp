@@ -622,6 +622,11 @@
 	                        </td>
 	                   </tr>
 	                   <tr>
+	                       <td>
+	                    		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+	                    	</td>
+	                    </tr>
+	                   <tr>
 		                   <td>
 		                      <div style="height:50px"></div>
 		                    </td>
@@ -678,6 +683,11 @@
 	                             <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
 	                        </td>
 	                   </tr>
+	                   <tr>
+	                       <td>
+	                    		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+	                    	</td>
+	                    </tr>
                   </aura:if>
                   <aura:if isTrue="{!v.typeProcessus}">
                       <tr>
@@ -700,6 +710,11 @@
 	                             <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
 	                        </td>
 	                   </tr>
+	                   <tr>
+	                       <td>
+	                    		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+	                    	</td>
+	                    </tr>
                   </aura:if>
                   
                    <!--<tr>
@@ -718,12 +733,7 @@
                     </tr>--> 
 
                     <!-- phase -->
-                    <tr>
-                     	<td>
-                     		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
-                     	</td>
-
-                    </tr>
+                    
                 </aura:if>
                 <aura:if isTrue="{!v.showContextActivity}">
                     

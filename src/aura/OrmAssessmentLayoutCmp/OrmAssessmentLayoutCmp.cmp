@@ -706,6 +706,23 @@
                 <aura:if isTrue="{!v.showActionPlan}">
                     
                 </aura:if>
+                
+                <aura:if isTrue="{!v.displaySaveCancelBtn}">
+	                  <tr>
+	                      <td class="textInDiv">
+	                         <div style="margin-bottom:20px;">
+	                             <lightning:buttonGroup class="slds-m-around_medium">
+						            <!-- <lightning:button label="Cancel" onclick="{!c.cancel}"/> -->
+						            <lightning:button label="Save"
+						                              variant="brand"
+	                                                  class="slds-button"
+						                              onclick="{!c.createAssessment}"/>
+						        </lightning:buttonGroup>
+						        <span style="color:red">Click on this button for saving the assessment</span>
+	                         </div>
+	                      </td>
+	                  </tr>
+			    </aura:if>
             </table>
             
             <div class="slds-grid  slds-grid--align-center">

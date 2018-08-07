@@ -179,4 +179,18 @@ public class OrmAssessmentController {
                 Where Id = : idAss ];
          
     }
+    
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns all Users
+	 * @history 
+	 * 2018-08-07 : Dibocor NGOM - Implementation
+	 */
+    @AuraEnabled 
+    public static List<User> getUsers(){
+        return [Select Id, Name From User ];
+         
+    }
 }

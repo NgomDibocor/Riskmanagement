@@ -45,7 +45,7 @@
 									</div>
 									<div class="slds-form-element ">
 										<div class="slds-form-element__control">
-											<lightning:select aura:id="categorieRisk" name="categorie Risk" label="categorie Risk" class="select-auto-width" >
+											<lightning:select aura:id="categorieRisk" onchange="{!c.onChange2}" name="categorie Risk" label="categorie Risk" class="select-auto-width" >
                                                 <option  text="categorie Risk"  ></option>
                                                 <aura:iteration items="{!v.allCategorieRisk}" var="CategorieRisk" >
                                                     <option  text="{!CategorieRisk}"  ></option>

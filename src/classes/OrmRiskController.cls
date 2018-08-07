@@ -20,10 +20,10 @@ public with sharing class OrmRiskController {
     *le 27/07/2018
     */
     @AuraEnabled 
-    public static List<Macro> findAll(String item)
+    public static List<Macro> findAll()
     {
        return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
-       RecordTypeId=:OrmRiskController.getRiskRecordTypeId() and orm_categorieRisk__c=: item ];
+       RecordTypeId=:OrmRiskController.getRiskRecordTypeId() and orm_categorieRisk__c=:'Educational' ];
     }
     /*
     *David mignane diop

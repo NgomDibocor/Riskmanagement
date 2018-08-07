@@ -9,6 +9,7 @@
     <aura:attribute name="lespays" type="String[]"/>
     <aura:attribute name="allIndustrySector" type="String[]"/>
     <aura:attribute name="allCurrency" type="String[]"/>
+    <aura:attribute name="allTypeOrganisation" type="String[]" />
     <aura:attribute name="objInfo" type="Account" default="{sobjectType : 'Account'}" />
     <aura:attribute name="item" type="Account"
 		default="{
@@ -49,6 +50,16 @@
 									</div>
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
+											<lightning:select aura:id="typeOrg" onchange="{!c.onChangeTypeOrganisation}"   name="region" label="Organisation Type" >
+                                                <option  text="select the organisation type"  ></option>
+                                                <aura:iteration items="{! v.allTypeOrganisation}" var="typeOrg" >
+                                                    <option  text="{!typeOrg }"  ></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+										</div>
+									</div>
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
 											<lightning:select aura:id="region" onchange="{!c.onChangeRegion}"   name="region" label="{!$Label.c.orm_region}" >
                                                 <option  text="select a region"  ></option>
                                                 <aura:iteration items="{! v.regions}" var="region" >
@@ -85,6 +96,13 @@
                                                     <option  text="{!indSec}"></option>
                                                 </aura:iteration>
                                             </lightning:select>
+										</div>
+									</div>
+									<div class="slds-form-element">
+										<div class="slds-form-element__control">
+											<ui:inputText aura:id="budget" label="Budget"
+												class="slds-input" labelClass="slds-form-element__label"
+												value="{!v.item.AnnualRevenue}" required="true" />
 										</div>
 									</div>
                                     <div class="slds-form-element">

@@ -1,13 +1,15 @@
 <aura:component extends="c:OrmAbstractNewCmp" access="global"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable"
-	controller="OrmcontactController">
+	controller="OrmContactController">
+	<!--  declaration attribute-->
 	<aura:attribute name="item" type="Contact"
 		default="{
 						'sobjectType' : 'Contact',
-                        'Name': '',
                         'Phone':'',
                         'Email':'', 
-                        'orm_organisation__c':''
+                        'orm_organisation__c':'',
+                         'FirstName':'',
+                        'LastName':''
                         
 						
 					}" />
@@ -17,5 +19,86 @@
 					
 						
 					}" />
-	
+
+	<!--  handler event fired-->
+	<aura:handler event="c:OrmNewContactEvt" action="{!c.openModalContact}" />
+	 <aura:registerEvent name="OrmNewContactEvt"  type="c:OrmNewContactEvt"/>
+	<!--  start form contact-->
+	<aura:if isTrue="{!v.isOpen}">
+		<!--###### MODAL BOX Start From Here ######-->
+		<div role="dialog" tabindex="-1" aria-labelledby="header99"
+			class="slds-modal slds-fade-in-open slds-modal_medium">
+			<div class="slds-modal__container form-style-6">
+				<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+				<div class="slds-modal__header">
+					<button
+						class="slds-button slds-modal__close slds-button--icon-inverse"
+						title="Close" onclick="{!c.closeModal}">
+						X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+					</button>
+					<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label
+						+ ' ' +$Label.c.orm_contact_menu}</h1>
+				</div>
+				<!--###### MODAL BOX BODY Part Start From Here ######-->
+				<div class="slds-modal__content slds-p-around--medium">
+
+					<form class="slds-form--stacked">
+
+						<div class="slds-grid slds-gutters ">
+							<div class="slds-col">
+							
+								<div class="slds-form-element slds-is-required">
+									<div class="slds-form-element__control">
+										<lightning:input type="text" aura:id="idname"
+											label="{!$Label.c.orm_name_contact}" value="{!v.item.FirstName}"
+											required="true" />
+									</div>
+								</div>
+								<div class="slds-form-element slds-is-required">
+									<div class="slds-form-element__control">
+										<lightning:input type="text" aura:id="idlastname"
+											label="{!$Label.c.orm_last_name_contact}" value="{!v.item.LastName}"
+											required="true" />
+									</div> 
+								</div> 
+								<div class="slds-form-element slds-is-required">
+									<div class="slds-form-element__control">
+										<lightning:input type="email" aura:id="idemail"  
+											label="{!$Label.c.orm_email_contact}" value="{!v.item.Email}"
+											required="true" />
+									</div>
+								</div>
+								<div class="slds-form-element slds-is-required">
+									<div class="slds-form-element__control">
+										<lightning:input type="tel" aura:id="idphone"
+											label="{!$Label.c.orm_phone_contact}" value="{!v.item.Phone}" />
+									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+				<div class="slds-modal__footer">
+					<button class="slds-button slds-button--neutral"
+						onclick="{!c.closeModal}">{!$Label.c.cancel_button_title}</button>
+					<button class="slds-button slds-button--brand"
+						onclick="{!c.createContact}">
+						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.save_button_title}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="slds-backdrop slds-backdrop--open"></div>
+		<!--###### MODAL BOX Part END Here ######-->
+	</aura:if>
+
+
+	<!--  end form contact-->
+
 </aura:component>

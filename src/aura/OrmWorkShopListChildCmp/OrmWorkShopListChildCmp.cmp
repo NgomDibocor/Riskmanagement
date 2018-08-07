@@ -14,11 +14,19 @@
 						'Description':''
 						
 					}" />
+					<aura:attribute name="assessmentData" type="Assessment__c"
+		default="{
+						'sobjectType' : 'Assessment__c',
+						'Description':''
+						}" />
+						
 	<aura:attribute name="showSaveCancelBtn" type="boolean" />
 	<aura:attribute name="nameEditMode" type="boolean" default="false" />
 	<aura:attribute name="messageEditMode" type="boolean" default="false" />
 	<aura:attribute name="periodEditMode" type="boolean" default="false" />
 	<aura:attribute name="invitationEditMode" type="boolean" default="false" />
+  <aura:registerEvent name="OrmContactWorkshopListEvt"  type="c:OrmContactWorkshopListEvt"/>
+	
 	<!--Table Row Start-->
 	<tr>
 
@@ -163,11 +171,8 @@
 		<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
                   <div class="slds-form-element">
                      <div class="slds-form-element__control">
-                        <label class="slds-checkbox">
-                           <ui:inputCheckbox text="{!v.singleRec.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
-                           <span class="slds-checkbox--faux"></span>
-                           <span class="slds-form-element__label text"></span>
-                        </label>
+                        <span class="btnContactworkshop" onclick="{!c.openModalContactWorkshop}">
+           <lightning:icon iconName="action:add_contact" size="small" /></span>
                      </div>
                   </div>
                </td>

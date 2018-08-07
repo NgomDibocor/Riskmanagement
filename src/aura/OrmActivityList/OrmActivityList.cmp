@@ -49,6 +49,7 @@
 <aura:attribute name="showConfirmRemoveActivity" type="boolean" default="false" description="is true show popup  message confirmation" />
  <aura:attribute name="selectedCount" type="integer" default="0"/>
  <aura:registerEvent name="OrmRemoveRecordActivityEvnt" type="c:OrmRemoveRecordActivityEvnt" />
+ <!-- start header page content search bar and action button -->
   <div class="slds-grid slds-gutters">
     <div class=" slds-size--2-of-12   slds-p-horizontal--small">
     </div>
@@ -79,6 +80,7 @@
 		</aura:if>
         </div>
         </div>
+         <!-- end header page content search bar and action button -->
 	<div class="slds-m-around_large">
 		<!--Data Table-->
 		

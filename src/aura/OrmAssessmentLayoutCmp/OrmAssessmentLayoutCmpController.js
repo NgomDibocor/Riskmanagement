@@ -168,7 +168,7 @@
           newItem.orm_typeProjet__c = typeProjet.get("v.value");
           var currency = component.find("currency");
           newItem.orm_currency__c = currency.get("v.value");
-          var projectManager = component.find("industrySector");
+          var industrySector = component.find("industrySector");
           newItem.orm_clientIndustrySector__c = industrySector.get("v.value");
           
           var riskManager = component.find("userRM");
@@ -179,6 +179,11 @@
         if(ta.get("v.value")== 'Processus'){
           var statusProcessus = component.find("statusProcessus");
           newItem.orm_statusAssessment__c = statusProcessus.get("v.value");
+          
+          var pilote = component.find("pilote");
+          newItem.orm_pilote__c = pilote.get("v.value");
+          var copilote = component.find("copilote");
+          newItem.orm_copilote__c = copilote.get("v.value");
         }
         if(ta.get("v.value")== 'Organisation'){
           var statusOrganisation = component.find("statusOrganisation");
@@ -237,6 +242,14 @@
 	onChangeStatusProjet : function(component, event, helper)
     {
     	component.find("statusProjet").set("v.value", event.getSource().get("v.value"));
+	},
+	onChangePilote : function(component, event, helper)
+    {
+    	component.find("pilote").set("v.value", event.getSource().get("v.value"));
+	},
+	onChangeCopilote : function(component, event, helper)
+    {
+    	component.find("copilote").set("v.value", event.getSource().get("v.value"));
 	},
     onChangeOrganisation : function(component, event, helper)
     {
@@ -378,12 +391,12 @@
     	/* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
-        var assessmentRiskId = "";
+        /*var assessmentRiskId = "";
         var evt = $A.get("e.c:OrmNewCauseClickedEvt");
         evt.setParams({
         	"idAssessmentRisk" : assessmentRiskId
 		});
-		evt.fire();
+		evt.fire();*/
     },
     
     onChangeCause : function(component, event, helper) {

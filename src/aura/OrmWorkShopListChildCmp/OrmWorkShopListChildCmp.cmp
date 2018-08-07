@@ -25,7 +25,7 @@
 	<aura:attribute name="messageEditMode" type="boolean" default="false" />
 	<aura:attribute name="periodEditMode" type="boolean" default="false" />
 	<aura:attribute name="invitationEditMode" type="boolean" default="false" />
-  <aura:registerEvent name="OrmNewContactEvt"  type="c:OrmNewContactEvt"/>
+  <aura:registerEvent name="OrmContactWorkshopListEvt"  type="c:OrmContactWorkshopListEvt"/>
 	
 	<!--Table Row Start-->
 	<tr>

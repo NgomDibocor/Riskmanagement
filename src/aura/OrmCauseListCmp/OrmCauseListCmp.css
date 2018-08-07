@@ -1,2 +1,12 @@
 .THIS {
 }
+.THIS div.cause {
+    display: inline-block;
+    width:95%;
+}
+.THIS span.btnNewCause {
+    display: inline-block;
+}
+.THIS table {
+    margin-top: 20px;
+}

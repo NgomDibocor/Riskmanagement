@@ -1,76 +1,85 @@
 <aura:component controller="OrmContactController" access="global"
 	extends="c:ormAbstractListCmp"
-	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" >
 		<!--declare aura attributes-->
 	<aura:attribute name="ContactList" type="Contact[]"
 		description="store contact records list" />
-		<aura:attribute name="assessmentData" type="Assessment__c"
+		<aura:attribute name="workshop" type="Contract" />
+			<aura:attribute name="item" type="orm_ContactWorkshop__c"
 		default="{
-						'sobjectType' :'Assessment__c',
-						'Description':''
-						
+						'sobjectType' : 'orm_ContactWorkshop__c',
+                        'orm_contact__c': '',
+                        'Name':'',
+                        'orm_dateAjout__c':'', 
+                        'orm_notification__c':'',
+                        'orm_Workshop__c':''
 					}" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean" default="false"/>
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-	  <aura:handler event="c:OrmNewContactEvt" action="{!c.openModalContacts}" />
+	    <aura:handler event="c:OrmContactWorkshopListEvt" action="{!c.openModalContacts}" />
 		<!--  start modal contact-->
+<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
+		<!--###### MODAL BOX Start From Here ######-->
+		<div role="dialog" tabindex="-1" aria-labelledby="header99"
+			class="slds-modal slds-fade-in-open slds-modal_medium">
+			<div class="slds-modal__container form-style-6">
+				<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+				<div class="slds-modal__header">
+					<button
+						class="slds-button slds-modal__close slds-button--icon-inverse"
+						title="Close" onclick="{!c.closeModalWorkshopContact}">
+						X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+					</button>
+					<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.orm_contact_menu}</h1>
+				</div>
+				<!--###### MODAL BOX BODY Part Start From Here ######-->
+				<div class="slds-modal__content slds-p-around--medium">
 
-  <aura:if isTrue="{!v.isOpenModalContactWorkshop}">
-			<!--###### MODAL BOX Start From Here ######-->    		
-			<div role="dialog" tabindex="-1" aria-labelledby="header99"
-				class="slds-modal slds-fade-in-open slds-modal_medium">
-				<div class="slds-modal__container form-style-6">
-					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
-					<div class="slds-modal__header">
-						<button
-							class="slds-button slds-modal__close slds-button--icon-inverse"
-							title="Close" onclick="{!c.closeModal}">
-							X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
-						</button>
-						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label + ' ' +$Label.c.orm_workshop_menu}</h1>
-					</div>
-					<!--###### MODAL BOX BODY Part Start From Here ######-->
-					<div class="slds-modal__content slds-p-around--medium">
+					<form class="slds-form--stacked">
 
-	<form class="slds-form--stacked">
+						<div class="slds-grid slds-gutters ">
+							<div class="slds-col">
+							
+								<div class="slds-form-element slds-is-required">
+									<div class="slds-form-element__control">
+									<lightning:select aura:id="idcontact"   name="contact"  label="{!$Label.c.orm_contact_menu}" >
+                                                <aura:iteration items="{!v.ContactList}" var="contact" >
+                                                    <option  text="{!contact.Name}"></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                             <label class="slds-checkbox">
+                           <ui:inputCheckbox text="{!v.contact.orm_notification__c}" aura:id="idnotif" value="" />
+                           <span class="slds-checkbox--faux"></span>
+                           <span class="slds-form-element__label text"></span>
+                        </label>
+									</div>
+								</div>
+								
 
-		<div class="slds-grid slds-gutters ">
-			
-	 <div class=" slds-form-element">
-                                <div class="slds-form-element__control">
-                                    <lightning:select aura:id="contactlist"   name="contact" onchange="" label="" >
-                                        <aura:iteration items="{!v.ContactList" var="contact" >
-                                            <option text="{!contact.Name}"
-                                                    label="{!contact.Name}"
-                                                    value="{!contact.Id}">
-                                            </option>
-                                        </aura:iteration>
-                                    </lightning:select>
-                                </div>
-                                
-                            </div>
-		</div>
-		
-	</form>
 
-</div>
-		<!--###### MODAL BOX FOOTER Part Start From Here ######-->
-					<div class="slds-modal__footer">
-						<button class="slds-button slds-button--neutral"
-							onclick="{!c.closeModal}">{!$Label.c.cancel_button_title}</button>
-						<button class="slds-button slds-button--brand"
-							onclick="{!c.createContactWorkshop}">
-							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.save_button_title}
-						</button>
-					</div>
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+				<div class="slds-modal__footer">
+					<button class="slds-button slds-button--neutral"
+						onclick="{!c.closeModalWorkshopContact}">{!$Label.c.cancel_button_title}</button>
+					<button class="slds-button slds-button--brand"
+						onclick="{!c.createContactWorkshop}">
+						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.save_button_title}
+					</button>
 				</div>
 			</div>
-			<div class="slds-backdrop slds-backdrop--open"></div>
-			<!--###### MODAL BOX Part END Here ######-->
-    </aura:if>
+		</div>
+		<div class="slds-backdrop slds-backdrop--open"></div>
+		<!--###### MODAL BOX Part END Here ######-->
+	</aura:if>
 
-
-
+  
 	<!--  end  contact-->
 
 </aura:component>

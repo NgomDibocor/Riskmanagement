@@ -38,7 +38,7 @@
     <aura:registerEvent name="OrmOpenNewOrganisation"
 		type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
-    <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
+    <!-- aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/ -->
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     
@@ -496,6 +496,7 @@
                 </aura:if>  
                 <aura:if isTrue="{!v.showRiskAnalyse}">
                     
+                    <!--
                     <tr>
                         <td>
                             <div class="topSpacing">
@@ -510,20 +511,13 @@
                                                     value="{!cause.Id}">
                                             </option>
                                         </aura:iteration>
-                                </lightning:select>	  
-	                        	<!--
-	                        	<ui:inputSelect class="slds-input" aura:id="Cause" change="{!c.onSelectChange}">
-	                            	<ui:inputSelectOption text="Prospecting" label="Cause1" value="true"/>
-	                            	<ui:inputSelectOption text="Qualification" label="Cause2"/>
-	                            	<ui:inputSelectOption text="Needs Analysis" label="Cause3"/>
-	                            </ui:inputSelect>
-	                            -->
+                                </lightning:select>
                             </div>
                             <span class="btnNewCause" onclick="{!c.openCauseNewCmp}">
                                 <lightning:icon iconName="utility:new" size="medium" /></span>
                         </td>
                     </tr>
-                    
+                    -->
                     <!-- list of causee -->
                     <tr>
                     	<td>

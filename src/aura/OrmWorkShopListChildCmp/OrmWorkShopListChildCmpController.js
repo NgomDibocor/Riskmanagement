@@ -81,12 +81,12 @@
     //open modal list contact workshop
     
     
-        var idAssessment = component.get("v.assessmentData").Id;
-        if(idAssessment == null){
-        	//alert("check if you have created the assessment");
+        var idWorkshop = component.get("v.singleRec").Id;
+        if(idWorkshop == null){
+        	//alert("check if you have created the workshop");
         	var toast = $A.get('e.force:showToast');
             toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
+            	'message' : 'Check if you Have Created the Workshop',
                 'type' : 'warning',
                 'mode' : 'dismissible'
             });
@@ -95,7 +95,7 @@
         } else {
         	var evt = $A.get("e.c:OrmContactWorkshopListEvt");
 			evt.setParams({
-			   "Assessmentdata" : component.get("v.assessmentData")
+			   "Workshop" : component.get("v.singleRec")
 			});
 			evt.fire();
         }

@@ -1,15 +1,17 @@
 ({
    // fetch picklist values dynamic from apex controller 
     fetchPickListVal: function(component, fieldName, picklistOptsAttributeName) {
-        var action = component.get("c.getselectOptions");
+    	console.log("laye");
+        var action = component.get("c.getSelectOptions");
         action.setParams({
-            "objObject": component.get("v.phase"),
+            "objObject": component.get("v.objInfo"),
             "fld": fieldName
         });
         var opts = [];
         action.setCallback(this, function(response) {
             if (response.getState() == "SUCCESS") {
                 var allValues = response.getReturnValue();
+                console.log("allValues " + allValues);
  
                 if (allValues != undefined && allValues.length > 0) {
                     opts.push({

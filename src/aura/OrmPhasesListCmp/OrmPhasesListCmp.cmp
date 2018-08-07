@@ -77,15 +77,15 @@
 	            <tbody>
 	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
 	                <aura:iteration items="{!v.phases}" var="phase" indexVar="sNo">
-	                   <!-- Child Lightning Component 
+	                   <!-- Child Lightning Component -->
 	                    <c:OrmPhaseEditRow phase="{!phase}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
-	                                     sNo="{!sNo + 1}" / -->
+	                                     sNo="{!sNo + 1}" />
 	                    
-	                    <tr>
+	                    <!--tr>
 		                    <td>{!sNo + 1}</td> 
 		                    <td>{!phase.orm_phase__c}</td>
-		                </tr>              
+		                </tr -->              
 	                </aura:iteration>
 	            </tbody>
 	        </table>

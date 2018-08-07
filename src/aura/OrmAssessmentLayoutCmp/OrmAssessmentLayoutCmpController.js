@@ -170,6 +170,8 @@
           newItem.orm_currency__c = currency.get("v.value");
           var industrySector = component.find("industrySector");
           newItem.orm_clientIndustrySector__c = industrySector.get("v.value");
+          var schedule = component.find("schedule");
+          newItem.orm_schedule__c = schedule.get("v.value");
           
           var riskManager = component.find("userRM");
           newItem.orm_riskManager__c = riskManager.get("v.value");
@@ -189,7 +191,7 @@
           var statusOrganisation = component.find("statusOrganisation");
           newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
         }
-        //alert(JSON.stringify(newItem))
+        alert(JSON.stringify(newItem))
         var action = component.get('c.add');
         action.setParams({
             "item": newItem

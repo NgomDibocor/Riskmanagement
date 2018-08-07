@@ -53,11 +53,11 @@
 	        </table>
 		    	
 		</div>
-        <span class="btnNewCause" onclick="{!c.openCauseNewCmp}">
+        <span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}" class="btnNewCause" onclick="{!c.openCauseNewCmp}">
         	<lightning:icon iconName="utility:new" size="medium" />
         </span>
 	
 	</div>
-	
+		
 	<c:OrmCauseNewCmp />
 </aura:component>

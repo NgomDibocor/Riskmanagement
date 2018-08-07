@@ -170,6 +170,8 @@
           newItem.orm_currency__c = currency.get("v.value");
           var industrySector = component.find("industrySector");
           newItem.orm_clientIndustrySector__c = industrySector.get("v.value");
+          var schedule = component.find("schedule");
+          newItem.orm_schedule__c = schedule.get("v.value");
           
           var riskManager = component.find("userRM");
           newItem.orm_riskManager__c = riskManager.get("v.value");
@@ -189,7 +191,7 @@
           var statusOrganisation = component.find("statusOrganisation");
           newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
         }
-        //alert(JSON.stringify(newItem))
+        alert(JSON.stringify(newItem))
         var action = component.get('c.add');
         action.setParams({
             "item": newItem
@@ -222,18 +224,30 @@
 	onChangePM : function(component, event, helper)
     {
     	component.find("userPM").set("v.value", event.getSource().get("v.value"));
+    	var field = "Project Manager";
+        var description = "This field allows us to specify the Project Manager for this Project";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onChangeRM : function(component, event, helper)
     {
     	component.find("userRM").set("v.value", event.getSource().get("v.value"));
+    	var field = "Risk Manager";
+        var description = "This field allows us to specify the Risk Manager for this Project";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onChangeIndSector : function(component, event, helper)
     {
     	component.find("industrySector").set("v.value", event.getSource().get("v.value"));
+    	var field = "Industry Sector";
+        var description = "This field allows us to specify the Industry Sector for the Client";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onCurrencyChange : function(component, event, helper)
     {
     	component.find("currency").set("v.value", event.getSource().get("v.value"));
+    	var field = "Currency";
+        var description = "This field specifies the currency used";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onScheduleChange : function(component, event, helper)
     {
@@ -242,14 +256,23 @@
 	onChangeStatusProjet : function(component, event, helper)
     {
     	component.find("statusProjet").set("v.value", event.getSource().get("v.value"));
+    	var field = "Status";
+        var description = "This field specifies the status of the projet";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onChangePilote : function(component, event, helper)
     {
     	component.find("pilote").set("v.value", event.getSource().get("v.value"));
+    	var field = "Pilot";
+        var description = "This field allows us to specify the Pilot for this processus";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onChangeCopilote : function(component, event, helper)
     {
     	component.find("copilote").set("v.value", event.getSource().get("v.value"));
+    	var field = "Copilot";
+        var description = "This field allows us to specify the copilot for this processus";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
     onChangeOrganisation : function(component, event, helper)
     {
@@ -352,6 +375,30 @@
         var description = $A.get("$Label.c.orm_description_type_assessment");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
         
+    },
+    
+    onChangeTypeProjet : function(component,event,helper){ 
+        
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.find("typeProjet").set("v.value", event.getSource().get("v.value")); 
+        }
+        var field = "Project Type";
+        var description = "This field allows us to specify what type of project we want to create";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+        
+    },
+    
+    onNameProjectChange : function(component,event,helper){ 
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.displaySaveCancelBtn",true);
+        }
+    },
+    
+    sendProjectNameToFD  : function(component,event,helper){ 
+    	
+        var field = "Project Name"
+        var description = "This fiels represents the name of the project"
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     
     onTitleChange : function(component,event,helper){ 

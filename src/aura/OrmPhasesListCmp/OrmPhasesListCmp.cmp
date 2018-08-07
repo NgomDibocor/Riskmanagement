@@ -3,40 +3,100 @@
 	<!-- methodes -->
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:registerEvent name="OrmEventNewPhaseClicked" type="c:OrmEventNewPhaseClicked" description="" />
+	<aura:handler event="c:OrmEventNewPhaseCreated" action="{!c.refreshList}" />
 	
 	<!-- attributes -->
 	<aura:attribute name="idAssessment" type="String" description="" />
-	<aura:attribute name="phases" type="Macro[]" description="" />
+	<aura:attribute name="phases" type="Macro[]" description=""  />
 	<aura:attribute name="openModalError" type="Boolean"  default="false"/>
+	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+	<aura:attribute name="key" type="string" description="" />
 	
+	<!-- 
+		<div class="slds-m-around_large">
 	
-	<span class="btnNewPhase" onclick="{!c.openOrmPhaseNewCmp}">
-                                <lightning:icon iconName="utility:new" size="medium" />
-    </span>
+		<span class="btnNewPhase" onclick="{!c.openOrmPhaseNewCmp}">
+        	<lightning:icon iconName="utility:new" size="medium" />
+        </span>
+        
+        <aura:if isTrue="{!v.openModalError}">
     
-    <aura:if isTrue="{!v.openModalError}">
+	    	<div class="demo-only" style="height: 640px;">
+			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			    <div class="slds-modal__container">
+			      <header class="slds-modal__header slds-modal__header_empty">
+			        <button onclick="{!c.closeOpenModalError}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+			        	title="{!$Label.c.close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+			        </button>
+			      </header>
+			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+			        <p> Create the Assessment Before</p>
+			      </div>
+			      <footer class="slds-modal__footer">
+			        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalError}">{!$Label.c.close_button_title}</button>
+			      </footer>
+			    </div>
+			  </section>
+			  <div class="slds-backdrop slds-backdrop_open"></div>
+			</div>
+	    
+	    </aura:if>
+	</div>
+	
+	-->
+	
+    <!--  test list-->
     
-    	<div class="demo-only" style="height: 640px;">
-		  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-		    <div class="slds-modal__container">
-		      <header class="slds-modal__header slds-modal__header_empty">
-		        <button onclick="{!c.closeOpenModalError}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-		        	title="{!$Label.c.close_button_title}">		          
-		          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
-		        </button>
-		      </header>
-		      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-		        <p> Create the Assessment Before</p>
-		      </div>
-		      <footer class="slds-modal__footer">
-		        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalError}">{!$Label.c.close_button_title}</button>
-		      </footer>
-		    </div>
-		  </section>
-		  <div class="slds-backdrop slds-backdrop_open"></div>
+    <div class="slds-m-around_large">
+    	<div class="topSpacing">
+        	<label class="slds-form-element__label ">Phase<span class="cmn_mandatory_indicator">*</span></label>
+        </div>                                        
+	    <div class="phase">
+	    
+	    	<lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="" />
+	
+			<!-- use aura:if for show/hide buttons --> 
+	        <aura:if isTrue="{!v.showSaveCancelBtn}">
+	            <!--button for save and cancel Record after Inline Edit-->
+	            <lightning:buttonGroup class="slds-m-around_medium">
+	                <lightning:button label="{!$Label.c.cancel_button_title}" onclick="{!c.cancel}"/>
+	                <lightning:button label="{!$Label.c.save_button_title}" onclick="{!c.save}" variant="success"/>
+	            </lightning:buttonGroup>
+	        </aura:if> 
+        
+	        <!--Data Table-->     
+	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+	            <thead>
+	                <tr class="slds-text-title--caps">
+	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
+	                  <th scope="col"><div class="slds-truncate" title="Phase">Phase</div></th>
+	                </tr>
+	            </thead>
+	            
+	            <tbody>
+	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
+	                <aura:iteration items="{!v.phases}" var="phase" indexVar="sNo">
+	                   <!-- Child Lightning Component 
+	                    <c:OrmPhaseEditRow phase="{!phase}"
+	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
+	                                     sNo="{!sNo + 1}" / -->
+	                    
+	                    <tr>
+		                    <td>{!sNo + 1}</td> 
+		                    <td>{!phase.orm_phase__c}</td>
+		                </tr>              
+	                </aura:iteration>
+	            </tbody>
+	        </table>
+		    	
 		</div>
+        <span class="btnNewPhase" onclick="{!c.openOrmPhaseNewCmp}">
+        	<lightning:icon iconName="utility:new" size="medium" />
+        </span>
+    </div>
     
-    </aura:if>
+    <!-- / test list  -->
 	
 	
 	<c:OrmPhaseNewCmp assessmentId="{!v.idAssessment}" />

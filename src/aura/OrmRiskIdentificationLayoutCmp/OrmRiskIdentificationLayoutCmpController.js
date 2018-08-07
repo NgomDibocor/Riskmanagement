@@ -2,7 +2,6 @@
 	initialiseAssessment : function(component, event, helper){
         alert('id Assessment ', event.getParam('idAssessment'));
     	component.set("v.idAssessment", event.getParam('idAssessment'));
-      //  alert(component.get("v.idAssessment"));
     },
     ormRiskCreatedEvent: function(component, event, helper){
      helper.fetchPicklist(component, event);
@@ -34,27 +33,30 @@
 	 *
 	 */
 	
-	filterByPicklist:function(component,event,helper)
+	filterByCategorieRisk:function(component,event,helper)
 	{
-	var nomfield=component.find("categorieRisk");
-	var item = nomfield.get("v.value");
+	var categorieRisk=component.find("categorieRisk");
+	var categorieRiskValue = categorieRisk.get("v.value");
 	var isItemValid = true;
-        if ($A.util.isEmpty(item)) {
+        if ($A.util.isEmpty(categorieRiskValue)) {
             isItemValid = false;
              helper.fetchPicklist(component, event);
         } 
         if (isItemValid) {
             var action = component.get('c.findAllResearchPicklist');
              action.setParams({
-                "Research": item
+                "Research": categorieRiskValue
             });
-               action.setCallback(this, function(response) {
+               action.setCallback(this, function(response)
+                {
                 var state = response.getState();
                 if (state == "SUCCESS") {
                  component.set('v.allRisk', response.getReturnValue());
                  component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
-                     }
-                  else {
+                    
+                  }
+                  else
+                  {
                   helper.fetchPicklist(component, event);
                   }
             });
@@ -98,31 +100,12 @@
 	
 	openPopupAssociation: function(component,event,helper)
 	{
-		//alert(component.get("v.idAssessment"));
 		var selectedRows = event.getParam('selectedRows');
-		//alert(JSON.stringify(selectedRows));
-		
 		selectedRows.forEach(function(selectedRow) {
-		  console.log(selectedRow.Id);
 		});
-		
-		
-		
 		// Display that fieldName of the selected rows
     	component.set("v.relatedRisk", selectedRows);
     	console.log('v.relatedRisk  nbre' + component.get("v.relatedRisk").length);
-    	/*if ($A.util.isEmpty(selectedRows))
-    	 {
-            alert("association supprimer");
-    	 } 
-    	 else
-    	 {
-    	    component.set("v.isOpen", true);
-    	 }*/
-	},
-	closeModal:function(component,event,helper)
-	{
-		component.set("v.isOpen", false);
 	},
 	/*
 	 * CreatedBy @David Diop
@@ -135,9 +118,10 @@
         var regex;
         if ($A.util.isEmpty(term)) 
          {
-	        var nomfield=component.find("categorieRisk");
+	       /* var nomfield=component.find("categorieRisk");
 		    var item = nomfield.get("v.value");
 		    component.set("v.categorieRisk",item);
+		    component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));*/
 	        helper.fetchPicklist(component, event);
          }
          else
@@ -177,8 +161,7 @@
 		{
 			var state = response.getState();
 			console.log(state);
-            if (component.isValid() && state == "SUCCESS") {
-                    
+            if (component.isValid() && state == "SUCCESS") {   
                 alert("association  réussie");
             }
             else {

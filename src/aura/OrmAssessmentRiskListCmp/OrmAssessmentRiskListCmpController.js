@@ -5,12 +5,12 @@
     doInit : function(component, event, helper)
     {
        // helper.refreshList(component, event);
-        var action = component.get('c.getRisks');
+        var action = component.get('c.findAll');
         action.setCallback(this, function(response){
-           /* if(response.getState() == 'SUCCESS'){
+            if(response.getState() == 'SUCCESS'){
                 component.set('v.assessmentRisks', response.getReturnValue());
-            }*/
-            var state = response.getState();
+            }
+           /* var state = response.getState();
              if(state === 'SUCCESS'){
                 var custs = [];
                 var conts = response.getReturnValue();
@@ -19,7 +19,7 @@
                 }
                 component.set("v.assessmentRisks", custs);
                 
-            }
+            }*/
             else
             {
                  alert($A.get("$Label.c.loaded_message"));

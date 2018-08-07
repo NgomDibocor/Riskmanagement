@@ -57,6 +57,6 @@
         },
          onChange2 : function(component, event, helper)
     {
-    	component.find("allCategorieRisk").set("v.value", event.getSource().get("v.value")); 
+    	component.find("categorieRisk").set("v.value", event.getSource().get("v.value")); 
 	}
 })

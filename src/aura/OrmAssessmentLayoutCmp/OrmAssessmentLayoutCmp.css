@@ -12,6 +12,7 @@
 }
 .THIS span.btnNewOrg {
     display: inline-block;
+    cursor: pointer;
 }
 .THIS div.activity {
     display: inline-block;
@@ -27,4 +28,17 @@
 }
 .THIS span.btnNewCause {
     display: inline-block;
+}
+.THIS .spanClass{
+	display: block;
+}
+.THIS .slid{
+	display: block;
+	width: 90%;
+}
+.THIS .scheduleInput{
+	width: 85%;
+}
+.THIS .scheduleSelect{
+	width: 15%;
 }

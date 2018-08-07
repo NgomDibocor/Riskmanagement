@@ -49,9 +49,83 @@
                 alert("l'Element n'a pas été retrouvé");
             }
         });
+        var actionStatus = component.get('c.getSelectOptions');
+        actionStatus.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_statusAssessment__c'});
+        var opts3 = [];
+        actionStatus.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                var allValuesStatus = response.getReturnValue();
+ 
+                for (var i = 0; i < allValuesStatus.length; i++) {
+                    opts3.push(allValuesStatus[i]);
+                }
+                component.set('v.allStatus', opts3);
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        var actionCurrency = component.get('c.getSelectOptions');
+        actionCurrency.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_currency__c'});
+        var opts4 = [];
+        actionCurrency.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                var allValuesCurrency = response.getReturnValue();
+ 
+                
+                for (var i = 0; i < allValuesCurrency.length; i++) {
+                    opts4.push(allValuesCurrency[i]);
+                }
+                component.set('v.allCurrency', opts4);
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        var actionSchedule = component.get('c.getSelectOptions');
+        actionSchedule.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_schedule__c'});
+        var opts5 = [];
+        actionSchedule.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                var allValuesSchedule = response.getReturnValue();
+ 
+                
+                for (var i = 0; i < allValuesSchedule.length; i++) {
+                    opts5.push(allValuesSchedule[i]);
+                }
+                component.set('v.allSchedule', opts5);
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        var actionSector = component.get("c.getSelectOptions");
+        actionSector.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_clientIndustrySector__c'});
+        actionSector.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allIndustrySector', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        var actionUser = component.get("c.getUsers");
+        actionUser.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allUser', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
         $A.enqueueAction(actionTypeAssessment);
         $A.enqueueAction(actionOrgs);
         $A.enqueueAction(actionTypeProjet);
+        $A.enqueueAction(actionStatus);
+        $A.enqueueAction(actionCurrency);
+        $A.enqueueAction(actionSchedule);
+        $A.enqueueAction(actionSector);
+        $A.enqueueAction(actionUser);
 	},
    
     activeContext : function(component, event, helper) {

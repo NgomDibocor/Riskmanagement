@@ -168,7 +168,7 @@
           newItem.orm_typeProjet__c = typeProjet.get("v.value");
           var currency = component.find("currency");
           newItem.orm_currency__c = currency.get("v.value");
-          var projectManager = component.find("industrySector");
+          var industrySector = component.find("industrySector");
           newItem.orm_clientIndustrySector__c = industrySector.get("v.value");
           
           var riskManager = component.find("userRM");

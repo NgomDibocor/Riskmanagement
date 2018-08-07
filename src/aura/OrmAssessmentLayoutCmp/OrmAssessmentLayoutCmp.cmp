@@ -258,7 +258,9 @@
 	                        </tr>
 	                        <tr>
 	                           <td>
-	                             
+	                                <div class="topSpacing"> 
+	                                    <label class="slds-form-element__label">Industry Sector of Client<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>
 									<div class="slds-form-element">
 		                                <div class="slds-form-element__control">
 		                                    <ui:inputSelect aura:id="industrySector" 

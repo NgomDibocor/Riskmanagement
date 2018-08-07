@@ -1,6 +1,6 @@
 ({
 	requiredValidation : function(component,event) {
-        // get all accounts.. 	
+        // get all causes.. 	
         var allRecords = component.get("v.causes");
         var isValid = true;
         // play a for loop on all account list and check that account name is not null,   

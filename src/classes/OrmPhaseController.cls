@@ -59,4 +59,26 @@ public with sharing class OrmPhaseController {
         allOpts.sort();
         return allOpts;
     }
+    
+    /**
+	 * @author: Laye
+	 * @date: Creation: 07/08/2018
+	 * @description: method for update records after inline editing
+	*/
+    @AuraEnabled
+    public static List <Macro> updatePhases(List<Macro> phases) {
+        update phases;
+        return phases;
+    }
+    
+    /**
+	 * @author: Laye
+	 * @date: Creation: 07/08/2018
+	 * @description: find all phases related to the assessment
+	*/
+	@AuraEnabled
+	public static List<Macro> findAllPhasesByAssessment(String idAss){
+		return [SELECT Id, orm_phase__c FROM Macro WHERE orm_assessment__c=: idAss AND 
+		 RecordTypeId =: OrmPhaseController.getPhaseRecordTypeId()];	
+	}
 }

@@ -378,12 +378,12 @@
     	/* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
-        /*var assessmentRiskId = "";
+        var assessmentRiskId = "";
         var evt = $A.get("e.c:OrmNewCauseClickedEvt");
         evt.setParams({
         	"idAssessmentRisk" : assessmentRiskId
 		});
-		evt.fire();*/
+		evt.fire();
     },
     
     onChangeCause : function(component, event, helper) {

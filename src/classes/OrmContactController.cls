@@ -23,6 +23,21 @@ public with sharing class OrmContactController {
         return RecordTypeId;
     }
   
+  /**
+ * getContactWorkshopRecordTypeId
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get Record type of contact workshop 
+ * @history 
+ * 2018-08-07: Salimata NGOM - Implementation
+ */
+    
+     public static Id getContactWorkshopRecordTypeId(){
+         Id recordTypeId = Schema.SObjectType.orm_ContactWorkshop__c.getRecordTypeInfosByName()
+                  .get('orm RT contactWorkshow').getRecordTypeId();
+        return RecordTypeId;
+    }
  /**
  * find all contact 
  *
@@ -42,10 +57,30 @@ public with sharing class OrmContactController {
         return allContact;
     }  
     
+     /**
+ * find all contact workshop
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get All contact workshop
+ * @history 
+ * 2018-08-07 : Salimata NGOM - Implementation
+ */
+   /**
+ @AuraEnabled 
+    public static List<orm_ContactWorkshop__c> findAllContactWorkshop(orm_ContactWorkshop__c item){
+        List<orm_ContactWorkshop__c> allContact = new List<orm_ContactWorkshop__c>();
+        allContact = [Select Id, Name,orm_contact__c, orm_contact__r.Name
+                    From orm_ContactWorkshop__c where RecordTypeId=:OrmContactController.getContactWorkshopRecordTypeId() 
+                   ];
+        return allContact;
+    }  
+   **/
+    
  /**
  * @author Salimata NGOM
  * @version 1.0
- * @description method to add an Contact
+ * @description method to add an Contact 
  * @history 
  * 2018-08-06: Salimata NGOM - Implementation
  */
@@ -55,4 +90,20 @@ public with sharing class OrmContactController {
 		upsert item;
 		return item;
 	}
+/**
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method to associate contact to workshop
+ * @history 
+ * 2018-08-07: Salimata NGOM - Implementation
+ */
+    @AuraEnabled
+	public static orm_ContactWorkshop__c addWorkShopContact(orm_ContactWorkshop__c item){        
+        item.RecordTypeId = OrmContactController.getContactWorkshopRecordTypeId();
+        item.orm_dateAjout__c=System.today();
+		upsert item;
+		return item;
+	}
+	
+	
 }

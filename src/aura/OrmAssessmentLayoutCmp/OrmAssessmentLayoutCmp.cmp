@@ -47,7 +47,7 @@
     <aura:registerEvent name="OrmOpenNewOrganisation"
 		type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
-    <!-- aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/ -->
+    <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     
@@ -684,6 +684,8 @@
 	                             <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
 	                        </td>
 	                   </tr>
+<<<<<<< HEAD
+=======
 	                   <tr>
 	                       <td>
 	                    		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
@@ -716,6 +718,7 @@
 	                    		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
 	                    	</td>
 	                    </tr>
+>>>>>>> a6750157beba1c45c0ebcdb8e249f7c0972e100a
                   </aura:if>
                   
                    <!--<tr>
@@ -769,7 +772,6 @@
                 </aura:if>  
                 <aura:if isTrue="{!v.showRiskAnalyse}">
                     
-                    <!--
                     <tr>
                         <td>
                             <div class="topSpacing">
@@ -784,13 +786,20 @@
                                                     value="{!cause.Id}">
                                             </option>
                                         </aura:iteration>
-                                </lightning:select>
+                                </lightning:select>	  
+	                        	<!--
+	                        	<ui:inputSelect class="slds-input" aura:id="Cause" change="{!c.onSelectChange}">
+	                            	<ui:inputSelectOption text="Prospecting" label="Cause1" value="true"/>
+	                            	<ui:inputSelectOption text="Qualification" label="Cause2"/>
+	                            	<ui:inputSelectOption text="Needs Analysis" label="Cause3"/>
+	                            </ui:inputSelect>
+	                            -->
                             </div>
                             <span class="btnNewCause" onclick="{!c.openCauseNewCmp}">
                                 <lightning:icon iconName="utility:new" size="medium" /></span>
                         </td>
                     </tr>
-                    -->
+                    
                     <!-- list of causee -->
                     <tr>
                     	<td>
@@ -912,6 +921,6 @@
     
     
     <c:OrmOrganisationNewCmp/>
-    <!-- c:OrmCauseNewCmp / -->
+    <c:OrmCauseNewCmp />
     <c:OrmWorkShopNewCmp/>
 </aura:component>

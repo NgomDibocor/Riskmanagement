@@ -1,0 +1,60 @@
+<aura:component controller="OrmPhaseController">
+	
+	<!-- methods -->
+	<!-- on component load, fetch picklist values dynamically from  apex controller -->   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!-- attributes -->
+    <aura:attribute name="objInfo" type="macro" default="{sobjectType : 'Macro'}" 
+    	description="object information to fetch picklist values"/>
+    <aura:attribute name="showSaveCancelBtn" type="boolean"/>
+    <aura:attribute name="showErrorClass" type="boolean" default="false"/>
+    <aura:attribute name="sNo" type="string" />
+    <aura:attribute name="phase" type="sobject" default="{	'sobjectType' : 'Macro',
+															'orm_phase__c': '',
+															'orm_assessment__c': ''
+															}" />
+    <aura:attribute name="phaseEditMode" type="boolean" default="false" />
+    <aura:attribute name="allPhases" type="String[]" description="store picklist options values" />
+    
+    <!--Table Row Start-->  
+    <tr>
+        <td><div class="slds-truncate">{!v.sNo}</div></td>
+       
+         <td ondblclick="{!c.inlineEditPhase}" class="slds-cell-edit">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.phaseEditMode == false}">
+                    <span class="slds-truncate" title="Phase">Phase</span>
+                    <button onclick="{!c.inlineEditPhase}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Phase">
+                        <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                    </button>
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <label class="slds-form-element__label">Phase</label>
+                                        <ui:inputSelect aura:id="phaseId"
+                                                        class="slds-select inputFieldWidth"
+                                                        blur="{!c.closePhaseBox}"
+                                                        change="{!c.onPhaseChange}"
+                                                        value="{!v.phase.orm_phase__c}"
+                                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td> 
+        
+         
+    </tr>
+    
+    
+</aura:component>

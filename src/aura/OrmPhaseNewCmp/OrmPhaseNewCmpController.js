@@ -49,6 +49,10 @@
 			           'mode' : 'dismissible'
 		            });	
 		            toast.fire();
+		            
+		            var evt = $A.get("e.c:OrmEventNewPhaseCreated");
+                    evt.fire();
+		            
             		helper.closeModal(component, event);
                     component.set('v.phase', { 'sobjectType' : 'Macro',
 											   'orm_phase__c': '',

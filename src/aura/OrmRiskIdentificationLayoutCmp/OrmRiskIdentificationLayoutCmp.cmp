@@ -22,11 +22,10 @@
     <aura:attribute name="relatedRisk" type="Macro[]" />
     <aura:attribute name="idAssessment" type="String" />
     <aura:attribute name="assessmentRisk" type="orm_assessmentRisk__c" default="{
-						'sobjectType' : 'orm_assessmentRisk__c',
-                         'orm_assessment__c': '',  
-                         'orm_Risk__c':''   
-					}" />
-
+																		'sobjectType' : 'orm_assessmentRisk__c',
+												                         'orm_assessment__c': '',  
+												                         'orm_Risk__c':''   
+																	}" />
     <div class="slds-grid slds-gutters">
         <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
             <div class="slds-form-element__control">
@@ -54,13 +53,21 @@
     </div> <br/><br/>
     <div class="slds-grid slds-gutters">
         <div class="slds-col slds-size_10-of-12">
-            <lightning:datatable aura:id="datatableRisk" data="{! v.allRisk }" class="slds-m-top_medium" columns="{! v.columns }" keyField="id" resizeColumnDisabled="false" selectedRows="{! v.risk}" onrowselection="{!c.openPopupAssociation}" showRowNumberColumn="false"
+            <lightning:datatable 
+             aura:id="datatableRisk"
+             data="{! v.allRisk }" 
+             class="slds-m-top_medium" 
+             columns="{! v.columns }" 
+             keyField="id" 
+             resizeColumnDisabled="false" 
+             selectedRows="{! v.risk}" 
+             onrowselection="{!c.openPopupAssociation}" 
+             showRowNumberColumn="false"
             />
         </div>
     </div><br/>
     <button class="slds-button slds-button--brand" onclick="{!c.relatedRiskfunction}">
-							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
+			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
 	</button>
-    
     <c:OrmRiskNewCmp/>
 </aura:component>

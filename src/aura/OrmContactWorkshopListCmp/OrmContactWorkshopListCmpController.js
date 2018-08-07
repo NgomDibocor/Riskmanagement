@@ -29,9 +29,36 @@
         });
         $A.enqueueAction(action);
 	component.set("v.isOpenModalContactWorkshop", true);
-	 component.set('v.assessmentData', event.getParam('Assessmentdata'));
+	 component.set('v.workshop', event.getParam('Workshop'));
 	},
+	
 	closeModalWorkshopContact: function(component, event, helper) {
 	component.set("v.isOpenModalContactWorkshop", false);
+	},
+	
+	createContactWorkshop :function(component, event, helper) {
+	alert(JSON.stringify(component.get('v.assessmentData')));
+		var contact = component.find('idcontact');
+		var notif=component.find('idnotif');
+		var isItemValid = true;
+		
+	if ($A.util.isEmpty(contact.get('v.value'))) {
+			isItemValid = false;
+
+		}
+
+		if (isItemValid) {
+		/ new item contactWorkshop
+
+			var newItem = component.get("v.item");
+ 
+			newItem.orm_contact__c=contact.get('v.value');
+			newItem.orm_Workshop__c=component.get("v.workshop").Id;
+			newItem.orm_dateAjout__c=System.Date();
+			newItem.orm_notification__c=notif.get('v.value');
+			alert(JSON.stringify(newItem));
+			
+		}
 	}
+	
 })

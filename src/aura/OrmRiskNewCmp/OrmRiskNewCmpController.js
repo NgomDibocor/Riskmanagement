@@ -14,21 +14,18 @@
         //helper.openCurrentCmp(component, event);
 	},
      createItem:function(component, event, helper) {
-         var newItem = component.get("v.risk");
-        var nomfield=component.find("Name");
-       newItem.Name =nomfield.get("v.value");
-        var description = component.find("description");
-        newItem.Description = description.get("v.value"); 
+        var newItem = component.get("v.risk");
+        var nameRisk=component.find("Name");
+        newItem.Name =nameRisk.get("v.value");
+        var descriptionRisk = component.find("description");
+        newItem.Description = descriptionRisk.get("v.value"); 
         var categorieRisk= component.find("categorieRisk");
         newItem.orm_categorieRisk__c= categorieRisk.get("v.value");
-          var isItemValid = true;
-        if ($A.util.isEmpty(nomfield)) {
+        var isItemValid = true;
+        if ($A.util.isEmpty(nameRisk)) {
             isItemValid = false;
         } 
-        if (isItemValid) {
-            //var idAssessment=component.get("v.assessmentData").Id;
-         // var  idAssessment="a051H00000aQvjWQAS";
-           //newItem.orm_assessment__c= idAssessment; 
+        if (isItemValid) { 
             var action = component.get('c.add');
             action.setParams({
                 "item": newItem
@@ -46,10 +43,10 @@
                                                       		 'orm_assessment__c': '',
                                                              'orm_categorieRisk__c' : ''
                                                          });
-                    alert("ajout réussie");
+                    alert("successful addition");
                      }
                   else {
-                alert("ajout échouée");
+                alert("failed addition");
                   }
             });
             $A.enqueueAction(action);

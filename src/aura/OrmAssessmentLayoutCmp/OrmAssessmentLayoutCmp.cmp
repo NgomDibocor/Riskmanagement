@@ -792,6 +792,6 @@
     
     
     <c:OrmOrganisationNewCmp/>
-    <c:OrmCauseNewCmp />
+    <!-- c:OrmCauseNewCmp / -->
     <c:OrmWorkShopNewCmp/>
 </aura:component>

@@ -62,4 +62,6 @@
 		
 	
 	</div>
+	
+	<c:OrmCauseNewCmp />
 </aura:component>

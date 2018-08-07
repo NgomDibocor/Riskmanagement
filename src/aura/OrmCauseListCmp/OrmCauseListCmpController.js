@@ -1,7 +1,7 @@
 ({
 	doInit : function(component, event, helper) {
 		
-		var idAssessmentRisk = 'a001H00000kcU5ZQAU';
+		var idAssessmentRisk = 'a001H00000kcdy9QAA';
         var action = component.get("c.findAllCausesByAssessmentRisk");
         action.setParam('idAssRisk', idAssessmentRisk);
         action.setCallback(this, function(response) {

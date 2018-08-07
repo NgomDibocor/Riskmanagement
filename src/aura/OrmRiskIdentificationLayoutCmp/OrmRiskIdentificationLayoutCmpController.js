@@ -4,6 +4,9 @@
     	component.set("v.idAssessment", event.getParam('idAssessment'));
       //  alert(component.get("v.idAssessment"));
     },
+    ormRiskCreatedEvent: function(component, event, helper){
+     helper.fetchPicklist(component, event);
+    },
     
 	/*
 	 * CreatedBy @David Diop

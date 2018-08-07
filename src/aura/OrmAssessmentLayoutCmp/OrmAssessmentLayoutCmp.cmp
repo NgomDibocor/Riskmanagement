@@ -601,12 +601,15 @@
                                 </ui:inputSelect>
                             </div>
                         </td>
-                    </tr>  
+                    </tr>--> 
+
+                    <!-- phase -->
                     <tr>
                      	<td>
                      		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
                      	</td>
-                    </tr>-->
+
+                    </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showContextActivity}">
                     

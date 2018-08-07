@@ -14,7 +14,7 @@
         var showData = component.get("v.showData");
         if(showContext == true){
             var newItem = component.get("v.assessmentData");
-            var assessmentName = component.find("Name").get("v.value");
+            //var assessmentName = component.find("Name").get("v.value");
             //console.log('assessmentName:::'+assessmentName);
             /*if(assessmentName =='' || assessmentName == null || newItem.Id == null ){
                 component.set("v.setMessage",'error');           
@@ -155,11 +155,35 @@
     },
     
     createAssessment : function(component, event, helper) {
-        var title = component.find("Name");
-        var titleAssess = title.get("v.value");
+       
         var ta = component.find("typeAssessment");
+        
         var newItem = component.get("v.assessmentData");
         newItem.orm_typeAssessment__c = ta.get("v.value");
+        
+        if(ta.get("v.value")== 'Projet'){
+          var statusProjet = component.find("statusProjet");
+          newItem.orm_statusAssessment__c = statusProjet.get("v.value");
+          var typeProjet = component.find("typeProjet");
+          newItem.orm_typeProjet__c = typeProjet.get("v.value");
+          var currency = component.find("currency");
+          newItem.orm_currency__c = currency.get("v.value");
+          var projectManager = component.find("industrySector");
+          newItem.orm_clientIndustrySector__c = industrySector.get("v.value");
+          
+          var riskManager = component.find("userRM");
+          newItem.orm_riskManager__c = riskManager.get("v.value");
+          var projectManager = component.find("userPM");
+          newItem.orm_projetManager__c = projectManager.get("v.value");
+        }
+        if(ta.get("v.value")== 'Processus'){
+          var statusProcessus = component.find("statusProcessus");
+          newItem.orm_statusAssessment__c = statusProcessus.get("v.value");
+        }
+        if(ta.get("v.value")== 'Organisation'){
+          var statusOrganisation = component.find("statusOrganisation");
+          newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
+        }
         //alert(JSON.stringify(newItem))
         var action = component.get('c.add');
         action.setParams({
@@ -189,6 +213,30 @@
     onChangeTA : function(component, event, helper)
     {
     	component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));
+	},
+	onChangePM : function(component, event, helper)
+    {
+    	component.find("userPM").set("v.value", event.getSource().get("v.value"));
+	},
+	onChangeRM : function(component, event, helper)
+    {
+    	component.find("userRM").set("v.value", event.getSource().get("v.value"));
+	},
+	onChangeIndSector : function(component, event, helper)
+    {
+    	component.find("industrySector").set("v.value", event.getSource().get("v.value"));
+	},
+	onCurrencyChange : function(component, event, helper)
+    {
+    	component.find("currency").set("v.value", event.getSource().get("v.value"));
+	},
+	onScheduleChange : function(component, event, helper)
+    {
+    	component.find("schedule").set("v.value", event.getSource().get("v.value"));
+	},
+	onChangeStatusProjet : function(component, event, helper)
+    {
+    	component.find("statusProjet").set("v.value", event.getSource().get("v.value"));
 	},
     onChangeOrganisation : function(component, event, helper)
     {

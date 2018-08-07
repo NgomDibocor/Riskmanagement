@@ -42,11 +42,23 @@
                 alert("l'Element n'a pas été retrouvé");
             }
         });
+        var actionTypeOrganisation = component.get("c.getSelectOptions");
+        actionTypeOrganisation.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_typeOrganisation__c'});
+        actionTypeOrganisation.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allTypeOrganisation', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        
 
         $A.enqueueAction(actionRegion);
         $A.enqueueAction(actionPays);
         $A.enqueueAction(actionSector);
         $A.enqueueAction(actionCurrency);
+        $A.enqueueAction(actionTypeOrganisation);
     },
      
     onChangeRegion : function(component, event, helper)
@@ -65,6 +77,10 @@
     {
     	component.find("industrySector").set("v.value", event.getSource().get("v.value")); 
 	},
+	onChangeTypeOrganisation : function(component, event, helper)
+    {
+    	component.find("typeOrg").set("v.value", event.getSource().get("v.value")); 
+	},
     createItem: function(component, event, helper) {
 
         var newItem = component.get("v.item");
@@ -76,6 +92,8 @@
 		newItem.orm_currency__c  = currencyField.get("v.value");
         var indSectorField = component.find("industrySector");
 		newItem.Industry  = indSectorField.get("v.value");
+		var typeOrg = component.find("typeOrg");
+		newItem.Industry  = typeOrg.get("v.value");
 
         if ($A.util.isEmpty(newItem.Name)) {
             alert("le libellé ne peut être null, veuillez selectionner une valeur");

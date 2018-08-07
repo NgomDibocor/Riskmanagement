@@ -247,7 +247,7 @@
     {
     	component.find("pilote").set("v.value", event.getSource().get("v.value"));
 	},
-	onChangePilote : function(component, event, helper)
+	onChangeCopilote : function(component, event, helper)
     {
     	component.find("copilote").set("v.value", event.getSource().get("v.value"));
 	},

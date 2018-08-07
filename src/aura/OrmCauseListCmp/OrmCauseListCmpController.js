@@ -28,6 +28,21 @@
         $A.enqueueAction(action);
 	},
 	
+	/* @cretedBy: laye
+	   @createdDate: 28/07/2018
+     */
+    openCauseNewCmp : function(component, event, helper){
+    	/* after created the assessment we must get the assessment id
+			var assessment = component.get('v.assessmentData');
+         */
+        var assessmentRiskId = "";
+        var evt = $A.get("e.c:OrmNewCauseClickedEvt");
+        evt.setParams({
+        	"idAssessmentRisk" : assessmentRiskId
+		});
+		evt.fire();
+    },
+	
 	
 	save: function(component, event, helper) {
 		// Check required fields(Name) first in helper method which is return true/false

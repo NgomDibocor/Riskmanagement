@@ -3,6 +3,9 @@
 	<!-- methodes -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
     <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshList}" />
+    
+    <!-- events -->
+    <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
 
 	<!-- attributes -->
 	<aura:attribute name="causes" type="Macro[]" description="" />
@@ -12,7 +15,14 @@
 	
 	<div class="slds-m-around_large">
 	
-		<lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
+		
+		<div class="topSpacing">
+        	<label class="slds-form-element__label ">Cause<span class="cmn_mandatory_indicator">*</span></label>
+        </div>                                        
+	    <div class="cause">
+	    	<!--  -->
+	    	
+	    		<lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
 	
 		<!-- use aura:if for show/hide buttons --> 
         <aura:if isTrue="{!v.showSaveCancelBtn}">
@@ -42,7 +52,16 @@
                                      sNo="{!sNo + 1}" />                       
                 </aura:iteration>
             </tbody>
-        </table>       
-        
-    </div>
+        </table>
+	    	
+	    	<!--  -->
+	    </div>
+        <span class="btnNewCause" onclick="{!c.openCauseNewCmp}">
+        	<lightning:icon iconName="utility:new" size="medium" />
+        </span>
+		
+	
+	</div>
+	
+	<c:OrmCauseNewCmp />
 </aura:component>

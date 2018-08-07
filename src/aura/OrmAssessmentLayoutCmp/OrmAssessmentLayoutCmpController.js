@@ -168,7 +168,7 @@
           newItem.orm_typeProjet__c = typeProjet.get("v.value");
           var currency = component.find("currency");
           newItem.orm_currency__c = currency.get("v.value");
-          var projectManager = component.find("industrySector");
+          var industrySector = component.find("industrySector");
           newItem.orm_clientIndustrySector__c = industrySector.get("v.value");
           
           var riskManager = component.find("userRM");
@@ -378,12 +378,12 @@
     	/* after created the assessment we must get the assessment id
 			var assessment = component.get('v.assessmentData');
          */
-        var assessmentRiskId = "";
+        /*var assessmentRiskId = "";
         var evt = $A.get("e.c:OrmNewCauseClickedEvt");
         evt.setParams({
         	"idAssessmentRisk" : assessmentRiskId
 		});
-		evt.fire();
+		evt.fire();*/
     },
     
     onChangeCause : function(component, event, helper) {

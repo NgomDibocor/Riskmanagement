@@ -1,2 +1,9 @@
 .THIS {
 }
+.THIS div.cause {
+    display: inline-block;
+    width:95%;
+}
+.THIS span.btnNewCause {
+    display: inline-block;
+}

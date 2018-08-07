@@ -42,6 +42,7 @@
     <aura:handler event="c:OrmCloseFieldDescriptionEvt"  action="{!c.closeFielDescript}" />
     <aura:handler event="c:eventNewOrganisationCreated" action="{!c.refreshListOrganisation}" />
     
+    
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation"
 		type="c:OrmOpenNewOrganisationEvt" />

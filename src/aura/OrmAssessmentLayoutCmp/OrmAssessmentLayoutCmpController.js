@@ -455,5 +455,6 @@
         var description = event.getParam("descriptionField");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
+   
     
 })

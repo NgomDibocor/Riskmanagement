@@ -48,5 +48,18 @@
             }
         );
     },
+     showInfoAssessment : function(component,event,helper){ 
+     alert(JSON.stringify(event.getParam("assessmentObject")))
+       $A.createComponent(
+                "c:OrmAssessmentLayoutCmp", {
+                    "component": component.set("v.assessmentData", event.getParam("assessmentObject")),
+                },
+                function(newCmp) {
+                    if (component.isValid()) {
+                        component.set("v.body", newCmp);
+                    }
+                }
+            );  
+      },
     
 })

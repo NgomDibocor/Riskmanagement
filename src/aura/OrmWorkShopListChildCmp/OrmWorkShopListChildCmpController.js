@@ -93,7 +93,7 @@
 
             toast.fire();
         } else {
-        	var evt = $A.get("e.c:OrmNewContactEvt");
+        	var evt = $A.get("e.c:OrmContactWorkshopListEvt");
 			evt.setParams({
 			   "Assessmentdata" : component.get("v.assessmentData")
 			});

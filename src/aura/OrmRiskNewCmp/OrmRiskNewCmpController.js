@@ -33,6 +33,27 @@
                action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (component.isValid() && state == "SUCCESS") {
+                component.set("v.idAssessment", event.getParam('idAssessment'));
+                var assessmentRisk = component.get("v.assessmentRisk");
+                 assessmentRisk.orm_Risk__c = newItem;
+                 assessmentRisk.orm_assessment__c = component.get("v.idAssessment");
+                 
+                 var actionAssessment = component.get('c.addAssessmentRisk');
+		            actionAssessment.setParams({
+		                "item": assessmentRisk
+		            });
+		             actionAssessment.setCallback(this, function(response) {
+		                var state = response.getState();
+		                if (component.isValid() && state == "SUCCESS") 
+		                {
+		                alert("association");
+		                }
+		                else
+		                {
+		                alert("pas d'association");
+		                }
+		                });
+		                $A.enqueueAction(actionAssessment);
                     // publier evenement creation
                     var evt = $A.get("e.c:OrmRiskCreatedEvt");
 				   	evt.fire();   

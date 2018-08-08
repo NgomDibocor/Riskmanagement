@@ -174,7 +174,10 @@ public class OrmAssessmentController {
 	 */
     @AuraEnabled 
     public static Assessment__c getAssessment(String idAss){
-        return [Select Id, Name, orm_description__c, orm_typeAssessment__c, orm_objectif__c, orm_typeProjet__c 
+        return [Select Id, Name, orm_description__c, orm_typeAssessment__c, orm_objectif__c, 
+                       orm_typeProjet__c, orm_clientIndustrySector__c, orm_statusAssessment__c, orm_currency__c,
+                       orm_schedule__c, orm_riskManager__c,orm_riskManager__r.Name, orm_projetManager__c, orm_projetManager__r.Name, 
+                       orm_pilote__c, orm_copilote__c 
                 From Assessment__c 
                 Where Id = : idAss ];
          

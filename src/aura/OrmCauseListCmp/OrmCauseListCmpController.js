@@ -1,31 +1,13 @@
 ({
-	doInit : function(component, event, helper) {
-		
+	doInit : function(component, event, helper) {		
 		var idAssessmentRisk = 'a001H00000kcdy9QAA';
-        var action = component.get("c.findAllCausesByAssessmentRisk");
-        action.setParam('idAssRisk', idAssessmentRisk);
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === "SUCCESS") {                 
-            	component.set("v.causes", response.getReturnValue());
-            }
-        });
-        $A.enqueueAction(action);
+		component.set("v.assessmentRiskId", idAssessmentRisk);
+		helper.refresh(component, idAssessmentRisk);
 	},
 	
-	
-	refreshList : function(component, event, helper) {	
+	refreshList : function(component, event, helper) {
 		var idAssessmentRisk = event.getParam('idAssessmentRisk');
-        var action = component.get("c.findAllCausesByAssessmentRisk");
-        var assesmentRiskId = idAssessmentRisk;
-        action.setParam('idAssRisk', assesmentRiskId);
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === "SUCCESS") {                 
-            	component.set("v.causes", response.getReturnValue());
-            }
-        });
-        $A.enqueueAction(action);
+		helper.refresh(component, idAssessmentRisk);
 	},
 	
 	/* @cretedBy: laye
@@ -84,12 +66,14 @@
     	var causes = component.get('v.causes');
     	var data = causes;
     	var key = component.get('v.key');
-    	var regex;
-    	key = "^" + key;
+    	var regex;    	
     	
     	if ($A.util.isEmpty(key)) {
-	        component.set("v.causes", causes);	        
+    	
+    		helper.refresh(component, component.get("v.assessmentRiskId"));
+    		      
          } else {
+        	key = "^" + key;
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true

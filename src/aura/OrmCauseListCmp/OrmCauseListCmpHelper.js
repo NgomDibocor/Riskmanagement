@@ -11,5 +11,18 @@
             }  
         }
         return isValid;
-    }
+    },
+    refresh : function(component, idAssessmentRisk) {	
+		
+        var action = component.get("c.findAllCausesByAssessmentRisk");
+        action.setParam('idAssRisk', idAssessmentRisk);
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {   
+            	console.log('causes '+ response.getReturnValue());
+            	component.set("v.causes ", response.getReturnValue());
+            }
+        });
+        $A.enqueueAction(action);
+	}
 })

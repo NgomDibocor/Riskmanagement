@@ -27,7 +27,7 @@
     
     <div class="slds-m-around_large">
     	<div class="topSpacing">
-        	<label class="slds-form-element__label ">Phase<span class="cmn_mandatory_indicator">*</span></label>
+        	<label class="slds-form-element__label ">{!$Label.c.orm_phase}<span class="cmn_mandatory_indicator">*</span></label>
         </div>                                        
 	    <div class="phase">
 	    
@@ -47,7 +47,7 @@
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
-	                  <th scope="col"><div class="slds-truncate" title="Phase">Phase</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_phase}">{!$Label.c.orm_phase}</div></th>
 	                </tr>
 	            </thead>
 	            

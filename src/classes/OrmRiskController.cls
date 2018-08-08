@@ -119,4 +119,10 @@ public with sharing class OrmRiskController {
         return allOpts;
     }
     
+     @AuraEnabled 
+    public static List<orm_assessmentRisk__c> liste(String item)
+    {
+       return  [Select Id,orm_assessment__r.id,orm_risk__r.name From orm_assessmentRisk__c where  orm_assessment__r.id=:item ];
+    }
+    
 }

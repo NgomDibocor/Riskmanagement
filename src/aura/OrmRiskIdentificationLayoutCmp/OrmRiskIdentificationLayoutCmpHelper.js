@@ -1,6 +1,5 @@
 ({
     fetchPicklist: function(component, event) {
-     
         var categoryRisk = component.get("v.categorieRisk");
         var nameCategorieRisk= component.find("categorieRisk");
         var item = nameCategorieRisk.get("v.value");
@@ -8,7 +7,7 @@
         actionOrgs.setParams({
             "item": categoryRisk
         });
-        component.set("v.categorieRisk", item);
+       // component.set("v.categorieRisk", item);
         actionOrgs.setCallback(this, function(response) {
        
             var state = response.getState();

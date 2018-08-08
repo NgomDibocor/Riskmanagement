@@ -4,6 +4,8 @@
 	<!--declare aura attributes-->
 	<aura:attribute name="ContactList" type="Contact[]"
 		description="store contact records list" />
+		<aura:attribute name="Contact" type="Contact"
+		description="store contact" />
 	<aura:attribute name="ContactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
 		description="store contact workshop records list" />
@@ -56,8 +58,8 @@
 											columns="{!v.columns }"
 											 keyField="id"
 											resizeColumnDisabled="false"
-											 selectedRows="{!v.workshop}"
-											onrowselection="{!c.createContactWorkshop}" showRowNumberColumn="false" />
+											 selectedRows="{!v.Contact}"
+											onrowselection="{!c.getselectedRows}" showRowNumberColumn="false" />
 									</div>
 
 									<div class=" slds-size--1-of-6   slds-p-horizontal--small">
@@ -76,10 +78,9 @@
 				<div class="slds-modal__footer">
 					<button class="slds-button slds-button--neutral"
 						onclick="{!c.closeModalWorkshopContact}">{!$Label.c.cancel_button_title}</button>
-					<button class="slds-button slds-button--brand"
-						onclick="{!c.createContactWorkshop}">
-						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.save_button_title}
-					</button>
+					    <button class="slds-button slds-button--brand" onclick="{!c.createContactWorkshop}">
+			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
+	</button>
 				</div>
 			</div>
 		</div>

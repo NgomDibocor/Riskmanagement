@@ -58,11 +58,6 @@
 	                    <c:OrmPhaseEditRow phase="{!phase}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />
-	                    
-	                    <!--tr>
-		                    <td>{!sNo + 1}</td> 
-		                    <td>{!phase.orm_phase__c}</td>
-		                </tr -->              
 	                </aura:iteration>
 	            </tbody>
 	        </table>

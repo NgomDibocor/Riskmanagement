@@ -647,7 +647,7 @@
                            </div>
                         </td>
                   </tr>
-                  <aura:if isTrue="{!v.typeProjet}">
+                  <aura:if isTrue="{!or(v.typeProjet == true, v.assessmentData.orm_typeAssessment__c == 'Projet')}">
                   
                       <tr>
                          <td>

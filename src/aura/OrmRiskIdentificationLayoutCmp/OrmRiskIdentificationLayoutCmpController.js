@@ -33,7 +33,12 @@
             label: 'Risk category',
             fieldName: 'orm_categorieRisk__c',
             type: 'text',iconName: 'standard:opportunity'
-        },
+        }
+        ,
+        {label: 'association', type: 'toggle', initialWidth: 135,
+         typeAttributes: { label: 'association', name: 'association', title: 'association'},
+         iconName: 'standard:opportunity'
+         },
         {label: 'configuration', type: 'button', initialWidth: 135,
          typeAttributes: { label: 'configure', name: 'configure', title: 'Click to configure this risk'},
          iconName: 'standard:opportunity'
@@ -74,10 +79,16 @@
     
     openPopupAssociation: function(component, event, helper) {
         var selectedRows = event.getParam('selectedRows');
-        selectedRows.forEach(function(selectedRow) {});
+        var assessmentRisks = [];
+         selectedRows.forEach(function(selectedRow) {
+        var newAssessmentRisk ={};
+         newAssessmentRisk.sobjectType='orm_assessmentRisk__c';
+            newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
+            newAssessmentRisk.orm_Risk__c = selectedRow.Id;
+	        assessmentRisks.push(newAssessmentRisk);
+        });
         // Display that fieldName of the selected rows
-        component.set("v.relatedRisk", selectedRows);
-        console.log('v.relatedRisk  nbre' + component.get("v.relatedRisk").length);
+        component.set("v.relatedRisk", assessmentRisks);
     },
     /*
      * CreatedBy @David Diop
@@ -108,7 +119,7 @@
         component.set("v.allRisk", results);
     },
     relatedRiskfunction: function(component, event, helper) {
-        var idRelatedRisks = [];
+       /* var idRelatedRisks = [];
         var relatedRisks = component.get("v.relatedRisk");
         var assessmentRisks = [];
         relatedRisks.forEach(function(relatedRisk) {
@@ -116,11 +127,12 @@
             newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
             newAssessmentRisk.orm_Risk__c = relatedRisk.Id;
             assessmentRisks.push(newAssessmentRisk);
-        });
-        alert(JSON.stringify(assessmentRisks));
+        });*/
+        var relatedassesmentRisk= component.get("v.relatedRisk");
+        alert(JSON.stringify(relatedassesmentRisk));
         var action = component.get('c.addAssessmentRisks');
         action.setParams({
-            "items": assessmentRisks
+            "items": relatedassesmentRisk
         });
         action.setCallback(this, function(response) {
             var state = response.getState();

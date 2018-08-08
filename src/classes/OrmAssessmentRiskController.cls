@@ -1,6 +1,5 @@
-
 public with sharing class OrmAssessmentRiskController {
-	
+  
     public static Id getAssessmentRiskRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.orm_assessmentRisk__c.getRecordTypeInfosByName()
                   .get('orm RT asssessmentRisk').getRecordTypeId();
@@ -40,7 +39,7 @@ public with sharing class OrmAssessmentRiskController {
         // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment
         Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
         for (AggregateResult ar: agrResults){
-        	mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbRisk'));
+          mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbRisk'));
         }   
         //get all assessment with Id in mapIdAssessmentNbRisk
         List<Assessment__c> assessments = [Select Id, Name, orm_description__c, orm_objectif__c 
@@ -67,7 +66,7 @@ public with sharing class OrmAssessmentRiskController {
         // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment
         Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
         for (AggregateResult ar: agrResults){
-        	mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbCause'));
+          mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbCause'));
         }   
        
          

@@ -28,7 +28,6 @@
 	   action.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
-		    alert(response.getReturnValue())
 		         var evt = $A.get("e.c:OrmShowAssessmentClickedEvt");
 			     evt.setParams({
 			       "assessmentObject" : response.getReturnValue(),

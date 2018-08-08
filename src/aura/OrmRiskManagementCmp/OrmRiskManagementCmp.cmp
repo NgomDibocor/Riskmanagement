@@ -1,4 +1,5 @@
 <aura:component access="GLOBAL" implements="force:appHostable,flexipage:availableForAllPageTypes" >
+    <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <aura:handler event="c:OrmDisplayListAssessmentEvt" action=";{!c.showAssessmentList}"/>
     <aura:handler event="c:OrmDisplayAssessmentEvt"   action=";{!c.showAssessment}"/>

@@ -5,7 +5,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     <!-- attributes -->
-    <aura:attribute name="objInfo" type="macro" default="{sobjectType : 'Macro'}" 
+    <aura:attribute name="objInfo" type="macro" default="{ 'sobjectType' : 'Macro'}" 
     	description="object information to fetch picklist values"/>
     <aura:attribute name="showSaveCancelBtn" type="boolean"/>
     <aura:attribute name="showErrorClass" type="boolean" default="false"/>
@@ -25,8 +25,9 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.phaseEditMode == false}">
-                    <span class="slds-truncate" title="Phase">Phase</span>
-                    <button onclick="{!c.inlineEditPhase}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Phase">
+                    <span class="slds-truncate" title="{!$Label.c.orm_phase}">{!v.phase.orm_phase__c}</span>
+                    <button onclick="{!c.inlineEditPhase}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+                    	 tabindex="0" title="{!$Label.c.edit_button_title+ ' ' + $Label.c.orm_phase}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
                     
@@ -36,7 +37,7 @@
                             <div class="slds-popover__body">
                                 <div class="slds-form-element slds-grid slds-wrap">
                                     <div class="slds-form-element__control slds-grow">
-                                        <label class="slds-form-element__label">Phase</label>
+                                        <label class="slds-form-element__label">{!$Label.c.orm_phase}</label>
                                         <ui:inputSelect aura:id="phaseId"
                                                         class="slds-select inputFieldWidth"
                                                         blur="{!c.closePhaseBox}"

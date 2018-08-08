@@ -48,17 +48,27 @@
             }
         );
     },
-     showInfoAssessment : function(component,event,helper){ 
-       $A.createComponent(
-                "c:OrmAssessmentLayoutCmp", {
-                    "assessmentData": event.getParam("assessmentObject")
-                },
-                function(newCmp) {
-                    if (component.isValid()) {
-                        component.set("v.body", newCmp);
-                    }
-                }
-            );  
+	 showInfoAssessment : function(component,event,helper){ 
+	   $A.createComponent(
+	            "c:OrmAssessmentLayoutCmp", {
+	                "assessmentData": event.getParam("assessmentObject")
+	            },
+	            function(newCmp) {
+	                if (component.isValid()) {
+	                    component.set("v.body", newCmp);
+	                }
+	            }
+	        );  
+	  },
+	  
+      showSpinner: function(component) {
+        var spinner = component.find('spinner-div');
+        $A.util.removeClass(spinner, "slds-hide");
       },
+
+      hideSpinner: function(component) {
+        var spinner = component.find('spinner-div');
+        $A.util.addClass(spinner, "slds-hide");
+	  },
     
 })

@@ -7,8 +7,9 @@
 		// show the phase edit field popup 
         component.set("v.phaseEditMode", true); 
         // after set phaseEditMode true, set picklist options to picklist field
-        console.log("allphases " + JSON.stringify(component.get("v.allphases")));
-        component.find("phaseId").set("v.options" , component.get("v.allphases"));
+        console.log("allphases " + JSON.stringify(component.get("v.allPhases")));     
+        component.find("phaseId").set("v.options" , component.get("v.allPhases"));
+        
         // after the 100 millisecond set focus to input field   
         setTimeout(function(){ 
             component.find("phaseId").focus();

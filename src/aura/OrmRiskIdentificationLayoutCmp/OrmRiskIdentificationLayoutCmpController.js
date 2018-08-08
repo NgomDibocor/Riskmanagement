@@ -14,6 +14,7 @@
     openModalNewRisk: function(component, event, helper) 
     {
         var evt = $A.get("e.c:OrmOpenNewRiskCmpEvt");
+        evt.setParams({"idAssessment": component.get("v.idAssessment")});
         evt.fire();
     },
     /*
@@ -120,11 +121,10 @@
         var results = data;
         var regex;
         if ($A.util.isEmpty(term)) {
-        alert("vide");
-            /* var nomfield=component.find("categorieRisk");
+            var nomfield=component.find("categorieRisk");
 		    var item = nomfield.get("v.value");
 		    component.set("v.categorieRisk",item);
-		    component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));*/
+		    component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
             helper.fetchPicklist(component, event);
         } else {
             term = "^" + term;

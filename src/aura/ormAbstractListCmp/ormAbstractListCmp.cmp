@@ -6,7 +6,7 @@ implements="force:appHostable,flexipage:availableForAllPageTypes">
  	<aura:attribute name="items" type="SObject[]" description="" /> 
  	
  	<!-- Attribute Declration For Pagination -->
-    <aura:attribute name="PaginationList" type="List"/>
+    <aura:attribute name="PaginationList" type="SObject[]"/>
     <aura:attribute name="startPage" type="Integer" />
     <aura:attribute name="endPage" type="Integer"/>
     <aura:attribute name="totalRecords" type="Integer"/>

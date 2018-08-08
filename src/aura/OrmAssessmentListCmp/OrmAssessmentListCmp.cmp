@@ -3,15 +3,30 @@
 		type="c:OrmDisplayAssessmentEvt"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <!-- <aura:attribute name="assessments" type="Assessment__c[]" description="" /> -->
-    <aura:attribute name="assessments" type="List" />
+    <!--<aura:attribute name="assessments" type="List" />  -->
 	
 	<aura:registerEvent name="ShowAssessmentClicked" type="c:OrmShowAssessmentClickedEvt" description="" />
 	<aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
 	
 
-  <div class="slds-grid slds-wrap">
-   
-   <aura:iteration items="{!v.assessments}" var="item">
+
+ <table>
+    <tr>
+      <td class="space">
+          <lightning:input class="search" placeholder="Search Assessment" type="text" onchange="{!c.filter}"  />
+      </td>
+      <td class="btnNew">
+          <lightning:buttonGroup >
+             <lightning:button label="New Assessment" 
+                       variant="brand"
+                       class="slds-button btnNew"
+                       onclick="{!c.newAssessment}"/>
+          </lightning:buttonGroup>
+      </td>
+    </tr>
+ </table>
+ <div class="slds-grid slds-wrap">
+   <aura:iteration items="{!v.PaginationList}" var="item">
    
         <div class="slds-size_1-of-3">
             <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:350px;">
@@ -51,6 +66,8 @@
         </div>
        
     </aura:iteration>
+  </div>
+  <div style="margin:auto; padding-bottom:10px">
     <lightning:buttonGroup >
           <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
                             onclick="{!c.previous}" variant="brand"
@@ -62,14 +79,5 @@
                             iconName='utility:forward' iconPosition='right'/>
       </lightning:buttonGroup>
   </div>
-    
-    
-		 <lightning:button label="New Assessment" 
-                          variant="brand"
-                          class="slds-button"
-                          onclick="{!c.newAssessment}"/>        
- 
-    
    
-    
 </aura:component>

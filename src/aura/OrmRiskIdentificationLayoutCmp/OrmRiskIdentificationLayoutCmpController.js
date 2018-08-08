@@ -11,7 +11,8 @@
      * CreatedBy @David Diop
      *
      */
-    openModalNewRisk: function(component, event, helper) {
+    openModalNewRisk: function(component, event, helper) 
+    {
         var evt = $A.get("e.c:OrmOpenNewRiskCmpEvt");
         evt.fire();
     },
@@ -60,9 +61,9 @@
                     component.set('v.allRisk', response.getReturnValue());
                     component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 }
-                 else
-                  {
-                    helper.fetchPicklist(component, event);
+                else
+                {
+                   helper.fetchPicklist(component, event);
                 }
             });
             $A.enqueueAction(action);
@@ -119,6 +120,7 @@
         var results = data;
         var regex;
         if ($A.util.isEmpty(term)) {
+        alert("vide");
             /* var nomfield=component.find("categorieRisk");
 		    var item = nomfield.get("v.value");
 		    component.set("v.categorieRisk",item);

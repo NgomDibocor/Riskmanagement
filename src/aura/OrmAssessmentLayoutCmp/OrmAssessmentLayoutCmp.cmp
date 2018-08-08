@@ -118,21 +118,12 @@
                            </div>
                         </td>
                     </tr>
-                    <!--  <aura:renderIf isTrue="{!v.showError}">
-                        <tr>
-                          <td class="textInDiv">
-                              <ui:message title="Warning" severity="warning" closable="true">
-                                  Please create an Assessment first </ui:message>
-                          </td>
-                      </tr>
-                    </aura:renderIf>-->
-                    <!-- isTrue="{!and(v.displaySaveCancelBtn == true, v.showError == false)}" -->
                     <aura:if isTrue="{!v.displaySaveCancelBtn}">
                       <tr>
                           <td class="textInDiv">
                              <div style="margin-bottom:20px;">
                                  <lightning:buttonGroup class="slds-m-around_medium">
-                          <!-- <lightning:button label="Cancel" onclick="{!c.cancel}"/> -->
+                                 <lightning:button label="Cancel" onclick="{!c.cancel}"/>
                           <lightning:button label="Save"
                                             variant="brand"
                                                       class="slds-button"
@@ -233,7 +224,8 @@
                                 <div class="width">  
                                   <a href=""  onclick="{!c.sendObjectifToFD}">
                                     <ui:inputText class="slds-input"  
-                                           value="{!v.assessmentData.orm_objectif__c}">
+                                           value="{!v.assessmentData.orm_objectif__c}"
+                                           change="{!c.onObjectifProjectChange}">
                                     </ui:inputText>
                                   </a>
                                 </div>
@@ -248,7 +240,8 @@
                                 <div class="width">
                                   <a href=""  onclick="{!c.sendDesciptionToFD}">
                                     <ui:inputTextArea class="slds-input" 
-                                             value="{!v.assessmentData.orm_description__c}">
+                                             value="{!v.assessmentData.orm_description__c}"
+                                             change="{!c.onChangedescriptionProject}">
                                     </ui:inputTextArea>
                                   </a>
                                 </div>

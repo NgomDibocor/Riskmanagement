@@ -58,6 +58,13 @@
                                             </lightning:select>
 										</div>
 									</div>
+									<div class="slds-form-element">
+										<div class="slds-form-element__control">
+											<ui:inputText aura:id="budget" label="Size"
+												class="slds-input" labelClass="slds-form-element__label"
+												value="{!v.item.NumberOfEmployees}" required="true" />
+										</div>
+									</div>
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
 											<lightning:select aura:id="region" onchange="{!c.onChangeRegion}"   name="region" label="{!$Label.c.orm_region}" >

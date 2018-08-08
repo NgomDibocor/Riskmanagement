@@ -319,7 +319,7 @@
                                   <div class="topSpacing"> 
                                       <label class="slds-form-element__label">Industry Sector of Client<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
-                  <div class="slds-form-element">
+                                  <div class="slds-form-element">
                                     <div class="slds-form-element__control">
                                         <ui:inputSelect aura:id="industrySector" 
                                               change="{!c.onChangeIndSector}" class="slds-select"
@@ -552,24 +552,43 @@
                                 </div>
                             </td>
                         </tr>
-            </aura:if>
-            <aura:if isTrue="{!or(v.typeOrganisation == true, v.assessmentData.orm_typeAssessment__c == 'Organisation')}">
-                      <tr>
-                            <td>
-                                <div class="topSpacing">
-                                    <label class="slds-form-element__label">Organisation Name<span class="cmn_mandatory_indicator">*</span></label>
-                                </div>
-                                <div class="width"> 
-                                  <a href=""  onclick="{!c.sendOrganisationNameToFD}">
-                                      <ui:inputText class="slds-input" aura:id="Name" 
-                                               value="{!v.assessmentData.Name}" 
-                                               change="{!c.onTitleChange}">
-                                     </ui:inputText>
-                                  </a> 
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
+			            </aura:if>
+			            <aura:if isTrue="{!or(v.typeOrganisation == true, v.assessmentData.orm_typeAssessment__c == 'Organisation')}">
+                          <tr>
+                               <td>
+	                                <div class="topSpacing">
+	                                    <label class="slds-form-element__label">Organisation Name<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>
+	                                <div class="width"> 
+	                                  <a href=""  onclick="{!c.sendOrganisationNameToFD}">
+	                                      <ui:inputText class="slds-input" aura:id="Name" 
+	                                               value="{!v.assessmentData.Name}" 
+	                                               change="{!c.onTitleChange}">
+	                                     </ui:inputText>
+	                                  </a> 
+	                                </div>
+                               </td>
+                          </tr>
+                          <tr>
+                              <td >
+                                  <div class="topSpacing">
+                                      <label class="slds-form-element__label ">Risk Manager<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>                                        
+                                  <div class=" slds-form-element">
+                                     <div class="slds-form-element__control">
+                                         <ui:inputSelect aura:id="userRM" 
+                                                 change="{!c.onChangeRM}" class="slds-select"
+                                                 labelClass="slds-form-element__label">
+                                             <aura:iteration items="{!v.allUser}" var="rm">
+                                                 <ui:inputSelectOption text="{!rm.Id}"
+                                                                       label="{!rm.Name}" />
+                                             </aura:iteration>
+                                        </ui:inputSelect>
+                                     </div>
+                                     </div>
+                              </td>
+                          </tr>
+                          <tr>
                             <td>
                                 <div class="topSpacing">
                                     <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>

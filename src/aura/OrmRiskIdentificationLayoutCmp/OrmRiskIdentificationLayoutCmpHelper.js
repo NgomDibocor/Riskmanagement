@@ -1,5 +1,6 @@
 ({
     fetchPicklist: function(component, event) {
+     
         var itemRisk = component.get("v.categorieRisk");
         var nomfield = component.find("categorieRisk");
         var item = nomfield.get("v.value");
@@ -9,8 +10,10 @@
         });
         component.set("v.categorieRisk", item);
         actionOrgs.setCallback(this, function(response) {
+       
             var state = response.getState();
             if (state === 'SUCCESS') {
+           
                 var rows = response.getReturnValue();
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];

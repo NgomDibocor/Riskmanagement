@@ -23,6 +23,9 @@
 	},
 	
 	showAssessment : function(component, event, helper) {
+	   var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	   evtSpinner.fire();  
+	
 	   var action = component.get('c.getAssessment');
        action.setParams({ 'idAss' : event.target.id });
 	   action.setCallback(this, function(response){

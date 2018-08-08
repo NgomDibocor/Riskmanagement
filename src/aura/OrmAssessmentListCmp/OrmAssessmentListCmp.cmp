@@ -6,6 +6,7 @@
     <aura:attribute name="assessments" type="List" />
 	
 	<aura:registerEvent name="ShowAssessmentClicked" type="c:OrmShowAssessmentClickedEvt" description="" />
+	<aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
 	
 
   <div class="slds-grid slds-wrap">

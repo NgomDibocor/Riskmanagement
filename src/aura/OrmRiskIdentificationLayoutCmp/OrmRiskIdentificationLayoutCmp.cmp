@@ -70,5 +70,8 @@
     <button class="slds-button slds-button--brand" onclick="{!c.relatedRiskfunction}">
 			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
 	</button>
+	  <button class="slds-button slds-button--brand" onclick="{!c.listeAssessmentRisk}">
+			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>voir liste
+	</button>
     <c:OrmRiskNewCmp/>
 </aura:component>

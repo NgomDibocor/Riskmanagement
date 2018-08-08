@@ -114,6 +114,10 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 component.set('v.allUser', response.getReturnValue());
+                //Hide the Spinner
+                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+	            evtSpinner.fire();  
+	    
             } else {
                 alert("l'Element n'a pas été retrouvé");
             }

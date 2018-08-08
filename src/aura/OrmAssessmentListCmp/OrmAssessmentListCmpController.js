@@ -11,6 +11,35 @@
                 }
                 component.set("v.assessments", custs);
                 
+                // start
+                    var pageSize = component.get("v.pageSize");
+				                
+	                // get size of all the records and then hold into an attribute "totalRecords"
+	                component.set("v.totalRecords", component.get("v.assessments").length);
+	                // set star as 0
+	                component.set("v.startPage",0);
+	                
+	                var totalRecords = component
+					.get("v.assessments").length;
+				    //var div = Math.trunc(totalRecords / pageSize);
+	                if(totalRecords === pageSize){
+	                  component.set("v.hideNext", true);
+	                  component.set("v.endPage", pageSize - 1);
+	                  
+	                }else{
+	                  component.set("v.hideNext", false);
+	                  component.set("v.endPage", pageSize - 1);
+	                  
+	                }
+	                var PaginationList = [];
+	                for(var i=0; i< pageSize; i++){
+	                    if(component.get("v.assessments").length> i)
+	                        PaginationList.push(response.getReturnValue()[i]);    
+	                }
+	                component.set('v.PaginationList', PaginationList);
+	                alert(JSON.stringify(component.get("v.PaginationList")))
+                //end
+                
             } else {
                 alert("l'élément n'a pas été chargé");
             }

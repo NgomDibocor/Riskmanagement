@@ -1,4 +1,4 @@
-<aura:component controller="OrmAssessmentRiskController">
+<aura:component controller="OrmAssessmentRiskController" extends="c:ormAbstractListCmp">
     <aura:registerEvent name="DisplayAssessment"
 		type="c:OrmDisplayAssessmentEvt"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
@@ -51,6 +51,16 @@
         </div>
        
     </aura:iteration>
+    <lightning:buttonGroup >
+          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+                            onclick="{!c.previous}" variant="brand"
+                            iconName='utility:back'/>
+          &nbsp; &nbsp; &nbsp;
+          <lightning:button label="Next" 
+          disabled="{!v.endPage >= v.totalRecords}"
+                            onclick="{!c.next}" variant="brand"
+                            iconName='utility:forward' iconPosition='right'/>
+      </lightning:buttonGroup>
   </div>
     
     

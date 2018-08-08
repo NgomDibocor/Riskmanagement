@@ -33,7 +33,7 @@
                     <aura:iteration items="{!v.allCategorieRisk}" var="CategorieRisk">
                         <option text="{!CategorieRisk}" value="{!v.categorieRisk}"></option>
                     </aura:iteration>
-                </lightning:select>
+                </lightning:select>   
             </div>
         </div>
         <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
@@ -59,10 +59,10 @@
              class="slds-m-top_medium" 
              columns="{! v.columns }" 
              keyField="id" 
-             resizeColumnDisabled="false" 
+             resizeColumnDisabled="true" 
              selectedRows="{! v.risk}" 
              onrowselection="{!c.openPopupAssociation}" 
-             showRowNumberColumn="false"
+             showRowNumberColumn="true"
             />
         </div>
     </div><br/>

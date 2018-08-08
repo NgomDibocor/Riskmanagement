@@ -1,8 +1,10 @@
 <aura:component access="GLOBAL" implements="force:appHostable,flexipage:availableForAllPageTypes" >
+    <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <aura:handler event="c:OrmDisplayListAssessmentEvt" action=";{!c.showAssessmentList}"/>
     <aura:handler event="c:OrmDisplayAssessmentEvt"   action=";{!c.showAssessment}"/>
     <aura:handler event="c:OrmDisplayAssessmentRiskEvt" action=";{!c.ShowAssessmentRiskList}" />
+    <aura:handler event="c:OrmShowAssessmentClickedEvt" action="{!c.showInfoAssessment}" />
     
     
     <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="width:80%;margin:auto;">

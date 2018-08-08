@@ -23,10 +23,20 @@
 	},
 	
 	showAssessment : function(component, event, helper) {
-        /*var evt = $A.get("e.c:OrmShowAssessmentClickedEvt");
-        evt.setParams({
-	       "idAssessment" : assessment.Id
-	    });
-		evt.fire();*/
+	   var action = component.get('c.getAssessment');
+       action.setParams({ 'idAss' : event.target.id });
+	   action.setCallback(this, function(response){
+		    var state = response.getState();
+		    if(state === 'SUCCESS'){
+		         var evt = $A.get("e.c:OrmShowAssessmentClickedEvt");
+			     evt.setParams({
+			       "assessmentObject" : response.getReturnValue(),
+			     });
+			     evt.fire();        
+		    } else {
+		        alert("l'élément n'a pas été chargé");
+		    }
+		});
+		$A.enqueueAction(action);
 	},
 })

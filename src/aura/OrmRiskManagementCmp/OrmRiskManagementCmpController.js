@@ -27,7 +27,7 @@
     showAssessment : function(component, event, helper) {
         $A.createComponent(
             "c:OrmAssessmentLayoutCmp", {
-
+               "assessmentData": component.get("v.assessmentData")
             },
             function(newCmp) {
                 if (component.isValid()) {
@@ -48,5 +48,17 @@
             }
         );
     },
+     showInfoAssessment : function(component,event,helper){ 
+       $A.createComponent(
+                "c:OrmAssessmentLayoutCmp", {
+                    "assessmentData": event.getParam("assessmentObject")
+                },
+                function(newCmp) {
+                    if (component.isValid()) {
+                        component.set("v.body", newCmp);
+                    }
+                }
+            );  
+      },
     
 })

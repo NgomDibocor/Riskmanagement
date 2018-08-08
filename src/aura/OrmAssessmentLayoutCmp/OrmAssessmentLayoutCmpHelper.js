@@ -398,6 +398,7 @@
       component.set("v.typeProcessus", false);
       component.set("v.typeProjet", true);
     }
-       
-    }
+   },
+    
+    
 })

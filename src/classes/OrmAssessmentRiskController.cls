@@ -1,44 +1,23 @@
-/*
-    *David mignane diop
-    *controller class for the risk object
-    *le 27/07/2018
-    */
 public with sharing class OrmAssessmentRiskController {
-	/*
-    *David mignane diop
-    *function for the recovery of the ricord type
-    *le 27/07/2018
-    */
+  
     public static Id getAssessmentRiskRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.orm_assessmentRisk__c.getRecordTypeInfosByName()
                   .get('orm RT asssessmentRisk').getRecordTypeId();
         return recordTypeId;
     }
-    /**
-	 * @author: david
-	 * @date: Creation: 06/08/2018
-	 * @description: get recordType Cause
-	*/
+    
     public static Id getCauseRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
                   .get('RT cause').getRecordTypeId();
         return RecordTypeId;
     }
-     /**
-	 * @author: david
-	 * @date: Creation: 06/08/2018
-	 * @description: get recordType Cause
-	*/
+    
     public static Id getImpactRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
                   .get('RT impact').getRecordTypeId();
         return RecordTypeId;
     }
-    /*
-    *David mignane diop
-    *risk list function
-    *le 27/07/2018
-    */
+    
     @AuraEnabled 
     public static List<orm_assessmentRisk__c> findAll()
     {
@@ -48,11 +27,7 @@ public with sharing class OrmAssessmentRiskController {
                           orm_Risk__r.Name,orm_assumption__r.Name,orm_assessment__r.Name, orm_assessment__r.orm_description__c From orm_assessmentRisk__c];
     }
     
-      /*
-    *David mignane diop
-    * picklist recovery function
-    *le 27/07/2018
-    */
+     
     @AuraEnabled 
     public static Map<String, Map<String, Object>> getAssessmentRisks()
     {
@@ -64,7 +39,7 @@ public with sharing class OrmAssessmentRiskController {
         // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment
         Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
         for (AggregateResult ar: agrResults){
-        	mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbRisk'));
+          mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbRisk'));
         }   
         //get all assessment with Id in mapIdAssessmentNbRisk
         List<Assessment__c> assessments = [Select Id, Name, orm_description__c, orm_objectif__c 
@@ -79,11 +54,7 @@ public with sharing class OrmAssessmentRiskController {
         return mapObjects;
         
     }
-     /*
-    *David mignane diop
-    * 
-    *le 06/08/2018
-    */
+     
     @AuraEnabled 
     public static Map<String, Map<String, Object>> getRisks()
     {
@@ -95,7 +66,7 @@ public with sharing class OrmAssessmentRiskController {
         // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment
         Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
         for (AggregateResult ar: agrResults){
-        	mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbCause'));
+          mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbCause'));
         }   
        
          
@@ -121,5 +92,11 @@ public with sharing class OrmAssessmentRiskController {
         }   
         return item;
         
+    }
+    
+    
+    @AuraEnabled 
+    public static Assessment__c getAssessment(String idAss){
+        return OrmAssessmentController.getAssessment(idAss);
     }
 }

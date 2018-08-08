@@ -6,7 +6,8 @@
 	inlineEditPhase : function(component, event, helper) {
 		// show the phase edit field popup 
         component.set("v.phaseEditMode", true); 
-        // after set ratingEditMode true, set picklist options to picklist field 
+        // after set phaseEditMode true, set picklist options to picklist field
+        console.log("allphases " + JSON.stringify(component.get("v.allphases")));
         component.find("phaseId").set("v.options" , component.get("v.allphases"));
         // after the 100 millisecond set focus to input field   
         setTimeout(function(){ 

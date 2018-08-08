@@ -42,11 +42,12 @@
     <aura:handler event="c:OrmCloseFieldDescriptionEvt"  action="{!c.closeFielDescript}" />
     <aura:handler event="c:eventNewOrganisationCreated" action="{!c.refreshListOrganisation}" />
     
+    
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation"
-		type="c:OrmOpenNewOrganisationEvt" />
+    type="c:OrmOpenNewOrganisationEvt" />
     <aura:registerEvent name="OrmSendValuesToFieldDescription" type="c:OrmSendValuesToFieldDescriptionEvt"/>
-    <!-- aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/ -->
+    <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     
@@ -119,29 +120,29 @@
                     </tr>
                     <!--  <aura:renderIf isTrue="{!v.showError}">
                         <tr>
-	                        <td class="textInDiv">
-			                        <ui:message title="Warning" severity="warning" closable="true">
-			                            Please create an Assessment first </ui:message>
-	                        </td>
-	                    </tr>
+                          <td class="textInDiv">
+                              <ui:message title="Warning" severity="warning" closable="true">
+                                  Please create an Assessment first </ui:message>
+                          </td>
+                      </tr>
                     </aura:renderIf>-->
                     <!-- isTrue="{!and(v.displaySaveCancelBtn == true, v.showError == false)}" -->
                     <aura:if isTrue="{!v.displaySaveCancelBtn}">
-		                  <tr>
-		                      <td class="textInDiv">
-		                         <div style="margin-bottom:20px;">
-		                             <lightning:buttonGroup class="slds-m-around_medium">
-							            <!-- <lightning:button label="Cancel" onclick="{!c.cancel}"/> -->
-							            <lightning:button label="Save"
-							                              variant="brand"
-		                                                  class="slds-button"
-							                              onclick="{!c.createAssessment}"/>
-							        </lightning:buttonGroup>
-							        <span style="color:red">Click on this button for saving the assessment</span>
-		                         </div>
-		                      </td>
-		                  </tr>
-				    </aura:if>
+                      <tr>
+                          <td class="textInDiv">
+                             <div style="margin-bottom:20px;">
+                                 <lightning:buttonGroup class="slds-m-around_medium">
+                          <!-- <lightning:button label="Cancel" onclick="{!c.cancel}"/> -->
+                          <lightning:button label="Save"
+                                            variant="brand"
+                                                      class="slds-button"
+                                            onclick="{!c.createAssessment}"/>
+                      </lightning:buttonGroup>
+                      <span style="color:red">Click on this button for saving the assessment</span>
+                             </div>
+                          </td>
+                      </tr>
+                    </aura:if>
                     <tr>
                         <td >
                            <div class="topSpacing"> 
@@ -149,446 +150,474 @@
                            </div>
                             <div class="slds-form-element">
                                 <div class="slds-form-element__control">
-                                    <ui:inputSelect aura:id="typeAssessment" 
-                                          change="{!c.onTypeAssessmentChange}" class="slds-select"
-                                          labelClass="slds-form-element__label" >
-                                        <aura:iteration items="{! v.allTypeAssessment}" var="typeAssessment" >
-                                            <ui:inputSelectOption  text="{!typeAssessment}"
-                                                                   label="{!typeAssessment}"/>
-                                        </aura:iteration>
-                                    </ui:inputSelect>
+                                  <aura:if isTrue="{!v.assessmentData.Id == null}">
+					                      <ui:inputSelect aura:id="typeAssessment" 
+		                                            change="{!c.onTypeAssessmentChange}" class="slds-select"
+		                                            labelClass="slds-form-element__label" >
+		                                          <aura:iteration items="{! v.allTypeAssessment}" var="typeAssessment" >
+		                                              <ui:inputSelectOption  text="{!typeAssessment}"
+		                                                                     label="{!typeAssessment}"/>
+		                                          </aura:iteration>
+		                                      </ui:inputSelect>
+					                       <aura:set attribute="else">
+						                       <ui:inputSelect aura:id="typeAssessment" 
+				                                            change="{!c.onTypeAssessmentChange}" class="slds-select"
+				                                            labelClass="slds-form-element__label" >
+				                                            <ui:inputSelectOption  text="{!v.assessmentData.orm_typeAssessment__c}"
+				                                                                     label="{!v.assessmentData.orm_typeAssessment__c}"/>
+				                                          <aura:iteration items="{! v.allTypeAssessment}" var="typeAssessment" >
+				                                              <ui:inputSelectOption  text="{!typeAssessment}"
+				                                                                     label="{!typeAssessment}"/>
+				                                          </aura:iteration>
+			                                      </ui:inputSelect>
+					                        </aura:set>
+					                  </aura:if>
                                 </div>
                             </div>
                         </td>
                     </tr>
-                    <aura:if isTrue="{!v.typeProjet}">
+                    <aura:if isTrue="{!or(v.typeProjet == true, v.assessmentData.orm_typeAssessment__c == 'Projet')}">
                          <tr>
-	                        <td >
-	                           <div class="topSpacing"> 
-	                              <label class="slds-form-element__label">Project Type*</label>
-	                           </div>
-	                            <div class="slds-form-element">
-	                                <div class="slds-form-element__control">
-	                                    <ui:inputSelect aura:id="typeProjet" 
-	                                          change="{!c.onChangeTypeProjet}" class="slds-select"
-	                                          labelClass="slds-form-element__label" >
-	                                        <aura:iteration items="{! v.allTypeProjet}" var="typeProjet" >
-	                                            <ui:inputSelectOption  text="{!typeProjet}"
-	                                                                   label="{!typeProjet}"/>
-	                                        </aura:iteration>
-	                                    </ui:inputSelect>
-	                                </div>
-	                            </div>
-	                        </td>
-	                      </tr>
-		                  <tr>
-		                        <td>
-		                            <div class="topSpacing">
-		                                <label class="slds-form-element__label">Project Name<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="width"> 
-		                              <a href=""  onclick="{!c.sendProjectNameToFD}">
-		                                  <ui:inputText class="slds-input" aura:id="Name" 
-		                                           value="{!v.assessmentData.Name}" 
-		                                           change="{!c.onNameProjectChange}">
-		                                 </ui:inputText>
-		                              </a> 
-		                            </div>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <td>
-		                            <div class="topSpacing">
-		                                <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="width">  
-		                              <a href=""  onclick="{!c.sendObjectifToFD}">
-		                                <ui:inputText class="slds-input"  
-		                                       value="{!v.assessmentData.orm_objectif__c}">
-		                                </ui:inputText>
-		                              </a>
-		                            </div>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <td>
-		                            <div class="topSpacing"> 
-		                                <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
-		                            </div>
-		                            
-		                            <div class="width">
-		                              <a href=""  onclick="{!c.sendDesciptionToFD}">
-		                                <ui:inputTextArea class="slds-input" 
-		                                         value="{!v.assessmentData.orm_description__c}">
-		                                </ui:inputTextArea>
-		                              </a>
-		                            </div>
-		                        </td>    
-		                    </tr>
-		                    <tr>
-	                            <td >
-	                                <div class="topSpacing">
-	                                    <label class="slds-form-element__label ">Project Manager<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>                                        
-	                                <div class=" slds-form-element">
-	                                   <div class="slds-form-element__control">
-	                                       <ui:inputSelect aura:id="userPM" 
-	                                               change="{!c.onChangePM}" class="slds-select"
-	                                               labelClass="slds-form-element__label">
-	                                           <aura:iteration items="{!v.allUser}" var="pm">
-	                                               <ui:inputSelectOption text="{!pm.Id}"
-	                                                                     label="{!pm.Name}" />
-	                                           </aura:iteration>
-	                                      </ui:inputSelect>
-	                                   </div>
-                                     </div>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <td >
-	                                <div class="topSpacing">
-	                                    <label class="slds-form-element__label ">Risk Manager<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>                                        
-	                                <div class=" slds-form-element">
-	                                   <div class="slds-form-element__control">
-	                                       <ui:inputSelect aura:id="userRM" 
-	                                               change="{!c.onChangeRM}" class="slds-select"
-	                                               labelClass="slds-form-element__label">
-	                                           <aura:iteration items="{!v.allUser}" var="rm">
-	                                               <ui:inputSelectOption text="{!rm.Id}"
-	                                                                     label="{!rm.Name}" />
-	                                           </aura:iteration>
-	                                      </ui:inputSelect>
-	                                   </div>
-                                     </div>
-	                            </td>
-	                        </tr>
-		                    <tr>
-	                            <td>
-	                                <div class="topSpacing"> 
-	                                    <label class="slds-form-element__label">Planned Start Date<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>
-	                                
-	                                <div class="width">
-	                                    <ui:inputDate class="slds-input" aura:id="plannedSD" value="{!v.assessmentData.orm_startDate__c}" displayDatePicker="true"></ui:inputDate>
-	                                </div>
-	                            </td>    
-	                        </tr>
-	                        <tr>
-	                            <td>
-	                                <div class="topSpacing"> 
-	                                    <label class="slds-form-element__label">Planned End Date<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>
-	                                
-	                                <div class="width">
-	                                    <ui:inputDate class="slds-input" aura:id="plannedED" value="{!v.assessmentData.orm_endDate__c}" displayDatePicker="true"></ui:inputDate>
-	                                </div>
-	                            </td>    
-	                        </tr>
-	                        <tr>
-	                           <td>
-	                                <div class="topSpacing"> 
-	                                    <label class="slds-form-element__label">Industry Sector of Client<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>
-									<div class="slds-form-element">
-		                                <div class="slds-form-element__control">
-		                                    <ui:inputSelect aura:id="industrySector" 
-		                                          change="{!c.onChangeIndSector}" class="slds-select"
-		                                          labelClass="slds-form-element__label" >
-		                                        <aura:iteration items="{! v.allIndustrySector}" var="indSec" >
-		                                            <ui:inputSelectOption  text="{!indSec}"
-		                                                                   label="{!indSec}"/>
-		                                        </aura:iteration>
-		                                    </ui:inputSelect>
-		                                </div>
-		                            </div>
-	                           </td>
-	                        </tr>
-	                        <tr>
-	                            <td class="textInDiv">
-	                                <div class="topSpacing">
-		                                <label class="slds-form-element__label">Currency<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="slds-form-element">
-		                                <div class="slds-form-element__control"><!-- change="{!c.onTypeAssessmentChange}" -->
-		                                    <ui:inputSelect aura:id="currency" 
-		                                            change="{!c.onCurrencyChange}" class="slds-select "
+                          <td >
+                             <div class="topSpacing"> 
+                                <label class="slds-form-element__label">Project Type*</label>
+                             </div>
+                              <div class="slds-form-element">
+                                  <div class="slds-form-element__control">
+                                      <aura:if isTrue="{!v.assessmentData.Id == null}">
+			                                <ui:inputSelect aura:id="typeProjet" 
+		                                            change="{!c.onChangeTypeProjet}" class="slds-select"
 		                                            labelClass="slds-form-element__label" >
-		                                          <aura:iteration items="{! v.allCurrency}" var="currency" >
-		                                              <ui:inputSelectOption  text="{!currency}"
-		                                                                     label="{!currency}"/>
+		                                          <aura:iteration items="{! v.allTypeProjet}" var="typeProjet" >
+		                                              <ui:inputSelectOption  text="{!typeProjet}"
+		                                                                     label="{!typeProjet}"/>
 		                                          </aura:iteration>
 		                                      </ui:inputSelect>
-		                                </div>
-		                            </div>
-	                            </td>    
-	                        </tr>
-	                        <tr>
-	                            <td class="textInDiv">
-	                                <div class="topSpacing"> 
-	                                    <label class="slds-form-element__label">Commercial Budget<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>
-	                                
-	                                <div class="width">
-	                                    <ui:inputnumber class="slds-input" aura:id="commercialBudget" value="{!v.assessmentData.orm_commercialBudget__c}"></ui:inputnumber>
-	                                </div>
-	                            </td>    
-	                        </tr>
-	                        <tr>
-	                            <td>
-	                                <div class="topSpacing"> 
-	                                    <label class="slds-form-element__label">Max Cost Exposture<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>
-	                                
-	                                <div class="width">
-	                                    <ui:inputnumber class="slds-input" aura:id="maxCostExposture" value="{!v.assessmentData.orm_maxCostExposture__c}"></ui:inputnumber>
-	                                </div>
-	                            </td>    
-	                        </tr>
-	                        <tr>
-	                            <td>
-	                                <div class="topSpacing"> 
-	                                    <label class="slds-form-element__label">Max Schedule Exposture<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>
-	                                
-	                                <div class="width">
-	                                    <ui:inputnumber class="slds-input scheduleInput" aura:id="maxSheduleExposture" value="{!v.assessmentData.orm_max_schedule_exposture__c}"></ui:inputnumber>
-	                                    <ui:inputSelect aura:id="schedule" 
-		                                            change="{!c.onScheduleChange}" class="slds-select scheduleSelect"
+			                             <aura:set attribute="else">
+			                                  <ui:inputSelect aura:id="typeProjet" 
+		                                            change="{!c.onChangeTypeProjet}" class="slds-select"
 		                                            labelClass="slds-form-element__label" >
-		                                          <aura:iteration items="{! v.allSchedule}" var="schedule" >
-		                                              <ui:inputSelectOption  text="{!schedule}"
-		                                                                     label="{!schedule}"/>
+		                                            <ui:inputSelectOption  text="{!v.assessmentData.orm_typeProjet__c}"
+		                                                                     label="{!v.assessmentData.orm_typeProjet__c}"/>
+		                                          <aura:iteration items="{! v.allTypeProjet}" var="typeProjet" >
+		                                              <ui:inputSelectOption  text="{!typeProjet}"
+		                                                                     label="{!typeProjet}"/>
 		                                          </aura:iteration>
-		                                 </ui:inputSelect>
-	                                </div>
-	                            </td>    
-	                        </tr>
-	                        <tr>
-	                            <td>
-	                                <div class="topSpacing"> 
-	                                    <label class="slds-form-element__label">Client Name<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>
-	                                
-	                                <div class="width">
-	                                    <ui:inputText class="slds-input" aura:id="clientName" value="{!v.assessmentData.orm_client_name__c}"></ui:inputText>
-	                                </div>
-	                            </td>    
-	                        </tr>
-	                        <tr>
-		                        <td>
-		                            <div class="topSpacing">
-		                                <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="slds-form-element">
-		                                <div class="slds-form-element__control">
-		                                    <ui:inputSelect aura:id="statusProjet" 
-		                                          change="{!c.onChangeStatusProjet}" class="slds-select"
-		                                          labelClass="slds-form-element__label" >
-		                                        <aura:iteration items="{! v.allStatus}" var="status" >
-		                                            <ui:inputSelectOption  text="{!status}"
-		                                                                   label="{!status}"/>
-		                                        </aura:iteration>
-		                                    </ui:inputSelect>
-		                                </div>
-		                            </div>
-		                        </td>
-		                    </tr>
-				    </aura:if>
-				    <aura:if isTrue="{!v.typeProcessus}">
-		                 <tr>
-		                        <td>
-		                            <div class="topSpacing">
-		                                <label class="slds-form-element__label">Name<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="width"> 
-		                              <a href=""  onclick="{!c.sendNameProcessusToFD}">
-		                                  <ui:inputText class="slds-input" aura:id="Name" 
-		                                           value="{!v.assessmentData.Name}" 
-		                                           change="{!c.onTitleChange}">
-		                                 </ui:inputText>
-		                              </a> 
-		                            </div>
-		                        </td>
-		                    </tr>
-		                    <tr>
-	                            <td >
-	                                <div class="topSpacing">
-	                                    <label class="slds-form-element__label ">Pilot<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>                                        
-	                                <div class=" slds-form-element">
-	                                   <div class="slds-form-element__control">
-	                                       <ui:inputSelect aura:id="pilote" 
-	                                               change="{!c.onChangePilote}" class="slds-select"
-	                                               labelClass="slds-form-element__label">
-	                                           <aura:iteration items="{!v.allUser}" var="pilote">
-	                                               <ui:inputSelectOption text="{!pilote.Id}"
-	                                                                     label="{!pilote.Name}" />
-	                                           </aura:iteration>
-	                                      </ui:inputSelect>
-	                                   </div>
+		                                        </ui:inputSelect>
+			                                </aura:set>
+			                            </aura:if>
+                                  </div>
+                              </div>
+                          </td>
+                        </tr>
+                      <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Project Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width"> 
+                                  <a href=""  onclick="{!c.sendProjectNameToFD}">
+                                      <ui:inputText class="slds-input" aura:id="Name" 
+                                               value="{!v.assessmentData.Name}" 
+                                               change="{!c.onNameProjectChange}">
+                                     </ui:inputText>
+                                  </a> 
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width">  
+                                  <a href=""  onclick="{!c.sendObjectifToFD}">
+                                    <ui:inputText class="slds-input"  
+                                           value="{!v.assessmentData.orm_objectif__c}">
+                                    </ui:inputText>
+                                  </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
+                                </div>
+                                
+                                <div class="width">
+                                  <a href=""  onclick="{!c.sendDesciptionToFD}">
+                                    <ui:inputTextArea class="slds-input" 
+                                             value="{!v.assessmentData.orm_description__c}">
+                                    </ui:inputTextArea>
+                                  </a>
+                                </div>
+                            </td>    
+                        </tr>
+                        <tr>
+                              <td >
+                                  <div class="topSpacing">
+                                      <label class="slds-form-element__label ">Project Manager<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>                                        
+                                  <div class=" slds-form-element">
+                                     <div class="slds-form-element__control">
+                                         <ui:inputSelect aura:id="userPM" 
+                                                 change="{!c.onChangePM}" class="slds-select"
+                                                 labelClass="slds-form-element__label">
+                                             <aura:iteration items="{!v.allUser}" var="pm">
+                                                 <ui:inputSelectOption text="{!pm.Id}"
+                                                                       label="{!pm.Name}" />
+                                             </aura:iteration>
+                                        </ui:inputSelect>
                                      </div>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <td >
-	                                <div class="topSpacing">
-	                                    <label class="slds-form-element__label ">Copilot<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>                                        
-	                                <div class=" slds-form-element">
-	                                   <div class="slds-form-element__control">
-	                                       <ui:inputSelect aura:id="copilote" 
-	                                               change="{!c.onChangeCopilote}" class="slds-select"
-	                                               labelClass="slds-form-element__label">
-	                                           <aura:iteration items="{!v.allUser}" var="cp">
-	                                               <ui:inputSelectOption text="{!cp.Id}"
-	                                                                     label="{!cp.Name}" />
-	                                           </aura:iteration>
-	                                      </ui:inputSelect>
-	                                   </div>
                                      </div>
-	                            </td>
-	                        </tr>
-		                    <tr>
-		                        <td>
-		                            <div class="topSpacing"> 
-		                                <label class="slds-form-element__label">Finality</label>
-		                            </div>
-		                            
-		                            <div class="width">
-		                              <a href=""  onclick="{!c.sendFinalityToFD}">
-		                                <ui:inputTextArea class="slds-input" 
-		                                         value="{!v.assessmentData.orm_finaliteProcessus__c}">
-		                                </ui:inputTextArea>
-		                              </a>
-		                            </div>
-		                        </td>    
-		                    </tr>
-		                    <tr>
-		                        <td>
-		                            <div class="topSpacing"> 
-		                                <label class="slds-form-element__label">Reference</label>
-		                            </div>
-		                            <div class="width">
-		                              <a href=""  onclick="{!c.sendReferenceToFD}">
-		                                <ui:inputText class="slds-input" 
-		                                         value="{!v.assessmentData.orm_referenceProcessus__c}">
-		                                </ui:inputText>
-		                              </a>
-		                            </div>
-		                        </td>    
-		                    </tr>
-		                    <tr>
-	                            <td>
-	                                <div class="topSpacing"> 
-	                                    <label class="slds-form-element__label">Application Date<span class="cmn_mandatory_indicator">*</span></label>
-	                                </div>
-	                                
-	                                <div class="width">
-	                                    <ui:inputDate class="slds-input" aura:id="applicationDate" value="{!v.assessmentData.orm_applicationDateProcessus__c}" displayDatePicker="true"></ui:inputDate>
-	                                </div>
-	                            </td>    
-	                        </tr>
-	                        <tr>
-		                        <td>
-		                            <div class="topSpacing"> 
-		                                <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
-		                            </div>
-		                            
-		                            <div class="width">
-		                              <a href=""  onclick="{!c.sendDesciptionToFD}">
-		                                <ui:inputTextArea class="slds-input" 
-		                                         value="{!v.assessmentData.orm_description__c}">
-		                                </ui:inputTextArea>
-		                              </a>
-		                            </div>
-		                        </td>    
-		                    </tr>
-	                        <tr>
-		                        <td>
-		                            <div class="topSpacing">
-		                                <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="slds-form-element">
-		                                <div class="slds-form-element__control">
-		                                    <ui:inputSelect aura:id="statusProcessus" 
-		                                           class="slds-select"
-		                                          labelClass="slds-form-element__label" >
-		                                        <aura:iteration items="{! v.allStatus}" var="status" >
-		                                            <ui:inputSelectOption  text="{!status}"
-		                                                                   label="{!status}"/>
-		                                        </aura:iteration>
-		                                    </ui:inputSelect>
-		                                </div>
-		                            </div>
-		                        </td>
-		                    </tr>
-				    </aura:if>
-				    <aura:if isTrue="{!v.typeOrganisation}">
-		                  <tr>
-		                        <td>
-		                            <div class="topSpacing">
-		                                <label class="slds-form-element__label">Organisation Name<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="width"> 
-		                              <a href=""  onclick="{!c.sendOrganisationNameToFD}">
-		                                  <ui:inputText class="slds-input" aura:id="Name" 
-		                                           value="{!v.assessmentData.Name}" 
-		                                           change="{!c.onTitleChange}">
-		                                 </ui:inputText>
-		                              </a> 
-		                            </div>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <td>
-		                            <div class="topSpacing">
-		                                <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="width">  
-		                              <a href="javascript:void(0);"  onclick="{!c.sendObjectifToFD}">
-		                                <ui:inputText class="slds-input"  
-		                                       value="{!v.assessmentData.orm_objectif__c}">
-		                                </ui:inputText>
-		                              </a>
-		                            </div>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <td>
-		                            <div class="topSpacing"> 
-		                                <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
-		                            </div>
-		                            
-		                            <div class="width">
-		                              <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
-		                                <ui:inputTextArea class="slds-input" 
-		                                         value="{!v.assessmentData.orm_description__c}">
-		                                </ui:inputTextArea>
-		                              </a>
-		                            </div>
-		                        </td>    
-		                    </tr>
-		                    <tr>
-		                        <td>
-		                            <div class="topSpacing">
-		                                <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
-		                            </div>
-		                            <div class="slds-form-element">
-		                                <div class="slds-form-element__control"><!-- change="{!c.onTypeAssessmentChange}" -->
-		                                    <ui:inputSelect aura:id="statusOrganisation" 
-		                                           class="slds-select"
-		                                          labelClass="slds-form-element__label" >
-		                                        <aura:iteration items="{! v.allStatus}" var="status" >
-		                                            <ui:inputSelectOption  text="{!status}"
-		                                                                   label="{!status}"/>
-		                                        </aura:iteration>
-		                                    </ui:inputSelect>
-		                                </div>
-		                            </div>
-		                        </td>
-		                    </tr>
-				    </aura:if>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td >
+                                  <div class="topSpacing">
+                                      <label class="slds-form-element__label ">Risk Manager<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>                                        
+                                  <div class=" slds-form-element">
+                                     <div class="slds-form-element__control">
+                                         <ui:inputSelect aura:id="userRM" 
+                                                 change="{!c.onChangeRM}" class="slds-select"
+                                                 labelClass="slds-form-element__label">
+                                             <aura:iteration items="{!v.allUser}" var="rm">
+                                                 <ui:inputSelectOption text="{!rm.Id}"
+                                                                       label="{!rm.Name}" />
+                                             </aura:iteration>
+                                        </ui:inputSelect>
+                                     </div>
+                                     </div>
+                              </td>
+                          </tr>
+                        <tr>
+                              <td>
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Planned Start Date<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                                  
+                                  <div class="width">
+                                      <ui:inputDate class="slds-input" aura:id="plannedSD" value="{!v.assessmentData.orm_startDate__c}" displayDatePicker="true"></ui:inputDate>
+                                  </div>
+                              </td>    
+                          </tr>
+                          <tr>
+                              <td>
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Planned End Date<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                                  
+                                  <div class="width">
+                                      <ui:inputDate class="slds-input" aura:id="plannedED" value="{!v.assessmentData.orm_endDate__c}" displayDatePicker="true"></ui:inputDate>
+                                  </div>
+                              </td>    
+                          </tr>
+                          <tr>
+                             <td>
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Industry Sector of Client<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                  <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputSelect aura:id="industrySector" 
+                                              change="{!c.onChangeIndSector}" class="slds-select"
+                                              labelClass="slds-form-element__label" >
+                                            <aura:iteration items="{! v.allIndustrySector}" var="indSec" >
+                                                <ui:inputSelectOption  text="{!indSec}"
+                                                                       label="{!indSec}"/>
+                                            </aura:iteration>
+                                        </ui:inputSelect>
+                                    </div>
+                                </div>
+                             </td>
+                          </tr>
+                          <tr>
+                              <td class="textInDiv">
+                                  <div class="topSpacing">
+                                    <label class="slds-form-element__label">Currency<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control"><!-- change="{!c.onTypeAssessmentChange}" -->
+                                        <ui:inputSelect aura:id="currency" 
+                                                change="{!c.onCurrencyChange}" class="slds-select "
+                                                labelClass="slds-form-element__label" >
+                                              <aura:iteration items="{! v.allCurrency}" var="currency" >
+                                                  <ui:inputSelectOption  text="{!currency}"
+                                                                         label="{!currency}"/>
+                                              </aura:iteration>
+                                          </ui:inputSelect>
+                                    </div>
+                                </div>
+                              </td>    
+                          </tr>
+                          <tr>
+                              <td class="textInDiv">
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Commercial Budget<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                                  
+                                  <div class="width">
+                                      <ui:inputnumber class="slds-input" aura:id="commercialBudget" value="{!v.assessmentData.orm_commercialBudget__c}"></ui:inputnumber>
+                                  </div>
+                              </td>    
+                          </tr>
+                          <tr>
+                              <td>
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Max Cost Exposture<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                                  
+                                  <div class="width">
+                                      <ui:inputnumber class="slds-input" aura:id="maxCostExposture" value="{!v.assessmentData.orm_maxCostExposture__c}"></ui:inputnumber>
+                                  </div>
+                              </td>    
+                          </tr>
+                          <tr>
+                              <td>
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Max Schedule Exposture<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                                  
+                                  <div class="width">
+                                      <ui:inputnumber class="slds-input scheduleInput" aura:id="maxSheduleExposture" value="{!v.assessmentData.orm_max_schedule_exposture__c}"></ui:inputnumber>
+                                      <ui:inputSelect aura:id="schedule" 
+                                                change="{!c.onScheduleChange}" class="slds-select scheduleSelect"
+                                                labelClass="slds-form-element__label" >
+                                              <aura:iteration items="{! v.allSchedule}" var="schedule" >
+                                                  <ui:inputSelectOption  text="{!schedule}"
+                                                                         label="{!schedule}"/>
+                                              </aura:iteration>
+                                     </ui:inputSelect>
+                                  </div>
+                              </td>    
+                          </tr>
+                          <tr>
+                              <td>
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Client Name<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                                  
+                                  <div class="width">
+                                      <ui:inputText class="slds-input" aura:id="clientName" value="{!v.assessmentData.orm_client_name__c}"></ui:inputText>
+                                  </div>
+                              </td>    
+                          </tr>
+                          <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputSelect aura:id="statusProjet" 
+                                              change="{!c.onChangeStatusProjet}" class="slds-select"
+                                              labelClass="slds-form-element__label" >
+                                            <aura:iteration items="{! v.allStatus}" var="status" >
+                                                <ui:inputSelectOption  text="{!status}"
+                                                                       label="{!status}"/>
+                                            </aura:iteration>
+                                        </ui:inputSelect>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+            </aura:if>
+            <aura:if isTrue="{!or(v.typeProcessus == true, v.assessmentData.orm_typeAssessment__c == 'Processus')}">
+                     <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width"> 
+                                  <a href=""  onclick="{!c.sendNameProcessusToFD}">
+                                      <ui:inputText class="slds-input" aura:id="Name" 
+                                               value="{!v.assessmentData.Name}" 
+                                               change="{!c.onTitleChange}">
+                                     </ui:inputText>
+                                  </a> 
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                              <td >
+                                  <div class="topSpacing">
+                                      <label class="slds-form-element__label ">Pilot<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>                                        
+                                  <div class=" slds-form-element">
+                                     <div class="slds-form-element__control">
+                                         <ui:inputSelect aura:id="pilote" 
+                                                 change="{!c.onChangePilote}" class="slds-select"
+                                                 labelClass="slds-form-element__label">
+                                             <aura:iteration items="{!v.allUser}" var="pilote">
+                                                 <ui:inputSelectOption text="{!pilote.Id}"
+                                                                       label="{!pilote.Name}" />
+                                             </aura:iteration>
+                                        </ui:inputSelect>
+                                     </div>
+                                     </div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td >
+                                  <div class="topSpacing">
+                                      <label class="slds-form-element__label ">Copilot<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>                                        
+                                  <div class=" slds-form-element">
+                                     <div class="slds-form-element__control">
+                                         <ui:inputSelect aura:id="copilote" 
+                                                 change="{!c.onChangeCopilote}" class="slds-select"
+                                                 labelClass="slds-form-element__label">
+                                             <aura:iteration items="{!v.allUser}" var="cp">
+                                                 <ui:inputSelectOption text="{!cp.Id}"
+                                                                       label="{!cp.Name}" />
+                                             </aura:iteration>
+                                        </ui:inputSelect>
+                                     </div>
+                                     </div>
+                              </td>
+                          </tr>
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">Finality</label>
+                                </div>
+                                
+                                <div class="width">
+                                  <a href=""  onclick="{!c.sendFinalityToFD}">
+                                    <ui:inputTextArea class="slds-input" 
+                                             value="{!v.assessmentData.orm_finaliteProcessus__c}">
+                                    </ui:inputTextArea>
+                                  </a>
+                                </div>
+                            </td>    
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">Reference</label>
+                                </div>
+                                <div class="width">
+                                  <a href=""  onclick="{!c.sendReferenceToFD}">
+                                    <ui:inputText class="slds-input" 
+                                             value="{!v.assessmentData.orm_referenceProcessus__c}">
+                                    </ui:inputText>
+                                  </a>
+                                </div>
+                            </td>    
+                        </tr>
+                        <tr>
+                              <td>
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Application Date<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                                  
+                                  <div class="width">
+                                      <ui:inputDate class="slds-input" aura:id="applicationDate" value="{!v.assessmentData.orm_applicationDateProcessus__c}" displayDatePicker="true"></ui:inputDate>
+                                  </div>
+                              </td>    
+                          </tr>
+                          <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
+                                </div>
+                                
+                                <div class="width">
+                                  <a href=""  onclick="{!c.sendDesciptionToFD}">
+                                    <ui:inputTextArea class="slds-input" 
+                                             value="{!v.assessmentData.orm_description__c}">
+                                    </ui:inputTextArea>
+                                  </a>
+                                </div>
+                            </td>    
+                        </tr>
+                          <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputSelect aura:id="statusProcessus" 
+                                               class="slds-select"
+                                              labelClass="slds-form-element__label" >
+                                            <aura:iteration items="{! v.allStatus}" var="status" >
+                                                <ui:inputSelectOption  text="{!status}"
+                                                                       label="{!status}"/>
+                                            </aura:iteration>
+                                        </ui:inputSelect>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+            </aura:if>
+            <aura:if isTrue="{!or(v.typeOrganisation == true, v.assessmentData.orm_typeAssessment__c == 'Organisation')}">
+                      <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Organisation Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width"> 
+                                  <a href=""  onclick="{!c.sendOrganisationNameToFD}">
+                                      <ui:inputText class="slds-input" aura:id="Name" 
+                                               value="{!v.assessmentData.Name}" 
+                                               change="{!c.onTitleChange}">
+                                     </ui:inputText>
+                                  </a> 
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width">  
+                                  <a href="javascript:void(0);"  onclick="{!c.sendObjectifToFD}">
+                                    <ui:inputText class="slds-input"  
+                                           value="{!v.assessmentData.orm_objectif__c}">
+                                    </ui:inputText>
+                                  </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
+                                </div>
+                                
+                                <div class="width">
+                                  <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
+                                    <ui:inputTextArea class="slds-input" 
+                                             value="{!v.assessmentData.orm_description__c}">
+                                    </ui:inputTextArea>
+                                  </a>
+                                </div>
+                            </td>    
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control"><!-- change="{!c.onTypeAssessmentChange}" -->
+                                        <ui:inputSelect aura:id="statusOrganisation" 
+                                               class="slds-select"
+                                              labelClass="slds-form-element__label" >
+                                            <aura:iteration items="{! v.allStatus}" var="status" >
+                                                <ui:inputSelectOption  text="{!status}"
+                                                                       label="{!status}"/>
+                                            </aura:iteration>
+                                        </ui:inputSelect>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+            </aura:if>
                    
                 </aura:if>
                 <aura:if isTrue="{!v.showContext2}">
@@ -602,119 +631,119 @@
                   <aura:if isTrue="{!v.typeProjet}">
                   
                       <tr>
-	                       <td>
-	                             <div class="topSpacing"> 
-	                                 <label class="slds-form-element__label">Organisation</label>
-	                             </div>
-	                             <div class="organisation slds-form-element">
-	                                 <div class="slds-form-element__control">
-	                                     <ui:inputSelect aura:id="organisation" 
-	                                             change="{!c.onChangeOrganisation}" class="slds-select"
-	                                             labelClass="slds-form-element__label">
-	                                         <aura:iteration items="{!v.allOrganisation}" var="organisation">
-	                                             <ui:inputSelectOption text="{!organisation.Id}"
-	                                                                   label="{!organisation.Name}" />
-	                                         </aura:iteration>
-	                                    </ui:inputSelect>
-	                                 </div>
-	                             </div>
-	                             <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
-	                        </td>
-	                   </tr>
-	                   <tr>
-	                       <td>
-	                    		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
-	                    	</td>
-	                    </tr>
-	                   <tr>
-		                   <td>
-		                      <div style="height:50px"> </div>
-		                    </td>
-	                   </tr>
+                         <td>
+                               <div class="topSpacing"> 
+                                   <label class="slds-form-element__label">Organisation</label>
+                               </div>
+                               <div class="organisation slds-form-element">
+                                   <div class="slds-form-element__control">
+                                       <ui:inputSelect aura:id="organisation" 
+                                               change="{!c.onChangeOrganisation}" class="slds-select"
+                                               labelClass="slds-form-element__label">
+                                           <aura:iteration items="{!v.allOrganisation}" var="organisation">
+                                               <ui:inputSelectOption text="{!organisation.Id}"
+                                                                     label="{!organisation.Name}" />
+                                           </aura:iteration>
+                                      </ui:inputSelect>
+                                   </div>
+                               </div>
+                               <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
+                          </td>
+                     </tr>
+                     <tr>
+                         <td>
+                          <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+                        </td>
+                      </tr>
+                     <tr>
+                       <td>
+                          <div style="height:50px"> </div>
+                        </td>
+                     </tr>
                       <tr>
-	                     <td class="textInDiv">
-	                         <span style="margin-left:200px;">Cost as % of project budget</span>
-	                      </td>
-	                  </tr>
+                       <td class="textInDiv">
+                           <span style="margin-left:200px;">Cost as % of project budget</span>
+                        </td>
+                    </tr>
                       <tr>
-	                     <td class="textInDiv">
-	                         <span class="spanClass" style="background-color: red;height:20px;width:10%">Very High</span>
-	                          <lightning:slider class="slid"  value="{!v.valVH}" style="float:right" />
-	                          <!-- <lightning:slider label="Volume" variant="label-hidden" type="vertical"/> -->
-	                      </td>
-	                  </tr>
-	                  <tr>
-	                     <td class="textInDiv">
-	                         <span class="spanClass" style="background-color: rgb(255,165,0);height:20px;width:10%">High</span>
-	                          <lightning:slider class="slid" value="{!v.valH}" style="float:right" />
-	                      </td>
-	                  </tr>
-	                  <tr>
-	                     <td class="textInDiv">
-	                         <span class="spanClass" style="background-color: RGB(255,255,0);height:20px;width:10%">Medium</span>
-	                          <lightning:slider class="slid" value="{!v.valM}" style="float:right" />
-	                      </td>
-	                  </tr>
-	                  <tr>
-	                     <td class="textInDiv">
-	                         <span class="spanClass" style="background-color: rgb(154,205,50);height:20px;width:10%">Low</span>
-	                          <lightning:slider class="slid" value="{!v.valL}" style="float:right" />
-	                      </td>
-	                  </tr>
+                       <td class="textInDiv">
+                           <span class="spanClass" style="background-color: red;height:20px;width:10%">Very High</span>
+                            <lightning:slider class="slid"  value="{!v.valVH}" style="float:right" />
+                            <!-- <lightning:slider label="Volume" variant="label-hidden" type="vertical"/> -->
+                        </td>
+                    </tr>
+                    <tr>
+                       <td class="textInDiv">
+                           <span class="spanClass" style="background-color: rgb(255,165,0);height:20px;width:10%">High</span>
+                            <lightning:slider class="slid" value="{!v.valH}" style="float:right" />
+                        </td>
+                    </tr>
+                    <tr>
+                       <td class="textInDiv">
+                           <span class="spanClass" style="background-color: RGB(255,255,0);height:20px;width:10%">Medium</span>
+                            <lightning:slider class="slid" value="{!v.valM}" style="float:right" />
+                        </td>
+                    </tr>
+                    <tr>
+                       <td class="textInDiv">
+                           <span class="spanClass" style="background-color: rgb(154,205,50);height:20px;width:10%">Low</span>
+                            <lightning:slider class="slid" value="{!v.valL}" style="float:right" />
+                        </td>
+                    </tr>
                   </aura:if>
                   <aura:if isTrue="{!v.typeOrganisation}">
                       <tr>
-	                       <td>
-	                             <div class="topSpacing"> 
-	                                 <label class="slds-form-element__label">Organisation</label>
-	                             </div>
-	                             <div class="organisation slds-form-element">
-	                                 <div class="slds-form-element__control">
-	                                     <ui:inputSelect aura:id="organisation" 
-	                                             change="{!c.onChangeOrganisation}" class="slds-select"
-	                                             labelClass="slds-form-element__label">
-	                                         <aura:iteration items="{!v.allOrganisation}" var="organisation">
-	                                             <ui:inputSelectOption text="{!organisation.Id}"
-	                                                                   label="{!organisation.Name}" />
-	                                         </aura:iteration>
-	                                    </ui:inputSelect>
-	                                 </div>
-	                             </div>
-	                             <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
-	                        </td>
-	                   </tr>
-	                   <tr>
-	                       <td>
-	                    		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
-	                    	</td>
-	                    </tr>
+                         <td>
+                               <div class="topSpacing"> 
+                                   <label class="slds-form-element__label">Organisation</label>
+                               </div>
+                               <div class="organisation slds-form-element">
+                                   <div class="slds-form-element__control">
+                                       <ui:inputSelect aura:id="organisation" 
+                                               change="{!c.onChangeOrganisation}" class="slds-select"
+                                               labelClass="slds-form-element__label">
+                                           <aura:iteration items="{!v.allOrganisation}" var="organisation">
+                                               <ui:inputSelectOption text="{!organisation.Id}"
+                                                                     label="{!organisation.Name}" />
+                                           </aura:iteration>
+                                      </ui:inputSelect>
+                                   </div>
+                               </div>
+                               <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
+                          </td>
+                     </tr>
+                     <tr>
+                         <td>
+                          <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+                        </td>
+                      </tr>
                   </aura:if>
                   <aura:if isTrue="{!v.typeProcessus}">
                       <tr>
-	                       <td>
-	                             <div class="topSpacing"> 
-	                                 <label class="slds-form-element__label">Organisation</label>
-	                             </div>
-	                             <div class="organisation slds-form-element">
-	                                 <div class="slds-form-element__control">
-	                                     <ui:inputSelect aura:id="organisation" 
-	                                             change="{!c.onChangeOrganisation}" class="slds-select"
-	                                             labelClass="slds-form-element__label">
-	                                         <aura:iteration items="{!v.allOrganisation}" var="organisation">
-	                                             <ui:inputSelectOption text="{!organisation.Id}"
-	                                                                   label="{!organisation.Name}" />
-	                                         </aura:iteration>
-	                                    </ui:inputSelect>
-	                                 </div>
-	                             </div>
-	                             <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
-	                        </td>
-	                   </tr>
-	                   <tr>
-	                       <td>
-	                    		<c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
-	                    	</td>
-	                    </tr>
+                         <td>
+                               <div class="topSpacing"> 
+                                   <label class="slds-form-element__label">Organisation</label>
+                               </div>
+                               <div class="organisation slds-form-element">
+                                   <div class="slds-form-element__control">
+                                       <ui:inputSelect aura:id="organisation" 
+                                               change="{!c.onChangeOrganisation}" class="slds-select"
+                                               labelClass="slds-form-element__label">
+                                           <aura:iteration items="{!v.allOrganisation}" var="organisation">
+                                               <ui:inputSelectOption text="{!organisation.Id}"
+                                                                     label="{!organisation.Name}" />
+                                           </aura:iteration>
+                                      </ui:inputSelect>
+                                   </div>
+                               </div>
+                               <span class="btnNewOrg" onclick="{!c.openOrganisationNew}"><lightning:icon iconName="utility:new" size="medium" /></span>
+                          </td>
+                     </tr>
+                     <tr>
+                         <td>
+                          <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+                        </td>
+                      </tr>
                   </aura:if>
                   
                    <!--<tr>
@@ -751,7 +780,7 @@
                     </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showContextWorkshop}">
-	                <tr>
+                  <tr>
                         <td>
                         <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
                         </td>
@@ -768,33 +797,39 @@
                 </aura:if>  
                 <aura:if isTrue="{!v.showRiskAnalyse}">
                     
-                    <!--
                     <tr>
                         <td>
                             <div class="topSpacing">
                                 <label class="slds-form-element__label ">Cause<span class="cmn_mandatory_indicator">*</span></label>
                             </div>                                        
-	                        <div class="cause">
-	                        
-	                        	<lightning:select aura:id="cause" name="cause" onchange="{!c.onChangeCause}">
+                          <div class="cause">
+                          
+                            <lightning:select aura:id="cause" name="cause" onchange="{!c.onChangeCause}">
                                         <aura:iteration items="{!v.allCauses}" var="cause">
                                             <option text="{!cause.Name}"
                                                     label="{!cause.Id}"
                                                     value="{!cause.Id}">
                                             </option>
                                         </aura:iteration>
-                                </lightning:select>
+                                </lightning:select>   
+                            <!--
+                            <ui:inputSelect class="slds-input" aura:id="Cause" change="{!c.onSelectChange}">
+                                <ui:inputSelectOption text="Prospecting" label="Cause1" value="true"/>
+                                <ui:inputSelectOption text="Qualification" label="Cause2"/>
+                                <ui:inputSelectOption text="Needs Analysis" label="Cause3"/>
+                              </ui:inputSelect>
+                              -->
                             </div>
                             <span class="btnNewCause" onclick="{!c.openCauseNewCmp}">
                                 <lightning:icon iconName="utility:new" size="medium" /></span>
                         </td>
                     </tr>
-                    -->
+                    
                     <!-- list of causee -->
                     <tr>
-                    	<td>
-                    		<c:OrmCauseListCmp />
-                    	</td>
+                      <td>
+                        <c:OrmCauseListCmp />
+                      </td>
                     </tr>
                     <!-- /causes -->
                     
@@ -821,21 +856,21 @@
                 </aura:if>
                 
                 <aura:if isTrue="{!v.displaySaveCancelBtn}">
-	                  <tr>
-	                      <td class="textInDiv">
-	                         <div style="margin-bottom:20px;">
-	                             <lightning:buttonGroup class="slds-m-around_medium">
-						            <!-- <lightning:button label="Cancel" onclick="{!c.cancel}"/> -->
-						            <lightning:button label="Save"
-						                              variant="brand"
-	                                                  class="slds-button"
-						                              onclick="{!c.createAssessment}"/>
-						        </lightning:buttonGroup>
-						        <span style="color:red">Click on this button for saving the assessment</span>
-	                         </div>
-	                      </td>
-	                  </tr>
-			    </aura:if>
+                    <tr>
+                        <td class="textInDiv">
+                           <div style="margin-bottom:20px;">
+                               <lightning:buttonGroup class="slds-m-around_medium">
+                        <!-- <lightning:button label="Cancel" onclick="{!c.cancel}"/> -->
+                        <lightning:button label="Save"
+                                          variant="brand"
+                                                    class="slds-button"
+                                          onclick="{!c.createAssessment}"/>
+                    </lightning:buttonGroup>
+                    <span style="color:red">Click on this button for saving the assessment</span>
+                           </div>
+                        </td>
+                    </tr>
+          </aura:if>
             </table>
             
             <div class="slds-grid  slds-grid--align-center">
@@ -911,6 +946,6 @@
     
     
     <c:OrmOrganisationNewCmp/>
-    <!-- c:OrmCauseNewCmp / -->
+    <c:OrmCauseNewCmp />
     <c:OrmWorkShopNewCmp/>
 </aura:component>

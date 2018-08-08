@@ -53,8 +53,6 @@ public with sharing class OrmWorkshopController {
  * @history 
  * 2018-08-02 : Salimata NGOM - Implementation
  */
-  
-  
   @AuraEnabled 
     public static List<Contract> findAccountByAssessment(String asssessment){
         List<Contract> allworkshop = new List<Contract>();
@@ -73,7 +71,6 @@ public with sharing class OrmWorkshopController {
  * @history 
  * 2018-08-01 : Salimata NGOM - Implementation
  */   
- 
     @AuraEnabled
 	public static Contract addWorkShop(Contract item){        
        item.RecordTypeId = OrmWorkshopController.getWorkshopRecordTypeId();

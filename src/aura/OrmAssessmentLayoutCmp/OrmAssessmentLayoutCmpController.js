@@ -190,8 +190,9 @@
         if(ta.get("v.value")== 'Organisation'){
           var statusOrganisation = component.find("statusOrganisation");
           newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
+          var riskManager = component.find("userRM");
+          newItem.orm_riskManager__c = riskManager.get("v.value");
         }
-        alert(JSON.stringify(newItem))
         var action = component.get('c.add');
         action.setParams({
             "item": newItem
@@ -221,8 +222,11 @@
     {
     	component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));
 	},
+	
 	onChangePM : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn",true);
+        
     	component.find("userPM").set("v.value", event.getSource().get("v.value"));
     	var field = "Project Manager";
         var description = "This field allows us to specify the Project Manager for this Project";
@@ -230,6 +234,8 @@
 	},
 	onChangeRM : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn",true);
+        
     	component.find("userRM").set("v.value", event.getSource().get("v.value"));
     	var field = "Risk Manager";
         var description = "This field allows us to specify the Risk Manager for this Project";
@@ -383,7 +389,7 @@
     },
     
     onChangeTypeProjet : function(component,event,helper){ 
-        
+        component.set("v.displaySaveCancelBtn", true);
         if(event.getSource().get("v.value").trim() != ''){ 
             component.find("typeProjet").set("v.value", event.getSource().get("v.value")); 
         }
@@ -398,7 +404,11 @@
             component.set("v.displaySaveCancelBtn",true);
         }
     },
-    
+    onObjectifProjectChange : function(component,event,helper){ 
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.displaySaveCancelBtn",true);
+        }
+    },
     sendProjectNameToFD  : function(component,event,helper){ 
     	
         var field = "Project Name"
@@ -407,6 +417,11 @@
     },
     
     onTitleChange : function(component,event,helper){ 
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.displaySaveCancelBtn",true);
+        }
+    },
+    onChangedescriptionProject : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
         }
@@ -459,6 +474,11 @@
         var field =  event.getParam("nomField");
         var description = event.getParam("descriptionField");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    
+    cancel : function(component, event, helper)
+    {
+        component.set("v.displaySaveCancelBtn",false);
     },
    
     

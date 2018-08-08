@@ -98,11 +98,17 @@ public with sharing class OrmContactController {
  * 2018-08-07: Salimata NGOM - Implementation
  */
     @AuraEnabled
-	public static orm_ContactWorkshop__c addWorkShopContact(orm_ContactWorkshop__c item){        
-        item.RecordTypeId = OrmContactController.getContactWorkshopRecordTypeId();
-        item.orm_dateAjout__c=System.today();
-		upsert item;
-		return item;
+	public static List<orm_ContactWorkshop__c> addWorkShopContact(List<orm_ContactWorkshop__c> items){ 
+		List<orm_ContactWorkshop__c> listcontactworkshop;
+		for (orm_ContactWorkshop__c contactworkshop:items){
+			contactworkshop.RecordTypeId = OrmContactController.getContactWorkshopRecordTypeId();
+			contactworkshop.orm_dateAjout__c=System.today();
+			listcontactworkshop.add(contactworkshop);
+		}
+			insert listcontactworkshop;
+		return listcontactworkshop;
+		       
+		
 	}
 	
 	

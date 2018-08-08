@@ -40,63 +40,55 @@
 	closeModalWorkshopContact: function(component, event, helper) {
 	component.set("v.isOpenModalContactWorkshop", false);
 	},
+	   getselectedRows: function(component, event, helper) {
+        var selectedRows = event.getParam('selectedRows');
+        var contactsWorkshop = [];
+        selectedRows.forEach(function(selectedRow) {
+        console.log('id='+selectedRow.Id);
+        var newcontactworkshop={};
+        newcontactworkshop.sobjectType='orm_ContactWorkshop__c';
+	            newcontactworkshop.orm_contact__c = selectedRow.Id;
+	           newcontactworkshop.orm_notification__c = false;
+	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop").Id;
+	        
+	            contactsWorkshop.push(newcontactworkshop);
+	            console.log('v.ContactWorkshopList  nbre' + component.get("v.ContactWorkshopList").length);
+        });
+       
+        component.set("v.ContactWorkshopList", contactsWorkshop);
+        
+    },
 	
 	createContactWorkshop :function(component, event, helper) {
-	alert(JSON.stringify(component.get('v.workshop')));
-		var contact = component.find('idcontact');
-		var notif=component.find('idnotif');
-		var isItemValid = true;
-		
-	if ($A.util.isEmpty(contact.get('v.value'))) {
-			isItemValid = false;
-
-		}
-
-		if (isItemValid) {
-		// new item contactWorkshop
-
-			var newItem = component.get("v.item");
- 
-			newItem.orm_contact__c=contact.get('v.value');
-			newItem.orm_Workshop__c=component.get("v.workshop").Id;
-			newItem.orm_notification__c=notif.get('v.value');
-			
-			  var action = component.get('c.addWorkShopContact');
-            action.setParams({
-                "item": newItem
-            });
-            alert(JSON.stringify(newItem));
-               action
-                .setCallback(
-                    this,
-                    function(response) {
-                        var state = response.getState();
-                        if (state == "SUCCESS") {
-                        alert('success');
-                        /*
-                          var evt = $A.get("e.c:OrmRefreshContactWorkshopEvt");
-			evt.setParams({
-			   "Workshop" : component.get("v.workshop")
-			});
-			evt.fire();
-*/
-                        component.set("v.item", {
-                        'sobjectType' : 'orm_ContactWorkshop__c',
-                        'orm_contact__c':'',
-                        'Name':'',
-                        'orm_dateAjout__c':'', 
-                        'orm_notification__c':'',
-                        'orm_Workshop__c':''
-                            });
-                            
-                        }else
-                        {
-                             alert('error');
-                        }
-                    });
-            $A.enqueueAction(action);
-           
-		}
+	
+        var relatedcontactworkshop= component.get("v.ContactWorkshopList");
+        
+      /**
+        relatedcontactworkshop.forEach(function(contactwork) {
+	           var newcontactworkshop = component.get("v.item");
+	            newcontactworkshop.orm_contact__c = contactwork.Id;
+	           newcontactworkshop.orm_notification__c = false;
+	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop").Id;
+	        
+	            contactsWorkshop.push(newcontactworkshop);
+	           
+        });**/
+       
+        var action = component.get('c.addWorkShopContact');
+        action.setParams({
+            "items": relatedcontactworkshop
+        });
+       alert(JSON.stringify(relatedcontactworkshop));
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            console.log(state);
+            if (component.isValid() && state == "SUCCESS") {
+                alert("successful association");
+            } else {
+                alert("failed association");
+            }
+        });
+        $A.enqueueAction(action);
 	},
 	/**
 	refreshContactWorkshop  :function(component, event, helper) {

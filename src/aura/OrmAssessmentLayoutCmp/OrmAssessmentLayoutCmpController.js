@@ -190,6 +190,8 @@
         if(ta.get("v.value")== 'Organisation'){
           var statusOrganisation = component.find("statusOrganisation");
           newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
+          var riskManager = component.find("userRM");
+          newItem.orm_riskManager__c = riskManager.get("v.value");
         }
         var action = component.get('c.add');
         action.setParams({

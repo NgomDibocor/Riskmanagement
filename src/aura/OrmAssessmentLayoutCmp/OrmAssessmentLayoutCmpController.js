@@ -191,7 +191,6 @@
           var statusOrganisation = component.find("statusOrganisation");
           newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
         }
-        alert(JSON.stringify(newItem))
         var action = component.get('c.add');
         action.setParams({
             "item": newItem

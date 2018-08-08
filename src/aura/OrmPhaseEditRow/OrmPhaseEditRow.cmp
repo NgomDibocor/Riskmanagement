@@ -5,7 +5,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     <!-- attributes -->
-    <aura:attribute name="objInfo" type="macro" default="{sobjectType : 'Macro'}" 
+    <aura:attribute name="objInfo" type="macro" default="{ 'sobjectType' : 'Macro'}" 
     	description="object information to fetch picklist values"/>
     <aura:attribute name="showSaveCancelBtn" type="boolean"/>
     <aura:attribute name="showErrorClass" type="boolean" default="false"/>

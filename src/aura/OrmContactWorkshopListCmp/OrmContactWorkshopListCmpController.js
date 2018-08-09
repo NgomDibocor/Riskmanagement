@@ -62,17 +62,6 @@
 	createContactWorkshop :function(component, event, helper) {
 	
         var relatedcontactworkshop= component.get("v.ContactWorkshopList");
-        
-      /**
-        relatedcontactworkshop.forEach(function(contactwork) {
-	           var newcontactworkshop = component.get("v.item");
-	            newcontactworkshop.orm_contact__c = contactwork.Id;
-	           newcontactworkshop.orm_notification__c = false;
-	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop").Id;
-	        
-	            contactsWorkshop.push(newcontactworkshop);
-	           
-        });**/
        
         var action = component.get('c.addWorkShopContact');
         action.setParams({
@@ -89,6 +78,7 @@
             }
         });
         $A.enqueueAction(action);
+        	component.set("v.isOpenModalContactWorkshop", false);
 	},
 	/**
 	refreshContactWorkshop  :function(component, event, helper) {

@@ -99,10 +99,10 @@ public with sharing class OrmContactController {
  */
     @AuraEnabled
 	public static List<orm_ContactWorkshop__c> addWorkShopContact(List<orm_ContactWorkshop__c> items){ 
-		List<orm_ContactWorkshop__c> listcontactworkshop;
+		List<orm_ContactWorkshop__c> listcontactworkshop  = new List<orm_ContactWorkshop__c>();
 		for (orm_ContactWorkshop__c contactworkshop:items){
 			contactworkshop.RecordTypeId = OrmContactController.getContactWorkshopRecordTypeId();
-			contactworkshop.orm_dateAjout__c=System.today();
+			contactworkshop.orm_dateAjout__c=Date.today();
 			listcontactworkshop.add(contactworkshop);
 		}
 			insert listcontactworkshop;

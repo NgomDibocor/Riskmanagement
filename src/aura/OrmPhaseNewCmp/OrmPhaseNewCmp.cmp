@@ -9,6 +9,7 @@
 	
 	<!-- attributes -->	
 	<aura:attribute name="phase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
+																		'Description' : '',
 																		'orm_phase__c': '',
 																		'orm_assessment__c': ''
 																		}" />

@@ -58,25 +58,59 @@
               
 	},
 	
-	filter : function (component, event, helper){
-    	
-    	var phases = component.get('v.phase');
-    	var data = phases;
-    	var key = component.get('v.key');
-    	var regex;
-    	key = "^" + key;
-    	
-    	if ($A.util.isEmpty(key)) {
-	        component.set("v.phases", phases);	        
-         } else {
-        	try {
-        	 		regex = new RegExp(key, "i");
-        	 		// filter checks each row, constructs new array where function returns true
-        	 		data = data.filter(row => regex.test(row.orm_phase__c));
-		        } catch (e) {
-		    	   
-		        }
-		   component.set("v.phases", data);
-         }        	
-    }	
+	createItem : function(component, event, helper) {
+	 
+	 var description = component.find('description').get('v.value');
+        
+     /* we test the validity of data */
+     var isItemsValid = true;
+        if($A.util.isEmpty(description)) {
+            isItemsValid = false;           
+     }
+        
+     if(isItemsValid){
+        	var newPhase = component.get('v.newPhase');
+        	newPhase.Name = "XXXX"; // not used but it's required for Macro
+        	newPhase.Description = description;
+        	console.log("id Assessment in add ", component.get('v.idAssessment'));
+        	newPhase.orm_assessment__c = component.get('v.idAssessment');        	
+        	
+        	var action = component.get('c.add');
+            action.setParams({
+                "item": newPhase
+            });
+            action.setCallback(this, function(response) {
+            	if(response.getState() == 'SUCCESS'){
+            		newPhase = response.getReturnValue();
+            		helper.refresh(component, event);
+            		var toast = $A.get('e.force:showToast');
+            		toast.setParams({
+			           'message' : 'New Phase Has Been Successfully Added',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+		            });	
+		            toast.fire();
+		            
+		            /*var evt = $A.get("e.c:OrmEventNewPhaseCreated");
+                    evt.fire();
+		            
+            		helper.closeModal(component, event); */
+                    component.set('v.newPhase', { 'sobjectType' : 'Macro',
+											      'orm_phase__c': '',
+											      'orm_assessment__c': '',
+											      'Description': ''
+                    			  });
+            	} else {
+            		var toast = $A.get('e.force:showToast');
+            		toast.setParams({
+			           'message' : 'ERROR',
+			           'type' : 'error',
+			           'mode' : 'dismissible'
+		            });	
+		            toast.fire();
+            	}
+            });
+            $A.enqueueAction(action);        	
+        }	
+	}
 })

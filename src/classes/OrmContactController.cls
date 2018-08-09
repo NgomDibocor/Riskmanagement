@@ -49,15 +49,29 @@ public with sharing class OrmContactController {
  */
    
  @AuraEnabled 
-    public static List<Contact> findAllContact(){
+  public static List<Contact> findAllContact(){
         List<Contact> allContact = new List<Contact>();
         allContact = [Select Id, Name,FirstName,LastName,Email,Phone, orm_organisation__c
                     From Contact where RecordTypeId=:OrmContactController.getContactRecordTypeId() 
                    ];
         return allContact;
     }  
+    /**
+     @AuraEnabled 
+       public static List<Contact> findAllContact(Contract item){
+        List<Contact> allContact = new List<Contact>();
+        allContact = [Select Id, Name,FirstName,LastName,Email,Phone, orm_organisation__c, (Select orm_contact__c
+                    From orm_ContactWorkshop__c where 
+                   // RecordTypeId=:OrmContactController.getContactWorkshopRecordTypeId()
+                    // and  
+                    orm_Workshop__c=:item.Id )
+                    From Contact where RecordTypeId=:OrmContactController.getContactRecordTypeId() 
+                   ];
+        return allContact;
+    }
     
-     /**
+    **/
+/**
  * find all contact workshop
  *
  * @author Salimata NGOM
@@ -66,7 +80,6 @@ public with sharing class OrmContactController {
  * @history 
  * 2018-08-07 : Salimata NGOM - Implementation
  */
-   /**
  @AuraEnabled 
     public static List<orm_ContactWorkshop__c> findAllContactWorkshop(orm_ContactWorkshop__c item){
         List<orm_ContactWorkshop__c> allContact = new List<orm_ContactWorkshop__c>();
@@ -75,7 +88,7 @@ public with sharing class OrmContactController {
                    ];
         return allContact;
     }  
-   **/
+
     
  /**
  * @author Salimata NGOM
@@ -111,5 +124,21 @@ public with sharing class OrmContactController {
 		
 	}
 	
-	
+	/**
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method to get contacts associate with workshop
+ * @history 
+ * 2018-08-09: Salimata NGOM - Implementation
+ */
+  @AuraEnabled 
+    public static List<orm_ContactWorkshop__c> findAllContactWorkshop(Contract item){
+        List<orm_ContactWorkshop__c> allContact = new List<orm_ContactWorkshop__c>();
+        allContact = [Select  orm_contact__r.Id
+                    From orm_ContactWorkshop__c where 
+                    RecordTypeId=:OrmContactController.getContactWorkshopRecordTypeId() and  
+                    orm_Workshop__c=:item.Id
+                   ];
+        return allContact;
+    }
 }

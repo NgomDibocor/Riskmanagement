@@ -3,36 +3,59 @@
 	      // Set the columns of the Table
        component.set('v.columns', [
            {label: 'Name', fieldName: 'Name', type: 'text'},
-           {label: 'Notification', fieldName: 'orm_notification__c', type: 'text'} ]);
-           
+           {label: 'Notification', fieldName: 'association', type: 'boolean'} ]);
+          
 	 // call the apex class method and fetch contact list  
-         var action = component.get("c.findAllContact");
+       /**  var action = component.get("c.findAllContact");
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
                   var storeResponse = response.getReturnValue();
-                  console.log(JSON.stringify(storeResponse));
+                // console.log(JSON.stringify(storeResponse));
                // set ContactList list with return value from server.
                   component.set("v.ContactList", storeResponse);
               }
         });
         $A.enqueueAction(action);
-		
+         
+		**/
 	},
 	
 	openModalContacts : function(component, event, helper) {
-	 // call the apex class method and fetch contact list  
-         var action = component.get("c.findAllContact");
-             action.setCallback(this, function(response) {
+	// call the apex class method and fetch contact list workshop
+          var action1 = component.get("c.findAllContactWorkshop");
+          action1.setParams({
+          'item':event.getParam('Workshop')
+          });
+             action1.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
                   var storeResponse = response.getReturnValue();
                   console.log(JSON.stringify(storeResponse));
                // set ContactList list with return value from server.
-                  component.set("v.ContactList", storeResponse);
+                  //component.set("v.ContactList", storeResponse);
               }
         });
+	 // call the apex class method and fetch contact list  
+         var action = component.get("c.findAllContact");
+         action.setParams({
+         'item':event.getParam('Workshop')});
+             action.setCallback(this, function(response) {
+              var state = response.getState();
+              if (state === "SUCCESS") {
+                  var storeResponse = response.getReturnValue();
+                console.log(JSON.stringify(storeResponse));
+               var listData=[];
+               listDatat.push("name",sali);
+               
+            }
+            
+               // set ContactList list with return value from server.
+                  component.set("v.ContactList", storeResponse);
+              
+        });
         $A.enqueueAction(action);
+        $A.enqueueAction(action1);
 	component.set("v.isOpenModalContactWorkshop", true);
 	 component.set('v.workshop', event.getParam('Workshop'));
 	},

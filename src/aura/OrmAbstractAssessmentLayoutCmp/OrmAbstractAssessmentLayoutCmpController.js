@@ -130,7 +130,7 @@
         /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
         evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
         evt.fire();*/
-        /*var idAssessment = component.get("v.assessmentData").Id;
+        var idAssessment = component.get("v.assessmentData").Id;
         if(idAssessment == null){
         	//alert("check if you have created the assessment");
         	var toast = $A.get('e.force:showToast');
@@ -141,10 +141,10 @@
             });
 
             toast.fire();
-        }else{*/
+        }else{
         
         helper.activeRiskIdentif(component, event);
-        //}
+        }
     },
     activeRiskAnalye : function(component, event, helper) {
         helper.activeRiskAnalye(component, event);

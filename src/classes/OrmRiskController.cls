@@ -22,30 +22,33 @@ public with sharing class OrmRiskController {
     @AuraEnabled 
     public static List<Macro> findAll(String item)
     {
-       return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
+       return  [Select Id,Name,Description,orm_associate__c,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
        RecordTypeId=:OrmRiskController.getRiskRecordTypeId() and orm_categorieRisk__c=:item ];
     }
     /*
     *David mignane diop
-    *function for the risk filter
+    *risk list function
     *le 27/07/2018
     */
-     @AuraEnabled 
-    public static List<Macro> findAllResearch(String Research,String Research2)
+    @AuraEnabled 
+    public static List<orm_assessmentRisk__c> findAllAssessmentRisk(String item,String assessment)
     {
-        return (List<Macro>)[FIND:Research IN ALL FIELDS RETURNING Macro
-                                        (Name,Description,orm_categorieRisk__c,orm_assessment__r.name where orm_categorieRisk__c =:Research2 )][0];                                
+       return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
+                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description From orm_assessmentRisk__c 
+               where orm_Risk__r.orm_categorieRisk__c=:item and orm_assessment__r.Id =:assessment];
     }
+   
      /*
     *David mignane diop
     *function for the risk filter
     *le 27/07/2018
     */
      @AuraEnabled 
-    public static List<Macro> findAllResearchPicklist(String Research)
+    public static List<orm_assessmentRisk__c> findAllResearchPicklist(String Research,String assessment)
     {
-         return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
-       orm_categorieRisk__c=:Research];                               
+         return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
+                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description From orm_assessmentRisk__c 
+               where orm_Risk__r.orm_categorieRisk__c=:Research and orm_assessment__r.Id =:assessment];                               
     }
     /*
     *David mignane diop

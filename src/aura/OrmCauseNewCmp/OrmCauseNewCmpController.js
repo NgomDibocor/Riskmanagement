@@ -41,7 +41,6 @@
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
             		newCause = response.getReturnValue();
-            		//console.log(component.get("v.isOpen"));
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
 			           'message' : newCause.Name +' has been added',
@@ -59,7 +58,9 @@
                    var evt = $A.get("e.c:OrmCauseCreatedEvt");
                    evt.setParams({'idAssessmentRisk': 'a001H00000kcdy9QAA'});
                    evt.fire();
-                   component.set("v.isOpen", false);
+                   //component.set("v.isOpen", false);
+                   helper.closeModal(component);
+                   console.log('isOpen ' + component.get("v.isOpen"));
             	} else {
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({

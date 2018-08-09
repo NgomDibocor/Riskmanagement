@@ -164,12 +164,7 @@
         component.set("v.OpportunityData.StageName",selected);
         console.log('opp::::'+JSON.stringify(selected));
     },
-    
-    saveRecord : function(component, event, helper) {
-        helper.saveData(component, event, helper);               
-    },
-    
-    
+   
     openOrganisationNew : function(component, event, helper){
         var assessment = component.get('v.assessmentData');
 		var evt = $A.get("e.c:OrmOpenNewOrganisationEvt");

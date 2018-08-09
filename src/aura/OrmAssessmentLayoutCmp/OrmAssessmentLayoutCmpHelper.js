@@ -132,18 +132,6 @@
         $A.enqueueAction(actionUser);
 	},
    
-    
-    
-    sendValuesToFieldDescription  : function(component, event, helper, field, description) {
-       component.set("v.closeFieldDescription",false);
-            var evt = $A.get("e.c:OrmSendValuesToFieldDescriptionEvt");
-            evt.setParams({
-				"nomField" : field,
-				"descriptionField" : description
-			});
-		    evt.fire();
-    },
-    
     verifTypeAssessment  : function(component, event, helper, typeAssessment) {
     if(typeAssessment == 'Organisation'){
       component.set("v.typeOrganisation", true);

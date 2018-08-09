@@ -45,35 +45,22 @@
                 'warning');
         }
     },
-	  openDeleteConfirmationModel: function(component) {
+    
+    openDeleteConfirmationModel: function(component) {
       // for Display Modal,set the "isOpen" attribute to "true"
       component.set("v.isDeleteConfirmationOpen", true);
-   },
+    },
  
-   closeDeleteConfirmationModel: function(component) {
+    closeDeleteConfirmationModel: function(component) {
       // for Hide/Close Modal,set the "isOpen" attribute to "Fasle"  
       component.set("v.isDeleteConfirmationOpen", false);
-   },
- /**
- * getFieldLabels
- *
- * @author Salimata NGOM
- * @version 1.0
- * @description get custom label field defined
- * @history 
- * 2018-07-27 : Salimata NGOM - Implementation
- */
-   
-      getFieldLabels: function(component, event){
-        var getFieldsLabelAction=component.get('c.getObjectFields');
-        getFieldsLabelAction.setCallback(this, function(response){
-            if(response.getState()=='SUCCESS'){
-                component.set('v.fields',response.getReturnValue()); 
-                var fieldLabels=component.get('v.fields');
-            alert(''+JSON.stringify(fieldLabels));
-            } else {
-                    alert('Une erreur est survenues lors de la récuperation des champs'); }
-        });
-        $A.enqueueAction(getFieldsLabelAction);
-    }
+    },
+    
+    next: function (component, event, helper) {
+      helper.next(component, event);
+    },
+    previous: function (component, event, helper) {
+      helper.previous(component, event);
+    },
+ 
 })

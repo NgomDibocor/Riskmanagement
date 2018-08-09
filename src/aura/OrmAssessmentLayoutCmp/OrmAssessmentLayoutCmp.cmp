@@ -49,6 +49,9 @@
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:registerEvent name="ShowSpinner" type="c:OrmHideSpinnerEvt"  />
+    <!-- return to list of Assessment -->
+    <aura:registerEvent name="DisplayListAssessment" type="c:OrmDisplayListAssessmentEvt"  />
+    
     
     <!-- menu -->
     <div class="slds-tabs--path" role="application">

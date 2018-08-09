@@ -1,2 +1,13 @@
 .THIS {
 }
+.THIS .space{
+	width: 85%;
+}
+.THIS .btnNew{
+	margin-top:10px;
+}
+.THIS .search{
+	width:80%;
+	margin-left:10%;
+	margin-right:10%;
+}

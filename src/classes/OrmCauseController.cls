@@ -45,7 +45,8 @@ public with sharing class OrmCauseController {
 	*/
 	@AuraEnabled
 	public static List<Macro> findAllCausesByAssessmentRisk(String idAssRisk){
-		return [SELECT Id, Name, Description FROM Macro WHERE orm_assessmentRisk__c=: idAssRisk];
+		return [SELECT Id, Name, Description FROM Macro WHERE orm_assessmentRisk__c=: idAssRisk AND 
+					RecordTypeId =: OrmCauseController.getCauseRecordTypeId()];
 	
 	}
 	

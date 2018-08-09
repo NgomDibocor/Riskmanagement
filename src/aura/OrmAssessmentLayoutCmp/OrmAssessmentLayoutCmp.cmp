@@ -1,4 +1,4 @@
-<aura:component access="GLOBAL" controller="OrmAssessmentController" extends="c:ormAbstractListCmp">
+<aura:component access="GLOBAL" controller="OrmAssessmentController" extends="c:OrmAbstractAssessmentLayoutCmp">
     <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}"/>
     <aura:attribute name="showContext" type="boolean" default="true"/>
     <aura:attribute name="showContext2" type="boolean" default="false"/>
@@ -50,9 +50,7 @@
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:registerEvent name="ShowSpinner" type="c:OrmHideSpinnerEvt"  />
     <!-- return to list of Assessment -->
-    <aura:registerEvent name="DisplayListAssessment" type="c:OrmDisplayListAssessmentEvt"  />
-    
-    
+   
     <!-- menu -->
     <div class="slds-tabs--path" role="application">
       <ul class="slds-tabs--path__nav" role="tablist">
@@ -108,11 +106,20 @@
         
   
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}" style="margin-top:20px;">
+        
         <table class="slds-table">
-                   
-            
+             
             <aura:if isTrue="{!v.showContext}">
-                   
+                   <tr>
+	                  <td class="textInDiv">
+	                     <div style="margin-top:10px; margin-bottom:10px">
+	                         <button class="btn btn-default"
+	                              onclick="{!c.navigateToListAssessment}">
+	                           <i class="fa fa-rotate-left"></i> {!$Label.c.back_button_title}
+	                         </button>
+	                     </div>
+	                  </td>
+	               </tr>
                    <tr>
                         <td class="textInDiv">
                            <div style="margin-bottom:20px">

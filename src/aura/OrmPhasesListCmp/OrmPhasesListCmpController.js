@@ -141,5 +141,14 @@
 				toast.fire();
             }
 		}	 	
-	}
+	},
+	
+	sendDescriptionFieldCause : function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": "Phase",
+            "descriptionField": "Description"
+        });
+        evt.fire();
+    },
 })

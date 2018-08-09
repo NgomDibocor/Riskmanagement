@@ -4,6 +4,7 @@
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:registerEvent name="OrmEventNewPhaseClicked" type="c:OrmEventNewPhaseClicked" description="" />
 	<aura:handler event="c:OrmEventNewPhaseCreated" action="{!c.refreshList}" />
+	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
 	
 	<!-- attributes -->
 	<aura:attribute name="idAssessment" type="String" description="" />
@@ -12,6 +13,8 @@
 	<aura:attribute name="openModalErrorIfFieldEmpty" type="Boolean"  default="false"/>	
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" description="" />
+	
+	
 	<!-- attributes for add -->
 	<aura:attribute name="newPhase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
 																			'Description' : '',
@@ -46,8 +49,10 @@
 						<div class="slds-col">									
 							<div class="">
 								<div class="">
-									<lightning:input aura:id="description" type="text" label="" class=""
+									<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
+										<lightning:input aura:id="description" type="text" placeholder="make new phase" label="" class=""
                                      			value="{!v.newPhase.Description}" />
+									</a>	
 								</div>
 							</div>                            
 						</div>

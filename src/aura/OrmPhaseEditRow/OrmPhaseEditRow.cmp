@@ -27,9 +27,9 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.descriptionEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.Description}">{!v.phase.Description}</span>
+                    <span class="slds-truncate" title="{!$Label.c.orm_description}">{!v.phase.Description}</span>
                     <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
-                    	tabindex="0" title="Edit Description">
+                    	tabindex="0" title="{!$Label.c.edit_button_title + ' ' + $Label.c.orm_description}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
                     

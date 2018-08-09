@@ -132,7 +132,25 @@
         $A.enqueueAction(actionUser);
 	},
    
-    activeContext : function(component, event, helper) {
+    verifTypeAssessment  : function(component, event, helper, typeAssessment) {
+    if(typeAssessment == 'Organisation'){
+      component.set("v.typeOrganisation", true);
+      component.set("v.typeProcessus", false);
+      component.set("v.typeProjet", false);
+    }
+    if(typeAssessment == 'Processus'){
+      component.set("v.typeOrganisation", false);
+      component.set("v.typeProcessus", true);
+      component.set("v.typeProjet", false);
+    }
+    if(typeAssessment == 'Projet'){
+      component.set("v.typeOrganisation", false);
+      component.set("v.typeProcessus", false);
+      component.set("v.typeProjet", true);
+    }
+   },
+   // test
+   activeContext : function(component, event, helper) {
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -254,6 +272,7 @@
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
     },
+    // this methode actives the action Risk Identification tab
     activeRiskIdentif : function(component, event, helper) {
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
@@ -284,6 +303,8 @@
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
     },
+    
+    // this methode actives the action Risk Analye tab
     activeRiskAnalye : function(component, event, helper) {
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
@@ -291,7 +312,7 @@
         var tab4 = component.find('riskTreatmentId');
         var tab5 = component.find('actionPlanId');
         
-        //show and Active fruits tab
+        //show and Active Risk Analye tab
         $A.util.removeClass(tab3, 'slds-is-active');
         $A.util.addClass(tab3, 'slds-is-current');
         // Hide and deactivate others tab
@@ -314,6 +335,8 @@
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
     },
+    
+    // this methode actives the action Risk Treatment tab
     activeRiskTreatment : function(component, event, helper) {
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
@@ -321,7 +344,6 @@
         var tab4 = component.find('riskTreatmentId');
         var tab5 = component.find('actionPlanId');
         
-        //show and Active fruits tab
         $A.util.removeClass(tab4, 'slds-is-active');
         $A.util.addClass(tab4, 'slds-is-current');
         // Hide and deactivate others tab
@@ -345,6 +367,7 @@
         component.set("v.showActionPlan", false);
     },
     
+    // this methode actives the action plan tab
     activeActionPlan  : function(component, event, helper) {
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
@@ -352,7 +375,7 @@
         var tab4 = component.find('riskTreatmentId');
         var tab5 = component.find('actionPlanId');
         
-        //show and Active fruits tab
+        //show and Active action plan tab
         $A.util.removeClass(tab5, 'slds-is-active');
         $A.util.addClass(tab5, 'slds-is-current');
         // Hide and deactivate others tab
@@ -374,35 +397,8 @@
         component.set("v.showRiskAnalyse", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", true);
-    },  
-    
-    sendValuesToFieldDescription  : function(component, event, helper, field, description) {
-       component.set("v.closeFieldDescription",false);
-            var evt = $A.get("e.c:OrmSendValuesToFieldDescriptionEvt");
-            evt.setParams({
-				"nomField" : field,
-				"descriptionField" : description
-			});
-		    evt.fire();
     },
-    
-    verifTypeAssessment  : function(component, event, helper, typeAssessment) {
-    if(typeAssessment == 'Organisation'){
-      component.set("v.typeOrganisation", true);
-      component.set("v.typeProcessus", false);
-      component.set("v.typeProjet", false);
-    }
-    if(typeAssessment == 'Processus'){
-      component.set("v.typeOrganisation", false);
-      component.set("v.typeProcessus", true);
-      component.set("v.typeProjet", false);
-    }
-    if(typeAssessment == 'Projet'){
-      component.set("v.typeOrganisation", false);
-      component.set("v.typeProcessus", false);
-      component.set("v.typeProjet", true);
-    }
-   },
+      
     
     
 })

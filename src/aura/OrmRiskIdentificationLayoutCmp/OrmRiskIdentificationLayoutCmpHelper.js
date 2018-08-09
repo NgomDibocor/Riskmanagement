@@ -1,11 +1,14 @@
 ({
     fetchPicklist: function(component, event) {
+    component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
         var categoryRisk = component.get("v.categorieRisk");
         var nameCategorieRisk= component.find("categorieRisk");
         var item = nameCategorieRisk.get("v.value");
-        var actionOrgs = component.get("c.findAll");
+         var assessment= component.get("v.idAssessment");
+        var actionOrgs = component.get("c.findAllAssessmentRisk");
         actionOrgs.setParams({
-            "item": categoryRisk
+            "item": categoryRisk,
+            "assessment":assessment
         });
        // component.set("v.categorieRisk", item);
         actionOrgs.setCallback(this, function(response) {
@@ -16,8 +19,14 @@
                 var rows = response.getReturnValue();
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
+                    if (row.orm_Risk__c) {
+                    row.RiskName = row.orm_Risk__r.Name;
+                    row.RiskDescription = row.orm_Risk__r.Description;
+                    row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
+                    }
                 }
                 component.set('v.allRisk', rows);
+                alert(JSON.stringify(row));
                 component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 var action = component.get('c.getSelectOptions');
                 action.setParams({

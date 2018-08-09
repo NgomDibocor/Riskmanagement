@@ -157,6 +157,8 @@
     },
     
 	navigateToListAssessment : function (component, event, helper) {
+	   var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	   evtSpinner.fire();
        var evt = $A.get("e.c:OrmDisplayListAssessmentEvt");
 	   evt.fire();
     },

@@ -25,23 +25,20 @@
             label: 'Risk Name',
             fieldName: 'RiskName',
             type: 'text',iconName: 'standard:opportunity'
-        }, {
+        },
+        {
             label: 'Description',
             fieldName: 'RiskDescription',
             type: 'text',iconName: 'standard:opportunity'
-        }, {
-            label: 'Risk category',
-            fieldName: 'RiskcategorieRisk',
-            type: 'text',iconName: 'standard:opportunity'
-        }
-        ,
-        {label: 'association', type: 'button',
-         typeAttributes: { label: 'association', name: 'association', title: 'association'},
-         iconName: 'standard:opportunity'
-         },
-        {label: 'configuration', type: 'button', initialWidth: 135,
-         typeAttributes: { label: 'configure', name: 'configure', title: 'Click to configure this risk'},
-         iconName: 'standard:opportunity'
+        }, 
+        {
+           label: 'Risk category',
+           fieldName: 'RiskcategorieRisk',
+           type: 'text',iconName: 'standard:opportunity'
+        },
+        {  label: 'association', type: 'button', initialWidth: 135,
+           typeAttributes: { label: 'association', name: 'association', title: 'association'},
+           iconName: 'standard:opportunity'
          }
         ]);
         helper.fetchPicklist(component, event);
@@ -181,5 +178,13 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    },
+     openModalRisk : function(component){
+		// for Hide/Close Model,set the "isOpen" attribute to "False"
+		component.set("v.isOpen", true);
+	},
+	closeModal : function(component){
+		// for Hide/Close Model,set the "isOpen" attribute to "False"
+		component.set("v.isOpen", false);
+	}
 })

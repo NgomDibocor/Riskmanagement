@@ -11,6 +11,12 @@
 	<aura:attribute name="openModalError" type="Boolean"  default="false"/>
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" description="" />
+	<!-- attributes for add -->
+	<aura:attribute name="newPhase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
+																			'Description' : '',
+																			'orm_phase__c': '',
+																			'orm_assessment__c': ''
+																		}" />
 	
 	<!-- 
 		<div class="slds-m-around_large">
@@ -31,7 +37,21 @@
         </div>                                        
 	    <div class="phase">
 	    
-	    	<lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="" />
+	    	<!-- lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="" / -->
+	    	
+	    	
+				<!-- CREATE NEW Phase FORM -->
+				<form class="">					
+						<div class="slds-col">									
+							<div class="">
+								<div class="">
+									<lightning:input aura:id="description" type="text" label="" class=""
+                                     			value="{!v.newPhase.Description}" />
+								</div>
+							</div>                            
+						</div>
+				</form>
+			    <!-- / CREATE NEW Item FORM -->
 	
 			<!-- use aura:if for show/hide buttons --> 
 	        <aura:if isTrue="{!v.showSaveCancelBtn}">
@@ -63,9 +83,16 @@
 	        </table>
 		    	
 		</div>
-        <span class="btnNewPhase" onclick="{!c.openOrmPhaseNewCmp}">
+        <!-- span class="btnNewPhase" onclick="{!c.openOrmPhaseNewCmp}">
+        	<lightning:icon iconName="utility:new" size="medium" />
+        	</span> 
+        -->
+        
+        <span class="btnNewPhase" onclick="{!c.createItem}">
         	<lightning:icon iconName="utility:new" size="medium" />
         </span>
+        
+        
         
         <aura:if isTrue="{!v.openModalError}">
     
@@ -95,5 +122,5 @@
     <!-- / test list  -->
 	
 	
-	<c:OrmPhaseNewCmp assessmentId="{!v.idAssessment}" />
+	<!-- c:OrmPhaseNewCmp assessmentId="{!v.idAssessment}" / -->
 </aura:component>

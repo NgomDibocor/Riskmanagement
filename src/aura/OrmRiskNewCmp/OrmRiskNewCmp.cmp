@@ -10,8 +10,6 @@
                                                              'orm_categorieRisk__c' : ''
                                                          }" />
     <aura:attribute name="allCategorieRisk" type="String[]" />
-    
-     <aura:attribute name="options" type="List" default="[{'label': 'Ross', 'value': 'option1'}]"/>
     <!-- text -->
     <aura:if isTrue="{!v.isOpen}">
 			<!--###### MODAL BOX Start From Here ######-->    		

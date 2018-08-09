@@ -22,7 +22,8 @@
 				class="slds-modal slds-fade-in-open slds-modal_medium">
 				<div class="slds-modal__container form-style-6">
 					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
-					<div class="slds-modal__header">
+					<div class="slds-modal__header header">
+						
 						<button
 							class="slds-button slds-modal__close slds-button--icon-inverse"
 							title="Close" onclick="{!c.closeModal}">

@@ -35,7 +35,7 @@
             type: 'text',iconName: 'standard:opportunity'
         }
         ,
-        {label: 'association', type: 'toggle', initialWidth: 135,
+        {label: 'association', type: 'checkbox', initialWidth: 135,
          typeAttributes: { label: 'association', name: 'association', title: 'association'},
          iconName: 'standard:opportunity'
          },

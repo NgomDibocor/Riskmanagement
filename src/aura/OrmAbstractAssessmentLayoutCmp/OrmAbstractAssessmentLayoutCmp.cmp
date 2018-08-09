@@ -1,0 +1,12 @@
+<aura:component abstract="true" extensible="true" access="public"
+                implements="force:appHostable,flexipage:availableForAllPageTypes">
+
+
+   <aura:registerEvent name="DisplayListAssessment" type="c:OrmDisplayListAssessmentEvt"  />
+
+
+       
+     {!v.body}
+	
+</aura:component>
+

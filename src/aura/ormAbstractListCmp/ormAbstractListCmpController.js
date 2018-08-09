@@ -56,11 +56,13 @@
       component.set("v.isDeleteConfirmationOpen", false);
     },
     
-    next: function (component, event, helper) {
+    next : function (component, event, helper) {
       helper.next(component, event);
     },
-    previous: function (component, event, helper) {
+    previous : function (component, event, helper) {
       helper.previous(component, event);
     },
+    
+    
  
 })

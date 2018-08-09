@@ -6,6 +6,7 @@
     
     <!-- events -->
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
+	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
 
 	<!-- attributes -->
 	<aura:attribute name="causes" type="Macro[]" description="" />
@@ -19,8 +20,11 @@
         	<label class="slds-form-element__label ">{!$Label.c.orm_label_cause}<span class="cmn_mandatory_indicator">*</span></label>
         </div>                                        
 	    <div class="cause">
-	    
-	    	<lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="" />
+	    	
+	    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
+				<lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="" />
+			</a>
+	    	
 	
 			<!-- use aura:if for show/hide buttons --> 
 	        <aura:if isTrue="{!v.showSaveCancelBtn}">

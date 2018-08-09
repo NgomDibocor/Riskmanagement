@@ -4,13 +4,17 @@
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:registerEvent name="OrmEventNewPhaseClicked" type="c:OrmEventNewPhaseClicked" description="" />
 	<aura:handler event="c:OrmEventNewPhaseCreated" action="{!c.refreshList}" />
+	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
 	
 	<!-- attributes -->
 	<aura:attribute name="idAssessment" type="String" description="" />
 	<aura:attribute name="phases" type="Macro[]" description=""  />
 	<aura:attribute name="openModalError" type="Boolean"  default="false"/>
+	<aura:attribute name="openModalErrorIfFieldEmpty" type="Boolean"  default="false"/>	
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" description="" />
+	
+	
 	<!-- attributes for add -->
 	<aura:attribute name="newPhase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
 																			'Description' : '',
@@ -45,8 +49,10 @@
 						<div class="slds-col">									
 							<div class="">
 								<div class="">
-									<lightning:input aura:id="description" type="text" label="" class=""
+									<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
+										<lightning:input aura:id="description" type="text" placeholder="make new phase" label="" class=""
                                      			value="{!v.newPhase.Description}" />
+									</a>	
 								</div>
 							</div>                            
 						</div>
@@ -94,13 +100,15 @@
         
         
         
+        <!-- openModalError if the assessment is not created -->
         <aura:if isTrue="{!v.openModalError}">
     
 	    	<div class="demo-only" style="height: 640px;">
 			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
 			    <div class="slds-modal__container">
-			      <header class="slds-modal__header slds-modal__header_empty">
-			        <button onclick="{!c.closeOpenModalError}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+			      <header class="slds-modal__header header">
+			      	<span style="color: white;">Warning</span>
+			        <button onclick="{!c.closeOpenModalError}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse " 
 			        	title="{!$Label.c.close_button_title}">		          
 			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 			        </button>
@@ -114,9 +122,37 @@
 			    </div>
 			  </section>
 			  <div class="slds-backdrop slds-backdrop_open"></div>
-			</div>
-	    
+			</div>	    
 	    </aura:if>
+	    
+	    <!-- openModalErrorIfFieldEmpty if the field is  is empty -->
+	    <aura:if isTrue="{!v.openModalErrorIfFieldEmpty}">
+    
+	    	<div class="demo-only" style="height: 640px;">
+			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
+			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			    <div class="slds-modal__container">
+			      <header class="slds-modal__header header">
+			      	<span style="color: white;">Warning</span>
+			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+			        	title="{!$Label.c.close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+			        </button>
+			      </header>
+			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+			        <p> This Field Should be Empty</p>
+			      </div>
+			      <footer class="slds-modal__footer">
+			        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalErrorIfFieldEmpty}">{!$Label.c.close_button_title}</button>
+			      </footer>
+			    </div>
+			  </section>
+			  <div class="slds-backdrop slds-backdrop_open"></div>
+			</div>	    
+	    </aura:if>
+	    
+	    
+	    
     </div>
     
     <!-- / test list  -->

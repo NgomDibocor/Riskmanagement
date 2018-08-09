@@ -3,27 +3,31 @@
         helper.fetchPickListVal(component, 'orm_phase__c', 'allPhases'); 
 	},
 	
-	inlineEditPhase : function(component, event, helper) {
-		// show the phase edit field popup 
-        component.set("v.phaseEditMode", true); 
-        // after set phaseEditMode true, set picklist options to picklist field
-        console.log("allphases " + JSON.stringify(component.get("v.allPhases")));     
-        component.find("phaseId").set("v.options" , component.get("v.allPhases"));
-        
+	inlineEditDescription : function(component, event, helper){   
+        // show the rating edit field popup 
+        component.set("v.descriptionEditMode", true);        
         // after the 100 millisecond set focus to input field   
         setTimeout(function(){ 
-            component.find("phaseId").focus();
+            component.find("idDescription").focus();
         }, 100);
-	},
-	
-	closePhaseBox : function(component, event, helper) {
-		// on focus out, close the input section by setting the 'phaseEditMode' att. as false
-        component.set("v.phaseEditMode", false); 
-	},
-	
-	onPhaseChange : function(component, event, helper) {
-		 // if picklist value change,
+    },
+    
+    closeDescriptionBox : function (component, event, helper) {
+       // on focus out, close the input section by setting the 'descriptionEditMode' att. as false
+        component.set("v.descriptionEditMode", false);
+        
+        if(event.getSource().get("v.value").trim() == ''){
+            component.set("v.showErrorClass", true);
+        } else {
+            component.set("v.showErrorClass", false);
+        } 
+    },
+    
+    onDescriptionChange : function(component,event,helper) { 
+        // if edit field value changed and field not equal to blank,
         // then show save and cancel button by set attribute to true
-        component.set("v.showSaveCancelBtn",true);
-	},
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.showSaveCancelBtn",true);
+        }
+    },
 })

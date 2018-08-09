@@ -78,7 +78,7 @@ public with sharing class OrmPhaseController {
 	*/
 	@AuraEnabled
 	public static List<Macro> findAllPhasesByAssessment(String idAss){
-		return [SELECT Id, orm_phase__c FROM Macro WHERE orm_assessment__c=: idAss AND 
+		return [SELECT Id, Description, orm_phase__c FROM Macro WHERE orm_assessment__c=: idAss AND 
 		 RecordTypeId =: OrmPhaseController.getPhaseRecordTypeId()];	
 	}
 }

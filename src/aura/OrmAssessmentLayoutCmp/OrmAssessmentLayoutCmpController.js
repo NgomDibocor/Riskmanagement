@@ -39,6 +39,8 @@
           newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
           var riskManager = component.find("userRM");
           newItem.orm_riskManager__c = riskManager.get("v.value");
+          var industrySectorOrganisation = component.find("industrySectorOrganisation");
+          newItem.orm_organisationIndustrySector__c = industrySectorOrganisation.get("v.value");
         }
         var action = component.get('c.add');
         action.setParams({
@@ -91,6 +93,13 @@
     	component.find("industrySector").set("v.value", event.getSource().get("v.value"));
     	var field = "Industry Sector";
         var description = "This field allows us to specify the Industry Sector for the Client";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+	},
+	onChangeOrganisationIndSector : function(component, event, helper)
+    {
+    	component.find("industrySectorOrganisation").set("v.value", event.getSource().get("v.value"));
+    	var field = "Organisation Industry Sector";
+        var description = "This field allows us to specify the Industry Sector for the organisation";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onCurrencyChange : function(component, event, helper)
@@ -272,6 +281,18 @@
         var field =  event.getParam("nomField");
         var description = event.getParam("descriptionField");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    
+    sendSizeToFD : function(component,event,helper){ 
+    	component.set("v.closeFieldDescription",false);
+        var field =  "Size";
+        var description = "This field gives the number of employees for this organisation";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    onChangeSize : function(component, event, helper) {
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.displaySaveCancelBtn",true);
+        }
     },
     
     cancel : function(component, event, helper)

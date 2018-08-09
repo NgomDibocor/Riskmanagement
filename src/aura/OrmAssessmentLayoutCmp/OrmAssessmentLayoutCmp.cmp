@@ -17,6 +17,7 @@
     <!-- PickList -->
     <aura:attribute name="allTypeAssessment" type="String[]" />
     <aura:attribute name="allIndustrySector" type="String[]"/>
+    <aura:attribute name="allOrganisationIndustrySector" type="String[]"/>
     <aura:attribute name="allTypeProjet" type="String[]" />
     <aura:attribute name="allStatus" type="String[]" />
     <aura:attribute name="allSchedule" type="String[]" />
@@ -724,6 +725,54 @@
 	                                  </a> 
 	                                </div>
                                </td>
+                          </tr>
+                          <tr>
+                               <td>
+	                                <div class="topSpacing">
+	                                    <label class="slds-form-element__label">Size<span class="cmn_mandatory_indicator">*</span></label>
+	                                </div>
+	                                <div class="width"> 
+	                                  <a href=""  onclick="{!c.sendSizeToFD}">
+	                                      <ui:inputText class="slds-input" aura:id="size" 
+	                                               value="{!v.assessmentData.orm_size__c}" 
+	                                               change="{!c.onChangeSize}">
+	                                     </ui:inputText>
+	                                  </a> 
+	                                </div>
+                               </td>
+                          </tr>
+                          <tr>
+                             <td>
+                                  <div class="topSpacing"> 
+                                      <label class="slds-form-element__label">Industry Sector of Client<span class="cmn_mandatory_indicator">*</span></label>
+                                  </div>
+                                  <div class="slds-form-element">
+                                     <div class="slds-form-element__control">
+                                        <aura:if isTrue="{!v.assessmentData.Id == null}">
+		                                     <ui:inputSelect aura:id="industrySectorOrganisation" 
+		                                              change="{!c.onChangeOrganisationIndSector}" class="slds-select"
+		                                              labelClass="slds-form-element__label" >
+		                                            <aura:iteration items="{! v.allOrganisationIndustrySector}" var="indSec" >
+		                                                <ui:inputSelectOption  text="{!indSec}"
+		                                                                       label="{!indSec}"/>
+		                                            </aura:iteration>
+		                                        </ui:inputSelect>
+		                                    <aura:set attribute="else">
+		                                          <ui:inputSelect aura:id="industrySectorOrganisation" 
+		                                                change="{!c.onChangeOrganisationIndSector}" class="slds-select"
+		                                                labelClass="slds-form-element__label" >
+		                                                <ui:inputSelectOption  text="{!v.assessmentData.orm_organisationIndustrySector__c}"
+		                                                                       label="{!v.assessmentData.orm_organisationIndustrySector__c}"/>
+		                                              <aura:iteration items="{! v.allOrganisationIndustrySector}" var="indSec" >
+		                                                  <ui:inputSelectOption  text="{!indSec}"
+		                                                                         label="{!indSec}"/>
+		                                              </aura:iteration>
+		                                          </ui:inputSelect>
+		                                      </aura:set>
+		                                  </aura:if>
+                                    </div>
+                                </div>
+                             </td>
                           </tr>
                           <tr>
                               <td >

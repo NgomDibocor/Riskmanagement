@@ -32,7 +32,6 @@
             //{ 
                 component.set("v.showContext", false);
                 component.set("v.showContext2", true);
-                component.set("v.showError", false);
                 helper.activeContext2(component, event);
                 
           //  }
@@ -42,44 +41,28 @@
        
             component.set("v.showContext2", false);
             component.set("v.showContextActivity", true);
-            component.set("v.showError", false);
             helper.activeContextActivity(component, event);
             
         }
         if(showContextActivity == true){
-       
             component.set("v.showContextActivity", false);
             component.set("v.showContextWorkshop", true);
-            component.set("v.showError", false);
             helper.activeContextWorkshop(component, event);
-            
         }
         if(showContextWorkshop == true){
-      
             component.set("v.showContextWorkshop", false);
             component.set("v.showRiskIdentif", true);
-            component.set("v.showError", false);
             helper.activeRiskIdentif(component, event);
         }
-        
-        
         if(showRiskIdentif == true){
-        
-                component.set("v.showRiskIdentif", false);
-                component.set("v.showRiskAnalyse", true);
-                component.set("v.showError", false);
-                component.set("v.showData", false);                
-                helper.activeRiskAnalye(component, event);
-                
+            component.set("v.showRiskIdentif", false);
+            component.set("v.showRiskAnalyse", true);
+            helper.activeRiskAnalye(component, event);
         }   
-        
         if(showRiskAnalyse == true){
-        
-                component.set("v.showRiskTreatment", true);
-                component.set("v.showRiskIdentif", false);
-                component.set("v.showError", false);
-                component.set("v.showData", true);
-                helper.activeRiskTreatment(component, event);
+            component.set("v.showRiskTreatment", true);
+            component.set("v.showRiskIdentif", false);
+            helper.activeRiskTreatment(component, event);
                 
         }
         if(showRiskTreatment == true){
@@ -104,49 +87,38 @@
         if(showContext2 == true){
             component.set("v.showContext2", false);
             component.set("v.showContext", true);
-            component.set("v.showError", false);
             helper.activeContext(component, event);
         }
         if(showContextActivity == true){
             component.set("v.showContext2", true);
             component.set("v.showContextActivity", false);
-            component.set("v.showError", false);
             helper.activeContext2(component, event);
         }
         
         if(showContextWorkshop == true){
             component.set("v.showContextWorkshop", false);
             component.set("v.showContextActivity", true);
-            component.set("v.showError", false);
             helper.activeContextActivity(component, event);
         }
         
         if(showRiskIdentif == true){
             component.set("v.showContextWorkshop", true);
             component.set("v.showRiskIdentif", false);
-            component.set("v.showError", false);
             helper.activeContextWorkshop(component, event);
-            
-            
         }    
         if(showRiskAnalyse == true){
             component.set("v.showRiskIdentif", true);
             component.set("v.showRiskAnalyse", false);
-            component.set("v.showError", false);
             helper.activeRiskIdentif(component, event);
-            
-            
         }
         if(showRiskTreatment == true){
             component.set("v.showRiskTreatment", false);
             component.set("v.showRiskAnalyse", true);
-            component.set("v.showError", false);
             helper.activeRiskAnalye(component, event);
         }
         if(showActionPlan == true){
             component.set("v.showRiskTreatment", true);
             component.set("v.showActionPlan", false);
-            component.set("v.showError", false);
             helper.activeRiskTreatment(component, event);
         } 
     },

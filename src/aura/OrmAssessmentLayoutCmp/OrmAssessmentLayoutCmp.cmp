@@ -102,14 +102,71 @@
       </ul>
     </div>
     <!-- menu -->
-     <!-- overflow-wrap: break-word; -->
-        
-  
     <div class="{!v.closeFieldDescription==true ? 'slds-size--7-of-7': 'slds-size--5-of-7'}" style="margin-top:20px;">
-        
         <table class="slds-table">
-             
-            <aura:if isTrue="{!v.showContext}">
+                 <tr>
+                     <td class="textInDiv">
+                         <aura:if isTrue="{!v.showContext}">
+		                    <button class="slds-button" onclick="{!c.nextTab}">
+		                      <lightning:icon iconName="utility:chevronright" size="medium" />
+		                    </button>
+		                 </aura:if>
+			             <aura:if isTrue="{!v.showContext2}">
+		                    <button class="slds-button" onclick="{!c.prevTab}">
+		                      <lightning:icon iconName="utility:chevronleft" size="medium" />
+		                    </button>
+		                    <button class="slds-button" onclick="{!c.nextTab}">
+		                      <lightning:icon iconName="utility:chevronright" size="medium" />
+		                    </button>
+		                 </aura:if>
+			             <aura:if isTrue="{!v.showContextActivity}">
+		                    <button class="slds-button" onclick="{!c.prevTab}">
+		                      <lightning:icon iconName="utility:chevronleft" size="medium" />
+		                    </button>
+		                    <button class="slds-button" onclick="{!c.nextTab}">
+		                      <lightning:icon iconName="utility:chevronright" size="medium" />
+		                    </button>
+		                 </aura:if>
+			             <aura:if isTrue="{!v.showContextWorkshop}">
+		                    <button class="slds-button" onclick="{!c.prevTab}">
+		                      <lightning:icon iconName="utility:chevronleft" size="medium" />
+		                    </button>
+		                    <button class="slds-button" onclick="{!c.nextTab}">
+		                      <lightning:icon iconName="utility:chevronright" size="medium" />
+		                    </button>
+		                 </aura:if>
+			             <aura:if isTrue="{!v.showRiskIdentif}">
+		                    <button class="slds-button" onclick="{!c.prevTab}">
+		                      <lightning:icon iconName="utility:chevronleft" size="medium" />
+		                    </button>
+		                    <button class="slds-button" onclick="{!c.nextTab}">
+		                      <lightning:icon iconName="utility:chevronright" size="medium" />
+		                    </button>
+		                  </aura:if>
+			              <aura:if isTrue="{!v.showRiskAnalyse}">        
+		                     <button class="slds-button" onclick="{!c.prevTab}">
+		                       <lightning:icon iconName="utility:chevronleft" size="medium" />
+		                     </button> 
+			                 <button class="slds-button" onclick="{!c.nextTab}">
+			                    <lightning:icon iconName="utility:chevronright" size="medium" />
+			                 </button>
+			              </aura:if>
+			              <aura:if isTrue="{!v.showRiskTreatment}">        
+			                 <button class="slds-button" onclick="{!c.prevTab}">
+			                    <lightning:icon iconName="utility:chevronleft" size="medium" />
+			                 </button>
+			                 <button class="slds-button" onclick="{!c.nextTab}">
+			                    <lightning:icon iconName="utility:chevronright" size="medium" />
+			                 </button>
+			              </aura:if>
+			              <aura:if isTrue="{!v.showActionPlan}">        
+			                 <button class="slds-button" onclick="{!c.prevTab}">
+			                    <lightning:icon iconName="utility:chevronleft" size="medium" />
+			                 </button>
+			              </aura:if>
+                       </td>
+                   </tr>
+              <aura:if isTrue="{!v.showContext}">
                    <tr>
 	                  <td class="textInDiv">
 	                     <div style="margin-top:10px; margin-bottom:10px">
@@ -133,12 +190,12 @@
                              <div style="margin-bottom:20px;">
                                  <lightning:buttonGroup class="slds-m-around_medium">
                                  <lightning:button label="Cancel" onclick="{!c.cancel}"/>
-                          <lightning:button label="Save"
-                                            variant="brand"
-                                                      class="slds-button"
-                                            onclick="{!c.createAssessment}"/>
-                      </lightning:buttonGroup>
-                      <span style="color:red">Click on this button for saving the assessment</span>
+			                          <lightning:button label="Save"
+			                                            variant="brand"
+			                                                      class="slds-button"
+			                                            onclick="{!c.createAssessment}"/>
+			                      </lightning:buttonGroup>
+                                  <span style="color:red">Click on this button for saving the assessment</span>
                              </div>
                           </td>
                       </tr>
@@ -283,7 +340,7 @@
 					                                                                       label="{!pm.Name}" />
 					                                             </aura:iteration>
 					                                        </ui:inputSelect>
-				                              </aura:set>
+				                                </aura:set>
 				                            </aura:if>
                                          </div>
                                      </div>
@@ -322,7 +379,7 @@
                                      </div>
                               </td>
                           </tr>
-                        <tr>
+                          <tr>
                               <td>
                                   <div class="topSpacing"> 
                                       <label class="slds-form-element__label">Planned Start Date<span class="cmn_mandatory_indicator">*</span></label>
@@ -338,7 +395,6 @@
                                   <div class="topSpacing"> 
                                       <label class="slds-form-element__label">Planned End Date<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
-                                  
                                   <div class="width">
                                       <ui:inputDate class="slds-input" aura:id="plannedED" value="{!v.assessmentData.orm_endDate__c}" displayDatePicker="true"></ui:inputDate>
                                   </div>
@@ -350,7 +406,7 @@
                                       <label class="slds-form-element__label">Industry Sector of Client<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="slds-form-element">
-                                    <div class="slds-form-element__control">
+                                     <div class="slds-form-element__control">
                                         <aura:if isTrue="{!v.assessmentData.Id == null}">
 		                                     <ui:inputSelect aura:id="industrySector" 
 		                                              change="{!c.onChangeIndSector}" class="slds-select"
@@ -380,10 +436,10 @@
                           <tr>
                               <td class="textInDiv">
                                   <div class="topSpacing">
-                                    <label class="slds-form-element__label">Currency<span class="cmn_mandatory_indicator">*</span></label>
-                                </div>
-                                <div class="slds-form-element">
-                                    <div class="slds-form-element__control">
+	                                 <label class="slds-form-element__label">Currency<span class="cmn_mandatory_indicator">*</span></label>
+	                              </div>
+                                  <div class="slds-form-element">
+                                     <div class="slds-form-element__control">
                                         <aura:if isTrue="{!v.assessmentData.Id == null}">
 		                                        <ui:inputSelect aura:id="currency" 
 		                                                change="{!c.onCurrencyChange}" class="slds-select "
@@ -892,57 +948,36 @@
                         </td>
                       </tr>
                   </aura:if>
-                  
-                   <!--<tr>
-                        <td >
-                            <div class="topSpacing">
-                                <label class="slds-form-element__label ">Assumptions</label>
-                            </div>                                        
-                            <div class="width">
-                                <ui:inputSelect class="slds-input" aura:id="Assumption" change="{!c.onSelectChange}">
-                                    <ui:inputSelectOption text="Projet" label="Ass1" value="true"/>
-                                    <ui:inputSelectOption text="Processus" label="Ass2"/>
-                                    <ui:inputSelectOption text="Organisation" label="Ass3"/>
-                                </ui:inputSelect>
-                            </div>
-                        </td>
-                    </tr>--> 
-
-                    <!-- phase -->
-                    
-                </aura:if>
-                <aura:if isTrue="{!v.showContextActivity}">
-                    
-                    <tr>
-                        <td >
-                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
-                                <p>Contexte 3 description </p>
-                           </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                             <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
-                        </td>
-                    </tr>
-                </aura:if>
-                <aura:if isTrue="{!v.showContextWorkshop}">
-                  <tr>
-                        <td>
-                        <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
-                        </td>
-                    </tr>
-                     
-                </aura:if>
-                <aura:if isTrue="{!v.showRiskIdentif}">
-                    <tr>
-                        <td >
-                             <c:OrmRiskIdentificationLayoutCmp idAssessment="{!v.assessmentData.Id}" /> 
-                        </td>
-                    </tr>
-                    
-                </aura:if>  
-                <aura:if isTrue="{!v.showRiskAnalyse}">
+                  </aura:if>
+                  <aura:if isTrue="{!v.showContextActivity}">
+	                    <tr>
+	                        <td >
+	                           <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
+	                                <p>Contexte 3 description </p>
+	                           </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>
+	                             <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
+	                        </td>
+	                    </tr>
+                   </aura:if>
+                   <aura:if isTrue="{!v.showContextWorkshop}">
+		                 <tr>
+		                      <td>
+		                        <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
+		                      </td>
+		                   </tr>
+                  </aura:if>
+                  <aura:if isTrue="{!v.showRiskIdentif}">
+                       <tr>
+	                        <td >
+	                             <c:OrmRiskIdentificationLayoutCmp idAssessment="{!v.assessmentData.Id}" /> 
+	                        </td>
+                       </tr>
+                 </aura:if>  
+                 <aura:if isTrue="{!v.showRiskAnalyse}">
                     <!-- list of causee -->
                     <tr>
                       <td>
@@ -950,7 +985,6 @@
                       </td>
                     </tr>
                     <!-- /causes -->
-                    
                     <tr>
                         <td >
                             <div class="topSpacing">
@@ -972,7 +1006,6 @@
                 <aura:if isTrue="{!v.showActionPlan}">
                     
                 </aura:if>
-                
                 <aura:if isTrue="{!v.displaySaveCancelBtn}">
                     <tr>
                         <td class="textInDiv">
@@ -988,9 +1021,8 @@
                            </div>
                         </td>
                     </tr>
-          </aura:if>
+                </aura:if>
             </table>
-            
             <div class="slds-grid  slds-grid--align-center">
                 <aura:if isTrue="{!v.showContext}">
                     <button class="slds-button" onclick="{!c.nextTab}">

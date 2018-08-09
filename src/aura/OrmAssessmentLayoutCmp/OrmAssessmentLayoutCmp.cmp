@@ -173,7 +173,7 @@
 	                     <div style="margin-top:10px; margin-bottom:10px">
 	                         <button class="btn btn-default"
 	                              onclick="{!c.navigateToListAssessment}">
-	                           <i class="fa fa-rotate-left"></i> {!$Label.c.back_button_title}
+	                           <i class="fa fa-rotate-left"></i> {!$Label.c.back_button_title_assessment}
 	                         </button>
 	                     </div>
 	                  </td>
@@ -210,7 +210,7 @@
                                 <div class="slds-form-element__control">
                                   <aura:if isTrue="{!v.assessmentData.Id == null}">
 					                      <ui:inputSelect aura:id="typeAssessment" 
-		                                            change="{!c.onTypeAssessmentChange}" class="slds-select"
+		                                            change="{!c.onChangeTypeAssessment}" class="slds-select"
 		                                            labelClass="slds-form-element__label" >
 		                                          <aura:iteration items="{! v.allTypeAssessment}" var="typeAssessment" >
 		                                              <ui:inputSelectOption  text="{!typeAssessment}"
@@ -219,7 +219,7 @@
 		                                      </ui:inputSelect>
 					                       <aura:set attribute="else">
 						                       <ui:inputSelect aura:id="typeAssessment" 
-				                                            change="{!c.onTypeAssessmentChange}" class="slds-select"
+				                                            change="{!c.onChangeTypeAssessment}" class="slds-select"
 				                                            labelClass="slds-form-element__label" disabled="true" >
 				                                            <ui:inputSelectOption  text="{!v.assessmentData.orm_typeAssessment__c}"
 				                                                                     label="{!v.assessmentData.orm_typeAssessment__c}"/>
@@ -275,7 +275,7 @@
                                 </div>
                                 <div class="width"> 
                                   <a href=""  onclick="{!c.sendProjectNameToFD}">
-                                      <ui:inputText class="slds-input" aura:id="Name" 
+                                      <ui:inputText aura:id="Name" class="slds-input"
                                                value="{!v.assessmentData.Name}" 
                                                change="{!c.onNameProjectChange}">
                                      </ui:inputText>
@@ -308,7 +308,7 @@
                                   <a href=""  onclick="{!c.sendDesciptionToFD}">
                                     <ui:inputTextArea class="slds-input" 
                                              value="{!v.assessmentData.orm_description__c}"
-                                             change="{!c.onChangedescriptionProject}">
+                                             change="{!c.onChangeDescriptionProject}">
                                     </ui:inputTextArea>
                                   </a>
                                 </div>
@@ -323,7 +323,7 @@
                                      <div class="slds-form-element__control">
                                          <aura:if isTrue="{!v.assessmentData.Id == null}">
 					                                <ui:inputSelect aura:id="userPM" 
-					                                         change="{!c.onChangePM}" class="slds-select"
+					                                         change="{!c.onChangeProjectManager}" class="slds-select"
 					                                         labelClass="slds-form-element__label">
 					                                     <aura:iteration items="{!v.allUser}" var="pm">
 					                                         <ui:inputSelectOption text="{!pm.Id}"
@@ -332,7 +332,7 @@
 					                                </ui:inputSelect>
 				                              <aura:set attribute="else">
 					                                   <ui:inputSelect aura:id="userPM" 
-					                                                 change="{!c.onChangePM}" class="slds-select"
+					                                                 change="{!c.onChangeProjectManager}" class="slds-select"
 					                                                 labelClass="slds-form-element__label">
 					                                   <ui:inputSelectOption  text="{!v.assessmentData.orm_projetManager__c}"
 					                                                                     label="{!v.assessmentData.orm_projetManager__r.Name}"/>
@@ -356,7 +356,7 @@
                                      <div class="slds-form-element__control">
                                          <aura:if isTrue="{!v.assessmentData.Id == null}">
 			                                    <ui:inputSelect aura:id="userRM" 
-		                                                 change="{!c.onChangeRM}" class="slds-select"
+		                                                 change="{!c.onChangeRiskManager}" class="slds-select"
 		                                                 labelClass="slds-form-element__label">
 		                                             <aura:iteration items="{!v.allUser}" var="rm">
 		                                                 <ui:inputSelectOption text="{!rm.Id}"
@@ -365,7 +365,7 @@
 		                                        </ui:inputSelect>
 			                               <aura:set attribute="else">
 			                                   <ui:inputSelect aura:id="userRM" 
-	                                                 change="{!c.onChangeRM}" class="slds-select"
+	                                                 change="{!c.onChangeRiskManager}" class="slds-select"
 	                                                 labelClass="slds-form-element__label">
 	                                                 <ui:inputSelectOption  text="{!v.assessmentData.orm_riskManager__c}"
 	                                                                     label="{!v.assessmentData.orm_riskManager__r.Name}"/>
@@ -387,7 +387,13 @@
                                   </div>
                                   
                                   <div class="width">
-                                      <ui:inputDate class="slds-input" aura:id="plannedSD" value="{!v.assessmentData.orm_startDate__c}" displayDatePicker="true"></ui:inputDate>
+                                     <a href=""  onclick="{!c.sendPlannedStartDateToFD}">
+                                      <ui:inputDate class="slds-input" aura:id="plannedSD" 
+                                                    value="{!v.assessmentData.orm_startDate__c}" 
+                                                    displayDatePicker="true"
+                                                    change="{!c.onChangePlannedSD}">
+                                      </ui:inputDate>
+                                     </a>
                                   </div>
                               </td>    
                           </tr>
@@ -397,7 +403,13 @@
                                       <label class="slds-form-element__label">Planned End Date<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="width">
-                                      <ui:inputDate class="slds-input" aura:id="plannedED" value="{!v.assessmentData.orm_endDate__c}" displayDatePicker="true"></ui:inputDate>
+                                    <a href=""  onclick="{!c.sendPlannedEndDateToFD}">
+                                      <ui:inputDate class="slds-input" aura:id="plannedED" 
+                                                    value="{!v.assessmentData.orm_endDate__c}" 
+                                                    displayDatePicker="true"
+                                                    change="{!c.onChangePlannedED}">
+                                      </ui:inputDate>
+                                     </a>
                                   </div>
                               </td>    
                           </tr>
@@ -443,7 +455,7 @@
                                      <div class="slds-form-element__control">
                                         <aura:if isTrue="{!v.assessmentData.Id == null}">
 		                                        <ui:inputSelect aura:id="currency" 
-		                                                change="{!c.onCurrencyChange}" class="slds-select "
+		                                                change="{!c.onChangeCurrency}" class="slds-select "
 		                                                labelClass="slds-form-element__label" >
 		                                              <aura:iteration items="{! v.allCurrency}" var="currency" >
 		                                                  <ui:inputSelectOption  text="{!currency}"
@@ -452,7 +464,7 @@
 	                                             </ui:inputSelect>
 		                                      <aura:set attribute="else">
 		                                          <ui:inputSelect aura:id="currency" 
-		                                                change="{!c.onCurrencyChange}" class="slds-select "
+		                                                change="{!c.onChangeCurrency}" class="slds-select "
 		                                                labelClass="slds-form-element__label" >
 		                                                <ui:inputSelectOption  text="{!v.assessmentData.orm_currency__c}"
 		                                                                         label="{!v.assessmentData.orm_currency__c}"/>
@@ -499,7 +511,7 @@
                                       <ui:inputnumber class="slds-input scheduleInput" aura:id="maxSheduleExposture" value="{!v.assessmentData.orm_max_schedule_exposture__c}"></ui:inputnumber>
                                       <aura:if isTrue="{!v.assessmentData.Id == null}">
 			                                   <ui:inputSelect aura:id="schedule" 
-		                                                change="{!c.onScheduleChange}" class="slds-select scheduleSelect"
+		                                                change="{!c.onChangeSchedule}" class="slds-select scheduleSelect"
 		                                                labelClass="slds-form-element__label" >
 		                                              <aura:iteration items="{! v.allSchedule}" var="schedule" >
 		                                                  <ui:inputSelectOption  text="{!schedule}"
@@ -508,7 +520,7 @@
 			                                    </ui:inputSelect>
 		                                   <aura:set attribute="else">
 		                                          <ui:inputSelect aura:id="schedule" 
-		                                                change="{!c.onScheduleChange}" class="slds-select scheduleSelect"
+		                                                change="{!c.onChangeSchedule}" class="slds-select scheduleSelect"
 		                                                labelClass="slds-form-element__label" >
 		                                                <ui:inputSelectOption  text="{!v.assessmentData.orm_schedule__c}"
 		                                                                         label="{!v.assessmentData.orm_schedule__c}"/>
@@ -657,7 +669,13 @@
                                   </div>
                                   
                                   <div class="width">
-                                      <ui:inputDate class="slds-input" aura:id="applicationDate" value="{!v.assessmentData.orm_applicationDateProcessus__c}" displayDatePicker="true"></ui:inputDate>
+                                     <a href=""  onclick="{!c.sendApplicationDateToFD}">
+                                      <ui:inputDate class="slds-input" aura:id="applicationDate" 
+                                                    value="{!v.assessmentData.orm_applicationDateProcessus__c}" 
+                                                    displayDatePicker="true"
+                                                    change="{!c.onChangeApplicationDate}">
+                                      </ui:inputDate>
+                                     </a>
                                   </div>
                               </td>    
                           </tr>
@@ -685,7 +703,7 @@
                                     <div class="slds-form-element__control">
                                         <aura:if isTrue="{!v.assessmentData.Id == null}">
 			                                     <ui:inputSelect aura:id="statusProcessus" 
-			                                              change="{!c.onChangeStatusProjet}" class="slds-select"
+			                                              change="{!c.onChangeStatusProcessus}" class="slds-select"
 			                                              labelClass="slds-form-element__label" >
 			                                            <aura:iteration items="{! v.allStatus}" var="status" >
 			                                                <ui:inputSelectOption  text="{!status}"
@@ -694,7 +712,7 @@
 			                                        </ui:inputSelect>
 			                                     <aura:set attribute="else">
 			                                          <ui:inputSelect aura:id="statusProcessus" 
-			                                              change="{!c.onChangeStatusProjet}" class="slds-select"
+			                                              change="{!c.onChangeStatusProcessus}" class="slds-select"
 			                                              labelClass="slds-form-element__label" >
 			                                              <ui:inputSelectOption  text="{!v.assessmentData.orm_statusAssessment__c}"
 			                                                                         label="{!v.assessmentData.orm_statusAssessment__c}"/>
@@ -733,10 +751,10 @@
 	                                </div>
 	                                <div class="width"> 
 	                                  <a href=""  onclick="{!c.sendSizeToFD}">
-	                                      <ui:inputText class="slds-input" aura:id="size" 
+	                                      <ui:inputnumber class="slds-input" aura:id="size" 
 	                                               value="{!v.assessmentData.orm_size__c}" 
 	                                               change="{!c.onChangeSize}">
-	                                     </ui:inputText>
+	                                     </ui:inputnumber>
 	                                  </a> 
 	                                </div>
                                </td>
@@ -744,7 +762,7 @@
                           <tr>
                              <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Industry Sector of Client<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">Industry Sector of Organisation<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="slds-form-element">
                                      <div class="slds-form-element__control">
@@ -783,7 +801,7 @@
                                      <div class="slds-form-element__control">
 	                                        <aura:if isTrue="{!v.assessmentData.Id == null}">
 				                                  <ui:inputSelect aura:id="userRM" 
-			                                                 change="{!c.onChangeRM}" class="slds-select"
+			                                                 change="{!c.onChangeRiskManager}" class="slds-select"
 			                                                 labelClass="slds-form-element__label">
 		                                             <aura:iteration items="{!v.allUser}" var="rm">
 		                                                 <ui:inputSelectOption text="{!rm.Id}"
@@ -792,7 +810,7 @@
 			                                      </ui:inputSelect>
 				                               <aura:set attribute="else">
 				                                   <ui:inputSelect aura:id="userRM" 
-		                                                 change="{!c.onChangeRM}" class="slds-select"
+		                                                 change="{!c.onChangeRiskManager}" class="slds-select"
 		                                                 labelClass="slds-form-element__label">
 		                                                 <ui:inputSelectOption  text="{!v.assessmentData.orm_riskManager__c}"
 		                                                                     label="{!v.assessmentData.orm_riskManager__r.Name}"/>
@@ -845,7 +863,7 @@
                                     <div class="slds-form-element__control">
                                            <aura:if isTrue="{!v.assessmentData.Id == null}">
 			                                     <ui:inputSelect aura:id="statusOrganisation" 
-			                                              change="{!c.onChangeStatusProjet}" class="slds-select"
+			                                              change="{!c.onChangeStatusOrganisation}" class="slds-select"
 			                                              labelClass="slds-form-element__label" >
 			                                            <aura:iteration items="{! v.allStatus}" var="status" >
 			                                                <ui:inputSelectOption  text="{!status}"
@@ -854,7 +872,7 @@
 			                                        </ui:inputSelect>
 			                                     <aura:set attribute="else">
 			                                          <ui:inputSelect aura:id="statusOrganisation" 
-			                                              change="{!c.onChangeStatusProjet}" class="slds-select"
+			                                              change="{!c.onChangeStatusOrganisation}" class="slds-select"
 			                                              labelClass="slds-form-element__label" >
 			                                              <ui:inputSelectOption  text="{!v.assessmentData.orm_statusAssessment__c}"
 			                                                                         label="{!v.assessmentData.orm_statusAssessment__c}"/>
@@ -870,9 +888,18 @@
                             </td>
                         </tr>
             </aura:if>
-                   
-                </aura:if>
-                <aura:if isTrue="{!v.showContext2}">
+              <tr>
+                  <td class="textInDiv">
+                     <div style="margin-top:10px; margin-bottom:10px">
+                         <button class="btn btn-default"
+                              onclick="{!c.navigateToListAssessment}">
+                           <i class="fa fa-rotate-left"></i> {!$Label.c.back_button_title_assessment}
+                         </button>
+                     </div>
+                  </td>
+               </tr>       
+            </aura:if>
+            <aura:if isTrue="{!v.showContext2}">
                   <tr>
                      <td class="textInDiv">
                            <div style="margin-bottom:20px">
@@ -1136,7 +1163,7 @@
             </div>
     </div>
     <aura:if isTrue="{!v.closeFieldDescription == false}">
-        <div class="slds-size--2-of-7" style="margin-top:20px;padding-left:20px;padding-right:20px">
+        <div class="slds-size--2-of-7" style="margin-top:20px;padding-left:20px;padding-right:20px;">
             <c:OrmFieldDescriptionCmp/>
         </div>
     </aura:if>

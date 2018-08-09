@@ -28,7 +28,6 @@
         if(ta.get("v.value")== 'Processus'){
           var statusProcessus = component.find("statusProcessus");
           newItem.orm_statusAssessment__c = statusProcessus.get("v.value");
-          
           var pilote = component.find("pilote");
           newItem.orm_pilote__c = pilote.get("v.value");
           var copilote = component.find("copilote");
@@ -67,12 +66,8 @@
             });
         $A.enqueueAction(action);
     },
-    onChangeTA : function(component, event, helper)
-    {
-    	component.find("typeAssessment").set("v.value", event.getSource().get("v.value"));
-	},
-	
-	onChangePM : function(component, event, helper)
+   
+	onChangeProjectManager : function(component, event, helper)
     {
 	    component.set("v.displaySaveCancelBtn",true);
 		component.find("userPM").set("v.value", event.getSource().get("v.value"));
@@ -80,7 +75,7 @@
 	    var description = "This field allows us to specify the Project Manager for this Project";
 	    helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeRM : function(component, event, helper)
+	onChangeRiskManager : function(component, event, helper)
     {
         component.set("v.displaySaveCancelBtn",true);
     	component.find("userRM").set("v.value", event.getSource().get("v.value"));
@@ -90,6 +85,7 @@
 	},
 	onChangeIndSector : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn", true);
     	component.find("industrySector").set("v.value", event.getSource().get("v.value"));
     	var field = "Industry Sector";
         var description = "This field allows us to specify the Industry Sector for the Client";
@@ -97,41 +93,93 @@
 	},
 	onChangeOrganisationIndSector : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn", true);
     	component.find("industrySectorOrganisation").set("v.value", event.getSource().get("v.value"));
     	var field = "Organisation Industry Sector";
         var description = "This field allows us to specify the Industry Sector for the organisation";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onCurrencyChange : function(component, event, helper)
+	onChangeCurrency : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn", true);
     	component.find("currency").set("v.value", event.getSource().get("v.value"));
     	var field = "Currency";
         var description = "This field specifies the currency used";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onScheduleChange : function(component, event, helper)
+	onChangeSchedule : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn", true);
     	component.find("schedule").set("v.value", event.getSource().get("v.value"));
 	},
 	onChangeStatusProjet : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn", true);
     	component.find("statusProjet").set("v.value", event.getSource().get("v.value"));
     	var field = "Status";
         var description = "This field specifies the status of the projet";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
+	onChangeStatusProcessus : function(component, event, helper)
+    {
+        component.set("v.displaySaveCancelBtn", true);
+    	component.find("statusProcessus").set("v.value", event.getSource().get("v.value"));
+    	var field = "Status Processus";
+        var description = "This field specifies the status of the process";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+	},
+	onChangeStatusOrganisation : function(component, event, helper)
+    {
+        component.set("v.displaySaveCancelBtn", true);
+    	component.find("statusOrganisation").set("v.value", event.getSource().get("v.value"));
+    	var field = "Status Organisation";
+        var description = "This field specifies the status of the organisation";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+	},
+	onChangePlannedSD : function(component, event, helper)
+    {
+       component.set("v.displaySaveCancelBtn", true);
+    },
+    onChangePlannedED : function(component, event, helper)
+    {
+       component.set("v.displaySaveCancelBtn", true);
+    },
+    onChangeApplicationDate : function(component, event, helper)
+    {
+       component.set("v.displaySaveCancelBtn", true);
+    },
+    sendApplicationDateToFD : function(component, event, helper)
+    {
+       var field = "Application Date";
+       var description = "This field defines the Application Date of process";
+       helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    sendPlannedEndDateToFD : function(component, event, helper)
+    {
+       var field = "Application Date";
+       var description = "This field defines the Planned End Date for this project";
+       helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    sendPlannedStartDateToFD : function(component, event, helper)
+    {
+       var field = "Application Date";
+       var description = "This field defines the Planned Start Date for this project";
+       helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
 	onChangePilote : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn", true);
     	component.find("pilote").set("v.value", event.getSource().get("v.value"));
     	var field = "Pilot";
-        var description = "This field allows us to specify the Pilot for this processus";
+        var description = "This field allows us to specify the Pilot for this process";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onChangeCopilote : function(component, event, helper)
     {
+        component.set("v.displaySaveCancelBtn", true);
     	component.find("copilote").set("v.value", event.getSource().get("v.value"));
     	var field = "Copilot";
-        var description = "This field allows us to specify the copilot for this processus";
+        var description = "This field allows us to specify the copilot for this process";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	
@@ -163,13 +211,7 @@
     closeFielDescript : function(component, event, helper) {
         component.set("v.closeFieldDescription", true);
     },
-    
-    onSelectChange : function(component, event, helper) {
-        var selected = component.find("StageName").get("v.value");
-        component.set("v.OpportunityData.StageName",selected);
-        console.log('opp::::'+JSON.stringify(selected));
-    },
-   
+
     openOrganisationNew : function(component, event, helper){
         var assessment = component.get('v.assessmentData');
 		var evt = $A.get("e.c:OrmOpenNewOrganisationEvt");
@@ -191,8 +233,7 @@
         });
         $A.enqueueAction(actionOrgs);
     },
-    onTypeAssessmentChange : function(component,event,helper){ 
-        
+    onChangeTypeAssessment : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != '' || event.getSource().get("v.value").trim() != '---None---'){ 
             component.find("typeAssessment").set("v.value", event.getSource().get("v.value")); 
              var typeAss = event.getSource().get("v.value");
@@ -201,7 +242,6 @@
         var field = $A.get("$Label.c.orm_type_assessment");
         var description = $A.get("$Label.c.orm_description_type_assessment");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
-        
     },
     
     onChangeTypeProjet : function(component,event,helper){ 
@@ -212,7 +252,6 @@
         var field = "Project Type";
         var description = "This field allows us to specify what type of project we want to create";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
-        
     },
     
     onNameProjectChange : function(component,event,helper){ 
@@ -236,7 +275,7 @@
             component.set("v.displaySaveCancelBtn",true);
         }
     },
-    onChangedescriptionProject : function(component,event,helper){ 
+    onChangeDescriptionProject : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
         }
@@ -290,9 +329,7 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     onChangeSize : function(component, event, helper) {
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.set("v.displaySaveCancelBtn",true);
-        }
+       component.set("v.displaySaveCancelBtn",true);
     },
     
     cancel : function(component, event, helper)

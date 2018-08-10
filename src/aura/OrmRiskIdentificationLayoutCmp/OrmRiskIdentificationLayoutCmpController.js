@@ -23,25 +23,22 @@
         // Set the columns of the Table
         component.set('v.columns', [{
             label: 'Risk Name',
-            fieldName: 'Name',
+            fieldName: 'RiskName',
             type: 'text',iconName: 'standard:opportunity'
-        }, {
+        },
+        {
             label: 'Description',
-            fieldName: 'Description',
+            fieldName: 'RiskDescription',
             type: 'text',iconName: 'standard:opportunity'
-        }, {
-            label: 'Risk category',
-            fieldName: 'orm_categorieRisk__c',
-            type: 'text',iconName: 'standard:opportunity'
-        }
-        ,
-        {label: 'association', type: 'checkbox', initialWidth: 135,
-         typeAttributes: { label: 'association', name: 'association', title: 'association'},
-         iconName: 'standard:opportunity'
-         },
-        {label: 'configuration', type: 'button', initialWidth: 135,
-         typeAttributes: { label: 'configure', name: 'configure', title: 'Click to configure this risk'},
-         iconName: 'standard:opportunity'
+        }, 
+        {
+           label: 'Risk category',
+           fieldName: 'RiskcategorieRisk',
+           type: 'text',iconName: 'standard:opportunity'
+        },
+        {  label: 'association', type: 'button', initialWidth: 135,
+           typeAttributes: { label: 'association', name: 'association', title: 'association'},
+           iconName: 'standard:opportunity'
          }
         ]);
         helper.fetchPicklist(component, event);
@@ -54,20 +51,32 @@
     filterByCategorieRisk: function(component, event, helper) {
         var categorieRisk = component.find("categorieRisk");
         var categorieRiskValue = categorieRisk.get("v.value");
+        var assessment= component.get("v.idAssessment");
         var isItemValid = true;
         if ($A.util.isEmpty(categorieRiskValue)) {
             isItemValid = false;
             helper.fetchPicklist(component, event);
         }
         if (isItemValid) {
-            var action = component.get('c.findAllResearchPicklist');
+            var action = component.get('c.findAllAssessmentRisk');
             action.setParams({
-                "Research": categorieRiskValue
+                "item": categorieRiskValue,
+                "assessment":assessment
             });
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (state == "SUCCESS") {
-                    component.set('v.allRisk', response.getReturnValue());
+                
+                var rows = response.getReturnValue();
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    if (row.orm_Risk__c) {
+                    row.RiskName = row.orm_Risk__r.Name;
+                    row.RiskDescription = row.orm_Risk__r.Description;
+                    row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
+                    }
+                }
+                    component.set('v.allRisk', rows);
                     component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 } else {
                     helper.fetchPicklist(component, event);
@@ -80,9 +89,9 @@
     openPopupAssociation: function(component, event, helper) {
         var selectedRows = event.getParam('selectedRows');
         var assessmentRisks = [];
-         selectedRows.forEach(function(selectedRow) {
+        selectedRows.forEach(function(selectedRow) {
         var newAssessmentRisk ={};
-         newAssessmentRisk.sobjectType='orm_assessmentRisk__c';
+         	newAssessmentRisk.sobjectType='orm_assessmentRisk__c';
             newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
             newAssessmentRisk.orm_Risk__c = selectedRow.Id;
 	        assessmentRisks.push(newAssessmentRisk);
@@ -111,7 +120,7 @@
         try {
             regex = new RegExp(term, "i");
             // filter checks each row, constructs new array where function returns true
-            results = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
+            results = data.filter(row => regex.test(row.RiskName) || regex.test(row.RiskDescription));
         } catch (e) {
             // invalid regex, use full list
             helper.fetchPicklist(component, event);
@@ -169,5 +178,13 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    },
+     openModalRisk : function(component){
+		// for Hide/Close Model,set the "isOpen" attribute to "False"
+		component.set("v.isOpen", true);
+	},
+	closeModal : function(component){
+		// for Hide/Close Model,set the "isOpen" attribute to "False"
+		component.set("v.isOpen", false);
+	}
 })

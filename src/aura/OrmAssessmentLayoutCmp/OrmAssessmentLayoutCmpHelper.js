@@ -7,7 +7,6 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValues = response.getReturnValue();
- 
                 if (allValues != undefined && allValues.length > 0) {
                     var none="---None---";
                     opts.push(none);
@@ -36,7 +35,6 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesTP = response.getReturnValue();
- 
                 if (allValuesTP != undefined && allValuesTP.length > 0) {
                     var none="---None---";
                     opts2.push(none);
@@ -56,7 +54,6 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesStatus = response.getReturnValue();
- 
                 for (var i = 0; i < allValuesStatus.length; i++) {
                     opts3.push(allValuesStatus[i]);
                 }
@@ -72,8 +69,6 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesCurrency = response.getReturnValue();
- 
-                
                 for (var i = 0; i < allValuesCurrency.length; i++) {
                     opts4.push(allValuesCurrency[i]);
                 }
@@ -89,8 +84,6 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesSchedule = response.getReturnValue();
- 
-                
                 for (var i = 0; i < allValuesSchedule.length; i++) {
                     opts5.push(allValuesSchedule[i]);
                 }
@@ -114,10 +107,19 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 component.set('v.allUser', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        var actionOrganisationSectorInd = component.get("c.getSelectOptions");
+        actionOrganisationSectorInd.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_organisationIndustrySector__c'});
+        actionOrganisationSectorInd.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allOrganisationIndustrySector', response.getReturnValue());
                 //Hide the Spinner
                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
 	            evtSpinner.fire();  
-	    
             } else {
                 alert("l'Element n'a pas été retrouvé");
             }
@@ -130,6 +132,7 @@
         $A.enqueueAction(actionSchedule);
         $A.enqueueAction(actionSector);
         $A.enqueueAction(actionUser);
+        $A.enqueueAction(actionOrganisationSectorInd);
 	},
    
     verifTypeAssessment  : function(component, event, helper, typeAssessment) {

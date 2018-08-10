@@ -180,7 +180,7 @@ public class OrmAssessmentController {
                        orm_pilote__c, orm_copilote__c, orm_startDate__c, orm_endDate__c, orm_commercialBudget__c,
                        orm_maxCostExposture__c, orm_max_schedule_exposture__c, orm_finaliteProcessus__c,
                        orm_referenceProcessus__c, orm_applicationDateProcessus__c, orm_organisation__c, 
-                       orm_organisation__r.Name, orm_client_name__c
+                       orm_organisation__r.Name, orm_client_name__c, orm_size__c, orm_organisationIndustrySector__c
                 From Assessment__c 
                 Where Id = : idAss ];
          

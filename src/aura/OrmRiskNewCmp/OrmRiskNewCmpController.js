@@ -1,7 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
 	/*component.set("v.idAssessment", event.getParam("assessment"));*/
-	    alert(component.get('v.idAssessment'));
         var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.risk"), 'fld' : 'orm_categorieRisk__c'});
         action.setCallback(this, function(response){
@@ -61,7 +60,7 @@
 	  openModal: function(component, event, helper)
     {
     	component.set("v.isOpen", true); 
-    	component.set("v.idAssessment", event.getParam('assessment'));
+    	
 	},
 	
 })

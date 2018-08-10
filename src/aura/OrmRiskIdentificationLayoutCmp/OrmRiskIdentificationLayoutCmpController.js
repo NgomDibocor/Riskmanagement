@@ -14,9 +14,6 @@
     openModalNewRisk: function(component, event, helper) {
     var assessment= component.get("v.idAssessment");
         var evt = $A.get("e.c:OrmOpenNewRiskCmpEvt");
-        evt.setParams({
-        "assessment":assessment
-        });
         evt.fire();
     },
     /*

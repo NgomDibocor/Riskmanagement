@@ -12,6 +12,7 @@
      *
      */
     openModalNewRisk: function(component, event, helper) {
+    var assessment= component.get("v.idAssessment");
         var evt = $A.get("e.c:OrmOpenNewRiskCmpEvt");
         evt.fire();
     },
@@ -152,6 +153,7 @@
                     	});	
                     	toast.fire();
                 component.set("v.isOpen", false);
+                helper.fetchPicklist(component,event);
             } else {
                  var toast = $A.get('e.force:showToast');
                     	toast.setParams({
@@ -221,6 +223,10 @@
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
                 }
+                var assessmentRisks = component.get('v.allRisk');
+                assessmentRisks.forEach(function(assessmentRisk){                
+                	rows = rows.filter( row => row.Id !== assessmentRisk.orm_Risk__c );
+                });
                     component.set('v.allRiskList', rows);
                     if(rows.length == 0) {
                     	var toast = $A.get('e.force:showToast');

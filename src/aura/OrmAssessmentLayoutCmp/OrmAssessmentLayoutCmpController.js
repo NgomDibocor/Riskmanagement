@@ -156,13 +156,13 @@
     },
     sendPlannedEndDateToFD : function(component, event, helper)
     {
-       var field = "Application Date";
+       var field = "Planned End Date";
        var description = "This field defines the Planned End Date for this project";
        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     sendPlannedStartDateToFD : function(component, event, helper)
     {
-       var field = "Application Date";
+       var field = "Planned Start Date";
        var description = "This field defines the Planned Start Date for this project";
        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },

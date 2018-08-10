@@ -62,6 +62,8 @@
         $A.enqueueAction(actionOrgs);
     },
      fetchlistRiskModal: function(component, event) {
+     var listAssessmentRisk = component.get("v.allRisk")
+     alert(JSON.stringify(listAssessmentRisk));
         var categoryRisk = component.get("v.categorieRisk");
         var nameCategorieRisk= component.find("categorieRiskList");
         var item = nameCategorieRisk.get("v.value");

@@ -1,12 +1,11 @@
 <aura:component abstract="true" extensible="true" access="public"
                 implements="force:appHostable,flexipage:availableForAllPageTypes">
 
-
    <aura:registerEvent name="DisplayListAssessment" type="c:OrmDisplayListAssessmentEvt"  />
-
+   <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
 
        
      {!v.body}
-	
+     
 </aura:component>
 

@@ -24,6 +24,15 @@
 		});
 		evt.fire();
     },
+    
+    sendDescriptionFieldCause : function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": "Cause",
+            "descriptionField": "Description"
+        });
+        evt.fire();
+    },
 	
 	
 	save: function(component, event, helper) {

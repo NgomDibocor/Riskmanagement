@@ -5,7 +5,7 @@
     <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
     <aura:attribute name="closeFieldDescription" type="boolean" default="true" />
-    <aura:attribute name="allRisk" type="Macro[]" />
+    <aura:attribute name="allRisk" type="orm_assessmentRisk__c[]" />
     <aura:attribute name="Research" type="String" />
     <aura:attribute name="allCategorieRisk" type="String[]" />
     <aura:attribute name="risk" type="Macro" default="{ 
@@ -26,6 +26,8 @@
 												                         'orm_assessment__c': '',  
 												                         'orm_Risk__c':''   
 																	}" />
+	<aura:attribute name="isOpen" type="boolean"  default="false"/>
+	
     <div class="slds-grid slds-gutters">
         <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
             <div class="slds-form-element__control">
@@ -48,8 +50,12 @@
             <span class="btnNewRisk" onclick="{!c.openModalNewRisk}">
            <!--  <button class="slds-button slds-button_brand" >add new risk</button> -->
              <lightning:icon iconName="utility:new" size="medium" /></span>
+             <button class="slds-button slds-button--brand"  onclick="{!c.openModalRisk}">
+			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>associate risk
+	       </button>
         </div>
         <div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
+         
         </div>
     </div> <br/><br/>
     <div class="slds-grid slds-gutters">
@@ -61,7 +67,7 @@
              columns="{! v.columns }" 
              keyField="id" 
              resizeColumnDisabled="true" 
-             selectedRows="{! v.risk}" 
+             selectedRows="{! v.assessmentRisk}" 
              onrowselection="{!c.openPopupAssociation}" 
              showRowNumberColumn="true"
             />
@@ -73,5 +79,51 @@
 	  <button class="slds-button slds-button--brand" onclick="{!c.listeAssessmentRisk}">
 			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>voir liste
 	</button>
+	<aura:if isTrue="{!v.isOpen}">
+			<!--###### MODAL BOX Start From Here ######-->    		
+			<div role="dialog" tabindex="-1" aria-labelledby="header99"
+				class="slds-modal slds-fade-in-open slds-modal_medium">
+				<div class="slds-modal__container form-style-6">
+					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+					<div class="slds-modal__header">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							title="{!$Label.c.close_button_title}" onclick="{!c.closeModal}">
+							X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+						</button>
+						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label} Risk</h1>
+					</div>
+					<!--###### MODAL BOX BODY Part Start From Here ######-->
+					<div class="slds-modal__content slds-p-around--medium">
+						<!-- CREATE NEW Activity FORM -->
+							 <lightning:datatable 
+					             aura:id="datatableRisk"
+					             data="{! v.allRisk }" 
+					             class="slds-m-top_medium" 
+					             columns="{! v.columns }" 
+					             keyField="id" 
+					             resizeColumnDisabled="true" 
+					             selectedRows="{! v.assessmentRisk}" 
+					             onrowselection="{!c.openPopupAssociation}" 
+					             showRowNumberColumn="true"
+					            />
+						<!-- / CREATE NEW Item FORM -->
+
+					</div>
+					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+					<div class="slds-modal__footer">
+						<button class="slds-button slds-button--neutral"
+							onclick="{!c.closeModal}">{!$Label.c.close_button_title}</button>
+						<button class="slds-button slds-button--brand"
+							onclick="{!c.createItem}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.create_button_title}
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+			<!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
+    <!-- fin text -->
     <c:OrmRiskNewCmp/>
 </aura:component>

@@ -10,6 +10,7 @@
                                                              'orm_categorieRisk__c' : ''
                                                          }" />
     <aura:attribute name="allCategorieRisk" type="String[]" />
+    <aura:attribute name="idAssessment" type="String" description="" />
     <!-- text -->
     <aura:if isTrue="{!v.isOpen}">
 			<!--###### MODAL BOX Start From Here ######-->    		

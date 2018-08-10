@@ -1,6 +1,6 @@
 ({
     fetchPicklist: function(component, event) {
-    component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
+    //component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
         var categoryRisk = component.get("v.categorieRisk");
         var nameCategorieRisk= component.find("categorieRisk");
         var item = nameCategorieRisk.get("v.value");
@@ -38,7 +38,7 @@
 		
 		            toast.fire();
                 }
-                component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
+                //component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 var action = component.get('c.getSelectOptions');
                 action.setParams({
                     'objObject': component.get("v.risk"),

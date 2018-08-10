@@ -9,7 +9,7 @@
     <div style="color:white;position:relative">
             <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
          
-        <table style="width:95%;margin:auto">
+        <table style="width:80%;margin:auto">
             <tr>
 	         <td>{!v.nomField}</td>
 	        </tr>

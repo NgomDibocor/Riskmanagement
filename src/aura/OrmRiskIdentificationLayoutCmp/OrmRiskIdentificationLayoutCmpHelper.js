@@ -1,6 +1,6 @@
 ({
     fetchPicklist: function(component, event) {
-    component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
+    //component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
         var categoryRisk = component.get("v.categorieRisk");
         var nameCategorieRisk= component.find("categorieRisk");
         var item = nameCategorieRisk.get("v.value");
@@ -38,7 +38,7 @@
 		
 		            toast.fire();
                 }
-                component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
+                //component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 var action = component.get('c.getSelectOptions');
                 action.setParams({
                     'objObject': component.get("v.risk"),
@@ -61,7 +61,8 @@
 
         $A.enqueueAction(actionOrgs);
     },
-     fetchlistRiskModal: function(component, event) {
+    
+    fetchlistRiskModal: function(component, event) {
         var categoryRisk = component.get("v.categorieRisk");
         var nameCategorieRisk= component.find("categorieRiskList");
         var item = nameCategorieRisk.get("v.value");
@@ -79,6 +80,13 @@
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
                 }
+                
+                var assessmentRisks = component.get('v.allRisk');
+                
+                assessmentRisks.forEach(function(assessmentRisk){                
+                	rows = rows.filter( row => row.Id !== assessmentRisk.orm_Risk__c );
+                });
+                
                 component.set('v.allRiskList', rows);
                 var action = component.get('c.getSelectOptions');
                 action.setParams({

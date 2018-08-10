@@ -12,6 +12,7 @@
      *
      */
     openModalNewRisk: function(component, event, helper) {
+    var assessment= component.get("v.idAssessment");
         var evt = $A.get("e.c:OrmOpenNewRiskCmpEvt");
         evt.fire();
     },
@@ -77,6 +78,16 @@
                     }
                 }
                     component.set('v.allRisk', rows);
+                    if(rows.length == 0) {
+                    	var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'there is no risk associated or category is'+' '+categorieRiskValue,
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+                    }
+                    
                     component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 } else {
                     helper.fetchPicklist(component, event);
@@ -134,10 +145,24 @@
             var state = response.getState();
             console.log(state);
             if (component.isValid() && state == "SUCCESS") {
-                alert("successful association");
+                var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'successful association',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
                 component.set("v.isOpen", false);
+                helper.fetchPicklist(component,event);
             } else {
-                alert("failed association");
+                 var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'failed association',
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+               component.set("v.isOpen", false);
             }
         });
         $A.enqueueAction(action);
@@ -198,7 +223,20 @@
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
                 }
+                var assessmentRisks = component.get('v.allRisk');
+                assessmentRisks.forEach(function(assessmentRisk){                
+                	rows = rows.filter( row => row.Id !== assessmentRisk.orm_Risk__c );
+                });
                     component.set('v.allRiskList', rows);
+                    if(rows.length == 0) {
+                    	var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'there is no risk '+' '+categorieRiskValue,
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+                    }
                     component.find("categorieRiskList").set("v.value", event.getSource().get("v.value"));
                 } else {
                     helper.fetchlistRiskModal(component, event);

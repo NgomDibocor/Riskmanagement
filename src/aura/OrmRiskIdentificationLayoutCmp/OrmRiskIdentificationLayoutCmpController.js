@@ -77,6 +77,16 @@
                     }
                 }
                     component.set('v.allRisk', rows);
+                    if(rows.length == 0) {
+                    	var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'No Risks',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+                    }
+                    
                     component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 } else {
                     helper.fetchPicklist(component, event);

@@ -1,10 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
-	      // Set the columns of the Table
-       component.set('v.columns', [
-           {label: 'Name', fieldName: 'Name', type: 'text'},
-           {label: 'Notification', fieldName: 'association', type: 'boolean'} ]);
-          
+	   
 	 // call the apex class method and fetch contact list  
        /**  var action = component.get("c.findAllContact");
              action.setCallback(this, function(response) {
@@ -22,42 +18,73 @@
 	},
 	
 	openModalContacts : function(component, event, helper) {
-	// call the apex class method and fetch contact list workshop
-          var action1 = component.get("c.findAllContactWorkshop");
-          action1.setParams({
-          'item':event.getParam('Workshop')
-          });
-             action1.setCallback(this, function(response) {
-              var state = response.getState();
-              if (state === "SUCCESS") {
-                  var storeResponse = response.getReturnValue();
-                  console.log(JSON.stringify(storeResponse));
-               // set ContactList list with return value from server.
-                  //component.set("v.ContactList", storeResponse);
-              }
-        });
+
 	 // call the apex class method and fetch contact list  
          var action = component.get("c.findAllContact");
-         action.setParams({
-         'item':event.getParam('Workshop')});
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
                   var storeResponse = response.getReturnValue();
-                console.log(JSON.stringify(storeResponse));
-               var listData=[];
-               listDatat.push("name",sali);
-               
-            }
-            
+               // console.log(JSON.stringify(storeResponse));
+                
                // set ContactList list with return value from server.
                   component.set("v.ContactList", storeResponse);
-              
+                    //console.log(component.get("v.ContactList"));
+             
+                	
+                   if(component.get("v.ContactList").length > 0){
+                   
+                
+                   // call the apex class method and fetch contact list workshop
+          var action1 = component.get("c.findAllContactWorkshop");
+          action1.setParams({
+          'item':event.getParam('Workshop')
+          });
+           action1.setCallback(this, function(response) {
+              var stateworkshop = response.getState();
+              if (stateworkshop === "SUCCESS") {
+                  var storeResponseWorkshopcontact = response.getReturnValue();
+                   component.set("v.ContactWorkshopList", storeResponseWorkshopcontact);
+                 
+                 //iterate and check if contact is associated to workshop
+                  component.get("v.ContactList").forEach(function(contact){
+                  component.get("v.ContactWorkshopList").forEach (function(contactworkshop){
+                  	if(contactworkshop.orm_contact__c == contact.Id){
+                  contact.association= "associé";
+                  }else{
+                  contact.association= "non associé";
+                  }
+                  });
+                  //helper.checkContactWorkshop(contact.Id,component.get("v.ContactWorkshopList"));
+                    
+                          });
+                           console.log(component.get("v.ContactList"));
+                          
+                  }
+                  });
+                     $A.enqueueAction(action1);
+       
+        }
+              }
         });
+        
+                 
         $A.enqueueAction(action);
-        $A.enqueueAction(action1);
+        
+          
+             
+          component.set('v.workshop', event.getParam('Workshop'));
+     
+      
 	component.set("v.isOpenModalContactWorkshop", true);
-	 component.set('v.workshop', event.getParam('Workshop'));
+	                 // Set the columns of the Table
+       component.set('v.columns', [
+           {label: 'Name', fieldName: 'Name', type: 'text'},
+           {label: 'Association', fieldName: 'association', type: 'text' } ]);
+          
+	alert(JSON.stringify(component.get("v.ContactList")));
+  // console.log(component.get("v.ContactWorkshopList"));
+
 	},
 	
 	closeModalWorkshopContact: function(component, event, helper) {

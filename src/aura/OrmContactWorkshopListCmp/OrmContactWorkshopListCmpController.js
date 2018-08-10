@@ -21,6 +21,8 @@
 
 	 // call the apex class method and fetch contact list  
          var action = component.get("c.findAllContact");
+         action.setParams({
+         'item':event.getParam('Workshop')});
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
@@ -29,6 +31,7 @@
                 
                // set ContactList list with return value from server.
                   component.set("v.ContactList", storeResponse);
+<<<<<<< HEAD
                     //console.log(component.get("v.ContactList"));
              
                 	
@@ -36,10 +39,15 @@
                    
                 
                    // call the apex class method and fetch contact list workshop
+=======
+              
+                	// call the apex class method and fetch contact list workshop
+>>>>>>> 7fb370c90b153aa956d440b051826e2f5f84b3b8
           var action1 = component.get("c.findAllContactWorkshop");
           action1.setParams({
           'item':event.getParam('Workshop')
           });
+<<<<<<< HEAD
            action1.setCallback(this, function(response) {
               var stateworkshop = response.getState();
               if (stateworkshop === "SUCCESS") {
@@ -84,6 +92,39 @@
           
 	alert(JSON.stringify(component.get("v.ContactList")));
   // console.log(component.get("v.ContactWorkshopList"));
+=======
+             action1.setCallback(this, function(response) {
+              var state = response.getState();
+              if (state === "SUCCESS") {
+                  var storeResponseWorkshopcontact = response.getReturnValue();
+                  //console.log(JSON.stringify(storeResponseWorkshopcontact));
+               // set ContactWorkshopList list with return value from server.
+                  component.set("v.ContactWorkshopList", storeResponseWorkshopcontact);
+                  //iterate and check if contact is associated to workshop
+                  component.get("v.ContactList").forEach(function(contact){
+                  contact.association= helper.checkContactWorkshop(contact.Id,storeResponseWorkshopcontact);
+                  });
+                  console.log(component.get("v.ContactList"));
+                  
+                     // Set the columns of the Table
+       component.set('v.columns', [
+           {label: 'Name', fieldName: 'Name', type: 'text'},
+           {label: 'Association', fieldName: 'association', type: 'boolean'} ]);
+          
+                  
+                 
+              }
+        });
+        $A.enqueueAction(action1);
+               
+            }
+            
+        });
+        $A.enqueueAction(action);
+      
+	component.set("v.isOpenModalContactWorkshop", true);
+	 component.set('v.workshop', event.getParam('Workshop'));
+>>>>>>> 7fb370c90b153aa956d440b051826e2f5f84b3b8
 
 	},
 	

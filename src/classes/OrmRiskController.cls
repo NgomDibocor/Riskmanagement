@@ -22,7 +22,7 @@ public with sharing class OrmRiskController {
     @AuraEnabled 
     public static List<Macro> findAll(String item)
     {
-       return  [Select Id,Name,Description,orm_associate__c,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
+       return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
        RecordTypeId=:OrmRiskController.getRiskRecordTypeId() and orm_categorieRisk__c=:item ];
     }
     /*
@@ -76,6 +76,17 @@ public with sharing class OrmRiskController {
             upsert item;
             return item;   
     }
+     /*
+    *David mignane diop
+    *function of adding a new assessment risk
+    *le 02/08/2018
+    */
+     @AuraEnabled
+    public static List<orm_assessmentRisk__c> deleteAssessmentRisks (List<orm_assessmentRisk__c> items)
+    {
+            delete items;
+            return items;  
+    }
     
      /*
     *David mignane diop
@@ -120,12 +131,6 @@ public with sharing class OrmRiskController {
         system.debug('allOpts ---->' + allOpts);
         allOpts.sort();
         return allOpts;
-    }
-    
-     @AuraEnabled 
-    public static List<orm_assessmentRisk__c> liste(String item)
-    {
-       return  [Select Id,orm_assessment__r.id,orm_risk__r.name From orm_assessmentRisk__c where  orm_assessment__r.id=:item ];
     }
     
 }

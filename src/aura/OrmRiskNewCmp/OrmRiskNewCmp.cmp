@@ -1,4 +1,5 @@
 <aura:component extends="c:OrmAbstractNewCmp" controller="OrmRiskController">
+ <aura:attribute name="isOpen" type="boolean"  default="false"/>
     <aura:handler event="c:OrmOpenNewRiskCmpEvt" action="{!c.openModal}" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
      <aura:registerEvent name="OrmRiskCreatedEvt"  type="c:OrmRiskCreatedEvt"/>

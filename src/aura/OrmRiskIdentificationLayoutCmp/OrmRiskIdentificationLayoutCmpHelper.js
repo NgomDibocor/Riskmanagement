@@ -26,6 +26,18 @@
                     }
                 }
                 component.set('v.allRisk', rows);
+                var risk=component.get('v.allRisk');
+                if(risk == null){
+                
+                var toast = $A.get('e.force:showToast');
+		            toast.setParams({
+		            	'message' : 'Check if you Have Created the Assessment',
+		                'type' : 'warning',
+		                'mode' : 'dismissible'
+		            });
+		
+		            toast.fire();
+                }
                 component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 var action = component.get('c.getSelectOptions');
                 action.setParams({
@@ -49,12 +61,13 @@
 
         $A.enqueueAction(actionOrgs);
     },
-     fetchlistRisk: function(component, event) {
-        var nameCategorieRisk= component.find("riskCategory");
+     fetchlistRiskModal: function(component, event) {
+        var categoryRisk = component.get("v.categorieRisk");
+        var nameCategorieRisk= component.find("categorieRiskList");
         var item = nameCategorieRisk.get("v.value");
         var actionOrgs = component.get("c.findAll");
         actionOrgs.setParams({
-            "item": item,
+            "item": categoryRisk,
         });
        // component.set("v.categorieRisk", item);
         actionOrgs.setCallback(this, function(response) {
@@ -65,14 +78,8 @@
                 var rows = response.getReturnValue();
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
-                    if (row.orm_Risk__c) {
-                    row.RiskName = row.orm_Risk__r.Name;
-                    row.RiskDescription = row.orm_Risk__r.Description;
-                    row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
-                    }
                 }
-                component.set('v.allRisk', rows);
-                component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
+                component.set('v.allRiskList', rows);
                 var action = component.get('c.getSelectOptions');
                 action.setParams({
                     'objObject': component.get("v.risk"),
@@ -81,7 +88,7 @@
                 action.setCallback(this, function(response) {
                     var state = response.getState();
                     if (state === 'SUCCESS' && component.isValid()) {
-                        component.set('v.allCategorieRisk', response.getReturnValue());
+                        component.set('v.allCategorieRiskList', response.getReturnValue());
                     } else {
                         alert("the element was not found");
                     }

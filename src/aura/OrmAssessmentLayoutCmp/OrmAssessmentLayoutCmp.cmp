@@ -1172,6 +1172,5 @@
     
     
     <c:OrmOrganisationNewCmp/>
-    <c:OrmCauseNewCmp />
     <c:OrmWorkShopNewCmp/>
 </aura:component>

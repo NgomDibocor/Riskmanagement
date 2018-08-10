@@ -1,40 +1,74 @@
 ({
 	doInit : function(component, event, helper) {
-	      // Set the columns of the Table
-       component.set('v.columns', [
-           {label: 'Name', fieldName: 'Name', type: 'text'},
-           {label: 'Notification', fieldName: 'orm_notification__c', type: 'text'} ]);
-           
+	   
 	 // call the apex class method and fetch contact list  
-         var action = component.get("c.findAllContact");
+       /**  var action = component.get("c.findAllContact");
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
                   var storeResponse = response.getReturnValue();
-                  console.log(JSON.stringify(storeResponse));
+                // console.log(JSON.stringify(storeResponse));
                // set ContactList list with return value from server.
                   component.set("v.ContactList", storeResponse);
               }
         });
         $A.enqueueAction(action);
-		
+         
+		**/
 	},
 	
 	openModalContacts : function(component, event, helper) {
+
 	 // call the apex class method and fetch contact list  
          var action = component.get("c.findAllContact");
+         action.setParams({
+         'item':event.getParam('Workshop')});
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
                   var storeResponse = response.getReturnValue();
-                  console.log(JSON.stringify(storeResponse));
+               // console.log(JSON.stringify(storeResponse));
+                
                // set ContactList list with return value from server.
                   component.set("v.ContactList", storeResponse);
+              
+                	// call the apex class method and fetch contact list workshop
+          var action1 = component.get("c.findAllContactWorkshop");
+          action1.setParams({
+          'item':event.getParam('Workshop')
+          });
+             action1.setCallback(this, function(response) {
+              var state = response.getState();
+              if (state === "SUCCESS") {
+                  var storeResponseWorkshopcontact = response.getReturnValue();
+                  //console.log(JSON.stringify(storeResponseWorkshopcontact));
+               // set ContactWorkshopList list with return value from server.
+                  component.set("v.ContactWorkshopList", storeResponseWorkshopcontact);
+                  //iterate and check if contact is associated to workshop
+                  component.get("v.ContactList").forEach(function(contact){
+                  contact.association= helper.checkContactWorkshop(contact.Id,storeResponseWorkshopcontact);
+                  });
+                  console.log(component.get("v.ContactList"));
+                  
+                     // Set the columns of the Table
+       component.set('v.columns', [
+           {label: 'Name', fieldName: 'Name', type: 'text'},
+           {label: 'Association', fieldName: 'association', type: 'boolean'} ]);
+          
+                  
+                 
               }
         });
+        $A.enqueueAction(action1);
+               
+            }
+            
+        });
         $A.enqueueAction(action);
+      
 	component.set("v.isOpenModalContactWorkshop", true);
 	 component.set('v.workshop', event.getParam('Workshop'));
+
 	},
 	
 	closeModalWorkshopContact: function(component, event, helper) {

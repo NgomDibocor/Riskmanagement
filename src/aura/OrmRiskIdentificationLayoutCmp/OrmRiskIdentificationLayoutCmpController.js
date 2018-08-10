@@ -80,8 +80,8 @@
                     if(rows.length == 0) {
                     	var toast = $A.get('e.force:showToast');
                     	toast.setParams({
-			           'message' : 'No Risks',
-			           'type' : 'success',
+			           'message' : 'there is no risk associated or category is'+' '+categorieRiskValue,
+			           'type' : 'warning',
 			           'mode' : 'dismissible'
                     	});	
                     	toast.fire();
@@ -144,10 +144,23 @@
             var state = response.getState();
             console.log(state);
             if (component.isValid() && state == "SUCCESS") {
-                alert("successful association");
+                var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'successful association',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
                 component.set("v.isOpen", false);
             } else {
-                alert("failed association");
+                 var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'failed association',
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+               component.set("v.isOpen", false);
             }
         });
         $A.enqueueAction(action);
@@ -209,6 +222,15 @@
                     var row = rows[i];
                 }
                     component.set('v.allRiskList', rows);
+                    if(rows.length == 0) {
+                    	var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'there is no risk '+' '+categorieRiskValue,
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+                    }
                     component.find("categorieRiskList").set("v.value", event.getSource().get("v.value"));
                 } else {
                     helper.fetchlistRiskModal(component, event);

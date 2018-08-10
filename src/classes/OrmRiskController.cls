@@ -76,6 +76,17 @@ public with sharing class OrmRiskController {
             upsert item;
             return item;   
     }
+     /*
+    *David mignane diop
+    *function of adding a new assessment risk
+    *le 02/08/2018
+    */
+     @AuraEnabled
+    public static List<orm_assessmentRisk__c> deleteAssessmentRisks (List<orm_assessmentRisk__c> items)
+    {
+            delete items;
+            return items;  
+    }
     
      /*
     *David mignane diop

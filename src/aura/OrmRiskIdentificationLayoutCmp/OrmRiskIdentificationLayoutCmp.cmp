@@ -27,11 +27,13 @@
 												                         'orm_Risk__c':''   
 																	}" />
     <aura:attribute name="isOpen" type="boolean" default="false" />
+     <aura:attribute name="isOpenButton" type="boolean" default="false" />
     <!-- partie datatable 2 -->
     <aura:attribute name="allRiskList" type="Macro[]" />
     <aura:attribute name="columns2" type="List" />
     <aura:attribute name="allCategorieRiskList" type="String[]" />
     <aura:attribute name="filterRisk" type="String" />
+    <aura:attribute name="dissociateRisk" type="orm_assessmentRisk__c[]" />
     <!-- fin partie datatable 2 -->
 
     <div class="slds-grid slds-gutters">
@@ -66,6 +68,11 @@
     </div> <br/><br/>
     <div class="slds-grid slds-gutters">
         <div class="slds-col slds-size_10-of-12">
+         <aura:if isTrue="{!v.isOpenButton}"> 
+		    <button class="slds-button slds-button--brand" onclick="{!c.dissociateRiskfunction}">
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.dissociate_button_title}
+			</button>
+		 </aura:if> 
             <lightning:datatable aura:id="datatableRisk"
               data="{! v.allRisk }"
               class="slds-m-top_medium" 
@@ -74,12 +81,11 @@
               resizeColumnDisabled="true" 
               selectedRows="{! v.assessmentRisk}"
               showRowNumberColumn="true"
+              onrowselection="{!c.openPopupDissociate}"
             />
         </div>
     </div><br/>
-    <button class="slds-button slds-button--brand" onclick="{!c.relatedRiskfunction}">
-			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
-	</button>
+    
     <aura:if isTrue="{!v.isOpen}">
         <!--###### MODAL BOX Start From Here ######-->
         <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open slds-modal_medium">

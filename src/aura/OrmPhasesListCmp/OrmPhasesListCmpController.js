@@ -151,4 +151,32 @@
         });
         evt.fire();
     },
+       
+    // For select all Checkboxes 
+    selectAll: function(component, event, helper) {
+    	//get the header checkbox value  
+    	var selectedHeaderCheck = event.getSource().get("v.value");
+    	
+    	var evt = $A.get('e.c:OrmEvtSelectAllPhases');
+    	evt.setParams({"selectAllCheckbox": selectedHeaderCheck});
+    	evt.fire();
+    },
+    
+    
+    openModalDeletePhase : function(component, event, helper){
+    	component.set('v.openModalConfirmDeletion', true);
+    },
+    
+    confirmDeletePhases : function(component, event, helper) {
+    	var evt = $A.get('e.c:OrmEvtDeletePhases');
+    	evt.fire();
+    	component.set('v.openModalConfirmDeletion', false);
+    },
+    
+    cancelDeletePhases : function(component, event, helper) {
+    	component.set('v.openModalConfirmDeletion', false);
+    },
+    
+    
+        
 })

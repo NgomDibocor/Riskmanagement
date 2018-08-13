@@ -82,6 +82,7 @@
               selectedRows="{! v.assessmentRisk}"
               showRowNumberColumn="true"
               onrowselection="{!c.openPopupDissociate}"
+              onrowaction="{! c.handleRowAction }"
             />
         </div>
     </div><br/>

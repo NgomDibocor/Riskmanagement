@@ -1,7 +1,15 @@
 ({
-	doInit : function(component, event, helper) {		
-		var idAssessmentRisk = 'a001H00000kcdy9QAA';
-		component.set("v.assessmentRiskId", idAssessmentRisk);
+	doInit : function(component, event, helper) {
+		console.log('assessmentRiskId list '+ component.get("v.assessmentRiskId"));
+		//var assessmentRiskId = event.getParam('idAssessmentRisk');
+		//console.log('assessmentRiskId '+ assessmentRiskId);
+		helper.refresh(component, component.get("v.assessmentRiskId"));
+	},
+	
+	getAssessmentRiskId : function(component, event, helper) {
+		var assessmentRiskId = event.getParam('idAssessmentRisk');
+		console.log('assessmentRiskId '+ assessmentRiskId);
+		component.set("v.assessmentRiskId", assessmentRiskId);
 		helper.refresh(component, idAssessmentRisk);
 	},
 	
@@ -33,8 +41,7 @@
         });
         evt.fire();
     },
-	
-	
+		
 	save: function(component, event, helper) {
 		// Check required fields(Name) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)){
@@ -77,10 +84,8 @@
     	var key = component.get('v.key');
     	var regex;    	
     	
-    	if ($A.util.isEmpty(key)) {
-    	
-    		helper.refresh(component, component.get("v.assessmentRiskId"));
-    		      
+    	if ($A.util.isEmpty(key)) {    	
+    		helper.refresh(component, component.get("v.assessmentRiskId"));    		      
          } else {
         	key = "^" + key;
         	try {
@@ -92,5 +97,28 @@
 		        }
 		   component.set("v.causes", data);
          }        	
+    },
+    
+    openModalDeleteCause : function (component, event, helper) {
+    	component.set('v.openModalConfirmDeletion', true);
+    },
+    
+    cancelDeleteCause : function (component, event, helper) {
+    	component.set('v.openModalConfirmDeletion', false);
+    },
+    
+    confirmDeleteCause : function (component, event, helper) {
+    	var evt = $A.get('e.c:OrmEvtDeleteCauses');
+    	evt.fire();
+    	component.set('v.openModalConfirmDeletion', false);
+    },
+    
+    selectAll : function (component, event, helper) {
+    	//get the header checkbox value  
+    	var selectedHeaderCheck = event.getSource().get("v.value");
+    	
+    	var evt = $A.get('e.c:OrmEvtSelectAllCauses');
+    	evt.setParams({"selectAllCheckbox": selectedHeaderCheck});
+    	evt.fire();
     }
 })

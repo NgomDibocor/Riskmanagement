@@ -3,7 +3,7 @@
 
    <aura:registerEvent name="DisplayListAssessment" type="c:OrmDisplayListAssessmentEvt"  />
    <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
-
+   <aura:registerEvent name="OrmInstantiateRiskAnalysisEvt" type="c:OrmInstantiateRiskAnalysisEvt" />
        
      {!v.body}
      

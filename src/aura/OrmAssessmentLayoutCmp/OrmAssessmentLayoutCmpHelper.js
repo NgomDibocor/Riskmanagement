@@ -117,9 +117,30 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 component.set('v.allOrganisationIndustrySector', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        var actionCountry = component.get("c.getSelectOptions");
+        actionCountry.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_pays__c'});
+        actionCountry.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allCountry', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+
+        var actionRegion = component.get("c.getSelectOptions");
+        actionRegion.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_region__c'});
+        actionRegion.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allRegion', response.getReturnValue());
                 //Hide the Spinner
                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-	            evtSpinner.fire();  
+	            evtSpinner.fire(); 
             } else {
                 alert("l'Element n'a pas été retrouvé");
             }
@@ -132,7 +153,8 @@
         $A.enqueueAction(actionSchedule);
         $A.enqueueAction(actionSector);
         $A.enqueueAction(actionUser);
-        $A.enqueueAction(actionOrganisationSectorInd);
+        $A.enqueueAction(actionCountry);
+        $A.enqueueAction(actionRegion);
 	},
    
     verifTypeAssessment  : function(component, event, helper, typeAssessment) {
@@ -154,6 +176,7 @@
    },
    // test
    activeContext : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -183,6 +206,7 @@
         component.set("v.showActionPlan", false);
     },
     activeContext2 : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -214,6 +238,7 @@
         component.set("v.showActionPlan", false);
     },
     activeContextActivity : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -245,6 +270,7 @@
         component.set("v.showActionPlan", false);
     },
     activeContextWorkshop : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -277,6 +303,7 @@
     },
     // this methode actives the action Risk Identification tab
     activeRiskIdentif : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -309,6 +336,7 @@
     
     // this methode actives the action Risk Analye tab
     activeRiskAnalye : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -341,6 +369,7 @@
     
     // this methode actives the action Risk Treatment tab
     activeRiskTreatment : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -372,6 +401,7 @@
     
     // this methode actives the action plan tab
     activeActionPlan  : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');

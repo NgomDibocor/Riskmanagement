@@ -162,7 +162,6 @@
     	evt.fire();
     },
     
-    
     openModalDeletePhase : function(component, event, helper){
     	component.set('v.openModalConfirmDeletion', true);
     },

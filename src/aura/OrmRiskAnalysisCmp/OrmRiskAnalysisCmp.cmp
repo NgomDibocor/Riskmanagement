@@ -1,0 +1,44 @@
+<aura:component>
+	
+	<!-- methodes -->
+	<aura:handler action="{!c.refreshRiskAnalysis}" event="c:OrmInstantiateRiskAnalysisEvt" />
+	
+	<!-- attributes -->
+	<aura:attribute name="assessmentRiskId" type="String" description="" />
+	
+	<table>
+		<thead></thead>
+		<tbody>
+			<!-- list of causee -->
+			 <aura:if isTrue="{!v.assessmentRiskId}">
+			 	  <tr>
+                      <td>
+                        <c:OrmAssessmentRiskConfigCmp assessmentRiskId="{!v.assessmentRiskId}" />
+                      </td>
+                    </tr>
+              </aura:if>
+              <aura:if isTrue="{!v.assessmentRiskId}">
+                    <tr>
+                      <td>
+                        <c:OrmCauseListCmp assessmentRiskId="{!v.assessmentRiskId}" />
+                      </td>
+                    </tr>
+               </aura:if>
+                    <!-- /causes -->
+                    <tr>
+                        <td >
+                            <div class="topSpacing">
+                                <label class="slds-form-element__label ">Measure<span class="cmn_mandatory_indicator">*</span></label>
+                            </div>                                        
+                            <div class="width">
+                                <ui:inputSelect class="slds-input" aura:id="Measure" change="{!c.onSelectChange}">
+                                    <ui:inputSelectOption text="Prospecting" label="Measure1" value="true"/>
+                                    <ui:inputSelectOption text="Qualification" label="Measure2"/>
+                                    <ui:inputSelectOption text="Needs Analysis" label="Measure3"/>
+                                </ui:inputSelect>
+                            </div>
+                        </td>
+                    </tr>
+		</tbody>
+	</table>
+</aura:component>

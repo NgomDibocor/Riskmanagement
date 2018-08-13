@@ -1,5 +1,6 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController">
     <aura:registerEvent name="OrmOpenNewRiskCmpEvt" type="c:OrmOpenNewRiskCmpEvt" description="" />
+    <aura:registerEvent name="OrmActiveRiskAnalyeCmpEvt" type="c:OrmActiveRiskAnalyeCmpEvt" description="" />
     <aura:handler event="c:OrmRiskCreatedEvt" action="{!c.ormRiskCreatedEvent}" />
     <aura:handler event="c:OrmRiskIdentificationClickedEvt" action="{!c.initialiseAssessment}" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
@@ -74,14 +75,15 @@
 			</button>
 		 </aura:if> 
             <lightning:datatable aura:id="datatableRisk"
-              data="{! v.allRisk }"
-              class="slds-m-top_medium" 
+              data="{! v.allRisk }" 
+              class="cols table"
               columns="{! v.columns }" 
               keyField="id" 
               resizeColumnDisabled="true" 
               selectedRows="{! v.assessmentRisk}"
               showRowNumberColumn="true"
               onrowselection="{!c.openPopupDissociate}"
+              onrowaction="{! c.handleRowAction }"
             />
         </div>
     </div><br/>

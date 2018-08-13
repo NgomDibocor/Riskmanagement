@@ -148,8 +148,22 @@
     },
     
     activeRiskAnalye : function(component, event, helper) {
-    	var idAssessmentRisk = event.getParam("idAssessmentRisk");
-    	helper.activeRiskAnalye(component, event);
+
+     var idAssessmentRisk = event.getParam("idAssessmentRisk");
+     if(idAssessmentRisk == null){
+     var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : 'Check if you Have Created the Assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });
+
+            toast.fire();
+     }else{
+        component.set("v.showRiskIdentif", false);
+        component.set("v.showRiskAnalyse", true);
+        helper.activeRiskAnalye(component, event);
+        }
     },
     
     activeRiskTreatment : function(component, event, helper) {
@@ -164,5 +178,15 @@
 	   evtSpinner.fire();
        var evt = $A.get("e.c:OrmDisplayListAssessmentEvt");
 	   evt.fire();
+    },
+    riskAnalyeClicked : function(component, event, helper) {
+        var toast = $A.get('e.force:showToast');
+        toast.setParams({
+        	'message' : 'please, select an assessmentRisk in Risk Identification',
+            'type' : 'warning',
+            'mode' : 'dismissible'
+        });
+
+        toast.fire();
     },
 })

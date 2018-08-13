@@ -80,7 +80,7 @@
         </li>
         <li aura:id="riskAnalyseId" class="slds-tabs--path__item slds-is-active" role="presentation">
           <a class="slds-tabs--path__link" id="tabs-path-440" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
-             href="javascript:void(0);" aria-live="assertive" onclick="{!c.activeRiskAnalye}">
+             href="javascript:void(0);" aria-live="assertive" onclick="{!c.riskAnalyeClicked}">
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
@@ -145,9 +145,9 @@
 		                    <button class="slds-button" onclick="{!c.prevTab}">
 		                      <lightning:icon iconName="utility:chevronleft" size="medium" />
 		                    </button>
-		                    <button class="slds-button" onclick="{!c.nextTab}">
+		                    <!--<button class="slds-button" onclick="{!c.nextTab}">
 		                      <lightning:icon iconName="utility:chevronright" size="medium" />
-		                    </button>
+		                    </button>  -->
 		                  </aura:if>
 			              <aura:if isTrue="{!v.showRiskAnalyse}">        
 		                     <button class="slds-button" onclick="{!c.prevTab}">
@@ -1282,9 +1282,9 @@
                     <button class="slds-button" onclick="{!c.prevTab}">
                       <lightning:icon iconName="utility:chevronleft" size="medium" />
                     </button>
-                    <button class="slds-button" onclick="{!c.nextTab}">
+                    <!--<button class="slds-button" onclick="{!c.nextTab}">
                       <lightning:icon iconName="utility:chevronright" size="medium" />
-                    </button>
+                    </button>  -->
                 </aura:if>
                 
                 <aura:if isTrue="{!v.showRiskAnalyse}">        

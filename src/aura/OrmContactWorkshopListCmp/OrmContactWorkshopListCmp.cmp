@@ -4,9 +4,9 @@
 	<!--declare aura attributes-->
 	<aura:attribute name="ContactList" type="Contact[]"
 		description="store contact records list" />
-		<aura:attribute name="ContactListTemp" type="Contact[]"
+	<aura:attribute name="ContactListTemp" type="Contact[]"
 		description="store contact records list" />
-		<aura:attribute name="Contact" type="Contact"
+	<aura:attribute name="Contact" type="Contact"
 		description="store contact" />
 	<aura:attribute name="ContactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
@@ -24,7 +24,7 @@
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
 	<aura:attribute name="columns" type="List" />
-	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<!--  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />-->
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 	<!--  <aura:registerEvent name="OrmRefreshContactWorkshopEvt"  type="c:OrmRefreshContactWorkshopEvt"/>-->
@@ -43,45 +43,46 @@
 						title="Close" onclick="{!c.closeModalWorkshopContact}">
 						X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 					</button>
-					<h1 id="header99" class="slds-text-heading--medium">Add {!$Label.c.orm_contact_menu} workshop</h1>
+					<h1 id="header99" class="slds-text-heading--medium">Add
+						{!$Label.c.orm_contact_menu} workshop</h1>
 				</div>
 				<!--###### MODAL BOX BODY Part Start From Here ######-->
 				<div class="slds-modal__content slds-p-around--medium">
-	<div class="slds-grid slds-gutters ">
-							<div class="slds-col">
+					<div class="slds-grid slds-gutters ">
+						<div class="slds-col">
 
-								<div class="slds-form-element">
-									<div class=" slds-size--1-of-6   slds-p-horizontal--small">
-									</div>
-									<div class=" slds-size--5-of-6">
-										<lightning:datatable aura:id="idworkshopcontact"
-											data="{!v.ContactList}" 
-											class="slds-m-top_medium"
-											columns="{!v.columns }"
-											 keyField="id"
-											resizeColumnDisabled="false"
-											 selectedRows="{!v.Contact}"
-											onrowselection="{!c.getselectedRows}" showRowNumberColumn="false" />
-									</div>
-
-									
-
+							<div class="slds-form-element">
+								<div class=" slds-size--1-of-6   slds-p-horizontal--small">
+								</div>
+								<div class=" slds-size--5-of-6">
+									<lightning:datatable aura:id="idworkshopcontact"
+										data="{!v.ContactList}" class="slds-m-top_medium"
+										columns="{!v.columns }" keyField="id"
+										resizeColumnDisabled="false" selectedRows="{!v.Contact}"
+										onrowselection="{!c.getselectedRows}"
+										onrowaction="{!c.handleRowAction }"
+										showRowNumberColumn="false" />
 								</div>
 
 
 
 							</div>
 
+
+
 						</div>
+
+					</div>
 
 				</div>
 				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 				<div class="slds-modal__footer">
 					<button class="slds-button slds-button--neutral"
 						onclick="{!c.closeModalWorkshopContact}">{!$Label.c.cancel_button_title}</button>
-					    <button class="slds-button slds-button--brand" onclick="{!c.createContactWorkshop}">
-			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
-	</button>
+					<button class="slds-button slds-button--brand"
+						onclick="{!c.createContactWorkshop}">
+						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
+					</button>
 				</div>
 			</div>
 		</div>

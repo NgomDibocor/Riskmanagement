@@ -1,28 +1,16 @@
 ({
-	doInit : function(component, event, helper) {
-	   
-	 // call the apex class method and fetch contact list  
-       /**  var action = component.get("c.findAllContact");
-             action.setCallback(this, function(response) {
-              var state = response.getState();
-              if (state === "SUCCESS") {
-                  var storeResponse = response.getReturnValue();
-                // console.log(JSON.stringify(storeResponse));
-               // set ContactList list with return value from server.
-                  component.set("v.ContactList", storeResponse);
-              }
-        });
-        $A.enqueueAction(action);
+	/**doInit : function(component, event, helper) {
+	   	 // call the apex class method and fetch contact list  
          
-		**/
-	},
+	 // call the apex class method and fetch contact list  
+
+	},**/
 	
 	openModalContacts : function(component, event, helper) {
  
           component.set('v.workshop', event.getParam('Workshop'));
      
-	 // call the apex class method and fetch contact list  
-         var action = component.get("c.findAllContact");
+var action = component.get("c.findAllContact");
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
@@ -52,10 +40,10 @@
                   component.get("v.ContactListTemp").forEach(function(contact){
                   component.get("v.ContactWorkshopList").forEach (function(contactworkshop){
                   	if(contactworkshop.orm_contact__c == contact.Id){
-                  contact.association= "Invited";
+                  contact.invitation= "Invited";
                   }
                   });
-                  //helper.checkContactWorkshop(contact.Id,component.get("v.ContactWorkshopList"));
+                  
                     
                           });
                            console.log(component.get("v.ContactListTemp"));
@@ -77,8 +65,12 @@
                        // Set the columns of the Table
        component.set('v.columns', [
            {label: 'Name', fieldName: 'Name', type: 'text'},
-           {label: 'Association', fieldName: 'association', type: 'text' } ]);
-          
+           {label: 'Invitation', fieldName: 'invitation', type: 'text' },
+         {label: 'Action', type: 'button', initialWidth: 150, typeAttributes:
+         { label: { fieldName: 'actionLabel'}, 
+         title: 'Click to Dissociate', name: 'dissociate_contact', 
+         iconName: 'utility:delete' ,hide:true, disabled: {fieldName: 'actionDisabled'}, class: 'btn_next'}}]);
+          //refresh contactWorkshop
 	component.set("v.isOpenModalContactWorkshop", true);
 	 
 	//alert(JSON.stringify(component.get("v.ContactList")));
@@ -129,27 +121,23 @@
         $A.enqueueAction(action);
         	component.set("v.isOpenModalContactWorkshop", false);
 	},
-	/**
-	refreshContactWorkshop  :function(component, event, helper) {
-	component.set('v.workshop', event.getParam('Workshop'));
 	
-	 // call the apex class method and fetch contact workshop list  
-         var action = component.get("c.findAllContactWorkshop");
-          action.setParams({
-                "item": component.get("v.workshop");
-            });
-             action.setCallback(this, function(response) {
-              var state = response.getState();
-              if (state === "SUCCESS") {
-                  var storeResponse = response.getReturnValue();
-                  console.log(JSON.stringify(storeResponse));
-               // set Contact workshop list with return value from server.
-                  component.set("v.ContactWorkshopList", storeResponse);
-              }
-        });
-        $A.enqueueAction(action);
-		
-	},*/
 
+
+handleRowAction: function (component, event, helper) {
+
+        var action = event.getParam('action');
+        var row = event.getParam('row');
+        alert('handleRowAction'+row.Id);
+        switch (action.name) {
+            case 'dissociate_contact':
+                helper.deleteContactWorkshop(component,row);
+                break;
+            
+            default:
+               // helper.showRowDetails(row);
+                break;
+        }
+    }
 	
 })

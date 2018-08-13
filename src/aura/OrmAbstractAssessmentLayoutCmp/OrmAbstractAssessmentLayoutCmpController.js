@@ -163,6 +163,9 @@
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", true);
         helper.activeRiskAnalye(component, event);
+        var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
+        evt.setParams({"riskAssessmentId": idAssessmentRisk});
+        evt.fire();
         }
     },
     

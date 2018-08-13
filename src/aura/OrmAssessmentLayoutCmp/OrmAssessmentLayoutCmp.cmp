@@ -55,6 +55,7 @@
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:registerEvent name="ShowSpinner" type="c:OrmHideSpinnerEvt"  />
+    
     <!-- return to list of Assessment -->
    
     <!-- menu -->
@@ -1203,13 +1204,14 @@
                        </tr>
                  </aura:if>  
                  <aura:if isTrue="{!v.showRiskAnalyse}">
-                    <!-- list of causee -->
+                 	<c:OrmRiskAnalysisCmp />
+                    <!-- list of causee 
                     <tr>
                       <td>
                         <c:OrmCauseListCmp />
                       </td>
-                    </tr>
-                    <!-- /causes -->
+                    </tr> -->
+                    <!-- causes 
                     <tr>
                         <td >
                             <div class="topSpacing">
@@ -1223,7 +1225,7 @@
                                 </ui:inputSelect>
                             </div>
                         </td>
-                    </tr>
+                    </tr -->
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskTreatment}">
                     

@@ -1,9 +1,10 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController" >
 <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+<aura:attribute name="assessmentRiskId" type="string" description="" />
 
 	 <div class="slds-grid slds-wrap">
             <div class="slds-col slds-size_1-of-2">
-                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:30%;">
+                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:100%;">
                     <div class="slds-page-header">
                         <div class="slds-grid">
                             <div class="slds-col slds-has-flexi-truncate">

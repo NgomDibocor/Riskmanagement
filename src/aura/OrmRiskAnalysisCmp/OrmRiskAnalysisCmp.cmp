@@ -10,6 +10,11 @@
 		<thead></thead>
 		<tbody>
 			<!-- list of causee -->
+			 <tr>
+                      <td>
+                        <c:OrmAssessmentRiskConfigCmp assessmentRiskId="{!v.assessmentRiskId}" />
+                      </td>
+                    </tr>
                     <tr>
                       <td>
                         <c:OrmCauseListCmp assessmentRiskId="{!v.assessmentRiskId}" />

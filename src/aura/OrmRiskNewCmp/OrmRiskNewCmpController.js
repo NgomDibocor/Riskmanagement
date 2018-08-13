@@ -1,6 +1,5 @@
 ({
 	doInit : function(component, event, helper) {
-	/*component.set("v.idAssessment", event.getParam("assessment"));*/
         var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.risk"), 'fld' : 'orm_categorieRisk__c'});
         action.setCallback(this, function(response){
@@ -8,7 +7,13 @@
             if(state === 'SUCCESS' && component.isValid()){
                 component.set('v.allCategorieRisk', response.getReturnValue());
             } else {
-                alert("the element was not found");
+                  var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'the element was not found',
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
             }
         });
         $A.enqueueAction(action);
@@ -34,6 +39,37 @@
                action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (component.isValid() && state == "SUCCESS") {
+                	newItem = response.getReturnValue();
+                    var newAssessmentRisk = component.get("v.assessmentRisk");
+                    newAssessmentRisk.orm_assessment__c =  component.get("v.idAssessment");
+                    newAssessmentRisk.orm_Risk__c = newItem.Id;
+                    var actionRisk = component.get('c.addAssessmentRisk');
+                      actionRisk.setParams({
+                    	  "item": newAssessmentRisk
+                       });
+                       actionRisk.setCallback(this, function(response) {
+		                var stateRisk = response.getState();
+		                if (component.isValid() && stateRisk == "SUCCESS") {
+		               var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'successful association',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+		                }
+		                else
+		                {
+		                var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'failed association',
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+		                }
+		                });
+		                $A.enqueueAction(actionRisk);
                     // publier evenement creation
                     var evt = $A.get("e.c:OrmRiskCreatedEvt");
 				   	evt.fire();   
@@ -44,10 +80,22 @@
                                                       		 'orm_assessment__c': '',
                                                              'orm_categorieRisk__c' : ''
                                                          });
-                    alert("successful addition");
+                   var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'successful association',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
                      }
-                  else {
-                alert("failed addition");
+                  else { 
+                   var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'failed association',
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
                   }
             });
             $A.enqueueAction(action);
@@ -60,7 +108,7 @@
 	  openModal: function(component, event, helper)
     {
     	component.set("v.isOpen", true); 
-    	
+    	component.set("v.idAssessment", event.getParam("idAssessment"));
 	},
 	
 })

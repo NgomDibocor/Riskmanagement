@@ -10,6 +10,12 @@
                                                       		 'orm_assessment__c': '',
                                                              'orm_categorieRisk__c' : ''
                                                          }" />
+                                                         
+  <aura:attribute name="assessmentRisk" type="orm_assessmentRisk__c" default="{
+																		'sobjectType' : 'orm_assessmentRisk__c',
+												                         'orm_assessment__c': '',  
+												                         'orm_Risk__c':''   
+																	}" />                                                 
     <aura:attribute name="allCategorieRisk" type="String[]" />
     <aura:attribute name="idAssessment" type="String" description="" />
     <!-- text -->

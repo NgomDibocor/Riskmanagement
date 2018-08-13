@@ -20,9 +20,9 @@
           var schedule = component.find("schedule");
           newItem.orm_schedule__c = schedule.get("v.value");
           
-          var riskManager = component.find("userRM");
+          var riskManager = component.find("inProjetRM");
           newItem.orm_riskManager__c = riskManager.get("v.value");
-          var projectManager = component.find("userPM");
+          var projectManager = component.find("projectManager");
           newItem.orm_projetManager__c = projectManager.get("v.value");
         }
         if(ta.get("v.value")== 'Processus'){
@@ -36,10 +36,18 @@
         if(ta.get("v.value")== 'Organisation'){
           var statusOrganisation = component.find("statusOrganisation");
           newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
-          var riskManager = component.find("userRM");
+          var riskManager = component.find("organisationRiskManager");
           newItem.orm_riskManager__c = riskManager.get("v.value");
+          var organisationManager = component.find("organisationManager");
+          newItem.orm_organisationManager__c = organisationManager.get("v.value");
           var industrySectorOrganisation = component.find("industrySectorOrganisation");
           newItem.orm_organisationIndustrySector__c = industrySectorOrganisation.get("v.value");
+          var country = component.find("country");
+          newItem.orm_pays__c = country.get("v.value");
+          var region = component.find("region");
+          newItem.orm_region__c = region.get("v.value");
+          var currency = component.find("currencyOrganisation");
+          newItem.orm_currency__c = currency.get("v.value");
         }
         var action = component.get('c.add');
         action.setParams({
@@ -70,17 +78,33 @@
 	onChangeProjectManager : function(component, event, helper)
     {
 	    component.set("v.displaySaveCancelBtn",true);
-		component.find("userPM").set("v.value", event.getSource().get("v.value"));
+		component.find("projectManager").set("v.value", event.getSource().get("v.value"));
 		var field = "Project Manager";
 	    var description = "This field allows us to specify the Project Manager for this Project";
 	    helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeRiskManager : function(component, event, helper)
+	onChangeRiskManagerTypeProjet : function(component, event, helper)
     {
         component.set("v.displaySaveCancelBtn",true);
-    	component.find("userRM").set("v.value", event.getSource().get("v.value"));
+    	component.find("inProjetRM").set("v.value", event.getSource().get("v.value"));
     	var field = "Risk Manager";
         var description = "This field allows us to specify the Risk Manager for this Project";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+	},
+	onChangeOrganisationManager : function(component, event, helper)
+    {
+        component.set("v.displaySaveCancelBtn",true);
+    	component.find("organisationManager").set("v.value", event.getSource().get("v.value"));
+    	var field = "Organisation Manager";
+        var description = "This field allows us to specify the Organisation Manager for this Organisation";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+	},
+	onChangeInOrganisationRiskManager : function(component, event, helper)
+    {
+        component.set("v.displaySaveCancelBtn",true);
+    	component.find("organisationRiskManager").set("v.value", event.getSource().get("v.value"));
+    	var field = "Organisation Manager";
+        var description = "This field allows us to specify the Risk Manager for this Organisation";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onChangeIndSector : function(component, event, helper)
@@ -105,6 +129,14 @@
     	component.find("currency").set("v.value", event.getSource().get("v.value"));
     	var field = "Currency";
         var description = "This field specifies the currency used";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+	},
+	onChangeCurrencyOrganisation : function(component, event, helper)
+    {
+        component.set("v.displaySaveCancelBtn", true);
+    	component.find("currencyOrganisation").set("v.value", event.getSource().get("v.value"));
+    	var field = "Currency";
+        var description = "This field specifies the currency used in this organisation";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onChangeSchedule : function(component, event, helper)
@@ -134,6 +166,22 @@
     	component.find("statusOrganisation").set("v.value", event.getSource().get("v.value"));
     	var field = "Status Organisation";
         var description = "This field specifies the status of the organisation";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+	},
+	onChangeCountry : function(component, event, helper)
+    {
+        component.set("v.displaySaveCancelBtn", true);
+    	component.find("country").set("v.value", event.getSource().get("v.value"));
+    	var field = "Country";
+        var description = "This field specifies the country of organisation";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+	},
+	onChangeRegion : function(component, event, helper)
+    {
+        component.set("v.displaySaveCancelBtn", true);
+    	component.find("region").set("v.value", event.getSource().get("v.value"));
+    	var field = "Region";
+        var description = "This field specifies the region of organisation";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	onChangePlannedSD : function(component, event, helper)
@@ -328,8 +376,17 @@
         var description = "This field gives the number of employees for this organisation";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    onChangeSize : function(component, event, helper) {
+    sendBudgetOrganisationToFD : function(component,event,helper){ 
+    	component.set("v.closeFieldDescription",false);
+        var field =  "Budget";
+        var description = "This field gives us the budget of this organisation";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    onChangeBudgetOrganisation : function(component,event,helper){ 
        component.set("v.displaySaveCancelBtn",true);
+    },
+    onChangeSize : function(component, event, helper) {
+         component.set("v.displaySaveCancelBtn",true);
     },
     
     cancel : function(component, event, helper)

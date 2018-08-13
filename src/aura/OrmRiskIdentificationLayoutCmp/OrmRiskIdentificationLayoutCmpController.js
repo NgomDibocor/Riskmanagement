@@ -14,6 +14,9 @@
     openModalNewRisk: function(component, event, helper) {
     var assessment= component.get("v.idAssessment");
         var evt = $A.get("e.c:OrmOpenNewRiskCmpEvt");
+         evt.setParams({
+            "idAssessment":assessment
+            });
         evt.fire();
     },
     /*
@@ -37,12 +40,13 @@
            fieldName: 'RiskcategorieRisk',
            type: 'text',iconName: 'standard:orders'
         },
-        {  label: 'configure', initialWidth: 135,
+        {  label: 'Action',type:'button',
            typeAttributes: { label: 'configure', name: 'configure', title: 'configure'},
-           iconName: 'standard:orders',
-           cellAttributes: {
-			  iconName: 'custom:custom19'
-           }}
+           iconName: 'utility:settings',
+           /*cellAttributes: {
+			  iconName: 'utility:settings'
+           }
+           */}
         ]);
         helper.fetchPicklist(component, event);
     },
@@ -152,14 +156,12 @@
     },
     relatedRiskfunction: function(component, event, helper) {
         var relatedassesmentRisk= component.get("v.relatedRisk");
-        alert(JSON.stringify(relatedassesmentRisk));
         var action = component.get('c.addAssessmentRisks');
         action.setParams({
             "items": relatedassesmentRisk
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
-            console.log(state);
             if (component.isValid() && state == "SUCCESS") {
                 var toast = $A.get('e.force:showToast');
                     	toast.setParams({
@@ -320,5 +322,14 @@
 	closeModal : function(component){
 		// for Hide/Close Model,set the "isOpen" attribute to "False"
 		component.set("v.isOpen", false);
+	},
+	handleRowAction : function (component, event, helper){
+        var row = event.getParam('row');
+         var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
+         evt.setParams({
+            "idAssessmentRisk":row.Id
+            });
+        evt.fire();
+        
 	}
 })

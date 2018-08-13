@@ -1206,6 +1206,11 @@
                     <!-- list of causee -->
                     <tr>
                       <td>
+                        <c:OrmAssessmentRiskConfigCmp />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
                         <c:OrmCauseListCmp />
                       </td>
                     </tr>

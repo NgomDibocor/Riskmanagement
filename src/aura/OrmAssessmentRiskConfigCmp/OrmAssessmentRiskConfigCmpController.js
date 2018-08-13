@@ -1,5 +1,9 @@
 ({
-	myAction : function(component, event, helper) {
-		
-	}
+	/*
+     * CreatedBy @David Diop
+     *
+     */
+    doInit: function(component, event, helper) {
+        
+      },
 })

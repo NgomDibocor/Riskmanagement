@@ -1,9 +1,9 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController" >
-
+<aura:handler name="init" value="{! this }" action="{! c.doInit }" />
 
 	 <div class="slds-grid slds-wrap">
             <div class="slds-col slds-size_1-of-2">
-                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:500px;">
+                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:30%;">
                     <div class="slds-page-header">
                         <div class="slds-grid">
                             <div class="slds-col slds-has-flexi-truncate">
@@ -11,7 +11,7 @@
                                     <div class="slds-media__figure">
                                         <div class="slds-media__figure">
                                             <span class="slds-icon_container " title="">
-                                   				<lightning:icon  iconName="utility:trail" size="medium" />
+                                   				
                                 				</span>
                                         </div>
                                     </div>
@@ -38,16 +38,16 @@
                             <li class="slds-page-header__detail-block">
                               
                                 <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 1"><u></u></p>
-                                <p class="slds-text-body_regular "><span class="slds-badge">15</span></p>
+                                
                                
                             </li>
                             <li class="slds-page-header__detail-block">
                                 <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field2 (3)"><u></u></p>
-                                <p class="slds-text-body_regular"><span class="slds-badge"><b>15</b></span></p>
+                               
                             </li>
                             <li class="slds-page-header__detail-block">
                                 <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"> </p>
-                                 <p class="slds-text-body_regular"><span class="slds-badge"><b>15</b></span></p>
+                                
                             </li>
                         </ul>
                     </div>

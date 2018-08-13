@@ -1,9 +1,9 @@
 ({
 	doInit : function(component, event, helper) {
-		//console.log('assessmentRiskId '+ component.get("v.assessmentRiskId"));
-		var assessmentRiskId = event.getParam('idAssessmentRisk');
-		console.log('assessmentRiskId '+ assessmentRiskId);
-		helper.refresh(component, "a001H00000kcsVDQAY");
+		console.log('assessmentRiskId list '+ component.get("v.assessmentRiskId"));
+		//var assessmentRiskId = event.getParam('idAssessmentRisk');
+		//console.log('assessmentRiskId '+ assessmentRiskId);
+		helper.refresh(component, component.get("v.assessmentRiskId"));
 	},
 	
 	getAssessmentRiskId : function(component, event, helper) {

@@ -12,7 +12,7 @@
 			<!-- list of causee -->
                     <tr>
                       <td>
-                        <c:OrmCauseListCmp assessmentRiskId="{!v.assessmentRiskId}"/>
+                        <c:OrmCauseListCmp assessmentRiskId="{!v.assessmentRiskId}" />
                       </td>
                     </tr>
                     <!-- /causes -->

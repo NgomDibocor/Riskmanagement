@@ -45,6 +45,7 @@
     <aura:handler event="c:OrmCloseFieldDescriptionEvt"  action="{!c.closeFielDescript}" />
     <aura:handler event="c:eventNewOrganisationCreated" action="{!c.refreshListOrganisation}" />
     <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
+    <aura:handler event="c:OrmActiveRiskAnalyeCmpEvt" action="{!c.activeRiskAnalye }" />
     
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation" type="c:OrmOpenNewOrganisationEvt" />

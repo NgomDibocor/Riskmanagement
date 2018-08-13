@@ -326,6 +326,11 @@
 	handleRowAction : function (component, event, helper){
         var row = event.getParam('row');
         alert(row.Id);
-        console.log('*****row:'+JSON.stringify(row));
+         var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
+         evt.setParams({
+            "idAssessmentRisk":row.Id
+            });
+        evt.fire();
+        
 	}
 })

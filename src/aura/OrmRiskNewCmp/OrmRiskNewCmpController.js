@@ -1,6 +1,5 @@
 ({
 	doInit : function(component, event, helper) {
-	
         var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.risk"), 'fld' : 'orm_categorieRisk__c'});
         action.setCallback(this, function(response){
@@ -110,7 +109,6 @@
     {
     	component.set("v.isOpen", true); 
     	component.set("v.idAssessment", event.getParam("idAssessment"));
-	    alert(component.get("v.idAssessment"));	
 	},
 	
 })

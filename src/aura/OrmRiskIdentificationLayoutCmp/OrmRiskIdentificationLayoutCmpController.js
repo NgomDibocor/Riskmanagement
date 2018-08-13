@@ -25,22 +25,24 @@
         component.set('v.columns', [{
             label: 'Risk Name',
             fieldName: 'RiskName',
-            type: 'text',iconName: 'standard:opportunity'
+            type: 'text',iconName: 'standard:orders'
         },
         {
             label: 'Description',
             fieldName: 'RiskDescription',
-            type: 'text',iconName: 'standard:opportunity'
+            type: 'text',iconName: 'standard:orders'
         }, 
         {
            label: 'Risk category',
            fieldName: 'RiskcategorieRisk',
-           type: 'text',iconName: 'standard:opportunity'
+           type: 'text',iconName: 'standard:orders'
         },
-        {  label: 'configure', type: 'button', initialWidth: 135,
+        {  label: 'configure', initialWidth: 135,
            typeAttributes: { label: 'configure', name: 'configure', title: 'configure'},
-           iconName: 'standard:opportunity'
-         }
+           iconName: 'standard:orders',
+           cellAttributes: {
+			  iconName: 'custom:custom19'
+           }}
         ]);
         helper.fetchPicklist(component, event);
     },
@@ -110,6 +112,20 @@
         // Display that fieldName of the selected rows
         component.set("v.relatedRisk", assessmentRisks);
     },
+    
+    openPopupDissociate: function(component, event, helper) {
+    	component.set("v.isOpenButton",true);
+        var selectedRows = event.getParam('selectedRows');
+        var assessmentRisks = [];
+        selectedRows.forEach(function(selectedRow) {
+        var newAssessmentRisk ={};
+         	newAssessmentRisk.sobjectType='orm_assessmentRisk__c';
+            newAssessmentRisk.Id=selectedRow.Id;
+	        assessmentRisks.push(newAssessmentRisk);
+        });
+        component.set("v.dissociateRisk", assessmentRisks);
+    },
+    
     /*
      * CreatedBy @David Diop
      *
@@ -163,6 +179,37 @@
                     	});	
                     	toast.fire();
                component.set("v.isOpen", false);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    
+    dissociateRiskfunction:  function(component, event, helper) {
+        var deletedAssesmentRisk= component.get("v.dissociateRisk");
+        var action = component.get('c.deleteAssessmentRisks');
+        action.setParams({
+            "items": deletedAssesmentRisk
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            console.log(state);
+            if (component.isValid() && state == "SUCCESS") {
+                var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'successful dissociation',
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
+                helper.fetchPicklist(component,event);
+            } else {
+                 var toast = $A.get('e.force:showToast');
+                    	toast.setParams({
+			           'message' : 'failed dissociation',
+			           'type' : 'warning',
+			           'mode' : 'dismissible'
+                    	});	
+                    	toast.fire();
             }
         });
         $A.enqueueAction(action);

@@ -116,7 +116,7 @@
 										<div class="slds-form-element__control">
 											<ui:inputText aura:id="website" label="{!$Label.c.orm_website}"
 												class="slds-input" labelClass="slds-form-element__label"
-												value="{!v.item.Website__c}" required="true" />
+												value="{!v.item.orm_website__c}" required="true" />
 										</div>
 									</div>
                                     <div class="slds-form-element">

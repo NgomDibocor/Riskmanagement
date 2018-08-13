@@ -1,0 +1,57 @@
+<aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController" >
+
+
+	 <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:500px;">
+                    <div class="slds-page-header">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow">
+                                    <div class="slds-media__figure">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container " title="">
+                                   				<lightning:icon  iconName="utility:trail" size="medium" />
+                                				</span>
+                                        </div>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <nav>
+                                            <ol class="slds-breadcrumb slds-line-height_reset">
+                                                <li class="slds-breadcrumb__item">
+                                                    <span><b><ui:outputText value="" /></b></span>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                        <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title=""></h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-no-flex slds-grid slds-align-top">
+
+                                <div class="slds-button-group" role="group">
+                                    <button class="slds-button slds-button_neutral">{!$Label.c.show_button_title}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="slds-grid slds-page-header__detail-row">
+                            <li class="slds-page-header__detail-block">
+                              
+                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 1"><u></u></p>
+                                <p class="slds-text-body_regular "><span class="slds-badge">15</span></p>
+                               
+                            </li>
+                            <li class="slds-page-header__detail-block">
+                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field2 (3)"><u></u></p>
+                                <p class="slds-text-body_regular"><span class="slds-badge"><b>15</b></span></p>
+                            </li>
+                            <li class="slds-page-header__detail-block">
+                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"> </p>
+                                 <p class="slds-text-body_regular"><span class="slds-badge"><b>15</b></span></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</aura:component>

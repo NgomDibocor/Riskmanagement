@@ -90,7 +90,7 @@
         </li>
         <li aura:id="riskTreatmentId" class="slds-tabs--path__item slds-is-active" role="presentation">
           <a class="slds-tabs--path__link" id="tabs-path-440" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
-             href="javascript:void(0);" aria-live="assertive" onclick="{!c.activeRiskTreatment}">
+             href="javascript:void(0);" aria-live="assertive" onclick="{!c.riskTreatmentClicked}">
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>

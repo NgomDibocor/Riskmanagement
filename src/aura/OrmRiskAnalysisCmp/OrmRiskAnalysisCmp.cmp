@@ -10,16 +10,20 @@
 		<thead></thead>
 		<tbody>
 			<!-- list of causee -->
-			 <tr>
+			 <aura:if isTrue="{!v.assessmentRiskId}">
+			 	  <tr>
                       <td>
                         <c:OrmAssessmentRiskConfigCmp assessmentRiskId="{!v.assessmentRiskId}" />
                       </td>
                     </tr>
+              </aura:if>
+              <aura:if isTrue="{!v.assessmentRiskId}">
                     <tr>
                       <td>
                         <c:OrmCauseListCmp assessmentRiskId="{!v.assessmentRiskId}" />
                       </td>
                     </tr>
+               </aura:if>
                     <!-- /causes -->
                     <tr>
                         <td >

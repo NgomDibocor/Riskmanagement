@@ -8,7 +8,7 @@
                <lightning:card class="slds-text-heading_small" 
                     title="My Assessments" iconName="utility:table">
                     <div class=" slds-card__body slds-card__body_inner" style="height:20px;color:black;margin-left:30px">
-                        <ui:outputRichText value="Assessment where I am resposible" />
+                        <ui:outputRichText value="Assessment where I am responsible" />
                     </div>
                </lightning:card> 
            </a>
@@ -19,7 +19,7 @@
                 <lightning:card class="slds-text-heading_small" 
                                 title="My Risks" iconName="utility:list">
                     <div class=" slds-card__body slds-card__body_inner" style="height:20px;color:black;margin-left:30px">
-                        <ui:outputRichText value="Risk where I am resposible" />
+                        <ui:outputRichText value="Risk where I am responsible" />
                     </div>
                 </lightning:card>
             </a>
@@ -34,7 +34,7 @@
                 <lightning:card class="slds-text-heading_small" 
                                 title="My Measures" iconName="utility:table">
                      <div class=" slds-card__body slds-card__body_inner" style="height:20px;color:black;margin-left:30px">
-                        <ui:outputRichText value="Measures where I am resposible" />
+                        <ui:outputRichText value="Measures where I am responsible" />
                     </div>
                 </lightning:card>
             </a>

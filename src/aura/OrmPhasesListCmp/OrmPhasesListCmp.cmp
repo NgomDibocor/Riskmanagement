@@ -31,10 +31,6 @@
         	<label class="slds-form-element__label ">{!$Label.c.orm_phase}<span class="cmn_mandatory_indicator">*</span></label>
         </div>                                        
 	    <div class="phase">
-	    
-	    	<!-- lightning:input type="text" onchange="{!c.filter}" value="{!v.key}" label="" / -->
-	    	
-	    	
 				<!-- CREATE NEW Phase FORM -->
 				<form class="">					
 						<div class="slds-col">									
@@ -102,9 +98,7 @@
         <span class="btnNewPhase" onclick="{!c.createItem}">
         	<lightning:icon iconName="utility:new" size="medium" />
         </span>
-        <div class="">
-		   <!-- p class="slds-page-header__title slds-truncate" title="">Contact List With Checkbox Action</p -->
-		      <!-- span class="slds-badge">Selected Phase: {!v.selectedCount}</span -->
+        <div class="deletePhase">
 		      <div class=""> 
 		         <button class="slds-button slds-button--brand" onclick="{!c.openModalDeletePhase}">Delete Phase</button>
 		   	  </div>
@@ -115,7 +109,8 @@
         <aura:if isTrue="{!v.openModalError}">
     
 	    	<div class="demo-only" style="height: 640px;">
-			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" 
+			  	aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
 			    <div class="slds-modal__container">
 			      <header class="slds-modal__header header">
 			      	<span style="color: white;">Warning</span>

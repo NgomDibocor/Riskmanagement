@@ -34,6 +34,7 @@ public with sharing class OrmAssessmentRiskController {
         List<AggregateResult> agrResults =  [Select orm_assessment__r.Id, orm_assessment__r.Name,  
                                              count(orm_Risk__c) nbRisk
                                              From orm_assessmentRisk__c 
+                                             Where CreatedById = :UserInfo.getUserId()
                                              GROUP BY orm_assessment__r.Name, orm_assessment__r.Id ];
 
         // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment

@@ -160,15 +160,11 @@ public class OrmAssessmentController {
     	return OrmCauseController.findAll();
     }
     
-    public static Assessment__c getSingleAssessment(){
-        return [SELECT Id FROM Assessment__c LIMIT 1];
-    } 
-    
     /**
 	 *
 	 * @author Dibocor NGOM
 	 * @version 1.0
-	 * @description  this method returns all assessments
+	 * @description  this method returns all assessment informations for the show
 	 * @history 
 	 * 2018-08-02 : Dibocor NGOM - Implementation
 	 */

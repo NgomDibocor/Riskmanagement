@@ -18,6 +18,14 @@ public with sharing class OrmAssessmentRiskController {
         return RecordTypeId;
     }
     
+    /**
+	 *
+	 * @author David Diop
+	 * @version 1.0
+	 * @description  this method returns all assessments of user connected
+	 * @history 
+	 * 2018-07-20 : Dibocor NGOM - Implementation
+	 */
     @AuraEnabled 
     public static List<orm_assessmentRisk__c> findAll()
     {
@@ -27,15 +35,23 @@ public with sharing class OrmAssessmentRiskController {
                           orm_Risk__r.Name,orm_assumption__r.Name,orm_assessment__r.Name, orm_assessment__r.orm_description__c From orm_assessmentRisk__c];
     }
     
-     
+     /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns all assessments of user connected
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     @AuraEnabled 
     public static Map<String, Map<String, Object>> getAssessmentRisks()
     {
+    	//get the number of risk for each assessment
         List<AggregateResult> agrResults =  [Select orm_assessment__r.Id, orm_assessment__r.Name,  
                                              count(orm_Risk__c) nbRisk
                                              From orm_assessmentRisk__c 
-                                             Where CreatedById = :UserInfo.getUserId()
                                              GROUP BY orm_assessment__r.Name, orm_assessment__r.Id ];
+                                             //Where CreatedById = :UserInfo.getUserId()
 
         // mapIdAssessmentNbRisk is a map that contains the id and number of Risk of each Assessment
         Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
@@ -46,7 +62,7 @@ public with sharing class OrmAssessmentRiskController {
         List<Assessment__c> assessments = [Select Id, Name, orm_description__c, orm_objectif__c 
                               From Assessment__c  
                               WHERE Id IN : mapIdAssessmentNbRisk.keySet() ];                                 
-         
+         //for each assessment, we have the number of risk and the assessment informations
         Map<String, Map<String, Object>> mapObjects = new Map<String, Map<String, Object>>();  
         for (Assessment__c assess: assessments){
            mapObjects.put(assess.Id,  new Map<String, Object>{'nbreRisk' => mapIdAssessmentNbRisk.get(assess.Id), 'assessment' => assess});   
@@ -56,6 +72,14 @@ public with sharing class OrmAssessmentRiskController {
         
     }
      
+    /**
+	 *
+	 * @author David Diop
+	 * @version 1.0
+	 * @description  this method returns all assessmentRisks of user connected
+	 * @history 
+	 * 2018-07-20 : David Diop - Implementation
+	 */
     @AuraEnabled 
     public static Map<String, Map<String, Object>> getRisks()
     {
@@ -85,6 +109,14 @@ public with sharing class OrmAssessmentRiskController {
         
     }
     
+     /**
+	 *
+	 * @author David Diop
+	 * @version 1.0
+	 * @description  this method allows to add assessment
+	 * @history 
+	 * 2018-07-20 : David Diop - Implementation
+	 */
     @AuraEnabled
     public static orm_assessmentRisk__c add (orm_assessmentRisk__c item){
         if(item!=null){
@@ -95,7 +127,14 @@ public with sharing class OrmAssessmentRiskController {
         
     }
     
-    
+     /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns an assessment
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */
     @AuraEnabled 
     public static Assessment__c getAssessment(String idAss){
         return OrmAssessmentController.getAssessment(idAss);

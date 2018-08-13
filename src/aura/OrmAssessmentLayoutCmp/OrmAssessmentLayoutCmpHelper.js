@@ -176,6 +176,7 @@
    },
    // test
    activeContext : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -205,6 +206,7 @@
         component.set("v.showActionPlan", false);
     },
     activeContext2 : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -236,6 +238,7 @@
         component.set("v.showActionPlan", false);
     },
     activeContextActivity : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -267,6 +270,7 @@
         component.set("v.showActionPlan", false);
     },
     activeContextWorkshop : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -299,6 +303,7 @@
     },
     // this methode actives the action Risk Identification tab
     activeRiskIdentif : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -331,6 +336,7 @@
     
     // this methode actives the action Risk Analye tab
     activeRiskAnalye : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -363,6 +369,7 @@
     
     // this methode actives the action Risk Treatment tab
     activeRiskTreatment : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');
@@ -394,6 +401,7 @@
     
     // this methode actives the action plan tab
     activeActionPlan  : function(component, event, helper) {
+        component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
         var tab3 = component.find('riskAnalyseId');

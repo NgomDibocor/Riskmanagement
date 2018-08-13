@@ -86,10 +86,7 @@
     				component.set("v.selectedCount", 0);
     			}
     		} 
-    	 }    	
-    	
-    	
-    	
+    	 }
     }
     
 })

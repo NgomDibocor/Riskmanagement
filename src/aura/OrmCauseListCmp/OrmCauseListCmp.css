@@ -4,8 +4,19 @@
     display: inline-block;
     width:95%;
 }
+.THIS .icause {
+	display: inline-block;
+    width:90%;
+    margin-right: 15px;
+}
+
+.THIS .deleteCause{
+	display: inline-block;
+    width: 5%;
+}
 .THIS span.btnNewCause {
     display: inline-block;
+    width: 5%;
 }
 .THIS table {
     margin-top: 20px;

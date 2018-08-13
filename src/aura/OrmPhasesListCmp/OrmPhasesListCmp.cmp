@@ -35,12 +35,21 @@
 				<form class="">					
 						<div class="slds-col">									
 							<div class="">
-								<div class="">
+								<div class="iphase">
 									<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
-										<lightning:input aura:id="description" type="text" placeholder="make new phase" label="" class=""
+										<lightning:input class="" aura:id="description" type="text" placeholder="make new phase"
                                      			value="{!v.newPhase.Description}" />
 									</a>	
 								</div>
+								
+								<span class="btnNewPhase" onclick="{!c.createItem}">
+						        	<lightning:icon iconName="utility:new" size="medium" />
+						        </span>
+						        
+						        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
+									<lightning:icon iconName="utility:delete" size="medium" />
+								</span>
+								
 							</div>                            
 						</div>
 				</form>
@@ -90,20 +99,14 @@
 	        </table>
 		    	
 		</div>
-        <!-- span class="btnNewPhase" onclick="{!c.openOrmPhaseNewCmp}">
-        	<lightning:icon iconName="utility:new" size="medium" />
-        	</span> 
-        -->
         
-        <span class="btnNewPhase" onclick="{!c.createItem}">
+        <!-- span class="btnNewPhase" onclick="{!c.createItem}">
         	<lightning:icon iconName="utility:new" size="medium" />
-        </span>
-        <div class="deletePhase">
-		      <div class=""> 
-		         <button class="slds-button slds-button--brand" onclick="{!c.openModalDeletePhase}">Delete Phase</button>
-		   	  </div>
-		</div>
+        </span -->
         
+		<!-- span class="deletePhase" onclick="{!c.openModalDeletePhase}">
+			<lightning:icon iconName="utility:delete" size="medium" />
+		</span -->        
         
         <!-- openModalError if the assessment is not created -->
         <aura:if isTrue="{!v.openModalError}">

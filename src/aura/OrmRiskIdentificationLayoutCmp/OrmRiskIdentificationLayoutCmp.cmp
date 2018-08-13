@@ -75,8 +75,8 @@
 			</button>
 		 </aura:if> 
             <lightning:datatable aura:id="datatableRisk"
-              data="{! v.allRisk }"
-              class="slds-m-top_medium" 
+              data="{! v.allRisk }" 
+              class="cols table"
               columns="{! v.columns }" 
               keyField="id" 
               resizeColumnDisabled="true" 

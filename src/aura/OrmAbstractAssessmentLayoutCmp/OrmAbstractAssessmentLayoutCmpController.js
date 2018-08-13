@@ -163,6 +163,9 @@
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", true);
         helper.activeRiskAnalye(component, event);
+        var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
+        evt.setParams({"riskAssessmentId": idAssessmentRisk});
+        evt.fire();
         }
     },
     
@@ -186,7 +189,21 @@
             'type' : 'warning',
             'mode' : 'dismissible'
         });
-
         toast.fire();
+        var field = "Risk Analysis";
+        var description = "You must select an assessmentRisk in Risk Identification before to navigate to this tab";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    riskTreatmentClicked : function(component, event, helper) {
+        var toast = $A.get('e.force:showToast');
+        toast.setParams({
+        	'message' : 'please, select a measure in Risk Analysis',
+            'type' : 'warning',
+            'mode' : 'dismissible'
+        });
+        toast.fire();
+        var field = "Risk Treatment";
+        var description = "You must select a  measure in Risk Analysis before to navigate to this tab";
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
 })

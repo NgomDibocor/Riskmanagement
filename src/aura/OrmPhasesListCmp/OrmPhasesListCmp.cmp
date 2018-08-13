@@ -9,6 +9,7 @@
 	<aura:registerEvent name="OrmEvtSelectAllPhases" type="c:OrmEvtSelectAllPhases" />
 	
 	<!-- attributes -->
+	<!-- attributes -->
 	<aura:attribute name="idAssessment" type="String" description="" />
 	<aura:attribute name="phases" type="Macro[]" description=""  />
 	<aura:attribute name="openModalError" type="Boolean"  default="false"/>
@@ -43,11 +44,11 @@
 								</div>
 								
 								<span class="btnNewPhase" onclick="{!c.createItem}">
-						        	<lightning:icon iconName="utility:new" size="medium" />
+						        	<lightning:icon iconName="utility:new" size="xx-small" />
 						        </span>
 						        
 						        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
-									<lightning:icon iconName="utility:delete" size="medium" />
+									<lightning:icon iconName="utility:delete" size="xx-small" />
 								</span>
 								
 							</div>                            

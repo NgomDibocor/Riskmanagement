@@ -55,6 +55,7 @@
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:registerEvent name="ShowSpinner" type="c:OrmHideSpinnerEvt"  />
+    
     <!-- return to list of Assessment -->
    
     <!-- menu -->
@@ -89,7 +90,7 @@
         </li>
         <li aura:id="riskTreatmentId" class="slds-tabs--path__item slds-is-active" role="presentation">
           <a class="slds-tabs--path__link" id="tabs-path-440" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
-             href="javascript:void(0);" aria-live="assertive" onclick="{!c.activeRiskTreatment}">
+             href="javascript:void(0);" aria-live="assertive" onclick="{!c.riskTreatmentClicked}">
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
@@ -1203,7 +1204,8 @@
                        </tr>
                  </aura:if>  
                  <aura:if isTrue="{!v.showRiskAnalyse}">
-                    <!-- list of causee -->
+                 	<c:OrmRiskAnalysisCmp />
+                    <!-- list of causee 
                     <tr>
                       <td>
                         <c:OrmAssessmentRiskConfigCmp />
@@ -1213,8 +1215,8 @@
                       <td>
                         <c:OrmCauseListCmp />
                       </td>
-                    </tr>
-                    <!-- /causes -->
+                    </tr> -->
+                    <!-- causes 
                     <tr>
                         <td >
                             <div class="topSpacing">
@@ -1228,7 +1230,7 @@
                                 </ui:inputSelect>
                             </div>
                         </td>
-                    </tr>
+                    </tr -->
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskTreatment}">
                     

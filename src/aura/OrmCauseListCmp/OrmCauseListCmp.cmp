@@ -3,7 +3,7 @@
 	<!-- methodes -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
     <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshList}" />
-    <!--aura:handler action="{!c.getAssessmentRiskId}" event="c:OrmActiveRiskAnalyeCmpEvt" / -->
+    <aura:handler  event="c:OrmActiveRiskAnalyeCmpEvt"  action="{!c.getAssessmentRiskId}"/>
     <!-- events -->
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
 	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
@@ -30,11 +30,11 @@
 				</a>
 			</div>
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}" class="btnNewCause" onclick="{!c.openCauseNewCmp}">
-	        	<lightning:icon iconName="utility:new" size="medium" />
+	        	<lightning:icon iconName="utility:new" size="xx-small" />
 	        </span>
 	        
 	        <span class="deleteCause" onclick="{!c.openModalDeleteCause}">
-				<lightning:icon iconName="utility:delete" size="medium" />
+				<lightning:icon iconName="utility:delete" size="xx-small" />
 			</span>
 	
 			<!-- use aura:if for show/hide buttons --> 

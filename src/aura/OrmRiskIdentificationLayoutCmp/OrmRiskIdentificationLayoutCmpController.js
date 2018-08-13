@@ -12,11 +12,11 @@
      *
      */
     openModalNewRisk: function(component, event, helper) {
-    var assessment= component.get("v.idAssessment");
+        var assessment = component.get("v.idAssessment");
         var evt = $A.get("e.c:OrmOpenNewRiskCmpEvt");
-         evt.setParams({
-            "idAssessment":assessment
-            });
+        evt.setParams({
+            "idAssessment": assessment
+        });
         evt.fire();
     },
     /*
@@ -28,26 +28,32 @@
         component.set('v.columns', [{
             label: 'Risk Name',
             fieldName: 'RiskName',
-            type: 'text',iconName: 'standard:orders'
-        },
-        {
+            type: 'text',
+            iconName: 'standard:orders'
+        }, {
             label: 'Description',
             fieldName: 'RiskDescription',
-            type: 'text',iconName: 'standard:orders'
-        }, 
-        {
-           label: 'Risk category',
-           fieldName: 'RiskcategorieRisk',
-           type: 'text',iconName: 'standard:orders'
-        },
-        {  label: 'Action',type:'button',
-           typeAttributes: { label: 'configure', name: 'configure', title: 'configure'},
-           iconName: 'utility:settings',
-           /*cellAttributes: {
+            type: 'text',
+            iconName: 'standard:orders'
+        }, {
+            label: 'Risk category',
+            fieldName: 'RiskcategorieRisk',
+            type: 'text',
+            iconName: 'standard:orders'
+        }, {
+            label: 'Action',
+            type: 'button',
+            typeAttributes: {
+                label: 'configure',
+                name: 'configure',
+                title: 'configure'
+            },
+            iconName: 'utility:settings',
+            /*cellAttributes: {
 			  iconName: 'utility:settings'
            }
-           */}
-        ]);
+           */
+        }]);
         helper.fetchPicklist(component, event);
     },
     /*    
@@ -58,7 +64,7 @@
     filterByCategorieRisk: function(component, event, helper) {
         var categorieRisk = component.find("categorieRisk");
         var categorieRiskValue = categorieRisk.get("v.value");
-        var assessment= component.get("v.idAssessment");
+        var assessment = component.get("v.idAssessment");
         var isItemValid = true;
         if ($A.util.isEmpty(categorieRiskValue)) {
             isItemValid = false;
@@ -68,32 +74,32 @@
             var action = component.get('c.findAllAssessmentRisk');
             action.setParams({
                 "item": categorieRiskValue,
-                "assessment":assessment
+                "assessment": assessment
             });
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (state == "SUCCESS") {
-                
-                var rows = response.getReturnValue();
-                for (var i = 0; i < rows.length; i++) {
-                    var row = rows[i];
-                    if (row.orm_Risk__c) {
-                    row.RiskName = row.orm_Risk__r.Name;
-                    row.RiskDescription = row.orm_Risk__r.Description;
-                    row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
+
+                    var rows = response.getReturnValue();
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        if (row.orm_Risk__c) {
+                            row.RiskName = row.orm_Risk__r.Name;
+                            row.RiskDescription = row.orm_Risk__r.Description;
+                            row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
+                        }
                     }
-                }
                     component.set('v.allRisk', rows);
-                    if(rows.length == 0) {
-                    	var toast = $A.get('e.force:showToast');
-                    	toast.setParams({
-			           'message' : 'there is no risk associated or category is'+' '+categorieRiskValue,
-			           'type' : 'warning',
-			           'mode' : 'dismissible'
-                    	});	
-                    	toast.fire();
+                    if (rows.length == 0) {
+                        var toast = $A.get('e.force:showToast');
+                        toast.setParams({
+                            'message': 'there is no risk associated or category is' + ' ' + categorieRiskValue,
+                            'type': 'warning',
+                            'mode': 'dismissible'
+                        });
+                        toast.fire();
                     }
-                    
+
                     component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 } else {
                     helper.fetchPicklist(component, event);
@@ -102,34 +108,34 @@
             $A.enqueueAction(action);
         }
     },
-    
+
     openPopupAssociation: function(component, event, helper) {
         var selectedRows = event.getParam('selectedRows');
         var assessmentRisks = [];
         selectedRows.forEach(function(selectedRow) {
-        var newAssessmentRisk ={};
-         	newAssessmentRisk.sobjectType='orm_assessmentRisk__c';
+            var newAssessmentRisk = {};
+            newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
             newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
             newAssessmentRisk.orm_Risk__c = selectedRow.Id;
-	        assessmentRisks.push(newAssessmentRisk);
+            assessmentRisks.push(newAssessmentRisk);
         });
         // Display that fieldName of the selected rows
         component.set("v.relatedRisk", assessmentRisks);
     },
-    
+
     openPopupDissociate: function(component, event, helper) {
-    	component.set("v.isOpenButton",true);
+        component.set("v.isOpenButton", true);
         var selectedRows = event.getParam('selectedRows');
         var assessmentRisks = [];
         selectedRows.forEach(function(selectedRow) {
-        var newAssessmentRisk ={};
-         	newAssessmentRisk.sobjectType='orm_assessmentRisk__c';
-            newAssessmentRisk.Id=selectedRow.Id;
-	        assessmentRisks.push(newAssessmentRisk);
+            var newAssessmentRisk = {};
+            newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
+            newAssessmentRisk.Id = selectedRow.Id;
+            assessmentRisks.push(newAssessmentRisk);
         });
         component.set("v.dissociateRisk", assessmentRisks);
     },
-    
+
     /*
      * CreatedBy @David Diop
      *
@@ -155,7 +161,7 @@
         component.set("v.allRisk", results);
     },
     relatedRiskfunction: function(component, event, helper) {
-        var relatedassesmentRisk= component.get("v.relatedRisk");
+        var relatedassesmentRisk = component.get("v.relatedRisk");
         var action = component.get('c.addAssessmentRisks');
         action.setParams({
             "items": relatedassesmentRisk
@@ -164,30 +170,30 @@
             var state = response.getState();
             if (component.isValid() && state == "SUCCESS") {
                 var toast = $A.get('e.force:showToast');
-                    	toast.setParams({
-			           'message' : 'successful association',
-			           'type' : 'success',
-			           'mode' : 'dismissible'
-                    	});	
-                    	toast.fire();
+                toast.setParams({
+                    'message': 'successful association',
+                    'type': 'success',
+                    'mode': 'dismissible'
+                });
+                toast.fire();
                 component.set("v.isOpen", false);
-                helper.fetchPicklist(component,event);
+                helper.fetchPicklist(component, event);
             } else {
-                 var toast = $A.get('e.force:showToast');
-                    	toast.setParams({
-			           'message' : 'failed association',
-			           'type' : 'warning',
-			           'mode' : 'dismissible'
-                    	});	
-                    	toast.fire();
-               component.set("v.isOpen", false);
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message': 'failed association',
+                    'type': 'warning',
+                    'mode': 'dismissible'
+                });
+                toast.fire();
+                component.set("v.isOpen", false);
             }
         });
         $A.enqueueAction(action);
     },
-    
-    dissociateRiskfunction:  function(component, event, helper) {
-        var deletedAssesmentRisk= component.get("v.dissociateRisk");
+
+    dissociateRiskfunction: function(component, event, helper) {
+        var deletedAssesmentRisk = component.get("v.dissociateRisk");
         var action = component.get('c.deleteAssessmentRisks');
         action.setParams({
             "items": deletedAssesmentRisk
@@ -197,21 +203,21 @@
             console.log(state);
             if (component.isValid() && state == "SUCCESS") {
                 var toast = $A.get('e.force:showToast');
-                    	toast.setParams({
-			           'message' : 'successful dissociation',
-			           'type' : 'success',
-			           'mode' : 'dismissible'
-                    	});	
-                    	toast.fire();
-                helper.fetchPicklist(component,event);
+                toast.setParams({
+                    'message': 'successful dissociation',
+                    'type': 'success',
+                    'mode': 'dismissible'
+                });
+                toast.fire();
+                helper.fetchPicklist(component, event);
             } else {
-                 var toast = $A.get('e.force:showToast');
-                    	toast.setParams({
-			           'message' : 'failed dissociation',
-			           'type' : 'warning',
-			           'mode' : 'dismissible'
-                    	});	
-                    	toast.fire();
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message': 'failed dissociation',
+                    'type': 'warning',
+                    'mode': 'dismissible'
+                });
+                toast.fire();
             }
         });
         $A.enqueueAction(action);
@@ -224,30 +230,30 @@
         });
         evt.fire();
     },
-    
-     openModalRisk : function(component, event, helper){
-		// for Hide/Close Model,set the "isOpen" attribute to "False"
-		component.set("v.isOpen", true);
-		// Set the columns of the Table
+
+    openModalRisk: function(component, event, helper) {
+        // for Hide/Close Model,set the "isOpen" attribute to "False"
+        component.set("v.isOpen", true);
+        // Set the columns of the Table
         component.set('v.columns2', [{
             label: 'Risk Name',
             fieldName: 'Name',
-            type: 'text',iconName: 'standard:opportunity'
-        },
-        {
+            type: 'text',
+            iconName: 'standard:opportunity'
+        }, {
             label: 'Risk category',
             fieldName: 'orm_categorieRisk__c',
-            type: 'text',iconName: 'standard:opportunity'
-        },
-        {
+            type: 'text',
+            iconName: 'standard:opportunity'
+        }, {
             label: 'Description',
             fieldName: 'Description',
-            type: 'text',iconName: 'standard:opportunity'
-        }
-        ]);
-         helper.fetchlistRiskModal(component, event);
-	},
-	/*    
+            type: 'text',
+            iconName: 'standard:opportunity'
+        }]);
+        helper.fetchlistRiskModal(component, event);
+    },
+    /*    
      * CreatedBy @David Diop
      *function that allows you to filter by category
      */
@@ -267,24 +273,24 @@
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (state == "SUCCESS") {
-                
-                var rows = response.getReturnValue();
-                for (var i = 0; i < rows.length; i++) {
-                    var row = rows[i];
-                }
-                var assessmentRisks = component.get('v.allRisk');
-                assessmentRisks.forEach(function(assessmentRisk){                
-                	rows = rows.filter( row => row.Id !== assessmentRisk.orm_Risk__c );
-                });
+
+                    var rows = response.getReturnValue();
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                    }
+                    var assessmentRisks = component.get('v.allRisk');
+                    assessmentRisks.forEach(function(assessmentRisk) {
+                        rows = rows.filter(row => row.Id !== assessmentRisk.orm_Risk__c);
+                    });
                     component.set('v.allRiskList', rows);
-                    if(rows.length == 0) {
-                    	var toast = $A.get('e.force:showToast');
-                    	toast.setParams({
-			           'message' : 'there is no risk '+' '+categorieRiskValue,
-			           'type' : 'warning',
-			           'mode' : 'dismissible'
-                    	});	
-                    	toast.fire();
+                    if (rows.length == 0) {
+                        var toast = $A.get('e.force:showToast');
+                        toast.setParams({
+                            'message': 'there is no risk ' + ' ' + categorieRiskValue,
+                            'type': 'warning',
+                            'mode': 'dismissible'
+                        });
+                        toast.fire();
                     }
                     component.find("categorieRiskList").set("v.value", event.getSource().get("v.value"));
                 } else {
@@ -304,8 +310,8 @@
         var results = data;
         var regex;
         if ($A.util.isEmpty(term)) {
-          helper.fetchlistRiskModal(component, event);
-           
+            helper.fetchlistRiskModal(component, event);
+
         } else {
             term = "^" + term;
         }
@@ -319,17 +325,17 @@
         }
         component.set("v.allRiskList", results);
     },
-	closeModal : function(component){
-		// for Hide/Close Model,set the "isOpen" attribute to "False"
-		component.set("v.isOpen", false);
-	},
-	handleRowAction : function (component, event, helper){
+    closeModal: function(component) {
+        // for Hide/Close Model,set the "isOpen" attribute to "False"
+        component.set("v.isOpen", false);
+    },
+    handleRowAction: function(component, event, helper) {
         var row = event.getParam('row');
-         var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
-         evt.setParams({
-            "idAssessmentRisk":row.Id
-            });
+        var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
+        evt.setParams({
+            "idAssessmentRisk": row.Id
+        });
         evt.fire();
-        
-	}
+
+    }
 })

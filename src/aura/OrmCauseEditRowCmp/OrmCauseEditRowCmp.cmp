@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component controller="OrmCauseController">
 	
 	<!-- methods -->
 	<!-- on component load, fetch picklist values dynamically from  apex controller -->   

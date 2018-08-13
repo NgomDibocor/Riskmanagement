@@ -1,9 +1,15 @@
 ({
-	doInit : function(component, event, helper) {		
-		var idAssessmentRisk = 'a001H00000kcfjWQAQ';
-		component.set("v.assessmentRiskId", idAssessmentRisk);
-		helper.refresh(component, idAssessmentRisk);
+	doInit : function(component, event, helper) {
+		console.log('assessmentRiskId '+ component.get("v.assessmentRiskId"));
+		helper.refresh(component, "a001H00000kcsVDQAY");
 	},
+	
+	/*getAssessmentRiskId : function(component, event, helper) {
+		var assessmentRiskId = event.getParam('idAssessmentRisk');
+		console.log('assessmentRiskId '+ assessmentRiskId);
+		component.set("v.assessmentRiskId", assessmentRiskId);
+		helper.refresh(component, idAssessmentRisk);
+	},*/
 	
 	refreshList : function(component, event, helper) {
 		var idAssessmentRisk = event.getParam('idAssessmentRisk');

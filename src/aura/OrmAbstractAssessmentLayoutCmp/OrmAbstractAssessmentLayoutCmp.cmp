@@ -3,7 +3,6 @@
 
    <aura:registerEvent name="DisplayListAssessment" type="c:OrmDisplayListAssessmentEvt"  />
    <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
-
        
      {!v.body}
      

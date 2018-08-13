@@ -19,6 +19,7 @@
 				}
 				// call the onLoad function for refresh the List view    
 				var evt = $A.get('e.c:OrmCauseCreatedEvt');
+				evt.setParams({'idAssessmentRisk': 'a001H00000kcsVDQAY'});
 				evt.fire();
 			}
 		});

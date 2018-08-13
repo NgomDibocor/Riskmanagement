@@ -12,6 +12,7 @@
         }
         return isValid;
     },
+    
     refresh : function(component, idAssessmentRisk) {	
 		
         var action = component.get("c.findAllCausesByAssessmentRisk");

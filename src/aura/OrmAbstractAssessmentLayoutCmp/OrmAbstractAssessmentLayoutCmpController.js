@@ -146,21 +146,12 @@
         helper.activeRiskIdentif(component, event);
         }
     },
+    
     activeRiskAnalye : function(component, event, helper) {
-     var idAssessmentRisk = event.getParam("idAssessmentRisk");
-     if(idAssessmentRisk == null){
-     var toast = $A.get('e.force:showToast');
-            toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
-                'type' : 'warning',
-                'mode' : 'dismissible'
-            });
-
-            toast.fire();
-     }else{
-        helper.activeRiskAnalye(component, event);
-        }
+    	var idAssessmentRisk = event.getParam("idAssessmentRisk");
+    	helper.activeRiskAnalye(component, event);
     },
+    
     activeRiskTreatment : function(component, event, helper) {
         helper.activeRiskTreatment(component, event);
     },

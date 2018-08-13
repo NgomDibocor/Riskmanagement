@@ -12,8 +12,10 @@
     <aura:attribute name="showError" type="boolean" default="false"/>
     <aura:attribute name="checkUpdateActivity" type="boolean" default="false"/>
     <aura:attribute name="showData" type="boolean" default="false"/>
-    <aura:attribute name="message" type="String" default="NoError"/> 
+    <aura:attribute name="message" type="String" default="NoError"/>
     
+    
+      
     <!-- PickList -->
     <aura:attribute name="allTypeAssessment" type="String[]" />
     <aura:attribute name="allIndustrySector" type="String[]"/>

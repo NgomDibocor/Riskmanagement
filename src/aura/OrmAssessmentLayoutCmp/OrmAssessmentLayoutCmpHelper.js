@@ -117,9 +117,30 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 component.set('v.allOrganisationIndustrySector', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        var actionCountry = component.get("c.getSelectOptions");
+        actionCountry.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_pays__c'});
+        actionCountry.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allCountry', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+
+        var actionRegion = component.get("c.getSelectOptions");
+        actionRegion.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_region__c'});
+        actionRegion.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allRegion', response.getReturnValue());
                 //Hide the Spinner
                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-	            evtSpinner.fire();  
+	            evtSpinner.fire(); 
             } else {
                 alert("l'Element n'a pas été retrouvé");
             }
@@ -132,7 +153,8 @@
         $A.enqueueAction(actionSchedule);
         $A.enqueueAction(actionSector);
         $A.enqueueAction(actionUser);
-        $A.enqueueAction(actionOrganisationSectorInd);
+        $A.enqueueAction(actionCountry);
+        $A.enqueueAction(actionRegion);
 	},
    
     verifTypeAssessment  : function(component, event, helper, typeAssessment) {

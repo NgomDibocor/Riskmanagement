@@ -6,6 +6,7 @@
 }
 .THIS span.btnNewPhase {
     display: inline-block;
+    width:5%;
 }
 .THIS table {
     margin-top: 20px;
@@ -13,4 +14,8 @@
 
 .THIS .header {
 	background-color: rgba(27, 82, 151, 1.0);
+}
+.THIS .deletePhase{
+	display: inline-block;
+    width:5%;
 }

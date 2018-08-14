@@ -1,72 +1,216 @@
-<aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController" >
-<aura:handler name="init" value="{! this }" action="{! c.doInit }" />
-<aura:handler action="{!c.refreshRiskAnalysis}" event="c:OrmInstantiateRiskAnalysisEvt" />
-<aura:attribute name="assessmentRiskId" type="string" description="" />
-<aura:attribute name="frequency" type="orm_frequency__c[]" />
-<aura:attribute name="assessmentRiskId" type="String" description="" />
-<aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{
+<aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController">
+    <!-- <aura:handler name="init" value="{! this }" action="{! c.doInit }" />  -->
+    <aura:handler action="{!c.doInit}" event="c:OrmInstantiateRiskAnalysisEvt" />
+    <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
+    <aura:attribute name="closeFieldDescription" type="boolean" default="true" />
+    <aura:attribute name="assessmentRiskId" type="string" description="" />
+    <aura:attribute name="frequency" type="String[]" />
+    <aura:attribute name="manageAbility" type="String[]" />
+    <aura:attribute name="productionLoss" type="String[]" />
+    <aura:attribute name="schedule" type="String[]" />
+    <aura:attribute name="status" type="String[]" />
+    <aura:attribute name="vulnerability" type="String[]" />
+    <aura:attribute name="objInfo" type="orm_assessmentRisk__c" default="{sobjectType : 'orm_assessmentRisk__c'}" />
+    <aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{
 																		'sobjectType' : 'orm_assessmentRisk__c',
 												                         'orm_assessment__c': '',  
-												                         'orm_Risk__c':''   
+												                         'orm_Risk__c':'',
+												                         'orm_frequency__c' :'',
+												                         'orm_cost__c':'',
+												                         'orm_date__c':'',
+												                         'orm_environmentAndCommunity__c':'',
+												                         'orm_healthAndSafety__c':'',
+												                         'orm_manageAbility__c':'',
+												                         'orm_productionLoss__c':'',
+												                         'orm_reputation__c':'',
+												                         'orm_security__c':'',
+												                         'orm_status__c':'',
+												                         'orm_vulnerability__c':'',
+												                         'orm_schedule__c':''
 																	}" />
-	<table class="slds-table">
-	      <tr>
-              <td>
+  <aura:attribute name="displaySaveCancelBtn" type="boolean" default="false"/> 
+    <table class="slds-table">
+	    
+		      <aura:if isTrue="{!v.displaySaveCancelBtn}">
+                      <tr>
+                          <td class="textInDiv">
+                             <div style="margin-bottom:20px;">
+                                 <lightning:buttonGroup class="slds-m-around_medium">
+                                 <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+			                          <lightning:button label="Save"
+			                                            variant="brand"
+			                                                      class="slds-button"
+			                                            onclick="{!c.updateAssessmentRisk}"/>
+			                      </lightning:buttonGroup>
+                                  <span style="color:red">Click on this button for saving the risk assessment</span>
+                             </div>
+                          </td>
+                          <td><lightning:spinner alternativeText="Loading" size="small" /></td>
+                      </tr>
+                    </aura:if>
+		    
+        <tr>
+            <td>
                 <div class="topSpacing">
-                <label class="slds-form-element__label">Risk Name<span class="cmn_mandatory_indicator">*</span></label>
+                   <b> <label class="slds-form-element__label">Risk Name<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
-                <div class="width">  
-                <a href="javascript:void(0);">
-                <ui:inputText class="slds-input"  
-                                           value="{!v.assessmentRiskData.orm_Risk__r.Name}" disabled="true">
-                </ui:inputText>
-                </a>
-              </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputText  aura:id="riskName" class="slds-input" value="{!v.assessmentRiskData.orm_Risk__r.Name}" disabled="true">
+                        </ui:inputText>
+                    </a>
+                </div>
             </td>
-      
-              <td>
+
+            <td>
                 <div class="topSpacing">
-                <label class="slds-form-element__label">Description<span class="cmn_mandatory_indicator">*</span></label>
+                  <b>  <label class="slds-form-element__label">Description<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
-                <div class="width">  
-                <a href="javascript:void(0);">
-                <ui:inputText class="slds-input"  
-                                           value="{!v.assessmentRiskData.orm_Risk__r.Description}" disabled="true">
-                </ui:inputText>
-                </a>
-              </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputText  aura:id="description" class="slds-input" value="{!v.assessmentRiskData.orm_Risk__r.Description}" disabled="true">
+                        </ui:inputText>
+                    </a>
+                </div>
             </td>
-       </tr>
-       
-          <tr>
-              <td>
+        </tr>
+        
+        <tr>
+            <td>
                 <div class="topSpacing">
-                <label class="slds-form-element__label">Risk Name<span class="cmn_mandatory_indicator">*</span></label>
+                   <b> <label class="slds-form-element__label">Date<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
-               <ui:inputSelect aura:id="frequency" 
-	            change="{!c.onChangefrequency}" class="slds-select"
-	               labelClass="slds-form-element__label">
-	                <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_frequency__c}"
-	                   label="{!v.assessmentRiskData.orm_frequency__c}"/>
-	                   <aura:iteration items="{!v.frequency}" var="frequency">
-	                    <ui:inputSelectOption text="{!frequency}"  label="{!frequency}" />
-	              	 </aura:iteration>
-	          </ui:inputSelect>
+                <div class="width">
+                    <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
+                        <ui:inputDate  aura:id="dateRisk" displayDatePicker="true" class="slds-input" value="{!v.assessmentRiskData.orm_date__c}" change="{!c.onDate}" />
+                       
+                    </a>
+                </div>
             </td>
-      
-              <td>
+
+            <td>
                 <div class="topSpacing">
-                <label class="slds-form-element__label">Description<span class="cmn_mandatory_indicator">*</span></label>
+                   <b> <label class="slds-form-element__label">Environment And Community </label></b>
                 </div>
-                <div class="width">  
-                <a href="javascript:void(0);">
-                <ui:inputText class="slds-input"  
-                                           value="{!v.assessmentRiskData.orm_Risk__r.Description}" disabled="true">
-                </ui:inputText>
-                </a>
-              </div>
+                <div class="width">
+                    <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
+                        <ui:inputText  aura:id="environmentAndCommunity" class="slds-input" value="{!v.assessmentRiskData.orm_environmentAndCommunity__c}" change="{!c.onEnvironmentAndCommunity}" >
+                        </ui:inputText>
+                    </a>
+                </div>
             </td>
-       </tr>
-   </table>
-    
+        </tr>
+
+        <tr>
+            <td>
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="frequency" name="frequency" label="Frequency" class="select-auto-width" onchange="{!c.onFrequency}">
+                             <option text="{!v.assessmentRiskData.orm_frequency__c}" ></option>
+                            <aura:iteration items="{!v.frequency}" var="frequence">
+                                <option text="{!frequence}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="manageAbility" name="manage Ability" label="Manage Ability" class="select-auto-width" onchange="{!c.onManageAbility}">
+                             <option text="{!v.assessmentRiskData.orm_manageAbility__c}" ></option>
+                            <aura:iteration items="{!v.manageAbility}" var="manageAbility">
+                                <option text="{!manageAbility}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="productionLoss" name="productionLoss" label="Production Loss" class="select-auto-width" onchange="{!c.onProductionLoss}">
+                            <option text="{!v.assessmentRiskData.orm_productionLoss__c}" ></option>
+                            <aura:iteration items="{!v.productionLoss}" var="productionLoss">
+                                <option text="{!productionLoss}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="schedule" name="schedule" label="schedule" class="select-auto-width" onchange="{!c.onSchedule}">
+                           <option text="{!v.assessmentRiskData.orm_schedule__c}"></option>
+                            <aura:iteration items="{!v.schedule}" var="schedule">
+                                <option text="{!schedule}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="status" name="status" label="Status" class="select-auto-width" onchange="{!c.onStatus}">
+                            <option text="{!v.assessmentRiskData.orm_status__c}" ></option>
+                            <aura:iteration items="{!v.status}" var="status">
+                                <option text="{!status}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="vulnerability" name="vulnerability" label="Vulnerability" class="select-auto-width" onchange="{!c.onVulnerability}">
+                            <option text="{!v.assessmentRiskData.orm_vulnerability__c}"></option>
+                            <aura:iteration items="{!v.vulnerability}" var="vulnerability">
+                                <option text="{!vulnerability}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        
+         <tr>
+            <td>
+                <div class="topSpacing">
+                    <b><label class="slds-form-element__label">security</label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputText  aura:id="security" class="slds-input" value="{!v.assessmentRiskData.orm_security__c}" change="{!c.onSecurity}"  >
+                        </ui:inputText>
+                    </a>
+                </div>
+            </td>
+
+            <td>
+                <div class="topSpacing">
+                    <b><label class="slds-form-element__label">reputation</label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputText aura:id="reputation" class="slds-input" value="{!v.assessmentRiskData.orm_reputation__c}"  change="{!c.onReputation}">
+                        </ui:inputText>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        
+    </table>
+
 </aura:component>

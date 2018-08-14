@@ -45,33 +45,22 @@
                                   <span style="color:red">Click on this button for saving the risk assessment</span>
                              </div>
                           </td>
-                          <td><lightning:spinner alternativeText="Loading" size="small" /></td>
+                          <td><lightning:spinner alternativeText="Loading" size="medium" /></td>
                       </tr>
                     </aura:if>
 		    
         <tr>
             <td>
-                <div class="topSpacing">
-                   <b> <label class="slds-form-element__label">Risk Name<span class="cmn_mandatory_indicator">*</span></label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputText  aura:id="riskName" class="slds-input" value="{!v.assessmentRiskData.orm_Risk__r.Name}" disabled="true">
-                        </ui:inputText>
-                    </a>
-                </div>
+                 <lightning:card variant="Narrow" title="{!v.assessmentRiskData.orm_Risk__r.Name}" 
+                                                iconName="standard:account">
+                          <p class="slds-p-horizontal_small">
+								<b>{!v.assessmentRiskData.orm_Risk__r.Description}</b>	            
+						  </p>
+                 </lightning:card>
             </td>
 
             <td>
-                <div class="topSpacing">
-                  <b>  <label class="slds-form-element__label">Description<span class="cmn_mandatory_indicator">*</span></label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputText  aura:id="description" class="slds-input" value="{!v.assessmentRiskData.orm_Risk__r.Description}" disabled="true">
-                        </ui:inputText>
-                    </a>
-                </div>
+                
             </td>
         </tr>
         

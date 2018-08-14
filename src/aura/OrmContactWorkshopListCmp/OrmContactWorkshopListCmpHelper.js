@@ -55,5 +55,50 @@
         	component.set("v.isOpenModalContactWorkshop", false);
       
 	},
+	 getRowActions: function (cmp, row, doneCallback) {
+	 if(row.invitation){
+	  var actions = [{
+            'label': 'Dissociation',
+            'iconName': 'utility:delete',
+            'name': 'dissociate_contact'
+        }];
+	 }else{
+	 var actions = [{
+            'label': 'Association',
+            'iconName': 'utility:zoomin',
+            'name': 'association_contact'
+        }];
+	 }
+        // simulate a trip to the server
+        setTimeout($A.getCallback(function () {
+            doneCallback(actions);
+        }), 200);
+    },
+    
+      addContactWorkshop : function(component,row) {
+      var newcontactworkshop={};
+        newcontactworkshop.sobjectType='orm_ContactWorkshop__c';
+	            newcontactworkshop.orm_contact__c = row.Id;
+	           newcontactworkshop.orm_notification__c = false;
+	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop").Id;
+	            alert(JSON.stringify(newcontactworkshop));
+	            component.set("v.ContactWorkshopList", newcontactworkshop);
+      var action = component.get('c.addWorkShopContact');
+        action.setParams({
+            "items": component.get("v.ContactWorkshopList")
+        });
+    
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            console.log(state);
+            if (component.isValid() && state == "SUCCESS") {
+                alert("successful association");
+            } else {
+                alert("failed association");
+            }
+        });
+        $A.enqueueAction(action);
+      }
+	
 	
 })

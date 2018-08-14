@@ -1235,8 +1235,7 @@
                 <aura:if isTrue="{!v.showListMeasure}">
                     <tr>
                         <td >
-                            <!-- showListMeasure -->
-                            <p>List measure</p>
+                            <c:OrmMeasureListCmp />
                         </td>
                     </tr>
                 </aura:if>

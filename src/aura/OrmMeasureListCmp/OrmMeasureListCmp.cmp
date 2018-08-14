@@ -1,0 +1,6 @@
+<aura:component>
+  <aura:attribute name="idAssessmentRisk" type="string" />
+  
+  <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.refreshList}" />
+	
+</aura:component>

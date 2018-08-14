@@ -31,11 +31,11 @@
 				</a>
 			</div>
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}" class="btnNewCause" onclick="{!c.openCauseNewCmp}">
-	        	<lightning:icon iconName="utility:new" size="xx-small" />
+	        	<lightning:icon iconName="utility:new" size="medium" />
 	        </span>
 	        
 	        <span class="deleteCause" onclick="{!c.openModalDeleteCause}">
-				<lightning:icon iconName="utility:delete" size="xx-small" />
+				<lightning:icon iconName="utility:delete" size="medium" />
 			</span>
 	
 			<!-- use aura:if for show/hide buttons --> 

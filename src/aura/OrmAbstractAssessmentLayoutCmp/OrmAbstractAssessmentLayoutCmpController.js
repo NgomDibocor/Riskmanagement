@@ -73,6 +73,10 @@
         if(showListCauseAndImpact == true){
             component.set("v.showListMeasure", true);
             component.set("v.showListCauseAndImpact", false);
+            //send idAseessmentRisk to MeasureListCmp
+            var evt = $A.get("e.c:OrmSendIdAssesssmentRiskEvt");
+            evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+            evt.fire();
             helper.activeRiskAnalyeListMeasure(component, event);
         }
         /*if(showListMeasure == true){
@@ -136,6 +140,9 @@
         if(showListMeasure == true){
             component.set("v.showListCauseAndImpact", true);
             component.set("v.showListMeasure", false);
+            var evt = $A.get("e.c:OrmSendIdAssessmentRiskToCauseEvt");
+            evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+            evt.fire();
             helper.activeRiskAnalyeListCauseAndImpact(component, event);
         }
         if(showRiskTreatment == true){

@@ -131,7 +131,6 @@
         action.setParams({
             "item": assessmentRisk
         });
-        alert(JSON.stringify(assessmentRisk));
         action
         .setCallback(
             this,
@@ -163,6 +162,12 @@
 	},
 	 onFrequency : function(component, event, helper)
     {
+	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
     	component.find("frequency").set("v.value", event.getSource().get("v.value"));
 	},
@@ -184,32 +189,70 @@
 	},
     onVulnerability: function(component, event, helper)
     {
+    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
     	component.find("vulnerability").set("v.value", event.getSource().get("v.value"));
 	},
     onStatus : function(component, event, helper)
     {
+    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
     	component.find("status").set("v.value", event.getSource().get("v.value"));
 	},
     onSchedule : function(component, event, helper)
     {
+    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
     	component.find("schedule").set("v.value", event.getSource().get("v.value"));
 	},
     onProductionLoss:  function(component, event, helper)
     {
+    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
     	component.find("productionLoss").set("v.value", event.getSource().get("v.value"));
 	},
     onManageAbility : function(component, event, helper)
     {
+    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
     	component.find("manageAbility").set("v.value", event.getSource().get("v.value"));
 	},
 	cancel : function(component, event, helper)
     {
         component.set("v.displaySaveCancelBtn",false);
+    },
+     sendDescriptionSearchToFD: function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.search_title_label"),
+            "descriptionField": $A.get("$Label.c.search_description_title")
+        });
+        evt.fire();
     },
 	
 })

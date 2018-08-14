@@ -1,6 +1,8 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController">
     <!-- <aura:handler name="init" value="{! this }" action="{! c.doInit }" />  -->
     <aura:handler action="{!c.doInit}" event="c:OrmInstantiateRiskAnalysisEvt" />
+    <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
+    <aura:attribute name="closeFieldDescription" type="boolean" default="true" />
     <aura:attribute name="assessmentRiskId" type="string" description="" />
     <aura:attribute name="frequency" type="String[]" />
     <aura:attribute name="manageAbility" type="String[]" />
@@ -43,6 +45,7 @@
                                   <span style="color:red">Click on this button for saving the risk assessment</span>
                              </div>
                           </td>
+                          <td><lightning:spinner alternativeText="Loading" size="small" /></td>
                       </tr>
                     </aura:if>
 		    
@@ -78,7 +81,7 @@
                    <b> <label class="slds-form-element__label">Date<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
                 <div class="width">
-                    <a href="javascript:void(0);">
+                    <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
                         <ui:inputDate  aura:id="dateRisk" displayDatePicker="true" class="slds-input" value="{!v.assessmentRiskData.orm_date__c}" change="{!c.onDate}" />
                        
                     </a>
@@ -90,7 +93,7 @@
                    <b> <label class="slds-form-element__label">Environment And Community </label></b>
                 </div>
                 <div class="width">
-                    <a href="javascript:void(0);">
+                    <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
                         <ui:inputText  aura:id="environmentAndCommunity" class="slds-input" value="{!v.assessmentRiskData.orm_environmentAndCommunity__c}" change="{!c.onEnvironmentAndCommunity}" >
                         </ui:inputText>
                     </a>

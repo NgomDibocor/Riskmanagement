@@ -1204,8 +1204,8 @@
                        </tr>
                  </aura:if>  
                  <aura:if isTrue="{!v.showRiskAnalyse}">
-                 	<c:OrmRiskAnalysisCmp />
-                    <!-- list of causee 
+                 	<!-- <c:OrmRiskAnalysisCmp />
+                      list of causee -->
                     <tr>
                       <td>
                         <c:OrmAssessmentRiskConfigCmp />
@@ -1215,8 +1215,8 @@
                       <td>
                         <c:OrmCauseListCmp />
                       </td>
-                    </tr> -->
-                    <!-- causes 
+                    </tr> 
+                    <!-- causes  -->
                     <tr>
                         <td >
                             <div class="topSpacing">
@@ -1230,7 +1230,7 @@
                                 </ui:inputSelect>
                             </div>
                         </td>
-                    </tr -->
+                    </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskTreatment}">
                     

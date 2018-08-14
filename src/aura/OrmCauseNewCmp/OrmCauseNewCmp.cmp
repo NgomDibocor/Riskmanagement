@@ -6,13 +6,14 @@
 	<aura:registerEvent name="OrmCauseCreatedEvt" type="c:OrmCauseCreatedEvt" />
 	
 	<!-- attributes -->
+	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="cause" type="Macro" default="{ 'sobjectType' : 'Macro',
 														  'Name' : '',
 														  'Description' : '',
 														  'orm_assessmentRisk__c' : ''
 														}"/>
 	
-	<aura:attribute name="idAssessmentRisk" type="String" />
+	
 	
 	<aura:if isTrue="{!v.isOpen}">
 			<!--###### MODAL BOX Start From Here ######-->    		

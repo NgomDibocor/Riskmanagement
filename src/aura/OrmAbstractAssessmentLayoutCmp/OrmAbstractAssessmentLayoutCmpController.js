@@ -63,6 +63,10 @@
         if(showRiskAnalyse == true){
             component.set("v.showListCauseAndImpact", true);
             component.set("v.showRiskAnalyse", false);
+            //send idAseessmentRisk to CauseListCmp
+            var evt = $A.get("e.c:OrmSendIdAssessmentRiskToCauseEvt");
+            evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+            evt.fire();
             helper.activeRiskAnalyeListCauseAndImpact(component, event);
                 
         }
@@ -183,6 +187,7 @@
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", true);
         helper.activeRiskAnalye(component, event);
+        component.set("v.idAssessmentRisk", idAssessmentRisk);
         var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
         evt.setParams({"riskAssessmentId": idAssessmentRisk});
         evt.fire();

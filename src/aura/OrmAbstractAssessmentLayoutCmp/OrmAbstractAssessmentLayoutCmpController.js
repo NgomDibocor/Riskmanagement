@@ -129,6 +129,9 @@
             component.set("v.showRiskAnalyse", true);
             component.set("v.showListCauseAndImpact", false);
             helper.activeRiskAnalye(component, event);
+            var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
+            evt.setParams({"riskAssessmentId": component.get("v.idAssessmentRisk")});
+            evt.fire();
         }
         if(showListMeasure == true){
             component.set("v.showListCauseAndImpact", true);

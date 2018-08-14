@@ -103,6 +103,9 @@
       var assessment= component.get("v.assessmentRiskData.orm_assessment__c");
       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
       
+      	assessmentRisk.orm_assessment__c = assessment;
+      	assessmentRisk.orm_Risk__c = risk;
+      	
        var dateRisk=component.find("dateRisk");
         assessmentRisk.orm_date__c =dateRisk.get("v.value");
        var environmentAndCommunity =  component.find("environmentAndCommunity");
@@ -123,11 +126,12 @@
        		assessmentRisk.orm_security__c =security.get("v.value");
        var reputation = component.find("reputation");
        		assessmentRisk.orm_reputation__c =reputation.get("v.value");
-       		
+       		 
        var action = component.get('c.addAssessmentRisk');
         action.setParams({
             "item": assessmentRisk
         });
+        alert(JSON.stringify(assessmentRisk));
         action
         .setCallback(
             this,

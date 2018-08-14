@@ -30,25 +30,6 @@
 																	}" />
   <aura:attribute name="displaySaveCancelBtn" type="boolean" default="false"/> 
     <table class="slds-table">
-	    
-		      <aura:if isTrue="{!v.displaySaveCancelBtn}">
-                      <tr>
-                          <td class="textInDiv">
-                             <div style="margin-bottom:20px;">
-                                 <lightning:buttonGroup class="slds-m-around_medium">
-                                 <lightning:button label="Cancel" onclick="{!c.cancel}"/>
-			                          <lightning:button label="Save"
-			                                            variant="brand"
-			                                                      class="slds-button"
-			                                            onclick="{!c.updateAssessmentRisk}"/>
-			                      </lightning:buttonGroup>
-                                  <span style="color:red">Click on this button for saving the risk assessment</span>
-                             </div>
-                          </td>
-                          <td><lightning:spinner alternativeText="Loading" size="medium" /></td>
-                      </tr>
-                    </aura:if>
-		    
         <tr>
             <td>
                  <lightning:card variant="Narrow" title="{!v.assessmentRiskData.orm_Risk__r.Name}" 
@@ -60,7 +41,18 @@
             </td>
 
             <td>
-                
+                <aura:if isTrue="{!v.displaySaveCancelBtn}">
+                             <div style="margin-bottom:20px;">
+                                 <lightning:buttonGroup class="slds-m-around_medium">
+                                 <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+			                          <lightning:button label="Save"
+			                                            variant="brand"
+			                                                      class="slds-button"
+			                                            onclick="{!c.updateAssessmentRisk}"/>
+			                      </lightning:buttonGroup>
+                                  
+                             </div>
+                    </aura:if>
             </td>
         </tr>
         

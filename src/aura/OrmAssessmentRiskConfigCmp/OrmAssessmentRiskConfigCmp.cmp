@@ -1,58 +1,72 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmRiskController" >
 <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+<aura:handler action="{!c.refreshRiskAnalysis}" event="c:OrmInstantiateRiskAnalysisEvt" />
 <aura:attribute name="assessmentRiskId" type="string" description="" />
-
-	 <div class="slds-grid slds-wrap">
-            <div class="slds-col slds-size_1-of-2">
-                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:100%;">
-                    <div class="slds-page-header">
-                        <div class="slds-grid">
-                            <div class="slds-col slds-has-flexi-truncate">
-                                <div class="slds-media slds-no-space slds-grow">
-                                    <div class="slds-media__figure">
-                                        <div class="slds-media__figure">
-                                            <span class="slds-icon_container " title="">
-                                   				
-                                				</span>
-                                        </div>
-                                    </div>
-                                    <div class="slds-media__body">
-                                        <nav>
-                                            <ol class="slds-breadcrumb slds-line-height_reset">
-                                                <li class="slds-breadcrumb__item">
-                                                    <span><b><ui:outputText value="" /></b></span>
-                                                </li>
-                                            </ol>
-                                        </nav>
-                                        <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title=""></h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slds-col slds-no-flex slds-grid slds-align-top">
-
-                                <div class="slds-button-group" role="group">
-                                    <button class="slds-button slds-button_neutral">{!$Label.c.show_button_title}</button>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="slds-grid slds-page-header__detail-row">
-                            <li class="slds-page-header__detail-block">
-                              
-                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 1"><u></u></p>
-                                
-                               
-                            </li>
-                            <li class="slds-page-header__detail-block">
-                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field2 (3)"><u></u></p>
-                               
-                            </li>
-                            <li class="slds-page-header__detail-block">
-                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"> </p>
-                                
-                            </li>
-                        </ul>
-                    </div>
+<aura:attribute name="frequency" type="orm_frequency__c[]" />
+<aura:attribute name="assessmentRiskId" type="String" description="" />
+<aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{
+																		'sobjectType' : 'orm_assessmentRisk__c',
+												                         'orm_assessment__c': '',  
+												                         'orm_Risk__c':''   
+																	}" />
+	<table class="slds-table">
+	      <tr>
+              <td>
+                <div class="topSpacing">
+                <label class="slds-form-element__label">Risk Name<span class="cmn_mandatory_indicator">*</span></label>
                 </div>
-            </div>
-    </div>
+                <div class="width">  
+                <a href="javascript:void(0);">
+                <ui:inputText class="slds-input"  
+                                           value="{!v.assessmentRiskData.orm_Risk__r.Name}" disabled="true">
+                </ui:inputText>
+                </a>
+              </div>
+            </td>
+      
+              <td>
+                <div class="topSpacing">
+                <label class="slds-form-element__label">Description<span class="cmn_mandatory_indicator">*</span></label>
+                </div>
+                <div class="width">  
+                <a href="javascript:void(0);">
+                <ui:inputText class="slds-input"  
+                                           value="{!v.assessmentRiskData.orm_Risk__r.Description}" disabled="true">
+                </ui:inputText>
+                </a>
+              </div>
+            </td>
+       </tr>
+       
+          <tr>
+              <td>
+                <div class="topSpacing">
+                <label class="slds-form-element__label">Risk Name<span class="cmn_mandatory_indicator">*</span></label>
+                </div>
+               <ui:inputSelect aura:id="frequency" 
+	            change="{!c.onChangefrequency}" class="slds-select"
+	               labelClass="slds-form-element__label">
+	                <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_frequency__c}"
+	                   label="{!v.assessmentRiskData.orm_frequency__c}"/>
+	                   <aura:iteration items="{!v.frequency}" var="frequency">
+	                    <ui:inputSelectOption text="{!frequency}"  label="{!frequency}" />
+	              	 </aura:iteration>
+	          </ui:inputSelect>
+            </td>
+      
+              <td>
+                <div class="topSpacing">
+                <label class="slds-form-element__label">Description<span class="cmn_mandatory_indicator">*</span></label>
+                </div>
+                <div class="width">  
+                <a href="javascript:void(0);">
+                <ui:inputText class="slds-input"  
+                                           value="{!v.assessmentRiskData.orm_Risk__r.Description}" disabled="true">
+                </ui:inputText>
+                </a>
+              </div>
+            </td>
+       </tr>
+   </table>
+    
 </aura:component>

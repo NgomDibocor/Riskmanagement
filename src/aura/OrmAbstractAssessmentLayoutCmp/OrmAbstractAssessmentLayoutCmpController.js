@@ -7,8 +7,9 @@
         var showContextWorkshop = component.get("v.showContextWorkshop");
         var showRiskIdentif = component.get("v.showRiskIdentif");
         var showRiskAnalyse = component.get("v.showRiskAnalyse");
+        var showListCauseAndImpact = component.get("v.showListCauseAndImpact");
+        var showListMeasure = component.get("v.showListMeasure");
         var showRiskTreatment = component.get("v.showRiskTreatment");
-        var showData = component.get("v.showData");
         if(showContext == true){
             var newItem = component.get("v.assessmentData");
             //var assessmentName = component.find("Name").get("v.value");
@@ -60,16 +61,22 @@
             helper.activeRiskAnalye(component, event);
         }   
         if(showRiskAnalyse == true){
-            component.set("v.showRiskTreatment", true);
-            component.set("v.showRiskIdentif", false);
-            helper.activeRiskTreatment(component, event);
+            component.set("v.showListCauseAndImpact", true);
+            component.set("v.showRiskAnalyse", false);
+            helper.activeRiskAnalyeListCauseAndImpact(component, event);
                 
         }
+        if(showListCauseAndImpact == true){
+            component.set("v.showListMeasure", true);
+            component.set("v.showListCauseAndImpact", false);
+            helper.activeRiskAnalyeListMeasure(component, event);
+        }
+        /*if(showListMeasure == true){
+            
+        }*/
         if(showRiskTreatment == true){
-       
             component.set("v.showActionPlan", true);
             component.set("v.showRiskTreatment", false);
-            component.set("v.showError", false);
             helper.activeActionPlan(component, event);
         }
         
@@ -81,6 +88,8 @@
         var showContextWorkshop = component.get("v.showContextWorkshop");
         var showRiskIdentif = component.get("v.showRiskIdentif");
         var showRiskAnalyse = component.get("v.showRiskAnalyse");
+        var showListCauseAndImpact = component.get("v.showListCauseAndImpact");
+        var showListMeasure = component.get("v.showListMeasure");
         var showRiskTreatment = component.get("v.showRiskTreatment");
         var showActionPlan = component.get("v.showActionPlan");
         
@@ -105,16 +114,27 @@
             component.set("v.showContextWorkshop", true);
             component.set("v.showRiskIdentif", false);
             helper.activeContextWorkshop(component, event);
-        }    
+        }
+        
         if(showRiskAnalyse == true){
             component.set("v.showRiskIdentif", true);
             component.set("v.showRiskAnalyse", false);
             helper.activeRiskIdentif(component, event);
         }
+        if(showListCauseAndImpact == true){
+            component.set("v.showRiskAnalyse", true);
+            component.set("v.showListCauseAndImpact", false);
+            helper.activeRiskAnalye(component, event);
+        }
+        if(showListMeasure == true){
+            component.set("v.showListCauseAndImpact", true);
+            component.set("v.showListMeasure", false);
+            helper.activeRiskAnalyeListCauseAndImpact(component, event);
+        }
         if(showRiskTreatment == true){
             component.set("v.showRiskTreatment", false);
-            component.set("v.showRiskAnalyse", true);
-            helper.activeRiskAnalye(component, event);
+            component.set("v.showListMeasure", true);
+            helper.activeRiskAnalyeListMeasure(component, event);
         }
         if(showActionPlan == true){
             component.set("v.showRiskTreatment", true);

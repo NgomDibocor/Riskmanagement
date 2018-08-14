@@ -6,10 +6,11 @@
     <aura:attribute name="showContextWorkshop" type="boolean" default="false"/>
     <aura:attribute name="showRiskIdentif" type="boolean" default="false"/>
     <aura:attribute name="showRiskAnalyse" type="boolean" default="false"/>
+    <aura:attribute name="showListCauseAndImpact" type="boolean" default="false"/>
+    <aura:attribute name="showListMeasure" type="boolean" default="false"/>
      <aura:attribute name="showRiskTreatment" type="boolean" default="false"/>
      <aura:attribute name="showActionPlan" type="boolean" default="false"/>
     <aura:attribute name="setMessage" type="String"/> 
-    <aura:attribute name="showError" type="boolean" default="false"/>
     <aura:attribute name="checkUpdateActivity" type="boolean" default="false"/>
     <aura:attribute name="showData" type="boolean" default="false"/>
     <aura:attribute name="message" type="String" default="NoError"/>
@@ -157,6 +158,19 @@
 			                 <button class="slds-button" onclick="{!c.nextTab}">
 			                    <lightning:icon iconName="utility:chevronright" size="medium" />
 			                 </button>
+			              </aura:if>
+			              <aura:if isTrue="{!v.showListCauseAndImpact}">        
+		                     <button class="slds-button" onclick="{!c.prevTab}">
+		                       <lightning:icon iconName="utility:chevronleft" size="medium" />
+		                     </button> 
+			                 <button class="slds-button" onclick="{!c.nextTab}">
+			                    <lightning:icon iconName="utility:chevronright" size="medium" />
+			                 </button>
+			              </aura:if>
+			              <aura:if isTrue="{!v.showListMeasure}">        
+		                     <button class="slds-button" onclick="{!c.prevTab}">
+		                       <lightning:icon iconName="utility:chevronleft" size="medium" />
+		                     </button> 
 			              </aura:if>
 			              <aura:if isTrue="{!v.showRiskTreatment}">        
 			                 <button class="slds-button" onclick="{!c.prevTab}">
@@ -1204,31 +1218,25 @@
                        </tr>
                  </aura:if>  
                  <aura:if isTrue="{!v.showRiskAnalyse}">
-                 	<!-- <c:OrmRiskAnalysisCmp />
-                      list of causee -->
+                 	   <!-- <c:OrmRiskAnalysisCmp />-->
                     <tr>
                       <td>
-                        <c:OrmAssessmentRiskConfigCmp />
+                          <c:OrmAssessmentRiskConfigCmp />
                       </td>
                     </tr>
+                </aura:if>
+                <aura:if isTrue="{!v.showListCauseAndImpact}">
                     <tr>
                       <td>
                         <c:OrmCauseListCmp />
                       </td>
                     </tr> 
-                    <!-- causes  -->
+                </aura:if>
+                <aura:if isTrue="{!v.showListMeasure}">
                     <tr>
                         <td >
-                            <div class="topSpacing">
-                                <label class="slds-form-element__label ">Measure<span class="cmn_mandatory_indicator">*</span></label>
-                            </div>                                        
-                            <div class="width">
-                                <ui:inputSelect class="slds-input" aura:id="Measure" change="{!c.onSelectChange}">
-                                    <ui:inputSelectOption text="Prospecting" label="Measure1" value="true"/>
-                                    <ui:inputSelectOption text="Qualification" label="Measure2"/>
-                                    <ui:inputSelectOption text="Needs Analysis" label="Measure3"/>
-                                </ui:inputSelect>
-                            </div>
+                            <!-- showListMeasure -->
+                            <p>List measure</p>
                         </td>
                     </tr>
                 </aura:if>
@@ -1301,6 +1309,19 @@
                    <button class="slds-button" onclick="{!c.nextTab}">
                       <lightning:icon iconName="utility:chevronright" size="medium" />
                    </button>
+                </aura:if>
+                <aura:if isTrue="{!v.showListCauseAndImpact}">        
+                   <button class="slds-button" onclick="{!c.prevTab}">
+                     <lightning:icon iconName="utility:chevronleft" size="medium" />
+                   </button> 
+                   <button class="slds-button" onclick="{!c.nextTab}">
+                     <lightning:icon iconName="utility:chevronright" size="medium" />
+                   </button>
+                </aura:if>
+                <aura:if isTrue="{!v.showListMeasure}">        
+                   <button class="slds-button" onclick="{!c.prevTab}">
+                      <lightning:icon iconName="utility:chevronleft" size="medium" />
+                   </button> 
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskTreatment}">        
                    <button class="slds-button" onclick="{!c.prevTab}">

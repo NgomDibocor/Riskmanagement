@@ -57,10 +57,12 @@
 								<div class=" slds-size--5-of-6">
 									<lightning:datatable aura:id="idworkshopcontact"
 										data="{!v.ContactList}" class="slds-m-top_medium"
+										
 										columns="{!v.columns }" keyField="id"
 										resizeColumnDisabled="false" selectedRows="{!v.Contact}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
+										 onheaderaction="{!c.handleHeaderAction }"
 										showRowNumberColumn="false" />
 								</div>
 

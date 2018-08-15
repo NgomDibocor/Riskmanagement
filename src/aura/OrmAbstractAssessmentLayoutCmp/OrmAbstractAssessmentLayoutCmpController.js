@@ -63,12 +63,20 @@
         if(showRiskAnalyse == true){
             component.set("v.showListCauseAndImpact", true);
             component.set("v.showRiskAnalyse", false);
+            //send idAseessmentRisk to CauseListCmp
+            var evt = $A.get("e.c:OrmSendIdAssessmentRiskToCauseEvt");
+            evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+            evt.fire();
             helper.activeRiskAnalyeListCauseAndImpact(component, event);
                 
         }
         if(showListCauseAndImpact == true){
             component.set("v.showListMeasure", true);
             component.set("v.showListCauseAndImpact", false);
+            //send idAseessmentRisk to MeasureListCmp
+            var evt = $A.get("e.c:OrmSendIdAssesssmentRiskEvt");
+            evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+            evt.fire();
             helper.activeRiskAnalyeListMeasure(component, event);
         }
         /*if(showListMeasure == true){
@@ -125,10 +133,16 @@
             component.set("v.showRiskAnalyse", true);
             component.set("v.showListCauseAndImpact", false);
             helper.activeRiskAnalye(component, event);
+            var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
+            evt.setParams({"riskAssessmentId": component.get("v.idAssessmentRisk")});
+            evt.fire();
         }
         if(showListMeasure == true){
             component.set("v.showListCauseAndImpact", true);
             component.set("v.showListMeasure", false);
+            var evt = $A.get("e.c:OrmSendIdAssessmentRiskToCauseEvt");
+            evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+            evt.fire();
             helper.activeRiskAnalyeListCauseAndImpact(component, event);
         }
         if(showRiskTreatment == true){
@@ -183,6 +197,7 @@
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", true);
         helper.activeRiskAnalye(component, event);
+        component.set("v.idAssessmentRisk", idAssessmentRisk);
         var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
         evt.setParams({"riskAssessmentId": idAssessmentRisk});
         evt.fire();

@@ -14,7 +14,7 @@
 			        <aura:if isTrue="{!v.showDetailsAssessmentRisk}">
 				 	      <tr>
 		                     <td>
-		                       <c:OrmAssessmentRiskConfigCmp assessmentRiskId="{!v.assessmentRiskId}" />
+		                      <!--  <c:OrmAssessmentRiskConfigCmp assessmentRiskId="{!v.assessmentRiskId}" /> -->
 		                     </td>
 		                   </tr>
 	                 </aura:if>

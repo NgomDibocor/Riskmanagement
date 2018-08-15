@@ -50,6 +50,10 @@ public with sharing class OrmAssessmentRiskController {
         List<AggregateResult> agrResults =  [Select orm_assessment__r.Id, orm_assessment__r.Name,  
                                              count(orm_Risk__c) nbRisk
                                              From orm_assessmentRisk__c 
+                                             Where orm_assessment__r.orm_projetManager__c = :UserInfo.getUserId() 
+                                                or CreatedById = :UserInfo.getUserId()
+                                                or orm_assessment__r.orm_riskManager__c = :UserInfo.getUserId() 
+                                                or orm_assessment__r.orm_organisationManager__c = :UserInfo.getUserId()
                                              GROUP BY orm_assessment__r.Name, orm_assessment__r.Id ];
                                              //Where CreatedById = :UserInfo.getUserId()
 
@@ -61,7 +65,7 @@ public with sharing class OrmAssessmentRiskController {
         //get all assessment with Id in mapIdAssessmentNbRisk
         List<Assessment__c> assessments = [Select Id, Name, orm_description__c, orm_objectif__c 
                               From Assessment__c  
-                              WHERE Id IN : mapIdAssessmentNbRisk.keySet() ];                                 
+                              WHERE Id IN : mapIdAssessmentNbRisk.keySet() ]; // And                                 
          //for each assessment, we have the number of risk and the assessment informations
         Map<String, Map<String, Object>> mapObjects = new Map<String, Map<String, Object>>();  
         for (Assessment__c assess: assessments){

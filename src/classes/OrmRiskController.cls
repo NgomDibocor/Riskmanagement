@@ -141,7 +141,7 @@ public with sharing class OrmRiskController {
     public static orm_assessmentRisk__c findAssessmentRisk(String item)
     {
        return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
-                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description,orm_cost__c,orm_date__c,
+                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description,orm_cost__c,orm_date__c,orm_schedule__c,
                        orm_environmentAndCommunity__c,orm_frequency__c,orm_healthAndSafety__c,orm_manageAbility__c,
                        orm_productionLoss__c,orm_reputation__c,orm_security__c,orm_status__c,orm_vulnerability__c
                         From orm_assessmentRisk__c 

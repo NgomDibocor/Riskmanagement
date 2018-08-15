@@ -11,7 +11,7 @@
 	 *  @description: method for opening the component and initilizing its attributes */
 	openOrmCauseNewCmp : function(component, event, helper) {
 		component.set("v.isOpen", true);
-        component.set('v.idAssessmentRisk', event.getParam('idAssessmentRisk'));
+        //component.set('v.idAssessmentRisk', event.getParam('idAssessmentRisk'));
 	},
 	
 	/** @author: Laye
@@ -31,8 +31,7 @@
         	var newCause = component.get('v.cause');
         	newCause.Name = name;
         	newCause.Description = description;
-        	//newCause.orm_assessmentRisk__c = component.get('v.idAssessmentRisk');
-        	newCause.orm_assessmentRisk__c = "a001H00000kcsVDQAY";
+        	newCause.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
         	
         	var action = component.get('c.add');
             action.setParams({
@@ -40,7 +39,7 @@
             });
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
-            		newCause = response.getReturnValue();
+            		var newCause = response.getReturnValue();
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
 			           'message' : newCause.Name +' has been added',
@@ -48,21 +47,15 @@
 			           'mode' : 'dismissible'
 		            });	
 		            toast.fire();
-            		
                     component.set('v.cause', { 'sobjectType' : 'Macro',
                                                'Name' : '',
                                                'Description' : '',
                                                'orm_assessmentRisk__c' : ''
                     });
-                   
                    var evt = $A.get("e.c:OrmCauseCreatedEvt");
-                   evt.setParams({'idAssessmentRisk': 'a001H00000kcsVDQAY'});
                    evt.fire();
-                   //component.set("v.isOpen", false);
-                   helper.closeModal(component);
-                   console.log('isOpen ' + component.get("v.isOpen"));
+                   component.set("v.isOpen", false);
             	} else {
-            		console.log('response '+ response);
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
 			           'message' : 'ERROR',

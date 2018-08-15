@@ -1,9 +1,10 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmCauseController">
 	
 	<!-- methodes -->
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
     <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshList}" />
-    <aura:handler  event="c:OrmActiveRiskAnalyeCmpEvt"  action="{!c.getAssessmentRiskId}"/>
+    <!--<aura:handler  event="c:OrmActiveRiskAnalyeCmpEvt"  action="{!c.getAssessmentRiskId}"/>  -->
+    <aura:handler event="c:OrmSendIdAssessmentRiskToCauseEvt" action="{!c.getAssessmentRiskId}" />
+    
     <!-- events -->
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
 	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
@@ -12,7 +13,7 @@
 
 	<!-- attributes -->
 	<aura:attribute name="causes" type="Macro[]" description="" />
-	<aura:attribute name="assessmentRiskId" type="string" description="" />
+	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" description="" />
 	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
@@ -30,11 +31,11 @@
 				</a>
 			</div>
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}" class="btnNewCause" onclick="{!c.openCauseNewCmp}">
-	        	<lightning:icon iconName="utility:new" size="xx-small" />
+	        	<lightning:icon iconName="utility:new" size="medium" />
 	        </span>
 	        
 	        <span class="deleteCause" onclick="{!c.openModalDeleteCause}">
-				<lightning:icon iconName="utility:delete" size="xx-small" />
+				<lightning:icon iconName="utility:delete" size="medium" />
 			</span>
 	
 			<!-- use aura:if for show/hide buttons --> 
@@ -112,5 +113,5 @@
 	    </aura:if>
 	<!-- /openModalConfirmDeletion -->
 		
-	<c:OrmCauseNewCmp />
+	<c:OrmCauseNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

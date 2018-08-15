@@ -1,18 +1,11 @@
-<aura:component controller="OrmCauseController" extends="c:OrmAbstractNewCmp">
-		
-	<!-- methodes -->
-	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
-	<aura:handler action="{!c.openOrmCauseNewCmp}" event="c:OrmNewCauseClickedEvt" />
-	<aura:registerEvent name="OrmCauseCreatedEvt" type="c:OrmCauseCreatedEvt" />
-	
-	<!-- attributes -->
+<aura:component extends="c:OrmAbstractNewCmp" controller="OrmMeasureController">
 	<aura:attribute name="idAssessmentRisk" type="string" />
-	<aura:attribute name="cause" type="Macro" default="{ 'sobjectType' : 'Macro',
-														  'Name' : '',
-														  'Description' : '',
-														  'orm_assessmentRisk__c' : ''
-														}"/>
+	<aura:attribute name="measure" type="Assessment__c" default="{'sobjectType' : 'Assessment__c',
+                                                               'Name' : '',
+                                                               'orm_description__c' : ''
+                                                               }"/>
 	
+	<aura:handler action="{!c.openOrmMeasureNewCmp}" event="c:OrmNewMeasureClickedEvt" />
 	
 	
 	<aura:if isTrue="{!v.isOpen}">
@@ -27,7 +20,7 @@
 							title="Close" onclick="{!c.closeModal}">
 							X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 						</button>
-						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}</h1>
+						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label + ' ' + 'Measure'}</h1>
 					</div>
 					<!--###### MODAL BOX BODY Part Start From Here ######-->
 					<div class="slds-modal__content slds-p-around--medium">
@@ -38,13 +31,13 @@
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
                                             <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_label_cause}" class="slds-input"
-                                     			value="{!v.cause.Name}" required="true"/>
+                                     			value="{!v.measure.Name}" required="true"/>
 										</div>
 									</div>
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
 											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" class="slds-input"
-                                     			value="{!v.cause.Description}" required="true"/>
+                                     			value="{!v.measure.orm_description__c}" required="true"/>
 										</div>
 									</div>                          
 								</div>								
@@ -67,4 +60,5 @@
 			<div class="slds-backdrop slds-backdrop--open"></div>
 			<!--###### MODAL BOX Part END Here ######-->
     </aura:if>
+	
 </aura:component>

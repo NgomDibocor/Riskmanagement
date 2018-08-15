@@ -4,6 +4,8 @@
   <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
   <aura:attribute name="key" type="string" description="" />
 	
+  <aura:registerEvent name="OrmNewMeasureClickedEvt"  type="c:OrmNewMeasureClickedEvt"/>
+  
   <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.refreshList}" />
   
   <div class="slds-m-around_large">
@@ -69,4 +71,5 @@
 		</div>
 	</div>
 	
+	<c:OrmMeasureNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

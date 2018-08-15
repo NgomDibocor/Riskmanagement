@@ -12,10 +12,12 @@
 .THIS span.btnNewMeasure {
     display: inline-block;
     width: 5%;
+    cursor: pointer;
 }
 .THIS .deleteMeasure{
 	display: inline-block;
     width: 5%;
+    cursor: pointer;
 }
 .THIS table {
     margin-top: 20px;

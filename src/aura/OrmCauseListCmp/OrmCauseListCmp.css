@@ -13,10 +13,12 @@
 .THIS .deleteCause{
 	display: inline-block;
     width: 5%;
+    cursor: pointer;
 }
 .THIS span.btnNewCause {
     display: inline-block;
     width: 5%;
+    cursor: pointer;
 }
 .THIS table {
     margin-top: 20px;

@@ -26,4 +26,17 @@ public with sharing class OrmMeasureController {
 					RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
 	
 	}
+	
+	/**
+	 * @author: Dibocor NGOM
+	 * @date: Creation: 15/08/2018
+	 * @description: find all measure related to the assessmentRisk
+	*/
+	@AuraEnabled
+	public static Assessment__c add(Assessment__c item){        
+        item.RecordTypeId = OrmMeasureController.getMeasureRecordTypeId();
+		upsert item;
+		return item;
+	}
+	
 }

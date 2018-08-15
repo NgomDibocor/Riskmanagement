@@ -32,7 +32,8 @@
     },
     
     openNewMeasureCmp : function (component, event, helper){
-    
+        var evt = $A.get("e.c:OrmNewMeasureClickedEvt");
+		evt.fire();
     },
     sendDescriptionFieldMeasure : function (component, event, helper){
     

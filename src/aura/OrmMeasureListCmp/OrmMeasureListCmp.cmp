@@ -6,7 +6,8 @@
 	
   <aura:registerEvent name="OrmNewMeasureClickedEvt"  type="c:OrmNewMeasureClickedEvt"/>
   
-  <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.refreshList}" />
+  <aura:handler event="c:OrmMeasureCreatedEvt" action="{!c.refreshList}" />
+  <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.getIdAssessmentRisk}" />
   
   <div class="slds-m-around_large">
 		<div class="topSpacing">

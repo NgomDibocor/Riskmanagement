@@ -4,6 +4,7 @@
                                                                'Name' : '',
                                                                'orm_description__c' : ''
                                                                }"/>
+	<aura:registerEvent name="MeasureCreated" type="c:OrmMeasureCreatedEvt" />
 	
 	<aura:handler action="{!c.openOrmMeasureNewCmp}" event="c:OrmNewMeasureClickedEvt" />
 	

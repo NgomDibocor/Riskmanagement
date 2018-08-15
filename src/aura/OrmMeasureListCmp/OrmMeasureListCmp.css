@@ -1,2 +1,22 @@
 .THIS {
 }
+.THIS div.measure {
+    display: inline-block;
+    width:95%;
+}
+.THIS .measureSearch {
+	display: inline-block;
+    width:90%;
+    margin-right: 15px;
+}
+.THIS span.btnNewMeasure {
+    display: inline-block;
+    width: 5%;
+}
+.THIS .deleteMeasure{
+	display: inline-block;
+    width: 5%;
+}
+.THIS table {
+    margin-top: 20px;
+}

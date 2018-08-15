@@ -41,4 +41,7 @@
 }
 .THIS .scheduleSelect{
 	width: 15%;
+}  
+.THIS .heightHiddenInput{
+	height: 3px;
 }

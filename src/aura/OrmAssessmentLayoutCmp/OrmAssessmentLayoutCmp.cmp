@@ -246,7 +246,9 @@
 	                       <td>
                                 <lightning:card variant="Narrow" 
                                                 title="{!$Label.c.orm_type_assessment+':  '+v.assessmentData.orm_typeAssessment__c}" 
-                                                iconName="standard:account"/>
+                                                iconName="standard:account">
+                                    <lightning:input aura:id="typeAssessment" value="{!v.assessmentData.orm_typeAssessment__c}" class="slds-hidden heightHiddenInput" />
+                                </lightning:card>
                              </td>
                             </tr>    
 	                  </aura:set>

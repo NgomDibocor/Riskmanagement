@@ -1,20 +1,39 @@
 ({
-	/***************************************************************************
-	 * doInit : function(component, event, helper) { // call the apex class
-	 * method and fetch contact list
-	 *  // call the apex class method and fetch contact list
-	 *  },
-	 **************************************************************************/
+	
+	  doInit : function(component, event, helper) { // call the apex class
+	  //method and fetch contact list
+	   // call the apex class method and fetch contact list
+	   alert('init');
+	   	var rowActions = helper.getRowActions.bind(this, component);
+	   component.set('v.columns', [ {
+			label : 'Name',
+			fieldName : 'Name',
+			type : 'text'
+		}, {
+			label : 'Invitation',
+			fieldName : 'invitation',
+			type : 'text'
+		}, {
+			type : 'action',
+			typeAttributes : {
+				rowActions : rowActions
+			}
+		} ]);
+	  },
+	
 
 	openModalContacts : function(component, event, helper) {
+
 		component.set('v.workshop', event.getParam('Workshop'));
-		var action = component.get("c.findAllContact");
+		alert('component'+component.get('v.workshop').Id);
+		 var action = component.get("c.findAllContact");
 		action
 				.setCallback(
 						this,
 						function(response) {
 							var state = response.getState();
 							if (state === "SUCCESS") {
+								
 								var storeResponse = response.getReturnValue();
 								// console.log(JSON.stringify(storeResponse));
 
@@ -31,7 +50,7 @@
 									var action1 = component
 											.get("c.findAllContactWorkshop");
 									action1.setParams({
-										'item' : component.get("v.workshop")
+										'item' :component.get('v.workshop')
 									});
 									action1
 											.setCallback(
@@ -84,23 +103,11 @@
 		$A.enqueueAction(action);
 
 		component.set("v.ContactList", component.get("v.ContactListTemp"));
-		var rowActions = helper.getRowActions.bind(this, component);
+	
 		// Set the columns of the Table
-		component.set('v.columns', [ {
-			label : 'Name',
-			fieldName : 'Name',
-			type : 'text'
-		}, {
-			label : 'Invitation',
-			fieldName : 'invitation',
-			type : 'text'
-		}, {
-			type : 'action',
-			typeAttributes : {
-				rowActions : rowActions
-			}
-		} ]);
+		
 		component.set("v.isOpenModalContactWorkshop", true);
+		alert(JSON.stringify(component.get('v.ContactList')));
 	},
 
 	closeModalWorkshopContact : function(component, event, helper) {

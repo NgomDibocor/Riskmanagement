@@ -24,7 +24,7 @@
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
 	<aura:attribute name="columns" type="List" />
-	<!--  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />-->
+	 <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 	<!--  <aura:registerEvent name="OrmRefreshContactWorkshopEvt"  type="c:OrmRefreshContactWorkshopEvt"/>-->
@@ -56,9 +56,9 @@
 								</div>
 								<div class=" slds-size--5-of-6">
 									<lightning:datatable aura:id="idworkshopcontact"
-										data="{!v.ContactList}" class="slds-m-top_medium"
-										
-										columns="{!v.columns }" keyField="id"
+										data="{!v.ContactList}"
+										class="slds-m-top_medium"
+										columns="{!v.columns}" keyField="id"
 										resizeColumnDisabled="false" selectedRows="{!v.Contact}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"

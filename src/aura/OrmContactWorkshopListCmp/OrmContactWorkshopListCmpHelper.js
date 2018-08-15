@@ -98,6 +98,10 @@
             }
         });
         $A.enqueueAction(action);
+      },
+      
+      refreshContactWorkshop:function(component){
+     
       }
 	
 	

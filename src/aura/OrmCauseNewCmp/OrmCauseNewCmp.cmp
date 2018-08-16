@@ -8,7 +8,6 @@
 	<!-- attributes -->
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="cause" type="Macro" default="{ 'sobjectType' : 'Macro',
-														  'Name' : '',
 														  'Description' : '',
 														  'orm_assessmentRisk__c' : ''
 														}"/>
@@ -33,12 +32,15 @@
 						<form class="slds-form--stacked">
 							<div class="slds-grid slds-gutters">
 								<div class="slds-col">
+									<!-- 
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
+										
                                             <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_label_cause}" class="slds-input"
                                      			value="{!v.cause.Name}" required="true"/>
 										</div>
 									</div>
+									-->
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
 											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" class="slds-input"

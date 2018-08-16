@@ -102,7 +102,9 @@
 	            		helper.refresh(component, event);
 	            		var toast = $A.get('e.force:showToast');
 	            		toast.setParams({
-				           'message' : 'New Phase Has Been Successfully Added',
+				           'message' : $A.get('$Label.c.new_title_labels')+ ' ' 
+			           		+ $A.get('$Label.c.orm_phase') + ' '
+			           		+ $A.get('$Label.c.orm_toast_success'),
 				           'type' : 'success',
 				           'mode' : 'dismissible'
 			            });	
@@ -120,7 +122,7 @@
 	            	} else {
 	            		var toast = $A.get('e.force:showToast');
 	            		toast.setParams({
-				           'message' : 'ERROR',
+				           'message' : $A.get('$Label.c.orm_error'),
 				           'type' : 'error',
 				           'mode' : 'dismissible'
 			            });	
@@ -174,7 +176,5 @@
     cancelDeletePhases : function(component, event, helper) {
     	component.set('v.openModalConfirmDeletion', false);
     },
-    
-    
         
 })

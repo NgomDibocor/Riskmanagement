@@ -24,8 +24,8 @@
     sendDescriptionFieldCause : function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": "Cause",
-            "descriptionField": "Description"
+            "nomField": $A.get('$Label.c.orm_label_cause'),
+            "descriptionField": $A.get('$Label.c.orm_describe_cause')
         });
         evt.fire();
     },
@@ -49,7 +49,7 @@
 	                    component.set("v.showSaveCancelBtn", false);
 	                    var toast = $A.get('e.force:showToast');
 			            toast.setParams({
-			            	'message' : 'Updated ...',
+			            	'message' : $A.get('$Label.c.orm_updated'),
 			                'type' : 'success',
 			                'mode' : 'dismissible'
 			            });	
@@ -79,7 +79,7 @@
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true
-        	 		data = data.filter(row => regex.test(row.Name)|| regex.test(row.Description));
+        	 		data = data.filter(regex.test(row.Description));
 		        } catch (e) {
 		    	   
 		        }

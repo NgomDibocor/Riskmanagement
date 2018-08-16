@@ -2,7 +2,7 @@
 	getAllMeasuresByAssessmentRisk : function(component, event) {	
 		
         var action = component.get("c.getAllMeasuresByAssessmentRisk");
-        action.setParam('idAssessmentRisk', component.get("v.assessmentRiskId"));
+        action.setParam('idAssRisk', component.get("v.idAssessmentRisk"));
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {   

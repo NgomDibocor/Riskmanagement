@@ -1,7 +1,10 @@
 ({
-	refreshList : function(component, event, helper) {
-		//alert(event.getParam('idAssessmentRisk'));
+	getIdAssessmentRisk : function(component, event, helper) {
 		component.set("v.idAssessmentRisk", event.getParam('idAssessmentRisk'));
+		helper.getAllMeasuresByAssessmentRisk(component, event);
+	},
+	
+	refreshList : function(component, event, helper) {
 		helper.getAllMeasuresByAssessmentRisk(component, event);
 	},
 	

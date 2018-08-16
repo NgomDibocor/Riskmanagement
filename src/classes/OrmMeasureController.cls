@@ -22,8 +22,10 @@ public with sharing class OrmMeasureController {
 	*/
 	@AuraEnabled
 	public static List<Assessment__c> getAllMeasuresByAssessmentRisk(String idAssRisk){
-		return [SELECT Id, Name, orm_description__c FROM Assessment__c WHERE orm_assessmentRisk__c =: idAssRisk AND 
-					RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
+		return [SELECT Id, Name, orm_description__c 
+		        FROM Assessment__c 
+		        WHERE orm_assessmentRisk__c =: idAssRisk 
+		        AND RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
 	
 	}
 	

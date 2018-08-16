@@ -4,6 +4,7 @@
                                                                'Name' : '',
                                                                'orm_description__c' : ''
                                                                }"/>
+	<aura:registerEvent name="MeasureCreated" type="c:OrmMeasureCreatedEvt" />
 	
 	<aura:handler action="{!c.openOrmMeasureNewCmp}" event="c:OrmNewMeasureClickedEvt" />
 	
@@ -30,7 +31,7 @@
 								<div class="slds-col">
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
-                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_label_cause}" class="slds-input"
+                                            <lightning:input aura:id="name" type="text" label="Measure" class="slds-input"
                                      			value="{!v.measure.Name}" required="true"/>
 										</div>
 									</div>

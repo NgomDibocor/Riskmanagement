@@ -25,7 +25,7 @@
 	openModalContacts : function(component, event, helper) {
 
 		component.set('v.workshop', event.getParam('Workshop'));
-		alert('component'+component.get('v.workshop').Id);
+		alert('component'+component.get('v.workshop').Name);
 		 var action = component.get("c.findAllContact");
 		action
 				.setCallback(

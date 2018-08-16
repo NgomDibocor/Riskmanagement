@@ -18,18 +18,18 @@
 	 *  @date: Creation: 27/07/2018
 	 *  @description: method for creating a cause */
 	createItem : function(component, event, helper){
-		var name = component.find('name').get('v.value');
+		//var name = component.find('name').get('v.value');
         var description = component.find('description').get('v.value');
         
         /* we test the validity of data */
         var isItemsValid = true;
-        if($A.util.isEmpty(name) || $A.util.isEmpty(description)){
+        if($A.util.isEmpty(description)){
             isItemsValid = false;           
         }
         
         if(isItemsValid){
         	var newCause = component.get('v.cause');
-        	newCause.Name = name;
+        	newCause.Name = 'XXXX';
         	newCause.Description = description;
         	newCause.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
         	
@@ -42,13 +42,14 @@
             		var newCause = response.getReturnValue();
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
-			           'message' : newCause.Name +' has been added',
+			           'message' : $A.get('$Label.c.new_title_labels')+ ' ' 
+			           		+ $A.get('$Label.c.orm_label_cause') + ' '
+			           		+ $A.get('$Label.c.orm_toast_success'),
 			           'type' : 'success',
 			           'mode' : 'dismissible'
 		            });	
 		            toast.fire();
                     component.set('v.cause', { 'sobjectType' : 'Macro',
-                                               'Name' : '',
                                                'Description' : '',
                                                'orm_assessmentRisk__c' : ''
                     });
@@ -58,7 +59,7 @@
             	} else {
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
-			           'message' : 'ERROR',
+			           'message' : $A.get('$Label.c.orm_error'),
 			           'type' : 'error',
 			           'mode' : 'dismissible'
 		            });	
@@ -70,7 +71,7 @@
         } else {
         	var toast = $A.get('e.force:showToast');
         	toast.setParams({
-			   'message' : 'No Field should be Empty',
+			   'message' : $A.get("$Label.c.orm_error_field_empty"),
 			   'type' : 'error',
 			   'mode' : 'dismissible'
 		    });	

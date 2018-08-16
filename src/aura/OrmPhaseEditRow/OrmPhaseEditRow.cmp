@@ -68,14 +68,9 @@
                             </div>
                             <span id="form-end" tabindex="0"></span>
                         </section>  
-                    </aura:set>  
-                    
+                    </aura:set>
                 </aura:if> 
             </span>
-        </td>
-        
-         
+        </td> 
     </tr>
-    
-    
 </aura:component>

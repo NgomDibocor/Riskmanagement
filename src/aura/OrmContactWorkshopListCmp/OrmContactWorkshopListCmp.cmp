@@ -5,8 +5,7 @@
 	<aura:attribute name="ContactList" type="Contact[]"
 		description="store contact records list" />
 	<!--  
-	<aura:attribute name="ContactListTemp" type="Contact[]"
-		description="store contact records list temporarily" />
+	/>
 	<aura:attribute name="Contact" type="Contact"
 		description="store contact" />
 	
@@ -19,10 +18,12 @@
                         'orm_notification__c':'',
                         'orm_Workshop__c':''
 					}" />-->
-					<aura:attribute name="ContactWorkshopList"
+	<aura:attribute name="ContactListTemp" type="Contact[]"
+		description="store contact records list temporarily"/>
+	<aura:attribute name="ContactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
 		description="store contact workshop records list" />
-					<aura:attribute name="workshop" type="Contract" />
+<aura:attribute name="workshop" type="Contract" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
 	<aura:attribute name="columns" type="List" />

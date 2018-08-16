@@ -68,12 +68,13 @@
 			console.log(state);
 			if (component.isValid() && state == "SUCCESS") {
 				alert("successful association");
+				helper.refreshContactWorkshop(component,event);
 			} else {
 				alert("failed association");
 			}
 		});
 		$A.enqueueAction(action);
-		component.set("v.isOpenModalContactWorkshop", false);
+		//component.set("v.isOpenModalContactWorkshop", false);
 	},
 
 	handleRowAction : function(component, event, helper) {

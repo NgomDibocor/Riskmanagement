@@ -8,20 +8,25 @@
  * 2018-08-13 : Salimata NGOM - Implementation
  */
   deleteContactWorkshop : function(component,row) {
-  alert("delete "+row.Id+''+component.get('v.workshop').Id);
+  
 	//get contact workshop
 	var contactworkshop=component.get('c.getContactWorkshop');
 	contactworkshop.setParams({
 	"item":component.get('v.workshop').Id,
 	"contact":row.Id
 	});
+	alert("delete "+component.get('v.workshop').Id+''+row.Id);
+	
 	contactworkshop.setCallback(this, function(response) {
+	 
             var state = response.getState();
             console.log(state);
             if (state == "SUCCESS") {
+        
             //getdeleteWorkShopContact
             var contactworkshopItem=response.getReturnValue();
             var action=component.get('c.deleteContactWorkshop');
+               alert("delete "+JSON.stringify(contactworkshopItem));
             action.setParams({
 	"item":contactworkshopItem});
 	action.setCallback(this, function(response) {
@@ -29,7 +34,7 @@
             console.log(state);
             if (state == "SUCCESS") {
             //fire toast event
-            var toastEvent = $A.get('e.force:showToast');
+        /*   var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
                             "title": "Success!",
                             "message": "The record has been delete successfully.",
@@ -37,19 +42,12 @@
                             'mode' : 'dismissible'
                         });
 
-		                toastEvent.fire();
-           //refresh workshop list
-           
+		                toastEvent.fire();*/
+		              //refresh list contact  
+		        
             
             } else {
-               //fire toast event
-            var toastEvent = $A.get('e.force:showToast');
-                        toastEvent.setParams({
-                            "title": "Error!",
-                            "message": "Failed to delete Record.",
-                            'type' : 'error',
-                            'mode' : 'dismissible'
-                        });
+             alert('failed delete');
             
             }
         });
@@ -59,8 +57,10 @@
                 alert("failed getContactworkshop");
             }
         });
-        $A.enqueueAction(contactworkshop);
-        	component.set("v.isOpenModalContactWorkshop", false);
+         $A.enqueueAction(contactworkshop);
+          this.refreshContactWorkshop(component, event);
+        
+        	//component.set("v.isOpenModalContactWorkshop", false);
       
 	},
 	 getRowActions: function (cmp, row, doneCallback) {
@@ -115,7 +115,51 @@
         $A.enqueueAction(action);
       },
       
-      refreshContactWorkshop:function(component){
+      refreshContactWorkshop:function(component,event){
+
+      // call the apex class method and fetch
+									// contact list workshop
+									var action1 = component
+											.get("c.findAllContactWorkshop");
+									action1.setParams({
+										'item' :component.get("v.workshop")
+									});
+									action1
+											.setCallback(
+													this,
+													function(response) {
+														var stateworkshop = response
+																.getState();
+														if (stateworkshop === "SUCCESS") {
+															var storeResponseWorkshopcontact = response
+																	.getReturnValue();
+															component
+																	.set(
+																			"v.ContactWorkshopList",
+																			storeResponseWorkshopcontact);
+																			
+															// iterate and check
+															// if contact is
+															// associated to
+															// workshop
+															component.set("v.ContactListTemp", component.get("v.ContactList"));
+															component.get("v.ContactListTemp").forEach(
+																			function(contact) {
+																				component.get("v.ContactWorkshopList").forEach(
+																								function(contactworkshop) {
+																								
+																									if (contactworkshop.orm_contact__c == contact.Id) {
+																										contact.invitation = "Invited";
+																									}
+																								});
+
+																			});
+
+																			component.set("v.ContactList", component.get("v.ContactListTemp"));
+																				//alert(JSON.stringify(component.get('v.ContactList')));
+														}
+													});
+									$A.enqueueAction(action1);
      
       }
 	

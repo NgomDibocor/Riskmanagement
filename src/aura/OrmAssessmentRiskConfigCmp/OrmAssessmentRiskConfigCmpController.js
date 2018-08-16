@@ -126,6 +126,10 @@
        		assessmentRisk.orm_security__c =security.get("v.value");
        var reputation = component.find("reputation");
        		assessmentRisk.orm_reputation__c =reputation.get("v.value");
+       var cost = component.find("cost");
+       		assessmentRisk.orm_cost__c =cost.get("v.value");	
+       var healthAndSafety = component.find("healthAndSafety");
+       		assessmentRisk.orm_healthAndSafety__c =healthAndSafety.get("v.value");
        		 
        var action = component.get('c.addAssessmentRisk');
         action.setParams({
@@ -156,9 +160,13 @@
       
      onEnvironmentAndCommunity : function(component, event, helper)
     {
+    	  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-        
-    	
 	},
 	 onFrequency : function(component, event, helper)
     {
@@ -173,19 +181,54 @@
 	},
 	 onDate : function(component, event, helper)
     {
+		  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-    	
 	},
 	 
     onReputation: function(component, event, helper)
     {
+    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
+        component.set("v.displaySaveCancelBtn",true);	
+	},
+	onCost: function(component, event, helper)
+    {
+		 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-    	
+	},
+	onHealthAndSafety: function(component, event, helper)
+    {
+		 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
+        component.set("v.displaySaveCancelBtn",true);
 	},
     onSecurity : function(component, event, helper)
     {
+    	var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-    	
 	},
     onVulnerability: function(component, event, helper)
     {

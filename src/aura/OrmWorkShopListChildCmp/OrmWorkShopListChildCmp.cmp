@@ -25,6 +25,15 @@
 	<aura:attribute name="messageEditMode" type="boolean" default="false" />
 	<aura:attribute name="periodEditMode" type="boolean" default="false" />
 	<aura:attribute name="invitationEditMode" type="boolean" default="false" />
+	<aura:attribute name="ContactList" type="Contact[]"
+		description="store contact records list" />
+	<aura:attribute name="ContactListTemp" type="Contact[]"
+		description="store contact records list temporarily" />
+	<aura:attribute name="Contact" type="Contact"
+		description="store contact" />
+	<aura:attribute name="ContactWorkshopList"
+		type="orm_ContactWorkshop__c[]"
+		description="store contact workshop records list" />
   <aura:registerEvent name="OrmContactWorkshopListEvt"  type="c:OrmContactWorkshopListEvt"/>
 	
 	<!--Table Row Start-->

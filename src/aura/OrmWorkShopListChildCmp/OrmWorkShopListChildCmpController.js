@@ -78,26 +78,81 @@
       
     },
     openModalContactWorkshop: function (component, event, helper) {
-    //open modal list contact workshop
-    
-    
-        var idWorkshop = component.get("v.singleRec").Id;
-        if(idWorkshop == null){
-        	//alert("check if you have created the workshop");
-        	var toast = $A.get('e.force:showToast');
-            toast.setParams({
-            	'message' : 'Check if you Have Created the Workshop',
-                'type' : 'warning',
-                'mode' : 'dismissible'
-            });
+     var action = component.get("c.findAllContact");
+		action
+				.setCallback(
+						this,
+						function(response) {
+							var state = response.getState();
+							if (state === "SUCCESS") {
+							var storeResponse = response.getReturnValue();
+								// console.log(JSON.stringify(storeResponse));
 
-            toast.fire();
-        } else {
-        	var evt = $A.get("e.c:OrmContactWorkshopListEvt");
+								// set ContactListTemp list with return value
+								// from server.
+								component.set("v.ContactListTemp",
+										storeResponse);
+
+								if (component.get("v.ContactListTemp").length > 0) {
+
+									// call the apex class method and fetch
+									// contact list workshop
+									var action1 = component
+											.get("c.findAllContactWorkshop");
+									action1.setParams({
+										'item' :component.get("v.singleRec")
+									});
+									action1
+											.setCallback(
+													this,
+													function(response) {
+														var stateworkshop = response
+																.getState();
+														if (stateworkshop === "SUCCESS") {
+															var storeResponseWorkshopcontact = response
+																	.getReturnValue();
+															component
+																	.set(
+																			"v.ContactWorkshopList",
+																			storeResponseWorkshopcontact);
+																			
+															// iterate and check
+															// if contact is
+															// associated to
+															// workshop
+															component.get("v.ContactListTemp").forEach(
+																			function(contact) {
+																				component.get("v.ContactWorkshopList").forEach(
+																								function(contactworkshop) {
+																								
+																									if (contactworkshop.orm_contact__c == contact.Id) {
+																										contact.invitation = "Invited";
+																									}
+																								});
+
+																			});
+
+																			component.set("v.ContactList", component.get("v.ContactListTemp"));
+																				//alert(JSON.stringify(component.get('v.ContactList')));
+				var evt = $A.get("e.c:OrmContactWorkshopListEvt");
 			evt.setParams({
-			   "Workshop" : component.get("v.singleRec")
+			   "contactList" : component.get("v.ContactList"),
+			    "workshop" : component.get("v.singleRec")
 			});
 			evt.fire();
-        }
+															console
+																	.log(component
+																			.get("v.ContactListTemp"));
+
+														}
+													});
+									$A.enqueueAction(action1);
+
+								}
+							}
+							});
+				$A.enqueueAction(action);
+				
+
         }
 })

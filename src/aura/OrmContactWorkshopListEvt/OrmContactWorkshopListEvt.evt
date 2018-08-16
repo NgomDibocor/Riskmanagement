@@ -1,3 +1,4 @@
 <aura:event type="APPLICATION" description="Event template">
-<aura:attribute name="Workshop" type="Contract" description="object workshop" />
+<aura:attribute name="contactList" type="Contact[]" description="list contact " />
+<aura:attribute name="workshop" type="Contract" description="object workshop " />
 </aura:event>

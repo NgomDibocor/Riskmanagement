@@ -42,7 +42,15 @@
            
             
             } else {
-                alert("failed deleted");
+               //fire toast event
+            var toastEvent = $A.get('e.force:showToast');
+                        toastEvent.setParams({
+                            "title": "Error!",
+                            "message": "Failed to delete Record.",
+                            'type' : 'error',
+                            'mode' : 'dismissible'
+                        });
+            
             }
         });
         $A.enqueueAction(action);
@@ -81,7 +89,6 @@
 	            newcontactworkshop.orm_contact__c = row.Id;
 	           newcontactworkshop.orm_notification__c = false;
 	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop").Id;
-	            alert(JSON.stringify(newcontactworkshop));
 	            component.set("v.ContactWorkshopList", newcontactworkshop);
       var action = component.get('c.addWorkShopContact');
         action.setParams({
@@ -92,7 +99,15 @@
             var state = response.getState();
             console.log(state);
             if (component.isValid() && state == "SUCCESS") {
-                alert("successful association");
+                 //fire toast event
+            var toastEvent = $A.get('e.force:showToast');
+                        toastEvent.setParams({
+                            "title": "Success!",
+                            "message": "Contact associated with succes",
+                            'type' : 'success',
+                            'mode' : 'dismissible'
+                        });
+              
             } else {
                 alert("failed association");
             }

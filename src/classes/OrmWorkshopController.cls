@@ -94,4 +94,36 @@ public with sharing class OrmWorkshopController {
         return lstWorkshop;
     }
     
+ /**
+ * 
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get method findAllContact from ContactController
+ * @history 
+ * 2018-08-16 : Salimata NGOM - Implementation
+ */ 
+     
+    @AuraEnabled
+     public static List<Contact> findAllContact(){
+     	return OrmContactController.findAllContact();
+     }
+     
+/**
+ * 
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get method findAllContactWorkshop from ContactController
+ * @history 
+ * 2018-08-16 : Salimata NGOM - Implementation
+ */ 
+     
+    @AuraEnabled
+     public static List<orm_ContactWorkshop__c> findAllContactWorkshop(Contract item){
+     	return OrmContactController.findAllContactWorkshop(item);
+     }
+     
+    
+    
 }

@@ -58,8 +58,7 @@
 			       }
 	           });
 	           $A.enqueueAction(action);
-        }
-              
+        }              
 	},
 	
 	createItem : function(component, event, helper) {
@@ -134,7 +133,7 @@
 	        	//component.set("v.openModalErrorIfFieldEmpty", true);
 	        	var toast = $A.get('e.force:showToast');
 				toast.setParams({
-					'message' : 'The Field Cause Should be Empty',
+					'message' : $A.get("$Label.c.orm_error_field_empty"),
 				    'type' : 'warning',
 				    'mode' : 'dismissible'
 				});	

@@ -13,8 +13,6 @@
 														  'orm_assessmentRisk__c' : ''
 														}"/>
 	
-	
-	
 	<aura:if isTrue="{!v.isOpen}">
 			<!--###### MODAL BOX Start From Here ######-->    		
 			<div role="dialog" tabindex="-1" aria-labelledby="header99"

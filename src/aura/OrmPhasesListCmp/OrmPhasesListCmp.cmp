@@ -44,11 +44,11 @@
 								</div>
 								
 								<span class="btnNewPhase" onclick="{!c.createItem}">
-						        	<lightning:icon iconName="utility:new" size="xx-small" />
+						        	<lightning:icon iconName="utility:new" size="small" />
 						        </span>
 						        
 						        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
-									<lightning:icon iconName="utility:delete" size="xx-small" />
+									<lightning:icon iconName="utility:delete" size="small" />
 								</span>
 								
 							</div>                            
@@ -83,7 +83,9 @@
 		              </th> 
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th>
 	                  
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_phase}">{!$Label.c.orm_phase}</div></th>
+	                  <th scope="col">
+	                  	<div class="slds-truncate" title="{!$Label.c.orm_phase}">{!$Label.c.orm_phase}</div>
+	                  </th>
 	                </tr>
 	            </thead>
 	            
@@ -143,14 +145,14 @@
 			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
 			    <div class="slds-modal__container">
 			      <header class="slds-modal__header header">
-			      	<span style="color: white;">Warning</span>
+			      	<span style="color: white;">{!$Label.c.orm_warning_title}</span>
 			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
 			        	title="{!$Label.c.close_button_title}">		          
 			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 			        </button>
 			      </header>
 			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			        <p> This Field Should be Empty</p>
+			        <p>{!$Label.c.orm_error_field_empty}</p>
 			      </div>
 			      <footer class="slds-modal__footer">
 			        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalErrorIfFieldEmpty}">{!$Label.c.close_button_title}</button>
@@ -168,14 +170,14 @@
 			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
 			    <div class="slds-modal__container">
 			      <header class="slds-modal__header header">
-			      	<span style="color: white;">Confirm Deletion</span>
+			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
 			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
 			        	title="{!$Label.c.close_button_title}">		          
 			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 			        </button>
 			      </header>
 			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			        <p>Are You Sure You Want to Delete</p>
+			        <p>{!$Label.c.orm_error_field_empty}</p>
 			      </div>
 			      <footer class="slds-modal__footer">			        
 					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeletePhases}">{!$Label.c.cancel_button_title}</button>

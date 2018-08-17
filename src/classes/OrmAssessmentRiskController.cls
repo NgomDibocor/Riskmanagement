@@ -105,21 +105,22 @@ public with sharing class OrmAssessmentRiskController {
          List<List<String>> listAssRisk = new List<List<String>>();
          for (orm_assessmentRisk__c assRisk: assRiskList){
             List<String> info = new List<String>();
+               info.add(assRisk.id);
                info.add(assRisk.orm_Risk__r.Name);
                info.add(assRisk.orm_Risk__r.Description);
                if (assRisk.getsobjects('Assessments__r') != null){
                	   info.add(String.valueOf(assRisk.getsobjects('Assessments__r').size()));
                }else{ 
 	           	   info.add('0');
-	               listAssRisk.add(info);
+	              
                }
                if (assRisk.getsobjects('Macros__r') != null){
                	   info.add(String.valueOf(assRisk.getsobjects('Macros__r').size()));
                }else{ 
 	           	   info.add('0');
-	               listAssRisk.add(info);
+	               
                }
-               
+               listAssRisk.add(info);
                //info.add(assRisk.Id);
             }
           return listAssRisk;

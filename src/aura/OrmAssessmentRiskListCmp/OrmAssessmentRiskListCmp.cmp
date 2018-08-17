@@ -6,7 +6,7 @@
     <div class="slds-grid slds-wrap">
         <aura:iteration items="{!v.assessmentRisks}" var="item"  indexVar="i">
             <div class="slds-col slds-size_1-of-2">
-                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:500px;">
+                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:450px;">
                     <div class="slds-page-header">
                         <div class="slds-grid">
                             <div class="slds-col slds-has-flexi-truncate">
@@ -22,31 +22,31 @@
                                         <nav>
                                             <ol class="slds-breadcrumb slds-line-height_reset">
                                                 <li class="slds-breadcrumb__item">
-                                                    <span><b><ui:outputText value="{!item[0]}" /></b></span>
+                                                    <span><b><ui:outputText value="{!item[1]}" /></b></span>
                                                 </li>
                                             </ol>
                                         </nav>
-                                        <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="{!item[1]}"><ui:outputRichText value="{!item[1]}" /></h1>
+                                        <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="{!item[2]}"><ui:outputRichText value="{!item[1]}" /></h1>
                                     </div>
                                 </div>
                             </div>
                             <div class="slds-col slds-no-flex slds-grid slds-align-top">
 
                                 <div class="slds-button-group" role="group">
-                                    <button class="slds-button slds-button_neutral">{!$Label.c.show_button_title}</button>
+                                    <button class="slds-button slds-button_neutral" onclick="{!c.showAssessmentRisk}">{!$Label.c.show_button_title}</button>
                                 </div>
                             </div>
                         </div>
                         <ul class="slds-grid slds-page-header__detail-row">
                             <li class="slds-page-header__detail-block">
                               
-                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 1"><u>Measures</u></p>
-                                <p class="slds-text-body_regular "><span class="slds-badge">{!item[2]}</span></p>
+                                <b><p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 1">Measures</p>
+                                <p class="slds-text-body_regular "><span class="slds-badge">{!item[3]}</span></p> </b>
                                
                             </li>
                             <li class="slds-page-header__detail-block">
-                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field2 (3)"><u>Cause</u></p>
-                                <p class="slds-text-body_regular"><span class="slds-badge"><b>{!item[3]}</b></span></p>
+                               <b> <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field2 (3)">Cause</p>
+                                <p class="slds-text-body_regular"><span class="slds-badge">{!item[4]}</span></p></b>
                             </li>
                             <!--<li class="slds-page-header__detail-block">
                                 <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"> Impact </p>

@@ -54,7 +54,7 @@
             }
         });
          $A.enqueueAction(contactworkshop);
-         $A.get('e.force:refreshView').fire();
+    
       
          //  alert('contactListOld'+contactListOld);
          	//component.set("v.isOpenModalContactWorkshop", false);

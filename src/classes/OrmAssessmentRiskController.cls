@@ -112,13 +112,13 @@ public with sharing class OrmAssessmentRiskController {
     @AuraEnabled 
     public static List<List<String>> getAllAssessmentRisks()
     {
-        List<orm_assessmentRisk__c> assRiskList = [Select id, orm_Risk__r.Name, orm_Risk__r.Description,
+        List<orm_assessmentRisk__c> assRiskList = [Select id, orm_Risk__r.Name, orm_Risk__r.Description,orm_assessment__r.Id,
                        (SELECT id 
                         FROM Macros__r 
                         WHERE RecordTypeId =: OrmAssessmentRiskController.getCauseRecordTypeId()),
                        (SELECT id FROM Assessments__r 
                         WHERE RecordTypeId =: OrmAssessmentRiskController.getMeasureRecordTypeId())
-                        FROM orm_assessmentRisk__c];
+                        FROM orm_assessmentRisk__c  ];
         
          //Map<Id, Map<String, Map<String, Object>>> mapIdAssessmentNbRisk = new Map<Id, Map<String, Map<String, Object>>>;
          List<List<String>> listAssRisk = new List<List<String>>();
@@ -139,6 +139,7 @@ public with sharing class OrmAssessmentRiskController {
 	           	   info.add('0');
 	               
                }
+               info.add(assRisk.orm_assessment__r.Id);
                listAssRisk.add(info);
                //info.add(assRisk.Id);
             }

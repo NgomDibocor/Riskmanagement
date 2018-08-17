@@ -23,7 +23,7 @@
 	<aura:attribute name="ContactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
 		description="store contact workshop records list" />
-<aura:attribute name="workshop" type="Contract" />
+<aura:attribute name="workshop" type="String" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
 	<aura:attribute name="columns" type="List" />

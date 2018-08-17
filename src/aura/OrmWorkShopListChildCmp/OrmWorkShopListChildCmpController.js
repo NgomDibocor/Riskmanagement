@@ -100,15 +100,17 @@
 									var action1 = component
 											.get("c.findAllContactWorkshop");
 									action1.setParams({
-										'item' :component.get("v.singleRec")
+										'item' :component.get("v.singleRec").Id
 									});
+									
 									action1
 											.setCallback(
 													this,
 													function(response) {
 														var stateworkshop = response
 																.getState();
-														if (stateworkshop === "SUCCESS") {
+														if (stateworkshop == "SUCCESS") {
+													
 															var storeResponseWorkshopcontact = response
 																	.getReturnValue();
 															component
@@ -133,11 +135,11 @@
 																			});
 
 																			component.set("v.ContactList", component.get("v.ContactListTemp"));
-																				//alert(JSON.stringify(component.get('v.ContactList')));
+																				
 				var evt = $A.get("e.c:OrmContactWorkshopListEvt");
 			evt.setParams({
 			   "contactList" : component.get("v.ContactList"),
-			    "workshop" : component.get("v.singleRec")
+			    "workshop" : component.get("v.singleRec").Id
 			});
 			evt.fire();
 															console

@@ -5,10 +5,11 @@
     doInit : function(component, event, helper)
     {
        // helper.refreshList(component, event);
-        var action = component.get('c.findAll');
+        var action = component.get('c.getAllAssessmentRisks');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
-                component.set('v.assessmentRisks', response.getReturnValue());
+              //alert(JSON.stringify(response.getReturnValue()[0]))
+              component.set('v.assessmentRisks', response.getReturnValue());
             }
            /* var state = response.getState();
              if(state === 'SUCCESS'){

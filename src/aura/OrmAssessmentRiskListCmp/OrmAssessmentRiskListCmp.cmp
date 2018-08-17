@@ -1,6 +1,7 @@
 <aura:component controller="OrmAssessmentRiskController" extends="c:ormAbstractListCmp">
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
-    <aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c" description="" />
+    <!--<aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c" description="" />  -->
+    <aura:attribute name="assessmentRisks" type="List" />
     <!--  <aura:handler event="c:EventAddAssessmentRisk" action="{!c.refreshList}" /> -->
     <div class="slds-grid slds-wrap">
         <aura:iteration items="{!v.assessmentRisks}" var="item"  indexVar="i">
@@ -21,11 +22,11 @@
                                         <nav>
                                             <ol class="slds-breadcrumb slds-line-height_reset">
                                                 <li class="slds-breadcrumb__item">
-                                                    <span><b><ui:outputText value="{!item.value.assessmentRisk.orm_Risk__r.Name}" /></b></span>
+                                                    <span><b><ui:outputText value="{!item[0]}" /></b></span>
                                                 </li>
                                             </ol>
                                         </nav>
-                                        <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="{!item.orm_assessment__r.orm_description__c}"><ui:outputRichText value="{!item.orm_assessment__r.orm_description__c}" /></h1>
+                                        <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="{!item[1]}"><ui:outputRichText value="{!item[1]}" /></h1>
                                     </div>
                                 </div>
                             </div>
@@ -40,17 +41,17 @@
                             <li class="slds-page-header__detail-block">
                               
                                 <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 1"><u>Measures</u></p>
-                                <p class="slds-text-body_regular "><span class="slds-badge">15</span></p>
+                                <p class="slds-text-body_regular "><span class="slds-badge">{!item[2]}</span></p>
                                
                             </li>
                             <li class="slds-page-header__detail-block">
                                 <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field2 (3)"><u>Cause</u></p>
-                                <p class="slds-text-body_regular"><span class="slds-badge"><b>{!item.value.nbreCause}15</b></span></p>
+                                <p class="slds-text-body_regular"><span class="slds-badge"><b>{!item[3]}</b></span></p>
                             </li>
-                            <li class="slds-page-header__detail-block">
+                            <!--<li class="slds-page-header__detail-block">
                                 <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"> Impact </p>
                                  <p class="slds-text-body_regular"><span class="slds-badge"><b>15</b></span></p>
-                            </li>
+                            </li>  -->
                         </ul>
                     </div>
                 </div>

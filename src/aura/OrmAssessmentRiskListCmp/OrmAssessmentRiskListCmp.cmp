@@ -2,9 +2,10 @@
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <!--<aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c" description="" />  -->
     <aura:attribute name="assessmentRisks" type="List" />
-    <!--  <aura:handler event="c:EventAddAssessmentRisk" action="{!c.refreshList}" /> -->
-    <div class="slds-grid slds-wrap">
-        <aura:iteration items="{!v.assessmentRisks}" var="item"  indexVar="i">
+    
+    
+    <div class="slds-grid slds-wrap" style="width:100%">
+        <aura:iteration items="{!v.PaginationList}" var="item"  indexVar="i">
             <div class="slds-col slds-size_1-of-2">
                 <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:450px;">
                     <div class="slds-page-header">
@@ -60,4 +61,16 @@
             </div>
         </aura:iteration>
     </div>
+    <div style="margin:auto; padding-bottom:10px">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previous}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!v.endPage >= v.totalRecords}"
+	                            onclick="{!c.next}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
+	</div>
 </aura:component>

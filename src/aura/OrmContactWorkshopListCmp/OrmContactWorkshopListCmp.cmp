@@ -4,35 +4,21 @@
 	<!--declare aura attributes-->
 	<aura:attribute name="ContactList" type="Contact[]"
 		description="store contact records list" />
-	<!--  
-	/>
-	<aura:attribute name="Contact" type="Contact"
-		description="store contact" />
-	
-	<aura:attribute name="item" type="orm_ContactWorkshop__c"
-		default="{
-						'sobjectType' : 'orm_ContactWorkshop__c',
-                        'orm_contact__c':'',
-                        'Name':'',
-                        'orm_dateAjout__c':'', 
-                        'orm_notification__c':'',
-                        'orm_Workshop__c':''
-					}" />-->
+
 	<aura:attribute name="ContactListTemp" type="Contact[]"
 		description="store contact records list temporarily"/>
 	<aura:attribute name="ContactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
 		description="store contact workshop records list" />
-<aura:attribute name="workshop" type="Contract" />
+    <aura:attribute name="workshop" type="String" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
 	<aura:attribute name="columns" type="List" />
+	  <!-- handlers-->
 	 <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
-	<!--  <aura:registerEvent name="OrmRefreshContactWorkshopEvt"  type="c:OrmRefreshContactWorkshopEvt"/>-->
-	<!--  <aura:handler event="c:OrmRefreshContactWorkshopEvt"
-		action="{!c.refreshContactWorkshop}" />-->
+
 	<!--  start modal contact-->
 	<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
 		<!--###### MODAL BOX Start From Here ######-->
@@ -65,7 +51,7 @@
 										resizeColumnDisabled="false" selectedRows="{!v.Contact}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
-										 onheaderaction="{!c.handleHeaderAction }"
+										
 										showRowNumberColumn="false" />
 								</div>
 

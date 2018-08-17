@@ -1,6 +1,7 @@
 <aura:component extends="c:OrmAbstractNewCmp" access="global"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable"
 	controller="OrmWorkshopController">
+	  <!-- attributes -->
 	<aura:attribute name="item" type="Contract"
 		default="{
 						'sobjectType' : 'Contract',
@@ -20,7 +21,7 @@
 						
 					}" />
 
-	<!-- handler event  workshop  -->
+	 <!-- handlers-->
 	
   <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.openModalWorkshop}" />
     <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>

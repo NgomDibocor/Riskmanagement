@@ -1,31 +1,22 @@
 ({
-	refreshList : function(component, event, helper) {
-		helper.refreshList(component, event);
-	},
     doInit : function(component, event, helper)
     {
-       // helper.refreshList(component, event);
-        var action = component.get('c.findAll');
-        action.setCallback(this, function(response){
-            if(response.getState() == 'SUCCESS'){
-                component.set('v.assessmentRisks', response.getReturnValue());
-            }
-           /* var state = response.getState();
-             if(state === 'SUCCESS'){
-                var custs = [];
-                var conts = response.getReturnValue();
-                for(var idAss in conts){
-                    custs.push({value:conts[idAss]});
-                }
-                component.set("v.assessmentRisks", custs);
-                
-            }*/
-            else
-            {
-                 alert($A.get("$Label.c.loaded_message"));
-            }
-        });
-        $A.enqueueAction(action);
+       helper.refreshList(component, event);
     },
-    
+    showAssessmentRisk : function(component, event, helper) {
+    var assessmentRiskId = event.target.id;
+     var action = component.get('c.getAssessmentByIdAssRisk');
+     action.setParams({
+            "idAssRisk": assessmentRiskId
+        });
+     action.setCallback(this, function(response) 
+     {
+      if(response.getState() == 'SUCCESS')
+      {
+    	  alert(JSON.stringify(response.getReturnValue()));
+      }
+     });
+     $A.enqueueAction(action);
+	},
+
 })

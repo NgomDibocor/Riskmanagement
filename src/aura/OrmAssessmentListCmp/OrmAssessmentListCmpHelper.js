@@ -1,10 +1,22 @@
 ({
-	refreshList : function(component, event) {
-		var action = component.get('c.getAllAssessmentRisks');
+
+   refresh : function(component, event, helper) {
+       var action = component.get('c.getAssessmentRisks');
         action.setCallback(this, function(response){
-            if(response.getState() == 'SUCCESS'){
-              component.set('v.items', response.getReturnValue());
-              // start pagination
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+              //Hide the Spinner
+                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+	            evtSpinner.fire(); 
+            
+                var custs = [];
+                var conts = response.getReturnValue();
+                for(var idAss in conts){
+                    custs.push({value:conts[idAss]});
+                }
+                component.set("v.items", custs);
+                
+                // start pagination
                     var pageSize = component.get("v.pageSize");
 	                // get size of all the records and then hold into an attribute "totalRecords"
 	                component.set("v.totalRecords", component.get("v.items").length);
@@ -26,11 +38,12 @@
 	                }
 	                component.set('v.PaginationList', PaginationList);
                 //end pagination
-            }else
-            {
-                 alert($A.get("$Label.c.loaded_message"));
+                
+            } else {
+                alert("l'élément n'a pas été chargé");
             }
         });
         $A.enqueueAction(action);
-	}
+    },
+
 })

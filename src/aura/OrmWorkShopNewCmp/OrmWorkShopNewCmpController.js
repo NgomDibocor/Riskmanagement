@@ -1,7 +1,7 @@
 ({
 
     createWorkshop: function(component, event, helper) {
-    	  alert(JSON.stringify(component.get('v.assessmentData')));
+    	  //alert(JSON.stringify(component.get('v.assessmentData')));
         var name = component.find("idtitre");
         var datestart = component.find('datestart');
         var dateend = component.find('dateend');
@@ -11,7 +11,6 @@
         var isItemValid = true;
         if ($A.util.isEmpty(name.get('v.value')) || $A.util.isEmpty(datestart.get('v.value')) || $A.util.isEmpty(dateend.get('v.value'))) {
             isItemValid = false;
-            
         } 
        
         if (isItemValid) {
@@ -26,9 +25,9 @@
             newItem.StartDate=datestart.get('v.value');
            newItem.orm_Contract_End_Date__c=dateend.get('v.value');
            newItem.CompanySignedDate=dateinvitation.get('v.value');
-           newItem.Description=message.get('v.value');
+           var Description=message.get('v.value');
+            newItem.Description=Description.stripHtmlTags();
            newItem.AccountId="0011H00001RnBahQAF";
-           alert(JSON.stringify(newItem));
             var action = component.get('c.addWorkShop');
             action.setParams({
                 "item": newItem
@@ -57,10 +56,16 @@
 						'Description':''
                             });
                              component.set("v.isOpen", false);
-                        }else
-                        {
-                             alert('error');
-                        }
+                        } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
+            }
                     });
             $A.enqueueAction(action);
            

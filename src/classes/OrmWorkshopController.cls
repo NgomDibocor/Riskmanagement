@@ -120,7 +120,7 @@ public with sharing class OrmWorkshopController {
  */ 
      
     @AuraEnabled
-     public static List<orm_ContactWorkshop__c> findAllContactWorkshop(Contract item){
+     public static List<orm_ContactWorkshop__c> findAllContactWorkshop(String item){
      	return OrmContactController.findAllContactWorkshop(item);
      }
      

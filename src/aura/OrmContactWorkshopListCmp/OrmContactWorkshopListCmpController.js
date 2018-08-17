@@ -1,7 +1,13 @@
 ({
-	
-	  doInit : function(component, event, helper) { // call the apex class
-	  //method and fetch contact list
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method doInit
+ * @history 
+ * 2018-08-13 : Salimata NGOM - Implementation
+ */
+	  doInit : function(component, event, helper) { 
 	   // call the apex class method and fetch contact list
 	   	var rowActions = helper.getRowActions.bind(this, component);
 	   component.set('v.columns', [ {
@@ -20,18 +26,40 @@
 		} ]);
 	  },
 	
-
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description open modal
+ * @history 
+ * 2018-08-13 : Salimata NGOM - Implementation
+ */
 	openModalContacts : function(component, event, helper) {
    
 		component.set('v.ContactList', event.getParam('contactList'));
 		component.set('v.workshop', event.getParam('workshop'));
 		component.set("v.isOpenModalContactWorkshop", true);
 	},
-
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method close modal
+ * @history 
+ * 2018-08-13 : Salimata NGOM - Implementation
+ */
 	closeModalWorkshopContact : function(component, event, helper) {
                          
 		component.set("v.isOpenModalContactWorkshop", false);
 	},
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method getselectedRows
+ * @history 
+ * 2018-08-13 : Salimata NGOM - Implementation
+ */
 	getselectedRows : function(component, event, helper) {
 		var selectedRows = event.getParam('selectedRows');
 		var contactsWorkshop = [];
@@ -43,7 +71,7 @@
 					newcontactworkshop.orm_contact__c = selectedRow.Id;
 					newcontactworkshop.orm_notification__c = false;
 					newcontactworkshop.orm_Workshop__c = component
-							.get("v.workshop").Id;
+							.get("v.workshop");
 
 					contactsWorkshop.push(newcontactworkshop);
 					console.log('v.ContactWorkshopList  nbre'
@@ -53,22 +81,28 @@
 		component.set("v.ContactWorkshopList", contactsWorkshop);
 
 	},
-
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method createContactWorkshop
+ * @history 
+ * 2018-08-13 : Salimata NGOM - Implementation
+ */
 	createContactWorkshop : function(component, event, helper) {
 
 		var relatedcontactworkshop = component.get("v.ContactWorkshopList");
-
 		var action = component.get('c.addWorkShopContact');
 		action.setParams({
 			"items" : relatedcontactworkshop
 		});
-		alert(JSON.stringify(relatedcontactworkshop));
+		
 		action.setCallback(this, function(response) {
 			var state = response.getState();
 			console.log(state);
-			if (component.isValid() && state == "SUCCESS") {
+			if (state == "SUCCESS") {
 				alert("successful association");
-				helper.refreshContactWorkshop(component,event);
+				helper.refreshContactWorkshop(component);
 			} else {
 				alert("failed association");
 			}
@@ -76,7 +110,14 @@
 		$A.enqueueAction(action);
 		//component.set("v.isOpenModalContactWorkshop", false);
 	},
-
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method handleRowAction
+ * @history 
+ * 2018-08-13 : Salimata NGOM - Implementation
+ */
 	handleRowAction : function(component, event, helper) {
 
 		var action = event.getParam('action');
@@ -91,12 +132,7 @@
 			break;
 		}
 
-	},
-	handleHeaderAction : function(cmp, event, helper) {
-		var actionName = event.getParam('action').name;
-		alert(actionName);
-		var colDef = event.getParam('columnDefinition');
-		alert(colDef);
 	}
+	
 
 })

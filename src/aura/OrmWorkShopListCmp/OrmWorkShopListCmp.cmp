@@ -95,13 +95,9 @@
 					<!-- start iteration -->
 					  <c:OrmWorkShopListChildCmp singleRec="{!workshop}" assessmentData="{!v.assessmentData}"
 						showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
-
-
 				</aura:iteration>
 			</tbody>
 		</table>
-
-
 	</div>
 	 <c:OrmContactNewCmp />
 	  <c:OrmContactWorkshopListCmp />

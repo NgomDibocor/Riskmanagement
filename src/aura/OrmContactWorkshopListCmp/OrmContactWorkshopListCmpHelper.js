@@ -8,15 +8,14 @@
  * 2018-08-13 : Salimata NGOM - Implementation
  */
   deleteContactWorkshop : function(component,row) {
-  
+ // var contactListOld=component.get('v.ContactList');
 	//get contact workshop
 	var contactworkshop=component.get('c.getContactWorkshop');
 	contactworkshop.setParams({
-	"item":component.get('v.workshop').Id,
+	"item":component.get('v.workshop'),
 	"contact":row.Id
 	});
-	alert("delete "+component.get('v.workshop').Id+''+row.Id);
-	
+
 	contactworkshop.setCallback(this, function(response) {
 	 
             var state = response.getState();
@@ -25,44 +24,53 @@
         
             //getdeleteWorkShopContact
             var contactworkshopItem=response.getReturnValue();
+            	        
             var action=component.get('c.deleteContactWorkshop');
-               alert("delete "+JSON.stringify(contactworkshopItem));
             action.setParams({
 	"item":contactworkshopItem});
 	action.setCallback(this, function(response) {
             var state = response.getState();
             console.log(state);
             if (state == "SUCCESS") {
-            //fire toast event
-        /*   var toastEvent = $A.get('e.force:showToast');
-                        toastEvent.setParams({
-                            "title": "Success!",
-                            "message": "The record has been delete successfully.",
-                            'type' : 'success',
-                            'mode' : 'dismissible'
-                        });
 
-		                toastEvent.fire();*/
-		              //refresh list contact  
-		        
+		              //refresh data ContactList 
+		            this.refreshContactWorkshop(component);
             
-            } else {
-             alert('failed delete');
-            
+            } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
             }
         });
         $A.enqueueAction(action);
-            
-            } else {
-                alert("failed getContactworkshop");
+            } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
             }
         });
          $A.enqueueAction(contactworkshop);
-          this.refreshContactWorkshop(component, event);
-        
-        	//component.set("v.isOpenModalContactWorkshop", false);
-      
+
 	},
+	
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description getRowActions label
+ * @history 
+ * 2018-08-13 : Salimata NGOM - Implementation
+ */
 	 getRowActions: function (cmp, row, doneCallback) {
 	 if(row.invitation){
 	  var actions = [{
@@ -83,12 +91,20 @@
         }), 200);
     },
     
-      addContactWorkshop : function(component,row) {
+    /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description add one row Contact in ContactWorkshop 
+ * @history 
+ * 2018-08-14 : Salimata NGOM - Implementation
+ */
+      addContactWorkshop: function(component,row) {
       var newcontactworkshop={};
         newcontactworkshop.sobjectType='orm_ContactWorkshop__c';
 	            newcontactworkshop.orm_contact__c = row.Id;
 	           newcontactworkshop.orm_notification__c = false;
-	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop").Id;
+	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop");
 	            component.set("v.ContactWorkshopList", newcontactworkshop);
       var action = component.get('c.addWorkShopContact');
         action.setParams({
@@ -98,31 +114,55 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             console.log(state);
-            if (component.isValid() && state == "SUCCESS") {
+            if ( state == "SUCCESS") {
                  //fire toast event
-            var toastEvent = $A.get('e.force:showToast');
-                        toastEvent.setParams({
-                            "title": "Success!",
-                            "message": "Contact associated with succes",
-                            'type' : 'success',
-                            'mode' : 'dismissible'
-                        });
-              
-            } else {
-                alert("failed association");
+    
+              this.refreshContactWorkshop(component);
+            } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
             }
         });
         $A.enqueueAction(action);
       },
-      
-      refreshContactWorkshop:function(component,event){
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description refresh data ContactList
+ * @history 
+ * 2018-08-17 : Salimata NGOM - Implementation
+ */  
+      refreshContactWorkshop:function(component){
+      // call the apex class
+	  //method and fetch contact list in v.ContactList
+       var action = component.get("c.findAllContact");
+		action
+				.setCallback(
+						this,
+						function(response) {
+							var state = response.getState();
+							if (state === "SUCCESS") {
+							var storeResponse = response.getReturnValue();
+
+								// set ContactListTemp list with return value
+								// from server.
+								component.set("v.ContactListTemp",
+										storeResponse);
+if (component.get("v.ContactListTemp").length > 0) {
 
       // call the apex class method and fetch
 									// contact list workshop
 									var action1 = component
 											.get("c.findAllContactWorkshop");
 									action1.setParams({
-										'item' :component.get("v.workshop")
+										'item' :component.get('v.workshop')
 									});
 									action1
 											.setCallback(
@@ -130,7 +170,7 @@
 													function(response) {
 														var stateworkshop = response
 																.getState();
-														if (stateworkshop === "SUCCESS") {
+														if (stateworkshop == "SUCCESS") {
 															var storeResponseWorkshopcontact = response
 																	.getReturnValue();
 															component
@@ -142,7 +182,8 @@
 															// if contact is
 															// associated to
 															// workshop
-															component.set("v.ContactListTemp", component.get("v.ContactList"));
+															//alert('contactList au refresh'+contactListOld);
+															//component.set("v.ContactListTemp", contactListOld);
 															component.get("v.ContactListTemp").forEach(
 																			function(contact) {
 																				component.get("v.ContactWorkshopList").forEach(
@@ -156,12 +197,15 @@
 																			});
 
 																			component.set("v.ContactList", component.get("v.ContactListTemp"));
-																				//alert(JSON.stringify(component.get('v.ContactList')));
 														}
 													});
 									$A.enqueueAction(action1);
      
       }
-	
+      
+							}
+							});
+				$A.enqueueAction(action);
+	}
 	
 })

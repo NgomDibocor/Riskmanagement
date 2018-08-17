@@ -10,8 +10,6 @@
                         'orm_organisation__c':'',
                          'FirstName':'',
                         'LastName':''
-                        
-						
 					}" />
 	<aura:attribute name="assessmentData" type="Assessment__c"
 		default="{

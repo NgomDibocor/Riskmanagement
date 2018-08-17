@@ -3,7 +3,6 @@
 	  doInit : function(component, event, helper) { // call the apex class
 	  //method and fetch contact list
 	   // call the apex class method and fetch contact list
-	   alert('init');
 	   	var rowActions = helper.getRowActions.bind(this, component);
 	   component.set('v.columns', [ {
 			label : 'Name',
@@ -23,94 +22,14 @@
 	
 
 	openModalContacts : function(component, event, helper) {
-
-		component.set('v.workshop', event.getParam('Workshop'));
-		alert('component'+component.get('v.workshop').Id);
-		 var action = component.get("c.findAllContact");
-		action
-				.setCallback(
-						this,
-						function(response) {
-							var state = response.getState();
-							if (state === "SUCCESS") {
-								
-								var storeResponse = response.getReturnValue();
-								// console.log(JSON.stringify(storeResponse));
-
-								// set ContactListTemp list with return value
-								// from server.
-								component.set("v.ContactListTemp",
-										storeResponse);
-								// console.log(component.get("v.ContactList"));
-
-								if (component.get("v.ContactListTemp").length > 0) {
-
-									// call the apex class method and fetch
-									// contact list workshop
-									var action1 = component
-											.get("c.findAllContactWorkshop");
-									action1.setParams({
-										'item' :component.get('v.workshop')
-									});
-									action1
-											.setCallback(
-													this,
-													function(response) {
-														var stateworkshop = response
-																.getState();
-														if (stateworkshop === "SUCCESS") {
-															var storeResponseWorkshopcontact = response
-																	.getReturnValue();
-															component
-																	.set(
-																			"v.ContactWorkshopList",
-																			storeResponseWorkshopcontact);
-
-															// iterate and check
-															// if contact is
-															// associated to
-															// workshop
-															component
-																	.get(
-																			"v.ContactListTemp")
-																	.forEach(
-																			function(
-																					contact) {
-																				component
-																						.get(
-																								"v.ContactWorkshopList")
-																						.forEach(
-																								function(
-																										contactworkshop) {
-																									if (contactworkshop.orm_contact__c == contact.Id) {
-																										contact.invitation = "Invited";
-																									}
-																								});
-
-																			});
-															console
-																	.log(component
-																			.get("v.ContactListTemp"));
-
-														}
-													});
-									$A.enqueueAction(action1);
-
-								}
-							}
-						});
-
-		$A.enqueueAction(action);
-
-		component.set("v.ContactList", component.get("v.ContactListTemp"));
-	
-		// Set the columns of the Table
-		
+   
+		component.set('v.ContactList', event.getParam('contactList'));
+		component.set('v.workshop', event.getParam('workshop'));
 		component.set("v.isOpenModalContactWorkshop", true);
-		alert(JSON.stringify(component.get('v.ContactList')));
 	},
 
 	closeModalWorkshopContact : function(component, event, helper) {
+                         
 		component.set("v.isOpenModalContactWorkshop", false);
 	},
 	getselectedRows : function(component, event, helper) {
@@ -149,12 +68,13 @@
 			console.log(state);
 			if (component.isValid() && state == "SUCCESS") {
 				alert("successful association");
+				helper.refreshContactWorkshop(component,event);
 			} else {
 				alert("failed association");
 			}
 		});
 		$A.enqueueAction(action);
-		component.set("v.isOpenModalContactWorkshop", false);
+		//component.set("v.isOpenModalContactWorkshop", false);
 	},
 
 	handleRowAction : function(component, event, helper) {
@@ -173,9 +93,6 @@
 
 	},
 	handleHeaderAction : function(cmp, event, helper) {
-
-		// helper.getData(cmp);
-
 		var actionName = event.getParam('action').name;
 		alert(actionName);
 		var colDef = event.getParam('columnDefinition');

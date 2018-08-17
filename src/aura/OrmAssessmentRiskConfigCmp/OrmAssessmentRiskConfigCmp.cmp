@@ -59,7 +59,7 @@
         <tr>
             <td>
                 <div class="topSpacing">
-                   <b> <label class="slds-form-element__label">Date<span class="cmn_mandatory_indicator">*</span></label></b>
+                   <b> <label class="slds-form-element__label">{!$Label.c.orm_date_assessmentRisk}<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
                 <div class="width">
                     <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
@@ -71,7 +71,7 @@
 
             <td>
                 <div class="topSpacing">
-                   <b> <label class="slds-form-element__label">Environment And Community </label></b>
+                   <b> <label class="slds-form-element__label">{!$Label.c.orm_environmentAndCommunity}</label></b>
                 </div>
                 <div class="width">
                     <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
@@ -86,7 +86,7 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="frequency" name="frequency" label="Frequency" class="select-auto-width" onchange="{!c.onFrequency}">
+                        <lightning:select aura:id="frequency" name="frequency" label="{!$Label.c.orm_frequency_assessmentRisk}" class="select-auto-width" onchange="{!c.onFrequency}">
                              <option text="{!v.assessmentRiskData.orm_frequency__c}" ></option>
                             <aura:iteration items="{!v.frequency}" var="frequence">
                                 <option text="{!frequence}"></option>
@@ -99,7 +99,7 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="manageAbility" name="manage Ability" label="Manage Ability" class="select-auto-width" onchange="{!c.onManageAbility}">
+                        <lightning:select aura:id="manageAbility" name="manage Ability" label="{!$Label.c.orm_manageAbility_assessmentRisk}" class="select-auto-width" onchange="{!c.onManageAbility}">
                              <option text="{!v.assessmentRiskData.orm_manageAbility__c}" ></option>
                             <aura:iteration items="{!v.manageAbility}" var="manageAbility">
                                 <option text="{!manageAbility}"></option>
@@ -114,7 +114,7 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="productionLoss" name="productionLoss" label="Production Loss" class="select-auto-width" onchange="{!c.onProductionLoss}">
+                        <lightning:select aura:id="productionLoss" name="productionLoss" label="{!$Label.c.orm_productionLoss_assessmentRisk}" class="select-auto-width" onchange="{!c.onProductionLoss}">
                             <option text="{!v.assessmentRiskData.orm_productionLoss__c}" ></option>
                             <aura:iteration items="{!v.productionLoss}" var="productionLoss">
                                 <option text="{!productionLoss}"></option>
@@ -127,7 +127,7 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="schedule" name="schedule" label="schedule" class="select-auto-width" onchange="{!c.onSchedule}">
+                        <lightning:select aura:id="schedule" name="schedule" label="{!$Label.c.orm_schedule_assessmentRisk}" class="select-auto-width" onchange="{!c.onSchedule}">
                            <option text="{!v.assessmentRiskData.orm_schedule__c}"></option>
                             <aura:iteration items="{!v.schedule}" var="schedule">
                                 <option text="{!schedule}"></option>
@@ -142,7 +142,7 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="status" name="status" label="Status" class="select-auto-width" onchange="{!c.onStatus}">
+                        <lightning:select aura:id="status" name="status" label="{!$Label.c.orm_status_assessmentRisk}" class="select-auto-width" onchange="{!c.onStatus}">
                             <option text="{!v.assessmentRiskData.orm_status__c}" ></option>
                             <aura:iteration items="{!v.status}" var="status">
                                 <option text="{!status}"></option>
@@ -155,7 +155,7 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="vulnerability" name="vulnerability" label="Vulnerability" class="select-auto-width" onchange="{!c.onVulnerability}">
+                        <lightning:select aura:id="vulnerability" name="vulnerability" label="{!$Label.c.orm_vulnerability_assessmentRisk}" class="select-auto-width" onchange="{!c.onVulnerability}">
                             <option text="{!v.assessmentRiskData.orm_vulnerability__c}"></option>
                             <aura:iteration items="{!v.vulnerability}" var="vulnerability">
                                 <option text="{!vulnerability}"></option>
@@ -169,7 +169,7 @@
          <tr>
             <td>
                 <div class="topSpacing">
-                    <b><label class="slds-form-element__label">security</label></b>
+                    <b><label class="slds-form-element__label">{!$Label.c.orm_security_assessmentRisk}</label></b>
                 </div>
                 <div class="width">
                     <a href="javascript:void(0);">
@@ -181,11 +181,38 @@
 
             <td>
                 <div class="topSpacing">
-                    <b><label class="slds-form-element__label">reputation</label></b>
+                    <b><label class="slds-form-element__label">{!$Label.c.orm_reputation_assessmentRisk}</label></b>
                 </div>
                 <div class="width">
                     <a href="javascript:void(0);">
                         <ui:inputText aura:id="reputation" class="slds-input" value="{!v.assessmentRiskData.orm_reputation__c}"  change="{!c.onReputation}">
+                        </ui:inputText>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                <div class="topSpacing">
+                    <b><label class="slds-form-element__label">{!$Label.c.orm_cost_assessmentRisk}</label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputNumber  aura:id="cost" class="slds-input" value="{!v.assessmentRiskData.orm_cost__c}" change="{!c.onCost}"  >
+                        </ui:inputNumber>
+                    </a>
+                </div>
+            </td>
+
+            <td>
+                <div class="topSpacing">
+                    <b><label class="slds-form-element__label">{!$Label.c.orm_healthAndSafety_assessmentRisk}</label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputText aura:id="healthAndSafety" class="slds-input" value="{!v.assessmentRiskData.orm_healthAndSafety__c}"  change="{!c.onHealthAndSafety}">
                         </ui:inputText>
                     </a>
                 </div>

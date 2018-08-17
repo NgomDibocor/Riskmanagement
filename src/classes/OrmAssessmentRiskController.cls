@@ -29,7 +29,7 @@ public with sharing class OrmAssessmentRiskController {
 	 * @version 1.0
 	 * @description  this method returns all assessments of user connected
 	 * @history 
-	 * 2018-07-20 : Dibocor NGOM - Implementation
+	 * 2018-07-20 : Dibocor NGOM - Implementation  
 	 */
     @AuraEnabled 
     public static List<orm_assessmentRisk__c> findAll()
@@ -66,8 +66,23 @@ public with sharing class OrmAssessmentRiskController {
         Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
         for (AggregateResult ar: agrResults){
           mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbRisk'));
-        }  
-         
+        } 
+        
+        // This list contains the assessments that don't have risk
+        List<Assessment__c> AssessmentDontHaveRisk = [Select Id 
+                                                      From Assessment__c 
+                                                      Where Id NOT IN :mapIdAssessmentNbRisk.keySet()];
+        
+        //mapAssessmentDontHaveRisk is a map that contains id of assessments that don't have risk 
+        Map<Id, Integer> mapAssessmentDontHaveRisk = new Map<Id, Integer>();
+        
+        for (Assessment__c assessment: AssessmentDontHaveRisk){
+          mapAssessmentDontHaveRisk.put(assessment.get('Id').toString(), 0);
+        }
+        
+        // add mapAssessmentDontHaveRisk entries to mapIdAssessmentNbRisk
+        mapIdAssessmentNbRisk.putAll(mapAssessmentDontHaveRisk);
+        
         //get all assessment with Id in mapIdAssessmentNbRisk
         List<Assessment__c> assessments = [Select Id, Name, orm_description__c, orm_objectif__c 
                               From Assessment__c  

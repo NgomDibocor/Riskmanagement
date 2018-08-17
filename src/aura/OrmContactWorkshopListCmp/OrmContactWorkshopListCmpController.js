@@ -57,7 +57,6 @@
 	createContactWorkshop : function(component, event, helper) {
 
 		var relatedcontactworkshop = component.get("v.ContactWorkshopList");
-  alert('checkcontactList'+JSON.stringify(component.get('v.ContactList')));
 		var action = component.get('c.addWorkShopContact');
 		action.setParams({
 			"items" : relatedcontactworkshop
@@ -68,7 +67,7 @@
 			console.log(state);
 			if (state == "SUCCESS") {
 				alert("successful association");
-				helper.refreshContactWorkshop(component,component.get('v.ContactList'));
+				helper.refreshContactWorkshop(component);
 			} else {
 				alert("failed association");
 			}
@@ -96,7 +95,7 @@
 		var actionName = event.getParam('action').name;
 		alert(actionName);
 		var colDef = event.getParam('columnDefinition');
-		alert(colDef);
+	
 	}
 
 })

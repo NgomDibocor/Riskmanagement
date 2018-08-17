@@ -5,10 +5,10 @@
     doInit : function(component, event, helper)
     {
        // helper.refreshList(component, event);
-        var action = component.get('c.findAll');
+        var action = component.get('c.getAllAssessmentRisks');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
-                component.set('v.assessmentRisks', response.getReturnValue());
+              component.set('v.assessmentRisks', response.getReturnValue());
             }
            /* var state = response.getState();
              if(state === 'SUCCESS'){
@@ -27,5 +27,9 @@
         });
         $A.enqueueAction(action);
     },
+    showAssessmentRisk : function(component, event, helper) {
+    alert(JSON.stringify(component.get('v.assessmentRisks')));
+    
+	},
     
 })

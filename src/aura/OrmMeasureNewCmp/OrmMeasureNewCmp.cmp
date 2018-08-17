@@ -21,7 +21,9 @@
 							title="Close" onclick="{!c.closeModal}">
 							X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 						</button>
-						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label + ' ' + 'Measure'}</h1>
+						<h1 id="header99" class="slds-text-heading--medium">
+							{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}
+						</h1>
 					</div>
 					<!--###### MODAL BOX BODY Part Start From Here ######-->
 					<div class="slds-modal__content slds-p-around--medium">
@@ -31,14 +33,14 @@
 								<div class="slds-col">
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
-                                            <lightning:input aura:id="name" type="text" label="Measure" class="slds-input"
-                                     			value="{!v.measure.Name}" required="true"/>
+                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_measure_name}" 
+                                            	class="slds-input" value="{!v.measure.Name}" required="true"/>
 										</div>
 									</div>
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
-											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" class="slds-input"
-                                     			value="{!v.measure.orm_description__c}" required="true"/>
+											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" 
+												class="slds-input" value="{!v.measure.orm_description__c}" required="true"/>
 										</div>
 									</div>                          
 								</div>								

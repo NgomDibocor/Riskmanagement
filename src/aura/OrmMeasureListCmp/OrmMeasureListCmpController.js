@@ -9,8 +9,41 @@
 	},
 	
 	save: function(component, event, helper) {
-	
+		
+		// Check required fields(Description) first in helper method which is return true/false
+        if (helper.requiredValidation(component, event)){
+              
+               var action = component.get("c.updateMeasures");
+               action.setParams({
+            	   'measures': component.get("v.measures")
+               });
+                  
+	           action.setCallback(this, function(response) {
+	               var state = response.getState();
+	               if (state === "SUCCESS") {
+	                    var measures = response.getReturnValue();
+	                    // set cause list with return value from server.
+	                    component.set("v.measures", measures);
+	                    // Hide the save and cancel buttons by setting the 'showSaveCancelBtn' false 
+	                    component.set("v.showSaveCancelBtn", false);
+	                    var toast = $A.get('e.force:showToast');
+			            toast.setParams({
+			            	'message' : $A.get('$Label.c.orm_updated'),
+			                'type' : 'success',
+			                'mode' : 'dismissible'
+			            });	
+			            toast.fire();
+			       }
+	           });
+	           $A.enqueueAction(action);
+        } 
+		
 	},
+	
+	cancel : function(component,event,helper) {
+       // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
+       $A.get('e.force:refreshView').fire(); 
+    },
 	
 	filterMeasure : function (component, event, helper){
     	
@@ -38,13 +71,14 @@
         var evt = $A.get("e.c:OrmNewMeasureClickedEvt");
 		evt.fire();
     },
+    
     sendDescriptionFieldMeasure : function (component, event, helper){
     
     },
+    
     openModalDeleteMeasure : function (component, event, helper){
     
     },
-    cancel : function(component,event,helper) {
-       
-    },
+    
+    
 })

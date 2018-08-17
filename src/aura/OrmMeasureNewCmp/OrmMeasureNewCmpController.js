@@ -25,15 +25,15 @@
             });
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
-            	   component.set('v.measure', 
-		             { 'sobjectType' : 'Assessment__c',
+            	   component.set('v.measure', { 
+            		   'sobjectType' : 'Assessment__c',
 		               'Name' : '',
 		               'orm_description__c' : '',
 			        });
             		var newMeasure = response.getReturnValue();
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
-			           'message' : newMeasure.Name +' has been added',
+			           'message' : newMeasure.Name +' ' + $A.get('$Label.c.orm_toast_success'),
 			           'type' : 'success',
 			           'mode' : 'dismissible'
 		            });	
@@ -44,7 +44,7 @@
             	} else {
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
-			           'message' : 'ERROR',
+			           'message' : $A.get('$Label.c.orm_error'),
 			           'type' : 'error',
 			           'mode' : 'dismissible'
 		            });	
@@ -55,7 +55,7 @@
         }else {
         	var toast = $A.get('e.force:showToast');
         	toast.setParams({
-			   'message' : 'No Field should be Empty',
+			   'message' : $A.get("$Label.c.orm_error_field_empty"),
 			   'type' : 'error',
 			   'mode' : 'dismissible'
 		    });	

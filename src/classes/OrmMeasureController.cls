@@ -41,4 +41,14 @@ public with sharing class OrmMeasureController {
 		return item;
 	}
 	
+	/**
+	 * @author: Abdoulaye
+	 * @date: Creation: 17/08/2018
+	 * @description: update a list of Measure
+	*/
+	public static List <Assessment__c> updateMeasures(List<Assessment__c> measures) {
+        update measures;
+        return measures;
+    }
+	
 }

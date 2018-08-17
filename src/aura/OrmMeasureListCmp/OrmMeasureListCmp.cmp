@@ -1,9 +1,12 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
+  
+  <!-- attributes -->
   <aura:attribute name="measures" type="Assessment__c[]" />
   <aura:attribute name="idAssessmentRisk" type="string" />
   <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
   <aura:attribute name="key" type="string" description="" />
 	
+  <!-- events  -->
   <aura:registerEvent name="OrmNewMeasureClickedEvt"  type="c:OrmNewMeasureClickedEvt"/>
   
   <aura:handler event="c:OrmMeasureCreatedEvt" action="{!c.refreshList}" />
@@ -11,7 +14,7 @@
   
   <div class="slds-m-around_large">
 		<div class="topSpacing">
-        	<label class="slds-form-element__label ">Measure<span class="cmn_mandatory_indicator">*</span></label>
+        	<label class="slds-form-element__label ">{!$Label.c.orm_measure_label}<span class="cmn_mandatory_indicator">*</span></label>
         </div>                                        
 	    <div class="measure">
 	    
@@ -20,21 +23,23 @@
 					<lightning:input type="text" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
 				</a>
 			</div>
-			<span title="{!$Label.c.new_title_label + ' ' + 'measure'}" class="btnNewMeasure" onclick="{!c.openNewMeasureCmp}">
-	        	<lightning:icon iconName="utility:new" size="medium" />
+			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" onclick="{!c.openNewMeasureCmp}">
+	        	<lightning:icon iconName="utility:new" size="small" />
 	        </span>
 	        
 	        <span class="deleteMeasure" onclick="{!c.openModalDeleteMeasure}">
-				<lightning:icon iconName="utility:delete" size="medium" />
+				<lightning:icon iconName="utility:delete" size="small" />
 			</span>
 	
 			<!-- use aura:if for show/hide buttons --> 
 	        <aura:if isTrue="{!v.showSaveCancelBtn}">
-	            <!--button for save and cancel Record after Inline Edit-->
-	            <lightning:buttonGroup class="slds-m-around_medium">
+	            <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
+	        		<!--button for save and cancel Record after Inline Edit-->
+	        		<lightning:buttonGroup class="slds-m-around_medium">
 	                <lightning:button label="{!$Label.c.cancel_button_title}" onclick="{!c.cancel}"/>
 	                <lightning:button label="{!$Label.c.save_button_title}" onclick="{!c.save}" variant="success"/>
 	            </lightning:buttonGroup>
+	        	</div>
 	        </aura:if> 
         
 	        <!--Data Table-->     
@@ -54,8 +59,8 @@
 		                </div>
 		              </th> 
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_label_cause}">Measure</div></th>
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_description}">Description</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_label_cause}">{!$Label.c.orm_measure_label}</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_description}">{!$Label.c.orm_measure_description}</div></th>
 	                </tr>
 	            </thead>
 	            

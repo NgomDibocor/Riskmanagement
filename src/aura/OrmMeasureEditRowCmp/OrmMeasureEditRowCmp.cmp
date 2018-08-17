@@ -30,10 +30,10 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.nameEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_label_cause}">{!v.measure.Name}</span>
+                    <span class="slds-truncate" title="{!$Label.c.orm_measure_label}">{!v.measure.Name}</span>
                     <button onclick="{!c.inlineEditName}" 
                     	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
-                    		tabindex="0" title="Edit Name">
+                    		tabindex="0" title="{!$Label.c.edit_button_title + ' ' + $Label.c.orm_measure_name}">
                       <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
                    
@@ -50,7 +50,7 @@
                                                       blur="{!c.closeNameBox}"
                                                       change="{!c.onNameChange}"
                                                       required="true"
-                                                      label="{!$Label.c.orm_label_cause}"
+                                                      label="{!$Label.c.orm_measure_name}"
                                                       value="{!v.measure.Name}" />
                                     </div>
                                 </div>
@@ -66,9 +66,9 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.descriptionEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.Description}">{!v.measure.orm_description__c}</span>
+                    <span class="slds-truncate" title="{!$Label.c.orm_measure_description}">{!v.measure.orm_description__c}</span>
                     <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
-                    	tabindex="0" title="Edit Rating">
+                    	tabindex="0" title="{!$Label.c.edit_button_title + ' ' + $Label.c.orm_measure_description}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
                     

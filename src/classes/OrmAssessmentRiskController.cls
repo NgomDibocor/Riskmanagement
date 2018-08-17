@@ -178,4 +178,36 @@ public with sharing class OrmAssessmentRiskController {
     public static Assessment__c getAssessment(String idAss){
         return OrmAssessmentController.getAssessment(idAss);
     }
+    
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns all assessment informations for the show
+	 * @history 
+	 * 2018-08-02 : Dibocor NGOM - Implementation
+	 */
+    @AuraEnabled 
+    public static orm_assessmentRisk__c getAssessmentByIdAssRisk(String idAssRisk){
+        return [Select Id, orm_assessment__r.Id, orm_assessment__r.Name, orm_assessment__r.orm_description__c, orm_assessment__r.orm_typeAssessment__c, 
+         			   orm_assessment__r.orm_objectif__c, 
+                       orm_assessment__r.orm_typeProjet__c, orm_assessment__r.orm_clientIndustrySector__c, 
+                       orm_assessment__r.orm_statusAssessment__c, orm_assessment__r.orm_currency__c,
+                       orm_assessment__r.orm_schedule__c, orm_assessment__r.orm_riskManager__c,
+                       orm_assessment__r.orm_riskManager__r.Name, orm_assessment__r.orm_projetManager__c, 
+                       orm_assessment__r.orm_projetManager__r.Name, orm_assessment__r.orm_pilote__c, 
+                       orm_assessment__r.orm_copilote__c, orm_assessment__r.orm_startDate__c, 
+                       orm_assessment__r.orm_endDate__c, orm_assessment__r.orm_commercialBudget__c,
+                       orm_assessment__r.orm_maxCostExposture__c, orm_assessment__r.orm_max_schedule_exposture__c,
+                       orm_assessment__r.orm_finaliteProcessus__c, orm_assessment__r.orm_referenceProcessus__c, 
+                       orm_assessment__r.orm_applicationDateProcessus__c, orm_assessment__r.orm_organisation__c, 
+                       orm_assessment__r.orm_organisation__r.Name, orm_assessment__r.orm_client_name__c, 
+                       orm_assessment__r.orm_size__c, orm_assessment__r.orm_organisationIndustrySector__c,
+                       orm_assessment__r.orm_budgetOrganisation__c,orm_assessment__r.orm_organisationManager__c, 
+                       orm_assessment__r.orm_organisationManager__r.Name, orm_assessment__r.orm_pays__c, 
+                       orm_assessment__r.orm_region__c
+                From orm_assessmentRisk__c
+                Where Id = : idAssRisk ];
+         
+    }
 }

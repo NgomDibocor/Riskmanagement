@@ -5,14 +5,18 @@
     },
     showAssessmentRisk : function(component, event, helper) {
     var assessmentRiskId = event.target.id;
-    alert(assessmentRiskId);
-     var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
-        evt.setParams({
-            "idAssessmentRisk": assessmentRiskId
+     var action = component.get('c.getAssessmentByIdAssRisk');
+     action.setParams({
+            "idAssRisk": assessmentRiskId
         });
-        evt.fire();
-   
-   
+     action.setCallback(this, function(response) 
+     {
+      if(response.getState() == 'SUCCESS')
+      {
+    	  alert(JSON.stringify(response.getReturnValue()));
+      }
+     });
+     $A.enqueueAction(action);
 	},
 
 })

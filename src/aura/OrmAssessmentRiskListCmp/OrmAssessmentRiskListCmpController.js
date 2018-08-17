@@ -28,8 +28,15 @@
         $A.enqueueAction(action);
     },
     showAssessmentRisk : function(component, event, helper) {
-    alert(JSON.stringify(component.get('v.assessmentRisks')));
-    
+    var assessmentRiskId = event.target.id;
+    alert(assessmentRiskId);
+     var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
+        evt.setParams({
+            "idAssessmentRisk": assessmentRiskId
+        });
+        evt.fire();
+   
+   
 	},
     
 })

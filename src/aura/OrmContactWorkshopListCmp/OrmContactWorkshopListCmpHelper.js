@@ -33,12 +33,18 @@
             console.log(state);
             if (state == "SUCCESS") {
 
-		              //refresh list contact  
+		              //refresh data ContactList 
 		            this.refreshContactWorkshop(component);
             
-            } else {
-             alert('failed delete');
-            
+            } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
             }
         });
         $A.enqueueAction(action);
@@ -54,12 +60,17 @@
             }
         });
          $A.enqueueAction(contactworkshop);
-    
-      
-         //  alert('contactListOld'+contactListOld);
-         	//component.set("v.isOpenModalContactWorkshop", false);
+
 	},
 	
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description getRowActions label
+ * @history 
+ * 2018-08-13 : Salimata NGOM - Implementation
+ */
 	 getRowActions: function (cmp, row, doneCallback) {
 	 if(row.invitation){
 	  var actions = [{
@@ -80,6 +91,14 @@
         }), 200);
     },
     
+    /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description add one row Contact in ContactWorkshop 
+ * @history 
+ * 2018-08-14 : Salimata NGOM - Implementation
+ */
       addContactWorkshop: function(component,row) {
       var newcontactworkshop={};
         newcontactworkshop.sobjectType='orm_ContactWorkshop__c';
@@ -97,23 +116,32 @@
             console.log(state);
             if ( state == "SUCCESS") {
                  //fire toast event
-                 /**
-            var toastEvent = $A.get('e.force:showToast');
-                        toastEvent.setParams({
-                            "title": "Success!",
-                            "message": "Contact associated with succes",
-                            'type' : 'success',
-                            'mode' : 'dismissible'
-                        });**/
+    
               this.refreshContactWorkshop(component);
-            } else {
-                alert("failed association");
+            } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
             }
         });
         $A.enqueueAction(action);
       },
-      
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description refresh data ContactList
+ * @history 
+ * 2018-08-17 : Salimata NGOM - Implementation
+ */  
       refreshContactWorkshop:function(component){
+      // call the apex class
+	  //method and fetch contact list in v.ContactList
        var action = component.get("c.findAllContact");
 		action
 				.setCallback(
@@ -122,7 +150,6 @@
 							var state = response.getState();
 							if (state === "SUCCESS") {
 							var storeResponse = response.getReturnValue();
-								// console.log(JSON.stringify(storeResponse));
 
 								// set ContactListTemp list with return value
 								// from server.

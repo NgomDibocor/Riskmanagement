@@ -1,6 +1,6 @@
 <aura:component controller="OrmAssessmentRiskController" extends="c:ormAbstractListCmp">
-    <aura:registerEvent name="DisplayAssessment"
-		type="c:OrmDisplayAssessmentEvt"/>
+    <aura:attribute name="key" type="string" />
+    <aura:registerEvent name="DisplayAssessment" type="c:OrmDisplayAssessmentEvt"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <!-- <aura:attribute name="assessments" type="Assessment__c[]" description="" /> -->
     <!--<aura:attribute name="assessments" type="List" />  -->
@@ -13,7 +13,7 @@
  <table>
     <tr>
       <td class="space">
-          <lightning:input class="search" placeholder="search assessment" type="text" onchange="{!c.filter}"  />
+          <lightning:input class="search" placeholder="search assessment" type="text" onchange="{!c.filter}" value="{!v.key}"  />
       </td>
       <td class="btnNew">
           <lightning:buttonGroup >

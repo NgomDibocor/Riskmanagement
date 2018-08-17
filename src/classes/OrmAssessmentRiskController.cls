@@ -66,7 +66,8 @@ public with sharing class OrmAssessmentRiskController {
         Map<Id, Integer> mapIdAssessmentNbRisk = new Map<Id, Integer>();
         for (AggregateResult ar: agrResults){
           mapIdAssessmentNbRisk.put(ar.get('Id').toString(), (Integer)ar.get('nbRisk'));
-        }   
+        }  
+         
         //get all assessment with Id in mapIdAssessmentNbRisk
         List<Assessment__c> assessments = [Select Id, Name, orm_description__c, orm_objectif__c 
                               From Assessment__c  

@@ -8,7 +8,6 @@
         var action = component.get('c.getAllAssessmentRisks');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
-              //alert(JSON.stringify(response.getReturnValue()[0]))
               component.set('v.assessmentRisks', response.getReturnValue());
             }
            /* var state = response.getState();
@@ -28,5 +27,9 @@
         });
         $A.enqueueAction(action);
     },
+    showAssessmentRisk : function(component, event, helper) {
+    alert(JSON.stringify(component.get('v.assessmentRisks')));
+    
+	},
     
 })

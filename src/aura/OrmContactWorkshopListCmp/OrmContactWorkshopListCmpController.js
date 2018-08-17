@@ -43,7 +43,7 @@
 					newcontactworkshop.orm_contact__c = selectedRow.Id;
 					newcontactworkshop.orm_notification__c = false;
 					newcontactworkshop.orm_Workshop__c = component
-							.get("v.workshop").Id;
+							.get("v.workshop");
 
 					contactsWorkshop.push(newcontactworkshop);
 					console.log('v.ContactWorkshopList  nbre'
@@ -57,18 +57,17 @@
 	createContactWorkshop : function(component, event, helper) {
 
 		var relatedcontactworkshop = component.get("v.ContactWorkshopList");
-
 		var action = component.get('c.addWorkShopContact');
 		action.setParams({
 			"items" : relatedcontactworkshop
 		});
-		alert(JSON.stringify(relatedcontactworkshop));
+		
 		action.setCallback(this, function(response) {
 			var state = response.getState();
 			console.log(state);
-			if (component.isValid() && state == "SUCCESS") {
+			if (state == "SUCCESS") {
 				alert("successful association");
-				helper.refreshContactWorkshop(component,event);
+				helper.refreshContactWorkshop(component);
 			} else {
 				alert("failed association");
 			}
@@ -96,7 +95,7 @@
 		var actionName = event.getParam('action').name;
 		alert(actionName);
 		var colDef = event.getParam('columnDefinition');
-		alert(colDef);
+	
 	}
 
 })

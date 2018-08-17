@@ -3,18 +3,8 @@
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!--declare aura attributes-->
 		<aura:attribute name="sNo" type="string" />
-	<aura:attribute name="singleRec" type="sobject" default="{
-						'sobjectType' : 'Contract',
-                        'Name': '',
-                        'StartDate':'',
-                        'orm_Contract_End_Date__c':'', 
-                        'CompanySignedDate':'',
-                        'orm_Assessment__c':'', 
-                        'AccountId':'',                              
-						'Description':''
-						
-					}" />
-					<aura:attribute name="assessmentData" type="Assessment__c"
+	<aura:attribute name="singleRec" type="Contract" />
+		<aura:attribute name="assessmentData" type="Assessment__c"
 		default="{
 						'sobjectType' : 'Assessment__c',
 						'Description':''
@@ -180,7 +170,7 @@
 		<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
                   <div class="slds-form-element">
                      <div class="slds-form-element__control">
-                        <span class="btnContactworkshop" onclick="{!c.openModalContactWorkshop}">
+                        <span class="btnContactworkshop" title="{!v.singleRec.Name}" onclick="{!c.openModalContactWorkshop}">
            <lightning:icon iconName="action:add_contact" size="small" /></span>
                      </div>
                   </div>

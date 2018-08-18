@@ -117,7 +117,7 @@ public with sharing class OrmAssessmentRiskController {
     @AuraEnabled 
     public static List<List<String>> getAllAssessmentRisks()
     {
-        List<orm_assessmentRisk__c> assRiskList = [Select id, orm_Risk__r.Name, orm_Risk__r.Description,orm_assessment__r.Id,
+        List<orm_assessmentRisk__c> assRiskList = [Select id, orm_Risk__r.Name, orm_Risk__r.Description,orm_assessment__r.Id,orm_assessment__r.Name,
                        (SELECT id 
                         FROM Macros__r 
                         WHERE RecordTypeId =: OrmAssessmentRiskController.getCauseRecordTypeId()),
@@ -132,6 +132,7 @@ public with sharing class OrmAssessmentRiskController {
                info.add(assRisk.id);
                info.add(assRisk.orm_Risk__r.Name);
                info.add(assRisk.orm_Risk__r.Description);
+               info.add(assRisk.orm_assessment__r.Name);
                if (assRisk.getsobjects('Assessments__r') != null){
                	   info.add(String.valueOf(assRisk.getsobjects('Assessments__r').size()));
                }else{ 

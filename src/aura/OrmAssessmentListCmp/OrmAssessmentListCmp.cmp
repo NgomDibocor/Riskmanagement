@@ -74,7 +74,7 @@
                             iconName='utility:back'/>
           &nbsp; &nbsp; &nbsp;
           <lightning:button label="Next" 
-          disabled="{!v.endPage >= v.totalRecords}"
+          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
                             onclick="{!c.next}" variant="brand"
                             iconName='utility:forward' iconPosition='right'/>
       </lightning:buttonGroup>

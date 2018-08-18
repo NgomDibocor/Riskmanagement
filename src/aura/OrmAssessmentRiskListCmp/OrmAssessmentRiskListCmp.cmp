@@ -6,62 +6,57 @@
     
     
     <div class="slds-grid slds-wrap" style="width:100%">
-        <aura:iteration items="{!v.PaginationList}" var="item"  indexVar="i">
-            <div class="slds-col slds-size_1-of-2">
-                <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="width:450px;">
-                    <div class="slds-page-header">
-                        <div class="slds-grid">
-                            <div class="slds-col slds-has-flexi-truncate">
-                                <div class="slds-media slds-no-space slds-grow">
-                                    <div class="slds-media__figure">
-                                        <div class="slds-media__figure">
-                                            <span class="slds-icon_container " title="{!item[1]}">
-                                   				<lightning:icon  iconName="utility:trail" size="medium" />
-                                				</span>
-                                        </div>
-                                    </div>
-                                    <div class="slds-media__body">
-                                        <nav>
-                                            <ol class="slds-breadcrumb slds-line-height_reset">
-                                                <li class="slds-breadcrumb__item">
-                                                    <span><b><ui:outputText value="{!item[1]}" /></b></span>
-                                                </li>
-                                            </ol>
-                                        </nav>
-                                        <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="{!item[2]}"><ui:outputRichText value="{!item[2]}" /></h1>
-                                    </div>
-                                </div>
+   <aura:iteration items="{!v.PaginationList}" var="item">
+   
+        <div class="slds-size_1-of-3">
+            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:350px;">
+                <article class="slds-card" style="height:150px;">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container " title="Assessment">
+                                  <lightning:icon iconName="utility:trail" size="medium" />
+                                </span>
                             </div>
-                            <div class="slds-col slds-no-flex slds-grid slds-align-top">
-
-                                <div class="slds-button-group" role="group">
-                                    <button class="slds-button slds-button_neutral"   id="{!item[0]}"  
-                                    onclick="{!c.showAssessmentRisk}">
-                                    {!$Label.c.show_button_title}</button>
-                                </div>
+                            <div class="slds-media__body">
+                               <h2>
+                                  Assessment: <ui:outputText value="{!item[3]}" />
+                              </h2>
                             </div>
-                        </div>
-                        <ul class="slds-grid slds-page-header__detail-row">
-                            <li class="slds-page-header__detail-block">
-                              
-                                <b><p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 1">Measures</p>
-                                <p class="slds-text-body_regular "><span class="slds-badge">{!item[3]}</span></p> </b>
-                               
-                            </li>
-                            <li class="slds-page-header__detail-block">
-                               <b> <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field2 (3)">Cause</p>
-                                <p class="slds-text-body_regular"><span class="slds-badge">{!item[4]}</span></p></b>
-                            </li>
-                            <!--<li class="slds-page-header__detail-block">
-                                <p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"> Impact </p>
-                                 <p class="slds-text-body_regular"><span class="slds-badge"><b>15</b></span></p>
-                            </li>  --> 
-                        </ul>
+                            
+                            <div class="slds-no-flex">
+                                <button id="{!item[0]}" 
+                                        class="slds-button slds-button_neutral"
+                                        onclick="{!c.showAssessmentRisk}">
+                                    {!$Label.c.show_button_title}
+                                </button>
+                            </div>
+                        </header>
                     </div>
-                </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <h2>
+                           Risk: <ui:outputText value="{!item[1]}" />
+                        </h2>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner slds-truncate">
+                        Description: <ui:outputText value="{!item[2]}" /> 
+                    </div>
+                    <div class=" slds-card__body slds-card__body_inner">
+	                    <table style="width:100%">
+	                      <tr>
+	                        <td width="34%">Measures: <b><ui:outputText value="{!item[4]}" /></b></td>
+	                        <td width="33%">Causes: <b><ui:outputText value="{!item[5]}" /></b></td>
+	                        <td width="33%"><ui:outputText value="" /></td>
+	                      </tr>
+	                    </table>
+                    </div>
+                    
+                </article>
             </div>
-        </aura:iteration>
-    </div>
+        </div>
+       
+    </aura:iteration>
+  </div>
     <div style="margin:auto; padding-bottom:10px">
 	    <lightning:buttonGroup >
 	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
@@ -69,7 +64,7 @@
 	                            iconName='utility:back'/>
 	          &nbsp; &nbsp; &nbsp;
 	          <lightning:button label="Next" 
-	          disabled="{!v.endPage >= v.totalRecords}"
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
 	                            onclick="{!c.next}" variant="brand"
 	                            iconName='utility:forward' iconPosition='right'/>
 	      </lightning:buttonGroup>

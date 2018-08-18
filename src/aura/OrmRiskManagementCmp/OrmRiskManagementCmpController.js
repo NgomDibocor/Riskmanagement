@@ -70,5 +70,20 @@
         var spinner = component.find('spinner-div');
         $A.util.addClass(spinner, "slds-hide");
 	  },
+	  
+	  showInfoAssessmentRisk : function(component,event,helper){ 
+	   $A.createComponent(
+	            "c:OrmAssessmentLayoutCmp", {
+	                "assessmentData": event.getParam("assessmentObject"),
+	                "showContext": false,
+	                "showRiskAnalyse" : true
+	            },
+	            function(newCmp) {
+	                if (component.isValid()) {
+	                    component.set("v.body", newCmp);
+	                }
+	            }
+	        );  
+	  },
     
 })

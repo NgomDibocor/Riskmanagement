@@ -6,6 +6,7 @@
     <aura:handler event="c:OrmShowAssessmentClickedEvt" action="{!c.showInfoAssessment}" />
     <aura:handler event="c:OrmShowSpinnerEvt" action="{!c.showSpinner}" />
     <aura:handler event="c:OrmHideSpinnerEvt" action="{!c.hideSpinner}" />
+    <aura:handler event="c:OrmShowAssessmentRiskInfoEvt" action="{!c.showInfoAssessmentRisk}" />
     
     <div aura:id="spinner-div" class="slds-hide load-spinner">
 		<ui:spinner aura:id="spinner" />

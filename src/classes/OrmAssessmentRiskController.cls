@@ -44,7 +44,7 @@ public with sharing class OrmAssessmentRiskController {
 	 *
 	 * @author Dibocor NGOM
 	 * @version 1.0
-	 * @description  this method returns all assessments of user connected
+	 * @description  this method returns all assessments that user connected has created or the user connected is responsible
 	 * @history 
 	 * 2018-07-24 : Dibocor NGOM - Implementation
 	 */
@@ -71,10 +71,15 @@ public with sharing class OrmAssessmentRiskController {
         // This list contains the assessments that don't have risk
         List<Assessment__c> AssessmentDontHaveRisk = [Select Id 
                                                       From Assessment__c 
-                                                      Where (orm_assessment__r.orm_projetManager__c = :UserInfo.getUserId() 
-		                                                or CreatedById = :UserInfo.getUserId()
-		                                                or orm_assessment__r.orm_riskManager__c = :UserInfo.getUserId() 
-		                                                or orm_assessment__r.orm_organisationManager__c = :UserInfo.getUserId())
+                                                      Where (RecordTypeId =: OrmAssessmentController.getOrganisationRecordTypeId()
+                                                          or RecordTypeId =: OrmAssessmentController.getProjetRecordTypeId()
+                                                          or RecordTypeId =: OrmAssessmentController.getProcessusRecordTypeId()
+                                                            ) 
+                                                      And   (orm_assessment__r.orm_projetManager__c = :UserInfo.getUserId() 
+		                                                  or CreatedById = :UserInfo.getUserId()
+		                                                  or orm_assessment__r.orm_riskManager__c = :UserInfo.getUserId() 
+		                                                  or orm_assessment__r.orm_organisationManager__c = :UserInfo.getUserId()
+		                                                    )
                                                       And Id NOT IN :mapIdAssessmentNbRisk.keySet()];
         
         //mapAssessmentDontHaveRisk is a map that contains id of assessments that don't have risk 
@@ -112,7 +117,7 @@ public with sharing class OrmAssessmentRiskController {
     @AuraEnabled 
     public static List<List<String>> getAllAssessmentRisks()
     {
-        List<orm_assessmentRisk__c> assRiskList = [Select id, orm_Risk__r.Name, orm_Risk__r.Description,orm_assessment__r.Id,
+        List<orm_assessmentRisk__c> assRiskList = [Select id, orm_Risk__r.Name, orm_Risk__r.Description,orm_assessment__r.Id,orm_assessment__r.Name,
                        (SELECT id 
                         FROM Macros__r 
                         WHERE RecordTypeId =: OrmAssessmentRiskController.getCauseRecordTypeId()),
@@ -127,6 +132,7 @@ public with sharing class OrmAssessmentRiskController {
                info.add(assRisk.id);
                info.add(assRisk.orm_Risk__r.Name);
                info.add(assRisk.orm_Risk__r.Description);
+               info.add(assRisk.orm_assessment__r.Name);
                if (assRisk.getsobjects('Assessments__r') != null){
                	   info.add(String.valueOf(assRisk.getsobjects('Assessments__r').size()));
                }else{ 

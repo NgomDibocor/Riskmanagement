@@ -3,11 +3,15 @@
     <aura:registerEvent name="OrmActiveRiskAnalyeCmpEvt" type="c:OrmActiveRiskAnalyeCmpEvt" />
     <!--<aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c" description="" />  -->
     <aura:attribute name="assessmentRisks" type="List" />
-    
-    
-    <div class="slds-grid slds-wrap" style="width:100%">
-   <aura:iteration items="{!v.PaginationList}" var="item">
    
+   
+    <div class="slds-card" style="margin-left:10px">
+        <lightning:card variant="Narrow" 
+                        title="List of Assessment Risk" 
+                        iconName="utility:list"/>
+    </div>
+    <div class="slds-grid slds-wrap" style="width:100%">
+      <aura:iteration items="{!v.PaginationList}" var="item">
         <div class="slds-size_1-of-3">
             <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:350px;">
                 <article class="slds-card" style="height:150px;">

@@ -1,13 +1,17 @@
 .THIS {
 }
 .THIS .space{
-	width: 85%;
+	display: inline-block;
+    width:44%;
 }
-.THIS .btnNew{
-	margin-top:10px;
+.THIS .searchInput{
+	display: inline-block;
+    width:50%;
+    margin-right:1%;
 }
-.THIS .search{
-	width:80%;
-	margin-left:10%;
-	margin-right:10%;
+.THIS .btnNewAssessment{
+	display: inline-block;
+    width:5%;
+    cursor: pointer;
 }
+

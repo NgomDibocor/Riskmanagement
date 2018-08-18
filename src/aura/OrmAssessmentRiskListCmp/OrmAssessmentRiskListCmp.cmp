@@ -22,7 +22,7 @@
                                   <lightning:icon iconName="utility:trail" size="medium" />
                                 </span>
                             </div>
-                            <div class="slds-media__body">
+                            <div class="slds-media__body slds-truncate">
                                <h2>
                                   Assessment: <ui:outputText value="{!item[3]}" />
                               </h2>
@@ -32,12 +32,12 @@
                                 <button id="{!item[0]}" 
                                         class="slds-button slds-button_neutral"
                                         onclick="{!c.showAssessmentRisk}">
-                                    {!$Label.c.show_button_title}
+                                    {!$Label.c.show_button_title}<span id="{!item[6]}"></span>
                                 </button>
                             </div>
                         </header>
                     </div>
-                    <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-card__body slds-card__body_inner slds-truncate">
                         <h2>
                            Risk: <ui:outputText value="{!item[1]}" />
                         </h2>

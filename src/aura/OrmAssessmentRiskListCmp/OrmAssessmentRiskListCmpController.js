@@ -5,7 +5,8 @@
     },
     showAssessmentRisk : function(component, event, helper) {
     var assessmentRiskId = event.target.id;
-     var action = component.get('c.getAssessmentByIdAssRisk');
+    var idAssessment = document.getElementById( assessmentRiskId ).getElementsByTagName( 'span' ).item(0).id;
+     /*var action = component.get('c.getAssessmentByIdAssRisk');
      action.setParams({
             "idAssRisk": assessmentRiskId
         });
@@ -16,7 +17,7 @@
     	  alert(JSON.stringify(response.getReturnValue()));
       }
      });
-     $A.enqueueAction(action);
+     $A.enqueueAction(action);*/
 	},
 
 })

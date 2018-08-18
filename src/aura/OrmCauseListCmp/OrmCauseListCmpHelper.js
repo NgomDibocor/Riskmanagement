@@ -19,8 +19,7 @@
         action.setParam('idAssRisk', idAssessmentRisk);
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {   
-            	console.log('causes '+ response.getReturnValue());
+            if (state === "SUCCESS") {
             	component.set("v.causes ", response.getReturnValue());
             }
         });

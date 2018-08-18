@@ -1,10 +1,10 @@
 ({
-	deleteSelectedHelper : function (component, event, deleteRecordsIds) {
+	deleteSelectedHelper : function (component, event, delId, idAssessmentRisk) {
 		//call apex class method
 		var action = component.get('c.deleteCauses');
 		// pass the all selected record's Id's to apex method 
 		action.setParams({
-			"causeIds": deleteRecordsIds
+			"causeIds": delId
 		});
 		action.setCallback(this, function(response) {
 			//store state of response
@@ -19,7 +19,7 @@
 				}
 				// call the onLoad function for refresh the List view    
 				var evt = $A.get('e.c:OrmCauseCreatedEvt');
-				evt.setParams({'idAssessmentRisk': 'a001H00000kcsVDQAY'});
+				//evt.setParams({'idAssessmentRisk': idAssessmentRisk});
 				evt.fire();
 			}
 		});

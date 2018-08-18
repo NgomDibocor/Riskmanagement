@@ -60,7 +60,7 @@
     },
     
     deleteSelected : function (component, event, helper) {
-    	
+    	var idAssessmentRisk = event.getParam('idAssessmentRisk');
     	// create var for store record id's for selected checkboxes  
     	var delId = [];
     	// get all checkboxes 
@@ -80,7 +80,7 @@
     		}
     	}   
     	// call the helper function and pass all selected record id's.    
-    	helper.deleteSelectedHelper(component, event, delId);
+    	helper.deleteSelectedHelper(component, event, delId, idAssessmentRisk);
     	
     },
     

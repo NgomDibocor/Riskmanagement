@@ -97,6 +97,7 @@
     
     confirmDeleteCause : function (component, event, helper) {
     	var evt = $A.get('e.c:OrmEvtDeleteCauses');
+    	evt.setParams({'idAssessmentRisk': component.get('v.idAssessmentRisk')});
     	evt.fire();
     	component.set('v.openModalConfirmDeletion', false);
     },

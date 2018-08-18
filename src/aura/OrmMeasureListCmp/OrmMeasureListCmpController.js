@@ -1,6 +1,7 @@
 ({
 	getIdAssessmentRisk : function(component, event, helper) {
 		component.set("v.idAssessmentRisk", event.getParam('idAssessmentRisk'));
+		//console.log('idAssessmentRisk ', event.getParam('idAssessmentRisk'));
 		helper.getAllMeasuresByAssessmentRisk(component, event);
 	},
 	
@@ -9,10 +10,8 @@
 	},
 	
 	save: function(component, event, helper) {
-		
 		// Check required fields(Description) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)){
-              
                var action = component.get("c.updateMeasures");
                action.setParams({
             	   'measures': component.get("v.measures")
@@ -77,8 +76,28 @@
     },
     
     openModalDeleteMeasure : function (component, event, helper){
-    
+    	component.set('v.openModalConfirmDeletion', true);
     },
     
+    cancelDeleteMeasure : function (component, event, helper){
+    	component.set('v.openModalConfirmDeletion', false);
+    },
+    
+    confirmDeleteMeasure : function (component, event, helper){
+    	var evt = $A.get('e.c:OrmDeleteMeasuresEvt');
+    	evt.setParams({'idAssessmentRisk': component.get('v.idAssessmentRisk')});
+    	evt.fire();
+    	component.set('v.openModalConfirmDeletion', false);
+    },
+    
+    showButtonDelete  : function (component, event, helper) {
+    	var showButtonDelete = event.getParam('showButtonDelete');
+    	console.log('capture event '+ showButtonDelete);
+    	if(showButtonDelete){
+    		component.set('v.showButtonDelete', true);
+    	} else {
+			component.set('v.showButtonDelete', false);
+		}
+    }
     
 })

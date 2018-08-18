@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component controller="OrmMeasureController">
     
 	<aura:attribute name="showSaveCancelBtn" type="boolean"/>
     <aura:attribute name="sNo" type="string" />
@@ -9,6 +9,12 @@
                                                                'Name' : '',
                                                                'orm_description__c' : ''
                                                                }"/>
+    <aura:attribute name="selectedBooleans" type="String[]" default="[]"/>
+                                                               
+    <aura:handler action="{!c.deleteSelected}" event="c:OrmDeleteMeasuresEvt"/>
+    
+    <!-- events -->
+    <aura:registerEvent name="OrmShowButtondeleteMeasureEvt" type="c:OrmShowButtondeleteMeasureEvt" description="" />
                                                                
      <!--Table Row Start-->  
     <tr>
@@ -16,7 +22,7 @@
 			<div class="slds-form-element">
 		      <div class="slds-form-element__control">
 		    	<label class="slds-checkbox">
-		        	<ui:inputCheckbox text="{!v.measure.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
+		        	<ui:inputCheckbox text="{!v.measure.Id}" class="check" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
 		            <span class="slds-checkbox--faux"></span>
 		            <span class="slds-form-element__label text"></span>
 		       	</label>

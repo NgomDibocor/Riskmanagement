@@ -101,7 +101,7 @@
 			        </button>
 			      </header>
 			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			        <p>{!$Label.c.orm_error_field_empty}</p>
+			        <p>{!$Label.c.deletion_message}</p>
 			      </div>
 			      <footer class="slds-modal__footer">			        
 					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteCause}">{!$Label.c.cancel_button_title}</button>

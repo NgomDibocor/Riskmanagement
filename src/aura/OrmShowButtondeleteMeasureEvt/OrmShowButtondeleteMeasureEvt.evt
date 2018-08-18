@@ -1,3 +1,3 @@
 <aura:event type="APPLICATION" description="Event template">
-	<aura:attribute name="idAssessmentRisk" type="String" description="" />
+	<aura:attribute name="showButtonDelete" type="Boolean" default="false" />
 </aura:event>

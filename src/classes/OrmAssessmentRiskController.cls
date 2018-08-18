@@ -71,10 +71,15 @@ public with sharing class OrmAssessmentRiskController {
         // This list contains the assessments that don't have risk
         List<Assessment__c> AssessmentDontHaveRisk = [Select Id 
                                                       From Assessment__c 
-                                                      Where (orm_assessment__r.orm_projetManager__c = :UserInfo.getUserId() 
-		                                                or CreatedById = :UserInfo.getUserId()
-		                                                or orm_assessment__r.orm_riskManager__c = :UserInfo.getUserId() 
-		                                                or orm_assessment__r.orm_organisationManager__c = :UserInfo.getUserId())
+                                                      Where (RecordTypeId =: OrmAssessmentController.getOrganisationRecordTypeId()
+                                                          or RecordTypeId =: OrmAssessmentController.getProjetRecordTypeId()
+                                                          or RecordTypeId =: OrmAssessmentController.getProcessusRecordTypeId()
+                                                            ) 
+                                                      And   (orm_assessment__r.orm_projetManager__c = :UserInfo.getUserId() 
+		                                                  or CreatedById = :UserInfo.getUserId()
+		                                                  or orm_assessment__r.orm_riskManager__c = :UserInfo.getUserId() 
+		                                                  or orm_assessment__r.orm_organisationManager__c = :UserInfo.getUserId()
+		                                                    )
                                                       And Id NOT IN :mapIdAssessmentNbRisk.keySet()];
         
         //mapAssessmentDontHaveRisk is a map that contains id of assessments that don't have risk 

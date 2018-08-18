@@ -44,7 +44,7 @@ public with sharing class OrmAssessmentRiskController {
 	 *
 	 * @author Dibocor NGOM
 	 * @version 1.0
-	 * @description  this method returns all assessments of user connected
+	 * @description  this method returns all assessments that user connected has created or the user connected is responsible
 	 * @history 
 	 * 2018-07-24 : Dibocor NGOM - Implementation
 	 */

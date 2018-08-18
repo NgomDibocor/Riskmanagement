@@ -177,7 +177,7 @@
             toast.fire();
         }else{
         
-        helper.activeRiskIdentif(component, event);
+        helper.activeRiskIdentif(component, event);   
         }
     },
     

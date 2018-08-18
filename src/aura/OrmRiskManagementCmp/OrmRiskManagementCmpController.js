@@ -76,7 +76,9 @@
 	            "c:OrmAssessmentLayoutCmp", {
 	                "assessmentData": event.getParam("assessmentObject"),
 	                "showContext": false,
-	                "showRiskAnalyse" : true
+	                "showRiskAnalyse" : true,
+	                "showAssessmentRisk": true,
+	                "idAssessmentRisk" : event.getParam("idAssessmentRisk")
 	            },
 	            function(newCmp) {
 	                if (component.isValid()) {

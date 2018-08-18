@@ -1,5 +1,12 @@
 ({
-    fetchPicklist : function(component, event) {        
+    fetchPicklist : function(component, event) {    
+        if(component.get("v.showAssessmentRisk")== true){
+           var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
+           evt.setParams({
+            "idAssessmentRisk": component.get("v.idAssessmentRisk")
+           });
+           evt.fire();
+         }    
         var actionTypeAssessment = component.get('c.getSelectOptions');
         actionTypeAssessment.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_typeAssessment__c'});
         var opts = [];

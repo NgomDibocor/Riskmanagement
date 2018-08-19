@@ -10,7 +10,7 @@
          var assessmentRiskId = event.target.id;
          var idAssessment = document.getElementById( assessmentRiskId ).getElementsByTagName( 'span' ).item(0).id;
      
-	     var action = component.get('c.getAssessmentById');
+	     var action = component.get('c.getAssessment');
 	     action.setParams({"idAss": idAssessment });
 	     action.setCallback(this, function(response){
 	          var state = response.getState();

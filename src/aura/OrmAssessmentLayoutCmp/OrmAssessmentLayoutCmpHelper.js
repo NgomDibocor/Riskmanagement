@@ -3,7 +3,7 @@
         if(component.get("v.showAssessmentRisk")== true){
            var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
            evt.setParams({
-            "idAssessmentRisk": component.get("v.idAssessmentRisk")
+             "idAssessmentRisk": component.get("v.idAssessmentRisk")
            });
            evt.fire();
          }    

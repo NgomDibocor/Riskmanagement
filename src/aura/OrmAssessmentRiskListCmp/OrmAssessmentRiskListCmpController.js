@@ -32,23 +32,23 @@
     	
     	var assessmentRisks = component.get('v.items');
     	var data = assessmentRisks;
-    	console.log(JSON.stringify(data));
     	var key = component.get('v.key');
     	var regex;    	
     	
     	if ($A.util.isEmpty(key)) {    	
-    		helper.refresh(component, event);    		      
+    		helper.refreshList(component, event);    		      
          } else {
         	key = "^" + key;
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true
-        	 		//data = data.filter(row => regex.test(row[3]) || regex.test(row[1]);
+        	 		data = data.filter(row => regex.test(row[3]) || regex.test(row[1]) || regex.test(row[2]));
 		        } catch (e) {
 		    	   alert(e)
 		        }
 		        
 		   component.set("v.PaginationList", data);
+		  // helper.paginationFilter(component, event);
          }        	
     },
 

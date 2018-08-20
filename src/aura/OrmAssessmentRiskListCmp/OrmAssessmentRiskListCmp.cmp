@@ -10,8 +10,8 @@
    
   <div class="slds-col">									
 		<div class="space"></div>
-		<span class="searchInput" onclick="{!c.createItem}">
-        	<lightning:input class="search" placeholder="search assessmentRisk by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
+		<span class="searchInput">
+        	<lightning:input aura:id="searchAssRisk" class="search" placeholder="search assessmentRisk by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         
    </div>

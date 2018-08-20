@@ -91,6 +91,39 @@
 			"countSelected" :component.get("v.selectedCount") 
 		});*/
 		evt.fire();
+    },
+    
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description search filter 
+ * @history 
+ * 2018-08-20 : Salimata NGOM - Implementation
+ */
+    filter : function (component, event, helper){
+    	
+    	var ActivityList = component.get('v.ActivityList');
+    	var data = ActivityList;
+    	console.log(JSON.stringify(data));
+    	var key = component.get('v.key');
+    	var regex;    	
+    	
+    	if ($A.util.isEmpty(key)) {    	
+    		helper.refreshList(component, event);    		      
+         } else {
+        	key = "^" + key;
+        	try {
+        	 		regex = new RegExp(key, "i");
+        	 		// filter checks each row, constructs new array where function returns true
+        	 		data = data.filter(row => regex.test(row[3]) || regex.test(row[1]) || regex.test(row[2]));
+        	 		console.log(JSON.stringify(data));
+		        } catch (e) {
+		    	   alert(e)
+		        }
+		        
+		   component.set("v.ActivityList", data);
+         }        	
     }
  
 })

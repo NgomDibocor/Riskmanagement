@@ -11,7 +11,8 @@
     <aura:handler event="c:OrmActivityCreatedEvt" action="{!c.initRecords}" />
 	<!-- on component load, fetch picklist values dynamically from apex controller -->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-
+    <aura:registerEvent name="OrmRemoveRecordActivityEvnt" type="c:OrmRemoveRecordActivityEvnt" />
+ 
 	<!--declare aura attributes-->
 	<aura:attribute name="ActivityList" type="Assessment__c[]"
 		description="store activity records list" />
@@ -48,14 +49,16 @@
 					
 <aura:attribute name="showConfirmRemoveActivity" type="boolean" default="false" description="is true show popup  message confirmation" />
  <aura:attribute name="selectedCount" type="integer" default="0"/>
- <aura:registerEvent name="OrmRemoveRecordActivityEvnt" type="c:OrmRemoveRecordActivityEvnt" />
+    <aura:attribute name="key" type="string" />
+    
+
   <div class="slds-grid slds-gutters">
     <div class=" slds-size--2-of-12   slds-p-horizontal--small">
     </div>
         <div class=" slds-size--6-of-12   slds-p-horizontal--small">
-         <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
-                <lightning:input type="text" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}" />
-          </a>
+       <span class="searchInput">
+                <lightning:input class="search" type="search" onchange="{!c.filter}"  value="{!v.key}" label="{!$Label.c.search_title_label}" />
+          </span>
         </div>
         
         <div class=" slds-size--4-of-12   slds-p-horizontal--small">

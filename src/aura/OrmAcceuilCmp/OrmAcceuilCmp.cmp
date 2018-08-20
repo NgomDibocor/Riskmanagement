@@ -30,7 +30,7 @@
       <tr style="height:100px">
         <td width="7%"></td> 
         <td width="35%">
-            <a href="javascript:void(0);" onclick="{!c.test3}">
+            <a href="javascript:void(0);" onclick="{!c.ListMeasure}">
                 <lightning:card class="slds-text-heading_small" 
                                 title="My Measures" iconName="utility:table">
                      <div class=" slds-card__body slds-card__body_inner" style="height:20px;color:black;margin-left:30px">

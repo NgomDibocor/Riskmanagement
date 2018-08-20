@@ -1,2 +1,8 @@
-.THIS {
+  div.h1.THIS {
+    font-family: 'customfontDisney';
+    font-size: 40px;
+}
+@font-face {
+    font-family: 'customfontDisney';
+    src: url(/resource/disneyFont); 
 }

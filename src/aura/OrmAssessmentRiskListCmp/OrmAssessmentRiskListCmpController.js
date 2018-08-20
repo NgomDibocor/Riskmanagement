@@ -43,7 +43,7 @@
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true
-        	 		//data = data.filter(row => regex.test(row.value.assessment.Name) || regex.test(row.value.assessment.orm_description__c));
+        	 		//data = data.filter(row => regex.test(row[3]) || regex.test(row[1]);
 		        } catch (e) {
 		    	   alert(e)
 		        }

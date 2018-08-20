@@ -5,7 +5,7 @@ doInit : function(component, event, helper)
     },
 showAssessmentRisk : function(component, event, helper) 
     {
-         var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
-	     evtSpinner.fire(); 
+	     var measureId = event.target.id;
+         var idAssessment = document.getElementById( measureId ).getElementsByTagName( 'span' ).item(0).id;
 	},
 })

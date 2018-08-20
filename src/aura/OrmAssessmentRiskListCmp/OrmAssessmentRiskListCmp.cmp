@@ -1,19 +1,25 @@
 <aura:component controller="OrmAssessmentRiskController" extends="c:ormAbstractListCmp">
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <aura:registerEvent name="OrmActiveRiskAnalyeCmpEvt" type="c:OrmActiveRiskAnalyeCmpEvt" />
-    <!--<aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c" description="" />  -->
     <aura:attribute name="assessmentRisks" type="List" />
+    <aura:attribute name="key" type="string" />
    
+   <div class="slds-box" style="width:100%;font-size: large !important;">
+	  <h1>List of Assessment Risk</h1>
+	</div>
    
-    <div class="slds-card" style="margin-left:10px">
-        <lightning:card variant="Narrow" 
-                        title="List of Assessment Risk" 
-                        iconName="utility:list"/>
-    </div>
-    <div class="slds-grid slds-wrap" style="width:100%;margin-left:3%">
+  <div class="slds-col">									
+		<div class="space"></div>
+		<span class="searchInput">
+        	<lightning:input class="search" placeholder="search assessmentRisk by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
+        </span>
+        
+   </div>
+ 
+    <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px">
       <aura:iteration items="{!v.PaginationList}" var="item">
-        <div class="slds-size_1-of-2">
-            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:90%;">
+        <div class="slds-size_1-of-3">
+            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:95%;">
                 <article class="slds-card" style="height:150px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
@@ -24,7 +30,7 @@
                             </div>
                             <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
                                <h2>
-                                  <b>Assessment: <ui:outputText value="{!item[3]}" /></b>
+                                  Assessment: <b><ui:outputText value="{!item[3]}" /></b>
                               </h2>
                             </div>
                             
@@ -39,11 +45,11 @@
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
                         <h2>
-                           Risk: <ui:outputText value="{!item[1]}" />
+                           Risk: <b><ui:outputText value="{!item[1]}" /></b>
                         </h2>
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
-                        Description: <ui:outputText value="{!item[2]}" /> 
+                        Description: <b><ui:outputText value="{!item[2]}" /></b> 
                     </div>
                     <div class=" slds-card__body slds-card__body_inner">
 	                    <table style="width:100%">

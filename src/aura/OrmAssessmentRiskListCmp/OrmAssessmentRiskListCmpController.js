@@ -46,9 +46,8 @@
 		        } catch (e) {
 		    	   alert(e)
 		        }
-		        
-		   component.set("v.PaginationList", data);
-		  // helper.paginationFilter(component, event);
+		   //component.set("v.filterPagination", data);
+		   helper.paginationFilter(component, event);
          }        	
     },
 

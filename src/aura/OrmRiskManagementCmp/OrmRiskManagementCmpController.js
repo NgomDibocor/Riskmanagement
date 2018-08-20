@@ -99,5 +99,21 @@
 	            }
 	        );  
 	  },
+	   showInfoMeasure : function(component,event,helper){ 
+	   $A.createComponent(
+	            "c:OrmAssessmentLayoutCmp", {
+	                "assessmentData": event.getParam("assessmentObject"),
+	                "showContext": false,
+	                "showRiskAnalyse" : true,
+	                "showAssessmentRisk": true,
+	                "idMeasure" : event.getParam("idAssessmentRisk")
+	            },
+	            function(newCmp) {
+	                if (component.isValid()) {
+	                    component.set("v.body", newCmp);
+	                }
+	            }
+	        );  
+	  },
     
 })

@@ -68,6 +68,7 @@
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
 	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_label_cause}">{!$Label.c.orm_measure_label}</div></th>
 	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_description}">{!$Label.c.orm_measure_description}</div></th>
+	                  <th scope="col">Action</th>
 	                </tr>
 	            </thead>
 	            

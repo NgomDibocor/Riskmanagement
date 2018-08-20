@@ -52,6 +52,7 @@
     <aura:handler event="c:eventNewOrganisationCreated" action="{!c.refreshListOrganisation}" />
     <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     <aura:handler event="c:OrmActiveRiskAnalyeCmpEvt" action="{!c.activeRiskAnalye }" />
+    <aura:handler event="c:OrmActiveRiskTraitementCmpEvt" action="{!c.activeRiskTreatment}" />
     
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation" type="c:OrmOpenNewOrganisationEvt" />

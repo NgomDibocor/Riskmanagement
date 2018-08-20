@@ -81,5 +81,17 @@ public with sharing class OrmMeasureController {
 	   		}
 	  	}
 	  	return oErrorMsg;  		
+	}
+	 /**
+	 * @author: David
+	 * @date: Creation: 20/08/2018
+	 * @description: find all measure related to the assessmentRisk
+	*/
+	@AuraEnabled
+	public static List<Assessment__c> getAllMeasures(){
+		return 	[SELECT Id, Name, orm_description__c 
+		        FROM Assessment__c 
+		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
+	
 	}	
 }

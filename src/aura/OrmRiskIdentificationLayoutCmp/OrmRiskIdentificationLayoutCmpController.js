@@ -321,6 +321,7 @@
             results = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
         } catch (e) {
             // invalid regex, use full list
+            results = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
             helper.fetchlistRiskModal(component, event);
         }
         component.set("v.allRiskList", results);

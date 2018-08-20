@@ -1,5 +1,6 @@
 ({
-	myAction : function(component, event, helper) {
-		
-	}
+doInit : function(component, event, helper)
+    {
+       helper.refreshList(component, event);
+    },}
 })

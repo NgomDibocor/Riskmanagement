@@ -1,6 +1,5 @@
 ({
 	createContact : function(component, event, helper) {
-		alert(JSON.stringify(component.get('v.assessmentData')));
 		var firstname = component.find('idname');
 		var lastname = component.find('idlastname');
 		var phone = component.find('idphone');
@@ -28,11 +27,9 @@
 			action.setParams({
 				"item" : newItem
 			});
-			alert(JSON.stringify(newItem));
 			action.setCallback(this, function(response) {
 				var state = response.getState();
 				if (state == "SUCCESS") {
-					alert('success');
 					var evt = $A.get("e.c:OrmNewContactEvt");
 					evt.setParams({
 						"Assessmentdata" : component.get("v.assessmentData")
@@ -49,7 +46,6 @@
 					});
 					component.set("v.isOpen", false);
 				} else {
-					alert('error');
 					let
 					errors = response.getError();
 					let

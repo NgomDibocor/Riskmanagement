@@ -4,7 +4,6 @@
       // call the apex class method and fetch activity list  
          var action = component.get("c.findWorkshopByAssessment");
        var assmntDataId=component.get('v.assessmentData').Id;
-        alert('assesmment= '+assmntDataId);
         // var assmntDataId='a051H00000aQvq3QAC';
         action.setParam('asssessment',assmntDataId);
              action.setCallback(this, function(response) {
@@ -70,6 +69,7 @@
 			evt.fire();
         }
     },
+    
      openNewContact : function(component, event, helper){
                 
         var idAssessment = component.get("v.assessmentData").Id;

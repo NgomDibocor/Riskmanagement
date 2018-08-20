@@ -19,7 +19,7 @@
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 
-	<!--  start modal contact-->
+	<!--  start modal participants-->
 	<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
 		<!--###### MODAL BOX Start From Here ######-->
 		<div role="dialog" tabindex="-1" aria-labelledby="header99"
@@ -32,8 +32,7 @@
 						title="Close" onclick="{!c.closeModalWorkshopContact}">
 						X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 					</button>
-					<h1 id="header99" class="slds-text-heading--medium">Add
-						{!$Label.c.orm_contact_menu} workshop</h1>
+					<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.participants_workshop} </h1>
 				</div>
 				<!--###### MODAL BOX BODY Part Start From Here ######-->
 				<div class="slds-modal__content slds-p-around--medium">
@@ -82,7 +81,7 @@
 	</aura:if>
 
 
-	<!--  end  contact-->
+	<!--  end  participants-->
 
 
 </aura:component>

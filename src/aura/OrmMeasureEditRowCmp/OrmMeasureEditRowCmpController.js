@@ -133,5 +133,14 @@
 		var evt = $A.get('e.c:OrmShowButtondeleteMeasureEvt');
 		evt.setParams({'showButtonDelete': showButtonDelete});
 		evt.fire();
+    },
+    showMeasure :  function(component, event, helper) { 
+    	   var currentRecordId = component.get("v.measure.Id");
+    	   alert(currentRecordId);
+    	  var evt = $A.get("e.c:OrmActiveRiskTraitementCmpEvt");
+	        evt.setParams({
+	            "idMeasure": currentRecordId
+	        });
+        evt.fire();
     }
 })

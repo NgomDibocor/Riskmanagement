@@ -30,9 +30,8 @@
 	
 	filter : function (component, event, helper){
     	
-    	var assessments = component.get('v.items');
+    	var assessments = component.get('v.initialData');
     	var data = assessments;
-    	console.log(JSON.stringify(data));
     	var key = component.get('v.key');
     	var regex;    	
     	
@@ -48,7 +47,9 @@
 		    	   alert(e)
 		        }
 		        
-		   component.set("v.PaginationList", data);
+		   component.set("v.filterPagination", data);
+		   component.set("v.items", component.get("v.filterPagination"));
+		   helper.paginationFilter(component, event);
          }        	
     },
 	

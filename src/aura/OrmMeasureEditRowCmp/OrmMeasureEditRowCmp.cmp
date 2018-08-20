@@ -103,5 +103,6 @@
                 </aura:if> 
             </span>
         </td> 
+        <td><button type="button" onclick="{!c.showMeasure}" > show </button></td>
     </tr>
 </aura:component>

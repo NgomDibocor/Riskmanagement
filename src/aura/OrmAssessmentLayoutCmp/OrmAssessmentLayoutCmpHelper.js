@@ -7,6 +7,13 @@
            });
            evt.fire();
          }    
+         if(component.get("v.showRiskTreatment")== true){
+           var evt = $A.get("e.c:OrmActiveRiskTraitementCmpEvt");
+           evt.setParams({
+             "idMeasure": component.get("v.idMeasure")
+           });
+           evt.fire();
+         }  
         var actionTypeAssessment = component.get('c.getSelectOptions');
         actionTypeAssessment.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_typeAssessment__c'});
         var opts = [];

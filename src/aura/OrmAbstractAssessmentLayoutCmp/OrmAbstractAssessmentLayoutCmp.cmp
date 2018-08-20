@@ -2,6 +2,7 @@
                 implements="force:appHostable,flexipage:availableForAllPageTypes">
 
    <aura:attribute name="idAssessmentRisk" type="string" />
+   <aura:attribute name="idMeasure" type="string" />
    <aura:registerEvent name="DisplayListAssessment" type="c:OrmDisplayListAssessmentEvt"  />
    <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
    <aura:registerEvent name="OrmInstantiateRiskAnalysisEvt" type="c:OrmInstantiateRiskAnalysisEvt" />

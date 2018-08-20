@@ -152,11 +152,9 @@
         }
         try {
             regex = new RegExp(term, "i");
-            // filter checks each row, constructs new array where function returns true
             results = data.filter(row => regex.test(row.RiskName) || regex.test(row.RiskDescription));
         } catch (e) {
-            // invalid regex, use full list
-            helper.fetchPicklist(component, event);
+            alert(e);
         }
         component.set("v.allRisk", results);
     },
@@ -317,12 +315,9 @@
         }
         try {
             regex = new RegExp(term, "i");
-            // filter checks each row, constructs new array where function returns true
             results = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
         } catch (e) {
-            // invalid regex, use full list
-            results = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
-            helper.fetchlistRiskModal(component, event);
+            alert(e);
         }
         component.set("v.allRiskList", results);
     },

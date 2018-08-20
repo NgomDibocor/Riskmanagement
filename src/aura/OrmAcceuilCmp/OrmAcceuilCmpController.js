@@ -10,6 +10,7 @@
 		evt.fire();
 	},
     test3 : function(component, event, helper) {
-		alert('My Measures clicked')
+		var evt = $A.get("e.c:OrmShowMyMeasureListEvt");
+		evt.fire();
 	}
 })

@@ -11,7 +11,7 @@
     <div aura:id="spinner-div" class="slds-hide load-spinner">
 		<ui:spinner aura:id="spinner" />
 	</div>
-    <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="width:80%;margin:auto;">
+    <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="width:90%;margin:auto;">
 	    
         {!v.body}
     </div>  

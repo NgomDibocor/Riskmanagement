@@ -1,0 +1,12 @@
+.THIS {
+	
+}
+.THIS .space{
+	display: inline-block;
+    width:60%;
+}
+.THIS .searchInput{
+	display: inline-block;
+    width:37%;
+    margin-right:3%;
+}

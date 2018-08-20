@@ -1,17 +1,13 @@
-<aura:component controller="OrmAssessmentRiskController" extends="c:ormAbstractListCmp">
-    <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
-    <aura:registerEvent name="OrmActiveRiskAnalyeCmpEvt" type="c:OrmActiveRiskAnalyeCmpEvt" />
-    <!--<aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c" description="" />  -->
-    <aura:attribute name="assessmentRisks" type="List" />
-   
-   
+<aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
+	
     <div class="slds-card" style="margin-left:10px">
         <lightning:card variant="Narrow" 
-                        title="List of Assessment Risk" 
+                        title="List of Measure" 
                         iconName="utility:list"/>
     </div>
+    
     <div class="slds-grid slds-wrap" style="width:100%;margin-left:3%">
-      <aura:iteration items="{!v.PaginationList}" var="item">
+     <!--  <aura:iteration items="{!v.PaginationList}" var="item"> -->
         <div class="slds-size_1-of-2">
             <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:90%;">
                 <article class="slds-card" style="height:150px;">
@@ -24,32 +20,32 @@
                             </div>
                             <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
                                <h2>
-                                  <b>Assessment: <ui:outputText value="{!item[3]}" /></b>
+                                  <b>Assessment: </b>
                               </h2>
                             </div>
                             
                             <div class="slds-no-flex" style="margin-left:5px">
-                                <button id="{!item[0]}" 
+                                <button 
                                         class="slds-button slds-button_neutral"
                                         onclick="{!c.showAssessmentRisk}">
-                                    {!$Label.c.show_button_title}<span id="{!item[6]}"></span>
+                                    {!$Label.c.show_button_title}<span ></span>
                                 </button>
                             </div>
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
                         <h2>
-                           Risk: <ui:outputText value="{!item[1]}" />
+                           Risk:
                         </h2>
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
-                        Description: <ui:outputText value="{!item[2]}" /> 
+                        Description: 
                     </div>
                     <div class=" slds-card__body slds-card__body_inner">
 	                    <table style="width:100%">
 	                      <tr>
-	                        <td width="34%">Measures: <b><ui:outputText value="{!item[4]}" /></b></td>
-	                        <td width="33%">Causes: <b><ui:outputText value="{!item[5]}" /></b></td>
+	                        <td width="34%">Measures: </td>
+	                        <td width="33%">Causes: </td>
 	                        <td width="33%"><ui:outputText value="" /></td>
 	                      </tr>
 	                    </table>
@@ -59,18 +55,6 @@
             </div>
         </div>
        
-    </aura:iteration>
+    <!-- </aura:iteration>-->
   </div>
-    <div style="margin:auto; padding-bottom:10px">
-	    <lightning:buttonGroup >
-	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
-	                            onclick="{!c.previous}" variant="brand"
-	                            iconName='utility:back'/>
-	          &nbsp; &nbsp; &nbsp;
-	          <lightning:button label="Next" 
-	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
-	                            onclick="{!c.next}" variant="brand"
-	                            iconName='utility:forward' iconPosition='right'/>
-	      </lightning:buttonGroup>
-	</div>
 </aura:component>

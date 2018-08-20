@@ -48,6 +48,18 @@
             }
         );
     },
+    ShowMeasureList: function(component, event, helper) {
+        $A.createComponent(
+            "c:OrmMyMeasureListCmp", {
+
+            },
+            function(newCmp) {
+                if (component.isValid()) {
+                    component.set("v.body", newCmp);
+                }
+            }
+        );
+    },
 	 showInfoAssessment : function(component,event,helper){ 
 	   $A.createComponent(
 	            "c:OrmAssessmentLayoutCmp", {

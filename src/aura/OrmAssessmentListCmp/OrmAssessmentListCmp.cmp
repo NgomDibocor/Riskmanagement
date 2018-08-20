@@ -16,7 +16,7 @@
   <div class="slds-col" >									
 		<div class="space"></div>
 		<span class="searchInput" onclick="{!c.createItem}">
-        	<lightning:input class="search" placeholder="search assessment" type="search" onchange="{!c.filter}" value="{!v.key}"  />
+        	<lightning:input class="search" placeholder="search assessment by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         <span class="btnNewAssessment" onclick="{!c.openModalDeletePhase}">
 			<lightning:icon iconName="utility:new" onclick="{!c.newAssessment}" size="medium" />
@@ -39,7 +39,7 @@
                             <div class="slds-media__body">
                                 <h2>
 	                                <a href="javascript:void(0);" class="slds-card__header-link"
-	                                    title=""><ui:outputText value="{!item.value.assessment.Name}" /><!-- {!item.value.Name} -->
+	                                    title=""><ui:outputText value="{!item.value.assessment.Name}" />
 	                                </a>
 	                            </h2>
                             </div>
@@ -47,13 +47,13 @@
                                 <button id="{!item.value.assessment.Id}" 
                                         class="slds-button slds-button_neutral"
                                         onclick="{!c.showAssessment}">
-							       {!$Label.c.show_button_title}<!-- +''+item.value.assessment.Id -->
+							       {!$Label.c.show_button_title}
                                 </button>
                             </div>
                         </header>
                     </div>
                     <div class=" slds-card__body slds-card__body_inner" style="height:20px">
-                        <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> <!-- {!item.value.orm_description__c} -->
+                        <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> 
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
                      <span>Risk <b>{!item.value.nbreRisk}</b></span>

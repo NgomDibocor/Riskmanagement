@@ -89,9 +89,8 @@ public with sharing class OrmMeasureController {
 	*/
 	@AuraEnabled
 	public static List<Assessment__c> getAllMeasures(){
-		return 	[SELECT Id, Name, orm_description__c 
+		return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__c.Name
 		        FROM Assessment__c 
 		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
-	
 	}	
 }

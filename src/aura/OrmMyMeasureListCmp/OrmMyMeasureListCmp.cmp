@@ -27,10 +27,10 @@
                             </div>
                             
                             <div class="slds-no-flex" style="margin-left:5px">
-                                <button 
+                                <button id="{!item.Id}"
                                         class="slds-button slds-button_neutral"
                                         onclick="{!c.showAssessmentRisk}">
-                                    {!$Label.c.show_button_title}<span ></span>
+                                    {!$Label.c.show_button_title}<span id="{!item.orm_assessmentRisk__r.orm_assessment__c}"></span>
                                 </button>
                             </div>
                         </header>

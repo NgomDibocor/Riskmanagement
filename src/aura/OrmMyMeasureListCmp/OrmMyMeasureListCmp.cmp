@@ -10,7 +10,7 @@
     </center>
     
     <div class="slds-grid slds-wrap" style="width:100%;margin-left:3%">
-       <aura:iteration items="{!v.myMeasure}" var="item"> 
+       <aura:iteration items="{!v.PaginationList}" var="item"> 
         <div class="slds-size_1-of-2">
             <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:90%;">
                 <article class="slds-card" style="height:150px;">
@@ -23,7 +23,7 @@
                             </div>
                             <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
                                <h2>
-                                  <b>Assessment:{!item.Name} </b>
+                                  <b>Measure:{!item.Name} </b>
                               </h2>
                             </div>
                             
@@ -35,11 +35,6 @@
                                 </button>
                             </div>
                         </header>
-                    </div>
-                    <div class="slds-card__body slds-card__body_inner slds-truncate">
-                        <h2>
-                           Measure:<b>{!item.Name}</b>
-                        </h2>
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
                         Description: <b>{!item.orm_description__c}</b>
@@ -54,4 +49,16 @@
        
       </aura:iteration>
   </div>
+  <div style="margin:auto; padding-bottom:10px">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previous}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
+	                            onclick="{!c.next}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
+	</div>
 </aura:component>

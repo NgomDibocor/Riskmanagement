@@ -15,6 +15,7 @@
                     custs.push({value:conts[idAss]});
                 }
                 component.set("v.items", custs);
+                component.set('v.initialData', custs);
                 
                 // start pagination
                     var pageSize = component.get("v.pageSize");

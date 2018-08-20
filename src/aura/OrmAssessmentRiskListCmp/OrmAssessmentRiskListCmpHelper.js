@@ -34,13 +34,13 @@
         $A.enqueueAction(action);
 	},
 	paginationFilter : function(component, event) {
-      // start pagination
+       // start pagination
             var pageSize = component.get("v.pageSize");
             // get size of all the records and then hold into an attribute "totalRecords"
-            component.set("v.totalRecords", component.get("v.items").length);
+            component.set("v.totalRecords", component.get("v.filterPagination").length);
             // set star as 0
             component.set("v.startPage",0);
-            var totalRecords = component.get("v.items").length;
+            var totalRecords = component.get("v.filterPagination").length;
 		    //var div = Math.trunc(totalRecords / pageSize);
             if(totalRecords === pageSize){
               component.set("v.hideNext", true);
@@ -51,8 +51,8 @@
             }
             var PaginationList = [];
             for(var i=0; i< pageSize; i++){
-                if(component.get("v.items").length> i)
-                    PaginationList.push(component.get("v.items")[i]);    
+                if(component.get("v.filterPagination").length> i)
+                    PaginationList.push(component.get("v.filterPagination")[i]);    
             }
             component.set('v.PaginationList', PaginationList);
         //end pagination

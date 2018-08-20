@@ -93,4 +93,16 @@ public with sharing class OrmMeasureController {
 		        FROM Assessment__c 
 		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
 	}	
+	  /**
+	 *
+	 * @author David diop
+	 * @version 1.0
+	 * @description  this method returns an assessment
+	 * @history 
+	 * 2018-07-24 : David diop- Implementation
+	 */
+    @AuraEnabled 
+    public static Assessment__c getAssessment(String idAss){
+        return OrmAssessmentController.getAssessment(idAss);
+    }
 }

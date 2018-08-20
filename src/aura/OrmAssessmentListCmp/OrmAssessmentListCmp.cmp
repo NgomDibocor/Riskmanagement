@@ -2,8 +2,6 @@
     <aura:attribute name="key" type="string" />
     <aura:registerEvent name="DisplayAssessment" type="c:OrmDisplayAssessmentEvt"/>
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
-    <!-- <aura:attribute name="assessments" type="Assessment__c[]" description="" /> -->
-    <!--<aura:attribute name="assessments" type="List" />  -->
 	
 	<aura:registerEvent name="ShowAssessmentClicked" type="c:OrmShowAssessmentClickedEvt" description="" />
 	<aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
@@ -16,7 +14,7 @@
   <div class="slds-col" >									
 		<div class="space"></div>
 		<span class="searchInput" onclick="{!c.createItem}">
-        	<lightning:input class="search" placeholder="search assessment" type="search" onchange="{!c.filter}" value="{!v.key}"  />
+        	<lightning:input class="search" placeholder="search assessment by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         <span class="btnNewAssessment" onclick="{!c.openModalDeletePhase}">
 			<lightning:icon iconName="utility:new" onclick="{!c.newAssessment}" size="medium" />
@@ -27,7 +25,7 @@
     <aura:iteration items="{!v.PaginationList}" var="item">
    
         <div class="slds-size_1-of-3">
-            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:350px;">
+            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:95%;">
                 <article class="slds-card" style="height:130px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
@@ -39,7 +37,7 @@
                             <div class="slds-media__body">
                                 <h2>
 	                                <a href="javascript:void(0);" class="slds-card__header-link"
-	                                    title=""><ui:outputText value="{!item.value.assessment.Name}" /><!-- {!item.value.Name} -->
+	                                    title=""><ui:outputText value="{!item.value.assessment.Name}" />
 	                                </a>
 	                            </h2>
                             </div>
@@ -47,13 +45,13 @@
                                 <button id="{!item.value.assessment.Id}" 
                                         class="slds-button slds-button_neutral"
                                         onclick="{!c.showAssessment}">
-							       {!$Label.c.show_button_title}<!-- +''+item.value.assessment.Id -->
+							       {!$Label.c.show_button_title}
                                 </button>
                             </div>
                         </header>
                     </div>
                     <div class=" slds-card__body slds-card__body_inner" style="height:20px">
-                        <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> <!-- {!item.value.orm_description__c} -->
+                        <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> 
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
                      <span>Risk <b>{!item.value.nbreRisk}</b></span>

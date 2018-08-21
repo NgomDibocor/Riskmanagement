@@ -1,5 +1,23 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
 	<aura:handler action="{!c.doInit}" event="c:OrmInstanceRiskTreatmentEvt" />
 	<aura:attribute name="idMeasure" type="string" />
-	
+	<aura:attribute name="measureData" type="Assessment__c" default="{
+																		'sobjectType' : 'Assessment__c',
+												                         'Name': '',  
+												                         'orm_description__c':'',
+												                         'orm_AssessmentRisk__c' :''
+																	}" />
+	 <table class="slds-table">
+        <tr>
+            <td>
+                 <lightning:card variant="Narrow" title="{!v.measureData.Name}" 
+                                                iconName="standard:account">
+                          <p class="slds-p-horizontal_small">
+								<b>{!v.measureData.orm_description__c}</b>	            
+						  </p>
+                 </lightning:card>
+            </td>
+         </tr>
+    </table>
+	 
 </aura:component>

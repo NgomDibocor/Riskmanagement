@@ -105,4 +105,18 @@ public with sharing class OrmMeasureController {
     public static Assessment__c getAssessment(String idAss){
         return OrmAssessmentController.getAssessment(idAss);
     }
+    /**
+	 *
+	 * @author David diop
+	 * @version 1.0
+	 * @description  this method returns an Measure
+	 * @history 
+	 * 2018-07-24 : David diop- Implementation
+	 */
+    @AuraEnabled 
+    public static Assessment__c getMeasure(String idMeasure){
+     return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__r.orm_assessment__c
+		        FROM Assessment__c 
+		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() And Id =:idMeasure];
+    }
 }

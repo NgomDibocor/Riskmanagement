@@ -1246,7 +1246,12 @@
                     </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskTreatment}">
-                    
+                    david diop test
+                    <tr>
+                        <td >
+                            <c:OrmRiskTreatmentCmp />
+                        </td>
+                    </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showActionPlan}">
                     

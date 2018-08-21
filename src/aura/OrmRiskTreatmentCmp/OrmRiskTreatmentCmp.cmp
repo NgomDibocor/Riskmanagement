@@ -1,0 +1,5 @@
+<aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
+	<aura:handler action="{!c.doInit}" event="c:OrmInstanceRiskTreatementEvt" />
+	<aura:attribute name="idMeasure" type="string" />
+	
+</aura:component>

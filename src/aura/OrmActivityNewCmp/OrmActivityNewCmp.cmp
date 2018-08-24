@@ -1,4 +1,4 @@
-<aura:component controller="OrmActivityController" extends="c:AbstractNewCmp">
+<aura:component controller="OrmActivityController" extends="c:OrmAbstractNewCmp">
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:OrmOpenNewActivityCmpEvt" action="{!c.openCurrentCmp}" />
@@ -57,7 +57,7 @@
 										</div>
 									</div>
 									<div class="slds-form-element">
-										<div class="slds-form-element__control">
+										<div class="slds-form-element__control slds-is-required">
 											<lightning:select aura:id="status"   name="status" onchange="{!c.onChange}" label="{!$Label.c.orm_activity_status}" >
                                                 <aura:iteration items="{!v.allStatus}" var="status" >
                                                     <option  text="{!status}"></option>

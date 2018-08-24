@@ -1,7 +1,7 @@
 ({
 	
     
-     initRecords: function(component, event, helper) {
+     doInit: function(component, event, helper) {
     
       // call the apex class method and fetch activity list  
          var action = component.get("c.findAllActivity");
@@ -16,6 +16,8 @@
                   console.log(JSON.stringify(storeResponse));
                // set ActivityList list with return value from server.
                   component.set("v.ActivityList", storeResponse);
+                  component.set("v.storeListActivity", storeResponse);
+                  alert(JSON.stringify(storeResponse));
               }
         });
         $A.enqueueAction(action);
@@ -69,7 +71,7 @@
     },
     
     cancel : function(component,event,helper){
-       // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
+       // on cancel refresh the view
         $A.get('e.force:refreshView').fire(); 
     },
     removeActivity:function(component,event,helper){
@@ -102,10 +104,9 @@
  * 2018-08-20 : Salimata NGOM - Implementation
  */
     filter : function (component, event, helper){
-    	
-    	var ActivityList = component.get('v.ActivityList');
-    	var data = ActivityList;
-    	console.log(JSON.stringify(data));
+    	//alert('on filtre');
+    	var ListActivity = component.get('v.storeListActivity');
+    	var data = ListActivity;
     	var key = component.get('v.key');
     	var regex;    	
     	
@@ -116,8 +117,10 @@
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true
-        	 		data = data.filter(row => regex.test(row[3]) || regex.test(row[1]) || regex.test(row[2]));
-        	 		console.log(JSON.stringify(data));
+        	 		data=ListActivity.filter(row => regex.test(row.Name) || 
+        	 		regex.test(row.orm_activityStatus__c) || 
+        	 		regex.test(row.orm_description__c) ||  
+        	 		regex.test(row.orm_startDate__c) );
 		        } catch (e) {
 		    	   alert(e)
 		        }

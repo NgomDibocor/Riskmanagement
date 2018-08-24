@@ -48,7 +48,7 @@
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if ( state == "SUCCESS") {
-                   alert("ajout réussie");
+                   alert("ajout réussie"+JSON.stringify(newActivity));
                    var evt = $A.get("e.c:OrmActivityCreatedEvt");
 				   evt.fire();
                    helper.closeModal(component);

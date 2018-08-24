@@ -4,11 +4,11 @@
 	<!--Init handler which is call initRecords js function on component Load-->
 
 	<!--declare aura handler-->
-	<aura:handler name="init" value="{!this}" action="{!c.initRecords}" />
-	 <aura:handler event="c:OrmRefreshActivityEvnt" action="{!c.initRecords}"  /> 
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	 <aura:handler event="c:OrmRefreshActivityEvnt" action="{!c.doInit}"  /> 
 	 <aura:registerEvent name="OrmOpenNewActivityCmpEvt"
 		type="c:OrmOpenNewActivityCmpEvt" description="" />
-    <aura:handler event="c:OrmActivityCreatedEvt" action="{!c.initRecords}" />
+    <aura:handler event="c:OrmActivityCreatedEvt" action="{!c.doInit}" />
 	<!-- on component load, fetch picklist values dynamically from apex controller -->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:registerEvent name="OrmRemoveRecordActivityEvnt" type="c:OrmRemoveRecordActivityEvnt" />
@@ -50,6 +50,7 @@
 <aura:attribute name="showConfirmRemoveActivity" type="boolean" default="false" description="is true show popup  message confirmation" />
  <aura:attribute name="selectedCount" type="integer" default="0"/>
     <aura:attribute name="key" type="string" />
+    <aura:attribute name="storeListActivity" type="List" />
     
 
   <div class="slds-grid slds-gutters">
@@ -98,6 +99,9 @@
 					<th scope="col">
 					<div class="slds-truncate"
 							title="{!$Label.c.orm_activity_status}">{!$Label.c.orm_activity_status}</div></th>
+							<th scope="col">
+					<div class="slds-truncate"
+							title="{!$Label.c.orm_description}">{!$Label.c.orm_description}</div></th>
 					<th style="width:3.25rem;" class="slds-text-align--right">
                <div class="slds-form-element">
                   <div class="slds-form-element__control">

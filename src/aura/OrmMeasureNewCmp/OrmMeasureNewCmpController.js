@@ -1,15 +1,31 @@
 ({
 	openOrmMeasureNewCmp : function(component, event, helper) {
 		component.set("v.isOpen", true);
+		
+		var actionstatus = component.get("c.getSelectOptions");
+        actionstatus.setParams({
+            "objObject": component.get("v.objInfo"),
+            "fld": 'orm_measureCategorie__c'
+        });
+        actionstatus.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === 'SUCCESS') {
+                component.set('v.measureCategorie', response.getReturnValue());
+            } else {
+                alert("l'Element n'a pas été retrouvé");
+            }
+        });
+        $A.enqueueAction(actionstatus);
 	},
 	
 	createItem : function(component, event, helper) {
 	   var name = component.find('name').get('v.value');
        var description = component.find('description').get('v.value');
+       var measureCategorie  = component.find('measureCategorie').get('v.value');
        
        /* we test the validity of data */
         var isItemsValid = true;
-        if($A.util.isEmpty(name) || $A.util.isEmpty(description)){
+        if($A.util.isEmpty(name)){
             isItemsValid = false;           
         }
         
@@ -17,6 +33,7 @@
         	var newMeasure = component.get('v.measure');
         	newMeasure.Name = name;
         	newMeasure.orm_description__c = description;
+        	newMeasure.orm_measureCategorie__c = measureCategorie;
         	newMeasure.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
         	
         	var action = component.get('c.add');
@@ -67,4 +84,8 @@
 	closeModal : function(component, event, helper) {
 	    component.set("v.isOpen", false);
 	},
+	measureCategorieChange :  function (component , event , helper)
+	{
+		component.find("measureCategorie").set("v.value", event.getSource().get("v.value"));
+	}
 })

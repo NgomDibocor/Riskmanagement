@@ -128,6 +128,8 @@
 			break;
 		case 'association_contact':
 			helper.addContactWorkshop(component, row);
+		case 'send_email':
+			helper.sendMailContactWorkshop(component, row);
 		default:
 			break;
 		}

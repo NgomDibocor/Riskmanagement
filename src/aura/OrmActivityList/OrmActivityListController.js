@@ -5,10 +5,6 @@
     
       // call the apex class method and fetch activity list  
          var action = component.get("c.findAllActivity");
-       // var assmntDataId=component.get('v.assessmentData').Id;
-        // alert('assesmment= '+assmntDataId);
-        // var assmntDataId='a051H00000aQvq3QAC';
-        // action.setParam('assessmt',assmntDataId);
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
@@ -17,7 +13,7 @@
                // set ActivityList list with return value from server.
                   component.set("v.ActivityList", storeResponse);
                   component.set("v.storeListActivity", storeResponse);
-                  alert(JSON.stringify(storeResponse));
+                 
               }
         });
         $A.enqueueAction(action);
@@ -116,11 +112,12 @@
         	key = "^" + key;
         	try {
         	 		regex = new RegExp(key, "i");
+        	 	
         	 		// filter checks each row, constructs new array where function returns true
         	 		data=ListActivity.filter(row => regex.test(row.Name) || 
         	 		regex.test(row.orm_activityStatus__c) || 
         	 		regex.test(row.orm_description__c) ||  
-        	 		regex.test(row.orm_startDate__c) );
+        	 		regex.test(row.orm_startDate__c) || regex.test(row.orm_endDate__c));
 		        } catch (e) {
 		    	   alert(e)
 		        }

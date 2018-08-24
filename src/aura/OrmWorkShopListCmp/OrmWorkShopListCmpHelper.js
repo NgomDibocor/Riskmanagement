@@ -12,4 +12,27 @@
         }
         return isValid;
     },
+     /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description refresh list workshop 
+ * @history 
+ * 2018-08-24 : Salimata NGOM - Implementation
+ */
+    refreshList : function(component, event) {
+     var assmntDataId=component.get('v.assessmentData').Id;
+		var action = component.get('c.findWorkshopByAssessment');
+		action.setParam('asssessment',assmntDataId);
+        action.setCallback(this, function(response){
+            if(response.getState() == 'SUCCESS'){
+              component.set('v.WorkshopList', response.getReturnValue());
+              
+            }else
+            {
+                 alert($A.get("$Label.c.loaded_message"));
+            }
+        });
+        $A.enqueueAction(action);
+	}
 })

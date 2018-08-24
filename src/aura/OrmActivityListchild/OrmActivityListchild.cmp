@@ -81,8 +81,8 @@
 			class="slds-grid slds-grid_align-spread"> <!-- show input and output section based on boolean flag -->
 				<aura:if isTrue="{!v.periodEditMode == false}">
 					<span class="slds-truncate" title="Period"> <ui:outputDate
-							format="dd/MM/yyyy" value="{!v.singleRec.orm_startDate__c}" /> <span>
-							- </span> <ui:outputDate format="dd/MM/yyyy"
+							format="yyyy-MM-dd" value="{!v.singleRec.orm_startDate__c}" /> <span>
+							/ </span> <ui:outputDate format="yyyy-MM-dd"
 							value="{!v.singleRec.orm_endDate__c}" />
 					</span>
 					<button onclick="{!c.inlineEditPeriod}"

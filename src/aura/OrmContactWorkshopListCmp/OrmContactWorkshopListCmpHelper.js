@@ -77,6 +77,10 @@
             'label': 'Dissociation',
             'iconName': 'utility:delete',
             'name': 'dissociate_contact'
+        },{
+            'label': 'Send Mail',
+            'iconName': 'utility:email',
+            'name': 'send_email'
         }];
 	 }else{
 	 var actions = [{
@@ -91,7 +95,7 @@
         }), 200);
     },
     
-    /**
+ /**
  *
  * @author Salimata NGOM
  * @version 1.0
@@ -206,6 +210,17 @@ if (component.get("v.ContactListTemp").length > 0) {
 							}
 							});
 				$A.enqueueAction(action);
-	}
+	},
+	   
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description send mail notification to contactWorkshop
+ * @history 
+ * 2018-08-24 : Salimata NGOM - Implementation
+ */
+      sendMailContactWorkshop: function(component,row) {
+      }
 	
 })

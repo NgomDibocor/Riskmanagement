@@ -139,7 +139,7 @@
 				var evt = $A.get("e.c:OrmContactWorkshopListEvt");
 			evt.setParams({
 			   "contactList" : component.get("v.ContactList"),
-			    "workshop" : component.get("v.singleRec").Id
+			    "workshop" : component.get("v.singleRec")
 			});
 			evt.fire();
 															console

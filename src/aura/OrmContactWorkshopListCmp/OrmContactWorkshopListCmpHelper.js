@@ -12,7 +12,7 @@
 	//get contact workshop
 	var contactworkshop=component.get('c.getContactWorkshop');
 	contactworkshop.setParams({
-	"item":component.get('v.workshop'),
+	"item":component.get('v.workshop').Id,
 	"contact":row.Id
 	});
 
@@ -108,7 +108,7 @@
         newcontactworkshop.sobjectType='orm_ContactWorkshop__c';
 	            newcontactworkshop.orm_contact__c = row.Id;
 	           newcontactworkshop.orm_notification__c = false;
-	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop");
+	            newcontactworkshop.orm_Workshop__c =  component.get("v.workshop").Id;
 	            component.set("v.ContactWorkshopList", newcontactworkshop);
       var action = component.get('c.addWorkShopContact');
         action.setParams({
@@ -166,7 +166,7 @@ if (component.get("v.ContactListTemp").length > 0) {
 									var action1 = component
 											.get("c.findAllContactWorkshop");
 									action1.setParams({
-										'item' :component.get('v.workshop')
+										'item' :component.get('v.workshop').Id
 									});
 									action1
 											.setCallback(
@@ -221,6 +221,45 @@ if (component.get("v.ContactListTemp").length > 0) {
  * 2018-08-24 : Salimata NGOM - Implementation
  */
       sendMailContactWorkshop: function(component,row) {
-      }
-	
+      
+        // when user click on Send button 
+        // First we get all 3 fields values 	
+        var getEmail = row.Email;
+        var getSubject = "invitation to "+component.get("v.workshop").Name;
+       var getbody = component.get("v.workshop").Description;
+        // check if Email field is Empty or not contains @ so display a alert message 
+        // otherwise call call and pass the fields value to helper method    
+        if ($A.util.isEmpty(getEmail) || !getEmail.includes("@")) {
+            alert('Please Enter valid Email Address');
+        } else {
+           // helper.sendHelper(component, getEmail, getSubject, getbody);
+             alert(getEmail+' '+getSubject+' '+getbody);
+        }
+      },
+       // when user click on the close buttton on message popup ,
+    // hide the Message box by set the mailStatus attribute to false 
+    closeMessage: function(component, event, helper) {
+        component.set("v.mailStatus", false);
+    },
+	sendHelper: function(component, getEmail, getSubject, getbody) {
+        // call the server side controller method 	
+        var action = component.get("c.sendMailMethod");
+        // set the 3 params to sendMailMethod method   
+        action.setParams({
+            'mMail': getEmail,
+            'mSubject': getSubject,
+            'mbody': getbody
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var storeResponse = response.getReturnValue();
+                // if state of server response is comes "SUCCESS",
+                // display the success message box by set mailStatus attribute to true
+                component.set("v.mailStatus", true);
+            }
+ 
+        });
+        $A.enqueueAction(action);
+    },
 })

@@ -10,10 +10,12 @@
 	<aura:attribute name="ContactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
 		description="store contact workshop records list" />
-    <aura:attribute name="workshop" type="String" />
+    <aura:attribute name="workshop" type="Contract" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
 	<aura:attribute name="columns" type="List" />
+	<aura:attribute name="mailStatus" type="boolean" default="false"/>
+	<aura:attribute name="email" type="string"/>
 	  <!-- handlers-->
 	 <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
@@ -32,7 +34,7 @@
 						title="Close" onclick="{!c.closeModalWorkshopContact}">
 						X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 					</button>
-					<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.participants_workshop} </h1>
+					<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.participants_workshop+ ' '} {!v.workshop.Name} </h1>
 				</div>
 				<!--###### MODAL BOX BODY Part Start From Here ######-->
 				<div class="slds-modal__content slds-p-around--medium">
@@ -79,8 +81,26 @@
 		<div class="slds-backdrop slds-backdrop--open"></div>
 		<!--###### MODAL BOX Part END Here ######-->
 	</aura:if>
-
-
+	<!-- Mail status -->
+	
+  <aura:if isTrue="{!v.mailStatus}">
+      <div role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt">
+         <div class="slds-modal__container">
+            <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+               <h2 class="slds-text-heading--medium" id="prompt-heading-id">Mail Status</h2>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium">
+               <div>
+                  <p>Email Sent successfully to {!v.email}</p>
+               </div>
+            </div>
+            <div class="slds-modal__footer slds-theme--default">
+               <button class="slds-button slds-button--brand" onclick="{!c.closeMessage}">Close</button>
+            </div>
+         </div>
+      </div>
+      <div class="slds-backdrop slds-backdrop--open"></div>
+   </aura:if>
 	<!--  end  participants-->
 
 

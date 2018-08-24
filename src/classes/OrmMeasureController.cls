@@ -115,8 +115,40 @@ public with sharing class OrmMeasureController {
 	 */
     @AuraEnabled 
     public static Assessment__c getMeasure(String idMeasure){
-     return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__r.orm_assessment__c
+     return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__r.Id,orm_AssessmentRisk__r.orm_assessment__c,orm_endDate__c,orm_startDate__c,orm_measureStatus__c,orm_measure_Cost__c,orm_measureCategorie__c
 		        FROM Assessment__c 
 		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() And Id =:idMeasure];
     }
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns all items of PickList
+	 * @history 
+	 * 2018-07-24 : Dibocor NGOM - Implementation
+	 */    
+    @AuraEnabled
+	public static List <String> getSelectOptions(sObject objObject, string fld) {
+      List <String> allOpts = new list <String> ();
+      // Get the object type of the SObject.
+      Schema.sObjectType objType = objObject.getSObjectType();
+     
+      // Describe the SObject using its object type.
+      Schema.DescribeSObjectResult objDescribe = objType.getDescribe();
+     
+      // Get a map of fields for the SObject
+      map <String, Schema.SObjectField> fieldMap = objDescribe.fields.getMap();
+     
+      // Get the list of picklist values for this field.
+      list <Schema.PicklistEntry> values =
+       fieldMap.get(fld).getDescribe().getPickListValues();
+     
+      // Add these values to the selectoption list.
+      for (Schema.PicklistEntry a: values) {
+       allOpts.add(a.getValue());
+      }
+      system.debug('allOpts ---->' + allOpts);
+      allOpts.sort();
+      return allOpts;
+ 	}
 }

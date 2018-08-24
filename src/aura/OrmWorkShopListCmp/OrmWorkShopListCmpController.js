@@ -4,7 +4,7 @@
       // call the apex class method and fetch activity list  
          var action = component.get("c.findWorkshopByAssessment");
        var assmntDataId=component.get('v.assessmentData').Id;
-        // var assmntDataId='a051H00000aQvq3QAC';
+        var assmntDataOrganisation=component.get('v.assessmentData').orm_organisation__c;
         action.setParam('asssessment',assmntDataId);
              action.setCallback(this, function(response) {
               var state = response.getState();
@@ -13,12 +13,11 @@
                   console.log(JSON.stringify(storeResponse));
                // set WorkshopList list with return value from server.
                   component.set("v.WorkshopList", storeResponse);
+                   component.set("v.storeListWorkshop", storeResponse);
+                  
               }
         });
         $A.enqueueAction(action);
-         // set deafult count and select all checkbox value to false on load 
-   // component.set("v.selectedCount", 0);
-   // component.find("box3").set("v.value", false);
     },  
         Save: function(component, event, helper) {
       // Check required fields(Name) first in helper method which is return true/false
@@ -91,6 +90,38 @@
 			evt.fire();
         }
     },
-    RefreshContacts:function(component, event, helper){
+      
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description search filter 
+ * @history 
+ * 2018-08-24 : Salimata NGOM - Implementation
+ */
+    filter : function (component, event, helper){
+    	var ListWorkshop = component.get('v.storeListWorkshop');
+    	var data = ListWorkshop;
+    	var key = component.get('v.key');
+    	var regex;    	
+    	
+    	if ($A.util.isEmpty(key)) {    	
+    		helper.refreshList(component, event);    		      
+         } else {
+        	key = "^" + key;
+        	try {
+        	 		regex = new RegExp(key, "i");
+        	 	
+        	 		// filter checks each row, constructs new array where function returns true
+        	 		data=ListWorkshop.filter(row => regex.test(row.Name) || 
+        	 		regex.test(row.CompanySignedDate) || 
+        	 		regex.test(row.Description) ||  
+        	 		regex.test(row.StartDate) || regex.test(row.orm_Contract_End_Date__c));
+		        } catch (e) {
+		    	   alert(e)
+		        }
+		        
+		   component.set("v.WorkshopList", data);
+         }        	
     }
 })

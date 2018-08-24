@@ -14,6 +14,7 @@
                 component.set('v.measureData', response.getReturnValue());
                 var idAssessmentRisk = component.get('v.measureData');
                 component.set('v.idAssessmentRisk', idAssessmentRisk.orm_assessmentRisk__c);
+                component.set("v.displaySaveCancelBtn", false);
             } else {
                 alert("l'Element n'a pas été retrouvé");
             }

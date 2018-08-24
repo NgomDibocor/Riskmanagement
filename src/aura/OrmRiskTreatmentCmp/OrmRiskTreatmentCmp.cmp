@@ -1,23 +1,122 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
 	<aura:handler action="{!c.doInit}" event="c:OrmInstanceRiskTreatmentEvt" />
+	<aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.updateMeasure}" />
 	<aura:attribute name="idMeasure" type="string" />
+	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="measureData" type="Assessment__c" default="{
 																		'sobjectType' : 'Assessment__c',
 												                         'Name': '',  
 												                         'orm_description__c':'',
-												                         'orm_AssessmentRisk__c' :''
+												                         'orm_AssessmentRisk__c' :'',
+												                         'orm_startDate__c':'',
+												                         'orm_endDate__c':'',
+												                         'orm_measureStatus__c':'',
+												                         'orm_measure_Cost__c':'',
+												                         'orm_measureCategorie__c':''
 																	}" />
-	 <table class="slds-table">
+	<aura:attribute name="displaySaveCancelBtn" type="boolean" default="false"/> 
+	<aura:attribute name="objInfo" type="orm_assessmentRisk__c" default="{sobjectType : 'Assessment__c'}" />
+	<aura:attribute name="status" type="String[]" />
+     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
+    <aura:attribute name="closeFieldDescription" type="boolean" default="true" />
+    <table class="slds-table">
         <tr>
             <td>
                  <lightning:card variant="Narrow" title="{!v.measureData.Name}" 
                                                 iconName="standard:account">
                           <p class="slds-p-horizontal_small">
-								<b>{!v.measureData.orm_description__c}</b>	            
+								<b>{!v.measureData.orm_measureCategorie__c}</b>	            
 						  </p>
                  </lightning:card>
             </td>
-         </tr>
-    </table>
-	 
+
+            <td>
+                <aura:if isTrue="{!v.displaySaveCancelBtn}">
+                             <div style="margin-bottom:20px;">
+                                 <lightning:buttonGroup class="slds-m-around_medium">
+                                 <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+			                          <lightning:button label="Save"
+			                                            variant="brand"
+			                                                      class="slds-button"
+			                                            onclick="{!c.updateMeasure}"/>
+			                      </lightning:buttonGroup>
+                                  
+                             </div>
+                    </aura:if>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <div class="topSpacing">
+                   <b> <label class="slds-form-element__label">{!$Label.c.orm_measure_startDate}<span class="cmn_mandatory_indicator">*</span></label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);" >
+                        <ui:inputDate  aura:id="dateMeasure" displayDatePicker="true" class="slds-input" value="{!v.measureData.orm_startDate__c}"  change="{!c.onStartDate}"/>
+                    </a>
+                </div>
+            </td>
+
+            <td>
+                <div class="topSpacing">
+                   <b> <label class="slds-form-element__label">{!$Label.c.orm_measure_dueDate}<span class="cmn_mandatory_indicator">*</span></label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);" >
+                        <ui:inputDate  aura:id="endDateMeasure" displayDatePicker="true" class="slds-input" value="{!v.measureData.orm_endDate__c}"  change="{!c.onEndDate}"/>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                        <lightning:select aura:id="status" name="Status" label="{!$Label.c.orm_measure_status}" class="select-auto-width"  onchange="{!c.onStatus}" >
+                             <option text="{!v.measureData.orm_measureStatus__c}" ></option>
+                            <aura:iteration items="{!v.status}" var="status">
+                                <option text="{!status}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                
+                 <div class="topSpacing">
+                    <b><label class="slds-form-element__label">{!$Label.c.orm_measure_cost}</label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputNumber  aura:id="cost" class="slds-input" value="{!v.measureData.orm_measure_Cost__c}"  change="{!c.onCost}">
+                        </ui:inputNumber>
+                    </a>
+                </div>
+               
+                
+            </td>
+	        </tr>
+	         <div class="topSpacing">
+                    <b><label class="slds-form-element__label">{!$Label.c.orm_measure_description}</label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputText aura:id="description" class="slds-input" value="{!v.measureData.orm_description__c}" change="{!c.onDescription}" >
+                        </ui:inputText>
+                    </a>
+                </div>
+	        <tr>
+            <td>
+               
+            </td>
+
+            <td>
+                
+                
+            </td>
+        </tr>
+        </table>
 </aura:component>

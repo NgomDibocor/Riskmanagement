@@ -104,7 +104,7 @@
             </span>
         </td> 
         <td>
-        <lightning:button variant="brand" label="show" title="show" onclick="{! c.showMeasure }" />
+        <lightning:button variant="brand" label="{!$Label.c.show_button_title}" title="{!$Label.c.show_button_title}" onclick="{! c.showMeasure }" /> 
         </td>
     </tr>
 </aura:component>

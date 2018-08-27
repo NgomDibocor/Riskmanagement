@@ -114,7 +114,7 @@
       </ul>
     </div>
     <!-- menu -->
-    <div class="slds-size--1-of-8" style="position:sticky;top:300px">
+    <div class="slds-size--1-of-8" style="position:sticky;top:250px;padding-left:40px">
               <aura:if isTrue="{!v.showContext2}">
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
@@ -143,7 +143,7 @@
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
     </div>
-    <div class="{!v.closeFieldDescription==true ? 'slds-size--6-of-8': 'slds-size--4-of-8'}" style="margin-top:20px;">
+    <div class="{!v.closeFieldDescription==true ? 'slds-size--6-of-8': 'slds-size--4-of-8'}" style="margin-top:20px;margin-bottom:30px">
         <table class="slds-table">
               <aura:if isTrue="{!v.showContext}">
                    <tr>
@@ -1151,12 +1151,12 @@
                   </aura:if>
                   <aura:if isTrue="{!v.showContextActivity}">
                       <tr>
-                          <td >
-                             <div class="slds-grid slds-wrap slds-theme_shade slds-theme_alert-texture" style="height:90px"> 
-                                  <p>Contexte 3 description </p>
-                             </div>
-                          </td>
-                      </tr>
+	                     <td class="textInDiv">
+	                           <div style="margin-bottom:20px">
+	                               {!$Label.c.orm_context}
+	                           </div>
+	                        </td>
+	                  </tr>
                       <tr>
                           <td>
                                <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
@@ -1165,12 +1165,26 @@
                    </aura:if>
                    <aura:if isTrue="{!v.showContextWorkshop}">
                      <tr>
+	                     <td class="textInDiv">
+	                           <div style="margin-bottom:20px">
+	                               {!$Label.c.orm_workshop}
+	                           </div>
+	                        </td>
+	                  </tr>
+                     <tr>
                           <td>
                             <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
                           </td>
                        </tr>
                   </aura:if>
                   <aura:if isTrue="{!v.showRiskIdentif}">
+                       <tr>
+	                     <td class="textInDiv">
+	                           <div style="margin-bottom:20px">
+	                               {!$Label.c.orm_riskIdentification}
+	                           </div>
+	                        </td>
+	                   </tr>
                        <tr>
                           <td >
                                <c:OrmRiskIdentificationLayoutCmp idAssessment="{!v.assessmentData.Id}" /> 
@@ -1233,7 +1247,7 @@
             <c:OrmFieldDescriptionCmp/>
         </div>
     </aura:if>  
-        <div class="slds-size--1-of-8" style="position:sticky;top:300px">
+        <div class="slds-size--1-of-8" style="position:sticky;top:250px;padding-left:50px">
                <aura:if isTrue="{!v.showContext}">
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
                </aura:if>

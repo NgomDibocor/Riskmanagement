@@ -44,7 +44,7 @@
 							<div class="slds-form-element">
 								<div class=" slds-size--1-of-6   slds-p-horizontal--small">
 								</div>
-								<div class=" slds-size--5-of-6">
+								<div class=" slds-size--5-of-6"   style="height: 300px">
 									<lightning:datatable aura:id="idworkshopcontact"
 										data="{!v.ContactList}"
 										class="slds-m-top_medium"
@@ -52,7 +52,6 @@
 										resizeColumnDisabled="false" selectedRows="{!v.Contact}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
-										
 										showRowNumberColumn="false" />
 								</div>
 
@@ -86,7 +85,7 @@
   <aura:if isTrue="{!v.mailStatus}">
       <div role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt">
          <div class="slds-modal__container">
-            <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+            <div class="slds-modal__header slds-theme--success slds-theme--alert-texture">
                <h2 class="slds-text-heading--medium" id="prompt-heading-id">Mail Status</h2>
             </div>
             <div class="slds-modal__content slds-p-around--medium">

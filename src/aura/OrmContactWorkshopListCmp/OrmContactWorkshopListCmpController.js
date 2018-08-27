@@ -14,6 +14,10 @@
 			label : 'Name',
 			fieldName : 'Name',
 			type : 'text'
+		},{
+			label : 'Email',
+			fieldName : 'Email',
+			type : 'email'
 		}, {
 			label : 'Invitation',
 			fieldName : 'invitation',
@@ -129,13 +133,20 @@
 			break;
 		case 'association_contact':
 			helper.addContactWorkshop(component, row);
+			break;
 		case 'send_email':
 			helper.sendMailContactWorkshop(component, row);
+			break;
 		default:
 			break;
 		}
 
-	}
+	},
+	 // when user click on the close buttton on message popup ,
+    // hide the Message box by set the mailStatus attribute to false 
+    closeMessage: function(component, event, helper) {
+        component.set("v.mailStatus", false);
+    }
 	
 
 })

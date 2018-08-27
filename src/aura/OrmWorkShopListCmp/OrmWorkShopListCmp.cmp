@@ -6,9 +6,9 @@
 	<!--declare aura attributes-->
 	<aura:attribute name="WorkshopList" type="contract[]"
 		description="store workshop records list" />
-		<aura:attribute name="showSaveCancelBtn" type="boolean" default="false"
+	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false"
 		description="flag for rendered save and cancel buttons in aura:if " />
-		<aura:attribute name="sNo" type="string" />
+	<aura:attribute name="sNo" type="string" />
 	<aura:attribute name="singleRec" type="sobject" default="{
 						'sobjectType' : 'Contract',
                         'Name': '',
@@ -20,18 +20,18 @@
 						'Description':''
 						
 					}" />
-<aura:attribute name="assessmentData" type="Assessment__c"
+     <aura:attribute name="assessmentData" type="Assessment__c"
 		default="{
 						'sobjectType' : 'Assessment__c',
 						'Description':''
 						
 					}" />
- <aura:attribute name="key" type="string" />
-    <aura:attribute name="storeListWorkshop" type="List" />
-    
-	  <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
-	  <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
-	  <aura:handler event="c:OrmNewContactEvt" action="{!c.RefreshContacts}" />
+     <aura:attribute name="key" type="string" />
+     <aura:attribute name="storeListWorkshop" type="List" />
+     
+	 <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
+	 <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
+	 <aura:handler event="c:OrmNewContactEvt" action="{!c.RefreshContacts}" />
 	   <!-- start header page content search bar and action button -->
   <div class="slds-grid slds-gutters">
     <div class=" slds-size--2-of-12   slds-p-horizontal--small">

@@ -4,6 +4,7 @@
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS')
             {
+              component.set('v.initialData', response.getReturnValue());
               component.set('v.items', response.getReturnValue());
                    // start pagination
                     var pageSize = component.get("v.pageSize");

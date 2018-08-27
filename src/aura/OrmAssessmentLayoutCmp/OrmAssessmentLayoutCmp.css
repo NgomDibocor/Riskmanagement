@@ -45,3 +45,9 @@
 .THIS .heightHiddenInput{
 	height: 3px;
 }
+.THIS .iconPrev{
+	cursor: pointer;
+}
+.THIS .iconNext{
+	cursor: pointer;
+}

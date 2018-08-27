@@ -38,6 +38,7 @@
                                         class="slds-button slds-button_neutral"
                                         onclick="{!c.showMeasure}">
                                     {!$Label.c.show_button_title}<span id="{!item.orm_assessmentRisk__r.orm_assessment__c}"></span>
+                                    <span id="{!item.orm_assessmentRisk__c}"></span>
                                 </button>
                             </div>
                         </header>

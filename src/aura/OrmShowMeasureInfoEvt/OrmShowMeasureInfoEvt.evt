@@ -1,4 +1,5 @@
 <aura:event type="APPLICATION" description="Event template" >
-<aura:attribute name="assessmentObject" type="Assessment__c" description="" />
+	<aura:attribute name="assessmentObject" type="Assessment__c" description="" />
     <aura:attribute name="idMeasure" type="string"  />
+    <aura:attribute name="idAssessmentRisk" type="string"  />
 </aura:event>

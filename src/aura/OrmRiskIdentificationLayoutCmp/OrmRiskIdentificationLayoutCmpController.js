@@ -44,9 +44,9 @@
             label: 'Action',
             type: 'button',
             typeAttributes: {
-                label: 'configure',
-                name: 'configure',
-                title: 'configure'
+                label: 'Show',
+                name: 'Show',
+                title: 'Show'
             },
             iconName: 'utility:settings',
             /*cellAttributes: {
@@ -141,22 +141,24 @@
      *
      */
     filter: function(component, event, helper) {
-        var dataRisk = component.get('v.allRisk');
-        var data = dataRisk;
+        var dataRisk = component.get('v.allRiskTemp');
+    
         var term = component.get('v.filter');
         var regex;
         if ($A.util.isEmpty(term)) {
             helper.fetchPicklist(component, event);
         } else {
             term = "^" + term;
-        }
         try {
             regex = new RegExp(term, "i");
-            data = data.filter(row => regex.test(row.RiskName) || regex.test(row.RiskDescription));
+        
+            dataRisk = dataRisk.filter(row => regex.test(row.RiskName) || regex.test(row.RiskDescription));
+            	
         } catch (e) {
             alert(e);
         }
-        component.set("v.allRisk", data);
+        component.set("v.allRisk",dataRisk);
+        }
     },
     relatedRiskfunction: function(component, event, helper) {
         var relatedassesmentRisk = component.get("v.relatedRisk");

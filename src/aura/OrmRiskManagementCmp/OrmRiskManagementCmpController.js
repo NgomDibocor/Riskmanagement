@@ -106,7 +106,8 @@
 	                "showContext": false,
 	                "showRiskTreatment" : true,
 	                "showMeasureInfo": true,
-	                "idMeasure" : event.getParam("idMeasure")
+	                "idMeasure" : event.getParam("idMeasure"),
+	                "idAssessmentRisk" : event.getParam("idAssessmentRisk")
 	            },
 	            function(newCmp) {
 	                if (component.isValid()) {

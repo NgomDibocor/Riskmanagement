@@ -151,7 +151,7 @@
             var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
             evt.setParams({"MeasureId": component.get("v.idMeasure")});
             evt.fire();
-            helper.activeRiskTreatment(component, event);
+            helper.activeRiskAnalyeListMeasure(component, event);
         }
         if(showActionPlan == true){
             component.set("v.showRiskTreatment", true);

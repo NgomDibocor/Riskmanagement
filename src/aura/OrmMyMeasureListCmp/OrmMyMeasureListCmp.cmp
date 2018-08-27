@@ -1,7 +1,7 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
  	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:attribute name="myMeasure" type="List" />
-     
+     <aura:attribute name="key" type="string" />
 	    <div class="slds-box" style="width:100%;font-size: 30px;">
 	    <!-- font-family: 'customfontDisney';
     	font-size: 30px;src: url(/resource/disneyFont); -->
@@ -10,7 +10,7 @@
 		<div class="slds-col">									
 		<div class="space"></div>
 		<span class="searchInput">
-        	<lightning:input aura:id="searchMeasure" class="search" placeholder="search Measures  by name or description" type="search"  />
+        	<lightning:input aura:id="searchMeasure" class="search" placeholder="search Measures  by name or description" type="search" onchange="{!c.filter}" value="{!v.key}" />
         </span>
         
    		</div>

@@ -214,12 +214,16 @@
         
         component.set("v.showContext", true);
         component.set("v.showContext2", false);
+        component.set("v.showContextActivity", false);
+        component.set("v.showContextWorkshop", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showListCauseAndImpact", false);
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
-        component.set("v.showActionPlan", false);
+        component.set("v.showActionPlan", false);  
+        component.set("v.showChevronleft", false); 
+        component.set("v.showChevronright", true);        
     },
     activeContext2 : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -254,6 +258,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);  
+        component.set("v.showChevronright", true); 
     },
     activeContextActivity : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -288,6 +294,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", true);
     },
     activeContextWorkshop : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -322,6 +330,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", true);
     },
     // this methode actives the action Risk Identification tab
     activeRiskIdentif : function(component, event, helper) {
@@ -356,6 +366,10 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);
+        component.set("v.showChevronright", false);
+        
+           
     },
     
     // this methode actives the action Risk Analye tab
@@ -389,6 +403,8 @@
         component.set("v.showRiskAnalyse", true);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true); 
+        component.set("v.showChevronright", true);  
     },
     activeRiskAnalyeListCauseAndImpact : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -422,6 +438,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", true);
     },
     activeRiskAnalyeListMeasure : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -455,6 +473,8 @@
         component.set("v.showListMeasure", true);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", false);
     },
     
     // this methode actives the action Risk Treatment tab
@@ -489,6 +509,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", true);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true); 
+        component.set("v.showChevronright", true);  
     },
     
     // this methode actives the action plan tab
@@ -522,6 +544,8 @@
         component.set("v.showRiskAnalyse", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", true);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", true);
     },
       
     

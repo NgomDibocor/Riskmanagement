@@ -14,12 +14,12 @@
     <aura:attribute name="checkUpdateActivity" type="boolean" default="false"/>
     <aura:attribute name="message" type="String" default="NoError"/>
     <aura:attribute name="showAssessmentRisk" type="boolean" default="false"/>
-    <aura:attribute name="showMeasureInfo" type="boolean" default="false"/>
+    <aura:attribute name="showMeasureInfo" type="boolean" default="false"/> 
+    
+    <aura:attribute name="showChevronleft" type="boolean" default="false"/>
+    <aura:attribute name="showChevronright" type="boolean" default="true"/>
     
     
-    
-    
-      
     <!-- PickList -->
     <aura:attribute name="allTypeAssessment" type="String[]" />
     <aura:attribute name="allIndustrySector" type="String[]"/>
@@ -114,7 +114,8 @@
       </ul>
     </div>
     <!-- menu -->
-    <div class="slds-size--1-of-8" style="position:sticky;top:250px;padding-left:40px">
+    <aura:if isTrue="{!v.showChevronleft}">
+        <div class="slds-size--1-of-8" style="position:sticky;top:250px;padding-left:40px">
               <aura:if isTrue="{!v.showContext2}">
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
@@ -142,8 +143,9 @@
               <aura:if isTrue="{!v.showActionPlan}">        
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
-    </div>
-    <div class="{!v.closeFieldDescription==true ? 'slds-size--6-of-8': 'slds-size--4-of-8'}" style="margin-top:20px;margin-bottom:30px">
+        </div>
+    </aura:if>
+    <div  class="{!(v.closeFieldDescription==true ? (v.showChevronleft == false ? (v.showChevronright== true ? 'slds-size--7-of-8' : 'slds-size--8-of-8'):(v.showChevronright== true ? 'slds-size--6-of-8': 'slds-size--7-of-8')) : (v.showChevronleft == true ? 'slds-size--4-of-8' : 'slds-size--5-of-8' ))}" style="margin-top:20px;margin-bottom:30px">
         <table class="slds-table">
               <aura:if isTrue="{!v.showContext}">
                    <tr>
@@ -1246,7 +1248,8 @@
         <div class="slds-size--2-of-8 " style="margin-top:20px;padding-left:20px;padding-right:20px;padding-bottom:10px;position:sticky;top:100px">
             <c:OrmFieldDescriptionCmp/>
         </div>
-    </aura:if>  
+    </aura:if> 
+    <aura:if isTrue="{!v.showChevronright}">
         <div class="slds-size--1-of-8" style="position:sticky;top:250px;padding-left:50px">
                <aura:if isTrue="{!v.showContext}">
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
@@ -1270,6 +1273,7 @@
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
                </aura:if>
         </div>
+     </aura:if> 
   
     <c:OrmOrganisationNewCmp/>
     <c:OrmWorkShopNewCmp/>

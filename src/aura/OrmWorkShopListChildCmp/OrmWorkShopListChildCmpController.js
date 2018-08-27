@@ -25,8 +25,8 @@
         }, 100);
          var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": $A.get("$Label.c.orm_start_date"),
-            "descriptionField": $A.get("$Label.c.description_title_workshop")
+            "nomField": $A.get("$Label.c.orm_start_date")+" - "+$A.get("$Label.c.orm_end_date"),
+            "descriptionField": $A.get("$Label.c.description_period_workshop")
         });
         evt.fire();
     },
@@ -39,6 +39,12 @@
         setTimeout(function(){ 
             component.find("accMessage").focus();
         }, 100);
+           var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.orm_message_workshop"),
+            "descriptionField": $A.get("$Label.c.description_message_workshop")
+        });
+        evt.fire();
     },
       inlineEditInvitation : function(component,event,helper){   
         // show the status edit field 
@@ -168,5 +174,21 @@
 				$A.enqueueAction(action);
 				
 
-        }
+        }, 
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description show field description search filter 
+ * @history 
+ * 2018-08-27 : Salimata NGOM - Implementation
+ */
+      sendDescriptionField: function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.search_title_label"),
+            "descriptionField": $A.get("$Label.c.search_description_title")
+        });
+        evt.fire();
+    }
 })

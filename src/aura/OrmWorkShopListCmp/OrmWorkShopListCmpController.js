@@ -124,21 +124,5 @@
 		   component.set("v.WorkshopList", data);
          }        	
     },
-    
- /**
- *
- * @author Salimata NGOM
- * @version 1.0
- * @description show field description search filter 
- * @history 
- * 2018-08-27 : Salimata NGOM - Implementation
- */
-      sendDescriptionSearchToFD: function(component, event, helper) {
-        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-        evt.setParams({
-            "nomField": $A.get("$Label.c.search_title_label"),
-            "descriptionField": $A.get("$Label.c.search_description_title")
-        });
-        evt.fire();
-    }
+   
 })

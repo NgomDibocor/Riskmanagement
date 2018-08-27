@@ -7,6 +7,13 @@
     	font-size: 30px;src: url(/resource/disneyFont); -->
 		  <h1>List of Measures</h1>
 		</div>
+		<div class="slds-col">									
+		<div class="space"></div>
+		<span class="searchInput">
+        	<lightning:input aura:id="searchMeasure" class="search" placeholder="search Measures  by name or description" type="search"  />
+        </span>
+        
+   		</div>
 	
     <div class="slds-grid slds-wrap" style="width:100%;margin-left:3%">
        <aura:iteration items="{!v.PaginationList}" var="item"> 
@@ -29,7 +36,7 @@
                             <div class="slds-no-flex" style="margin-left:5px">
                                 <button id="{!item.Id}"
                                         class="slds-button slds-button_neutral"
-                                        onclick="{!c.showAssessmentRisk}">
+                                        onclick="{!c.showMeasure}">
                                     {!$Label.c.show_button_title}<span id="{!item.orm_assessmentRisk__r.orm_assessment__c}"></span>
                                 </button>
                             </div>

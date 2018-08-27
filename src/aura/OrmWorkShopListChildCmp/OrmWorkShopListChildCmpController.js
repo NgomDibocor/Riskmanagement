@@ -6,6 +6,12 @@
         setTimeout(function(){ 
             component.find("inputId").focus();
         }, 100);
+         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.orm_title_workshop"),
+            "descriptionField": $A.get("$Label.c.description_title_workshop")
+        });
+        evt.fire();
     },
       inlineEditPeriod : function(component,event,helper){   
         // show the period edit field 
@@ -17,6 +23,12 @@
           setTimeout(function(){ 
             component.find("endDateid").focus();
         }, 100);
+         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.orm_start_date"),
+            "descriptionField": $A.get("$Label.c.description_title_workshop")
+        });
+        evt.fire();
     },
     
     inlineEditMessage : function(component,event,helper){   

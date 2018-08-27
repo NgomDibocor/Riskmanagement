@@ -141,9 +141,9 @@
      *
      */
     filter: function(component, event, helper) {
-        var data = component.get("v.allRisk");
-        var term = component.get("v.filter");
-        var results = data;
+        var dataRisk = component.get('v.allRisk');
+        var data = dataRisk;
+        var term = component.get('v.filter');
         var regex;
         if ($A.util.isEmpty(term)) {
             helper.fetchPicklist(component, event);
@@ -152,11 +152,11 @@
         }
         try {
             regex = new RegExp(term, "i");
-            results = data.filter(row => regex.test(row.RiskName) || regex.test(row.RiskDescription));
+            data = data.filter(row => regex.test(row.RiskName) || regex.test(row.RiskDescription));
         } catch (e) {
             alert(e);
         }
-        component.set("v.allRisk", results);
+        component.set("v.allRisk", data);
     },
     relatedRiskfunction: function(component, event, helper) {
         var relatedassesmentRisk = component.get("v.relatedRisk");
@@ -228,7 +228,10 @@
         });
         evt.fire();
     },
-
+    /*    
+     * CreatedBy @David Diop
+     *function that allows the creation of the datatable
+     */
     openModalRisk: function(component, event, helper) {
         // for Hide/Close Model,set the "isOpen" attribute to "False"
         component.set("v.isOpen", true);

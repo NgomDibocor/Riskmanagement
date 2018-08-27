@@ -74,12 +74,13 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="status" name="Status" label="{!$Label.c.orm_measure_status}" class="select-auto-width"  onchange="{!c.onStatus}" >
+                       <b> <lightning:select aura:id="status" name="Status" label="{!$Label.c.orm_measure_status}" class="select-auto-width"  onchange="{!c.onStatus}" >
                              <option text="{!v.measureData.orm_measureStatus__c}" ></option>
                             <aura:iteration items="{!v.status}" var="status">
                                 <option text="{!status}"></option>
                             </aura:iteration>
                         </lightning:select>
+                        </b>
                     </div>
                 </div>
             </td>

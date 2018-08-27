@@ -6,3 +6,12 @@
     font-family: 'customfontDisney';
     src: url(/resource/disneyFont); 
 }
+.THIS .searchInput{
+	display: inline-block;
+    width:35%;
+    margin-right:2%;
+}
+.THIS .space{
+	display: inline-block;
+    width:63%;
+}

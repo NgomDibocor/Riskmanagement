@@ -1,8 +1,24 @@
 ({
+ /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method doInit
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
 doInit : function(component, event, helper)
     {
        helper.refreshList(component, event);
     },
+ /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method show measure details
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
 showMeasure : function(component, event, helper) 
     {
     	var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
@@ -10,6 +26,7 @@ showMeasure : function(component, event, helper)
 	     
 	     var measureId = event.target.id;
          var idAssessment = document.getElementById( measureId ).getElementsByTagName( 'span' ).item(0).id;
+         var idAssessmentRisk = document.getElementById( measureId ).getElementsByTagName( 'span' ).item(1).id;
          var action = component.get('c.getAssessment');
 	     action.setParams({"idAss": idAssessment });
 	     action.setCallback(this, function(response){
@@ -18,7 +35,8 @@ showMeasure : function(component, event, helper)
 		         var evt = $A.get("e.c:OrmShowMeasureInfoEvt");
 			     evt.setParams({
 			       "assessmentObject" : response.getReturnValue(),
-			       "idMeasure" : measureId
+			       "idMeasure" : measureId,
+			       "idAssessmentRisk" : idAssessmentRisk,
 			     });
 			     evt.fire();        
 		     } else {
@@ -27,6 +45,14 @@ showMeasure : function(component, event, helper)
 	     });
 	     $A.enqueueAction(action);
 	},
+/**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method filter measures
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
 	filter : function (component, event, helper){
     	
     	var assessmentRisks = component.get('v.initialData');

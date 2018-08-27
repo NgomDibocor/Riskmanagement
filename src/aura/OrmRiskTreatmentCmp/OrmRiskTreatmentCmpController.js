@@ -1,4 +1,12 @@
 ({
+/**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method doInit
+ * @history 
+ * 2018-08-24 : David diop - Implementation
+ */
     doInit: function(component, event, helper) {
         var measureId = event.getParam('MeasureId');
         component.set("v.idMeasure", measureId);
@@ -36,7 +44,16 @@
         $A.enqueueAction(actionstatus);
         $A.enqueueAction(actionOrgs);
     },
+/**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method Update measure
+ * @history 
+ * 2018-08-24 : David diop - Implementation
+ */
     updateMeasure: function(component, event, helper) {
+    //component.find("status").set("v.value", event.getSource().get("v.value"));
         var idAssessmentRisk = component.get("v.idAssessmentRisk");
 
         var measureData = component.get("v.measureData");
@@ -77,6 +94,7 @@
                         });
 
                         toastEvent.fire();
+                        component.set("v.displaySaveCancelBtn", false);
 
                     } else {
                         alert("default");
@@ -84,6 +102,14 @@
                 });
         $A.enqueueAction(action);
     },
+ /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method description fields startDate
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
     onStartDate: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -93,6 +119,14 @@
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
     },
+ /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method description fields endDate
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
     onEndDate: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -102,6 +136,14 @@
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
     },
+ /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method description fields status
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
     onStatus: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -112,6 +154,14 @@
         component.set("v.displaySaveCancelBtn", true);
         component.find("status").set("v.value", event.getSource().get("v.value"));
     },
+ /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method description fields cost
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
     onCost: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -121,6 +171,14 @@
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
     },
+ /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method description fields Description
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
     onDescription: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -130,6 +188,14 @@
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
     },
+  /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method cancel update measure
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
     cancel: function(component, event, helper) {
         component.set("v.displaySaveCancelBtn", false);
     },

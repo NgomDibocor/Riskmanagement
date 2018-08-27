@@ -26,6 +26,7 @@
                     }
                 }
                 component.set('v.allRisk', rows);
+                component.set('v.allRiskTemp', rows);
                 var risk=component.get('v.allRisk');
                 if(risk == null){
                 

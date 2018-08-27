@@ -91,7 +91,7 @@ public with sharing class OrmMeasureController {
 	public static List<Assessment__c> getAllMeasures(){
 		return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__r.orm_assessment__c
 		        FROM Assessment__c 
-		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
+		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() AND CreatedById = :UserInfo.getUserId()];
 	}	
 	  /**
 	 *
@@ -115,7 +115,7 @@ public with sharing class OrmMeasureController {
 	 */
     @AuraEnabled 
     public static Assessment__c getMeasure(String idMeasure){
-     return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__r.Id,orm_AssessmentRisk__r.orm_assessment__c,orm_endDate__c,orm_startDate__c,orm_measureStatus__c,orm_measure_Cost__c,orm_measureCategorie__c
+     return 	[SELECT Id, Name, orm_description__c,orm_assessmentRisk__c,orm_AssessmentRisk__r.orm_assessment__c,orm_endDate__c,orm_startDate__c,orm_measureStatus__c,orm_measure_Cost__c,orm_measureCategorie__c
 		        FROM Assessment__c 
 		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() And Id =:idMeasure];
     }

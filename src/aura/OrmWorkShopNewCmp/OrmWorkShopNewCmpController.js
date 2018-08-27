@@ -35,7 +35,6 @@
                     function(response) {
                         var state = response.getState();
                         if (state == "SUCCESS") {
-                        alert('success'+JSON.stringify(newItem));
                           var evt = $A.get("e.c:OrmNewWorkShopEvt");
 			evt.setParams({
 			   "Assessmentdata" : component.get("v.assessmentData")

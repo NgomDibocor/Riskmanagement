@@ -128,7 +128,7 @@
 																								function(contactworkshop) {
 																								
 																									if (contactworkshop.orm_contact__c == contact.Id) {
-																										contact.invitation = "Invited";
+																										contact.invitation = "Associated";
 																									}
 																								});
 

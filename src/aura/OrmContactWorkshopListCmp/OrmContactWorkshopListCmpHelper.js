@@ -35,6 +35,15 @@
 
 		              //refresh data ContactList 
 		            this.refreshContactWorkshop(component);
+		            //fire toast event
+		            var toastEvent = $A.get('e.force:showToast');
+                        toastEvent.setParams({
+                            'message' : 'Contact dissociated with workshop',
+                            'type' : 'warning',
+                            'mode' : 'dismissible'
+                        });
+
+		                toastEvent.fire();
             
             } else if(state ==="ERROR") {
               let errors = response.getError();
@@ -120,8 +129,16 @@
             console.log(state);
             if ( state == "SUCCESS") {
                  //fire toast event
-    
+            	
               this.refreshContactWorkshop(component);
+                var toastEvent = $A.get('e.force:showToast');
+                        toastEvent.setParams({
+                            'message' : 'Contact associated with workshop',
+                            'type' : 'success',
+                            'mode' : 'dismissible'
+                        });
+
+		                toastEvent.fire();
             } else if(state ==="ERROR") {
               let errors = response.getError();
               let message = 'Unknown error'; // Default error message
@@ -194,7 +211,7 @@ if (component.get("v.ContactListTemp").length > 0) {
 																								function(contactworkshop) {
 																								
 																									if (contactworkshop.orm_contact__c == contact.Id) {
-																										contact.invitation = "Invited";
+																										contact.invitation = "Associated";
 																									}
 																								});
 
@@ -232,16 +249,12 @@ if (component.get("v.ContactListTemp").length > 0) {
         if ($A.util.isEmpty(getEmail) || !getEmail.includes("@")) {
             alert('Please Enter valid Email Address');
         } else {
-           // helper.sendHelper(component, getEmail, getSubject, getbody);
-             alert(getEmail+' '+getSubject+' '+getbody);
+             this.sendHelper(component, row,getEmail, getSubject, getbody);
+   
         }
       },
-       // when user click on the close buttton on message popup ,
-    // hide the Message box by set the mailStatus attribute to false 
-    closeMessage: function(component, event, helper) {
-        component.set("v.mailStatus", false);
-    },
-	sendHelper: function(component, getEmail, getSubject, getbody) {
+      
+	sendHelper: function(component,row, getEmail, getSubject, getbody) {
         // call the server side controller method 	
         var action = component.get("c.sendMailMethod");
         // set the 3 params to sendMailMethod method   
@@ -256,7 +269,10 @@ if (component.get("v.ContactListTemp").length > 0) {
                 var storeResponse = response.getReturnValue();
                 // if state of server response is comes "SUCCESS",
                 // display the success message box by set mailStatus attribute to true
+                row.invitation="Invited";
+                component.set("v.email",getEmail);
                 component.set("v.mailStatus", true);
+                
             }
  
         });

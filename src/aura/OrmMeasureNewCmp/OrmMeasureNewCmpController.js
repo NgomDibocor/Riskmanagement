@@ -20,7 +20,7 @@
 	
 	createItem : function(component, event, helper) {
 	   var name = component.find('name').get('v.value');
-       var description = component.find('description').get('v.value');
+      // var description = component.find('description').get('v.value');
        var measureCategorie  = component.find('measureCategorie').get('v.value');
        
        /* we test the validity of data */
@@ -32,7 +32,7 @@
         if(isItemsValid){
         	var newMeasure = component.get('v.measure');
         	newMeasure.Name = name;
-        	newMeasure.orm_description__c = description;
+        	//newMeasure.orm_description__c = description;
         	newMeasure.orm_measureCategorie__c = measureCategorie;
         	newMeasure.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
         	
@@ -45,7 +45,6 @@
             	   component.set('v.measure', { 
             		   'sobjectType' : 'Assessment__c',
 		               'Name' : '',
-		               'orm_description__c' : '',
 			        });
             		var newMeasure = response.getReturnValue();
             		var toast = $A.get('e.force:showToast');

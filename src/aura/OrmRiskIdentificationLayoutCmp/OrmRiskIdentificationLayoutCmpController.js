@@ -44,9 +44,9 @@
             label: 'Action',
             type: 'button',
             typeAttributes: {
-                label: 'configure',
-                name: 'configure',
-                title: 'configure'
+                label: 'Show',
+                name: 'Show',
+                title: 'Show'
             },
             iconName: 'utility:settings',
             /*cellAttributes: {

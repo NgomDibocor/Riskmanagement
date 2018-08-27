@@ -4,7 +4,6 @@
 	<aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
 	<aura:attribute name="measure" type="Assessment__c" default="{'sobjectType' : 'Assessment__c',
                                                                'Name' : '',
-                                                               'orm_description__c' : '',
                                                                'orm_measureCategorie__c':''
                                                                }"/>
 	<aura:registerEvent name="MeasureCreated" type="c:OrmMeasureCreatedEvt" />
@@ -40,12 +39,12 @@
                                             	 value="{!v.measure.Name}" required="true"/>
 										</div>
 									</div>
-									<div class="slds-form-element">
+									<!-- <div class="slds-form-element">
 										<div class="slds-form-element__control">
 											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" 
 												value="{!v.measure.orm_description__c}" />
 										</div>
-									</div>  
+									</div>  -->
 									<div class="slds-form-element ">
 				                    <div class="slds-form-element__control">
 				                        <lightning:select aura:id="measureCategorie" name="measureCategorie" label="measure Categorie" class="select-auto-width"  onchange="{!c.measureCategorieChange}">

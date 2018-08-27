@@ -86,12 +86,13 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="frequency" name="frequency" label="{!$Label.c.orm_frequency_assessmentRisk}" class="select-auto-width" onchange="{!c.onFrequency}">
+                        <b><lightning:select aura:id="frequency" name="frequency" label="{!$Label.c.orm_frequency_assessmentRisk}" class="select-auto-width" onchange="{!c.onFrequency}">
                              <option text="{!v.assessmentRiskData.orm_frequency__c}" ></option>
                             <aura:iteration items="{!v.frequency}" var="frequence">
                                 <option text="{!frequence}"></option>
                             </aura:iteration>
                         </lightning:select>
+                        </b>
                     </div>
                 </div>
             </td>
@@ -99,12 +100,13 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="manageAbility" name="manage Ability" label="{!$Label.c.orm_manageAbility_assessmentRisk}" class="select-auto-width" onchange="{!c.onManageAbility}">
+                       <b> <lightning:select aura:id="manageAbility" name="manage Ability" label="{!$Label.c.orm_manageAbility_assessmentRisk}" class="select-auto-width" onchange="{!c.onManageAbility}">
                              <option text="{!v.assessmentRiskData.orm_manageAbility__c}" ></option>
                             <aura:iteration items="{!v.manageAbility}" var="manageAbility">
                                 <option text="{!manageAbility}"></option>
                             </aura:iteration>
                         </lightning:select>
+                        </b>
                     </div>
                 </div>
             </td>
@@ -114,12 +116,13 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="productionLoss" name="productionLoss" label="{!$Label.c.orm_productionLoss_assessmentRisk}" class="select-auto-width" onchange="{!c.onProductionLoss}">
+                        <b><lightning:select aura:id="productionLoss" name="productionLoss" label="{!$Label.c.orm_productionLoss_assessmentRisk}" class="select-auto-width" onchange="{!c.onProductionLoss}">
                             <option text="{!v.assessmentRiskData.orm_productionLoss__c}" ></option>
                             <aura:iteration items="{!v.productionLoss}" var="productionLoss">
                                 <option text="{!productionLoss}"></option>
                             </aura:iteration>
                         </lightning:select>
+                        </b>
                     </div>
                 </div>
             </td>
@@ -127,12 +130,13 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="schedule" name="schedule" label="{!$Label.c.orm_schedule_assessmentRisk}" class="select-auto-width" onchange="{!c.onSchedule}">
+                       <b> <lightning:select aura:id="schedule" name="schedule" label="{!$Label.c.orm_schedule_assessmentRisk}" class="select-auto-width" onchange="{!c.onSchedule}">
                            <option text="{!v.assessmentRiskData.orm_schedule__c}"></option>
                             <aura:iteration items="{!v.schedule}" var="schedule">
                                 <option text="{!schedule}"></option>
                             </aura:iteration>
                         </lightning:select>
+                        </b>
                     </div>
                 </div>
             </td>
@@ -142,12 +146,13 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="status" name="status" label="{!$Label.c.orm_status_assessmentRisk}" class="select-auto-width" onchange="{!c.onStatus}">
+                        <b><lightning:select aura:id="status" name="status" label="{!$Label.c.orm_status_assessmentRisk}" class="select-auto-width" onchange="{!c.onStatus}">
                             <option text="{!v.assessmentRiskData.orm_status__c}" ></option>
                             <aura:iteration items="{!v.status}" var="status">
                                 <option text="{!status}"></option>
                             </aura:iteration>
                         </lightning:select>
+                        </b>
                     </div>
                 </div>
             </td>
@@ -155,12 +160,13 @@
             <td>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <lightning:select aura:id="vulnerability" name="vulnerability" label="{!$Label.c.orm_vulnerability_assessmentRisk}" class="select-auto-width" onchange="{!c.onVulnerability}">
+                        <b><lightning:select aura:id="vulnerability" name="vulnerability" label="{!$Label.c.orm_vulnerability_assessmentRisk}" class="select-auto-width" onchange="{!c.onVulnerability}">
                             <option text="{!v.assessmentRiskData.orm_vulnerability__c}"></option>
                             <aura:iteration items="{!v.vulnerability}" var="vulnerability">
                                 <option text="{!vulnerability}"></option>
                             </aura:iteration>
                         </lightning:select>
+                        </b>
                     </div>
                 </div>
             </td>

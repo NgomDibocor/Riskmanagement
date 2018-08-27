@@ -151,10 +151,9 @@
                    <tr>
                     <td class="textInDiv">
                        <div style="margin-top:10px; margin-bottom:10px">
-                           <button class="btn btn-default"
-                                onclick="{!c.navigateToListAssessment}">
-                             <i class="fa fa-rotate-left"></i> {!$Label.c.back_button_title_assessment}
-                           </button>
+                          <lightning:button label="{!$Label.c.back_button_title_assessment}" 
+                              onclick="{!c.navigateToListAssessment}" variant="neutral"
+                              iconName='utility:back'/>
                        </div>
                     </td>
                  </tr>

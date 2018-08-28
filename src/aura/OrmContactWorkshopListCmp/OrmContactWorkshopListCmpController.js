@@ -19,10 +19,15 @@
 			fieldName : 'Email',
 			type : 'email'
 		}, {
-			label : 'Invitation',
-			fieldName : 'invitation',
+			label : 'Association',
+			fieldName : 'association',
 			type : 'text'
-		}, {
+		}, 
+		 {
+			label : 'Invitation',
+			fieldName : 'orm_notification__c',
+			type : 'text'
+		},{
 			type : 'action',
 			typeAttributes : {
 				rowActions : rowActions

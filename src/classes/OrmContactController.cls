@@ -101,7 +101,7 @@ public with sharing class OrmContactController {
   @AuraEnabled 
     public static List<orm_ContactWorkshop__c> findAllContactWorkshop(String item){
         List<orm_ContactWorkshop__c> allContact = new List<orm_ContactWorkshop__c>();
-        allContact = [Select orm_contact__c, orm_contact__r.Id,orm_Workshop__c,orm_Workshop__r.Name
+        allContact = [Select orm_contact__c, orm_contact__r.Id,orm_Workshop__c,orm_Workshop__r.Name,orm_notification__c
                     From orm_ContactWorkshop__c where 
                     RecordTypeId=:OrmContactController.getContactWorkshopRecordTypeId() and  
                     orm_Workshop__c=:item
@@ -132,7 +132,7 @@ public with sharing class OrmContactController {
     public static orm_ContactWorkshop__c getContactWorkshop (String item,String contact){
        orm_ContactWorkshop__c contactworkshop = new orm_ContactWorkshop__c();
     
-       contactworkshop=[Select Id,orm_contact__c, orm_Workshop__c
+       contactworkshop=[Select Id,orm_contact__c, orm_Workshop__c,orm_Workshop__r.Name,orm_notification__c,orm_dateAjout__c
                     From orm_ContactWorkshop__c where 
                     RecordTypeId=:OrmContactController.getContactWorkshopRecordTypeId() and  
                     orm_Workshop__c=:item and orm_contact__c=:contact];
@@ -151,27 +151,41 @@ public with sharing class OrmContactController {
     
      List<Messaging.SingleEmailMessage> mails =  new List<Messaging.SingleEmailMessage>();     
   
-     // Step 1: Create a new Email
+     //  Create a new Email
        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
     
-    // Step 2: Set list of people who should get the email
+    // Set list of people who should get the email
        List<String> sendTo = new List<String>();
        sendTo.add(mMail);
        mail.setToAddresses(sendTo);
     
-    // Step 3: Set who the email is sent from
+    // Set who the email is sent from
        mail.setReplyTo('noreply@gmail.com'); // change it with your mail address.
        mail.setSenderDisplayName('salesforce User'); 
     
-    // Step 4. Set email contents - you can use variables!
+    //  Set email contents - you can use variables!
       mail.setSubject(mSubject);
       mail.setHtmlBody(mbody);
     
-    // Step 5. Add your email to the master list
+    //  Add your email to the master list
       mails.add(mail);
     
-  // Step 6: Send all emails in the master list
+  // Send all emails in the master list
      Messaging.sendEmail(mails);
-   }   
+   } 
+   
+  /**
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method to update orm_ContactWorkshop__c item
+ * @history 
+ * 2018-08-28: Salimata NGOM - Implementation
+ */
+    @AuraEnabled
+	public static orm_ContactWorkshop__c updateContactWorkshop(orm_ContactWorkshop__c item){        
+        item.RecordTypeId=OrmContactController.getContactWorkshopRecordTypeId();
+		upsert item;
+		return item;
+	}
     
 }

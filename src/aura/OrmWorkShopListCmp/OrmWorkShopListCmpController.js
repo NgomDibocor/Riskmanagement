@@ -34,9 +34,16 @@
                     // set WorkshopList list with return value from server.
                         console.log(JSON.stringify(storeResponse));
                     component.set("v.WorkshopList", storeResponse);
+                    		var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : $A.get("$Label.c.orm_updated"),
+                'type' : 'success',
+                'mode' : 'dismissible'
+            });      
+            toast.fire();  
                     // Hide the save and cancel buttons by setting the 'showSaveCancelBtn' false 
                     component.set("v.showSaveCancelBtn",false);
-                    alert('Updated...');
+                  
                 }
             });
             $A.enqueueAction(action);
@@ -54,7 +61,7 @@
         	//alert("check if you have created the assessment");
         	var toast = $A.get('e.force:showToast');
             toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
+            	'message' : $A.get("$Label.c.orm_toast_warning"),
                 'type' : 'warning',
                 'mode' : 'dismissible'
             });
@@ -76,7 +83,7 @@
         	//alert("check if you have created the assessment");
         	var toast = $A.get('e.force:showToast');
             toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
+            	'message' : $A.get("$Label.c.orm_toast_warning"),
                 'type' : 'warning',
                 'mode' : 'dismissible'
             });

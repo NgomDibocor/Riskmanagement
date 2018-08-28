@@ -81,7 +81,7 @@
  * 2018-08-13 : Salimata NGOM - Implementation
  */
 	 getRowActions: function (cmp, row, doneCallback) {
-	 if(row.invitation){
+	 if(row.association){
 	  var actions = [{
             'label': 'Dissociation',
             'iconName': 'utility:delete',
@@ -133,7 +133,7 @@
               this.refreshContactWorkshop(component);
                 var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
-                            'message' : 'Contact associated with workshop',
+                            'message' : $A.get("$Label.c.orm_toast_success"),
                             'type' : 'success',
                             'mode' : 'dismissible'
                         });
@@ -211,7 +211,11 @@ if (component.get("v.ContactListTemp").length > 0) {
 																								function(contactworkshop) {
 																								
 																									if (contactworkshop.orm_contact__c == contact.Id) {
-																										contact.invitation = "Associated";
+																										contact.association = "Associated";
+																										if(contactworkshop.orm_notification__c==true )
+																										{
+																										contact.orm_notification__c="Invited";
+																										}
 																									}
 																								});
 
@@ -269,10 +273,54 @@ if (component.get("v.ContactListTemp").length > 0) {
                 var storeResponse = response.getReturnValue();
                 // if state of server response is comes "SUCCESS",
                 // display the success message box by set mailStatus attribute to true
-                row.invitation="Invited";
                 component.set("v.email",getEmail);
-                component.set("v.mailStatus", true);
-                
+              
+                //get contact workshop
+	var contactworkshop=component.get('c.getContactWorkshop');
+	contactworkshop.setParams({
+	"item":component.get('v.workshop').Id,
+	"contact":row.Id
+	});
+	contactworkshop.setCallback(this,function(respcontactworkshop) {
+            var state = response.getState();
+            console.log(state);
+            if (state == "SUCCESS") {
+            
+             var contactworkshopItem=respcontactworkshop.getReturnValue();
+              //update field orm_notification__c
+              contactworkshopItem.orm_notification__c = true;
+                	var updatecontactworkshop=component.get('c.updateContactWorkshop');
+                	updatecontactworkshop.setParams({
+	                "item":contactworkshopItem});
+	                 updatecontactworkshop.setCallback(this, function(respUpdate) {
+            var state = respUpdate.getState();
+            if (state === "SUCCESS") {
+              component.set("v.mailStatus", true);
+            } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
+            }
+            });
+             $A.enqueueAction(updatecontactworkshop);
+            } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
+            }
+            });
+              $A.enqueueAction(contactworkshop);
+               
             }
  
         });

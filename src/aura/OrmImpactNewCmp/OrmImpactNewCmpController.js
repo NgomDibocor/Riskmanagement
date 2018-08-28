@@ -24,6 +24,10 @@
         });
         $A.enqueueAction(action);
 	},
+	  onChange2 : function(component, event, helper)
+	    {
+	    	component.find("categorieImpact").set("v.value", event.getSource().get("v.value")); 
+		},
 	
 	/** @author: David
 	 *  @date: Creation: 28/08/2018
@@ -64,10 +68,11 @@
                     component.set('v.impact', { 'sobjectType' : 'Macro',
                                                'Description' : '',
                                                'Name':'',
+                                               'orm_categorie_impact__c':'',
                                                'orm_assessmentRisk__c' : ''
                     });
-                   //var evt = $A.get("e.c:OrmCauseCreatedEvt");
-                   //evt.fire();
+                    var evt = $A.get("e.c:OrmImpactCreatedEvt");
+                   evt.fire();
                    component.set("v.isOpen", false);
             	} else {
             		var toast = $A.get('e.force:showToast');

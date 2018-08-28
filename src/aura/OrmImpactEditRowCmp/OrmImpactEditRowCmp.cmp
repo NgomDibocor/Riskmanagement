@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component controller="OrmImpactController">
 	
 	<aura:attribute name="sNo" type="string" />
     <aura:attribute name="impact" type="sobject" default="{'sobjectType' : 'Macro',
@@ -8,6 +8,9 @@
     <aura:attribute name="nameEditMode" type="boolean" default="false" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
     <aura:attribute name="showSaveCancelBtn" type="boolean"/>
+    <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllImpact"/>
+    <aura:handler action="{!c.deleteSelected}" event="c:OrmEvtDeleteImpact"/>
+    <aura:registerEvent name="OrmImpactCreatedEvt" type="c:OrmImpactCreatedEvt" />
      
     <!--Table Row Start-->  
     <tr>
@@ -30,9 +33,9 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.nameEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_description}">{!v.impact.Name}</span>
+                    <span class="slds-truncate" title="{!$Label.c.orm_impact_libelle}">{!v.impact.Name}</span>
                     <button onclick="{!c.inlineEditName}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
-                    	tabindex="0" title="">
+                    	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_impact_libelle}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
                     
@@ -69,7 +72,7 @@
                 <aura:if isTrue="{!v.descriptionEditMode == false}">
                     <span class="slds-truncate" title="{!$Label.c.orm_description}">{!v.impact.Description}</span>
                     <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
-                    	tabindex="0" title="{!$Label.c.edit_button_title + ' ' + $Label.c.orm_description}">
+                    	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_description}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
                     

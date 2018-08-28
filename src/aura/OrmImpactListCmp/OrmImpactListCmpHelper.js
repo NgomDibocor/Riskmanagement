@@ -7,7 +7,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {
             	component.set("v.impacts", response.getReturnValue());
-            	alert(JSON.stringify(response.getReturnValue()));
+            	component.set("v.impactsTemp", response.getReturnValue());
             }
         });
         $A.enqueueAction(action);

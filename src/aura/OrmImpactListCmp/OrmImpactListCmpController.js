@@ -1,7 +1,9 @@
 ({
 	getAssessmentRiskId : function(component, event, helper) {
 		component.set("v.idAssessmentRisk", event.getParam('idAssessmentRisk'));
-		alert(component.get("v.idAssessmentRisk"));
+		helper.refresh(component, component.get("v.idAssessmentRisk"));
+	},
+	refreshList : function(component, event, helper) {
 		helper.refresh(component, component.get("v.idAssessmentRisk"));
 	},
 	/* @cretedBy: David
@@ -46,7 +48,51 @@
 	           });
 	           $A.enqueueAction(action);
         } 
-        } 
+        }, 
 		
-	},
+	
+	/*
+     * CreatedBy @David Diop
+     *
+     */
+    filter: function(component, event, helper) {
+        var dataRisk = component.get('v.impactsTemp');
+        var term = component.get('v.filter');
+        var regex;
+        if ($A.util.isEmpty(term)) {
+            helper.refresh(component, component.get("v.idAssessmentRisk"));
+        } else {
+            term = "^" + term;
+        try {
+            regex = new RegExp(term, "i");
+        
+            dataRisk = dataRisk.filter(row => regex.test(row.Name) || regex.test(row.Description));
+            	
+        } catch (e) {
+            alert(e);
+        }
+        component.set("v.impacts",dataRisk);
+        }
+    },
+     selectAll : function (component, event, helper) {
+    	//get the header checkbox value  
+    	var selectedHeaderCheck = event.getSource().get("v.value");
+    	
+    	var evt = $A.get('e.c:OrmEvtSelectAllImpact');
+    	evt.setParams({"selectAllCheckbox": selectedHeaderCheck});
+    	evt.fire();
+    },
+     openModalDeleteCause : function (component, event, helper) {
+    	component.set('v.openModalConfirmDeletion', true);
+    },
+     cancelDeleteCause : function (component, event, helper) {
+    	component.set('v.openModalConfirmDeletion', false);
+    },
+    
+    confirmDeleteCause : function (component, event, helper) {
+    	var evt = $A.get('e.c:OrmEvtDeleteImpact');
+    	evt.setParams({'idAssessmentRisk': component.get('v.idAssessmentRisk')});
+    	evt.fire();
+    	component.set('v.openModalConfirmDeletion', false);
+    },
 })

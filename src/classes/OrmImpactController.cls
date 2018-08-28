@@ -78,5 +78,36 @@ public with sharing class OrmImpactController {
         allOpts.sort();
         return allOpts;
     }
+    /**
+	 * @author: Laye
+	 * @date: Creation: 13/08/2018
+	 * @description: delete all causes where the iD is in causeIds list 
+	*/
+	@AuraEnabled
+	public static List <String> deleteImpacts(List<String> impactIds){
+		
+		// for store Error Messages  
+  		List <String> oErrorMsg = new List <String>();
+  		// Query Records for delete where id in lstRecordId [which is pass from client side controller]
+  		List<Macro> impacts = [SELECT Id FROM Macro WHERE Id IN :impactIds AND 
+  			RecordTypeId =:OrmImpactController.getImpactRecordTypeId()];
+  		Database.DeleteResult[] drDels = Database.delete(impacts, false);
+  		// Iterate through each returned result
+  		for (Database.DeleteResult dr: drDels) {
+	   		if (dr.isSuccess()) {
+	      		system.debug('successful delete contact');
+	     		// Operation was successful
+	   		} else {
+	    		// Operation failed, so get all errors   
+	    		oErrorMsg.add('');
+	    		for (Database.Error err: dr.getErrors()) {
+	     			// add Error message to oErrorMsg list and return the list
+	     			oErrorMsg.add(err.getStatusCode() + ': ' + err.getMessage());
+	    		}
+	   		}
+	  	}
+	  	return oErrorMsg;  		
+	}
+    
     
 }

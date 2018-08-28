@@ -1,5 +1,6 @@
 <aura:component  extends="c:OrmAbstractNewCmp" controller="OrmImpactController">
 	<aura:handler action="{!c.openOrmImpactNewCmp}" event="c:OrmNewImpactClickedEvt" />
+	<aura:registerEvent name="OrmImpactCreatedEvt" type="c:OrmImpactCreatedEvt" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="allCategorieImpact" type="String[]" />
 	<aura:attribute name="impact" type="Macro" default="{ 'sobjectType' : 'Macro',
@@ -17,10 +18,10 @@
 					<div class="slds-modal__header">
 						<button
 							class="slds-button slds-modal__close slds-button--icon-inverse"
-							title="Close" onclick="{!c.closeModal}">
+							title="{!$Label.c.close_button_title}" onclick="{!c.closeModal}">
 							X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 						</button>
-						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}</h1>
+						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label + ' ' + $Label.c.orm_impact}</h1>
 					</div>
 					<!--###### MODAL BOX BODY Part Start From Here ######-->
 					<div class="slds-modal__content slds-p-around--medium">
@@ -32,21 +33,21 @@
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
 										
-                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_label_cause}" 
+                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_impact_libelle}" 
                                      			value="{!v.impact.Name}" required="true"/>
 										</div>
 									</div>
 									
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
-											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" 
+											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description_impact}" 
                                      			value="{!v.impact.Description}" required="true"/>
 										</div>
 									</div>  
 									
 									<div class="slds-form-element ">
 										<div class="slds-form-element__control">
-											<lightning:select aura:id="categorieImpact"  name="categorie Risk" label="categorie impact" class="select-auto-width" >
+											<lightning:select aura:id="categorieImpact"  name="{!$Label.c.orm_categorieImpact}"  onchange="{!c.onChange2}" label="{!$Label.c.orm_categorieImpact}" class="select-auto-width" >
                                                 
                                                 <aura:iteration items="{!v.allCategorieImpact}" var="allCategorieImpact" >
                                                     <option  text="{!allCategorieImpact}"  ></option>
@@ -63,7 +64,7 @@
 					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 					<div class="slds-modal__footer">
 						<button class="slds-button slds-button--neutral"
-							onclick="{!c.closeModal}">{!$Label.c.cancel_button_title}</button>
+							onclick="{!c.closeModal}">{!$Label.c.orm_cancel_button_title}</button>
 						<button class="slds-button slds-button--brand"
 							onclick="{!c.createItem}">
 							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.save_button_title}

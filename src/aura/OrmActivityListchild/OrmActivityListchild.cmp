@@ -50,7 +50,7 @@
 					<span class="slds-truncate" title="{!$Label.c.orm_name_activity}">{!v.singleRec.Name}</span>
 					<button onclick="{!c.inlineEditName}"
 						class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
-						tabindex="0" title="{!$Label.c.edit_button_title}">
+						tabindex="0" title="{!$Label.c.orm_edit_button_title}">
 						<lightning:icon iconName="utility:edit" size="xx-small"
 							alternativeText="edit" />
 					</button>
@@ -121,7 +121,7 @@
 					<span class="slds-truncate" title="Status">{!v.singleRec.orm_activityStatus__c}</span>
 					<button onclick="{!c.inlineEditStatus}"
 						class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
-						tabindex="0" title="{!$Label.c.edit_button_title}">
+						tabindex="0" title="{!$Label.c.orm_edit_button_title}">
 						<lightning:icon iconName="utility:edit" size="xx-small"
 							alternativeText="edit" />
 					</button>
@@ -153,7 +153,7 @@
 					<span class="slds-truncate" title="{!$Label.c.orm_name_activity}">{!v.singleRec.orm_description__c}</span>
 					<button onclick="{!c.inlineEditDescription}"
 						class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
-						tabindex="0" title="{!$Label.c.edit_button_title}">
+						tabindex="0" title="{!$Label.c.orm_edit_button_title}">
 						<lightning:icon iconName="utility:edit" size="xx-small"
 							alternativeText="edit" />
 					</button>

@@ -254,6 +254,7 @@ if (component.get("v.ContactListTemp").length > 0) {
             alert('Please Enter valid Email Address');
         } else {
              this.sendHelper(component, row,getEmail, getSubject, getbody);
+           
    
         }
       },
@@ -296,6 +297,7 @@ if (component.get("v.ContactListTemp").length > 0) {
             var state = respUpdate.getState();
             if (state === "SUCCESS") {
               component.set("v.mailStatus", true);
+                this.refreshContactWorkshop(component);
             } else if(state ==="ERROR") {
               let errors = response.getError();
               let message = 'Unknown error'; // Default error message

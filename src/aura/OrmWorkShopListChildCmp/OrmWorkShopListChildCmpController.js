@@ -9,7 +9,7 @@
          var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.orm_title_workshop"),
-            "descriptionField": $A.get("$Label.c.description_title_workshop")
+            "descriptionField": $A.get("$Label.c.orm_description_title_workshop")
         });
         evt.fire();
     },
@@ -26,7 +26,7 @@
          var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.orm_start_date")+" - "+$A.get("$Label.c.orm_end_date"),
-            "descriptionField": $A.get("$Label.c.description_period_workshop")
+            "descriptionField": $A.get("$Label.c.orm_description_period_workshop")
         });
         evt.fire();
     },
@@ -42,7 +42,7 @@
            var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.orm_message_workshop"),
-            "descriptionField": $A.get("$Label.c.description_message_workshop")
+            "descriptionField": $A.get("$Label.c.orm_description_message_workshop")
         });
         evt.fire();
     },

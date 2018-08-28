@@ -17,6 +17,7 @@
 					
 						
 					}" />
+  <aura:attribute name="isOpen" type="boolean" default="false"/>
 
 	<!--  handler event fired-->
 	<aura:handler event="c:OrmNewContactEvt" action="{!c.openModalContact}" />

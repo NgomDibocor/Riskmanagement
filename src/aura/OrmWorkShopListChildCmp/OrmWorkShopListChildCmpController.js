@@ -146,7 +146,11 @@
 																								function(contactworkshop) {
 																								
 																									if (contactworkshop.orm_contact__c == contact.Id) {
-																										contact.invitation = "Associated";
+																										contact.association = "Associated";
+																										if(contactworkshop.orm_notification__c==true )
+																										{
+																										contact.orm_notification__c="Invited";
+																										}
 																									}
 																								});
 

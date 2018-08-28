@@ -248,7 +248,7 @@
                 component.set('v.assessmentData', response.getReturnValue());
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
-            	'message' : newItem.orm_organisation__c+' associated with success',
+            	'message' : newItem.orm_organisation__c+' '+$A.get("$Label.c.orm_success_associated"),
                 'type' : 'success',
                 'mode' : 'dismissible'
             });

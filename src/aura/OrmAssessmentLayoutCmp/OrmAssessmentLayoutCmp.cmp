@@ -1205,7 +1205,12 @@
                       <td>
                         <c:OrmCauseListCmp />
                       </td>
-                    </tr> 
+                    </tr> <hr/>
+                    <tr>
+                      <td>
+                        <c:OrmImpactListCmp />
+                      </td>
+                    </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showListMeasure}">
                     <tr>

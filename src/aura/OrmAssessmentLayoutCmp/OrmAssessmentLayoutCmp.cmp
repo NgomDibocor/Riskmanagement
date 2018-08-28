@@ -710,7 +710,7 @@
                           <tr>
                                <td>
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label">{!$Label.c.orm_orgName_label﻿}<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_orgName_label﻿}</label>
                                   </div>
                                   <div class="width"> 
                                     <a href=""  onclick="{!c.sendOrganisationNameToFD}">

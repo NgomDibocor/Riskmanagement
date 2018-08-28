@@ -1,16 +1,20 @@
 <aura:component controller="OrmImpactController">
-	
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:attribute name="sNo" type="string" />
     <aura:attribute name="impact" type="sobject" default="{'sobjectType' : 'Macro',
                                                                'Name' : '',
-                                                               'Description' : ''
+                                                               'Description' : '',
+                                                               'orm_categorie_impact__c':''
                                                                }"/>
     <aura:attribute name="nameEditMode" type="boolean" default="false" />
+    <aura:attribute name="categorieImpactEditMode" type="boolean" default="false" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
     <aura:attribute name="showSaveCancelBtn" type="boolean"/>
     <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllImpact"/>
     <aura:handler action="{!c.deleteSelected}" event="c:OrmEvtDeleteImpact"/>
     <aura:registerEvent name="OrmImpactCreatedEvt" type="c:OrmImpactCreatedEvt" />
+    <aura:attribute name="statusPicklistOpts" type="string[]"
+		description="store picklist options values" />
      
     <!--Table Row Start-->  
     <tr>
@@ -101,6 +105,43 @@
                 </aura:if> 
             </span>
         </td> 
+    
+    
+    
+     <td ondblclick="{!c.inlineEditCategorieImpact}" class="slds-cell-edit">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.categorieImpactEditMode == false}">
+                    <span class="slds-truncate" title="{!$Label.c.orm_categorieImpact}">{!v.impact.orm_categorie_impact__c}</span>
+                    <button onclick="{!c.inlineEditCategorieImpact}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
+                    	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_categorieImpact}">
+                        <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                    </button>
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" 
+                        	style="position: absolute; top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+										<label class="slds-form-element__label">{!$Label.c.orm_categorieImpact}</label>
+										<ui:inputSelect aura:id="categorieImpact"
+											class="slds-select inputFieldWidth"
+											blur="{!c.closecategorieImpactBox}" 
+											change="{!c.oncategorieImpactChange}"
+											value="{!v.impact.orm_categorie_impact__c}" />
+									</div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                    
+                </aura:if> 
+            </span>
+        </td> 
+        
     </tr>
     
     

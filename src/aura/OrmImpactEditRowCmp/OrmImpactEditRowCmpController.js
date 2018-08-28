@@ -1,4 +1,20 @@
 ({
+doInit: function(component, event, helper) {
+	 
+      // call the apex class method and fetch activity list  
+      
+      // call the fetchPickListVal(component, field_API_Name, aura_attribute_name_for_store_options) -
+      // method for get picklist values dynamic   
+        helper.fetchPickListVal(component, 'orm_categorie_impact__c', 'statusPicklistOpts');
+    },
+	inlineEditCategorieImpact : function(component, event, helper) {
+		// show the name edit field popup 
+        component.set("v.categorieImpactEditMode", true); 
+        // after the 100 millisecond set focus to input field   
+        setTimeout(function(){ 
+            component.find("categorieImpact").focus();
+        }, 100);
+	},
 	inlineEditName : function(component, event, helper) {
 		// show the name edit field popup 
         component.set("v.nameEditMode", true); 
@@ -7,7 +23,6 @@
             component.find("idName").focus();
         }, 100);
 	},
-	
 	inlineEditDescription : function(component, event, helper){   
         // show the rating edit field popup 
         component.set("v.descriptionEditMode", true);        
@@ -17,6 +32,13 @@
         }, 100);
     },
      onDescriptionChange : function(component,event,helper) { 
+        // if edit field value changed and field not equal to blank,
+        // then show save and cancel button by set attribute to true
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.showSaveCancelBtn",true);
+        }
+    },
+    oncategorieImpactChange : function(component,event,helper) { 
         // if edit field value changed and field not equal to blank,
         // then show save and cancel button by set attribute to true
         if(event.getSource().get("v.value").trim() != ''){ 

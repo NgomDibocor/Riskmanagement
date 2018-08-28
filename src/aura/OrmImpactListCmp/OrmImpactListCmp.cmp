@@ -52,8 +52,9 @@
 		                </div>
 		              </th> 
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th>
-	                   <th scope="col"><div class="slds-truncate" title="">Name</div></th>
+	                   <th scope="col"><div class="slds-truncate" title="">{!$Label.c.orm_impact_libelle}</div></th>
 	                  <th scope="col"><div class="slds-truncate" title="">{!$Label.c.orm_description}</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="">{!$Label.c.orm_categorieImpact}</div></th>
 	                </tr>
 	            </thead>
 	            
@@ -82,7 +83,7 @@
 			        <p>{!$Label.c.deletion_message}</p>
 			      </div>
 			      <footer class="slds-modal__footer">			        
-					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteCause}">{!$Label.c.cancel_button_title}</button>
+					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteCause}">{!$Label.c.orm_cancel_button_title}</button>
 					<button class="slds-button slds-button_brand" onclick="{!c.confirmDeleteCause}">{!$Label.c.orm_confirm_button}</button>					
 			      </footer>
 			    </div>

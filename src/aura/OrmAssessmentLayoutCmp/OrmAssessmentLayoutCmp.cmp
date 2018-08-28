@@ -169,7 +169,7 @@
                           <td class="textInDiv">
                              <div style="margin-bottom:20px;">
                                  <lightning:buttonGroup class="slds-m-around_medium">
-                                 <lightning:button label="{!$Label.c.cancel_button_title}" onclick="{!c.cancel}"/>
+                                 <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
                                  <lightning:button label="{!$Label.c.orm_save_button}"
                                                   variant="neutral"
                                                   class="slds-button"

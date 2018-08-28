@@ -36,7 +36,7 @@ showMeasure : function(component, event, helper)
 			     evt.setParams({
 			       "assessmentObject" : response.getReturnValue(),
 			       "idMeasure" : measureId,
-			       "idAssessmentRisk" : idAssessmentRisk,
+			       "idAssessmentRisk" : idAssessmentRisk
 			     });
 			     evt.fire();        
 		     } else {

@@ -164,18 +164,18 @@
                            </div>
                         </td>
                     </tr>
-                    <aura:if isTrue="{!v.displaySaveCancelBtn}">
+                    <aura:if isTrue="{!v.displaySaveCancelBtn}"> 
                       <tr>
                           <td class="textInDiv">
                              <div style="margin-bottom:20px;">
                                  <lightning:buttonGroup class="slds-m-around_medium">
-                                 <lightning:button label="Cancel" onclick="{!c.cancel}"/>
-                                <lightning:button label="Save"
+                                 <lightning:button label="{!$Label.c.cancel_button_title}" onclick="{!c.cancel}"/>
+                                 <lightning:button label="{!$Label.c.save_button_title}"
                                                   variant="neutral"
-                                                            class="slds-button"
+                                                  class="slds-button"
                                                   onclick="{!c.createAssessment}"/>
-                            </lightning:buttonGroup>
-                                  <span style="color:red">Click on this button for saving the assessment</span>
+                                 </lightning:buttonGroup>
+                                  <span style="color:red">{!$Label.c.message_save}</span>
                              </div>
                           </td>
                       </tr>
@@ -216,7 +216,7 @@
                         <tr>
                           <td >
                              <div class="topSpacing"> 
-                                <label class="slds-form-element__label">Project Type*</label>
+                                <label class="slds-form-element__label">{!$Label.c.orm_projectType_label}*</label>
                              </div>
                               <div class="slds-form-element">
                                   <div class="slds-form-element__control">
@@ -249,7 +249,7 @@
                       <tr>
                             <td>
                                 <div class="topSpacing">
-                                    <label class="slds-form-element__label">Project Name<span class="cmn_mandatory_indicator">*</span></label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_projectName_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="width"> 
                                   <a href=""  onclick="{!c.sendProjectNameToFD}">
@@ -295,7 +295,7 @@
                         <tr>
                               <td >
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label ">Project Manager<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label ">{!$Label.c.orm_projectManager_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>                                        
                                   <div class=" slds-form-element">
                                      <div class="slds-form-element__control">
@@ -328,7 +328,7 @@
                           <tr>
                               <td >
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label ">Risk Manager<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label ">{!$Label.c.orm_risk_manager_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>                                        
                                   <div class=" slds-form-element">
                                      <div class="slds-form-element__control">
@@ -361,7 +361,7 @@
                           <tr>
                               <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Planned Start Date<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_plannedStartDate_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   
                                   <div class="width">
@@ -378,7 +378,7 @@
                           <tr>
                               <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Planned End Date<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_plannedEndDate_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="width">
                                     <a href=""  onclick="{!c.sendPlannedEndDateToFD}">
@@ -394,7 +394,7 @@
                           <tr>
                              <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Industry Sector of Client<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_industrySectorClient_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="slds-form-element">
                                      <div class="slds-form-element__control">
@@ -427,7 +427,7 @@
                           <tr>
                               <td class="textInDiv">
                                   <div class="topSpacing">
-                                   <label class="slds-form-element__label">Currency<span class="cmn_mandatory_indicator">*</span></label>
+                                   <label class="slds-form-element__label">{!$Label.c.orm_currency_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                   <div class="slds-form-element">
                                      <div class="slds-form-element__control">
@@ -460,7 +460,7 @@
                           <tr>
                               <td class="textInDiv">
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Commercial Budget<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_commercialBudget_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   
                                   <div class="width">
@@ -471,7 +471,7 @@
                           <tr>
                               <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Max Cost Exposture<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_maxCostExposture_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   
                                   <div class="width">
@@ -482,7 +482,7 @@
                           <tr>
                               <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Max Schedule Exposture<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_maxSheduleExposure_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   
                                   <div class="width">
@@ -515,7 +515,7 @@
                           <tr>
                               <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Client Name<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_clientName_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   
                                   <div class="width">
@@ -526,7 +526,7 @@
                           <tr>
                             <td>
                                 <div class="topSpacing">
-                                    <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_status_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="slds-form-element">
                                     <div class="slds-form-element__control">
@@ -561,7 +561,7 @@
                      <tr>
                             <td>
                                 <div class="topSpacing">
-                                    <label class="slds-form-element__label">Name<span class="cmn_mandatory_indicator">*</span></label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_name_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="width"> 
                                   <a href=""  onclick="{!c.sendNameProcessusToFD}">
@@ -576,7 +576,7 @@
                         <tr>
                               <td >
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label ">Pilot<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label ">{!$Label.c.orm_pilot_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>                                        
                                   <div class=" slds-form-element">
                                      <div class="slds-form-element__control">
@@ -595,7 +595,7 @@
                           <tr>
                               <td >
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label ">Copilot<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label ">{!$Label.c.orm_copilot_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>                                        
                                   <div class=" slds-form-element">
                                      <div class="slds-form-element__control">
@@ -614,7 +614,7 @@
                         <tr>
                             <td>
                                 <div class="topSpacing"> 
-                                    <label class="slds-form-element__label">Finality</label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_finality_label}</label>
                                 </div>
                                 
                                 <div class="width">
@@ -629,7 +629,7 @@
                         <tr>
                             <td>
                                 <div class="topSpacing"> 
-                                    <label class="slds-form-element__label">Reference</label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_reference_label}</label>
                                 </div>
                                 <div class="width">
                                   <a href=""  onclick="{!c.sendReferenceToFD}">
@@ -643,7 +643,7 @@
                         <tr>
                               <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Application Date<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_applicationDate_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   
                                   <div class="width">
@@ -675,7 +675,7 @@
                           <tr>
                             <td>
                                 <div class="topSpacing">
-                                    <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_status_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="slds-form-element">
                                     <div class="slds-form-element__control">
@@ -710,7 +710,7 @@
                           <tr>
                                <td>
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label">Organisation Name<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_orgName_label﻿}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="width"> 
                                     <a href=""  onclick="{!c.sendOrganisationNameToFD}">
@@ -725,7 +725,7 @@
                           <tr>
                                <td>
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label">Size<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_size_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="width"> 
                                     <a href=""  onclick="{!c.sendSizeToFD}">
@@ -740,7 +740,7 @@
                           <tr>
                               <td class="textInDiv">
                                   <div class="topSpacing">
-                                   <label class="slds-form-element__label">Currency<span class="cmn_mandatory_indicator">*</span></label>
+                                   <label class="slds-form-element__label">{!$Label.c.orm_currency_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                   <div class="slds-form-element">
                                      <div class="slds-form-element__control">
@@ -773,7 +773,7 @@
                           <tr>
                                <td>
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label">Budget<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_budget_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="width"> 
                                     <a href=""  onclick="{!c.sendBudgetOrganisationToFD}">
@@ -788,7 +788,7 @@
                           <tr>
                              <td>
                                   <div class="topSpacing"> 
-                                      <label class="slds-form-element__label">Industry Sector<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label">{!$Label.c.orm_industry_sector_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="slds-form-element">
                                      <div class="slds-form-element__control">
@@ -821,7 +821,7 @@
                           <tr>
                               <td >
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label ">Risk Manager<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label ">{!$Label.c.orm_risk_manager_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>                                        
                                   <div class=" slds-form-element">
                                      <div class="slds-form-element__control">
@@ -854,7 +854,7 @@
                           <tr>
                               <td >
                                   <div class="topSpacing">
-                                      <label class="slds-form-element__label ">Organisation Manager<span class="cmn_mandatory_indicator">*</span></label>
+                                      <label class="slds-form-element__label ">{!$Label.c.orm_organisatio_manager_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>                                        
                                   <div class=" slds-form-element">
                                      <div class="slds-form-element__control">
@@ -916,7 +916,7 @@
                         <tr>
                             <td>
                                 <div class="topSpacing">
-                                    <label class="slds-form-element__label">Country<span class="cmn_mandatory_indicator">*</span></label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_country_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="slds-form-element">
                                     <div class="slds-form-element__control">
@@ -949,7 +949,7 @@
                         <tr>
                             <td>
                                 <div class="topSpacing">
-                                    <label class="slds-form-element__label">Region<span class="cmn_mandatory_indicator">*</span></label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_region_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="slds-form-element">
                                     <div class="slds-form-element__control">
@@ -982,7 +982,7 @@
                         <tr>
                             <td>
                                 <div class="topSpacing">
-                                    <label class="slds-form-element__label">Status<span class="cmn_mandatory_indicator">*</span></label>
+                                    <label class="slds-form-element__label">{!$Label.c.orm_status_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="slds-form-element">
                                     <div class="slds-form-element__control">
@@ -1016,10 +1016,9 @@
               <tr>
                   <td class="textInDiv">
                      <div style="margin-top:10px; margin-bottom:10px">
-                         <button class="btn btn-default"
-                              onclick="{!c.navigateToListAssessment}">
-                           <i class="fa fa-rotate-left"></i> {!$Label.c.back_button_title_assessment}
-                         </button>
+                         <lightning:button label="{!$Label.c.back_button_title_assessment}" 
+                              onclick="{!c.navigateToListAssessment}" variant="neutral"
+                              iconName='utility:back'/>
                      </div>
                   </td>
                </tr>       
@@ -1176,7 +1175,7 @@
                           <td>
                             <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
                           </td>
-                       </tr>
+                     </tr>
                   </aura:if>
                   <aura:if isTrue="{!v.showRiskIdentif}">
                        <tr>
@@ -1193,7 +1192,6 @@
                        </tr>
                  </aura:if>  
                  <aura:if isTrue="{!v.showRiskAnalyse}">
-                     <!-- <c:OrmRiskAnalysisCmp />-->
                     <tr>
                       <td>
                           <c:OrmAssessmentRiskConfigCmp />
@@ -1205,7 +1203,12 @@
                       <td>
                         <c:OrmCauseListCmp />
                       </td>
-                    </tr> 
+                    </tr> <hr/>
+                    <tr>
+                      <td>
+                        <c:OrmImpactListCmp />
+                      </td>
+                    </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showListMeasure}">
                     <tr>
@@ -1229,13 +1232,12 @@
                         <td class="textInDiv">
                            <div style="margin-bottom:20px;">
                                <lightning:buttonGroup class="slds-m-around_medium">
-                        <!-- <lightning:button label="Cancel" onclick="{!c.cancel}"/> -->
-                        <lightning:button label="Save"
-                                          variant="neutral"
-                                                    class="slds-button"
-                                          onclick="{!c.createAssessment}"/>
-                    </lightning:buttonGroup>
-                    <span style="color:red">Click on this button for saving the assessment</span>
+		                         	  <lightning:button label="{!$Label.c.save_button_title}"
+		                                          variant="neutral"
+		                                          class="slds-button"
+		                                          onclick="{!c.createAssessment}"/>
+                                      </lightning:buttonGroup>
+                                     <span style="color:red">{!$Label.c.message_save}</span>
                            </div>
                         </td>
                     </tr>

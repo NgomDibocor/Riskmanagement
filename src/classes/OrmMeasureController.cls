@@ -93,7 +93,7 @@ public with sharing class OrmMeasureController {
 		        FROM Assessment__c 
 		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() AND CreatedById = :UserInfo.getUserId()];
 	}	
-	  /**
+	/**
 	 *
 	 * @author David diop
 	 * @version 1.0

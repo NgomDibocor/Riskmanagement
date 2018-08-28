@@ -1,0 +1,48 @@
+<aura:component extends="c:ormAbstractListCmp" controller="OrmImpactController">
+	
+	<aura:handler event="c:OrmSendIdAssessmentRiskToCauseEvt" action="{!c.getAssessmentRiskId}" />
+
+	<aura:attribute name="idAssessmentRisk" type="string" />
+	<aura:attribute name="impacts" type="Macro[]" description="" />
+
+		  <h1>List of Impacts</h1>
+		  
+		<div class="slds-grid slds-gutters">
+	        <div class=" slds-size--3-of-12   slds-p-horizontal--small slds-float—left">  
+	        </div>
+	        <div class=" slds-size--5-of-12   slds-p-horizontal--small slds-float—left">
+	          <lightning:input type="search"  label="{!$Label.c.search_title_label}" placeholder="search Impact by name or description" />
+	        </div>
+	        <div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
+	            <span class="btnNewRisk" >
+	              <lightning:icon iconName="utility:new" size="medium" />
+	            </span>
+	        </div>
+	        <div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
+	        </div>
+       </div>
+       
+       <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+	            <thead>
+	                <tr class="slds-text-title--caps">
+	                  <th style="width:3.25rem;" class="slds-text-align--right">
+		              	<div class="slds-form-element">
+		                	<div class="slds-form-element__control">
+		                    	<label class="slds-checkbox">
+		                        	<ui:inputCheckbox aura:id="box3" />
+		                        	<span class="slds-checkbox--faux"></span>
+		                        	<span class="slds-form-element__label text"></span>
+		                     	</label>
+		                    </div>
+		                </div>
+		              </th> 
+	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="">dddd</div></th>
+	                </tr>
+	            </thead>
+	            
+	            <tbody>
+	             
+	            </tbody>
+	        </table> 
+</aura:component>

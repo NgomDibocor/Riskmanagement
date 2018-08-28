@@ -33,6 +33,7 @@
      <aura:attribute name="isOpenButton" type="boolean" default="false" />
     <!-- partie datatable 2 -->
     <aura:attribute name="allRiskList" type="Macro[]" />
+     <aura:attribute name="allRiskListTemp" type="Macro[]" />
     <aura:attribute name="columns2" type="List" />
     <aura:attribute name="allCategorieRiskList" type="String[]" />
     <aura:attribute name="filterRisk" type="String" />

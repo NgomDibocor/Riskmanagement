@@ -308,9 +308,8 @@
      *
      */
     filterByRisk: function(component, event, helper) {
-        var data = component.get("v.allRiskList");
+        var data = component.get("v.allRiskListTemp");
         var term = component.get("v.filterRisk");
-        var results = data;
         var regex;
         if ($A.util.isEmpty(term)) {
             helper.fetchlistRiskModal(component, event);
@@ -320,11 +319,11 @@
         }
         try {
             regex = new RegExp(term, "i");
-            results = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
+            data = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
         } catch (e) {
             alert(e);
         }
-        component.set("v.allRiskList", results);
+        component.set("v.allRiskList", data);
     },
     closeModal: function(component) {
         // for Hide/Close Model,set the "isOpen" attribute to "False"

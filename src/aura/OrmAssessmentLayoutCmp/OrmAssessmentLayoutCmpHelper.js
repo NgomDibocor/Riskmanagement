@@ -30,7 +30,7 @@
                 }
                 component.set('v.allTypeAssessment', opts);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionOrgs = component.get("c.getOrganisations");
@@ -39,7 +39,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allOrganisation', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionTypeProjet = component.get('c.getSelectOptions');
@@ -58,7 +58,7 @@
                 }
                 component.set('v.allTypeProjet', opts2);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionStatus = component.get('c.getSelectOptions');
@@ -73,7 +73,7 @@
                 }
                 component.set('v.allStatus', opts3);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionCurrency = component.get('c.getSelectOptions');
@@ -88,7 +88,7 @@
                 }
                 component.set('v.allCurrency', opts4);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionSchedule = component.get('c.getSelectOptions');
@@ -103,7 +103,7 @@
                 }
                 component.set('v.allSchedule', opts5);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionSector = component.get("c.getSelectOptions");
@@ -113,7 +113,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allIndustrySector', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionUser = component.get("c.getUsers");
@@ -122,7 +122,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allUser', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionOrganisationSectorInd = component.get("c.getSelectOptions");
@@ -132,7 +132,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allOrganisationIndustrySector', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionCountry = component.get("c.getSelectOptions");
@@ -142,7 +142,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allCountry', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
 
@@ -156,7 +156,7 @@
                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
 	            evtSpinner.fire(); 
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         $A.enqueueAction(actionTypeAssessment);

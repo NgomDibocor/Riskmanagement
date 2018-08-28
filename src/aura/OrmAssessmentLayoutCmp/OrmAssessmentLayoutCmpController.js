@@ -66,13 +66,15 @@
                 component.set("v.assessmentData",response.getReturnValue());
                     var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
-                            'message' : newItem.orm_typeAssessment__c+' '+'crée avec success',
+                            'message' : newItem.orm_typeAssessment__c+' '+$A.get("$Label.c.orm_success_created"),
                             'type' : 'success',
                             'mode' : 'dismissible'
                         });
 
-		                toastEvent.fire();
+		                toastEvent.fire();  
                     
+                }else{
+                   alert($A.get("$Label.c.orm_error"));
                 }
             });
         $A.enqueueAction(action);
@@ -253,7 +255,7 @@
             toast.fire();
             
             } else {
-                alert("mise a jour echouée");
+                alert($A.get("$Label.c.orm_update_failed"));
             }
         });
         $A.enqueueAction(action);

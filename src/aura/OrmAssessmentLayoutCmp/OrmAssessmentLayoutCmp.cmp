@@ -1036,7 +1036,7 @@
                       <tr>
                          <td>
                                <div class="topSpacing"> 
-                                   <label class="slds-form-element__label">Organisation</label>
+                                   <label class="slds-form-element__label">{!$Label.c.orm_organisation_label}</label>
                                </div>
                                <div class="organisation slds-form-element">
                                    <div class="slds-form-element__control">
@@ -1065,7 +1065,7 @@
                      </tr>
                       <tr>
                        <td class="textInDiv">
-                           <span style="margin-left:200px;">Cost as % of project budget</span>
+                           <span style="margin-left:200px;">{!$Label.c.orm_costProjectBudget_label}</span>
                         </td>
                     </tr>
                       <tr>
@@ -1098,7 +1098,7 @@
                       <tr>
                          <td>
                                <div class="topSpacing"> 
-                                   <label class="slds-form-element__label">Organisation</label>
+                                   <label class="slds-form-element__label">{!$Label.c.orm_organisation_label}</label>
                                </div>
                                <div class="organisation slds-form-element">
                                    <div class="slds-form-element__control">
@@ -1125,7 +1125,7 @@
                       <tr>
                          <td>
                                <div class="topSpacing"> 
-                                   <label class="slds-form-element__label">Organisation</label>
+                                   <label class="slds-form-element__label">{!$Label.c.orm_organisation_label}</label>
                                </div>
                                <div class="organisation slds-form-element">
                                    <div class="slds-form-element__control">

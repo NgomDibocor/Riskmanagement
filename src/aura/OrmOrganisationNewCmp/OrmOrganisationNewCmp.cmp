@@ -139,7 +139,7 @@
 							onclick="{!c.closeModal}">{!$Label.c.close_button_title}</button>
 						<button class="slds-button slds-button--brand"
 							onclick="{!c.createItem}">
-							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.add_button_title}
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.orm_add_button_title}
 						</button>
 					</div>
 				</div>

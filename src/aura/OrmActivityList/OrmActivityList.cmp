@@ -75,7 +75,7 @@
 		<aura:if isTrue="{!v.showSaveCancelBtn}">
 			<!--button for save and cancel Record after Inline Edit-->
 			<lightning:buttonGroup class="slds-m-around_medium">
-				<lightning:button label="{!$Label.c.cancel_button_title}"
+				<lightning:button label="{!$Label.c.orm_cancel_button_title}"
 					onclick="{!c.cancel}" />
 				<lightning:button label="{!$Label.c.save_button_title}"
 					onclick="{!c.Save}" variant="success" />
@@ -153,7 +153,7 @@ X <span class="slds-assistive-text">Close</span>
 
 </div>
 <footer class="slds-modal__footer">
-<button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.cancel_button_title}</button>
+<button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
 <button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.delete_button_title}</button>
 </footer>
 </div>

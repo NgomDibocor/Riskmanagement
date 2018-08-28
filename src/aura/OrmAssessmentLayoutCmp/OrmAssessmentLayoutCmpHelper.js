@@ -1,5 +1,5 @@
 ({
-    fetchPicklist : function(component, event) {    
+    fetchPicklist : function(component, event) { 
         if(component.get("v.showAssessmentRisk")== true){
            var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
            evt.setParams({

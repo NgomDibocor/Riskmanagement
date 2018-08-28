@@ -710,11 +710,7 @@
                           <tr>
                                <td>
                                   <div class="topSpacing">
-<<<<<<< HEAD
-                                      <label class="slds-form-element__label">{!$Label.c.orm_size_label}</label>
-=======
                                       <label class="slds-form-element__label">{!$Label.c.orm_orgName_label}</label>
->>>>>>> bdf83fc9593c04c6a4bc9d3a55ab1292094cb26c
                                   </div>
                                   <div class="width"> 
                                     <a href=""  onclick="{!c.sendOrganisationNameToFD}">

@@ -22,8 +22,8 @@
 				class="slds-modal slds-fade-in-open slds-modal_medium">
 				<div class="slds-modal__container form-style-6">
 					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
-					<div class="slds-modal__header header">
-						
+					<div class="slds-modal__header" style="background-color: #007add;">
+						<span>Warning</span>
 						<button
 							class="slds-button slds-modal__close slds-button--icon-inverse"
 							title="Close" onclick="{!c.closeModal}">
@@ -55,7 +55,7 @@
 					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 					<div class="slds-modal__footer">
 						<button class="slds-button slds-button--neutral"
-							onclick="{!c.closeModal}">{!$Label.c.cancel_button_title}</button>
+							onclick="{!c.closeModal}">{!$Label.c.orm_cancel_button_title}</button>
 						<button class="slds-button slds-button--brand"
 							onclick="{!c.createItem}">
 							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.save_button_title}

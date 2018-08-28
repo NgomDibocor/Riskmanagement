@@ -43,7 +43,7 @@
 	            <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
 	        		<!--button for save and cancel Record after Inline Edit-->
 	        		<lightning:buttonGroup class="slds-m-around_medium">
-	                <lightning:button label="{!$Label.c.cancel_button_title}" onclick="{!c.cancel}"/>
+	                <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}"/>
 	                <lightning:button label="{!$Label.c.save_button_title}" onclick="{!c.save}" variant="success"/>
 	            </lightning:buttonGroup>
 	        	</div>
@@ -102,7 +102,7 @@
 			        <p>{!$Label.c.deletion_message}</p>
 			      </div>
 			      <footer class="slds-modal__footer">			        
-					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteMeasure}">{!$Label.c.cancel_button_title}</button>
+					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteMeasure}">{!$Label.c.orm_cancel_button_title}</button>
 					<button class="slds-button slds-button_brand" onclick="{!c.confirmDeleteMeasure}">{!$Label.c.orm_confirm_button}</button>					
 			      </footer>
 			    </div>

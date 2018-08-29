@@ -40,7 +40,7 @@ showMeasure : function(component, event, helper)
 			     });
 			     evt.fire();        
 		     } else {
-		        alert("l'élément n'a pas été chargé");
+		        alert($A.get('$Label.c.orm_not_found'));
 		     }
 	     });
 	     $A.enqueueAction(action);

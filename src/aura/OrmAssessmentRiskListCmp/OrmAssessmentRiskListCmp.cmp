@@ -38,7 +38,7 @@
                                 <button id="{!item[0]}" 
                                         class="slds-button slds-button_neutral"
                                         onclick="{!c.showAssessmentRisk}">
-                                    {!$Label.c.show_button_title}<span id="{!item[6]}"></span>
+                                    {!$Label.c.orm_show_button_title}<span id="{!item[6]}"></span>
                                 </button>
                             </div>
                         </header>

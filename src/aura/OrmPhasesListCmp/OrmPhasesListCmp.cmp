@@ -123,15 +123,15 @@
 			      <header class="slds-modal__header header">
 			      	<span style="color: white;">Warning</span>
 			        <button onclick="{!c.closeOpenModalError}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse " 
-			        	title="{!$Label.c.close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+			        	title="{!$Label.c.orm_close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 			        </button>
 			      </header>
 			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
 			        <p> Create the Assessment Before</p>
 			      </div>
 			      <footer class="slds-modal__footer">
-			        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalError}">{!$Label.c.close_button_title}</button>
+			        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalError}">{!$Label.c.orm_close_button_title}</button>
 			      </footer>
 			    </div>
 			  </section>
@@ -149,15 +149,15 @@
 			      <header class="slds-modal__header header">
 			      	<span style="color: white;">{!$Label.c.orm_warning_title}</span>
 			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+			        	title="{!$Label.c.orm_close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 			        </button>
 			      </header>
 			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
 			        <p>{!$Label.c.orm_error_field_empty}</p>
 			      </div>
 			      <footer class="slds-modal__footer">
-			        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalErrorIfFieldEmpty}">{!$Label.c.close_button_title}</button>
+			        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalErrorIfFieldEmpty}">{!$Label.c.orm_close_button_title}</button>
 			      </footer>
 			    </div>
 			  </section>
@@ -174,8 +174,8 @@
 			      <header class="slds-modal__header header">
 			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
 			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+			        	title="{!$Label.c.orm_close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 			        </button>
 			      </header>
 			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">

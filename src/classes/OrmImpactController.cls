@@ -16,7 +16,7 @@ public with sharing class OrmImpactController {
 	*/
 	@AuraEnabled
 	public static List<Macro> findAllImpactByAssessmentRisk(String idAssRisk){
-		return [SELECT Id, Name, Description FROM Macro WHERE orm_assessmentRisk__c=: idAssRisk AND 
+		return [SELECT Id, Name, Description,orm_categorie_impact__c FROM Macro WHERE orm_assessmentRisk__c=: idAssRisk AND 
 					RecordTypeId =: OrmImpactController.getImpactRecordTypeId()];
 	
 	}

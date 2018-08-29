@@ -96,8 +96,8 @@
 			      <header class="slds-modal__header header">
 			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
 			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+			        	title="{!$Label.c.orm_close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 			        </button>
 			      </header>
 			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">

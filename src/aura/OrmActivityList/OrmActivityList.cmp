@@ -154,7 +154,7 @@ X <span class="slds-assistive-text">Close</span>
 </div>
 <footer class="slds-modal__footer">
 <button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
-<button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.delete_button_title}</button>
+<button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.orm_delete_button_title}</button>
 </footer>
 </div>
 </section>

@@ -168,6 +168,25 @@
         component.set("v.displaySaveCancelBtn", true);
         component.find("status").set("v.value", event.getSource().get("v.value"));
     },
+    
+     /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method description fields status
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
+    measureResponsable: function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.search_title_label"),
+            "descriptionField": $A.get("$Label.c.search_description_title")
+        });
+        evt.fire();
+        component.set("v.displaySaveCancelBtn", true);
+        component.find("measureResponsable").set("v.value", event.getSource().get("v.value"));
+    },
  /**
  *
  * @author David diop

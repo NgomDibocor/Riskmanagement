@@ -24,7 +24,7 @@
                 component.set('v.idAssessmentRisk', idAssessmentRisk.orm_assessmentRisk__c);
                 component.set("v.displaySaveCancelBtn", false);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get('$Label.c.orm_not_found'));
             }
         });
 
@@ -37,10 +37,21 @@
             var state = response.getState();
             if (state === 'SUCCESS') {
                 component.set('v.status', response.getReturnValue());
-            } else {
-                alert("l'Element n'a pas été retrouvé");
+            } else { 
+                alert($A.get('$Label.c.orm_not_found'));
             }
         });
+        
+        var actionUser = component.get("c.getUsers");
+        actionUser.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allUser', response.getReturnValue());
+            } else {
+                alert($A.get("$Label.c.orm_not_found"));
+            }
+        });
+        $A.enqueueAction(actionUser);
         $A.enqueueAction(actionstatus);
         $A.enqueueAction(actionOrgs);
     },
@@ -68,6 +79,9 @@
         var status = component.find("status");
         measureData.orm_measureStatus__c = status.get("v.value");
 
+        var measureResponsable = component.find("measureResponsable");
+        measureData.orm_measureResponsable__c = measureResponsable.get("v.value");
+        
         var cost = component.find("cost");
         measureData.orm_measure_Cost__c = cost.get("v.value");
 
@@ -87,8 +101,8 @@
                         //component.set("v.displaySaveCancelBtn", false);
                         component.set("v.measureData", response.getReturnValue());
                         var toastEvent = $A.get('e.force:showToast');
-                        toastEvent.setParams({
-                            'message': 'crée avec success',
+                        toastEvent.setParams({ 
+                            'message': $A.get('$Label.c.orm_success_created'),
                             'type': 'success',
                             'mode': 'dismissible'
                         });

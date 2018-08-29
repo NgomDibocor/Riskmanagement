@@ -3,6 +3,7 @@
 	<aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.updateMeasure}" />
 	<aura:attribute name="idMeasure" type="string" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
+	<aura:attribute name="allUser" type="User[]" />
 	<aura:attribute name="measureData" type="Assessment__c" default="{
 																		'sobjectType' : 'Assessment__c',
 												                         'Name': '',  
@@ -115,8 +116,20 @@
             </td>
 
             <td>
-                
-                
+            <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                      <ui:inputSelect aura:id="measureResponsable" 
+                                                      class="slds-select" label="{!$Label.c.orm_measure_status}" 
+                                                     labelClass="slds-form-element__label">
+                                                     <ui:inputSelectOption  text="{!v.measureData.orm_measureResponsable__c}"
+                                                                         label="{!v.measureData.orm_measureResponsable__c.Name}"/>
+                                                 <aura:iteration items="{!v.allUser}" var="rm">
+                                                     <ui:inputSelectOption text="{!rm.Id}"
+                                                                           label="{!rm.Name}" />
+                                                 </aura:iteration>
+                                              </ui:inputSelect>
+                  </div>
+             </div>
             </td>
         </tr>
         </table>

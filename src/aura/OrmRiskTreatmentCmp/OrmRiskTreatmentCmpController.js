@@ -7,7 +7,7 @@
  * @history 
  * 2018-08-24 : David diop - Implementation
  */
-    doInit: function(component, event, helper) {
+    measureShow: function(component, event, helper) {
         var measureId = event.getParam('MeasureId');
         component.set("v.idMeasure", measureId);
         var idMeasure = component.get("v.idMeasure");
@@ -20,6 +20,7 @@
             var state = response.getState();
             if (state === 'SUCCESS') {
                 component.set('v.measureData', response.getReturnValue());
+                alert(JSON.stringify(response.getReturnValue()));
                 var idAssessmentRisk = component.get('v.measureData');
                 component.set('v.idAssessmentRisk', idAssessmentRisk.orm_assessmentRisk__c);
                 component.set("v.displaySaveCancelBtn", false);
@@ -111,7 +112,7 @@
                         component.set("v.displaySaveCancelBtn", false);
 
                     } else {
-                        alert("default");
+                        alert($A.get("$Label.c.orm_error"));
                     }
                 });
         $A.enqueueAction(action);

@@ -1,5 +1,5 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
-	<aura:handler action="{!c.doInit}" event="c:OrmInstanceRiskTreatmentEvt" />
+	<aura:handler action="{!c.measureShow}" event="c:OrmInstanceRiskTreatmentEvt" />
 	<aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.updateMeasure}" />
 	<aura:attribute name="idMeasure" type="string" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
@@ -135,7 +135,7 @@
                                class="slds-select"
                                labelClass="slds-form-element__label" >
                                <ui:inputSelectOption  text="{!v.measureData.orm_measureResponsable__c}"
-                                                   label="{!v.measureData.orm_measureResponsable__c.Name}"/>
+                                                   label="{!v.measureData.orm_measureResponsable__r.Name}"/>
                            <aura:iteration items="{!v.allUser}" var="rm">
                                <ui:inputSelectOption text = "{!rm.Id}"
                                                      label= "{!rm.Name}" />

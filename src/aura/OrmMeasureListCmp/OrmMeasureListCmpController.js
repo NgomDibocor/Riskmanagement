@@ -1,7 +1,7 @@
 ({
 	getIdAssessmentRisk : function(component, event, helper) {
 		component.set("v.idAssessmentRisk", event.getParam('idAssessmentRisk'));
-		//console.log('idAssessmentRisk ', event.getParam('idAssessmentRisk'));
+		console.log('idAssessmentRisk ', event.getParam('idAssessmentRisk'));
 		helper.getAllMeasuresByAssessmentRisk(component, event);
 	},
 	

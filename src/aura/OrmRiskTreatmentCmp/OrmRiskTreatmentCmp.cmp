@@ -73,14 +73,23 @@
         
         <tr>
             <td>
+                <div class="topSpacing">
+                   <b> <label class="slds-form-element__label">{!$Label.c.orm_measure_status}<span class="cmn_mandatory_indicator">*</span></label></b>
+                </div>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                       <b> <lightning:select aura:id="status" name="Status" label="{!$Label.c.orm_measure_status}" class="select-auto-width"  onchange="{!c.onStatus}" >
-                             <option text="{!v.measureData.orm_measureStatus__c}" ></option>
-                            <aura:iteration items="{!v.status}" var="status">
-                                <option text="{!status}"></option>
-                            </aura:iteration>
-                        </lightning:select>
+                      <b> 
+                       <ui:inputSelect aura:id="status"   change="{!c.onStatus}"
+                               class="slds-select"
+                               labelClass="slds-form-element__label" >
+                               <ui:inputSelectOption  text="{!v.measureData.orm_measureStatus__c}"
+                                                   label="{!v.measureData.orm_measureStatus__c}"/>
+                           <aura:iteration items="{!v.status}" var="status">
+                               <ui:inputSelectOption text = "{!status}"
+                                                     label= "{!status}" />
+                           </aura:iteration>
+                        </ui:inputSelect>
+                       
                         </b>
                     </div>
                 </div>
@@ -101,6 +110,8 @@
                 
             </td>
 	        </tr>
+	        <tr>
+	        <td>
 	         <div class="topSpacing">
                     <b><label class="slds-form-element__label">{!$Label.c.orm_measure_description}</label></b>
                 </div>
@@ -110,24 +121,28 @@
                         </ui:inputText>
                     </a>
                 </div>
-	        <tr>
+                </td>
+	        
             <td>
-               
-            </td>
-
-            <td>
+            <div class="topSpacing">
+               <label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label>
+             </div>
             <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                      <ui:inputSelect aura:id="measureResponsable" 
-                                                      class="slds-select" label="{!$Label.c.orm_measure_status}" 
-                                                     labelClass="slds-form-element__label">
-                                                     <ui:inputSelectOption  text="{!v.measureData.orm_measureResponsable__c}"
-                                                                         label="{!v.measureData.orm_measureResponsable__c.Name}"/>
-                                                 <aura:iteration items="{!v.allUser}" var="rm">
-                                                     <ui:inputSelectOption text="{!rm.Id}"
-                                                                           label="{!rm.Name}" />
-                                                 </aura:iteration>
-                                              </ui:inputSelect>
+                      
+                     <b> 
+                       <ui:inputSelect aura:id="measureResponsable"   change="{!c.measureResponsable}"
+                               class="slds-select"
+                               labelClass="slds-form-element__label" >
+                               <ui:inputSelectOption  text="{!v.measureData.orm_measureResponsable__c}"
+                                                   label="{!v.measureData.orm_measureResponsable__c.Name}"/>
+                           <aura:iteration items="{!v.allUser}" var="rm">
+                               <ui:inputSelectOption text = "{!rm.Id}"
+                                                     label= "{!rm.Name}" />
+                           </aura:iteration>
+                        </ui:inputSelect>
+                       
+                        </b>
                   </div>
              </div>
             </td>

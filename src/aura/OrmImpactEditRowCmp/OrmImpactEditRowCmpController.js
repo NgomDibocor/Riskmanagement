@@ -1,10 +1,5 @@
 ({
 doInit: function(component, event, helper) {
-	 
-      // call the apex class method and fetch activity list  
-      
-      // call the fetchPickListVal(component, field_API_Name, aura_attribute_name_for_store_options) -
-      // method for get picklist values dynamic   
         helper.fetchPickListVal(component, 'orm_categorie_impact__c', 'statusPicklistOpts');
     },
 	inlineEditCategorieImpact : function(component, event, helper) {

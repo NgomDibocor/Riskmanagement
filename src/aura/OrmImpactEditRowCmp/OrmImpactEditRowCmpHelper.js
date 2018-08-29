@@ -28,8 +28,8 @@
     	
         var action = component.get("c.getSelectOptions");
         action.setParams({
-            "objObject": component.get("v.objInfoForPicklistValues"),
-            "fld": fieldName
+            'objObject': component.get("v.objInfoForPicklistValues"),
+            'fld': fieldName
         });
         var opts = [];
         action.setCallback(this, function(response) {

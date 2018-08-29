@@ -25,7 +25,7 @@
 	        <span class="btnNewRisk" onclick="{!c.openImpactNewCmp}">
 	              <lightning:icon iconName="utility:new" size="small"   />
 	            </span>
-	        <span title="{!$Label.c.delete_button_title}" class="deleteCause" onclick="{!c.openModalDeleteCause}">
+	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.openModalDeleteCause}">
 				<lightning:icon iconName="utility:delete" size="small" />
 			</span>
 	        </div>

@@ -1,117 +1,71 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
-  
-  <!-- attributes -->
-  <aura:attribute name="measures" type="Assessment__c[]" />
-  <aura:attribute name="idAssessmentRisk" type="string" />
-  <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
-  <aura:attribute name="key" type="string" description="" />
-  <aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
-  <aura:attribute name="showButtonDelete" type="Boolean" default="false" />
-	
-  <!-- events  -->
-  <aura:registerEvent name="OrmNewMeasureClickedEvt"  type="c:OrmNewMeasureClickedEvt"/>
-  <aura:registerEvent name="OrmDeleteMeasuresEvt" type="c:OrmDeleteMeasuresEvt" description="" />
-  
-  <aura:handler event="c:OrmMeasureCreatedEvt" action="{!c.refreshList}" />
-  <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.getIdAssessmentRisk}" />
-  <aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
-  
-  <div class="slds-m-around_large">
-		<div class="topSpacing">
-        	<label class="slds-form-element__label ">{!$Label.c.orm_measure_label}<span class="cmn_mandatory_indicator">*</span></label>
-        </div>                                        
-	    <div class="measure">
-	    
-	    	<div class="measureSearch">
-		    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldMeasure}">
-					<lightning:input type="text" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
-				</a>
-			</div>
-			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" onclick="{!c.openNewMeasureCmp}">
-	        	<lightning:icon iconName="utility:new" size="small" />
-	        </span>
-	        
-	        <aura:if isTrue="{!v.showButtonDelete}">
-	        	<span class="deleteMeasure" onclick="{!c.openModalDeleteMeasure}">
-					<lightning:icon iconName="utility:delete" size="small" />
-				</span>
-	        </aura:if>
-	        
-	
-			<!-- use aura:if for show/hide buttons --> 
-	        <aura:if isTrue="{!v.showSaveCancelBtn}">
-	            <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
-	        		<!--button for save and cancel Record after Inline Edit-->
-	        		<lightning:buttonGroup class="slds-m-around_medium">
-	                <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}"/>
-	                <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.save}" variant="success"/>
-	            </lightning:buttonGroup>
-	        	</div>
-	        </aura:if> 
-        
-	        <!--Data Table-->     
-	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
-	            <thead>
-	                <tr class="slds-text-title--caps">
-	                  <th style="width:3.25rem;" class="slds-text-align--right">
-		              	<div class="slds-form-element">
-		                	<div class="slds-form-element__control">
-		                    	<label class="slds-checkbox">
-		                        	<!--header checkbox for select all-->
-		                        	<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
-		                        	<span class="slds-checkbox--faux"></span>
-		                        	<span class="slds-form-element__label text"></span>
-		                     	</label>
-		                    </div>
-		                </div>
-		              </th> 
-	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_label_cause}">{!$Label.c.orm_measure_label}</div></th>
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_description}">{!$Label.c.orm_measure_description}</div></th>
-	                  <th scope="col">Action</th>
-	                </tr>
-	            </thead>
-	            
-	            <tbody>
-	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-	                <aura:iteration items="{!v.measures}" var="measure" indexVar="sNo">
-	                   <!-- Child Lightning Component --> 
-	                    <c:OrmMeasureEditRowCmp measure="{!measure}"
-	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
-	                                     sNo="{!sNo + 1}" />                       
-	                </aura:iteration>
-	            </tbody>
-	        </table>
+ 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+	<aura:attribute name="myMeasure" type="List" />
+     <aura:attribute name="key" type="string" />
+	    <div class="slds-box" style="width:100%;font-size: 30px;">
+	    <!-- font-family: 'customfontDisney';
+    	font-size: 30px;src: url(/resource/disneyFont); -->
+		  <h1>List of Measures</h1>
 		</div>
+		<div class="slds-col">									
+		<div class="space"></div>
+		<span class="searchInput">
+        	<lightning:input aura:id="searchMeasure" class="search" placeholder="search Measures  by name or description" type="search" onchange="{!c.filter}" value="{!v.key}" />
+        </span>
+        
+   		</div>
+	
+    <div class="slds-grid slds-wrap" style="width:100%;margin-left:3%">
+       <aura:iteration items="{!v.PaginationList}" var="item"> 
+        <div class="slds-size_1-of-3">
+            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:90%;">
+                <article class="slds-card" style="height:120px;">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container " title="Assessment">
+                                  <lightning:icon iconName="utility:trail" size="medium" />
+                                </span>
+                            </div>
+                            <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+                               <h2>
+                                  <b>Measure:{!item.Name} </b>
+                              </h2>
+                            </div>
+                            
+                            <div class="slds-no-flex" style="margin-left:5px">
+                                <button id="{!item.Id}"
+                                        class="slds-button slds-button_neutral"
+                                        onclick="{!c.showMeasure}">
+                                    {!$Label.c.orm_show_button_title}<span id="{!item.orm_assessmentRisk__r.orm_assessment__c}"></span>
+                                    <span id="{!item.orm_assessmentRisk__c}"></span>
+                                </button>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner slds-truncate">
+                        Description: <b>{!item.orm_description__c}</b>
+                    </div>
+                    <div class=" slds-card__body slds-card__body_inner">
+	                   
+                    </div>
+                    
+                </article>
+            </div>
+        </div>
+       
+      </aura:iteration>
+  </div>
+  <div style="margin:auto; padding-bottom:10px">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previous}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
+	                            onclick="{!c.next}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
 	</div>
-	
-	<!-- openModalConfirmDeletion  -->
-	    <aura:if isTrue="{!v.openModalConfirmDeletion}">    
-	    	<div class="demo-only" style="height: 640px;">
-			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
-			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-			    <div class="slds-modal__container">
-			      <header class="slds-modal__header header">
-			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
-			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.orm_close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
-			        </button>
-			      </header>
-			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			        <p>{!$Label.c.deletion_message}</p>
-			      </div>
-			      <footer class="slds-modal__footer">			        
-					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteMeasure}">{!$Label.c.orm_cancel_button_title}</button>
-					<button class="slds-button slds-button_brand" onclick="{!c.confirmDeleteMeasure}">{!$Label.c.orm_confirm_button}</button>					
-			      </footer>
-			    </div>
-			  </section>
-			  <div class="slds-backdrop slds-backdrop_open"></div>
-			</div>	    
-	    </aura:if>
-	<!-- /openModalConfirmDeletion -->
-		
-	
-	<c:OrmMeasureNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

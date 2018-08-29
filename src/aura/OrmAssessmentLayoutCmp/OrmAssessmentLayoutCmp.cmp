@@ -175,7 +175,7 @@
                                                   class="slds-button"
                                                   onclick="{!c.createAssessment}"/>
                                  </lightning:buttonGroup>
-                                  <span style="color:red">{!$Label.c.orm_message_save}</span>
+                                  <span style="color:red">{!v.assessmentData.Id == null ? $Label.c.orm_message_save : $Label.c.orm_message_update}</span>
                              </div>
                           </td>
                       </tr>
@@ -1265,7 +1265,7 @@
 		                                          class="slds-button"
 		                                          onclick="{!c.createAssessment}"/>
                                       </lightning:buttonGroup>
-                                     <span style="color:red">{!$Label.c.orm_message_save}</span>
+                                     <span style="color:red">{!v.assessmentData.Id == null ? $Label.c.orm_message_save : $Label.c.orm_message_update}</span>
                            </div>
                         </td>
                     </tr>

@@ -185,9 +185,9 @@
 																										contactworkshop) {
 
 																									if (contactworkshop.orm_contact__c == contact.Id) {
-																										contact.association = "Associated";
+																										contact.association = $A.get("$Label.c.	orm_associatedContactWorkshop");
 																										if (contactworkshop.orm_notification__c == true) {
-																											contact.orm_notification__c = "Invited";
+																											contact.orm_notification__c =  $A.get("$Label.c.orm_notification_c");
 																										}
 																									}
 																								});

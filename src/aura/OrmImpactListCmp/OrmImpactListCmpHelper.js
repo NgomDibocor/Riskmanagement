@@ -8,6 +8,7 @@
             if (state === "SUCCESS") {
             	component.set("v.impacts", response.getReturnValue());
             	component.set("v.impactsTemp", response.getReturnValue());
+            	
             }
         });
         $A.enqueueAction(action);

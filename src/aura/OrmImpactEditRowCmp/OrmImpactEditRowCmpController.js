@@ -5,7 +5,8 @@ doInit: function(component, event, helper) {
 	inlineEditCategorieImpact : function(component, event, helper) {
 		// show the name edit field popup 
         component.set("v.categorieImpactEditMode", true); 
-        // after the 100 millisecond set focus to input field   
+        // after the 100 millisecond set focus to input field  
+        component.find("categorieImpact").set("v.options" , component.get("v.statusPicklistOpts")); 
         setTimeout(function(){ 
             component.find("categorieImpact").focus();
         }, 100);
@@ -57,6 +58,13 @@ doInit: function(component, event, helper) {
         } else {
             component.set("v.showErrorClass", false);
         }
+    },
+     closecategorieImpactBox : function(component, event, helper){ 
+    	// on focus out, close the input section by setting the 'nameEditMode' att. as false   
+        component.set("v.categorieImpactEditMode", false); 
+        // check if change/update Name field is blank, then add error class to column -
+        // by setting the 'showErrorClass' att. as True , else remove error class by setting it False   
+       
     },
     closeNameBox : function(component, event, helper){ 
     	// on focus out, close the input section by setting the 'nameEditMode' att. as false   

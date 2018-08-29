@@ -65,13 +65,20 @@
                 component.set("v.displaySaveCancelBtn", false);
                 component.set("v.assessmentData",response.getReturnValue());
                     var toastEvent = $A.get('e.force:showToast');
-                        toastEvent.setParams({
-                            'message' : newItem.orm_typeAssessment__c+' '+$A.get("$Label.c.orm_success_created"),
-                            'type' : 'success',
-                            'mode' : 'dismissible'
-                        });
-
-		                toastEvent.fire();  
+				    if(newItem.Id == null){
+				      toastEvent.setParams({
+                         'message' : newItem.orm_typeAssessment__c+' '+$A.get("$Label.c.orm_success_created"),
+                         'type' : 'success',
+                         'mode' : 'dismissible'
+                       });
+				    }else{
+				      toastEvent.setParams({
+                         'message' : newItem.orm_typeAssessment__c+' '+$A.get("$Label.c.orm_success_updated"),
+                         'type' : 'success',
+                         'mode' : 'dismissible'
+                       });
+				    }
+                   toastEvent.fire();  
                     
                 }else{
                    alert($A.get("$Label.c.orm_error"));

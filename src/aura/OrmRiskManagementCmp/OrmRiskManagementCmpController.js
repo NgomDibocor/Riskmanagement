@@ -27,7 +27,7 @@
     showAssessment : function(component, event, helper) {
         $A.createComponent(
             "c:OrmAssessmentLayoutCmp", {
-               "assessmentData": component.get("v.assessmentData")
+               
             },
             function(newCmp) {
                 if (component.isValid()) {

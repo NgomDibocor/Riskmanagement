@@ -53,15 +53,14 @@
     <aura:attribute name="storeListActivity" type="List" />
     
 
-  <div class="slds-grid slds-gutters">
-    <div class=" slds-size--2-of-12   slds-p-horizontal--small">
-    </div>
+		<div class="slds-grid slds-gutters">
+		    <div class=" slds-size--2-of-12   slds-p-horizontal--small">
+		</div>
         <div class=" slds-size--6-of-12   slds-p-horizontal--small">
-       <span class="searchInput">
-                <lightning:input class="search" type="search" onchange="{!c.filter}"  value="{!v.key}" label="{!$Label.c.search_title_label}" />
-          </span>
+	          <span class="searchInput">
+	                <lightning:input class="search" type="search" onchange="{!c.filter}"  value="{!v.key}" label="{!$Label.c.search_title_label}" />
+	          </span>
         </div>
-        
         <div class=" slds-size--4-of-12   slds-p-horizontal--small">
           <br/>
          <span class="btnNewAct" onclick="{!c.openActivityNewCmp}">
@@ -77,90 +76,81 @@
 			<lightning:buttonGroup class="slds-m-around_medium">
 				<lightning:button label="{!$Label.c.orm_cancel_button_title}"
 					onclick="{!c.cancel}" />
-				<lightning:button label="{!$Label.c.save_button_title}"
+				<lightning:button label="{!$Label.c.orm_save_button_title}"
 					onclick="{!c.Save}" variant="success" />
 			</lightning:buttonGroup>
 		</aura:if>
-        </div>
-        </div>
+       </div>
+     </div>
 	<div class="slds-m-around_large">
-		<!--Data Table-->
-		
-		
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
 					<th scope="col"><div class="slds-truncate" title="">N°</div></th>
 					<th scope="col"><div class="slds-truncate"
 							title="{!$Label.c.orm_name_activity}">{!$Label.c.orm_name_activity}</div></th>
-					<th scope="col"><div class="slds-truncate"
-							title="!$Label.c.orm_start_date + - +!$Label.c.orm_end_date}">{!$Label.c.orm_start_date}
-							- {!$Label.c.orm_end_date}</div></th>
 					<th scope="col">
-					<div class="slds-truncate"
-							title="{!$Label.c.orm_activity_status}">{!$Label.c.orm_activity_status}</div></th>
-							<th scope="col">
-					<div class="slds-truncate"
-							title="{!$Label.c.orm_description}">{!$Label.c.orm_description}</div></th>
+					   <div class="slds-truncate"
+							title="!$Label.c.orm_start_date + - +!$Label.c.orm_end_date}">{!$Label.c.orm_start_date} - {!$Label.c.orm_end_date}
+					   </div>
+					</th>
+					<th scope="col">
+					   <div class="slds-truncate"
+							title="{!$Label.c.orm_activity_status}">{!$Label.c.orm_activity_status}
+					   </div>
+					</th>
+				    <th scope="col">
+					   <div class="slds-truncate"
+							title="{!$Label.c.orm_description}">{!$Label.c.orm_description}
+					   </div>
+					</th>
 					<th style="width:3.25rem;" class="slds-text-align--right">
-               <div class="slds-form-element">
-                  <div class="slds-form-element__control">
-                     <label class="slds-checkbox">
-                        <!--header checkbox for select all activity-->
-                        <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
-                        <span class="slds-checkbox--faux"></span>
-                        <span class="slds-form-element__label text"></span>
-                     </label>
-                 
-                  </div>
-               </div>
-            </th>
-				</tr>
-
-			</thead>
-
-			<tbody>
+                       <div class="slds-form-element">
+		                  <div class="slds-form-element__control">
+		                     <label class="slds-checkbox">
+		                        <!--header checkbox for select all activity-->
+		                        <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
+		                        <span class="slds-checkbox--faux"></span>
+		                        <span class="slds-form-element__label text"></span>
+		                     </label>
+		                  </div>
+		               </div>
+                   </th>
+			  </tr>
+			  </thead>
+			  <tbody>
 				<!--### display all records of ActivitytList attribute one by one by aura:iteration ###-->
-				<aura:iteration items="{!v.ActivityList}" var="activity"
-					indexVar="sNo">
+				<aura:iteration items="{!v.ActivityList}" var="activity" indexVar="sNo">
 					<!-- start iteration -->
 					<c:OrmActivityListchild singleRec="{!activity}"
 						showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
-
-
 				</aura:iteration>
-			</tbody>
+			  </tbody>
 		</table>
-
-
-	</div>
+        </div>
 	    <aura:if isTrue="{!v.showConfirmRemoveActivity}">
 			<!--###### MODAL BOX Start From Here ######-->    
-	<div class="demo-only" style="height: 640px;">
-<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-<div class="slds-modal__container">
-<header class="slds-modal__header">
-<button class="slds-button slds-modal__close slds-button--icon-inverse"   onclick="{!c.closeModalRemove}" title="Close">
-
-X <span class="slds-assistive-text">Close</span>
-</button>
-<h3 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
-</header>
-<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-<p>
-{!$Label.c.deletion_message}
-</p>
-
-</div>
-<footer class="slds-modal__footer">
-<button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
-<button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.orm_delete_button_title}</button>
-</footer>
-</div>
-</section>
-<div class="slds-backdrop slds-backdrop_open"></div>
-</div>
-<!--###### MODAL BOX End  Here ######-->
-</aura:if>
+			<div class="demo-only" style="height: 640px;">
+				<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+					<div class="slds-modal__container">
+					   <header class="slds-modal__header">
+					     <button class="slds-button slds-modal__close slds-button--icon-inverse"   onclick="{!c.closeModalRemove}" title="Close">
+					       X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+					     </button>
+					     <h3 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
+					   </header>
+					   <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					   <p>{!$Label.c.orm_deletion_message}</p>
+					</div>
+					<footer class="slds-modal__footer">
+						<button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
+						<button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.orm_delete_button_title}</button>
+					</footer>
+				   </div>
+			    </section>
+				<div class="slds-backdrop slds-backdrop_open"></div>
+			</div>
+			<!--###### MODAL BOX End  Here ######-->
+     </aura:if>
  <c:OrmActivityNewCmp/>
 </aura:component>

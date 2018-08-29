@@ -55,7 +55,7 @@
 			<lightning:buttonGroup class="slds-m-around_medium">
 				<lightning:button label="{!$Label.c.orm_cancel_button_title}"
 					onclick="{!c.cancel}" />
-				<lightning:button label="{!$Label.c.save_button_title}"
+				<lightning:button label="{!$Label.c.orm_save_button_title}"
 					onclick="{!c.Save}" variant="success" />
 			</lightning:buttonGroup>
 		</aura:if>

@@ -44,7 +44,7 @@
 	        		<!--button for save and cancel Record after Inline Edit-->
 	        		<lightning:buttonGroup class="slds-m-around_medium">
 	                <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}"/>
-	                <lightning:button label="{!$Label.c.save_button_title}" onclick="{!c.save}" variant="success"/>
+	                <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.save}" variant="success"/>
 	            </lightning:buttonGroup>
 	        	</div>
 	        </aura:if> 
@@ -94,8 +94,8 @@
 			      <header class="slds-modal__header header">
 			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
 			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+			        	title="{!$Label.c.orm_close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 			        </button>
 			      </header>
 			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">

@@ -77,7 +77,7 @@
 			<lightning:buttonGroup class="slds-m-around_medium">
 				<lightning:button label="{!$Label.c.orm_cancel_button_title}"
 					onclick="{!c.cancel}" />
-				<lightning:button label="{!$Label.c.save_button_title}"
+				<lightning:button label="{!$Label.c.orm_save_button_title}"
 					onclick="{!c.Save}" variant="success" />
 			</lightning:buttonGroup>
 		</aura:if>
@@ -144,7 +144,7 @@
 
 X <span class="slds-assistive-text">Close</span>
 </button>
-<h3 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.confirm_remove}</h3>
+<h3 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
 </header>
 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
 <p>
@@ -154,7 +154,7 @@ X <span class="slds-assistive-text">Close</span>
 </div>
 <footer class="slds-modal__footer">
 <button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
-<button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.delete_button_title}</button>
+<button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.orm_delete_button_title}</button>
 </footer>
 </div>
 </section>

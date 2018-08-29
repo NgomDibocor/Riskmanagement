@@ -107,6 +107,19 @@ public with sharing class OrmMeasureController {
     }
     /**
 	 *
+	 * @author david
+	 * @version 1.0
+	 * @description  this method returns all Users
+	 * @history 
+	 * 2018-08-07 :david - Implementation
+	 */
+    @AuraEnabled 
+    public static List<User> getUsers(){
+        return [Select Id, Name From User ];
+         
+    }
+    /**
+	 *
 	 * @author David diop
 	 * @version 1.0
 	 * @description  this method returns an Measure

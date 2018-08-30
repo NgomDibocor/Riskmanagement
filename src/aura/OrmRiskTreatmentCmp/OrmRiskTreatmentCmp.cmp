@@ -64,7 +64,7 @@
                    <b> <label class="slds-form-element__label">{!$Label.c.orm_measure_dueDate}<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
                 <div class="width">
-                    <a href="javascript:void(0);" >
+                    <a href="javascript:void(0);">
                         <ui:inputDate  aura:id="endDateMeasure" displayDatePicker="true" class="slds-input" value="{!v.measureData.orm_endDate__c}"  change="{!c.onEndDate}"/>
                     </a>
                 </div>

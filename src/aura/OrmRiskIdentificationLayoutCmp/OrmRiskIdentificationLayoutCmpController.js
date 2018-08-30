@@ -44,9 +44,9 @@
             label: 'Action',
             type: 'button',
             typeAttributes: {
-                label: 'configure',
-                name: 'configure',
-                title: 'configure'
+                label: 'Show',
+                name: 'Show',
+                title: 'Show'
             },
             iconName: 'utility:settings',
             /*cellAttributes: {
@@ -141,24 +141,24 @@
      *
      */
     filter: function(component, event, helper) {
-        var data = component.get("v.allRisk");
-        var term = component.get("v.filter");
-        var results = data;
+        var dataRisk = component.get('v.allRiskTemp');
+    
+        var term = component.get('v.filter');
         var regex;
         if ($A.util.isEmpty(term)) {
             helper.fetchPicklist(component, event);
         } else {
             term = "^" + term;
-        }
         try {
             regex = new RegExp(term, "i");
-            // filter checks each row, constructs new array where function returns true
-            results = data.filter(row => regex.test(row.RiskName) || regex.test(row.RiskDescription));
+        
+            dataRisk = dataRisk.filter(row => regex.test(row.RiskName) || regex.test(row.RiskDescription));
+            	
         } catch (e) {
-            // invalid regex, use full list
-            helper.fetchPicklist(component, event);
+            alert(e);
         }
-        component.set("v.allRisk", results);
+        component.set("v.allRisk",dataRisk);
+        }
     },
     relatedRiskfunction: function(component, event, helper) {
         var relatedassesmentRisk = component.get("v.relatedRisk");
@@ -230,7 +230,10 @@
         });
         evt.fire();
     },
-
+    /*    
+     * CreatedBy @David Diop
+     *function that allows the creation of the datatable
+     */
     openModalRisk: function(component, event, helper) {
         // for Hide/Close Model,set the "isOpen" attribute to "False"
         component.set("v.isOpen", true);
@@ -305,9 +308,8 @@
      *
      */
     filterByRisk: function(component, event, helper) {
-        var data = component.get("v.allRiskList");
+        var data = component.get("v.allRiskListTemp");
         var term = component.get("v.filterRisk");
-        var results = data;
         var regex;
         if ($A.util.isEmpty(term)) {
             helper.fetchlistRiskModal(component, event);
@@ -317,13 +319,11 @@
         }
         try {
             regex = new RegExp(term, "i");
-            // filter checks each row, constructs new array where function returns true
-            results = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
+            data = data.filter(row => regex.test(row.Name) || regex.test(row.Description));
         } catch (e) {
-            // invalid regex, use full list
-            helper.fetchlistRiskModal(component, event);
+            alert(e);
         }
-        component.set("v.allRiskList", results);
+        component.set("v.allRiskList", data);
     },
     closeModal: function(component) {
         // for Hide/Close Model,set the "isOpen" attribute to "False"

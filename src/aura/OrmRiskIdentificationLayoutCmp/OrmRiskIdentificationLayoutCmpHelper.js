@@ -26,6 +26,7 @@
                     }
                 }
                 component.set('v.allRisk', rows);
+                component.set('v.allRiskTemp', rows);
                 var risk=component.get('v.allRisk');
                 if(risk == null){
                 
@@ -88,6 +89,7 @@
                 });
                 
                 component.set('v.allRiskList', rows);
+                component.set('v.allRiskListTemp', rows);
                 var action = component.get('c.getSelectOptions');
                 action.setParams({
                     'objObject': component.get("v.risk"),

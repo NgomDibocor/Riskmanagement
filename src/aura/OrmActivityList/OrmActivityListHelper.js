@@ -13,4 +13,25 @@
         }
         return isValid;
     },
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description refresh list activity 
+ * @history 
+ * 2018-08-20 : Salimata NGOM - Implementation
+ */
+    refreshList : function(component, event) {
+		var action = component.get('c.findAllActivity');
+        action.setCallback(this, function(response){
+            if(response.getState() == 'SUCCESS'){
+              component.set('v.ActivityList', response.getReturnValue());
+              
+            }else
+            {
+                 alert($A.get("$Label.c.loaded_message"));
+            }
+        });
+        $A.enqueueAction(action);
+	}
 })

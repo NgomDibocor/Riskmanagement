@@ -1,7 +1,6 @@
 ({
 
     createWorkshop: function(component, event, helper) {
-    	  //alert(JSON.stringify(component.get('v.assessmentData')));
         var name = component.find("idtitre");
         var datestart = component.find('datestart');
         var dateend = component.find('dateend');
@@ -20,14 +19,12 @@
             var newItem = component.get("v.item");
            
            newItem.orm_Assessment__c = component.get('v.assessmentData').Id;
-        // newItem.orm_Assessment__c=  "a051H00000d94cDQAQ";
+        newItem.AccountId=component.get('v.assessmentData').orm_organisation__c;
             newItem.Name=name.get('v.value');
             newItem.StartDate=datestart.get('v.value');
            newItem.orm_Contract_End_Date__c=dateend.get('v.value');
            newItem.CompanySignedDate=dateinvitation.get('v.value');
-           var Description=message.get('v.value');
-            newItem.Description=Description.stripHtmlTags();
-           newItem.AccountId="0011H00001RnBahQAF";
+            newItem.Description=message.get('v.value');
             var action = component.get('c.addWorkShop');
             action.setParams({
                 "item": newItem
@@ -38,7 +35,6 @@
                     function(response) {
                         var state = response.getState();
                         if (state == "SUCCESS") {
-                        alert('success');
                           var evt = $A.get("e.c:OrmNewWorkShopEvt");
 			evt.setParams({
 			   "Assessmentdata" : component.get("v.assessmentData")

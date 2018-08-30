@@ -45,3 +45,27 @@
 .THIS .heightHiddenInput{
 	height: 3px;
 }
+.THIS .iconPrev{
+	cursor: pointer;
+}
+.THIS .iconNext{
+	cursor: pointer;
+}
+.THIS .orgSelect {
+    display: inline-block;
+    width:85%;
+    margin-right: 15px;
+}
+.THIS span.btnNewOrganisation {
+    display: inline-block;
+    cursor: pointer;
+    width:5%;
+}
+.THIS .endSpaceOrg {
+    display: inline-block;
+    width:7%;
+}
+.THIS .startSpaceOrg {
+    display: inline-block;
+    width:3%;
+}

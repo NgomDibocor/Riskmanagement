@@ -1,5 +1,19 @@
 ({
-    fetchPicklist : function(component, event) {        
+    fetchPicklist : function(component, event) { 
+        if(component.get("v.showAssessmentRisk")== true){
+           var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
+           evt.setParams({
+             "idAssessmentRisk": component.get("v.idAssessmentRisk")
+           });
+           evt.fire();
+         }    
+         if(component.get("v.showRiskTreatment")== true){
+           var evt = $A.get("e.c:OrmActiveRiskTraitementCmpEvt");
+           evt.setParams({
+             "idMeasure": component.get("v.idMeasure")
+           });
+           evt.fire();
+         }  
         var actionTypeAssessment = component.get('c.getSelectOptions');
         actionTypeAssessment.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_typeAssessment__c'});
         var opts = [];
@@ -16,7 +30,7 @@
                 }
                 component.set('v.allTypeAssessment', opts);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionOrgs = component.get("c.getOrganisations");
@@ -25,7 +39,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allOrganisation', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionTypeProjet = component.get('c.getSelectOptions');
@@ -44,7 +58,7 @@
                 }
                 component.set('v.allTypeProjet', opts2);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionStatus = component.get('c.getSelectOptions');
@@ -59,7 +73,7 @@
                 }
                 component.set('v.allStatus', opts3);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionCurrency = component.get('c.getSelectOptions');
@@ -74,7 +88,7 @@
                 }
                 component.set('v.allCurrency', opts4);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionSchedule = component.get('c.getSelectOptions');
@@ -89,7 +103,7 @@
                 }
                 component.set('v.allSchedule', opts5);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionSector = component.get("c.getSelectOptions");
@@ -99,7 +113,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allIndustrySector', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionUser = component.get("c.getUsers");
@@ -108,7 +122,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allUser', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionOrganisationSectorInd = component.get("c.getSelectOptions");
@@ -118,7 +132,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allOrganisationIndustrySector', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         var actionCountry = component.get("c.getSelectOptions");
@@ -128,7 +142,7 @@
             if(state === 'SUCCESS'){
                 component.set('v.allCountry', response.getReturnValue());
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
 
@@ -142,7 +156,7 @@
                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
 	            evtSpinner.fire(); 
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get("$Label.c.orm_not_found"));
             }
         });
         $A.enqueueAction(actionTypeAssessment);
@@ -200,12 +214,16 @@
         
         component.set("v.showContext", true);
         component.set("v.showContext2", false);
+        component.set("v.showContextActivity", false);
+        component.set("v.showContextWorkshop", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showListCauseAndImpact", false);
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
-        component.set("v.showActionPlan", false);
+        component.set("v.showActionPlan", false);  
+        component.set("v.showChevronleft", false); 
+        component.set("v.showChevronright", true);        
     },
     activeContext2 : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -240,6 +258,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);  
+        component.set("v.showChevronright", true); 
     },
     activeContextActivity : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -274,6 +294,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", true);
     },
     activeContextWorkshop : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -308,6 +330,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", true);
     },
     // this methode actives the action Risk Identification tab
     activeRiskIdentif : function(component, event, helper) {
@@ -342,6 +366,10 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);
+        component.set("v.showChevronright", false);
+        
+           
     },
     
     // this methode actives the action Risk Analye tab
@@ -375,6 +403,8 @@
         component.set("v.showRiskAnalyse", true);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true); 
+        component.set("v.showChevronright", true);  
     },
     activeRiskAnalyeListCauseAndImpact : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -408,6 +438,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", true);
     },
     activeRiskAnalyeListMeasure : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
@@ -441,6 +473,8 @@
         component.set("v.showListMeasure", true);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", false);
     },
     
     // this methode actives the action Risk Treatment tab
@@ -475,6 +509,8 @@
         component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", true);
         component.set("v.showActionPlan", false);
+        component.set("v.showChevronleft", true); 
+        component.set("v.showChevronright", true);  
     },
     
     // this methode actives the action plan tab
@@ -508,6 +544,8 @@
         component.set("v.showRiskAnalyse", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", true);
+        component.set("v.showChevronleft", true);   
+        component.set("v.showChevronright", true);
     },
       
     

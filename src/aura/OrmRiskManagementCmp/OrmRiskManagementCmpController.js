@@ -27,7 +27,7 @@
     showAssessment : function(component, event, helper) {
         $A.createComponent(
             "c:OrmAssessmentLayoutCmp", {
-               "assessmentData": component.get("v.assessmentData")
+               
             },
             function(newCmp) {
                 if (component.isValid()) {
@@ -39,6 +39,18 @@
     ShowAssessmentRiskList: function(component, event, helper) {
         $A.createComponent(
             "c:OrmAssessmentRiskListCmp", {
+
+            },
+            function(newCmp) {
+                if (component.isValid()) {
+                    component.set("v.body", newCmp);
+                }
+            }
+        );
+    },
+    ShowMeasureList: function(component, event, helper) {
+        $A.createComponent(
+            "c:OrmMyMeasureListCmp", {
 
             },
             function(newCmp) {
@@ -69,6 +81,41 @@
       hideSpinner: function(component) {
         var spinner = component.find('spinner-div');
         $A.util.addClass(spinner, "slds-hide");
+	  },
+	  
+	  showInfoAssessmentRisk : function(component,event,helper){ 
+	   $A.createComponent(
+	            "c:OrmAssessmentLayoutCmp", {
+	                "assessmentData": event.getParam("assessmentObject"),
+	                "showContext": false,
+	                "showRiskAnalyse" : true,
+	                "showAssessmentRisk": true,
+	                "idAssessmentRisk" : event.getParam("idAssessmentRisk")
+	            },
+	            function(newCmp) {
+	                if (component.isValid()) {
+	                    component.set("v.body", newCmp);
+	                }
+	            }
+	        );  
+	  },
+	   showInfoMeasure : function(component,event,helper){ 
+	   $A.createComponent(
+	            "c:OrmAssessmentLayoutCmp", {
+	                "assessmentData": event.getParam("assessmentObject"),
+	                "showContext": false,
+	                "showRiskAnalyse" : false,
+	                "showMeasureInfo": true,
+	                "showRiskTreatment":true,
+	                "idAssessmentRisk" : event.getParam("idAssessmentRisk"),
+	                "idMeasure": event.getParam("idMeasure")
+	            },
+	            function(newCmp) {
+	                if (component.isValid()) {
+	                    component.set("v.body", newCmp);
+	                }
+	            }
+	        );  
 	  },
     
 })

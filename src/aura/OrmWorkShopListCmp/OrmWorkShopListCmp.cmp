@@ -6,9 +6,9 @@
 	<!--declare aura attributes-->
 	<aura:attribute name="WorkshopList" type="contract[]"
 		description="store workshop records list" />
-		<aura:attribute name="showSaveCancelBtn" type="boolean" default="false"
+	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false"
 		description="flag for rendered save and cancel buttons in aura:if " />
-		<aura:attribute name="sNo" type="string" />
+	<aura:attribute name="sNo" type="string" />
 	<aura:attribute name="singleRec" type="sobject" default="{
 						'sobjectType' : 'Contract',
                         'Name': '',
@@ -20,22 +20,25 @@
 						'Description':''
 						
 					}" />
-<aura:attribute name="assessmentData" type="Assessment__c"
+     <aura:attribute name="assessmentData" type="Assessment__c"
 		default="{
 						'sobjectType' : 'Assessment__c',
 						'Description':''
 						
 					}" />
-	  <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
-	  <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
-	  <aura:handler event="c:OrmNewContactEvt" action="{!c.RefreshContacts}" />
+     <aura:attribute name="key" type="string" />
+     <aura:attribute name="storeListWorkshop" type="List" />
+     
+	 <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
+	 <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
+	 <aura:handler event="c:OrmNewContactEvt" action="{!c.RefreshContacts}" />
 	   <!-- start header page content search bar and action button -->
   <div class="slds-grid slds-gutters">
     <div class=" slds-size--2-of-12   slds-p-horizontal--small">
     </div>
         <div class=" slds-size--6-of-12   slds-p-horizontal--small">
          <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
-                <lightning:input type="text" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}" />
+                <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
           </a>
         </div>
         
@@ -50,9 +53,9 @@
 		<aura:if isTrue="{!v.showSaveCancelBtn}">
 			<!--button for save and cancel Record after Inline Edit-->
 			<lightning:buttonGroup class="slds-m-around_medium">
-				<lightning:button label="{!$Label.c.cancel_button_title}"
+				<lightning:button label="{!$Label.c.orm_cancel_button_title}"
 					onclick="{!c.cancel}" />
-				<lightning:button label="{!$Label.c.save_button_title}"
+				<lightning:button label="{!$Label.c.orm_save_button_title}"
 					onclick="{!c.Save}" variant="success" />
 			</lightning:buttonGroup>
 		</aura:if>

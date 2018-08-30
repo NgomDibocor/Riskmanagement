@@ -148,6 +148,9 @@
         if(showRiskTreatment == true){
             component.set("v.showRiskTreatment", false);
             component.set("v.showListMeasure", true);
+            var evt = $A.get("e.c:OrmSendIdAssesssmentRiskEvt");
+            evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+            evt.fire();
             helper.activeRiskAnalyeListMeasure(component, event);
         }
         if(showActionPlan == true){
@@ -177,7 +180,7 @@
             toast.fire();
         }else{
         
-        helper.activeRiskIdentif(component, event);
+        helper.activeRiskIdentif(component, event);   
         }
     },
     
@@ -205,7 +208,26 @@
     },
     
     activeRiskTreatment : function(component, event, helper) {
+     var idMeasure = event.getParam("idMeasure");
+     if(idMeasure == null){
+     var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : 'Check if you Have Created the Assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });
+
+            toast.fire();
+     }else{
+        component.set("v.showRiskIdentif", false);
+        component.set("v.showMeasureInfo", true);
         helper.activeRiskTreatment(component, event);
+        component.set("v.idMeasure", idMeasure);
+        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
+        evt.setParams({"MeasureId": idMeasure});
+        evt.fire();
+        }
+        
     },
     activeActionPlan : function(component, event, helper) {
         helper.activeActionPlan(component, event);

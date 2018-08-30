@@ -15,6 +15,14 @@
             component.find("inputId").focus();
         }, 100);
     },
+       inlineEditDescription : function(component,event,helper){   
+        // show the name edit field 
+        component.set("v.descriptionEditMode ", true); 
+        // after the 100 millisecond set focus to input field   
+        setTimeout(function(){ 
+            component.find("inputIddesc").focus();
+        }, 100);
+    },
       inlineEditPeriod : function(component,event,helper){   
         // show the period edit field 
         component.set("v.periodEditMode", true); 
@@ -84,6 +92,12 @@
             component.set("v.showErrorClass",false);
         }
     }, 
+     closeDescriptionBox : function (component, event, helper) {
+  
+      // on focus out, close the input section by setting the 'periodEditMode' att. as false   
+        component.set("v.descriptionEditMode", false); 
+      
+    },
     closeStartDateBox : function (component, event, helper) {
   
       // on focus out, close the input section by setting the 'periodEditMode' att. as false   

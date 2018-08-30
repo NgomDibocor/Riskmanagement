@@ -10,16 +10,18 @@
 	<aura:attribute name="ContactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
 		description="store contact workshop records list" />
-    <aura:attribute name="workshop" type="String" />
+    <aura:attribute name="workshop" type="Contract" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
 	<aura:attribute name="columns" type="List" />
+	<aura:attribute name="mailStatus" type="boolean" default="false"/>
+	<aura:attribute name="email" type="string"/>
 	  <!-- handlers-->
 	 <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 
-	<!--  start modal contact-->
+	<!--  start modal participants-->
 	<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
 		<!--###### MODAL BOX Start From Here ######-->
 		<div role="dialog" tabindex="-1" aria-labelledby="header99"
@@ -30,10 +32,9 @@
 					<button
 						class="slds-button slds-modal__close slds-button--icon-inverse"
 						title="Close" onclick="{!c.closeModalWorkshopContact}">
-						X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+						X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 					</button>
-					<h1 id="header99" class="slds-text-heading--medium">Add
-						{!$Label.c.orm_contact_menu} workshop</h1>
+					<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.orm_participants_workshop+ ' '} {!v.workshop.Name} </h1>
 				</div>
 				<!--###### MODAL BOX BODY Part Start From Here ######-->
 				<div class="slds-modal__content slds-p-around--medium">
@@ -43,7 +44,7 @@
 							<div class="slds-form-element">
 								<div class=" slds-size--1-of-6   slds-p-horizontal--small">
 								</div>
-								<div class=" slds-size--5-of-6">
+								<div class=" slds-size--5-of-6"   style="height: 300px">
 									<lightning:datatable aura:id="idworkshopcontact"
 										data="{!v.ContactList}"
 										class="slds-m-top_medium"
@@ -51,7 +52,6 @@
 										resizeColumnDisabled="false" selectedRows="{!v.Contact}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
-										
 										showRowNumberColumn="false" />
 								</div>
 
@@ -69,7 +69,7 @@
 				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 				<div class="slds-modal__footer">
 					<button class="slds-button slds-button--neutral"
-						onclick="{!c.closeModalWorkshopContact}">{!$Label.c.cancel_button_title}</button>
+						onclick="{!c.closeModalWorkshopContact}">{!$Label.c.orm_cancel_button_title}</button>
 					<button class="slds-button slds-button--brand"
 						onclick="{!c.createContactWorkshop}">
 						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
@@ -80,9 +80,27 @@
 		<div class="slds-backdrop slds-backdrop--open"></div>
 		<!--###### MODAL BOX Part END Here ######-->
 	</aura:if>
-
-
-	<!--  end  contact-->
+	<!-- Mail status -->
+	
+  <aura:if isTrue="{!v.mailStatus}">
+      <div role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt">
+         <div class="slds-modal__container">
+            <div class="slds-modal__header slds-theme--success slds-theme--alert-texture">
+               <h2 class="slds-text-heading--medium" id="prompt-heading-id">Mail Status</h2>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium">
+               <div>
+                  <p>Email Sent successfully to {!v.email}</p>
+               </div>
+            </div>
+            <div class="slds-modal__footer slds-theme--default">
+               <button class="slds-button slds-button--brand" onclick="{!c.closeMessage}">Close</button>
+            </div>
+         </div>
+      </div>
+      <div class="slds-backdrop slds-backdrop--open"></div>
+   </aura:if>
+	<!--  end  participants-->
 
 
 </aura:component>

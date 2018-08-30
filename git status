@@ -1,0 +1,270 @@
+[33mcommit 52f947b98cb32ead5fa2f6a58ef5d68a2f3a9420[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Fri Aug 24 13:11:06 2018 +0100
+
+    update measure
+
+[33mcommit 115cf27f3ef44d9df450eacd92ac5db7e232e9b0[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Tue Aug 21 14:26:40 2018 +0100
+
+    implementation du composant measure show
+
+[33mcommit 0c429dfa9291d358e8aa47380930eb6d9a4c65ac[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Tue Aug 21 11:54:13 2018 +0100
+
+    test
+
+[33mcommit 7ab0557a24ca4b22e4165b16659435bec722bbc9[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Tue Aug 21 09:33:24 2018 +0100
+
+    test
+
+[33mcommit f5a647a2fc469d1b400b27b3aba70b51e4a8b504[m
+Merge: bcaa9ef d97db8d
+Author: ngomsalimata <salifadou@gmail.com>
+Date:   Mon Aug 20 17:15:08 2018 +0000
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit bcaa9ef15e150185d62c758303f3b7285914048d[m
+Author: ngomsalimata <salifadou@gmail.com>
+Date:   Mon Aug 20 17:14:52 2018 +0000
+
+    update label participant workshop
+
+[33mcommit d97db8d838fb97338eea0f1cd4607d27c87f20e9[m
+Merge: f0444cf 5b0e1dd
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 17:14:07 2018 +0100
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit 5b0e1dd09c7620b68546bb484e9ff4e417723c26[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 18:55:26 2018 +0200
+
+    correction filter
+
+[33mcommit c582d4f9371f039e44fad04e4e3b56f31340e270[m
+Merge: c2173e4 936b62b
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 18:36:39 2018 +0200
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit c2173e4a1e10829dcb42efa67d2c3f3931e2b709[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 18:36:28 2018 +0200
+
+    corrrection pagination in assessrisk list
+
+[33mcommit f0444cff3bab36a0c2f6305943753d83dc7fc760[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 17:13:59 2018 +0100
+
+    test
+
+[33mcommit 936b62b0b44d9340b2db2799bece23fc85b9d6c7[m
+Merge: 76190f5 b3c23ef
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 16:47:39 2018 +0100
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit 76190f5f9c6ad7bffbb0552504af8a77bb709c99[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 16:47:33 2018 +0100
+
+    test
+
+[33mcommit b3c23ef517a9f93d3fb89020adc4dd370128f09e[m
+Merge: 19ce04d c77f3bd
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 17:46:27 2018 +0200
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit 19ce04de7df515fe7a92f6b003c4f0450fd2df58[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 17:46:03 2018 +0200
+
+    implementation of filter for List of AssessmentRisk
+
+[33mcommit c77f3bde91fe998efb123f791f73f08751742e16[m
+Merge: 3979036 fcf3f52
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 16:13:44 2018 +0100
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit 3979036e429f3981fec47358341c8f5b2f566b43[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 16:13:34 2018 +0100
+
+    test
+
+[33mcommit fcf3f52fbbcc114bc5f8fab77e927c38ec24b928[m
+Merge: 11c4b6e 354805e
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 17:11:17 2018 +0200
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit 11c4b6e9fae3846f593b4d5309758a7bec91770a[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 17:11:10 2018 +0200
+
+    implementation of filter for List of AssessmentRisk
+
+[33mcommit 354805e0903d846db763087ce98383e79b09b5af[m
+Merge: d8747dd 3cf0155
+Author: ngomsalimata <salifadou@gmail.com>
+Date:   Mon Aug 20 14:45:24 2018 +0000
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit d8747dd1ddbbee82d5145fdc54c241e493c03e29[m
+Author: ngomsalimata <salifadou@gmail.com>
+Date:   Mon Aug 20 14:45:14 2018 +0000
+
+    update label participant workshop
+
+[33mcommit 3cf01552a92b3ac86e4a8f0c49e6f8cf43e71c0b[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 15:19:01 2018 +0200
+
+    correction conflit in AssessmentRisk
+
+[33mcommit 47e2a054f7320142f529c5e4cfddcfabca8328c6[m
+Merge: cb0329d 6615ab0
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 14:47:40 2018 +0200
+
+    implementation of filter for List of AssessmentRisk
+
+[33mcommit cb0329dae8129d07309cc2406656f8058ccb8951[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 14:46:50 2018 +0200
+
+    implementation of filter for List of AssessmentRisk
+
+[33mcommit 6615ab041a7de3bfdfca94bb039989857317aced[m
+Merge: 0e85b37 b00e99e
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 13:36:09 2018 +0100
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit 0e85b37de3263bb01593e8f902e307bc0d2ddb45[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 13:36:00 2018 +0100
+
+    test
+
+[33mcommit b00e99e6299c7799117fd48c4030dd2d2186149d[m
+Merge: af91a32 9bbb107
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 13:47:49 2018 +0200
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit af91a32a83a9816b46513a3655290e9238c1b23d[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Mon Aug 20 13:47:29 2018 +0200
+
+    implementation of filter for List of Assessment
+
+[33mcommit 9bbb10788d947fc07dd8aeb0baa23bb8fee18318[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 12:02:37 2018 +0100
+
+    test
+
+[33mcommit 21bfc5dbd055e2972944ff1f6171abde80a392fa[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 11:43:04 2018 +0100
+
+    test
+
+[33mcommit 7b7474d379308a98abcabcc5e35f0e5929ca01f6[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 10:42:21 2018 +0100
+
+    test
+
+[33mcommit 8a15693eb49cbbbbe79a855b5ff1b3cd38346b2f[m
+Author: David Diop <diopdavid94@gmail.com>
+Date:   Mon Aug 20 09:27:21 2018 +0100
+
+    create mymeasureList component
+
+[33mcommit 5b75851eba8098105fe208940a059d965e2d3703[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sun Aug 19 17:09:34 2018 +0200
+
+    show for assessmentRisk works
+
+[33mcommit b6c0f6360d22f752ced3b484f11616164ea74519[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sun Aug 19 01:43:32 2018 +0200
+
+    implementation du assessmentRisk
+
+[33mcommit d5cc910f65e7e82c844034bbb79567466573ee1e[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sun Aug 19 01:04:46 2018 +0200
+
+    show d'un assessmentRisk
+
+[33mcommit ef3433813125d8b96ae27384b761160fc88f3049[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sat Aug 18 23:50:25 2018 +0200
+
+    recuperation de l'id de l'assessment si on clique sur un assessmentRisk
+
+[33mcommit 31b8bb94cdb219327506f43ea72e2f77e60df4cc[m
+Merge: aac2c94 a86f3f8
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sat Aug 18 21:09:48 2018 +0200
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit aac2c94af5a848712052569dd4a80e8a96e68642[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sat Aug 18 21:08:58 2018 +0200
+
+    affichage de la liste des assessments
+
+[33mcommit a86f3f85d03646bac736d05493b11556433bb326[m
+Merge: e544944 7a0342b
+Author: layepythagore <layepythagore.91@gmail.com>
+Date:   Sat Aug 18 19:02:00 2018 +0000
+
+    Merge branch 'master' of https://github.com/devmapassion/Riskmanagement
+
+[33mcommit e5449445d7e18dc8aa1e609115e4d5613694cdfb[m
+Author: layepythagore <layepythagore.91@gmail.com>
+Date:   Sat Aug 18 19:01:52 2018 +0000
+
+    add delete to measure
+
+[33mcommit 7a0342bfae9b08c194cd396e09cba49640276ba7[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sat Aug 18 17:37:58 2018 +0200
+
+    affichage de la liste des assessmentRisk
+
+[33mcommit 72fdee7915437d2d904d0297a5f89153a5c76ba3[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sat Aug 18 13:20:48 2018 +0200
+
+    modification comment
+
+[33mcommit b9ed8b03995d1bc2395b03bbf2f185f88fa82d6d[m
+Author: Dibocor <dibocorng@gmail.com>
+Date:   Sat Aug 18 13:17:31 2018 +0200
+
+    correc

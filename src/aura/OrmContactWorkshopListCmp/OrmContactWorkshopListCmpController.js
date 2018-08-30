@@ -14,11 +14,20 @@
 			label : 'Name',
 			fieldName : 'Name',
 			type : 'text'
+		},{
+			label : 'Email',
+			fieldName : 'Email',
+			type : 'email'
 		}, {
-			label : 'Invitation',
-			fieldName : 'invitation',
+			label : 'Association',
+			fieldName : 'association',
 			type : 'text'
-		}, {
+		}, 
+		 {
+			label : 'Invitation',
+			fieldName : 'orm_notification__c',
+			type : 'text'
+		},{
 			type : 'action',
 			typeAttributes : {
 				rowActions : rowActions
@@ -39,6 +48,7 @@
 		component.set('v.ContactList', event.getParam('contactList'));
 		component.set('v.workshop', event.getParam('workshop'));
 		component.set("v.isOpenModalContactWorkshop", true);
+		
 	},
 /**
  *
@@ -71,7 +81,7 @@
 					newcontactworkshop.orm_contact__c = selectedRow.Id;
 					newcontactworkshop.orm_notification__c = false;
 					newcontactworkshop.orm_Workshop__c = component
-							.get("v.workshop");
+							.get("v.workshop").Id;
 
 					contactsWorkshop.push(newcontactworkshop);
 					console.log('v.ContactWorkshopList  nbre'
@@ -128,11 +138,20 @@
 			break;
 		case 'association_contact':
 			helper.addContactWorkshop(component, row);
+			break;
+		case 'send_email':
+			helper.sendMailContactWorkshop(component, row);
+			break;
 		default:
 			break;
 		}
 
-	}
+	},
+	 // when user click on the close buttton on message popup ,
+    // hide the Message box by set the mailStatus attribute to false 
+    closeMessage: function(component, event, helper) {
+        component.set("v.mailStatus", false);
+    }
 	
 
 })

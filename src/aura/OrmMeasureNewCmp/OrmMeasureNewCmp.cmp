@@ -1,8 +1,11 @@
 <aura:component extends="c:OrmAbstractNewCmp" controller="OrmMeasureController">
 	<aura:attribute name="idAssessmentRisk" type="string" />
+	<aura:attribute name="measureCategorie" type="String[]" />
+	<aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
 	<aura:attribute name="measure" type="Assessment__c" default="{'sobjectType' : 'Assessment__c',
                                                                'Name' : '',
-                                                               'orm_description__c' : ''
+                                                               'orm_description__c' : '',
+                                                               'orm_measureCategorie__c':''
                                                                }"/>
 	<aura:registerEvent name="MeasureCreated" type="c:OrmMeasureCreatedEvt" />
 	
@@ -19,7 +22,7 @@
 						<button
 							class="slds-button slds-modal__close slds-button--icon-inverse"
 							title="Close" onclick="{!c.closeModal}">
-							X <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
 						<h1 id="header99" class="slds-text-heading--medium">
 							{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}
@@ -31,18 +34,27 @@
 						<form class="slds-form--stacked">
 							<div class="slds-grid slds-gutters">
 								<div class="slds-col">
-									<div class="slds-form-element slds-is-required">
+									<div class="slds-form-element">
 										<div class="slds-form-element__control">
                                             <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_measure_name}" 
-                                            	class="slds-input" value="{!v.measure.Name}" required="true"/>
+                                            	 value="{!v.measure.Name}" required="true"/>
 										</div>
 									</div>
-									<div class="slds-form-element slds-is-required">
+									<div class="slds-form-element">
 										<div class="slds-form-element__control">
 											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" 
-												class="slds-input" value="{!v.measure.orm_description__c}" required="true"/>
+												value="{!v.measure.orm_description__c}" />
 										</div>
-									</div>                          
+									</div>  
+									<div class="slds-form-element ">
+				                    <div class="slds-form-element__control">
+				                        <lightning:select aura:id="measureCategorie" name="measureCategorie" label="measure Categorie" class="select-auto-width"  onchange="{!c.measureCategorieChange}">
+				                            <aura:iteration items="{!v.measureCategorie}" var="measureCategorie">
+				                                <option text="{!measureCategorie}"></option>
+				                            </aura:iteration>
+				                        </lightning:select>
+				                    </div>
+				                </div>                        
 								</div>								
 							</div>
 						</form>
@@ -52,10 +64,10 @@
 					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 					<div class="slds-modal__footer">
 						<button class="slds-button slds-button--neutral"
-							onclick="{!c.closeModal}">{!$Label.c.cancel_button_title}</button>
+							onclick="{!c.closeModal}">{!$Label.c.orm_cancel_button_title}</button>
 						<button class="slds-button slds-button--brand"
 							onclick="{!c.createItem}">
-							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.save_button_title}
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.orm_save_button_title}
 						</button>
 					</div>
 				</div>

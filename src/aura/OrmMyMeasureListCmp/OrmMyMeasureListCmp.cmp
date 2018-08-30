@@ -1,0 +1,71 @@
+<aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
+ 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+	<aura:attribute name="myMeasure" type="List" />
+     <aura:attribute name="key" type="string" />
+	    <div class="slds-box" style="width:100%;font-size: 30px;">
+	    <!-- font-family: 'customfontDisney';
+    	font-size: 30px;src: url(/resource/disneyFont); -->
+		  <h1>List of Measures</h1>
+		</div>
+		<div class="slds-col">									
+		<div class="space"></div>
+		<span class="searchInput">
+        	<lightning:input aura:id="searchMeasure" class="search" placeholder="search Measures  by name or description" type="search" onchange="{!c.filter}" value="{!v.key}" />
+        </span>
+        
+   		</div>
+	
+    <div class="slds-grid slds-wrap" style="width:100%;margin-left:3%">
+       <aura:iteration items="{!v.PaginationList}" var="item"> 
+        <div class="slds-size_1-of-3">
+            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:90%;">
+                <article class="slds-card" style="height:120px;">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container " title="Assessment">
+                                  <lightning:icon iconName="utility:trail" size="medium" />
+                                </span>
+                            </div>
+                            <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+                               <h2>
+                                  <b>Measure:{!item.Name} </b>
+                              </h2>
+                            </div>
+                            
+                            <div class="slds-no-flex" style="margin-left:5px">
+                                <button id="{!item.Id}"
+                                        class="slds-button slds-button_neutral"
+                                        onclick="{!c.showMeasure}">
+                                    {!$Label.c.orm_show_button_title}<span id="{!item.orm_assessmentRisk__r.orm_assessment__c}"></span>
+                                    <span id="{!item.orm_assessmentRisk__c}"></span>
+                                </button>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner slds-truncate">
+                        Description: <b>{!item.orm_description__c}</b>
+                    </div>
+                    <div class=" slds-card__body slds-card__body_inner">
+	                   
+                    </div>
+                    
+                </article>
+            </div>
+        </div>
+       
+      </aura:iteration>
+  </div>
+  <div style="margin:auto; padding-bottom:10px">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previous}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
+	                            onclick="{!c.next}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
+	</div>
+</aura:component>

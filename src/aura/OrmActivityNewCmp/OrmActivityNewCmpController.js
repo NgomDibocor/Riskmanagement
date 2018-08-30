@@ -24,7 +24,7 @@
         var startDate = component.find('startDate').get('v.value');
         var endDate = component.find('endDate').get('v.value');
         
-        /* ici on test la validité des données ajoutées */
+        /* check is items valid */
         var isItemsValid = true;
         if($A.util.isEmpty(name) || $A.util.isEmpty(description) || $A.util.isEmpty(status)  
         		|| $A.util.isEmpty(startDate) || $A.util.isEmpty(endDate)){
@@ -48,7 +48,7 @@
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if ( state == "SUCCESS") {
-                   alert("ajout réussie");
+                  
                    var evt = $A.get("e.c:OrmActivityCreatedEvt");
 				   evt.fire();
                    helper.closeModal(component);
@@ -61,6 +61,7 @@
                                                              'orm_user__c' : '',
                                                              'orm_assessment__c' : ''
                                                          });
+                                                          component.set("v.isOpen", false);
                 } else {
                     alert("ERROR");
                 }

@@ -1,6 +1,5 @@
 ({
 	createContact : function(component, event, helper) {
-		alert(JSON.stringify(component.get('v.assessmentData')));
 		var firstname = component.find('idname');
 		var lastname = component.find('idlastname');
 		var phone = component.find('idphone');
@@ -28,17 +27,10 @@
 			action.setParams({
 				"item" : newItem
 			});
-			alert(JSON.stringify(newItem));
 			action.setCallback(this, function(response) {
 				var state = response.getState();
 				if (state == "SUCCESS") {
-					alert('success');
-					var evt = $A.get("e.c:OrmNewContactEvt");
-					evt.setParams({
-						"Assessmentdata" : component.get("v.assessmentData")
-					});
-					evt.fire();
-
+				
 					component.set("v.item", {
 						'sobjectType' : 'Contact',
 						'FirstName': '',
@@ -47,9 +39,18 @@
 						'Email' : '',
 						'orm_organisation__c' : ''
 					});
-					component.set("v.isOpen", false);
+				
+				var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : $A.get("$Label.c.orm_contact_menu")+" "+$A.get("$Label.c.orm_toast_success"),
+                'type' : 'success',
+                'mode' : 'dismissible'
+            });      
+            toast.fire();           
+            component.set("v.isOpen", false);
+         
+					
 				} else {
-					alert('error');
 					let
 					errors = response.getError();
 					let
@@ -66,7 +67,16 @@
 
 
 		} else {
-			// alert("ajout échouée");
+				let
+					errors = response.getError();
+					let
+					message = 'Unknown error'; // Default error message
+					// Retrieve the error message sent by the server
+					if (errors && Array.isArray(errors) && errors.length > 0) {
+						message = errors[0].message;
+					}
+					// Display the message
+					console.error(message);
 		}
 
 	},

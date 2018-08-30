@@ -24,7 +24,7 @@ public class OrmActivityController {
  @AuraEnabled 
     public static List<Assessment__c> findAllActivity(){
         List<Assessment__c> allActivity = new List<Assessment__c>();
-        allActivity = [Select Id, Name, orm_startDate__c, orm_endDate__c, orm_activityStatus__c
+        allActivity = [Select Id, Name, orm_startDate__c, orm_endDate__c, orm_activityStatus__c,orm_description__c
                     From Assessment__c where RecordTypeId=:OrmActivityController.getActivityRecordTypeId() 
                     order by Name];
         return allActivity;

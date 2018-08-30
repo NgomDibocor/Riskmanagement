@@ -172,12 +172,13 @@ public class OrmAssessmentController {
     public static Assessment__c getAssessment(String idAss){
         return [Select Id, Name, orm_description__c, orm_typeAssessment__c, orm_objectif__c, 
                        orm_typeProjet__c, orm_clientIndustrySector__c, orm_statusAssessment__c, orm_currency__c,
-                       orm_schedule__c, orm_riskManager__c,orm_riskManager__r.Name, orm_projetManager__c, orm_projetManager__r.Name, 
-                       orm_pilote__c, orm_copilote__c, orm_startDate__c, orm_endDate__c, orm_commercialBudget__c,
+                       orm_schedule__c, orm_riskManager__c,orm_riskManager__r.Name, orm_projetManager__c, 
+                       orm_projetManager__r.Name, orm_pilote__c, orm_pilote__r.Name, orm_copilote__c, 
+                       orm_copilote__r.Name, orm_startDate__c, orm_endDate__c, orm_commercialBudget__c, 
                        orm_maxCostExposture__c, orm_max_schedule_exposture__c, orm_finaliteProcessus__c,
                        orm_referenceProcessus__c, orm_applicationDateProcessus__c, orm_organisation__c, 
-                       orm_organisation__r.Name, orm_client_name__c, orm_size__c, orm_organisationIndustrySector__c,
-                       orm_budgetOrganisation__c,orm_organisationManager__c, orm_organisationManager__r.Name,
+                       orm_organisation__r.Name, orm_client_name__c, orm_size__c, orm_organisationIndustrySector__c, 
+                       orm_budgetOrganisation__c, orm_organisationManager__c, orm_organisationManager__r.Name, 
                        orm_pays__c, orm_region__c
                 From Assessment__c 
                 Where Id = : idAss ];

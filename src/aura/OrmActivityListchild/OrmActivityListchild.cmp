@@ -29,7 +29,7 @@
 	<aura:attribute name="nameEditMode" type="boolean" default="false" />
 	<aura:attribute name="statusEditMode" type="boolean" default="false" />
 	<aura:attribute name="periodEditMode" type="boolean" default="false" />
-	
+	<aura:attribute name="descriptionEditMode" type="boolean" default="false" />
 	<aura:attribute name="assessmentData" type="Assessment__c"
 		default="{
 						'sobjectType' : 'Assessment__c',
@@ -50,7 +50,7 @@
 					<span class="slds-truncate" title="{!$Label.c.orm_name_activity}">{!v.singleRec.Name}</span>
 					<button onclick="{!c.inlineEditName}"
 						class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
-						tabindex="0" title="{!$Label.c.edit_button_title}">
+						tabindex="0" title="{!$Label.c.orm_edit_button_title}">
 						<lightning:icon iconName="utility:edit" size="xx-small"
 							alternativeText="edit" />
 					</button>
@@ -81,8 +81,8 @@
 			class="slds-grid slds-grid_align-spread"> <!-- show input and output section based on boolean flag -->
 				<aura:if isTrue="{!v.periodEditMode == false}">
 					<span class="slds-truncate" title="Period"> <ui:outputDate
-							format="dd/MM/yyyy" value="{!v.singleRec.orm_startDate__c}" /> <span>
-							- </span> <ui:outputDate format="dd/MM/yyyy"
+							format="yyyy-MM-dd" value="{!v.singleRec.orm_startDate__c}" /> <span>
+							/ </span> <ui:outputDate format="yyyy-MM-dd"
 							value="{!v.singleRec.orm_endDate__c}" />
 					</span>
 					<button onclick="{!c.inlineEditPeriod}"
@@ -121,7 +121,7 @@
 					<span class="slds-truncate" title="Status">{!v.singleRec.orm_activityStatus__c}</span>
 					<button onclick="{!c.inlineEditStatus}"
 						class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
-						tabindex="0" title="{!$Label.c.edit_button_title}">
+						tabindex="0" title="{!$Label.c.orm_edit_button_title}">
 						<lightning:icon iconName="utility:edit" size="xx-small"
 							alternativeText="edit" />
 					</button>
@@ -146,6 +146,39 @@
 					</aura:set>
 				</aura:if>
 		</span></td>
+<td ondblclick="{!c.inlineEditDescription}"
+			class="{! v.showErrorClass == true ? 'slds-cell-edit slds-has-error' : 'slds-cell-edit'}">
+			<span class="slds-grid slds-grid_align-spread"> <!-- show input and output section based on boolean flag -->
+				<aura:if isTrue="{!v.descriptionEditMode == false}">
+					<span class="slds-truncate" title="{!$Label.c.orm_name_activity}">{!v.singleRec.orm_description__c}</span>
+					<button onclick="{!c.inlineEditDescription}"
+						class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+						tabindex="0" title="{!$Label.c.orm_edit_button_title}">
+						<lightning:icon iconName="utility:edit" size="xx-small"
+							alternativeText="edit" />
+					</button>
+
+					<!-- Inline Edit Section in else case-->
+					<aura:set attribute="else">
+						<section tabindex="0" class="slds-popover slds-popover_edit"
+							role="dialog" style="position: absolute; top: 0px">
+							<div class="slds-popover__body">
+								<div class="slds-form-element slds-grid slds-wrap">
+									<div class="slds-form-element__control slds-grow">
+										<ui:inputText class="slds-input inputFieldWidth"
+											labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+											aura:id="inputIddesc" blur="{!c.closeDescriptionBox}"
+											change="{!c.onNameChange}" required="true" label="{!$Label.c.orm_description}"
+											value="{!v.singleRec.orm_description__c}" />
+									</div>
+								</div>
+							</div>
+							<span id="form-end" tabindex="0"></span>
+						</section>
+					</aura:set>
+				</aura:if>
+		</span>
+		</td>
 		<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
                   <div class="slds-form-element">
                      <div class="slds-form-element__control">

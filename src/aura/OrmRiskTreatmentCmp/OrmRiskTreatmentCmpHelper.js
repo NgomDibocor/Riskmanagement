@@ -4,11 +4,12 @@
         actionOrgs.setParams({
             "idMeasure": idMeasure
         });
+        component.set('v.idMeasure',idMeasure);
         actionOrgs.setCallback(this, function(response) {
             var state = response.getState();
             if (state === 'SUCCESS') {
                 component.set('v.measureData', response.getReturnValue());
-                alert(JSON.stringify(response.getReturnValue()));
+               
                 var idAssessmentRisk = component.get('v.measureData');
                 component.set('v.idAssessmentRisk', idAssessmentRisk.orm_assessmentRisk__c);
                 component.set("v.displaySaveCancelBtn", false);

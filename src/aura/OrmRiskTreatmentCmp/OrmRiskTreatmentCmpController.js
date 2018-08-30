@@ -31,7 +31,6 @@
 
         var statusMeasure = component.find("statusMeasure");
         measureData.orm_measure_Status__c = statusMeasure.get("v.value");
-        alert(statusMeasure.get("v.value"))
 
         var measureResponsable = component.find("measureResponsable");
         measureData.orm_measureResponsable__c = measureResponsable.get("v.value");
@@ -41,7 +40,6 @@
 
         var description = component.find("description");
         measureData.orm_description__c = description.get("v.value");
-        alert(JSON.stringify(measureData))
         var action = component.get('c.add');
         action.setParams({
             "item": measureData
@@ -59,7 +57,8 @@
 
                 toastEvent.fire();
                 component.set("v.displaySaveCancelBtn", false);
-
+                var idMeasure = component.get('v.idMeasure');
+                helper.refreshMeasureShow(component, event,idMeasure );
             } else {
                 alert($A.get("$Label.c.orm_error"));
             }
@@ -109,6 +108,7 @@
  * 2018-08-27 : David diop - Implementation
  */
     onChangeStatusMeasure: function(component, event, helper) {
+        component.find("statusMeasure").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.search_title_label"),
@@ -116,7 +116,6 @@
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
-        component.find("statusMeasure").set("v.value", event.getSource().get("v.value"));
     },
     
      /**
@@ -128,6 +127,7 @@
  * 2018-08-27 : David diop - Implementation
  */
     onChangeMeasureResponsable : function(component, event, helper) {
+        component.find("measureResponsable").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.search_title_label"),
@@ -135,10 +135,7 @@
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
-        component.find("measureResponsable").set("v.value", event.getSource().get("v.value"));
         
-         var statusMeasure = component.find("statusMeasure");
-         alert(statusMeasure.get("v.value"))
     },
  /**
  *

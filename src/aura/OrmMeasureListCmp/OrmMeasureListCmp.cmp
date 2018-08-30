@@ -1,0 +1,116 @@
+<aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
+  
+  <!-- attributes -->
+  <aura:attribute name="measures" type="Assessment__c[]" />
+  <aura:attribute name="idAssessmentRisk" type="string" />
+  <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+  <aura:attribute name="key" type="string" description="" />
+  <aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
+  <aura:attribute name="showButtonDelete" type="Boolean" default="false" />
+	
+  <!-- events  -->
+  <aura:registerEvent name="OrmNewMeasureClickedEvt"  type="c:OrmNewMeasureClickedEvt"/>
+  <aura:registerEvent name="OrmDeleteMeasuresEvt" type="c:OrmDeleteMeasuresEvt" description="" />
+  
+  <aura:handler event="c:OrmMeasureCreatedEvt" action="{!c.refreshList}" />
+  <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.getIdAssessmentRisk}" />
+  <aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
+  
+  <div class="slds-m-around_large">
+		<div class="topSpacing">
+        	<label class="slds-form-element__label ">{!$Label.c.orm_measure_label}<span class="cmn_mandatory_indicator">*</span></label>
+        </div>                                        
+	    <div class="measure">
+	    
+	    	<div class="measureSearch">
+		    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldMeasure}">
+					<lightning:input type="text" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
+				</a>
+			</div>
+			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" onclick="{!c.openNewMeasureCmp}">
+	        	<lightning:icon iconName="utility:new" size="small" />
+	        </span>
+	        
+	        <aura:if isTrue="{!v.showButtonDelete}">
+	        	<span class="deleteMeasure" onclick="{!c.openModalDeleteMeasure}">
+					<lightning:icon iconName="utility:delete" size="small" />
+				</span>
+	        </aura:if>
+	        
+	
+			<!-- use aura:if for show/hide buttons --> 
+	        <aura:if isTrue="{!v.showSaveCancelBtn}">
+	            <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
+	        		<!--button for save and cancel Record after Inline Edit-->
+	        		<lightning:buttonGroup class="slds-m-around_medium">
+	                <lightning:button label="{!$Label.c.cancel_button_title}" onclick="{!c.cancel}"/>
+	                <lightning:button label="{!$Label.c.save_button_title}" onclick="{!c.save}" variant="success"/>
+	            </lightning:buttonGroup>
+	        	</div>
+	        </aura:if> 
+        
+	        <!--Data Table-->     
+	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+	            <thead>
+	                <tr class="slds-text-title--caps">
+	                  <th style="width:3.25rem;" class="slds-text-align--right">
+		              	<div class="slds-form-element">
+		                	<div class="slds-form-element__control">
+		                    	<label class="slds-checkbox">
+		                        	<!--header checkbox for select all-->
+		                        	<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
+		                        	<span class="slds-checkbox--faux"></span>
+		                        	<span class="slds-form-element__label text"></span>
+		                     	</label>
+		                    </div>
+		                </div>
+		              </th> 
+	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_label_cause}">{!$Label.c.orm_measure_label}</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_description}">{!$Label.c.orm_measure_description}</div></th>
+	                </tr>
+	            </thead>
+	            
+	            <tbody>
+	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
+	                <aura:iteration items="{!v.measures}" var="measure" indexVar="sNo">
+	                   <!-- Child Lightning Component --> 
+	                    <c:OrmMeasureEditRowCmp measure="{!measure}"
+	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
+	                                     sNo="{!sNo + 1}" />                       
+	                </aura:iteration>
+	            </tbody>
+	        </table>
+		</div>
+	</div>
+	
+	<!-- openModalConfirmDeletion  -->
+	    <aura:if isTrue="{!v.openModalConfirmDeletion}">    
+	    	<div class="demo-only" style="height: 640px;">
+			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
+			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			    <div class="slds-modal__container">
+			      <header class="slds-modal__header header">
+			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
+			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+			        	title="{!$Label.c.close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
+			        </button>
+			      </header>
+			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+			        <p>{!$Label.c.deletion_message}</p>
+			      </div>
+			      <footer class="slds-modal__footer">			        
+					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteMeasure}">{!$Label.c.cancel_button_title}</button>
+					<button class="slds-button slds-button_brand" onclick="{!c.confirmDeleteMeasure}">{!$Label.c.orm_confirm_button}</button>					
+			      </footer>
+			    </div>
+			  </section>
+			  <div class="slds-backdrop slds-backdrop_open"></div>
+			</div>	    
+	    </aura:if>
+	<!-- /openModalConfirmDeletion -->
+		
+	
+	<c:OrmMeasureNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
+</aura:component>

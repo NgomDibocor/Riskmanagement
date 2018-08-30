@@ -1,4 +1,5 @@
 ({
+
 	fetchPicklist : function(component, event, idMeasure) {
         var actionstatus = component.get("c.getSelectOptions");
         actionstatus.setParams({

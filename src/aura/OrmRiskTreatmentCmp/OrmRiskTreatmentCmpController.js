@@ -32,7 +32,6 @@
 
         var statusMeasure = component.find("statusMeasure");
         measureData.orm_measure_Status__c = statusMeasure.get("v.value");
-        
 
         var measureResponsable = component.find("measureResponsable");
         measureData.orm_measureResponsable__c = measureResponsable.get("v.value");
@@ -42,7 +41,7 @@
 
         var description = component.find("description");
         measureData.orm_description__c = description.get("v.value");
-        console.log(JSON.stringify(measureData));
+
         var action = component.get('c.add');
         action.setParams({
             "item": measureData
@@ -57,10 +56,9 @@
                     'type': 'success',
                     'mode': 'dismissible'
                 });
-
                 toastEvent.fire();
                 component.set("v.displaySaveCancelBtn", false);
-
+                
             } else {
                 alert($A.get("$Label.c.orm_error"));
             }
@@ -110,6 +108,7 @@
  * 2018-08-27 : David diop - Implementation
  */
     onChangeStatusMeasure: function(component, event, helper) {
+        component.find("statusMeasure").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.search_title_label"),
@@ -117,7 +116,6 @@
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
-        component.find("statusMeasure").set("v.value", event.getSource().get("v.value"));
     },
     
      /**
@@ -137,9 +135,6 @@
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
-       
-         var statusMeasure = component.find("statusMeasure");
-         console.log(statusMeasure.get("v.value"))
     },
  /**
  *

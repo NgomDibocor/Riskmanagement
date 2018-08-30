@@ -1,4 +1,4 @@
-<aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
+<aura:component  controller="OrmMeasureController">
 	<aura:handler action="{!c.measureShow}" event="c:OrmInstanceRiskTreatmentEvt" />
 	
 	<aura:attribute name="idMeasure" type="string" />
@@ -72,7 +72,7 @@
                                change="{!c.onChangeStatusMeasure}" class="slds-select"
                                labelClass="slds-form-element__label" >
                                <ui:inputSelectOption  text="{!v.measureData.orm_measure_Status__c}"
-                                                   label="{!v.measureData.orm_measure_Status__c}"/>
+                                                      label="{!v.measureData.orm_measure_Status__c}"/>
                            <aura:iteration items="{!v.status}" var="status">
                                <ui:inputSelectOption text = "{!status}"
                                                      label= "{!status}" />

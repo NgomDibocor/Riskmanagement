@@ -8,7 +8,8 @@
  * 2018-08-24 : David diop - Implementation
  */
     measureShow: function(component, event, helper) {
-        helper.refreshMeasureShow(component, event, event.getParam('MeasureId'));
+        helper.fetchPicklist(component, event, event.getParam('MeasureId'));
+        
     },
 /**
  *
@@ -31,7 +32,7 @@
 
         var statusMeasure = component.find("statusMeasure");
         measureData.orm_measure_Status__c = statusMeasure.get("v.value");
-        alert(statusMeasure.get("v.value"))
+        
 
         var measureResponsable = component.find("measureResponsable");
         measureData.orm_measureResponsable__c = measureResponsable.get("v.value");
@@ -41,7 +42,7 @@
 
         var description = component.find("description");
         measureData.orm_description__c = description.get("v.value");
-        alert(JSON.stringify(measureData))
+        console.log(JSON.stringify(measureData));
         var action = component.get('c.add');
         action.setParams({
             "item": measureData
@@ -128,6 +129,7 @@
  * 2018-08-27 : David diop - Implementation
  */
     onChangeMeasureResponsable : function(component, event, helper) {
+        component.find("measureResponsable").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.search_title_label"),
@@ -135,10 +137,9 @@
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
-        component.find("measureResponsable").set("v.value", event.getSource().get("v.value"));
-        
+       
          var statusMeasure = component.find("statusMeasure");
-         alert(statusMeasure.get("v.value"))
+         console.log(statusMeasure.get("v.value"))
     },
  /**
  *

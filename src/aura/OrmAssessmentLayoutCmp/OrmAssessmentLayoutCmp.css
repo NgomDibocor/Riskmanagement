@@ -69,3 +69,13 @@
     display: inline-block;
     width:3%;
 }
+.THIS .startSpaceBackTop {
+    display: inline-block;
+    width:95%;
+}
+.THIS .backTop {
+    display: inline-block;
+    width:5%;
+    cursor: pointer;
+}
+

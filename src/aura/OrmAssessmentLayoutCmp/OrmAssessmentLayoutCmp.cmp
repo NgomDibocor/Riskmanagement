@@ -1255,6 +1255,16 @@
                         </td>
                     </tr>
                 </aura:if>
+	                <tr>
+	                     <td class="textInDiv">
+	                        <div class="slds-col">
+                                    <span class="startSpaceBackTop"></span>                                  
+							        <div class="backTop">
+							            <lightning:icon  onclick="{!c.BackToTopFunction}" iconName="utility:jump_to_top" size="large" />
+							        </div>
+							 </div>
+	                     </td>
+	                 </tr>
             </table>
             
     </div>

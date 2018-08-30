@@ -388,5 +388,10 @@
     {
         component.set("v.displaySaveCancelBtn",false);
     },
+    BackToTopFunction: function(component, event, helper)
+    {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    },
    
 })

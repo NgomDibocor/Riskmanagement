@@ -219,8 +219,8 @@
 
             toast.fire();
      }else{
-        component.set("v.showRiskIdentif", false);
-        component.set("v.showMeasureInfo", true);
+        //component.set("v.showRiskTreatment", true);
+        //component.set("v.showMeasureInfo", true);
         helper.activeRiskTreatment(component, event);
         component.set("v.idMeasure", idMeasure);
         var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");

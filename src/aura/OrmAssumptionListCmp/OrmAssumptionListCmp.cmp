@@ -3,11 +3,14 @@
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!-- 	declare aura attribute -->
 		<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-	
+ <aura:handler event="c:OrmAssumptionCreatedEvt" action="{!c.refreshList}" />
+	<aura:attribute name="assumptionList" type="Macro[]"/>
+		<aura:attribute name="storeAssumptionList" type="Macro[]"/>
 	<aura:attribute name="assessmentData" type="Assessment__c" />
 	<aura:attribute name="key" type="string" />
 <!-- 	aura registerEvent -->
 <aura:registerEvent name="OrmNewAssumptionClickedEvt"  type="c:OrmNewAssumptionClickedEvt"/>
+
 	 <!-- start header page content search bar and action button -->
   <div class="slds-grid slds-gutters">
     <div class=" slds-size--2-of-12   slds-p-horizontal--small">
@@ -17,7 +20,6 @@
                 <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
           </a>
         </div>
-        
         <div class=" slds-size--4-of-12   slds-p-horizontal--small">
           <br/>
          <span class="btnNewAssumption" onclick="{!c.openNewAssumption}">
@@ -56,10 +58,10 @@
 
 			<tbody>
 				<!--### display all records of workshop attribute one by one by aura:iteration ###-->
-				<aura:iteration items="{!v.WorkshopList}" var="workshop"
+				<aura:iteration items="{!v.assumptionList}" var="assumption"
 					indexVar="sNo">
 					<!-- start iteration -->
-					  <c:OrmWorkShopListChildCmp singleRec="{!workshop}" assessmentData="{!v.assessmentData}"
+					  <c:OrmAssumptionListChildCmp assumption="{!assumption}" assessmentData="{!v.assessmentData}"
 						showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
 				</aura:iteration>
 			</tbody>

@@ -1,7 +1,9 @@
 ({
+
 		doInit:function(component, event, helper){
-		
+		helper.refreshList(component, event);
 		},
+		
 	    openNewAssumption : function(component, event, helper){
                 
         var idAssessment = component.get("v.assessmentData").Id;

@@ -37,4 +37,19 @@ public with sharing class OrmAssumptionController {
 					RecordTypeId =:OrmAssumptionController.getAssumptionRecordTypeId()];
 	
 	}
+	/**
+ * save List workshop
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method for update records Assumption after inline editing
+ * @history 
+ * 2018-08-30 : Salimata NGOM - Implementation
+ */ 
+     
+    @AuraEnabled
+    public static List <Macro> saveAssumption(List<Macro> listAssumption) {
+        update listAssumption;
+        return listAssumption;
+    }
 }

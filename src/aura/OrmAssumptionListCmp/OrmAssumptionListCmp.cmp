@@ -2,8 +2,9 @@
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!-- 	declare aura attribute -->
+		<aura:attribute name="showSaveCancelBtn" type="boolean" default="false"/>
 		<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
- <aura:handler event="c:OrmAssumptionCreatedEvt" action="{!c.refreshList}" />
+ <aura:handler event="c:OrmAssumptionCreatedEvt" action="{!c.doInit}" />
 	<aura:attribute name="assumptionList" type="Macro[]"/>
 		<aura:attribute name="storeAssumptionList" type="Macro[]"/>
 	<aura:attribute name="assessmentData" type="Assessment__c" />

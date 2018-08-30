@@ -1,0 +1,44 @@
+<aura:component controller="OrmAssumptionController" access="global"
+	extends="c:ormAbstractListCmp"
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
+	<!-- 	declare aura attribute -->
+	<aura:attribute name="assessmentData" type="Assessment__c"
+		default="{
+						'sobjectType' : 'Assessment__c',
+						'Description':''
+						
+					}" />
+	<aura:attribute name="key" type="string" />
+<!-- 	aura registerEvent -->
+<aura:registerEvent name="OrmNewAssumptionClickedEvt"  type="c:OrmNewAssumptionClickedEvt"/>
+	
+		   <!-- start header page content search bar and action button -->
+  <div class="slds-grid slds-gutters">
+    <div class=" slds-size--2-of-12   slds-p-horizontal--small">
+    </div>
+        <div class=" slds-size--6-of-12   slds-p-horizontal--small">
+         <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
+                <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
+          </a>
+        </div>
+        
+        <div class=" slds-size--4-of-12   slds-p-horizontal--small">
+          <br/>
+         <span class="btnNewAssumption" onclick="{!c.openNewAssumption}">
+           <lightning:icon iconName="utility:new" size="medium" /></span>
+       	<span></span>
+         <span class="btnDeleteAssumption" onclick="{!c.removeAssumption}">
+        <!-- use aura:if for show/hide buttons -->
+		<aura:if isTrue="{!v.showSaveCancelBtn}">
+			<!--button for save and cancel Record after Inline Edit-->
+			<lightning:buttonGroup class="slds-m-around_medium">
+				<lightning:button label="{!$Label.c.orm_cancel_button_title}"
+					onclick="{!c.cancel}" />
+				<lightning:button label="{!$Label.c.orm_save_button_title}"
+					onclick="{!c.Save}" variant="success" />
+			</lightning:buttonGroup>
+		</aura:if>
+        </div>
+        </div>
+         <!-- end header page content search bar and action button -->
+</aura:component>

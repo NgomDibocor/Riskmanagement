@@ -3,7 +3,6 @@
 	controller="OrmAssumptionController">
 
 	<!-- handler -->
-	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:handler action="{!c.openModalAssumption}" event="c:OrmNewAssumptionClickedEvt" />
 
 	<!-- attributes -->

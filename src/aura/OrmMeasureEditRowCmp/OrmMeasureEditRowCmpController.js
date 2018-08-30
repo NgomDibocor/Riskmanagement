@@ -1,4 +1,8 @@
 ({
+	doInit : function(component, event, helper) {
+		component.set("v.selectedCount", 0);
+	},
+	
 	inlineEditName : function(component, event, helper) {
 		// show the name edit field popup 
         component.set("v.nameEditMode", true); 
@@ -40,8 +44,7 @@
             component.set("v.showErrorClass", false);
         }
     },
-    
-    
+        
     onNameChange : function(component, event, helper){ 
     	// if edit field value changed and field not equal to blank,
         // then show save and cancel button by set attribute to true
@@ -86,50 +89,31 @@
     checkboxSelect : function(component, event, helper) { 
      
     	var showButtonDelete = false;
-    	var checkboxSelecteds = component.find("boxPack");
-    	var selectedBooleans = [];
-    	selectedBooleans = component.get('v.selectedBooleans');
-    	if(!Array.isArray(checkboxSelecteds)) {
-    		if (checkboxSelecteds.get("v.value") == true) {
-    			//showButtonDelete = true; 
-    			   			
-    			selectedBooleans.push(1);
-    			component.set('v.selectedBooleans', selectedBooleans);
-    		} else {
-    			if(component.get('v.selectedBooleans').length != null && component.get('v.selectedBooleans').length > 0){
-    				selectedBooleans.splice(0,1);
-    				component.set('v.selectedBooleans', selectedBooleans);
-    			}
-			}
-    	} else {
-			checkboxSelecteds.forEach(function(element){
-				if(element.get('v.value') == true) {
-					//showButtonDelete = true;
-					//break;
-					selectedBooleans.push(1);
-					
-					component.set('v.selectedBooleans', selectedBooleans);
-				} else {
-					if(component.get('v.selectedBooleans').length != null && component.get('v.selectedBooleans').length > 0){
-						selectedBooleans.splice(0,1);
-						component.set('v.selectedBooleans', selectedBooleans);
-					}
-				}
-			});
-		}
+    	 // get the selected checkbox value  
+    	var selectedRec = event.getSource().get('v.value');
+    	// get the selectedCount attrbute value(default is 0) for add/less numbers. 
+    	var getSelectedNumber = component.get('v.selectedCount');
+    	// check, if selected checkbox value is true then increment getSelectedNumber with 1 
+    	// else Decrement the getSelectedNumber with 1 
+    	if (selectedRec == true) {
+    		console.log('selectedRec '+ selectedRec);
+    		getSelectedNumber++;
+	    } else {
+	    	console.log('selectedRec '+ selectedRec);
+	    	getSelectedNumber--;
+	    }
+		// set the actual value on selectedCount attribute to show on header part. 
+    	component.set("v.selectedCount", getSelectedNumber);
+    	console.log('getSelectedNumber '+ getSelectedNumber);
 		
-		var index = component.get('v.selectedBooleans').indexOf(1);
-		if(index != -1){
+		if(getSelectedNumber > 0) {
+			console.log('afficher');
 			showButtonDelete = true;
+		} else {
+			console.log('masquer');
+			showButtonDelete = false;
 		}
-		/*component.get('v.selectedBooleans').forEach(function(element){
-			console.log('elememt '+ element);
-			if(element){
-				showButtonDelete = true;
-				return;
-			}
-		});*/
-		//console.log('declenche event '+ showButtonDelete);		
+			
 		var evt = $A.get('e.c:OrmShowButtondeleteMeasureEvt');
 		evt.setParams({'showButtonDelete': showButtonDelete});
 		evt.fire();

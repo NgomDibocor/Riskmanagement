@@ -68,22 +68,22 @@
     filter : function (component, event, helper){
     	
     	var causes = component.get('v.causes');
-    	var data = causes;
+    	//var data = causes;
     	var key = component.get('v.key');
     	var regex;    	
     	
     	if ($A.util.isEmpty(key)) {    	
-    		helper.refresh(component, component.get("v.assessmentRiskId"));    		      
+    		helper.refresh(component, component.get("v.idAssessmentRisk"));    		      
          } else {
         	key = "^" + key;
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true
-        	 		data = data.filter(regex.test(row.Description));
+        	 		causes = causes.filter(cause => regex.test(cause.Description));
 		        } catch (e) {
 		    	   
 		        }
-		   component.set("v.causes", data);
+		   component.set("v.causes", causes);
          }        	
     },
     

@@ -119,7 +119,7 @@
 		evt.fire();
     },
     showMeasure :  function(component, event, helper) { 
-    	   var currentRecordId = component.get("v.measure.Id");
+    	  var currentRecordId = component.get("v.measure").Id;
     	  var evt = $A.get("e.c:OrmActiveRiskTraitementCmpEvt");
 	        evt.setParams({
 	            "idMeasure": currentRecordId

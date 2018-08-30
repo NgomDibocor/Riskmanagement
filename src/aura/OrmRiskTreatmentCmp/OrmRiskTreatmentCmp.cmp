@@ -1,22 +1,12 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
 	<aura:handler action="{!c.measureShow}" event="c:OrmInstanceRiskTreatmentEvt" />
-	<aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.updateMeasure}" />
+	
 	<aura:attribute name="idMeasure" type="string" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="allUser" type="User[]" />
-	<aura:attribute name="measureData" type="Assessment__c" default="{
-																		'sobjectType' : 'Assessment__c',
-												                         'Name': '',  
-												                         'orm_description__c':'',
-												                         'orm_AssessmentRisk__c' :'',
-												                         'orm_startDate__c':'',
-												                         'orm_endDate__c':'',
-												                         'orm_measureStatus__c':'',
-												                         'orm_measure_Cost__c':'',
-												                         'orm_measureCategorie__c':''
-																	}" />
+	<aura:attribute name="measureData" type="Assessment__c" default="{'sobjectType' : 'Assessment__c','Name': ''}" />
 	<aura:attribute name="displaySaveCancelBtn" type="boolean" default="false"/> 
-	<aura:attribute name="objInfo" type="orm_assessmentRisk__c" default="{sobjectType : 'Assessment__c'}" />
+	<aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
 	<aura:attribute name="status" type="String[]" />
      <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
     <aura:attribute name="closeFieldDescription" type="boolean" default="true" />
@@ -78,19 +68,16 @@
                 </div>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                      <b> 
-                       <ui:inputSelect aura:id="status"   change="{!c.onStatus}"
-                               class="slds-select"
+                       <ui:inputSelect aura:id="statusMeasure"  
+                               change="{!c.onChangeStatusMeasure}" class="slds-select"
                                labelClass="slds-form-element__label" >
-                               <ui:inputSelectOption  text="{!v.measureData.orm_measureStatus__c}"
-                                                   label="{!v.measureData.orm_measureStatus__c}"/>
+                               <ui:inputSelectOption  text="{!v.measureData.orm_measure_Status__c}"
+                                                   label="{!v.measureData.orm_measure_Status__c}"/>
                            <aura:iteration items="{!v.status}" var="status">
                                <ui:inputSelectOption text = "{!status}"
                                                      label= "{!status}" />
                            </aura:iteration>
                         </ui:inputSelect>
-                       
-                        </b>
                     </div>
                 </div>
             </td>
@@ -129,10 +116,9 @@
              </div>
             <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                      
-                     <b> 
-                       <ui:inputSelect aura:id="measureResponsable"   change="{!c.measureResponsable}"
-                               class="slds-select"
+                    
+                       <ui:inputSelect aura:id="measureResponsable"   
+                               change="{!c.onChangeMeasureResponsable}" class="slds-select"
                                labelClass="slds-form-element__label" >
                                <ui:inputSelectOption  text="{!v.measureData.orm_measureResponsable__c}"
                                                    label="{!v.measureData.orm_measureResponsable__r.Name}"/>
@@ -142,7 +128,6 @@
                            </aura:iteration>
                         </ui:inputSelect>
                        
-                        </b>
                   </div>
              </div>
             </td>

@@ -4,7 +4,7 @@
 
 	<!-- handler -->
 	<aura:handler action="{!c.openModalAssumption}" event="c:OrmNewAssumptionClickedEvt" />
-
+	 <aura:registerEvent name="OrmAssumptionCreatedEvt"  type="c:OrmAssumptionCreatedEvt"/>
 	<!-- attributes -->
 	<aura:attribute name="assessmentData" type="Assessment__c" />
 	<aura:attribute name="assumption" type="Macro"
@@ -38,7 +38,7 @@
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
 										
-                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_name_assumption}" class="slds-input"
+                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_name_assumption}" 
                                      			value="{!v.assumption.Name}" required="true"/>
 										</div>
 									</div>

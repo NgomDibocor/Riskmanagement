@@ -1,4 +1,7 @@
 ({
+		doInit:function(component, event, helper){
+		
+		},
 	    openNewAssumption : function(component, event, helper){
                 
         var idAssessment = component.get("v.assessmentData").Id;

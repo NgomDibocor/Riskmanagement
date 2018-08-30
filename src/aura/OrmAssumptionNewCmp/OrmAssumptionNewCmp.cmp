@@ -6,7 +6,7 @@
 	<aura:handler action="{!c.openModalAssumption}" event="c:OrmNewAssumptionClickedEvt" />
 
 	<!-- attributes -->
-	<aura:attribute name="idAssessmentRisk" type="string" />
+	<aura:attribute name="assessmentData" type="Assessment__c" />
 	<aura:attribute name="assumption" type="Macro"
 		default="{ 'sobjectType' : 'Macro',
 														  'Name' : '',

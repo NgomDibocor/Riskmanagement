@@ -1169,6 +1169,11 @@
                                <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
                           </td>
                       </tr>
+                      <tr>
+                         <td>
+                           <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
+                         </td>
+                    </tr>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextWorkshop}">
                      <tr>
@@ -1212,14 +1217,9 @@
                       </td>
                     </tr> <hr/>
                     <tr>
-                      <td>
-                        <c:OrmImpactListCmp />
-                      </td>
-                    </tr>
-                     <tr>
-                      <td>
-                        <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
-                      </td>
+                       <td>
+                          <c:OrmImpactListCmp />
+                       </td>
                     </tr>
                 </aura:if>
                  

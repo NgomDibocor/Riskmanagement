@@ -1,3 +1,4 @@
+
 ({
     fetchPicklist : function(component, event) { 
         if(component.get("v.showAssessmentRisk")== true){

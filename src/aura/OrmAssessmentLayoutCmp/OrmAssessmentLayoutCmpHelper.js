@@ -548,6 +548,24 @@
         component.set("v.showChevronleft", true);   
         component.set("v.showChevronright", true);
     },
+    
+    scrollFunction : function(component) { 
+       if (document.documentElement.scrollTop > 20) {
+          document.getElementById("myBtn").style.display = "block";
+	    } else {
+	        document.getElementById("myBtn").style.display = "none";
+	    }
+           
+           /*if (document.documentElement.scrollTop > 20) {
+                var cmpTarget = component.find('iconBackTop');
+                $A.util.removeClass(cmpTarget, 'backTop');
+                $A.util.addClass(cmpTarget, 'showIconBackTop');	
+		    } else {
+		        var cmpTarget = component.find('iconBackTop');
+		        $A.util.removeClass(cmpTarget, 'showIconBackTop');
+                $A.util.addClass(cmpTarget, 'backTop');	
+		    }*/
+    }
       
     
     

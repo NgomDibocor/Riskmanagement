@@ -86,7 +86,7 @@
         </li>
         <li aura:id="riskAnalyseId" class="slds-tabs--path__item slds-is-active" role="presentation">
           <a class="slds-tabs--path__link" id="tabs-path-440" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
-             href="javascript:void(0);" aria-live="assertive" onclick="{!c.riskAnalyeClicked}">
+             href="javascript:void(0);" aria-live="assertive" onclick="{!c.riskAnalyeTabClicked}">
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
@@ -95,7 +95,7 @@
         </li>
         <li aura:id="riskTreatmentId" class="slds-tabs--path__item slds-is-active" role="presentation">
           <a class="slds-tabs--path__link" id="tabs-path-440" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
-             href="javascript:void(0);" aria-live="assertive" onclick="{!c.riskTreatmentClicked}">
+             href="javascript:void(0);" aria-live="assertive" onclick="{!c.riskTreatmentTabClicked}">
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
@@ -1050,16 +1050,21 @@
                      </div>
                   </td>
                </tr> 
-               <tr>
+               <!--<tr>
                    <td class="textInDiv">
-                       <div class="slds-col">
-                                  <span class="startSpaceBackTop"></span>                                  
-					        <div class="backTop">
-					            <lightning:icon  onclick="{!c.BackToTopFunction}" iconName="utility:jump_to_top" size="large" />
-					        </div>
-					   </div>
-                    </td>
-                </tr>      
+                      <div class="slds-col">
+                        <span class="startSpaceBackTop"></span>                                  
+				        <div class="backTop" aura:id="iconBackTop">
+				            <lightning:icon  onclick="{!c.BackToTopFunction}" iconName="utility:jump_to_top" size="large" />
+				        </div>
+				     </div>
+                   </td>
+                </tr> --> 
+                <tr>
+                   <td class="textInDiv">
+                       <button onclick="{!c.topFunction}" id="myBtn" title="Go to top">Top</button> 
+                   </td>
+                </tr>    
             </aura:if>
             <aura:if isTrue="{!v.showContext2}">
                   <tr>

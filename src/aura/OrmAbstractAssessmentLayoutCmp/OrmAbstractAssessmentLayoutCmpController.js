@@ -11,55 +11,46 @@
         var showListMeasure = component.get("v.showListMeasure");
         var showRiskTreatment = component.get("v.showRiskTreatment");
         if(showContext == true){
-            var newItem = component.get("v.assessmentData");
-            //var assessmentName = component.find("Name").get("v.value");
-            //console.log('assessmentName:::'+assessmentName);
-            /*if(assessmentName =='' || assessmentName == null || newItem.Id == null ){
-                component.set("v.setMessage",'error');           
-            }
-
-            if(component.get("v.setMessage")=='error')
-            { 
-                component.set("v.showContext", true);
-                component.set("v.showContextWorkshop", false);
-                component.set("v.showRiskIdentif",false);
-                component.set("v.showRiskAnalyse", false);
-                component.set("v.showContextActivity", false);
-                component.set("v.showError", true);
-                component.set("v.showData", false);
-                
-            }*/
-            //else
-            //{ 
-                component.set("v.showContext", false);
+            var idAssessment = component.get("v.assessmentData").Id;
+	        if(idAssessment != null){
+		        component.set("v.showContext", false);
                 component.set("v.showContext2", true);
                 helper.activeContext2(component, event);
-                
-          //  }
-            
-        }  
+	        }else{
+	             var toast = $A.get('e.force:showToast');
+	             toast.setParams({
+	            	'message' : 'Create first an assessment',
+	                'type' : 'warning',
+	                'mode' : 'dismissible'
+	             });
+	             toast.fire();
+	         }        
+         }  
+        
         if(showContext2 == true){
-       
             component.set("v.showContext2", false);
             component.set("v.showContextActivity", true);
             helper.activeContextActivity(component, event);
-            
         }
+        
         if(showContextActivity == true){
             component.set("v.showContextActivity", false);
             component.set("v.showContextWorkshop", true);
             helper.activeContextWorkshop(component, event);
         }
+        
         if(showContextWorkshop == true){
             component.set("v.showContextWorkshop", false);
             component.set("v.showRiskIdentif", true);
             helper.activeRiskIdentif(component, event);
         }
+        
         if(showRiskIdentif == true){
             component.set("v.showRiskIdentif", false);
             component.set("v.showRiskAnalyse", true);
             helper.activeRiskAnalye(component, event);
         }   
+        
         if(showRiskAnalyse == true){
             component.set("v.showListCauseAndImpact", true);
             component.set("v.showRiskAnalyse", false);
@@ -68,8 +59,8 @@
             evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
             evt.fire();
             helper.activeRiskAnalyeListCauseAndImpact(component, event);
-                
         }
+        
         if(showListCauseAndImpact == true){
             component.set("v.showListMeasure", true);
             component.set("v.showListCauseAndImpact", false);
@@ -79,9 +70,11 @@
             evt.fire();
             helper.activeRiskAnalyeListMeasure(component, event);
         }
+        
         /*if(showListMeasure == true){
             
         }*/
+        
         if(showRiskTreatment == true){
             component.set("v.showActionPlan", true);
             component.set("v.showRiskTreatment", false);
@@ -162,85 +155,89 @@
     activeContext : function(component, event, helper) {
         helper.activeContext(component, event);
     },
-    /* laye */
+    
     activeRiskIdentif : function(component, event, helper) {
-        /*var evt = $A.get("e.c:OrmRiskIdentificationClickedEvt");
-        evt.setParams({"idAssessment": component.get("v.assessmentData").Id});
-        evt.fire();*/
         var idAssessment = component.get("v.assessmentData").Id;
         if(idAssessment == null){
-        	//alert("check if you have created the assessment");
         	var toast = $A.get('e.force:showToast');
             toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
+            	'message' : 'Create first an assessment',
                 'type' : 'warning',
                 'mode' : 'dismissible'
             });
-
             toast.fire();
         }else{
-        
-        helper.activeRiskIdentif(component, event);   
+            helper.activeRiskIdentif(component, event);   
         }
     },
     
     activeRiskAnalye : function(component, event, helper) {
-
-     var idAssessmentRisk = event.getParam("idAssessmentRisk");
-     if(idAssessmentRisk == null){
-     var toast = $A.get('e.force:showToast');
-            toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
-                'type' : 'warning',
-                'mode' : 'dismissible'
-            });
-
-            toast.fire();
-     }else{
-        component.set("v.showRiskIdentif", false);
-        component.set("v.showRiskAnalyse", true);
-        helper.activeRiskAnalye(component, event);
-        component.set("v.idAssessmentRisk", idAssessmentRisk);
-        var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
-        evt.setParams({"riskAssessmentId": idAssessmentRisk});
-        evt.fire();
-        }
+	     var idAssessmentRisk = event.getParam("idAssessmentRisk");
+	     var idAssessment = component.get("v.assessmentData").Id;
+         if(idAssessment != null){
+	            if(idAssessmentRisk == null){
+		            var toast = $A.get('e.force:showToast');
+		            toast.setParams({
+		            	'message' : 'Please, select an assessmentRisk in Risk Identification',
+		                'type' : 'warning',
+		                'mode' : 'dismissible'
+		            });
+		            toast.fire();
+		        }else{
+			        component.set("v.showRiskIdentif", false);
+			        component.set("v.showRiskAnalyse", true);
+			        helper.activeRiskAnalye(component, event);
+			        component.set("v.idAssessmentRisk", idAssessmentRisk);
+			        var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
+			        evt.setParams({"riskAssessmentId": idAssessmentRisk});
+			        evt.fire();
+		       }
+	       
+         }else{
+	             var toast = $A.get('e.force:showToast');
+	             toast.setParams({
+	            	'message' : 'Create first an assessment',
+	                'type' : 'warning',
+	                'mode' : 'dismissible'
+	             });
+	             toast.fire();
+         }
+	     
     },
     
-    activeRiskTreatment : function(component, event, helper) {
-     var idMeasure = event.getParam("idMeasure");
-     if(idMeasure == null){
-     var toast = $A.get('e.force:showToast');
-            toast.setParams({
-            	'message' : 'Check if you Have Created the Assessment',
+    riskAnalyeTabClicked : function(component, event, helper) {
+         var idAssessmentRisk = component.get("v.idAssessmentRisk");
+         var idAssessment = component.get("v.assessmentData").Id;
+         if(idAssessment != null){
+             if(idAssessmentRisk == null){
+	         var toast = $A.get('e.force:showToast');
+	                toast.setParams({
+	                    'message' : 'Please, select an assessmentRisk in Risk Identification',
+	                    'type' : 'warning',
+	                    'mode' : 'dismissible'
+	                });
+	    
+	                toast.fire();
+	         }else{
+	                component.set("v.showRiskIdentif", false);
+	                component.set("v.showRiskAnalyse", true);
+	                helper.activeRiskAnalye(component, event);
+	                var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
+	                evt.setParams({"riskAssessmentId": idAssessmentRisk});
+	                evt.fire();
+	         }
+         }else{         
+             var toast = $A.get('e.force:showToast');
+             toast.setParams({
+            	'message' : 'Create first an assessment',
                 'type' : 'warning',
                 'mode' : 'dismissible'
-            });
-
-            toast.fire();
-     }else{
-        //component.set("v.showRiskTreatment", true);
-        //component.set("v.showMeasureInfo", true);
-        helper.activeRiskTreatment(component, event);
-        component.set("v.idMeasure", idMeasure);
-        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
-        evt.setParams({"MeasureId": idMeasure});
-        evt.fire();
-        }
-        
-    },
-    activeActionPlan : function(component, event, helper) {
-        helper.activeActionPlan(component, event);
-    },
-    
-	navigateToListAssessment : function (component, event, helper) {
-	   var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
-	   evtSpinner.fire();
-       var evt = $A.get("e.c:OrmDisplayListAssessmentEvt");
-	   evt.fire();
-    },
-    riskAnalyeClicked : function(component, event, helper) {
-        var toast = $A.get('e.force:showToast');
+             });
+             toast.fire();
+         }
+         
+       
+        /*var toast = $A.get('e.force:showToast');
         toast.setParams({
         	'message' : 'please, select an assessmentRisk in Risk Identification',
             'type' : 'warning',
@@ -249,10 +246,74 @@
         toast.fire();
         var field = "Risk Analysis";
         var description = "You must select an assessmentRisk in Risk Identification before to navigate to this tab";
-        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);*/
     },
-    riskTreatmentClicked : function(component, event, helper) {
-        var toast = $A.get('e.force:showToast');
+    
+    activeRiskTreatment : function(component, event, helper) {
+     var idMeasure = event.getParam("idMeasure");
+     var idAssessment = component.get("v.assessmentData").Id;
+     if(idAssessment != null){
+         if(idMeasure == null){
+		     var toast = $A.get('e.force:showToast');
+	         toast.setParams({
+	        	'message' : 'Please, select a measure in Risk Analysis',
+	            'type' : 'warning',
+	            'mode' : 'dismissible'
+	         });
+	         toast.fire();
+	         
+	    }else{
+	        //component.set("v.showRiskTreatment", true);
+	        //component.set("v.showMeasureInfo", true);
+	        helper.activeRiskTreatment(component, event);
+	        component.set("v.idMeasure", idMeasure);
+	        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
+	        evt.setParams({"MeasureId": idMeasure});
+	        evt.fire();
+	     }
+        
+     }else{
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : 'Create first an assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });
+            toast.fire();
+     }
+     
+   },
+    
+   riskTreatmentTabClicked : function(component, event, helper) {
+     var idMeasure = component.get("v.idMeasure");
+     var idAssessment = component.get("v.assessmentData").Id;
+     if(idAssessment != null){
+         if(idMeasure == null){
+	     var toast = $A.get('e.force:showToast');
+	            toast.setParams({
+	            	'message' : 'Please, select a measure in Risk Analysis',
+	                'type' : 'warning',
+	                'mode' : 'dismissible'
+	            });
+	
+	            toast.fire();
+	     }else{	      
+	        helper.activeRiskTreatment(component, event);
+	        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
+	        evt.setParams({"MeasureId": idMeasure});
+	        evt.fire();
+	     }
+     }else{
+         var toast = $A.get('e.force:showToast');
+         toast.setParams({
+        	'message' : 'Create first an assessment',
+            'type' : 'warning',
+            'mode' : 'dismissible'
+         });
+         toast.fire();
+     }
+	     
+        /*var toast = $A.get('e.force:showToast');
         toast.setParams({
         	'message' : 'please, select a measure in Risk Analysis',
             'type' : 'warning',
@@ -261,6 +322,30 @@
         toast.fire();
         var field = "Risk Treatment";
         var description = "You must select a  measure in Risk Analysis before to navigate to this tab";
-        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);*/
+  },
+    
+    activeActionPlan : function(component, event, helper) {
+        var idAssessment = component.get("v.assessmentData").Id;
+        if(idAssessment != null){
+	        helper.activeActionPlan(component, event);   
+        }else{
+             var toast = $A.get('e.force:showToast');
+             toast.setParams({
+            	'message' : 'Create first an assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+             });
+             toast.fire();
+         }        
     },
+    
+	navigateToListAssessment : function (component, event, helper) {
+	   var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	   evtSpinner.fire();
+       var evt = $A.get("e.c:OrmDisplayListAssessmentEvt");
+	   evt.fire();
+    },
+    
+    
 })

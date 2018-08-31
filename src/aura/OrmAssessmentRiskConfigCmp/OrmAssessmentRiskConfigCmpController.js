@@ -5,98 +5,9 @@
      */
     doInit: function(component, event, helper) {
     var riskAssessmentId = event.getParam('riskAssessmentId');
-		console.log("bien   " + riskAssessmentId);
 		component.set("v.assessmentRiskId" ,riskAssessmentId);
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
-        var actionOrgs = component.get("c.findAssessmentRisk");
-        actionOrgs.setParams({
-            "item": idAsssessmentRisk
-           
-        });
-       // component.set("v.categorieRisk", item);
-        actionOrgs.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === 'SUCCESS') { 
-                component.set('v.assessmentRiskData', response.getReturnValue());
-            } else {
-
-                alert("l'Element n'a pas été retrouvé");
-            }
-        });
-        
-         var actionFrequency = component.get("c.getSelectOptions");
-        actionFrequency.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_frequency__c'});
-        actionFrequency.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS'){
-                component.set('v.frequency', response.getReturnValue());
-            } else {
-                alert("l'Element n'a pas été retrouvé");
-            }
-        });
-        
-         var actionmanageAbility = component.get("c.getSelectOptions");
-        actionmanageAbility.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_manageAbility__c'});
-        actionmanageAbility.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS'){
-                component.set('v.manageAbility', response.getReturnValue());
-            } else {
-                alert("l'Element n'a pas été retrouvé");
-            }
-        });
-        var actionproductionLoss = component.get("c.getSelectOptions");
-        actionproductionLoss.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_productionLoss__c'});
-        actionproductionLoss.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS'){
-                component.set('v.productionLoss', response.getReturnValue());
-            } else {
-                alert("l'Element n'a pas été retrouvé");
-            }
-        });
-        
-         var actionschedule = component.get("c.getSelectOptions");
-        actionschedule.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_schedule__c'});
-        actionschedule.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS'){
-                component.set('v.schedule', response.getReturnValue());
-            } else {
-                alert("l'Element n'a pas été retrouvé");
-            }
-        });
-        
-         var actionstatus = component.get("c.getSelectOptions");
-        actionstatus.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_status__c'});
-        actionstatus.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS'){
-                component.set('v.status', response.getReturnValue());
-            } else {
-                alert("l'Element n'a pas été retrouvé");
-            }
-        });
-        
-         var actionvulnerability = component.get("c.getSelectOptions");
-        actionvulnerability.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_vulnerability__c'});
-        actionvulnerability.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS'){
-                component.set('v.vulnerability', response.getReturnValue());
-            } else {
-                alert("l'Element n'a pas été retrouvé");
-            }
-        });
-        $A.enqueueAction(actionvulnerability);
-        $A.enqueueAction(actionstatus);
-        $A.enqueueAction(actionschedule);
-        $A.enqueueAction(actionproductionLoss);
-        $A.enqueueAction(actionmanageAbility);
-        $A.enqueueAction(actionFrequency);
-        $A.enqueueAction(actionOrgs);
-        
-        
+        helper.fetchPicklist(component, event, idAsssessmentRisk);
       },
       updateAssessmentRisk : function(component, event, helper) {
       var assessmentRisk = component.get("v.assessmentRiskData");
@@ -145,7 +56,7 @@
                 component.set("v.assessmentRiskData",response.getReturnValue());
                     var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
-                            'message' :'crée avec success',
+                            'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
                             'type' : 'success',
                             'mode' : 'dismissible'
                         });

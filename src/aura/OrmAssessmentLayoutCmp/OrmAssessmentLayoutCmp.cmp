@@ -1246,6 +1246,12 @@
                             <c:OrmRiskTreatmentCmp />
                         </td>
                     </tr>
+                    <hr/>
+                     <tr>
+                        <td >
+                            <c:OrmMeasureProgressionCmp />
+                        </td>
+                    </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showActionPlan}">
                     

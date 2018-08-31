@@ -1,0 +1,5 @@
+<aura:component  controller="OrmAttachmentController" access="global"
+	extends="c:ormAbstractListCmp"
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
+	
+</aura:component>

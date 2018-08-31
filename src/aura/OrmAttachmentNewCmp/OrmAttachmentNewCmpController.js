@@ -1,4 +1,15 @@
 ({
+
+	/**
+	 * @author: Salimata NGOM
+	 * @date: Creation: 31/08/2018
+	 * @description: method for save the file
+	 *               
+	 */
+	 openModalAttachment:function(component, event, helper) {
+	 component.set("v.isOpenfileUploadNewCmp", event.getParam('isOpenfileUploadNewCmp'));
+		component.set('v.parentId', event.getParam('parentId'));
+	 },
 	/**
 	 * @author: Salimata NGOM
 	 * @date: Creation: 31/08/2018
@@ -34,7 +45,8 @@
 	 *               
 	 */
     closeModelfileUploadCmp: function(component,event,helper){
-	// for Hide/Close Model,set the "isOpen" attribute to "Fasle"
+	// for Hide/Close Model,set the "isOpenfileUploadNewCmp" attribute to "False"
 		component.set("v.isOpenfileUploadNewCmp", false);
 	}
+	   
 })

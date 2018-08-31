@@ -2,9 +2,10 @@
 	
 	showformfileUploadNew:function(component,event,helper){
 	//fire event OrmOpenAttachmentNewEvent
-	var evt = $A.get("e.c:OrmNewAssumptionClickedEvt");
+	var evt = $A.get("e.c:OrmOpenAttachmentNewEvent");
+	//idassessment=a051H00000ZoUVQQA3
 			evt.setParams({
-			   "parentId" : component.get("v.assessmentData"),
+			   "parentId" :'a051H00000ZoUVQQA3',
 			   "isOpenfileUploadNewCmp":true
 			});
 			evt.fire();

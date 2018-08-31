@@ -1,9 +1,12 @@
-<aura:component>
+<aura:component extends="c:ormAbstractListCmp"  controller="OrmMeasureController">
 	 <!-- attributes -->
   	<aura:attribute name="measureProgression" type="Product2[]" />
   	<aura:attribute name="idMeasure" type="string" />
+  	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
   	<!-- events  -->
 	<aura:handler action="{!c.measureProgression}" event="c:OrmInstanceRiskTreatmentEvt" />
+	<aura:handler event="c:OrmMeasureProgressionCreatedEvt" action="{!c.refreshList}" />
+	<aura:registerEvent name="OrmNewMeasureProgressionClickedEvt"  type="c:OrmNewMeasureProgressionClickedEvt"/>
 	Measure Progression
  	<div class="slds-m-around_large">
 		<div class="measureProgression">
@@ -12,14 +15,23 @@
 						<lightning:input type="text" value="{!v.key}" label="" />
 					</a>
 				</div>
-				<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure">
+				<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure"   onclick="{!c.openMeasureProgressionNew}">
 		        	<lightning:icon iconName="utility:new" size="small" />
 		        </span>
 		        
 		        <span class="deleteMeasure" >
 						<lightning:icon iconName="utility:delete" size="small" />
 			    </span> <br/><br/>
-			    
+			     <aura:if isTrue="{!v.showSaveCancelBtn}">
+	        	<div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
+	        		<!--button for save and cancel Record after Inline Edit-->
+		            <lightning:buttonGroup class="slds-m-around_medium">
+		                <lightning:button label="{!$Label.c.orm_cancel_button_title}"  onclick="{!c.cancel}"/>
+		                <lightning:button label="{!$Label.c.orm_save_button_title}"  onclick="{!c.save}" variant="success"/>
+		            </lightning:buttonGroup>
+	        	</div>
+	        </aura:if>
+	        	<br/><br/>
 			    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
 	            <thead>
 	                <tr class="slds-text-title--caps">
@@ -56,4 +68,5 @@
 	        </table>
 		</div>
 	</div>
+	<c:OrmMeasureProgressionNewCmp/>
 </aura:component>

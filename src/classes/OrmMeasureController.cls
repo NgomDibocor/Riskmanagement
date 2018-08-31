@@ -186,8 +186,30 @@ public with sharing class OrmMeasureController {
 		return [SELECT Id,orm_pourcentage__c,Description,Family,
 		orm_poucentageProgression__c,orm_dateProgression__c,orm_measure__c
 		        FROM Product2 
-		        WHERE orm_measure__c =: idMeasure 
+		        WHERE orm_measures__c =: idMeasure 
 		        AND RecordTypeId =: OrmMeasureController.getMeasureProgressionRecordTypeId()];
 	
 	}
+	/**
+	 * @author: David diop
+	 * @date: Creation: 31/08/2018
+	 * @description: add Measure Progression 
+	*/
+	@AuraEnabled
+	public static Product2 addMeasureProgression(Product2 item){        
+        item.RecordTypeId = OrmMeasureController.getMeasureProgressionRecordTypeId();
+		upsert item;
+		return item;
+	}
+	/**
+	 * @author: David
+	 * @date: Creation: 28/08/2018
+	 * @description: method for update records after inline editing
+	*/
+    @AuraEnabled
+    public static List <Product2> updateMeasureProgressions(List<Product2> measureProgression) {
+        update measureProgression;
+        return measureProgression;
+    }
+	
 }

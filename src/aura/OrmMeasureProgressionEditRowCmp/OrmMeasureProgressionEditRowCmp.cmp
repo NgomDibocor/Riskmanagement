@@ -9,12 +9,13 @@
     <aura:attribute name="FamilyEditMode" type="boolean" default="false" />
     <aura:attribute name="dateProgressionEditMode" type="boolean" default="false" />
     <aura:attribute name="measureProgression" type="Product2" default="{'sobjectType' : 'Product2',
+    															'Name':'xx',
                                                                'orm_pourcentage__c' : '',
                                                                'Description' : '',
                                                                'Family':'',
                                                                'orm_poucentageProgression__c':'',
                                                                'orm_dateProgression__c':'',
-                                                               'orm_measure__c':''
+                                                               'orm_measures__c':''
                                                                }"/>
     <aura:attribute name="selectedCount" type="integer" default="0"/>
     <aura:attribute name="statusPicklistOpts" type="string[]"

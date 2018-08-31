@@ -69,4 +69,5 @@
 		</table>
 	</div>
 	<c:OrmAssumptionNewCmp/>
+	<c:OrmAttachmentListCmp/>
 </aura:component>

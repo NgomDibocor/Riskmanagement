@@ -42,11 +42,7 @@
         component.set("v.pourcentageEditMode", false); 
         // check if change/update Name field is blank, then add error class to column -
         // by setting the 'showErrorClass' att. as True , else remove error class by setting it False   
-        if(event.getSource().get("v.value").trim() == ''){
-            component.set("v.showErrorClass", true);
-        } else {
-            component.set("v.showErrorClass", false);
-        }
+       
     },
     onPourcentageChange : function(component, event, helper){ 
     	// if edit field value changed and field not equal to blank,
@@ -69,11 +65,7 @@
         component.set("v.poucentageProgressionEditMode", false); 
         // check if change/update Name field is blank, then add error class to column -
         // by setting the 'showErrorClass' att. as True , else remove error class by setting it False   
-        if(event.getSource().get("v.value").trim() == ''){
-            component.set("v.showErrorClass", true);
-        } else {
-            component.set("v.showErrorClass", false);
-        }
+     
     },
     onPoucentageProgressionChange : function(component, event, helper){ 
     	// if edit field value changed and field not equal to blank,
@@ -109,7 +101,7 @@
             component.set("v.showSaveCancelBtn",true);
         }
     },
-    nlineEditStatus: function(component, event, helper) {
+    inlineEditStatus: function(component, event, helper) {
 		// show the name edit field popup 
         component.set("v.FamilyEditMode", true); 
         // after the 100 millisecond set focus to input field  

@@ -17,9 +17,6 @@
             if (state === 'SUCCESS') {
                 var rows = response.getReturnValue();
                 
-                var firstRow = rows[0];
-                console.log(firstRow.orm_Risk__r.Name)
-                
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
                     if (row.orm_Risk__c) {

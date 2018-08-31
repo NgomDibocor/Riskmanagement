@@ -1,3 +1,3 @@
 <aura:application extends='force:slds'>
-	 <c:OrmWorkShopListCmp/>
+	 <c:OrmAttachmentListCmp/>
 </aura:application>

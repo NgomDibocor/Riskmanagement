@@ -1,0 +1,19 @@
+.THIS div.measureProgression {
+    display: inline-block;
+    width:95%;
+}
+.THIS .measureSearch {
+	display: inline-block;
+    width:90%;
+    margin-right: 15px;
+}
+.THIS span.btnNewMeasure {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+.THIS .deleteMeasure{
+	display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}

@@ -112,7 +112,7 @@
 	        
             <td>
             <div class="topSpacing">
-               <label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label>
+               <b><label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label></b>
              </div>
             <div class="slds-form-element ">
                     <div class="slds-form-element__control">

@@ -74,15 +74,16 @@
     width:95%;
 }
 .THIS .backTop {
-    display: inline-block;
+	/* display: none;  */
+	display: inline-block; 	
     width:5%;
     cursor: pointer; /* Add a mouse pointer on hover */
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
 }
 
 .THIS .showIconBackTop {
-    display: block; 
+    display: inline-block; 
+    width:5%;
+    cursor: pointer; /* Add a mouse pointer on hover */
 }
 .THIS .hideIconBackTop {
     display: none;

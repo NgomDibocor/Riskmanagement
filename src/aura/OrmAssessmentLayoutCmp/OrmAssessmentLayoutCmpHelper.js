@@ -550,13 +550,15 @@
     },
     
     scrollFunction : function(component) { 
-           var cmpTarget = cmp.find('iconBackTop');
-           if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                $A.util.removeClass(cmpTarget, 'hideIconBackTop');
-                $A.util.addClass(cmpTarget, 'showIconBackTop');		        
+           
+           if (document.documentElement.scrollTop > 20) {
+                var cmpTarget = component.find('iconBackTop');
+                $A.util.removeClass(cmpTarget, 'backTop');
+                $A.util.addClass(cmpTarget, 'showIconBackTop');	
 		    } else {
+		        var cmpTarget = component.find('iconBackTop');
 		        $A.util.removeClass(cmpTarget, 'showIconBackTop');
-                $A.util.addClass(cmpTarget, 'hideIconBackTop');	
+                $A.util.addClass(cmpTarget, 'backTop');	
 		    }
     }
       

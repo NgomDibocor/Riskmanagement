@@ -11,7 +11,8 @@
 	<aura:attribute name="isOpenfileUploadNewCmp" default="false"
 		type="Boolean" description="check if form upload file is visible" />
 	<!-- handler -->
-	<aura:handler action="{!c.openModalAttachment}" event="c:OrmOpenAttachmentNewEvent" />
+	<aura:handler action="{!c.openModalAttachment}"
+		event="c:OrmOpenAttachmentNewEvent" />
 	<!--Use aura:if tag to display Model Box, on the bese of conditions. [isOpen boolean attribute] -->
 	<aura:if isTrue="{!v.isOpenfileUploadNewCmp}">
 		<!--###### MODAL BOX Start From Here ######-->
@@ -20,7 +21,7 @@
 			<div class="slds-modal__container form-style-6">
 				<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
 				<div class="slds-modal__header">
-				<button
+					<button
 						class="slds-button slds-modal__close slds-button--icon-inverse"
 						title="Close" onclick="{!c.closeModelfileUploadCmp}">
 						X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
@@ -50,7 +51,7 @@
 
 				</div>
 				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
-								<div class="slds-modal__footer">
+				<div class="slds-modal__footer">
 					<button class="slds-button slds-button--neutral"
 						onclick="{!c.closeModelfileUploadCmp}">{!$Label.c.orm_cancel_button_title}</button>
 					<button class="slds-button slds-button--brand"

@@ -33,6 +33,31 @@ public with sharing class OrmAttachmentController {
     system.debug('testContentInsert.id');
     return testContentInsert.id;
 
-    }  
+    } 
+    /**
+ * @author: Salimata NGOM
+ * @date: Creation: 31/08/2018
+ * @description:  method for get attachment  uploaded
+*/
+    
+     @AuraEnabled
+     public static List<ContentDocument> findAllContentDocumentByParentId(String parentId){
+      List <Assessment__c> assessments=new List<Assessment__c>();
+        List<ContentDocumentLink> cdls= new List<ContentDocumentLink>();
+      assessments.add([select Id from Assessment__c where Id=:parentId]);
+      
+        for(Assessment__c pid:assessments ){
+         
+             cdls.addAll([select ContentDocumentId from ContentDocumentLink where LinkedEntityId =:pid.Id]);     
+        }
+            
+       set <Id> idcds = new set <Id> ();
+        for(ContentDocumentLink cdl:cdls ){
+            idcds.add(cdl.ContentDocumentId);
+        }
+        
+        return [SELECT Id,Title,ParentId from ContentDocument where Id IN :idcds ];
+}
+    
     
 }

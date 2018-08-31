@@ -1,0 +1,59 @@
+<aura:component>
+	 <!-- attributes -->
+  	<aura:attribute name="measureProgression" type="Product2[]" />
+  	<aura:attribute name="idMeasure" type="string" />
+  	<!-- events  -->
+	<aura:handler action="{!c.measureProgression}" event="c:OrmInstanceRiskTreatmentEvt" />
+	Measure Progression
+ 	<div class="slds-m-around_large">
+		<div class="measureProgression">
+		    	<div class="measureSearch">
+			    	<a href="javascript:void(0);" >
+						<lightning:input type="text" value="{!v.key}" label="" />
+					</a>
+				</div>
+				<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure">
+		        	<lightning:icon iconName="utility:new" size="small" />
+		        </span>
+		        
+		        <span class="deleteMeasure" >
+						<lightning:icon iconName="utility:delete" size="small" />
+			    </span> <br/><br/>
+			    
+			    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+	            <thead>
+	                <tr class="slds-text-title--caps">
+	                  <th style="width:3.25rem;" class="slds-text-align--right">
+		              	<div class="slds-form-element">
+		                	<div class="slds-form-element__control">
+		                    	<label class="slds-checkbox">
+		                        	<!--header checkbox for select all-->
+		                        	<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
+		                        	<span class="slds-checkbox--faux"></span>
+		                        	<span class="slds-form-element__label text"></span>
+		                     	</label>
+		                    </div>
+		                </div>
+		              </th> 
+	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_DateProgression_label}">{!$Label.c.orm_DateProgression_label}</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_Percent_label}">{!$Label.c.orm_Percent_label}</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_PourcentageProgression_label}">{!$Label.c.orm_PourcentageProgression_label}</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_ProductDescription_label}">{!$Label.c.orm_ProductDescription_label}</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_statusProgress_label}">{!$Label.c.orm_statusProgress_label}</div></th>
+	                </tr>
+	            </thead>
+	            
+	            <tbody>
+	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
+	               <aura:iteration items="{!v.measureProgression}" var="measureProgression" indexVar="sNo">
+	                   <!-- Child Lightning Component --> 
+	                    <c:OrmMeasureProgressionEditRowCmp measureProgression="{!measureProgression}"
+	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
+	                                     sNo="{!sNo + 1}" />                       
+	                </aura:iteration>
+	            </tbody>
+	        </table>
+		</div>
+	</div>
+</aura:component>

@@ -2,8 +2,8 @@
 	afterRender: function (component, helper) {
       this.superAfterRender();
       
-        window.onscroll = function() {
+        /*window.onscroll = function() {
            helper.scrollFunction(component);
-        };    
+        }; */   
     }
 })

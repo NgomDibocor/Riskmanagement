@@ -550,8 +550,13 @@
     },
     
     scrollFunction : function(component) { 
+       if (document.documentElement.scrollTop > 20) {
+          document.getElementById("myBtn").style.display = "block";
+	    } else {
+	        document.getElementById("myBtn").style.display = "none";
+	    }
            
-           if (document.documentElement.scrollTop > 20) {
+           /*if (document.documentElement.scrollTop > 20) {
                 var cmpTarget = component.find('iconBackTop');
                 $A.util.removeClass(cmpTarget, 'backTop');
                 $A.util.addClass(cmpTarget, 'showIconBackTop');	
@@ -559,7 +564,7 @@
 		        var cmpTarget = component.find('iconBackTop');
 		        $A.util.removeClass(cmpTarget, 'showIconBackTop');
                 $A.util.addClass(cmpTarget, 'backTop');	
-		    }
+		    }*/
     }
       
     

@@ -1059,7 +1059,12 @@
 				        </div>
 				     </div>
                    </td>
-                </tr>      
+                </tr>  
+                <tr>
+                   <td class="textInDiv">
+                       <button onclick="{!c.topFunction}" id="myBtn" title="Go to top">Top</button> 
+                   </td>
+                </tr>    
             </aura:if>
             <aura:if isTrue="{!v.showContext2}">
                   <tr>

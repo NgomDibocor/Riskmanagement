@@ -42,6 +42,7 @@
         	newMeasureProgression.Description = Description ;
         	newMeasureProgression.Family = status ;
         	newMeasureProgression.orm_measures__c = component.get("v.idMeasure");
+        	newMeasureProgression.Name ='xxxx';
         	
         	var action = component.get('c.addMeasureProgression');
             action.setParams({

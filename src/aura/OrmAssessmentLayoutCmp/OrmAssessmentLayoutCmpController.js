@@ -394,4 +394,8 @@
         document.documentElement.scrollTop = 0;
     },
    
+   topFunction: function(component, event, helper)
+    {
+       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    },
 })

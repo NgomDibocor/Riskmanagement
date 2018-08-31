@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event template" >
+<aura:attribute name="parentId" type="String" description="parent Id attachment" />
+<aura:attribute name="isOpenfileUploadNewCmp" type="Boolean" description="" />
+</aura:event>

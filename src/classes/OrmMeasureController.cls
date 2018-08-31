@@ -14,7 +14,16 @@ public with sharing class OrmMeasureController {
                   .get('RT Measure').getRecordTypeId();
         return RecordTypeId;
     }
-    
+    /**
+	 * @author: David diop
+	 * @date: Creation: 15/08/2018
+	 * @description: get recordType MeasureProgression
+	*/
+    public static Id getMeasureProgressionRecordTypeId(){
+         Id recordTypeId = Schema.SObjectType.Product2.getRecordTypeInfosByName()
+                  .get('RT measure Progression').getRecordTypeId();
+        return RecordTypeId;
+    }
     /**
 	 * @author: Dibocor NGOM
 	 * @date: Creation: 15/08/2018
@@ -167,4 +176,18 @@ public with sharing class OrmMeasureController {
       allOpts.sort();
       return allOpts;
  	}
+ 	 /**
+	 * @author: David diop
+	 * @date: Creation: 31/08/2018
+	 * @description: find all measureProgression related to the measure
+	*/
+	@AuraEnabled
+	public static List<Product2> getAllMeasuresProgressionByMeasure(String idMeasure){
+		return [SELECT Id,orm_pourcentage__c,Description,Family,
+		orm_poucentageProgression__c,orm_dateProgression__c,orm_measure__c
+		        FROM Product2 
+		        WHERE orm_measure__c =: idMeasure 
+		        AND RecordTypeId =: OrmMeasureController.getMeasureProgressionRecordTypeId()];
+	
+	}
 }

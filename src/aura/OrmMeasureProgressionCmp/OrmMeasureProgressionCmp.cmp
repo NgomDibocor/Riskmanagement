@@ -1,6 +1,7 @@
 <aura:component>
 	 <!-- attributes -->
   	<aura:attribute name="measureProgression" type="Product2[]" />
+  	<aura:attribute name="idMeasure" type="string" />
   	<!-- events  -->
 	<aura:handler action="{!c.measureProgression}" event="c:OrmInstanceRiskTreatmentEvt" />
 	Measure Progression
@@ -45,7 +46,12 @@
 	            
 	            <tbody>
 	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-	               
+	               <aura:iteration items="{!v.measureProgression}" var="measureProgression" indexVar="sNo">
+	                   <!-- Child Lightning Component --> 
+	                    <c:OrmMeasureProgressionEditRowCmp measureProgression="{!measureProgression}"
+	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
+	                                     sNo="{!sNo + 1}" />                       
+	                </aura:iteration>
 	            </tbody>
 	        </table>
 		</div>

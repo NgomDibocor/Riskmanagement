@@ -10,6 +10,7 @@
     measureProgression: function(component, event, helper) {
        // helper.fetchPicklist(component, event, event.getParam('MeasureId'));
         alert(event.getParam('MeasureId'));
-        
+        component.set("v.idMeasure", event.getParam('MeasureId'));
+		helper.getAllMeasuresByAssessmentRisk(component, event);
     },
 })

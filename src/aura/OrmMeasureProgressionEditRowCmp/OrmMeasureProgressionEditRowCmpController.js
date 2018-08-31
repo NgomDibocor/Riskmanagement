@@ -1,6 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
-		component.set("v.selectedCount", 0);
+		helper.fetchPickListVal(component, 'Family', 'statusPicklistOpts');
 	},
 	inlineEditDateProgression : function(component, event, helper) {
 		// show the name edit field popup 
@@ -103,6 +103,33 @@
         }
     },
     onDescriptionChange : function(component, event, helper){ 
+    	// if edit field value changed and field not equal to blank,
+        // then show save and cancel button by set attribute to true
+        if(event.getSource().get("v.value").trim() != ''){ 
+            component.set("v.showSaveCancelBtn",true);
+        }
+    },
+    nlineEditStatus: function(component, event, helper) {
+		// show the name edit field popup 
+        component.set("v.FamilyEditMode", true); 
+        // after the 100 millisecond set focus to input field  
+        component.find("statusMeasure").set("v.options" , component.get("v.statusPicklistOpts")); 
+        setTimeout(function(){ 
+            component.find("statusMeasure").focus();
+        }, 100);
+	},
+	closeStatusBox : function(component, event, helper){ 
+    	// on focus out, close the input section by setting the 'nameEditMode' att. as false   
+        component.set("v.FamilyEditMode", false); 
+        // check if change/update Name field is blank, then add error class to column -
+        // by setting the 'showErrorClass' att. as True , else remove error class by setting it False   
+        if(event.getSource().get("v.value").trim() == ''){
+            component.set("v.showErrorClass", true);
+        } else {
+            component.set("v.showErrorClass", false);
+        }
+    },
+    onStatusChange : function(component, event, helper){ 
     	// if edit field value changed and field not equal to blank,
         // then show save and cancel button by set attribute to true
         if(event.getSource().get("v.value").trim() != ''){ 

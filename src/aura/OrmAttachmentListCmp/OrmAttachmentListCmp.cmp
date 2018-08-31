@@ -11,7 +11,7 @@
 	<aura:registerEvent name="OrmOpenAttachmentNewEvent"
 		type="c:OrmOpenAttachmentNewEvent" />
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" /> 
-	
+	<aura:handler event="c:OrmNewFileUploadCreatedEvent" action="{!c.doInit}" /> 
 	  <div class="slds-grid slds-gutters">
     <div class=" slds-size--2-of-12   slds-p-horizontal--small">
     </div>

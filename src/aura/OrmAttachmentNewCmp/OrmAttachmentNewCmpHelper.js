@@ -1,7 +1,7 @@
 ({
     MAX_FILE_SIZE: 750000, 
 
-    save : function(component) {
+    save : function(component,event) {
         // start/show the loading spinner   
         component.set("v.showLoadingSpinner", true);
         // get the selected files using aura:id [return array of files]
@@ -27,13 +27,13 @@
 
             fileContents = fileContents.substring(dataStart);
 
-            self.upload(component, file, fileContents);
+            self.upload(component, file, fileContents,event);
         };
 
         fr.readAsDataURL(file);
     },
 
-    upload: function(component, file, fileContents) {
+    upload: function(component, file, fileContents,event) {
         var action = component.get("c.saveTheFiles"); 
       alert("parentId="+ component.get("v.parentId"));
         action.setParams({
@@ -43,14 +43,21 @@
             contentType: file.type
         });
 
-        action.setCallback(this, function(a) {
-            attachId = a.getReturnValue();
+        action.setCallback(this, function(response) {
+            attachId = response.getReturnValue();
             console.log(attachId);
+            if(response.getState() == 'SUCCESS'){
+            alert('success');
+              var evt = $A.get("e.c:OrmNewFileUploadCreatedEvent");
+                  evt.fire();
+        
+            }
         });
 
         $A.run(function() {
             $A.enqueueAction(action); 
         });
+        
         component.set("v.isOpenfileUploadNewCmp", false);
 
     } })

@@ -19,6 +19,7 @@
 		});
 		$A.enqueueAction(action);
 	},
+	
 	getSelectedItem : function(component, event) {
 
 		var index = event.target.dataset.index;

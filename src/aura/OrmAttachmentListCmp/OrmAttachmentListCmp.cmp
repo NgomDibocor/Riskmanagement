@@ -1,5 +1,11 @@
 <aura:component  controller="OrmAttachmentController" access="global"
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
+<!-- 	aura register event -->
+	<aura:registerEvent name="OrmOpenAttachmentNewEvent"  type="c:OrmOpenAttachmentNewEvent"/>
 	
+	<span class="btnNewAttachment" onclick="{!c.showformfileUploadNew}">
+           <lightning:icon iconName="utility:new" size="medium" /></span>
+    
+	<c:OrmAttachmentNewCmp/>
 </aura:component>

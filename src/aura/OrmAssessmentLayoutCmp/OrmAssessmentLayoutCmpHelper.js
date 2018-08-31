@@ -548,6 +548,17 @@
         component.set("v.showChevronleft", true);   
         component.set("v.showChevronright", true);
     },
+    
+    scrollFunction : function(component) { 
+           var cmpTarget = cmp.find('iconBackTop');
+           if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                $A.util.removeClass(cmpTarget, 'hideIconBackTop');
+                $A.util.addClass(cmpTarget, 'showIconBackTop');		        
+		    } else {
+		        $A.util.removeClass(cmpTarget, 'showIconBackTop');
+                $A.util.addClass(cmpTarget, 'hideIconBackTop');	
+		    }
+    }
       
     
     

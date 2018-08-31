@@ -1053,8 +1053,8 @@
                <tr>
                    <td class="textInDiv">
                        <div class="slds-col">
-                                  <span class="startSpaceBackTop"></span>                                  
-					        <div class="backTop">
+                            <span class="startSpaceBackTop"></span>                                  
+					        <div class="backTop" aura:id="iconBackTop">
 					            <lightning:icon  onclick="{!c.BackToTopFunction}" iconName="utility:jump_to_top" size="large" />
 					        </div>
 					   </div>

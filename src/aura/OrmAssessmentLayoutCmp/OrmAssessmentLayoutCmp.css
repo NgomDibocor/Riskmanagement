@@ -76,6 +76,15 @@
 .THIS .backTop {
     display: inline-block;
     width:5%;
-    cursor: pointer;
+    cursor: pointer; /* Add a mouse pointer on hover */
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+}
+
+.THIS .showIconBackTop {
+    display: block; 
+}
+.THIS .hideIconBackTop {
+    display: none;
 }
 

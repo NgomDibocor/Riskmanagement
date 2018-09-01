@@ -104,7 +104,6 @@
 	            "c:OrmAssessmentLayoutCmp", {
 	                "assessmentData": event.getParam("assessmentObject"),
 	                "showContext": false,
-	                "showRiskAnalyse" : false,
 	                "showMeasureInfo": true,
 	                "showRiskTreatment":true,
 	                "idAssessmentRisk" : event.getParam("idAssessmentRisk"),

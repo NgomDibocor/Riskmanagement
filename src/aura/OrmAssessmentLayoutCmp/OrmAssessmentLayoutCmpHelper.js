@@ -1,6 +1,17 @@
 
 ({
+    /**
+	 * @author: Dibocor NGOM
+	 * @date: Creation: 03/07/2018
+	 * @description: this method loads picklist value
+	 *               
+	 */
     fetchPicklist : function(component, event) { 
+       // I test if I've not clicked on showAssessmentRisk or on showInfoMeasure
+        if(component.get("v.showAssessmentRisk")== false && component.get("v.showMeasureInfo")== true){
+        
+        }
+        // I test if I've clicked on showAssessmentRisk
         if(component.get("v.showAssessmentRisk")== true){
            var evt = $A.get("e.c:OrmActiveRiskAnalyeCmpEvt");
            evt.setParams({
@@ -8,7 +19,8 @@
            });
            evt.fire();
          }    
-         if(component.get("v.showRiskTreatment")== true){
+         // I test if I've clicked on showInfoMeasure
+         if(component.get("v.showMeasureInfo")== true){
            var evt = $A.get("e.c:OrmActiveRiskTraitementCmpEvt");
            evt.setParams({
              "idMeasure": component.get("v.idMeasure")

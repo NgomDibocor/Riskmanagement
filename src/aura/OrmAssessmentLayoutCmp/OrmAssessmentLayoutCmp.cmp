@@ -1,10 +1,5 @@
 <aura:component access="GLOBAL" controller="OrmAssessmentController" extends="c:OrmAbstractAssessmentLayoutCmp">
-    <ltng:require 
-		    styles="{!$Resource.noUiSlider + '/nouislider.min.css'}"
-		    scripts="{!$Resource.noUiSlider + '/nouislider.min.js'}"
-		    afterScriptsLoaded="{!c.sliderInit}" />
-    
-    
+   
     <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}"/>
     <aura:attribute name="showContext" type="boolean" default="true"/>
     <aura:attribute name="showContext2" type="boolean" default="false"/>
@@ -49,12 +44,7 @@
     <aura:attribute name="displaySaveCancelBtn" type="boolean" default="false"/>  
     <aura:attribute name="typeProjet" type="boolean" default="false"/>
     <aura:attribute name="typeProcessus" type="boolean" default="false"/>
-    <aura:attribute name="typeOrganisation" type="boolean" default="false"/>
-    <!-- slider -->
-    <aura:attribute name="valVH" type="Integer" default="100"/>
-    <aura:attribute name="valH" type="Integer" default="100"/>
-    <aura:attribute name="valM" type="Integer" default="100"/>
-    <aura:attribute name="valL" type="Integer" default="100"/>
+    <aura:attribute name="typeOrganisation" type="boolean" default="false"/>  
     
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
     <aura:handler event="c:OrmCloseFieldDescriptionEvt"  action="{!c.closeFielDescript}" />
@@ -1127,42 +1117,12 @@
                        </td>
                      </tr>
                   <aura:if isTrue="{!or(v.typeProjet == true, v.assessmentData.orm_typeAssessment__c == 'Projet')}">
-                   
                      <tr>
-                       <td>
-                          <div style="height:50px"> </div>
-                        </td>
+                         <td>
+                           <div style="height:50px"> </div>
+                            <c:OrmSliderCmp />
+                         </td>
                      </tr>
-                      <tr>
-                       <td class="textInDiv">
-                           <span style="margin-left:200px;">{!$Label.c.orm_costProjectBudget_label}</span>
-                        </td>
-                    </tr>
-                      <tr>
-                       <td class="textInDiv">
-                           <span class="spanClass" style="background-color: red;height:20px;width:10%">Very High</span>
-                            <lightning:slider class="slid"  value="{!v.valVH}" style="float:right" />
-                            <!-- <lightning:slider label="Volume" variant="label-hidden" type="vertical"/> -->
-                        </td>
-                    </tr>
-                    <tr>
-                       <td class="textInDiv">
-                           <span class="spanClass" style="background-color: rgb(255,165,0);height:20px;width:10%">High</span>
-                            <lightning:slider class="slid" value="{!v.valH}" style="float:right" />
-                        </td>
-                    </tr>
-                    <tr>
-                       <td class="textInDiv">
-                           <span class="spanClass" style="background-color: RGB(255,255,0);height:20px;width:10%">Medium</span>
-                            <lightning:slider class="slid" value="{!v.valM}" style="float:right" />
-                        </td>
-                    </tr>
-                    <tr>
-                       <td class="textInDiv">
-                           <span class="spanClass" style="background-color: rgb(154,205,50);height:20px;width:10%">Low</span>
-                            <lightning:slider class="slid" value="{!v.valL}" style="float:right" />
-                        </td>
-                    </tr>
                   </aura:if>
                   <aura:if isTrue="{!or(v.typeOrganisation == true, v.assessmentData.orm_typeAssessment__c == 'Organisation')}">
                   </aura:if>

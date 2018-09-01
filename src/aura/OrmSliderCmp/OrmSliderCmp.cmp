@@ -1,0 +1,20 @@
+<aura:component access="global">
+    <ltng:require 
+		    styles="{!$Resource.noUiSlider + '/nouislider.min.css'}"
+		    scripts="{!$Resource.noUiSlider + '/nouislider.min.js'}"
+		    afterScriptsLoaded="{!c.jsLoaded}" />
+    
+    <aura:registerEvent name="returnRangeChange" type="c:OrmReturnRangeChangeEvt"/>
+
+    <aura:attribute name="label" type="String"/>
+    <aura:attribute name="filterName" type="String"/>
+    <aura:attribute name="min" type="String" default="0"/>
+    <aura:attribute name="max" type="String" default="100"/>
+    <aura:attribute name="step" type="String" default="1"/>
+    
+    <div>
+        <div class="label">{!v.label}</div>
+	    <div aura:id="slider" class="slider"/>
+    </div>
+	
+</aura:component>

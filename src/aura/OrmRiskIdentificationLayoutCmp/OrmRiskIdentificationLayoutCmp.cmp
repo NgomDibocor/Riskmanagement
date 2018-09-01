@@ -39,6 +39,9 @@
     <aura:attribute name="filterRisk" type="String" />
     <aura:attribute name="dissociateRisk" type="orm_assessmentRisk__c[]" />
     <!-- fin partie datatable 2 -->
+    <aura:registerEvent name="OrmListAssessmentRiskIsNotEmpty" type="c:OrmListAssessmentRiskIsNotEmpty" />
+    
+    
 
     <div class="slds-grid slds-gutters">
         <div class=" slds-size--3-of-12   slds-p-horizontal--small slds-float—left">

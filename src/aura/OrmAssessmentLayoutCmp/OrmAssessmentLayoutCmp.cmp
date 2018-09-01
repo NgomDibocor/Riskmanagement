@@ -19,6 +19,7 @@
     <aura:attribute name="showAssessmentButtonClicked" type="boolean" default="false"/>
     <aura:attribute name="showMeasureInfo" type="boolean" default="false"/> 
     <aura:attribute name="nbreRisk" type="String" />
+    <aura:attribute name="isEmptyListAssessmentRisk" type="boolean" default="false" />
     
     <aura:attribute name="showChevronleft" type="boolean" default="false"/>
     <aura:attribute name="showChevronright" type="boolean" default="true"/>
@@ -52,6 +53,7 @@
     <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     <aura:handler event="c:OrmActiveRiskAnalyeCmpEvt" action="{!c.activeRiskAnalye }" />
     <aura:handler event="c:OrmActiveRiskTraitementCmpEvt" action="{!c.activeRiskTreatment}" />
+    <aura:handler event="c:OrmListAssessmentRiskIsNotEmpty" action="{!c.listAssessmentRiskIsNotEmpty}" />
     
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation" type="c:OrmOpenNewOrganisationEvt" />

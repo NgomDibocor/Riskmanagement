@@ -169,6 +169,9 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (component.isValid() && state == "SUCCESS") {
+                //notify that list AssessmentRisk Is Not Empty now
+                var evt = $A.get("e.c:OrmListAssessmentRiskIsNotEmpty");
+	            evt.fire();
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
                     'message': 'successful association',

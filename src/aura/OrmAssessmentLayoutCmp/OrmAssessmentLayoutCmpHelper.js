@@ -10,6 +10,7 @@
        // I test if I've clicked on showAssessment 
         if(component.get("v.showAssessmentButtonClicked")== true){
            if(component.get("v.nbreRisk")== '0'){
+               component.set("v.isEmptyListAssessmentRisk", true);
               // message: you must add assessmentRisk first
               //console.log('nbre de risk: '+ component.get("v.nbreRisk"))
                
@@ -29,7 +30,7 @@
         }
         // I test if I've clicked on createAssessment
         if(component.get("v.createAssessmentButtonClicked")== true){
-            console.log('clicked on createAssessment')
+            component.set("v.isEmptyListAssessmentRisk", true);
         }
         // I test if I've clicked on showAssessmentRisk
         if(component.get("v.showAssessmentRisk")== true){

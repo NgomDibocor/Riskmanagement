@@ -208,24 +208,34 @@
     riskAnalyeTabClicked : function(component, event, helper) {
          var idAssessmentRisk = component.get("v.idAssessmentRisk");
          var idAssessment = component.get("v.assessmentData").Id;
+         
          if(idAssessment != null){
-             if(idAssessmentRisk == null){
-	         var toast = $A.get('e.force:showToast');
-	                toast.setParams({
-	                    'message' : 'Please, select an assessmentRisk in Risk Identification',
-	                    'type' : 'warning',
-	                    'mode' : 'dismissible'
-	                });
-	    
-	                toast.fire();
+             if(component.get("v.isEmptyListAssessmentRisk")){
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message' : 'List assessmentRisk is empty in Risk Identification',
+                    'type' : 'warning',
+                    'mode' : 'dismissible'
+                });
+                toast.fire();
 	         }else{
-	                component.set("v.showRiskIdentif", false);
-	                component.set("v.showRiskAnalyse", true);
-	                helper.activeRiskAnalye(component, event);
-	                var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
-	                evt.setParams({"riskAssessmentId": idAssessmentRisk});
-	                evt.fire();
-	         }
+			             if(idAssessmentRisk == null){
+			                var toast = $A.get('e.force:showToast');
+			                toast.setParams({
+			                    'message' : 'Please, select an assessmentRisk in Risk Identification',
+			                    'type' : 'warning',
+			                    'mode' : 'dismissible'
+			                });
+			                toast.fire();
+				         }else{
+				                component.set("v.showRiskIdentif", false);
+				                component.set("v.showRiskAnalyse", true);
+				                helper.activeRiskAnalye(component, event);
+				                var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
+				                evt.setParams({"riskAssessmentId": idAssessmentRisk});
+				                evt.fire();
+				         }
+	               }
          }else{         
              var toast = $A.get('e.force:showToast');
              toast.setParams({
@@ -236,17 +246,6 @@
              toast.fire();
          }
          
-       
-        /*var toast = $A.get('e.force:showToast');
-        toast.setParams({
-        	'message' : 'please, select an assessmentRisk in Risk Identification',
-            'type' : 'warning',
-            'mode' : 'dismissible'
-        });
-        toast.fire();
-        var field = "Risk Analysis";
-        var description = "You must select an assessmentRisk in Risk Identification before to navigate to this tab";
-        helper.sendValuesToFieldDescription(component, event, helper, field, description);*/
     },
     
     activeRiskTreatment : function(component, event, helper) {

@@ -392,4 +392,9 @@
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
    },
    
+   listAssessmentRiskIsNotEmpty: function(component, event, helper){
+      alert()
+      component.set("v.isEmptyListAssessmentRisk", false);
+   },
+   
 })

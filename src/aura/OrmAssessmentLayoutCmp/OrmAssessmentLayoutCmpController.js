@@ -391,4 +391,17 @@
     backToTopFunction: function(component, event, helper){
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
    },
+   sliderInit : function(component, event, helper) {
+     console.log('nouislider loaded')
+        /*var $slider = $("#slider");
+        $slider.noUiSlider({
+            start: [300000, 1500000],
+            connect: true,
+            step: 50000,
+            range: {
+                'min': 300000,
+                'max': 1500000
+            }
+        });*/
+    }
 })

@@ -1,4 +1,8 @@
 <aura:component access="GLOBAL" controller="OrmAssessmentController" extends="c:OrmAbstractAssessmentLayoutCmp">
+    <ltng:require styles="/resource/noUiSlider/noUiSlider/nouislider.min.css" 
+                  scripts="/resource/noUiSlider/noUiSlider/nouislider.min.js"
+                  afterScriptsLoaded="{!c.sliderInit}"/>
+    
     <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}"/>
     <aura:attribute name="showContext" type="boolean" default="true"/>
     <aura:attribute name="showContext2" type="boolean" default="false"/>

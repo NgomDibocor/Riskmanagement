@@ -381,17 +381,14 @@
        component.set("v.displaySaveCancelBtn",true);
     },
     onChangeSize : function(component, event, helper) {
-         component.set("v.displaySaveCancelBtn",true);
+       component.set("v.displaySaveCancelBtn",true);
     },
     
-    cancel : function(component, event, helper)
-    {
-        component.set("v.displaySaveCancelBtn",false);
+    cancel : function(component, event, helper){
+       component.set("v.displaySaveCancelBtn",false);
     },
     
-   
-   topFunction: function(component, event, helper)
-    {
-       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    },
+    backToTopFunction: function(component, event, helper){
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+   },
 })

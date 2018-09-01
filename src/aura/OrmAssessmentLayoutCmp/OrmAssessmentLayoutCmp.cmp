@@ -1049,20 +1049,10 @@
                               iconName='utility:back'/>
                      </div>
                   </td>
-               </tr> 
-               <!--<tr>
-                   <td class="textInDiv">
-                      <div class="slds-col">
-                        <span class="startSpaceBackTop"></span>                                  
-				        <div class="backTop" aura:id="iconBackTop">
-				            <lightning:icon  onclick="{!c.BackToTopFunction}" iconName="utility:jump_to_top" size="large" />
-				        </div>
-				     </div>
-                   </td>
-                </tr> --> 
+               </tr>  
                 <tr>
                    <td class="textInDiv">
-                       <button onclick="{!c.topFunction}" id="myBtn" title="Go to top">Top</button> 
+                       <button onclick="{!c.backToTopFunction}" id="myBtn" title="Go to top">Top</button> 
                    </td>
                 </tr>    
             </aura:if>

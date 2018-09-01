@@ -7,8 +7,8 @@
 	 *               
 	 */
     fetchPicklist : function(component, event) { 
-       // I test if I've not clicked on showAssessmentRisk or on showInfoMeasure
-        if(component.get("v.showAssessmentRisk")== false && component.get("v.showMeasureInfo")== false){
+       // I test if I've clicked on showAssessment 
+        if(component.get("v.showAssessmentButtonClicked")== true){
            console.log('clicked on showAssessment')   
         }
         // I test if I've clicked on createAssessment

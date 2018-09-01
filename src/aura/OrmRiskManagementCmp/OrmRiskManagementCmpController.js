@@ -64,7 +64,8 @@
 	   $A.createComponent(
 	            "c:OrmAssessmentLayoutCmp", {
 	                "assessmentData": event.getParam("assessmentObject"),
-	                "showAssessmentButtonClicked" : true
+	                "showAssessmentButtonClicked" : true,
+	                "nbreRisk" : event.getParam("numberOfRisk")   
 	            },
 	            function(newCmp) {
 	                if (component.isValid()) {

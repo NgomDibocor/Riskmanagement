@@ -10,15 +10,18 @@
 	showAssessment : function(component, event, helper) {
 	   var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
 	   evtSpinner.fire();  
-	
+	   
+	   var idAssessment = event.target.id;
+	   var nbreRisk = document.getElementById( idAssessment ).getElementsByTagName( 'span' ).item(0).id;
 	   var action = component.get('c.getAssessment');
-       action.setParams({ 'idAss' : event.target.id });
+       action.setParams({ 'idAss' : idAssessment });
 	   action.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
 		         var evt = $A.get("e.c:OrmShowAssessmentClickedEvt");
 			     evt.setParams({
 			       "assessmentObject" : response.getReturnValue(),
+			       "numberOfRisk" : nbreRisk
 			     });
 			     evt.fire();        
 		    } else {

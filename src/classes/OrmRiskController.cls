@@ -147,6 +147,8 @@ public with sharing class OrmRiskController {
                         From orm_assessmentRisk__c 
                where Id =:item];
     }
+    
+   
    
     
 }

@@ -11,6 +11,19 @@
         if(component.get("v.showAssessmentButtonClicked")== true){
            if(component.get("v.nbreRisk")== '0'){
               console.log('nbre de risk: '+ component.get("v.nbreRisk")) 
+           }else{          
+                /*var actionGetIdFirstAssessmentRisk = component.get("c.getIdFirstAssessmentRisk");
+                actionGetIdFirstAssessmentRisk.setParams({"idAssessment": component.get("v.assessmentData").Id});
+		        actionGetIdFirstAssessmentRisk.setCallback(this, function(response){
+		            var state = response.getState();
+		            if(state === 'SUCCESS'){
+		                component.set('v.idAssessmentRisk', response.getReturnValue());
+		                console.log('IdAssessmentRisk: '+ component.get("v.idAssessmentRisk"))
+		            } else {
+		                alert($A.get("$Label.c.orm_not_found"));
+		            }
+		        });
+		        $A.enqueueAction(actionGetIdFirstAssessmentRisk);*/
            }
         }
         // I test if I've clicked on createAssessment

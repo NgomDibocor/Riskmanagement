@@ -1,6 +1,6 @@
 ({
     initialiseAssessment: function(component, event, helper) {
-        alert('id Assessment ', event.getParam('idAssessment'));
+        //alert('id Assessment ', event.getParam('idAssessment'));
         component.set("v.idAssessment", event.getParam('idAssessment'));
     },
     ormRiskCreatedEvent: function(component, event, helper) {

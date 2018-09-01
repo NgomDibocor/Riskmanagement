@@ -198,4 +198,19 @@ public class OrmAssessmentController {
         return [Select Id, Name From User ];
          
     }
+    
+   /**
+	*
+	* @author Dibocor NGOM
+	* @version 1.0
+	* @description  this method returns the id of the first assessmentRisk
+	* @history 
+	* 2018-09-01 : Dibocor NGOM - Implementation
+   */
+    @AuraEnabled 
+    public static String getIdFirstAssessmentRisk(String idAssessment)
+    {
+    	orm_assessmentRisk__c assRisk = [Select Id From orm_assessmentRisk__c where Id =:idAssessment limit 1];
+        return  assRisk.Id;
+    }
 }

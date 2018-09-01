@@ -9,7 +9,9 @@
     fetchPicklist : function(component, event) { 
        // I test if I've clicked on showAssessment 
         if(component.get("v.showAssessmentButtonClicked")== true){
-           console.log('nbre de risk: '+ component.get("v.nbreRisk"))   
+           if(component.get("v.nbreRisk")== '0'){
+              console.log('nbre de risk: '+ component.get("v.nbreRisk")) 
+           }
         }
         // I test if I've clicked on createAssessment
         if(component.get("v.createAssessmentButtonClicked")== true){

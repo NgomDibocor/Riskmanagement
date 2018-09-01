@@ -34,8 +34,10 @@ public with sharing class OrmRiskController {
     public static List<orm_assessmentRisk__c> findAllAssessmentRisk(String item,String assessment)
     {
        return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
-                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description From orm_assessmentRisk__c 
-               where orm_Risk__r.orm_categorieRisk__c=:item and orm_assessment__r.Id =:assessment];
+                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
+                From orm_assessmentRisk__c 
+                where orm_Risk__r.orm_categorieRisk__c=:item and orm_assessment__r.Id =:assessment
+                order by CreatedDate];
     }
    
      /*

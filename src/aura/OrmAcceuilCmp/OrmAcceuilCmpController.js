@@ -1,15 +1,21 @@
 ({
-	ListAssessment : function(component, event, helper) {
+	listAssessment : function(component, event, helper) {
 	    var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
 	    evtSpinner.fire();
 		var evt = $A.get("e.c:OrmDisplayListAssessmentEvt");
 		evt.fire();
 	},
-   ListAssessmentRisk : function(component, event, helper) {
+    
+    listAssessmentRisk : function(component, event, helper) {
+    var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	evtSpinner.fire();
 	var evt = $A.get("e.c:OrmDisplayAssessmentRiskEvt");
 		evt.fire();
 	},
-    ListMeasure : function(component, event, helper) {
+    
+    listMeasure : function(component, event, helper) {
+        var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	    evtSpinner.fire();
 		var evt = $A.get("e.c:OrmShowMyMeasureListEvt");
 		evt.fire();
 	}

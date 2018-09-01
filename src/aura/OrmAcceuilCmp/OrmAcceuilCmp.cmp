@@ -4,7 +4,7 @@
       <tr style="height:100px">
         <td width="7%"></td>  
         <td width="35%">
-           <a href="javascript:void(0);" onclick="{!c.ListAssessment}">
+           <a href="javascript:void(0);" onclick="{!c.listAssessment}">
                <lightning:card class="slds-text-heading_small" 
                     title="My Assessments" iconName="utility:table">
                     <div class=" slds-card__body slds-card__body_inner" style="height:20px;color:black;margin-left:30px">
@@ -15,7 +15,7 @@
         </td>
         <td width="6%"></td>
         <td width="35%">
-            <a href="javascript:void(0);" onclick="{!c.ListAssessmentRisk}">
+            <a href="javascript:void(0);" onclick="{!c.listAssessmentRisk}">
                 <lightning:card class="slds-text-heading_small" 
                                 title="My Risks" iconName="utility:list">
                     <div class=" slds-card__body slds-card__body_inner" style="height:20px;color:black;margin-left:30px">
@@ -30,7 +30,7 @@
       <tr style="height:100px">
         <td width="7%"></td> 
         <td width="35%">
-            <a href="javascript:void(0);" onclick="{!c.ListMeasure}">
+            <a href="javascript:void(0);" onclick="{!c.listMeasure}">
                 <lightning:card class="slds-text-heading_small" 
                                 title="My Measures" iconName="utility:table">
                      <div class=" slds-card__body slds-card__body_inner" style="height:20px;color:black;margin-left:30px">

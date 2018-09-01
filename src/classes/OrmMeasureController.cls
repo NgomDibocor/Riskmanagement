@@ -98,9 +98,11 @@ public with sharing class OrmMeasureController {
 	*/
 	@AuraEnabled
 	public static List<Assessment__c> getAllMeasures(){
-		return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__r.orm_assessment__c
+		return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__r.orm_assessment__c, orm_measureResponsable__c
 		        FROM Assessment__c 
-		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() AND CreatedById = :UserInfo.getUserId()];
+		        WHERE     RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() 
+		              AND (CreatedById = :UserInfo.getUserId() or orm_measureResponsable__c = :UserInfo.getUserId())
+		        ];
 	}	
 	/**
 	 *

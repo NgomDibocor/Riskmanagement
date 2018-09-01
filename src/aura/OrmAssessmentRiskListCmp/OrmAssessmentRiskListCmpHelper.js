@@ -3,6 +3,10 @@
 		var action = component.get('c.getAllAssessmentRisks');
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
+             //Hide the Spinner
+              var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+	          evtSpinner.fire();
+            
               component.set('v.initialData', response.getReturnValue());
               component.set('v.items', response.getReturnValue());
               // start pagination

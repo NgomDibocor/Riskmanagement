@@ -210,7 +210,7 @@ public class OrmAssessmentController {
     @AuraEnabled 
     public static String getIdFirstAssessmentRisk(String idAssessment)
     {
-    	orm_assessmentRisk__c assRisk = [Select Id From orm_assessmentRisk__c where Id =:idAssessment limit 1];
+    	orm_assessmentRisk__c assRisk = [Select Id From orm_assessmentRisk__c where orm_assessment__c =:idAssessment limit 1];
         return  assRisk.Id;
     }
 }

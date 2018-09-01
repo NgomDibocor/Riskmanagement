@@ -1,11 +1,10 @@
 ({
 	fetchPicklist : function(component, event, idAsssessmentRisk) {
-		  var actionFrequency = component.get("c.getSelectOptions");
+		var actionFrequency = component.get("c.getSelectOptions");
         actionFrequency.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_frequency__c'});
         actionFrequency.setCallback(this, function(response){
-            var state = response.getState();
-            if(state === 'SUCCESS')
-            {
+        var state = response.getState();
+        if(state === 'SUCCESS'){
                 component.set('v.frequency', response.getReturnValue());
                 //manageAbility
                 var actionmanageAbility = component.get("c.getSelectOptions");
@@ -58,12 +57,12 @@
 																					            if (state === 'SUCCESS') { 
 																					                component.set('v.assessmentRiskData', response.getReturnValue());
 																					                component.set("v.displaySaveCancelBtn",false);
-																					                component.find("manageAbility").set("v.value", event.getSource().get("v.value"));
+																					                /*component.find("manageAbility").set("v.value", event.getSource().get("v.value"));
 																					                component.find("productionLoss").set("v.value", event.getSource().get("v.value"));
 																					                component.find("schedule").set("v.value", event.getSource().get("v.value"));
 																					                component.find("status").set("v.value", event.getSource().get("v.value"));
 																					                component.find("vulnerability").set("v.value", event.getSource().get("v.value"));
-																					                component.find("frequency").set("v.value", event.getSource().get("v.value"));
+																					                component.find("frequency").set("v.value", event.getSource().get("v.value"));*/
 																					            } else {
 																					
 																					                alert($A.get("$Label.c.orm_not_found"));

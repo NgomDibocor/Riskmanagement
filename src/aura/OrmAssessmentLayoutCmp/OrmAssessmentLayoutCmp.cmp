@@ -320,9 +320,9 @@
                                                   </ui:inputSelect>
                                         </aura:set>
                                     </aura:if>
-                                         </div>
-                                     </div>
-                              </td>
+                                   </div>
+                                 </div>
+                             </td>
                           </tr>
                           <tr>
                               <td >
@@ -1180,7 +1180,7 @@
                  <aura:if isTrue="{!v.showRiskAnalyse}">
                     <tr>
                       <td>
-                          <c:OrmAssessmentRiskConfigCmp />
+                          <c:OrmAssessmentRiskConfigCmp assessmentData="{!v.assessmentData}"  />
                       </td>
                     </tr>
                 </aura:if>

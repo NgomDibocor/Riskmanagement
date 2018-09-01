@@ -392,9 +392,19 @@
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
    },
    
-   listAssessmentRiskIsNotEmpty: function(component, event, helper){
-      alert()
-      component.set("v.isEmptyListAssessmentRisk", false);
+   listAssessmentRiskIsNotEmpty : function(component, event, helper){
+        component.set("v.isEmptyListAssessmentRisk", false);
+        var actionGetIdFirstAssessmentRisk = component.get("c.getIdFirstAssessmentRisk");
+	    actionGetIdFirstAssessmentRisk.setParams({"idAssessment": component.get("v.assessmentData").Id});
+	    actionGetIdFirstAssessmentRisk.setCallback(this, function(response){
+	        var state = response.getState();
+	        if(state === 'SUCCESS'){
+	            component.set('v.idAssessmentRisk', response.getReturnValue());
+	        } else {
+	            alert($A.get("$Label.c.orm_not_found"));
+	        }
+	    });
+	    $A.enqueueAction(actionGetIdFirstAssessmentRisk);
    },
    
 })

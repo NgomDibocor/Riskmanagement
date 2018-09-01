@@ -219,7 +219,7 @@
                 });
                 toast.fire();
 	         }else{
-			             if(idAssessmentRisk == null){
+			          if(idAssessmentRisk == null){
 			                var toast = $A.get('e.force:showToast');
 			                toast.setParams({
 			                    'message' : 'Please, select an assessmentRisk in Risk Identification',
@@ -227,14 +227,14 @@
 			                    'mode' : 'dismissible'
 			                });
 			                toast.fire();
-				         }else{
+				       }else{
 				                component.set("v.showRiskIdentif", false);
 				                component.set("v.showRiskAnalyse", true);
 				                helper.activeRiskAnalye(component, event);
 				                var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
 				                evt.setParams({"riskAssessmentId": idAssessmentRisk});
 				                evt.fire();
-				         }
+				        }
 	               }
          }else{         
              var toast = $A.get('e.force:showToast');

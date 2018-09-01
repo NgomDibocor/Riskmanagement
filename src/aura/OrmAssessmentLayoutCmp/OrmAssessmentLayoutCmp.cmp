@@ -13,6 +13,7 @@
     <aura:attribute name="setMessage" type="String"/> 
     <aura:attribute name="checkUpdateActivity" type="boolean" default="false"/>
     <aura:attribute name="message" type="String" default="NoError"/>
+    <aura:attribute name="createAssessmentButtonClicked" type="boolean" default="false"/>
     <aura:attribute name="showAssessmentRisk" type="boolean" default="false"/>
     <aura:attribute name="showMeasureInfo" type="boolean" default="false"/> 
     

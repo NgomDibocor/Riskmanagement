@@ -15,7 +15,7 @@
     showAssessmentList : function(component, event, helper) {
         $A.createComponent(
             "c:OrmAssessmentListCmp", {
-
+               
             },
             function(newCmp) {
                 if (component.isValid()) {
@@ -24,10 +24,10 @@
             }
         );
     },
-    showAssessment : function(component, event, helper) {
+    createAssessment : function(component, event, helper) {
         $A.createComponent(
             "c:OrmAssessmentLayoutCmp", {
-               
+               "createAssessmentButtonClicked" : true
             },
             function(newCmp) {
                 if (component.isValid()) {

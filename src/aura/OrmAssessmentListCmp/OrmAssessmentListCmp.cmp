@@ -13,7 +13,7 @@
    
   <div class="slds-col" >									
 		<div class="space"></div>
-		<span class="searchInput" onclick="{!c.createItem}">
+		<span class="searchInput">
         	<lightning:input class="search" placeholder="search assessment by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         <span class="btnNewAssessment" onclick="{!c.openModalDeletePhase}">

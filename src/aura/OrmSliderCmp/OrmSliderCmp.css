@@ -1,13 +1,6 @@
 .THIS {
     height: 86px;
-    position: relative;
-    /*
-    background-color: #FFFFFF;
-    border-radius: 0.25rem;
-    border: 1px solid rgb(221, 219, 218);
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10);
-    padding: .25rem;
-    */
+    position: relative;    
 }
 
 .THIS .label {
@@ -40,5 +33,12 @@
     background: #FFFFFF;
     border: 1px solid rgb(216, 221, 230);
     border-radius: .25rem;
+}
+.THIS .slider2 {
+    position: absolute;
+    top: 42px;
+    left: 28px;
+    right: 8px;
+    max-width: 350px;
 }
 

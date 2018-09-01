@@ -1120,7 +1120,7 @@
                      <tr>
                          <td>
                            <div style="height:50px"> </div>
-                            <c:OrmSliderCmp />
+                            <c:OrmSliderCmp idAssessment="{!v.assessmentData.Id }" />
                          </td>
                      </tr>
                   </aura:if>

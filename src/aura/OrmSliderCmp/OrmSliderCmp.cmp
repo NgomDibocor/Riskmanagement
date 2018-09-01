@@ -4,17 +4,32 @@
 		    scripts="{!$Resource.noUiSlider + '/nouislider.min.js'}"
 		    afterScriptsLoaded="{!c.jsLoaded}" />
     
-    <aura:registerEvent name="returnRangeChange" type="c:OrmReturnRangeChangeEvt"/>
-
+    <aura:attribute name="idAssessment" type="String"/>
     <aura:attribute name="label" type="String"/>
     <aura:attribute name="filterName" type="String"/>
     <aura:attribute name="min" type="String" default="0"/>
     <aura:attribute name="max" type="String" default="100"/>
     <aura:attribute name="step" type="String" default="1"/>
     
+    <aura:attribute name="valCostmin" type="Integer" default="0"/>
+    <aura:attribute name="valCostmax" type="Integer" default="100"/>
+    <aura:attribute name="valpourcentagemin" type="Integer" default="0"/>
+    <aura:attribute name="valpourcentagemax" type="Integer" default="100"/>
+       
     <div>
+        <div class="label">Cost</div>
         <div class="label">{!v.label}</div>
 	    <div aura:id="slider" class="slider"/>
     </div>
-	
+    valCostmin: {!v.valCostmin}
+    valCostmax: {!v.valCostmax}
+    
+    <div>       
+        <div class="label">Pourcentage</div>
+        <div class="label">{!v.label}</div>
+	    <div aura:id="slider2" class="slider2"/>
+    </div>
+    valpourcentagemin: {!v.valpourcentagemin}
+    valpourcentagemax: {!v.valpourcentagemax}
+    
 </aura:component>

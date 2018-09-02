@@ -164,7 +164,7 @@
         actionOrganisationSectorInd.setCallback(this, function(response){
             var state = response.getState();
             if(state === 'SUCCESS'){
-                component.set('v.allOrganisationIndustrySector', response.getReturnValue());
+               component.set('v.allOrganisationIndustrySector', response.getReturnValue());
             } else {
                 alert($A.get("$Label.c.orm_not_found"));
             }
@@ -201,6 +201,7 @@
         $A.enqueueAction(actionSchedule);
         $A.enqueueAction(actionSector);
         $A.enqueueAction(actionUser);
+        $A.enqueueAction(actionOrganisationSectorInd);
         $A.enqueueAction(actionCountry);
         $A.enqueueAction(actionRegion);
 	},

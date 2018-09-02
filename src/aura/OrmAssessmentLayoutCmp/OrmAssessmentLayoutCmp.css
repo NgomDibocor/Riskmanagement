@@ -5,6 +5,8 @@
 }
 .THIS .textInDiv{
 	white-space: normal;
+	text-align: justify;
+    text-justify: inter-word;
  }
 .THIS div.organisation {
     display: inline-block;
@@ -37,13 +39,13 @@
 	width: 90%;
 }
 .THIS .scheduleInput{
-	width: 85%;
+	width: 80%;
 }
 .THIS .scheduleSelect{
-	width: 15%;
+	width: 20%;
 }  
 .THIS .heightHiddenInput{
-	height: 3px;
+	height: 2px;
 }
 .THIS .iconPrev{
 	cursor: pointer;
@@ -85,5 +87,7 @@
     font-size: 18px; /* Increase font size */
 }
 
-
+.THIS .tdClass{
+	width: 50%;
+}
 

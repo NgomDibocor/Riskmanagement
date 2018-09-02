@@ -40,7 +40,7 @@
     <aura:attribute name="dissociateRisk" type="orm_assessmentRisk__c[]" />
     <!-- fin partie datatable 2 -->
     <aura:registerEvent name="OrmListAssessmentRiskIsNotEmpty" type="c:OrmListAssessmentRiskIsNotEmpty" />
-    
+    <aura:registerEvent name="NotifyAfterdeletingAssessmentRisk" type="c:OrmNotifyAfterdeletingAssessmentRiskEvt" />
     
 
     <div class="slds-grid slds-gutters">

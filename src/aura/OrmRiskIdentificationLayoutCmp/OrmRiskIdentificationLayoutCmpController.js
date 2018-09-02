@@ -206,6 +206,10 @@
             var state = response.getState();
             console.log(state);
             if (component.isValid() && state == "SUCCESS") {
+            
+                var evtnotify = $A.get("e.c:OrmNotifyAfterdeletingAssessmentRiskEvt");
+                evtnotify.fire();
+                
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
                     'message': 'successful dissociation',
@@ -213,6 +217,7 @@
                     'mode': 'dismissible'
                 });
                 toast.fire();
+                component.set("v.isOpenButton", false);
                 helper.fetchPicklist(component, event);
             } else {
                 var toast = $A.get('e.force:showToast');
@@ -287,7 +292,7 @@
                     }
                     var assessmentRisks = component.get('v.allRisk');
                     assessmentRisks.forEach(function(assessmentRisk) {
-                        rows = rows.filter(row => row.Id !== assessmentRisk.orm_Risk__c);
+                    rows = rows.filter(row => row.Id !== assessmentRisk.orm_Risk__c);
                     });
                     component.set('v.allRiskList', rows);
                     if (rows.length == 0) {

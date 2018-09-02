@@ -1,6 +1,5 @@
 ({
     fetchPicklist: function(component, event) {
-    //component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
         var categoryRisk = component.get("v.categorieRisk");
         var nameCategorieRisk= component.find("categorieRisk");
         var item = nameCategorieRisk.get("v.value");
@@ -10,36 +9,30 @@
             "item": categoryRisk,
             "assessment":assessment
         });
-       // component.set("v.categorieRisk", item);
         actionOrgs.setCallback(this, function(response) {
-       
             var state = response.getState();
             if (state === 'SUCCESS') {
                 var rows = response.getReturnValue();
-                
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
                     if (row.orm_Risk__c) {
-                    row.RiskName = row.orm_Risk__r.Name;
-                    row.RiskDescription = row.orm_Risk__r.Description;
-                    row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
+	                    row.RiskName = row.orm_Risk__r.Name;
+	                    row.RiskDescription = row.orm_Risk__r.Description;
+	                    row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
                     }
                 }
                 component.set('v.allRisk', rows);
                 component.set('v.allRiskTemp', rows);
                 var risk=component.get('v.allRisk');
                 if(risk == null){
-                
-                var toast = $A.get('e.force:showToast');
+                    var toast = $A.get('e.force:showToast');
 		            toast.setParams({
 		            	'message' : 'Check if you Have Created the Assessment',
 		                'type' : 'warning',
 		                'mode' : 'dismissible'
 		            });
-		
 		            toast.fire();
                 }
-                //component.find("categorieRisk").set("v.value", event.getSource().get("v.value"));
                 var action = component.get('c.getSelectOptions');
                 action.setParams({
                     'objObject': component.get("v.risk"),

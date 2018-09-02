@@ -215,4 +215,25 @@ public class OrmAssessmentController {
     	                                 where orm_assessment__c =:idAssessment order by CreatedDate limit 1 ];
         return  assRisk.Id;
     }
+    
+    /**
+	*
+	* @author Dibocor NGOM
+	* @version 1.0
+	* @description  this method returns the id of the first assessmentRisk if the list is not empty
+	* @history 
+	* 2018-09-02 : Dibocor NGOM - Implementation
+   */
+    @AuraEnabled 
+    public static String ifListNotEmptyGetIdFirstAssessmentRisk(String idAssessment)
+    {
+    	orm_assessmentRisk__c assRisk = [Select Id 
+    	                                 From orm_assessmentRisk__c 
+    	                                 where orm_assessment__c =:idAssessment order by CreatedDate limit 1 ];
+        if(assRisk == null){
+            return  null;
+        }else{
+           return  assRisk.Id;
+        }
+    }
 }

@@ -407,4 +407,25 @@
 	    $A.enqueueAction(actionGetIdFirstAssessmentRisk);
    },
    
+   afterdeletingAssessmentRisk : function(component, event, helper){
+        var actionGetIdFirstAssRisk = component.get("c.ifListNotEmptyGetIdFirstAssessmentRisk");
+	    actionGetIdFirstAssRisk.setParams({"idAssessment": component.get("v.assessmentData").Id});
+	    actionGetIdFirstAssRisk.setCallback(this, function(response){
+	        var state = response.getState();
+	        if(state === 'SUCCESS'){
+	            var idAssRisk = response.getReturnValue();
+	            console.log(idAssRisk)
+	            if(idAssRisk == null){
+	               component.set("v.isEmptyListAssessmentRisk", true);
+	            }else{
+	               component.set('v.idAssessmentRisk', idAssRisk);
+	            }
+	            
+	        } else {
+	            alert($A.get("$Label.c.orm_not_found"));
+	        }
+	    });
+	    $A.enqueueAction(actionGetIdFirstAssRisk);
+   },
+   
 })

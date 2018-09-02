@@ -204,7 +204,6 @@
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
-            console.log(state);
             if (component.isValid() && state == "SUCCESS") {
             
                 var evtnotify = $A.get("e.c:OrmNotifyAfterdeletingAssessmentRiskEvt");

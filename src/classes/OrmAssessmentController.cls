@@ -227,13 +227,13 @@ public class OrmAssessmentController {
     @AuraEnabled 
     public static String ifListNotEmptyGetIdFirstAssessmentRisk(String idAssessment)
     {
-    	orm_assessmentRisk__c assRisk = [Select Id 
+    	List<orm_assessmentRisk__c> assRisk = [Select Id 
     	                                 From orm_assessmentRisk__c 
     	                                 where orm_assessment__c =:idAssessment order by CreatedDate limit 1 ];
-        if(assRisk == null){
-            return  null;
+        if(assRisk.size() > 0){
+            return  assRisk[0].Id;
         }else{
-           return  assRisk.Id;
+           return  null;
         }
     }
 }

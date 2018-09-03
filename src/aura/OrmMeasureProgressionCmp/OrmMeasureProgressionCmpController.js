@@ -55,4 +55,47 @@
 	           $A.enqueueAction(action);
         } 
         }, 
+        /*
+     * CreatedBy @David Diop
+     *
+     */
+    filter: function(component, event, helper) {
+        var dataMeasureProgress = component.get('v.measureProgressionTemp');
+        var term = component.get('v.filter');
+        var regex;
+        if ($A.util.isEmpty(term)) {
+            helper.getAllMeasuresProgressionByMeasure(component, event);
+        } else {
+            term = "^" + term;
+        try {
+            regex = new RegExp(term, "i");
+        
+            dataMeasureProgress = dataMeasureProgress.filter(row => regex.test(row.orm_dateProgression__c) || regex.test(row.Description));
+            	
+        } catch (e) {
+            alert(e);
+        }
+        component.set("v.measureProgression",dataMeasureProgress);
+        }
+    },
+    selectAll : function (component, event, helper) {
+    	//get the header checkbox value  
+    	var selectedHeaderCheck = event.getSource().get("v.value");
+    	
+    	var evt = $A.get('e.c:OrmEvtSelectAllMeasureProgress');
+    	evt.setParams({"selectAllCheckbox": selectedHeaderCheck});
+    	evt.fire();
+    },
+     openModalDeleteMeasureProgress : function (component, event, helper) {
+     
+    	component.set('v.openModalConfirmDeletion', true);
+    },
+     cancelDeleteMeasureProgress : function (component, event, helper) {
+    	component.set('v.openModalConfirmDeletion', false);
+    },
+    confirmDeleteMeasureProgress: function (component, event, helper) {
+    	var evt = $A.get('e.c:OrmEvtDeleteMeasureProgress');
+    	evt.fire();
+    	component.set('v.openModalConfirmDeletion', false);
+    },
 })

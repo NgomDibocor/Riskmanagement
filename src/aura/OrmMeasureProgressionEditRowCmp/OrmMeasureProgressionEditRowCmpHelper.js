@@ -31,4 +31,29 @@
        
         $A.enqueueAction(action);
     },
+    deleteSelectedHelper : function (component, event, delId) {
+		//call apex class method
+		var action = component.get('c.deleteMeasureProgress');
+		// pass the all selected record's Id's to apex method 
+		action.setParams({
+			"MeasureProgressIds": delId
+		});
+		action.setCallback(this, function(response) {
+			//store state of response
+			var state = response.getState();
+			if (state === "SUCCESS") {
+				console.log(state);
+				if (response.getReturnValue() != '') {
+					// if getting any error while delete the records , then display a alert msg/
+					alert('The following error has occurred. while Delete record-->' + response.getReturnValue());
+				} else {
+					console.log('check it--> delete successful');
+				}
+				// call the onLoad function for refresh the List view    
+				 var evt = $A.get("e.c:OrmMeasureProgressionCreatedEvt");
+                   evt.fire();
+			}
+		});
+		$A.enqueueAction(action);
+	},
 })

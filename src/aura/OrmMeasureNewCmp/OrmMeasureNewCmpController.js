@@ -42,12 +42,20 @@
             });
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
+            	
+            	   var newMeasure = response.getReturnValue();
+            	   
+            	  //notify OrmAssessmentLayout that list messure is not empty
+            	   var evtListMeasureNotEmpty = $A.get("e.c:OrmListMeasureNotEmptyEvt");
+            	   evtListMeasureNotEmpty.setParams({ 'idMeasure': newMeasure.Id });
+                   evtListMeasureNotEmpty.fire();
+                    
             	   component.set('v.measure', { 
             		   'sobjectType' : 'Assessment__c',
 		               'Name' : '',
 		               'orm_description__c' : '',
 			        });
-            		var newMeasure = response.getReturnValue();
+            		
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
 			           'message' : newMeasure.Name +' ' + $A.get('$Label.c.orm_toast_success'),

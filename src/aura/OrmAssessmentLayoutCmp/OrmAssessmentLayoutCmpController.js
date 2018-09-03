@@ -392,7 +392,8 @@
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
    },
    
-   listAssessmentRiskIsNotEmpty : function(component, event, helper){
+   afterAssociateAssessmentRisk : function(component, event, helper){
+   
         component.set("v.isEmptyListAssessmentRisk", false);
         var actionGetIdFirstAssessmentRisk = component.get("c.getIdFirstAssessmentRisk");
 	    actionGetIdFirstAssessmentRisk.setParams({"idAssessment": component.get("v.assessmentData").Id});
@@ -446,6 +447,11 @@
 	        }
 	    });
 	    $A.enqueueAction(actionGetIdFirstAssRisk);
+   },
+   
+   afterAddingMeasure : function(component, event, helper){
+	    component.set('v.idMeasure', event.getParam("idMeasure"));
+	    component.set("v.isEmptyListMeasure", false);
    },
    
 })

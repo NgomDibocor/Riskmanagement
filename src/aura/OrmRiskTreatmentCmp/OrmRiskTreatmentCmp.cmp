@@ -10,6 +10,8 @@
 	<aura:attribute name="status" type="String[]" />
      <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
     <aura:attribute name="closeFieldDescription" type="boolean" default="true" />
+    
+    
     <table class="slds-table">
         <tr>
             <td>

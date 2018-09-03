@@ -54,8 +54,9 @@
     <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     <aura:handler event="c:OrmActiveRiskAnalyeCmpEvt" action="{!c.activeRiskAnalye }" />
     <aura:handler event="c:OrmActiveRiskTraitementCmpEvt" action="{!c.activeRiskTreatment}" />
-    <aura:handler event="c:OrmListAssessmentRiskIsNotEmpty" action="{!c.listAssessmentRiskIsNotEmpty}" />
+    <aura:handler event="c:OrmListAssessmentRiskIsNotEmpty" action="{!c.afterAssociateAssessmentRisk}" />
     <aura:handler event="c:OrmNotifyAfterdeletingAssessmentRiskEvt" action="{!c.afterdeletingAssessmentRisk}" />
+    <aura:handler event="c:OrmListMeasureNotEmptyEvt" action="{!c.afterAddingMeasure}" />
     
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation" type="c:OrmOpenNewOrganisationEvt" />
@@ -904,22 +905,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="topSpacing"> 
-                                    <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
-                                </div>
-                                
-                                <div class="width">
-                                  <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
-                                    <ui:inputTextArea class="slds-input" 
-                                             value="{!v.assessmentData.orm_description__c}">
-                                    </ui:inputTextArea>
-                                  </a>
-                                </div>
-                            </td>    
-                        </tr>
-                        <tr>
-                            <td>
+                            <td class="tdClass">
                                 <div class="topSpacing">
                                     <label class="slds-form-element__label">{!$Label.c.orm_country_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
@@ -950,9 +936,7 @@
                                       </div>
                                 </div>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
+                            <td class="tdClass">
                                 <div class="topSpacing">
                                     <label class="slds-form-element__label">{!$Label.c.orm_region_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
@@ -984,8 +968,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
+                        <tr> 
+                            <td class="tdClass">
                                 <div class="topSpacing">
                                     <label class="slds-form-element__label">{!$Label.c.orm_status_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
@@ -1016,6 +1000,23 @@
                                       </div>
                                 </div>
                             </td>
+                           <td class="tdClass"></td>
+                        </tr>
+                        <tr>
+                            <td class="tdClass">
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
+                                </div>
+                                
+                                <div class="width">
+                                  <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
+                                    <ui:inputTextArea class="slds-input" 
+                                             value="{!v.assessmentData.orm_description__c}">
+                                    </ui:inputTextArea>
+                                  </a>
+                                </div>
+                            </td> 
+                            <td class="tdClass"></td>
                         </tr>
             </aura:if>
               <tr>

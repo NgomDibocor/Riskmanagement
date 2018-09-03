@@ -5,12 +5,16 @@
     <aura:attribute name="showErrorClass" type="boolean" default="false"/>
     <aura:attribute name="nameEditMode" type="boolean" default="false" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
+    <aura:attribute name="categorieMeasureEditMode" type="boolean" default="false" />
     <aura:attribute name="measure" type="Assessment__c" default="{'sobjectType' : 'Assessment__c',
                                                                'Name' : '',
-                                                               'orm_description__c' : ''
+                                                               'orm_description__c' : '',
+                                                               'orm_measureCategorie__c':''
                                                                }"/>
     <aura:attribute name="selectedCount" type="integer" default="0"/>
-                                 
+     <aura:attribute name="statusPicklistOpts" type="string[]" />     
+     <aura:attribute name="objInfoForPicklistValues" type="Assessment__c"
+		default="{sobjectType : 'Assessment__c'}"/>                       
     <!-- methods --> 
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />                             
     <aura:handler action="{!c.deleteSelected}" event="c:OrmDeleteMeasuresEvt"/>
@@ -105,6 +109,41 @@
                 </aura:if> 
             </span>
         </td> 
+        
+        <td ondblclick="{!c.inlineEditCategorieMeasure}" class="{! v.showErrorClass == true ? 'slds-cell-edit slds-has-error' : 'slds-cell-edit'}">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.categorieMeasureEditMode == false}">
+                    <span class="slds-truncate" title="{!$Label.c.orm_category_measure_label}">{!v.measure.orm_measureCategorie__c}</span>
+                    <button onclick="{!c.inlineEditCategorieMeasure}" 
+                    	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
+                    		tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_category_measure_label}">
+                      <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                    </button>
+                   
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" 
+                        	style="position: absolute; top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                    <label class="slds-form-element__label">{!$Label.c.orm_category_measure_label}</label>
+                                        <ui:inputSelect aura:id="categoryMeasure"
+											class="slds-select inputFieldWidth"
+											blur="{!c.closeCategorieMeasureBox}" 
+											change="{!c.onCategorieMeasureChange}"
+											value="{!v.measure.orm_measureCategorie__c}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+        
         <td>
         <lightning:button variant="brand" label="{!$Label.c.orm_show_button_title}" title="{!$Label.c.orm_show_button_title}" onclick="{! c.showMeasure }" /> 
         </td>

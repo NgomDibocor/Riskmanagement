@@ -24,7 +24,9 @@
 		default="{sobjectType : 'Product2'}"/>
     <!-- methods --> 
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />  
-    
+    <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllMeasureProgress"/>
+    <aura:handler action="{!c.deleteSelected}" event="c:OrmEvtDeleteMeasureProgress"/>
+    <aura:registerEvent name="OrmMeasureProgressionCreatedEvt" type="c:OrmMeasureProgressionCreatedEvt" />
     <tr>
     	<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
 			<div class="slds-form-element">
@@ -97,7 +99,7 @@
                                                       blur="{!c.closePourcentageBox}"
                                                       change="{!c.onPourcentageChange}"
                                                       label="{!$Label.c.orm_Percent_label}"
-                                                      value="{!v.measureProgression.orm_pourcentage__c}" />
+                                                      value="{!v.measureProgression.orm_pourcentage__c }" />
                                     </div>
                                 </div>
                             </div>

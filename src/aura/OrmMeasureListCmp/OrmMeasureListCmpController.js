@@ -46,8 +46,7 @@
 	
 	filterMeasure : function (component, event, helper){
     	
-    	var measures = component.get('v.measures');
-    	var data = measures;
+    	var measures = component.get('v.measuresTemp');
     	var key = component.get('v.key');
     	var regex;    	
     	
@@ -58,11 +57,11 @@
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true
-        	 		data = data.filter(row => regex.test(row.Name)|| regex.test(row.Description));
+        	 		measures = measures.filter(row => regex.test(row.Name)|| regex.test(row.Description));
 		        } catch (e) {
 		    	   
 		        }
-		   component.set("v.measures", data);
+		   component.set("v.measures", measures);
          }        	
     },
     

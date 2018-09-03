@@ -22,6 +22,7 @@
             if (state === "SUCCESS") {
             	//console.log('measure '+ JSON.stringify(response.getReturnValue()));
             	component.set("v.measures ", response.getReturnValue());
+            	component.set("v.measuresTemp ", response.getReturnValue());
             }
         });
         $A.enqueueAction(action);

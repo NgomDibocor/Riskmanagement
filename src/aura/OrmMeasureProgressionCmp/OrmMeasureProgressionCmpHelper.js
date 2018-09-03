@@ -8,6 +8,7 @@
             if (state === "SUCCESS") {
             	//console.log('measure '+ JSON.stringify(response.getReturnValue()));
             	component.set("v.measureProgression ", response.getReturnValue());
+            	component.set("v.measureProgressionTemp ", response.getReturnValue());
             }else{
             	alert($A.get('$Label.c.orm_not_found'));
             }

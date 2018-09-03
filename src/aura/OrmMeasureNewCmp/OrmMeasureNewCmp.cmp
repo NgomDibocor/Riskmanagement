@@ -49,7 +49,7 @@
 									</div>  
 									<div class="slds-form-element ">
 				                    <div class="slds-form-element__control">
-				                        <lightning:select aura:id="measureCategorie" name="measureCategorie" label="measure Categorie" class="select-auto-width"  onchange="{!c.measureCategorieChange}">
+				                        <lightning:select aura:id="measureCategorie" name="{!$Label.c.orm_category_measure_label}" label="{!$Label.c.orm_category_measure_label}"   class="select-auto-width"  onchange="{!c.measureCategorieChange}">
 				                            <aura:iteration items="{!v.measureCategorie}" var="measureCategorie">
 				                                <option text="{!measureCategorie}"></option>
 				                            </aura:iteration>

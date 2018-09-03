@@ -21,7 +21,13 @@
             helper.save(component, event);
             
         } else {
-            alert('Please Select a Valid File');
+          	var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : $A.get("$Label.c.orm_check_valid_file_upload"),
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });      
+            toast.fire(); 
         }
     },
  	/**

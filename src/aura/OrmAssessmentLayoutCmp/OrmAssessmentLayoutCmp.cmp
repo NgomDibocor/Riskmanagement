@@ -54,8 +54,9 @@
     <aura:handler event="c:OrmSendValuesFieldDescriptionEvt" action="{!c.sendDescriptionSearchToFD}" />
     <aura:handler event="c:OrmActiveRiskAnalyeCmpEvt" action="{!c.activeRiskAnalye }" />
     <aura:handler event="c:OrmActiveRiskTraitementCmpEvt" action="{!c.activeRiskTreatment}" />
-    <aura:handler event="c:OrmListAssessmentRiskIsNotEmpty" action="{!c.listAssessmentRiskIsNotEmpty}" />
+    <aura:handler event="c:OrmListAssessmentRiskIsNotEmpty" action="{!c.afterAssociateAssessmentRisk}" />
     <aura:handler event="c:OrmNotifyAfterdeletingAssessmentRiskEvt" action="{!c.afterdeletingAssessmentRisk}" />
+    <aura:handler event="c:OrmListMeasureNotEmptyEvt" action="{!c.afterAddingMeasure}" />
     
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation" type="c:OrmOpenNewOrganisationEvt" />

@@ -11,15 +11,24 @@
         if ($A.util.isEmpty(name.get('v.value')) || $A.util.isEmpty(datestart.get('v.value')) || $A.util.isEmpty(dateend.get('v.value'))) {
             isItemValid = false;
         } 
-       
-        if (isItemValid) {
+       var assess=component.get('v.assessmentData').Id;
+       var org=component.get('v.assessmentData').orm_organisation__c;
+       if($A.util.isEmpty(assess) || $A.util.isEmpty(org)){
+       	var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : $A.get("$Label.c.orm_toast_warning"),
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });      
+            toast.fire();
+       }else if (isItemValid) {
       
         // new item workshop
        
             var newItem = component.get("v.item");
            
-           newItem.orm_Assessment__c = component.get('v.assessmentData').Id;
-        newItem.AccountId=component.get('v.assessmentData').orm_organisation__c;
+           newItem.orm_Assessment__c = assess;
+        newItem.AccountId=org;
             newItem.Name=name.get('v.value');
             newItem.StartDate=datestart.get('v.value');
            newItem.orm_Contract_End_Date__c=dateend.get('v.value');
@@ -66,9 +75,7 @@
             $A.enqueueAction(action);
            
 
-        } else {
-          //  alert("ajout échouée");
-        }
+        } 
        
     },
     openModalWorkshop : function(component, event){

@@ -7,7 +7,8 @@
                                                                'orm_description__c' : '',
                                                                'orm_measureCategorie__c':''
                                                                }"/>
-	<aura:registerEvent name="MeasureCreated" type="c:OrmMeasureCreatedEvt" />
+	<aura:registerEvent name="MeasureCreated" type="c:OrmMeasureCreatedEvt" />  
+	<aura:registerEvent name="ListMeasureNotEmpty" type="c:OrmListMeasureNotEmptyEvt" />
 	
 	<aura:handler action="{!c.openOrmMeasureNewCmp}" event="c:OrmNewMeasureClickedEvt" />
 	

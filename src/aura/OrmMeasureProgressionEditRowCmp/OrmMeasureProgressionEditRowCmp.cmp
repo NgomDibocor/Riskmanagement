@@ -27,6 +27,7 @@
     <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllMeasureProgress"/>
     <aura:handler action="{!c.deleteSelected}" event="c:OrmEvtDeleteMeasureProgress"/>
     <aura:registerEvent name="OrmMeasureProgressionCreatedEvt" type="c:OrmMeasureProgressionCreatedEvt" />
+    <aura:registerEvent name="OrmShowButtondeleteMeasureEvt" type="c:OrmShowButtondeleteMeasureEvt" description="" />
     <tr>
     	<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
 			<div class="slds-form-element">

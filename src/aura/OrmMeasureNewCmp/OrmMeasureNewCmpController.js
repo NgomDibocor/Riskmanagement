@@ -42,6 +42,10 @@
             });
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
+            	  //notify OrmAssessmentLayout that list messure is not empty
+            	   var evtListMeasureNotEmpty = $A.get("e.c:OrmListMeasureNotEmptyEvt");
+                   evtListMeasureNotEmpty.fire();
+                    
             	   component.set('v.measure', { 
             		   'sobjectType' : 'Assessment__c',
 		               'Name' : '',

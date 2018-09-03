@@ -3,6 +3,9 @@
         helper.refresh(component, event);
     },
 	newAssessment : function(component, event, helper) {
+	   var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	   evtSpinner.fire();  
+	   
         var evt = $A.get("e.c:OrmDisplayAssessmentEvt");
 		evt.fire();
 	},

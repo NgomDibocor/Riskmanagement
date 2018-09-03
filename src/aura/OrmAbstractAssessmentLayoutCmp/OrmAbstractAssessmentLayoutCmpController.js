@@ -287,21 +287,30 @@
      var idMeasure = component.get("v.idMeasure");
      var idAssessment = component.get("v.assessmentData").Id;
      if(idAssessment != null){
-         if(idMeasure == null){
-	     var toast = $A.get('e.force:showToast');
-	            toast.setParams({
-	            	'message' : 'Please, select a measure in Risk Analysis',
-	                'type' : 'warning',
-	                'mode' : 'dismissible'
-	            });
-	
-	            toast.fire();
-	     }else{	      
-	        helper.activeRiskTreatment(component, event);
-	        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
-	        evt.setParams({"MeasureId": idMeasure});
-	        evt.fire();
-	     }
+            if(component.get("v.isEmptyListMeasure")){
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message' : 'List Measure is empty in Risk Analysis',
+                    'type' : 'warning',
+                    'mode' : 'dismissible'
+                });
+                toast.fire();
+			 }else{
+			         if(idMeasure == null){
+				           var toast = $A.get('e.force:showToast');
+				           toast.setParams({
+				            	'message' : 'Please, select a measure in Risk Analysis',
+				                'type' : 'warning',
+				                'mode' : 'dismissible'
+				            });
+				            toast.fire();
+				     }else{	      
+				        helper.activeRiskTreatment(component, event);
+				        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
+				        evt.setParams({"MeasureId": idMeasure});
+				        evt.fire();
+				     }
+			  }
      }else{
          var toast = $A.get('e.force:showToast');
          toast.setParams({

@@ -34,7 +34,7 @@ public with sharing class OrmMeasureController {
 		return [SELECT Id, Name, orm_description__c 
 		        FROM Assessment__c 
 		        WHERE orm_assessmentRisk__c =: idAssRisk 
-		        AND RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
+		        AND RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() order by CreatedDate];
 	
 	}
 	
@@ -214,4 +214,26 @@ public with sharing class OrmMeasureController {
         return measureProgression;
     }
 	
+	/**
+	*
+	* @author Dibocor NGOM
+	* @version 1.0
+	* @description  this method returns the id of the first Measure if the list is not empty
+	* @history 
+	* 2018-09-02 : Dibocor NGOM - Implementation
+   */
+    @AuraEnabled 
+    public static String ifListNotEmptyGetIdFirstMeasure(String idAssessmentRisk)
+    {
+    	List<Assessment__c> measure = [Select Id 
+    	                               From Assessment__c 
+    	                               WHERE     orm_assessmentRisk__c =: idAssessmentRisk 
+		                                     AND RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() 
+		                               order by CreatedDate limit 1]; 
+        if(measure.size() > 0){
+            return  measure[0].Id;
+        }else{
+           return  null;
+        }
+    }
 }

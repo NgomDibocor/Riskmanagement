@@ -418,7 +418,27 @@
 	            if(idAssRisk == null){
 	               component.set("v.isEmptyListAssessmentRisk", true);
 	            }else{
-	               component.set('v.idAssessmentRisk', idAssRisk);
+	                    component.set('v.idAssessmentRisk', idAssRisk);
+	                    
+	                    var actionGetIdFirstMeasure = component.get("c.ifListNotEmptyGetIdFirstMeasure");
+		                actionGetIdFirstMeasure.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+				        actionGetIdFirstMeasure.setCallback(this, function(response){
+				            var state = response.getState();
+				            if(state === 'SUCCESS'){
+				                var idMeasure = response.getReturnValue();
+					            console.log(idMeasure)
+					            if(idMeasure == null){
+					               component.set("v.isEmptyListMeasure", true);
+					            }else{
+					               component.set('v.idMeasure', idMeasure);
+					            }
+				            
+				            } else { 
+				                alert($A.get("$Label.c.orm_not_found"));
+				            }
+				        });
+				        $A.enqueueAction(actionGetIdFirstMeasure);
+	           
 	            }
 	            
 	        } else {

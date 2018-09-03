@@ -10,7 +10,8 @@
        // I test if I've clicked on showAssessment 
         if(component.get("v.showAssessmentButtonClicked")== true){
            if(component.get("v.nbreRisk")== '0'){
-               component.set("v.isEmptyListAssessmentRisk", true);
+               component.set("v.isEmptyListAssessmentRisk", true); 
+               component.set("v.isEmptyListMeasure", true);
               // message: you must add assessmentRisk first
               //console.log('nbre de risk: '+ component.get("v.nbreRisk"))
                
@@ -20,7 +21,27 @@
 		        actionGetIdFirstAssessmentRisk.setCallback(this, function(response){
 		            var state = response.getState();
 		            if(state === 'SUCCESS'){
-		                component.set('v.idAssessmentRisk', response.getReturnValue());
+			                component.set('v.idAssessmentRisk', response.getReturnValue());
+			                
+			                var actionGetIdFirstMeasure = component.get("c.ifListNotEmptyGetIdFirstMeasure");
+			                actionGetIdFirstMeasure.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+					        actionGetIdFirstMeasure.setCallback(this, function(response){
+					            var state = response.getState();
+					            if(state === 'SUCCESS'){
+					                var idMeasure = response.getReturnValue();
+						            console.log(idMeasure)
+						            if(idMeasure == null){
+						               component.set("v.isEmptyListMeasure", true);
+						            }else{
+						               component.set('v.idMeasure', idMeasure);
+						            }
+					            
+					            } else {
+					                alert($A.get("$Label.c.orm_not_found"));
+					            }
+					        });
+					        $A.enqueueAction(actionGetIdFirstMeasure);
+		                
 		            } else {
 		                alert($A.get("$Label.c.orm_not_found"));
 		            }

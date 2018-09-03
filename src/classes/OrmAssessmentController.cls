@@ -236,4 +236,20 @@ public class OrmAssessmentController {
            return  null;
         }
     }
+    
+    /**
+	*
+	* @author Dibocor NGOM
+	* @version 1.0
+	* @description  this method returns the id of the first measure if the list is not empty
+	* @history 
+	* 2018-09-02 : Dibocor NGOM - Implementation
+   */
+    @AuraEnabled 
+    public static String ifListNotEmptyGetIdFirstMeasure(String idAssessmentRisk)
+    {
+    	return OrmMeasureController.ifListNotEmptyGetIdFirstMeasure(idAssessmentRisk);
+    }
+    
+    
 }

@@ -20,6 +20,9 @@ public with sharing class OrmAttachmentController {
     testContentInsert.VersionData=EncodingUtil.base64Decode(base64Data);
     testContentInsert.PathOnClient='/' + fileName ;
     testContentInsert.orm_title_document__c='titre du document';
+    testContentInsert.orm_auteur__c='auteur';
+    testContentInsert.orm_numeroDeReference__c='numero de reference';
+    
     insert testContentInsert; 
 
     system.debug('testContentInsert.id '+ testContentInsert.id);
@@ -51,7 +54,7 @@ public with sharing class OrmAttachmentController {
             idcds.add(cdl.ContentDocumentId);
         }
         
-        return [SELECT Id,Title,ParentId from ContentDocument where Id IN :idcds ];
+        return [SELECT Id,Title,ParentId, (SELECT orm_title_document__c, orm_auteur__c, orm_numeroDeReference__c FROM ContentVersions) from ContentDocument where Id IN :idcds ];
 }
     
     

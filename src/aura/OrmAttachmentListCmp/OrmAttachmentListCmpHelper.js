@@ -23,6 +23,7 @@
 		action.setCallback(this, function(response) {
 			var state = response.getState();
 			if (state == "SUCCESS") {
+			alert(JSON.stringify(response.getReturnValue()))
 					component.set("v.items", response.getReturnValue());
 			} else if(state ==="ERROR") {
               let errors = response.getError();

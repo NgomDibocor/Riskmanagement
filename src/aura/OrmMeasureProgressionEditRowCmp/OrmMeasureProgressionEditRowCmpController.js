@@ -216,4 +216,14 @@
 		evt.setParams({'showButtonDelete': showButtonDelete});
 		evt.fire();
     },
+    openfilesList : function(component, event, helper)
+    {
+    	var idMeasurePro = component.get('v.measureProgression.Id');
+    	component.set("v.openfilesList",true);
+    },
+    cancelMeasureProgress : function(component, event, helper)
+    {
+    	component.set("v.openfilesList",false);
+    },
+    
 })

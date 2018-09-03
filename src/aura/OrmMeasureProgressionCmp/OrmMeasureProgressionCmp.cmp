@@ -6,6 +6,7 @@
   	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
   	<aura:attribute name="filter" type="String" />
   	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
+  	<aura:attribute name="openfilesList" type="Boolean"  default="false"/>
   	<aura:attribute name="showButtonDelete" type="Boolean" default="false" />
   	<!-- events  -->
 	<aura:handler action="{!c.measureProgression}" event="c:OrmInstanceRiskTreatmentEvt" />
@@ -35,7 +36,7 @@
 			    </span> 
 			    </aura:if>
 			    <br/><br/>
-			     <aura:if isTrue="{!v.showSaveCancelBtn}">
+			   <aura:if isTrue="{!v.showSaveCancelBtn}">
 	        	<div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
 	        		<!--button for save and cancel Record after Inline Edit-->
 		            <lightning:buttonGroup class="slds-m-around_medium">
@@ -52,7 +53,6 @@
 		              	<div class="slds-form-element">
 		                	<div class="slds-form-element__control">
 		                    	<label class="slds-checkbox">
-		                        	<!--header checkbox for select all-->
 		                        	<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
 		                        	<span class="slds-checkbox--faux"></span>
 		                        	<span class="slds-form-element__label text"></span>
@@ -79,6 +79,7 @@
 	                </aura:iteration>
 	            </tbody>
 	        </table>
+	        
 	        <aura:if isTrue="{!v.openModalConfirmDeletion}">    
 	    	<div class="demo-only" style="height: 640px;">
 			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
@@ -103,6 +104,9 @@
 			  <div class="slds-backdrop slds-backdrop_open"></div>
 			</div>	    
 	    </aura:if>
+	    
+	    
+	   
 		</div>
 	</div>
 	<c:OrmMeasureProgressionNewCmp/>

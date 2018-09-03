@@ -81,10 +81,18 @@
     selectAll : function (component, event, helper) {
     	//get the header checkbox value  
     	var selectedHeaderCheck = event.getSource().get("v.value");
+    	if(selectedHeaderCheck)
+    	{
+	    	component.set('v.showButtonDelete', true);
+	    	var evt = $A.get('e.c:OrmEvtSelectAllMeasureProgress');
+	    	  evt.setParams({"selectAllCheckbox": selectedHeaderCheck});
+	    	evt.fire();
+    	}
+    	else
+    	{
+    		component.set('v.showButtonDelete', true);
+    	}
     	
-    	var evt = $A.get('e.c:OrmEvtSelectAllMeasureProgress');
-    	evt.setParams({"selectAllCheckbox": selectedHeaderCheck});
-    	evt.fire();
     },
      openModalDeleteMeasureProgress : function (component, event, helper) {
      
@@ -98,4 +106,13 @@
     	evt.fire();
     	component.set('v.openModalConfirmDeletion', false);
     },
+    showButtonDelete  : function (component, event, helper) {
+    	var showButtonDelete = event.getParam('showButtonDelete');
+    	console.log('capture event '+ showButtonDelete);
+    	if(showButtonDelete){
+    		component.set('v.showButtonDelete', true);
+    	} else {
+			component.set('v.showButtonDelete', false);
+		}
+    }
 })

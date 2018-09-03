@@ -1,8 +1,8 @@
 ({
 	doInit : function(component, event, helper) {
-		if ($A.util.isEmpty(component.get('v.items'))) {
-			helper.refreshList(component, event);
-		}
+	
+		helper.refreshList(component, event);
+		
 		
 	},
 		/**
@@ -14,9 +14,8 @@
 	showformfileUploadNew:function(component,event,helper){
 	//fire event OrmOpenAttachmentNewEvent
 	var evt = $A.get("e.c:OrmOpenAttachmentNewEvent");
-	//idassessment=a051H00000ZoUVQQA3
 			evt.setParams({
-			   "parentId" :'a051H00000ZoUVQQA3',
+			   "parentId" :component.get('v.parentId'),
 			   "isOpenfileUploadNewCmp":true
 			});
 			evt.fire();
@@ -34,7 +33,7 @@ openSingleFile : function (component,event, helper){
         fireEvent.fire({
             recordIds: [eltselected.Id]
         });      
-    }
+    },
 
 
 })

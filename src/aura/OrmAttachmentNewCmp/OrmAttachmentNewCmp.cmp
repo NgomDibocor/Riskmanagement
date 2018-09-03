@@ -13,7 +13,7 @@
 	<!-- handler -->
 	<aura:handler action="{!c.openModalAttachment}"
 		event="c:OrmOpenAttachmentNewEvent" />
-			<aura:registerEvent name="OrmNewFileUploadCreatedEvent"
+	<aura:registerEvent name="OrmNewFileUploadCreatedEvent"
 		type="c:OrmNewFileUploadCreatedEvent" />
 	<!--Use aura:if tag to display Model Box, on the bese of conditions. [isOpen boolean attribute] -->
 	<aura:if isTrue="{!v.isOpenfileUploadNewCmp}">

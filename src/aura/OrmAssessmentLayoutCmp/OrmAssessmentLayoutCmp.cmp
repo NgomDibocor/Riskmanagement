@@ -1042,11 +1042,11 @@
                            </div>
                         </td>
                   </tr>
-                  <tr>
+                  <!--<tr>
                      <td>
                        <c:OrmListDocumentAssessmentCmp />
                      </td>
-                  </tr>
+                  </tr>-->
                   <tr>
                        <td>
                              <div class="slds-col">

@@ -1,4 +1,10 @@
 ({
+	/**
+	 * @author: Salimata NGOM
+	 * @date: Creation:  2018-08-06
+	 * @description: method for create contact
+	 *               
+	 */
 	createContact : function(component, event, helper) {
 		var firstname = component.find('idname');
 		var lastname = component.find('idlastname');

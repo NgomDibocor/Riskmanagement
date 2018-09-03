@@ -19,6 +19,7 @@ public with sharing class OrmAttachmentController {
     testContentInsert.Title =fileName; 
     testContentInsert.VersionData=EncodingUtil.base64Decode(base64Data);
     testContentInsert.PathOnClient='/' + fileName ;
+    testContentInsert.orm_title_document__c='titre du document';
     insert testContentInsert; 
 
     system.debug('testContentInsert.id '+ testContentInsert.id);
@@ -34,7 +35,7 @@ public with sharing class OrmAttachmentController {
     return testContentInsert.id;
 
     } 
-    /**
+/**
  * @author: Salimata NGOM
  * @date: Creation: 31/08/2018
  * @description:  method for get attachment  uploaded

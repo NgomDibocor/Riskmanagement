@@ -6,57 +6,78 @@
 		description="Attribute for store the Id for Parent Record where we are attach our file" />
 	<aura:attribute name="isOpenfileUploadNewCmp" default="false"
 		type="Boolean" description="check if form upload file is visible" />
-	<aura:attribute name="items" type="ContentDocument[]" description="List attachment" />
+	<aura:attribute name="items" type="ContentDocument[]"
+		description="List attachment" />
 	<!-- 	aura register event -->
 	<aura:registerEvent name="OrmOpenAttachmentNewEvent"
 		type="c:OrmOpenAttachmentNewEvent" />
-    <aura:handler action="{!c.doInit}" name="init" value="{!this}" /> 
-	<aura:handler event="c:OrmNewFileUploadCreatedEvent" action="{!c.doInit}" /> 
-	  <div class="slds-grid slds-gutters">
-    <div class=" slds-size--2-of-12   slds-p-horizontal--small">
-    </div>
-        <div class=" slds-size--6-of-12   slds-p-horizontal--small">
-         <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
-                <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
-          </a>
-        </div>
-        <div class=" slds-size--4-of-12   slds-p-horizontal--small">
-          <br/>
-       <span class="btnNewAttachment" onclick="{!c.showformfileUploadNew}">
-		<lightning:icon iconName="utility:new" size="medium" />
-	</span>
-      
-        </div>
-        </div>
-         <!-- end header page content search bar and action button -->
+	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+	<aura:handler event="c:OrmNewFileUploadCreatedEvent"
+		action="{!c.doInit}" />
+	<div class="slds-grid slds-gutters">
+		<div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>
+		<div class=" slds-size--6-of-12   slds-p-horizontal--small">
+			<a href="javascript:void(0);"
+				onclick="{!c.sendDescriptionSearchToFD}"> <lightning:input
+					type="search" onchange="{!c.filter}" value="{!v.key}"
+					label="{!$Label.c.search_title_label}" />
+			</a>
+		</div>
+		<div class=" slds-size--4-of-12   slds-p-horizontal--small">
+			<br /> <span class="btnNewAttachment"
+				onclick="{!c.showformfileUploadNew}"> <lightning:icon
+					iconName="utility:new" size="medium" />
+			</span>
+
+		</div>
+	</div>
+	<!-- end header page content search bar and action button -->
 	<div class="slds-m-around_large">
 		<!--Data Table-->
-		
+
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
 					<th scope="col"><div class="slds-truncate" title="">N°</div></th>
 					<th scope="col"><div class="slds-truncate"
-							title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div></th>
-				
+							title="{!$Label.c.orm_title_file}">{!$Label.c.orm_title_file}</div></th>
+							<th scope="col"><div class="slds-truncate"
+							title="{!$Label.c.orm_author_file}">{!$Label.c.orm_author_file}</div></th>
 							
-
-				</tr>
+					<th scope="col"><div class="slds-truncate"
+							title="{!$Label.c.orm_reference_number}">{!$Label.c.orm_reference_number}</div></th>
+		
+								<th scope="col"><div class="slds-truncate"
+							title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div></th>
+			
+							</tr>
 
 			</thead>
 
 			<tbody>
 				<!--### display all records of attachment  one by one by aura:iteration ###-->
 				<aura:iteration items="{!v.items}" var="item" indexVar="i">
-						<tr class="slds-hint-parent">
+					<tr class="slds-hint-parent">
 						<td>{!i+1}</td>
-							<td>
-								<span class="slds-grid slds-grid_align-spread">
-								<span  class="slds-truncate" title="{!item.Title}">
-								<a data-index="{!i}"  onclick="{!c.openSingleFile}">{!item.Title}</a></span>
-								</span>
-							</td>
-							</tr>
+						
+						<td><span class="slds-grid slds-grid_align-spread"> <span
+								class="slds-truncate" title="{!item.orm_title_document__c}">
+									{!item.ContentVersions[0].orm_title_document__c} </span>
+						</span></td>
+						<td><span class="slds-grid slds-grid_align-spread"> <span
+								class="slds-truncate" title="{!item.orm_auteur__c}">
+									{!item.ContentVersions[0].orm_auteur__c} </span>
+						</span></td>
+						<td><span class="slds-grid slds-grid_align-spread"> <span
+								class="slds-truncate" title="{!item.orm_numeroDeReference__c}">
+									{!item.ContentVersions[0].orm_numeroDeReference__c} </span>
+						</span></td>
+						<td><span class="slds-grid slds-grid_align-spread"> <span
+								class="slds-truncate" title="{!item.Title}"> <a
+									data-index="{!i}" onclick="{!c.openSingleFile}">{!item.Title}</a></span>
+						</span></td>
+					
+					</tr>
 
 				</aura:iteration>
 			</tbody>

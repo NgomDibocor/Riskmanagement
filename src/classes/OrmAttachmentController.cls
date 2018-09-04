@@ -12,16 +12,16 @@ public with sharing class OrmAttachmentController {
 */
 	
 	@AuraEnabled
-    public static Id saveTheFiles(Id parentId, String fileName, String base64Data, String contentType)  
+    public static Id saveTheFiles(Id parentId, String fileName,String titleFile,String authorFile,String referenceNumber, String base64Data, String contentType)  
     { 
 	    system.debug('Saving chatter files '+fileName + ' '+ contentType);
 	    ContentVersion testContentInsert =new ContentVersion(); 
 	    testContentInsert.Title =fileName; 
 	    testContentInsert.VersionData=EncodingUtil.base64Decode(base64Data);
 	    testContentInsert.PathOnClient='/' + fileName ;
-	    testContentInsert.orm_title_document__c='titre du document';
-	    testContentInsert.orm_auteur__c='auteur';
-	    testContentInsert.orm_numeroDeReference__c='numero de reference';
+	    testContentInsert.orm_title_document__c=titleFile;
+	    testContentInsert.orm_auteur__c=authorFile;
+	    testContentInsert.orm_numeroDeReference__c=referenceNumber;
 	    
 	    insert testContentInsert; 
 	

@@ -11,3 +11,6 @@
 .THIS .table{
      text-align: center;
 }
+.THIS .header {
+	background-color: rgba(27, 82, 151, 1.0);
+}

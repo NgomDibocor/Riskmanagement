@@ -174,9 +174,9 @@
     	var showButtonDelete = event.getParam('showButtonDelete');
     	console.log('capture event '+ showButtonDelete);
     	if(showButtonDelete){
-    		component.set('v.showButtonDelete', true);
+    		component.set('v.showButtonDelete', showButtonDelete);
     	} else {
-			component.set('v.showButtonDelete', false);
+			component.set('v.showButtonDelete', showButtonDelete);
 		}
     }
 })

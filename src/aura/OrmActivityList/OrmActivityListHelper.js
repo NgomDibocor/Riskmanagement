@@ -22,7 +22,8 @@
  * 2018-08-20 : Salimata NGOM - Implementation
  */
     refreshList : function(component, event) {
-		var action = component.get('c.findAllActivity');
+		var action = component.get('c.findActivityByAssessment');
+		action.setParam("assessment",component.get("v.assessmentData").Id);
         action.setCallback(this, function(response){
             if(response.getState() == 'SUCCESS'){
               component.set('v.ActivityList', response.getReturnValue());

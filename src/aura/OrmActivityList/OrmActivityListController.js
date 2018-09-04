@@ -4,7 +4,8 @@
      doInit: function(component, event, helper) {
     
       // call the apex class method and fetch activity list  
-         var action = component.get("c.findAllActivity");
+         var action = component.get("c.findActivityByAssessment");
+         action.setParam("assessment",component.get("v.assessmentData").Id);
              action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {

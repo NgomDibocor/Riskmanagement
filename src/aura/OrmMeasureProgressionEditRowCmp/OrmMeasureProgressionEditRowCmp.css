@@ -1,2 +1,12 @@
 .THIS {
 }
+.THIS .redColor{
+	color:red;
+}
+.THIS .yellowColor{
+	color:yellow;
+}
+.THIS .greenColor{
+	color:green;
+}
+

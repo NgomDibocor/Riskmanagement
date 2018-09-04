@@ -151,7 +151,7 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.FamilyEditMode == false}">
-                  <div style="{!v.measureProgression.Family==close ? 'color:red': ''}">  <span class="slds-truncate" title="{!$Label.c.orm_statusProgress_label}">{!v.measureProgression.Family}</span></div>
+                  <div >  <span title="{!$Label.c.orm_statusProgress_label}" class="{! v.measureProgression.Family == 'close' ? 'redColor' : (v.measureProgression.Family == 'open' ? 'greenColor' : (v.measureProgression.Family == 'draft' ? 'yellowColor' : ''))  }">{!v.measureProgression.Family}</span></div>
                     <button onclick="{!c.inlineEditStatus}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_statusProgress_label}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>

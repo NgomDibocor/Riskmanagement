@@ -30,14 +30,12 @@
 	 *  @description: method for creating a Measure Progression */
 	createMeasureProgression: function(component, event, helper){
 		var dateProgression = component.find('dateProgression').get('v.value');
-        var pourcentage = component.find('pourcentage').get('v.value');
         var poucentageProgression = component.find('poucentageProgression').get('v.value');
         var Description = component.find('Description').get('v.value');
         var status = component.find('status').get('v.value');
        
         	var newMeasureProgression = component.get('v.measureProgression');
         	newMeasureProgression.orm_dateProgression__c = dateProgression ;
-        	newMeasureProgression.orm_pourcentage__c = pourcentage ;
         	newMeasureProgression.orm_poucentageProgression__c = poucentageProgression ;
         	newMeasureProgression.Description = Description ;
         	newMeasureProgression.Family = status ;

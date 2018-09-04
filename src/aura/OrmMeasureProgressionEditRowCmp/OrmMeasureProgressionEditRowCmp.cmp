@@ -3,14 +3,12 @@
 	<aura:attribute name="showSaveCancelBtn" type="boolean"/>
     <aura:attribute name="sNo" type="string" />
     <aura:attribute name="showErrorClass" type="boolean" default="false"/>
-    <aura:attribute name="pourcentageEditMode" type="boolean" default="false" />
     <aura:attribute name="DescriptionEditMode" type="boolean" default="false" />
     <aura:attribute name="poucentageProgressionEditMode" type="boolean" default="false" />
     <aura:attribute name="FamilyEditMode" type="boolean" default="false" />
     <aura:attribute name="dateProgressionEditMode" type="boolean" default="false" />
     <aura:attribute name="measureProgression" type="Product2" default="{'sobjectType' : 'Product2',
     															'Name':'xx',
-                                                               'orm_pourcentage__c' : '',
                                                                'Description' : '',
                                                                'Family':'',
                                                                'orm_poucentageProgression__c':'',
@@ -77,40 +75,7 @@
             </span>
         </td>
         
-        <td ondblclick="{!c.inlineEditPourcentage}" class="{! v.showErrorClass == true ? 'slds-cell-edit slds-has-error' : 'slds-cell-edit'}">
-            <span class="slds-grid slds-grid_align-spread">
-                <!-- show input and output section based on boolean flag --> 
-                <aura:if isTrue="{!v.pourcentageEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_Percent_label}">{!v.measureProgression.orm_pourcentage__c}</span>
-                    <button onclick="{!c.inlineEditPourcentage}" 
-                    	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
-                    		tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_Percent_label}">
-                      <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
-                    </button>
-                   
-                    <!-- Inline Edit Section in else case-->  
-                    <aura:set attribute="else">
-                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" 
-                        	style="position: absolute; top: 0px">
-                            <div class="slds-popover__body">
-                                <div class="slds-form-element slds-grid slds-wrap">
-                                    <div class="slds-form-element__control slds-grow">
-                                        <ui:inputText class="slds-input inputFieldWidth"
-                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
-                                                      aura:id="idPercent"
-                                                      blur="{!c.closePourcentageBox}"
-                                                      change="{!c.onPourcentageChange}"
-                                                      label="{!$Label.c.orm_Percent_label}"
-                                                      value="{!v.measureProgression.orm_pourcentage__c }" />
-                                    </div>
-                                </div>
-                            </div>
-                            <span id="form-end" tabindex="0"></span>
-                        </section>  
-                    </aura:set>  
-                </aura:if> 
-            </span>
-        </td>
+        
         
         <td ondblclick="{!c.inlineEditpoucentageProgression}" class="{! v.showErrorClass == true ? 'slds-cell-edit slds-has-error' : 'slds-cell-edit'}">
             <span class="slds-grid slds-grid_align-spread">

@@ -15,7 +15,10 @@
 	<aura:registerEvent name="OrmEvtSelectAllMeasureProgress" type="c:OrmEvtSelectAllMeasureProgress" />
 	<aura:registerEvent name="OrmEvtDeleteMeasureProgress" type="c:OrmEvtDeleteMeasureProgress" description="" />
 	<aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
-	Measure Progression
+	Measure Progression 
+	
+	
+
  	<div class="slds-m-around_large">
 		<div class="measureProgression">
 		    	<div class="measureSearch">
@@ -54,7 +57,6 @@
 		              </th> 
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
 	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_DateProgression_label}">{!$Label.c.orm_DateProgression_label}</div></th>
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_Percent_label}">{!$Label.c.orm_Percent_label}</div></th>
 	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_PourcentageProgression_label}">{!$Label.c.orm_PourcentageProgression_label}</div></th>
 	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_ProductDescription_label}">{!$Label.c.orm_ProductDescription_label}</div></th>
 	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_statusProgress_label}">{!$Label.c.orm_statusProgress_label}</div></th>

@@ -28,7 +28,7 @@
             component.set("v.showSaveCancelBtn",true);
         }
     },
-    
+    /*
    inlineEditPourcentage : function(component, event, helper) {
 		// show the name edit field popup 
         component.set("v.pourcentageEditMode", true); 
@@ -37,6 +37,7 @@
             component.find("idPercent").focus();
         }, 100);
 	},
+	
 	 closePourcentageBox : function(component, event, helper){ 
     	// on focus out, close the input section by setting the 'nameEditMode' att. as false   
         component.set("v.pourcentageEditMode", false); 
@@ -51,7 +52,7 @@
             component.set("v.showSaveCancelBtn",true);
         }
     },
-    
+    */
      inlineEditpoucentageProgression : function(component, event, helper) {
 		// show the name edit field popup 
         component.set("v.poucentageProgressionEditMode", true); 

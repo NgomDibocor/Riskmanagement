@@ -67,7 +67,7 @@
     
     filter : function (component, event, helper){
     	
-    	var causes = component.get('v.causes');
+    	var causesTemp = component.get('v.causesTemp');
     	//var data = causes;
     	var key = component.get('v.key');
     	var regex;    	
@@ -79,11 +79,11 @@
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true
-        	 		causes = causes.filter(cause => regex.test(cause.Description));
+        	 		causesTemp = causesTemp.filter(cause => regex.test(cause.Description));
 		        } catch (e) {
 		    	   
 		        }
-		   component.set("v.causes", causes);
+		   component.set("v.causes", causesTemp);
          }        	
     },
     

@@ -6,30 +6,47 @@
     
     <aura:attribute name="idAssessment" type="String"/>
     <aura:attribute name="label" type="String"/>
+    <aura:attribute name="label2" type="String"/>
     <aura:attribute name="filterName" type="String"/>
     <aura:attribute name="min" type="String" default="0"/>
     <aura:attribute name="max" type="String" default="100"/>
     <aura:attribute name="step" type="String" default="1"/>
     
+    <aura:attribute name="showProbilityRanking" type="boolean" default="true"/>
+    <aura:attribute name="showHsseImpactsRanking" type="boolean" default="false"/>
+    <aura:attribute name="showBusinessImpactsRanking" type="boolean" default="false"/>
+    
     <aura:attribute name="valCostmin" type="Integer" default="0"/>
     <aura:attribute name="valCostmax" type="Integer" default="100"/>
     <aura:attribute name="valpourcentagemin" type="Integer" default="0"/>
     <aura:attribute name="valpourcentagemax" type="Integer" default="100"/>
-       
-    <div>
-        <div class="label">Cost</div>
-        <div class="label">{!v.label}</div>
-	    <div aura:id="slider" class="slider"/>
-    </div>
-    valCostmin: {!v.valCostmin}
-    valCostmax: {!v.valCostmax}
     
-    <div>       
-        <div class="label">Pourcentage</div>
-        <div class="label">{!v.label}</div>
-	    <div aura:id="slider2" class="slider2"/>
-    </div>
-    valpourcentagemin: {!v.valpourcentagemin}
-    valpourcentagemax: {!v.valpourcentagemax}
+   
+		    <aura:if isTrue="{!v.showProbilityRanking}">
+			        <H1>Probility Ranking</H1> 
+			        <div class="slds-size--1-of-1">
+				        <div class="label">Cost</div>
+				        <div class="label">{!v.label}</div>
+					    <div aura:id="slider" class="slider"/>
+				    </div>
+				    <div class="slds-size--1-of-1">       
+				        <div class="label2">Pourcentage</div>
+				        <div class="label2">{!v.label2}</div>
+					    <div aura:id="slider2" class="slider2"/>
+				    </div>
+		    </aura:if>
+		    
+		    <aura:if isTrue="{!v.showHsseImpactsRanking}"> 
+			       <H1>HSSE Impacts Ranking</H1>
+			       
+		    </aura:if> 
+		    
+		    <aura:if isTrue="{!v.showBusinessImpactsRanking}"> 
+		       <H1>Business Impacts Ranking</H1>
+		       
+		    </aura:if>   
+	  
+	    <lightning:icon class="iconPrev" onclick="{!c.PrevPage}" iconName="utility:chevronleft" size="large" />
+	    <lightning:icon class="iconNext" onclick="{!c.nextPage}" iconName="utility:chevronright" size="large" />
     
 </aura:component>

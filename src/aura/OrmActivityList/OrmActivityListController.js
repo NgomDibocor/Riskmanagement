@@ -1,6 +1,12 @@
 ({
 	
-    
+    /**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for get activity list by assessment
+	 * @history 2018-08-20 : Salimata NGOM - Implementation
+	 */
      doInit: function(component, event, helper) {
     
       // call the apex class method and fetch activity list  
@@ -21,6 +27,13 @@
         component.set("v.selectedCount", 0);
         component.find("box3").set("v.value", false);
       },  
+      	/**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for fire and open new component activity
+	 * @history 2018-08-20 : Salimata NGOM - Implementation
+	 */
       openActivityNewCmp : function(component, event, helper){
         var idAssessment = component.get("v.assessmentData").Id;
         if(idAssessment == null){
@@ -40,6 +53,13 @@
 			evt.fire();
         }
     },
+    /**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description save activity
+	 * @history 2018-08-20 : Salimata NGOM - Implementation
+	 */
     Save: function(component, event, helper) {
       // Check required fields(Name) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)){
@@ -67,23 +87,50 @@
             });
             $A.enqueueAction(action);
         } 
-    },    
+    },  
+     /**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description cancel action and refresh the view
+	 * @history 2018-08-20 : Salimata NGOM - Implementation
+	 */  
     cancel : function(component,event,helper){
        // on cancel refresh the view
         $A.get('e.force:refreshView').fire(); 
     },
+     /**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for show modal confirm delete activity
+	 * @history 2018-08-20 : Salimata NGOM - Implementation
+	 */ 
     removeActivity:function(component,event,helper){
     //is checked delete activity show popup  message confirmation
     component.set("v.showConfirmRemoveActivity",true);
     
     },
+     /**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for close modal activity
+	 * @history 2018-08-20 : Salimata NGOM - Implementation
+	 */ 
     closeModalRemove:function(component,event,helper){
        component.set("v.showConfirmRemoveActivity",false);
     },
-    
+     /**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for remove activity selected
+	 * @history 2018-08-20 : Salimata NGOM - Implementation
+	 */ 
     removeActSelected: function(component,event,helper){
        component.set("v.showConfirmRemoveActivity",false);
-       //fire event to childActivityList
+        //fire event to childActivityList for delete activity selected
 		var evt = $A.get("e.c:OrmRemoveRecordActivityEvnt");
 		evt.fire();
     },

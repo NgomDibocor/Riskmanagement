@@ -124,7 +124,6 @@
     },
 
     openPopupDissociate: function(component, event, helper) {
-        component.set("v.isOpenButton", true);
         var selectedRows = event.getParam('selectedRows');
         var assessmentRisks = [];
         selectedRows.forEach(function(selectedRow) {
@@ -133,7 +132,16 @@
             newAssessmentRisk.Id = selectedRow.Id;
             assessmentRisks.push(newAssessmentRisk);
         });
+        if(assessmentRisks.length == 0)
+        {
+        component.set("v.isOpenButton", false);
+      
+        }
+        else{
+        component.set("v.isOpenButton", true);
         component.set("v.dissociateRisk", assessmentRisks);
+        }
+        
     },
 
     /*
@@ -175,7 +183,7 @@
 	            
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
-                    'message': 'successful association',
+                    'message': $A.get("$Label.c.orm_success_associated"),
                     'type': 'success',
                     'mode': 'dismissible'
                 });

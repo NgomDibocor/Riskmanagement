@@ -52,10 +52,16 @@
 	 *               
 	 */
 	upload : function(component, file, fileContents, event) {
+	var titledoc=component.find("titleFile");
+	var authordoc=component.find("author");
+	var numref=component.find("refnumber");
 		var action = component.get("c.saveTheFiles");
 		action.setParams({
 			parentId : component.get("v.parentId"),
 			fileName : file.name,
+			titleFile: titledoc.get("v.value"),
+			authorFile: authordoc.get("v.value"),
+			referenceNumber: numref.get("v.value"),
 			base64Data : fileContents,
 			contentType : file.type
 		});

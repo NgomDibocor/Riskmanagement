@@ -4,7 +4,6 @@
 	<aura:attribute name="idMeasure" type="string" />
 	<aura:attribute name="allStatusMeasure" type="String[]" />
 	<aura:attribute name="measureProgression" type="Product2" default="{'sobjectType' : 'Product2',
-                                                               'orm_pourcentage__c' : '',
                                                                'Description' : '',
                                                                'Family':'',
                                                                'orm_poucentageProgression__c':'',
@@ -37,12 +36,7 @@
                                      			value="{!v.measureProgression.orm_dateProgression__c}" />
 										</div>
 									</div>   
-									<div class="slds-form-element slds-is-required">
-										<div class="slds-form-element__control">
-                                            <lightning:input aura:id="pourcentage" type="number" label="{!$Label.c.orm_Percent_label}" 
-                                     			value="{!v.measureProgression.orm_pourcentage__c}" />
-										</div>
-									</div>
+									
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
                                             <lightning:input aura:id="poucentageProgression" type="number" label="{!$Label.c.orm_PourcentageProgression_label}" 

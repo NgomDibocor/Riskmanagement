@@ -185,7 +185,7 @@ public with sharing class OrmMeasureController {
 	*/
 	@AuraEnabled
 	public static List<Product2> getAllMeasuresProgressionByMeasure(String idMeasure){
-		return [SELECT Id,orm_pourcentage__c,Description,Family,
+		return [SELECT Id,Description,Family,
 		orm_poucentageProgression__c,orm_dateProgression__c,orm_measures__c
 		        FROM Product2 
 		        WHERE orm_measures__c =: idMeasure 

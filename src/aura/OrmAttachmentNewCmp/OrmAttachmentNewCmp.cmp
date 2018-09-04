@@ -8,6 +8,12 @@
 		default="false" />
 	<aura:attribute name="fileName" type="String"
 		default="No File Selected.." />
+	<aura:attribute name="titleFile" type="String"
+		default="Title attributed to the file" />
+			<aura:attribute name="authorFile" type="String"
+		default="Author of the file" />
+		<aura:attribute name="referenceNumber" type="String"
+		default="Reference Number" />
 	<aura:attribute name="isOpenfileUploadNewCmp" default="false"
 		type="Boolean" description="check if form upload file is visible" />
 	<!-- handler -->
@@ -33,23 +39,47 @@
 				</div>
 				<!--###### MODAL BOX BODY Part Start From Here ######-->
 				<div class="slds-modal__content slds-p-around--medium">
-
-
-					<!-- CREATE NEW PROJET FORM -->
-					<lightning:input aura:id="file" onchange="{!c.handleFilesChange}"
+					<!-- / start modal body -->
+			<form class="slds-form--stacked">
+						<div class="slds-grid slds-gutters">
+							<div class="slds-col">
+							
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+										
+                                            <lightning:input aura:id="titleFile" type="text" label="{!$Label.c.orm_title_file}" 
+                                     			value="{!v.titleFile}" />
+										</div>
+										<div class="slds-form-element__control">
+										
+                                            <lightning:input aura:id="author" type="text" label="{!$Label.c.orm_author_file}" 
+                                     			value="{!v.authorFile}" />
+										</div>
+										<div class="slds-form-element__control">
+										
+                                            <lightning:input aura:id="refnumber" type="text" label="{!$Label.c.orm_reference_number}" 
+                                     			value="{!v.referenceNumber}" />
+										</div>
+										<div class="slds-form-element__control">
+										<lightning:input aura:id="file" onchange="{!c.handleFilesChange}"
 						type="file" name="file" label="Upload Attachment" multiple="false" />
 					<div class="slds-text-body_small slds-text-color_error">{!v.fileName}
 					</div>
-
-					<!--use aura:if for show-hide the loading spinner image-->
+										</div>
+										<!--use aura:if for show-hide the loading spinner image-->
 					<aura:if isTrue="{!v.showLoadingSpinner}">
 						<div class="slds-text-body_small slds-text-color_error">
 							Uploading... <img src="/auraFW/resources/aura/images/spinner.gif"
 								class="spinner-img" alt="Loading" />'
 						</div>
 					</aura:if>
-
-					<!-- / CREATE NEW Item FORM -->
+									</div>
+									
+								
+							</div>
+						</div>
+					</form>
+					<!-- / end modal body -->
 
 				</div>
 				<!--###### MODAL BOX FOOTER Part Start From Here ######-->

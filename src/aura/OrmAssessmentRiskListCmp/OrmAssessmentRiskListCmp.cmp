@@ -11,7 +11,7 @@
   <div class="slds-col">									
 		<div class="space"></div>
 		<span class="searchInput">
-        	<lightning:input aura:id="searchAssRisk" class="search" placeholder="search assessmentRisk by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
+        	<lightning:input aura:id="searchAssRisk" class="search" placeholder="{!$Label.c.orm_filter_assessmentRiskList_placeholder}" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         
    </div>
@@ -36,10 +36,12 @@
                             
                             <div class="slds-no-flex" style="margin-left:5px">
                                 <button id="{!item[0]}" 
-                                        class="slds-button slds-button_neutral"
+                                        class="slds-button slds-button_brand"
                                         onclick="{!c.showAssessmentRisk}">
                                     {!$Label.c.orm_show_button_title}<span id="{!item[6]}"></span>
+                                    
                                 </button>
+                                
                             </div>
                         </header>
                     </div>

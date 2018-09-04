@@ -55,7 +55,7 @@
         </div>
         <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
             <!--  <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}"> </a> -->
-                <lightning:input type="search" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}" placeholder="search Assessment Risk  by name or description" />
+                <lightning:input type="search" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}" placeholder="{!$Label.c.orm_filter_assessmentRisk_placeholder}" />
            
         </div>
         <div class=" slds-size--3-of-12   slds-p-horizontal--small slds-float—left">
@@ -64,7 +64,7 @@
            <!--  <button class="slds-button slds-button_brand" >add new risk</button> -->
              <lightning:icon iconName="utility:new" size="medium" /></span>
             <button class="slds-button slds-button--brand" onclick="{!c.openModalRisk}">
-			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>associate risk
+			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title} 
 	       </button>
         </div>
         <div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
@@ -97,12 +97,12 @@
         <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open slds-modal_medium">
             <div class="slds-modal__container form-style-6">
                 <!-- ###### MODAL BOX HEADER Part Start From Here ######-->
-                <div class="slds-modal__header">
+                <header class="slds-modal__header header">
                     <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.c.orm_close_button_title}" onclick="{!c.closeModal}">
 							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
-                    <h1 id="header99" class="slds-text-heading--medium">associate risk</h1>
-                </div>
+                    <h1 id="header99" class="slds-text-heading--medium" style="color: white;"> {!$Label.c.associate_button_title} </h1>
+                </header>
                 <!--###### MODAL BOX BODY Part Start From Here ######-->
                 <div class="slds-modal__content slds-p-around--medium">
                     <!-- CREATE NEW Activity FORM -->

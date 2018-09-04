@@ -25,7 +25,7 @@
 	    
 	    	<div class="measureSearch">
 		    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldMeasure}">
-					<lightning:input type="search"  placeholder="search Progress Measure  by name or description" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
+					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_measure_placeholder}" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
 				</a>
 			</div>
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" onclick="{!c.openNewMeasureCmp}">

@@ -11,7 +11,7 @@
   <div class="slds-col">									
 		<div class="space"></div>
 		<span class="searchInput">
-        	<lightning:input aura:id="searchAssRisk" class="search" placeholder="search assessmentRisk by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
+        	<lightning:input aura:id="searchAssRisk" class="search" placeholder="{!$Label.c.orm_filter_assessmentRiskList_placeholder}" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         
    </div>

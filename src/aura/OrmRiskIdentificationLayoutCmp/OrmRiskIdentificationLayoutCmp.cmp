@@ -64,7 +64,7 @@
            <!--  <button class="slds-button slds-button_brand" >add new risk</button> -->
              <lightning:icon iconName="utility:new" size="medium" /></span>
             <button class="slds-button slds-button--brand" onclick="{!c.openModalRisk}">
-			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>associate risk
+			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title} 
 	       </button>
         </div>
         <div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
@@ -101,7 +101,7 @@
                     <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.c.orm_close_button_title}" onclick="{!c.closeModal}">
 							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
-                    <h1 id="header99" class="slds-text-heading--medium">associate risk</h1>
+                    <h1 id="header99" class="slds-text-heading--medium"> {!$Label.c.associate_button_title} </h1>
                 </div>
                 <!--###### MODAL BOX BODY Part Start From Here ######-->
                 <div class="slds-modal__content slds-p-around--medium">

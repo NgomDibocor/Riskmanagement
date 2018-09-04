@@ -21,6 +21,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {
             	component.set("v.causes ", response.getReturnValue());
+            	component.set("v.causesTemp", response.getReturnValue());
             }
         });
         $A.enqueueAction(action);

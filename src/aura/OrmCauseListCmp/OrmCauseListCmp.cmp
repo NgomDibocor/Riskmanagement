@@ -13,6 +13,7 @@
 
 	<!-- attributes -->
 	<aura:attribute name="causes" type="Macro[]" description="" />
+	<aura:attribute name="causesTemp" type="Macro[]" description="" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" description="" />

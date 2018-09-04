@@ -183,7 +183,7 @@
 	            
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
-                    'message': 'successful association',
+                    'message': $A.get("$Label.c.orm_success_associated"),
                     'type': 'success',
                     'mode': 'dismissible'
                 });

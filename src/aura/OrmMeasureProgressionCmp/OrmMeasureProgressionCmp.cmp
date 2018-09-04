@@ -25,7 +25,7 @@
 			    	<a href="javascript:void(0);" >
 						<lightning:input type="search"   onchange="{!c.filter}" value="{!v.filter}"  
 							label="{!$Label.c.search_title_label}" 
-							 placeholder="search Progress Measure  by date or description" 
+							 placeholder="{!$Label.c.orm_filter_measureProgression_placeholder}" 
 							/>
 					</a>
 				</div>

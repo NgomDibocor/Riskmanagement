@@ -81,7 +81,7 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.poucentageProgressionEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_PourcentageProgression_label}">{!v.measureProgression.orm_poucentageProgression__c}</span>
+                    <span class="slds-truncate" title="{!$Label.c.orm_PourcentageProgression_label}" style="color:blue;">{!v.measureProgression.orm_poucentageProgression__c} %</span>
                     <button onclick="{!c.inlineEditpoucentageProgression}" 
                     	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     		tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_PourcentageProgression_label}">
@@ -191,7 +191,7 @@
 			    <div class="slds-modal__container">
 			      <header class="slds-modal__header header">
 			      	<span style="color: white;">{!$Label.c.orm_files_lists_label}</span>
-			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+			        <button  style="color: white;" onclick="{!c.cancelMeasureProgress}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
 			        	title="{!$Label.c.orm_close_button_title}">		          
 			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 			        </button>

@@ -8,7 +8,12 @@
 
 	<aura:attribute name="showSaveCancelBtn" type="boolean" />
 	<aura:attribute name="nameEditMode" type="boolean" default="false" />
-
+	<!-- 	declare aura:handler -->
+	<aura:handler event="c:OrmRemoveRecordAssumptEvnt"
+		action="{!c.deleteSelected}" />
+<!-- 		declare aura:register -->
+<aura:registerEvent name="OrmRefreshAssumptionEvnt"
+		type="c:OrmRefreshAssumptionEvnt" />
 	<!--Table Row Start-->
 	<tr>
 

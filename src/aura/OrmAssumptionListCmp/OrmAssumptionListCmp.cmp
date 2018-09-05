@@ -14,7 +14,10 @@
 	<!-- 	aura registerEvent -->
 	<aura:registerEvent name="OrmNewAssumptionClickedEvt"
 		type="c:OrmNewAssumptionClickedEvt" />
-
+	<aura:registerEvent name="OrmRemoveRecordAssumptEvnt"
+		type="c:OrmRemoveRecordAssumptEvnt" />
+<!-- 		declare aura:handler -->
+<aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
 	<!-- start header page content search bar and action button -->
 	<div class="slds-grid slds-gutters">
 		<div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>
@@ -108,7 +111,7 @@
 						<button class="slds-button slds-button_neutral"
 							onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
 						<button class="slds-button slds-button_brand"
-							onclick="{!c.removeActSelected}">{!$Label.c.orm_delete_button_title}</button>
+							onclick="{!c.removeAssumptSelected}">{!$Label.c.orm_delete_button_title}</button>
 					</footer>
 				</div>
 			</section>

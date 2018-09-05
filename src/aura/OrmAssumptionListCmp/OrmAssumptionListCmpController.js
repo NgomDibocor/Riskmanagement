@@ -118,5 +118,18 @@
 		// is checked delete activity show popup message confirmation
 		component.set("v.showConfirmRemoveAssumption",true);
 
-	}
+	},
+	     /**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for remove assumption selected
+	 * @history 2018-09-05 : Salimata NGOM - Implementation
+	 */ 
+    removeAssumptSelected: function(component,event,helper){
+       component.set("v.showConfirmRemoveAssumption",false);
+        //fire event to childActivityList for delete activity selected
+		var evt = $A.get("e.c:OrmRemoveRecordAssumptEvnt");
+		evt.fire();
+    },
 })

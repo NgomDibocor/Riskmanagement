@@ -1,0 +1,31 @@
+<aura:component controller="OrmActivityController" access="global" extends="c:ormAbstractListCmp">
+		 <!-- attributes -->
+	<aura:attribute name="activityProof" type="Product2[]" />
+  	<aura:attribute name="activityProofTemp" type="Product2[]" />
+  	<aura:attribute name="idActivity" type="string" />
+  	<aura:attribute name="filter" type="String" />
+	
+	<aura:handler action="{!c.doInit}" event="c:OrmShowActivityEvt" />
+	Activity  proof
+	
+	
+	 <div class="slds-m-around_large">
+		<div class="topSpacing">
+        	<label class="slds-form-element__label ">Activity  proof<span class="cmn_mandatory_indicator">*</span></label>
+        </div>                                        
+	    <div class="activityProof">
+	    
+	    	<div class="activityProofSearch">
+		    	<a href="javascript:void(0);" >
+					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_measure_placeholder}" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
+				</a>
+			</div>
+			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" >
+	        	<lightning:icon iconName="utility:new" size="small" />
+	        </span>
+	         
+	       
+		</div>
+	</div>
+	
+</aura:component>

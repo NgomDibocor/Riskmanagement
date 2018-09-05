@@ -454,4 +454,14 @@
 	    component.set("v.isEmptyListMeasure", false);
    },
    
+   showActivity : function(component, event, helper){
+        //console.log("id Activity dans AssessmentLayout"+ event.getParam("idActivity"))
+        component.set("v.showContextActivity", false);
+        component.set("v.showContextActivityShow", true);
+	    var evt = $A.get("e.c:OrmShowActivityEvt");
+        evt.setParams({
+            "idActivity": event.getParam("idActivity")
+        });
+        evt.fire();
+   },
 })

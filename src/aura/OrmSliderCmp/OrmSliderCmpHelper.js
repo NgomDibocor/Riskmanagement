@@ -26,8 +26,10 @@
 	},
 	
 	jsLoaded : function(component, event, helper) {
-        //start first slider
+	
+	    //start first slider
         var slider = component.find('slider').getElement();
+        console.log(slider)
         slider = this.createSlider(component, event, helper, slider);
         
 		slider.noUiSlider.on('change', $A.getCallback(function(range) {
@@ -37,6 +39,22 @@
         //end first slider
         
         //start second slider
+        /*var slider2 = component.find('slider2').getElement();
+        slider2 = this.createSlider(component, event, helper, slider2);
+        
+        slider2.noUiSlider.on('change', $A.getCallback(function(range) {
+		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
+		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+        }));*/
+        //end second slider
+        
+    },
+    
+    jsLoaded2 : function(component, event, helper) {
+	
+	    
+        
+        //start second slider
         var slider2 = component.find('slider2').getElement();
         slider2 = this.createSlider(component, event, helper, slider2);
         
@@ -44,6 +62,8 @@
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end first slider
+        //end second slider
+        
     },
+    
 })

@@ -25,7 +25,6 @@
 		    <aura:if isTrue="{!v.showProbilityRanking}">
 			        <H1>Probility Ranking</H1> 
 			        <div class="slds-size--1-of-1">
-				        <div class="label">Cost</div>
 				        <div class="label">{!v.label}</div>
 					    <div aura:id="slider" id="slider" class="slider"/>
 				    </div>
@@ -35,9 +34,8 @@
 		    <aura:if isTrue="{!v.showHsseImpactsRanking}"> 
 			       <H1>HSSE Impacts Ranking</H1>
 			       <div class="slds-size--1-of-1">       
-				        <div class="label2">Pourcentage</div>
-				        <div class="label2">{!v.label2}</div>
-					    <div aura:id="slider2" class="slider2"/>
+				        <div class="label">{!v.label}</div>
+					    <div aura:id="slider" class="slider"/>
 				    </div>
 		    </aura:if> 
 		    

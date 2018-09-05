@@ -1130,11 +1130,11 @@
                     </tr>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextActivityShow}">
-                     <tr>
+                     <!--<tr>
                          <td>
-                              <c:OrmActivityProofListCmp />
+                              <c:OrmActivityProofListCmp />  
                          </td>
-                     </tr>
+                     </tr>-->
                    </aura:if>
                    <aura:if isTrue="{!v.showContextWorkshop}">
                      <tr>

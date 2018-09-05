@@ -31,10 +31,11 @@
        var showBusinessImpactsRanking = component.get("v.showBusinessImpactsRanking");
        
        if(showProbilityRanking == true){
-           
-	       component.set("v.showProbilityRanking", false);
            component.set("v.showHsseImpactsRanking", true);
-           helper.jsLoaded2(component, event, helper);
+	       component.set("v.showProbilityRanking", false);
+	       
+	          helper.jsLoaded2(component, event, helper);
+           
        } 
        
        if(showHsseImpactsRanking == true){

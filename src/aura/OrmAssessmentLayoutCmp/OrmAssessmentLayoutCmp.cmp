@@ -4,6 +4,7 @@
     <aura:attribute name="showContext" type="boolean" default="true"/>
     <aura:attribute name="showContext2" type="boolean" default="false"/>
     <aura:attribute name="showContextActivity" type="boolean" default="false"/>
+    <aura:attribute name="showContextActivityShow" type="boolean" default="false"/>
     <aura:attribute name="showContextWorkshop" type="boolean" default="false"/>
     <aura:attribute name="showRiskIdentif" type="boolean" default="false"/>
     <aura:attribute name="showRiskAnalyse" type="boolean" default="false"/>
@@ -1127,6 +1128,9 @@
                            <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
                          </td>
                     </tr>
+                   </aura:if>
+                   <aura:if isTrue="{!v.showContextActivityShow}">
+                        <p>Show Activity</p>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextWorkshop}">
                      <tr>

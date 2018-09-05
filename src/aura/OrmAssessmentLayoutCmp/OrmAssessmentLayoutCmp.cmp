@@ -58,6 +58,7 @@
     <aura:handler event="c:OrmListAssessmentRiskIsNotEmpty" action="{!c.afterAssociateAssessmentRisk}" />
     <aura:handler event="c:OrmNotifyAfterdeletingAssessmentRiskEvt" action="{!c.afterdeletingAssessmentRisk}" />
     <aura:handler event="c:OrmListMeasureNotEmptyEvt" action="{!c.afterAddingMeasure}" />
+    <aura:handler event="c:OrmShowActivityEvt" action="{!c.showActivity}" />
     
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation" type="c:OrmOpenNewOrganisationEvt" />
@@ -65,6 +66,7 @@
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:registerEvent name="ShowSpinner" type="c:OrmHideSpinnerEvt"  />
+       
     
     <!-- return to list of Assessment -->
    
@@ -1130,7 +1132,7 @@
                     </tr>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextActivityShow}">
-                        <p>Show Activity</p>
+                        <c:OrmActivityProofListCmp />
                    </aura:if>
                    <aura:if isTrue="{!v.showContextWorkshop}">
                      <tr>

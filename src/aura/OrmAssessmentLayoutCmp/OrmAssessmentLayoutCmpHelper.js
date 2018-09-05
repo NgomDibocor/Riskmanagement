@@ -354,7 +354,7 @@
         component.set("v.showChevronright", true);
     },
     
-    activeContextActivityShow : function(component, event, helper) {
+    /*activeContextActivityShow : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');
         var tab2 = component.find('riskIdentifId');
@@ -390,7 +390,7 @@
         component.set("v.showActionPlan", false);
         component.set("v.showChevronleft", true);   
         component.set("v.showChevronright", true);
-    },
+    },*/
     activeContextWorkshop : function(component, event, helper) {
         component.set("v.closeFieldDescription",true);
         var tab1 = component.find('contextId');

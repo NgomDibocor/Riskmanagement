@@ -18,7 +18,7 @@
                  <lightning:card variant="Narrow" title="{!v.measureData.Name}" 
                                                 iconName="standard:account">
                           <p class="slds-p-horizontal_small">
-								<b>{!v.measureData.orm_measureCategorie__c}</b>	            
+								<b>{!$Label.c.orm_category_measure_label}: </b>{!v.measureData.orm_measureCategorie__c}	            
 						  </p>
                  </lightning:card>
             </td>

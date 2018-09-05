@@ -1,12 +1,15 @@
 .THIS {
 }
 .THIS .redColor{
-	color:red;
+	color:white;
+	background:red;
 }
 .THIS .yellowColor{
-	color:yellow;
+	color:white;
+	background:yellow
 }
 .THIS .greenColor{
-	color:green;
+	color:white;
+	background:green;
 }
 

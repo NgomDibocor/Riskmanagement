@@ -123,7 +123,7 @@ public with sharing class OrmAssessmentRiskController {
                         WHERE RecordTypeId =: OrmAssessmentRiskController.getCauseRecordTypeId()),
                        (SELECT id FROM Assessments__r 
                         WHERE RecordTypeId =: OrmAssessmentRiskController.getMeasureRecordTypeId())
-                        FROM orm_assessmentRisk__c  ];
+                        FROM orm_assessmentRisk__c  WHERE CreatedById = :UserInfo.getUserId()];
         
          //Map<Id, Map<String, Map<String, Object>>> mapIdAssessmentNbRisk = new Map<Id, Map<String, Map<String, Object>>>;
          List<List<String>> listAssRisk = new List<List<String>>();

@@ -4,12 +4,14 @@
         var showContext = component.get("v.showContext");
         var showContext2 = component.get("v.showContext2");
         var showContextActivity = component.get("v.showContextActivity");
+        var showContextActivityShow = component.get("v.showContextActivityShow");
         var showContextWorkshop = component.get("v.showContextWorkshop");
         var showRiskIdentif = component.get("v.showRiskIdentif");
         var showRiskAnalyse = component.get("v.showRiskAnalyse");
         var showListCauseAndImpact = component.get("v.showListCauseAndImpact");
         var showListMeasure = component.get("v.showListMeasure");
         var showRiskTreatment = component.get("v.showRiskTreatment");
+        
         if(showContext == true){
             var idAssessment = component.get("v.assessmentData").Id;
 	        if(idAssessment != null){
@@ -28,13 +30,32 @@
          }  
         
         if(showContext2 == true){
-            component.set("v.showContext2", false);
-            component.set("v.showContextActivity", true);
-            helper.activeContextActivity(component, event);
+            var assessment = component.get("v.assessmentData");
+            console.log(assessment.orm_organisation__c)
+    	    if(assessment.orm_organisation__c != undefined){
+    	    
+	              component.set("v.showContext2", false);
+	              component.set("v.showContextActivity", true);
+	              helper.activeContextActivity(component, event);
+            }else{
+                  var toast = $A.get('e.force:showToast');
+	              toast.setParams({
+	            	'message' : 'Please select an organisation',
+	                'type' : 'warning',
+	                'mode' : 'dismissible'
+	              });
+	              toast.fire();
+            }
         }
         
         if(showContextActivity == true){
             component.set("v.showContextActivity", false);
+            component.set("v.showContextWorkshop", true);
+            helper.activeContextWorkshop(component, event);
+        }
+        
+        if( showContextActivityShow == true){ 
+            component.set("v.showContextActivityShow", false);
             component.set("v.showContextWorkshop", true);
             helper.activeContextWorkshop(component, event);
         }

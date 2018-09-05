@@ -86,6 +86,7 @@
         var showContext = component.get("v.showContext");
         var showContext2 = component.get("v.showContext2");
         var showContextActivity = component.get("v.showContextActivity");
+        var showContextActivityShow = component.get("v.showContextActivityShow");
         var showContextWorkshop = component.get("v.showContextWorkshop");
         var showRiskIdentif = component.get("v.showRiskIdentif");
         var showRiskAnalyse = component.get("v.showRiskAnalyse");
@@ -103,6 +104,12 @@
             component.set("v.showContext2", true);
             component.set("v.showContextActivity", false);
             helper.activeContext2(component, event);
+        }
+        
+        if( showContextActivityShow == true){
+            component.set("v.showContextActivity", true);
+            component.set("v.showContextActivityShow", false);
+            helper.activeContextActivity(component, event);
         }
         
         if(showContextWorkshop == true){

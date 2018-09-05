@@ -1,2 +1,9 @@
-.THIS {
+.THIS div.activityProof {
+    display: inline-block;
+    width:95%;
+}
+.THIS .activityProofSearch {
+	display: inline-block;
+    width:90%;
+    margin-right: 15px;
 }

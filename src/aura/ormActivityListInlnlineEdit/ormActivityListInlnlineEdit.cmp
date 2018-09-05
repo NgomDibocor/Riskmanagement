@@ -48,6 +48,7 @@
                   <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_name_activity}">{!$Label.c.orm_name_activity}</div></th>
                   <th scope="col"><div class="slds-truncate" title="!$Label.c.orm_start_date + - +!$Label.c.orm_end_date}">{!$Label.c.orm_start_date} - {!$Label.c.orm_end_date}</div></th>
                   <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_activity_status}">{!$Label.c.orm_activity_status}</div></th>
+                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_table_action_label}">{!$Label.c.orm_table_action_label}</div></th>
                 </tr>
             </thead>
             

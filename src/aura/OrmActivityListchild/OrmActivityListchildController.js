@@ -288,5 +288,14 @@
 		// call the helper function and pass all selected record id's.
 		helper.deleteSelectedHelper(component, event, delId);
 
-	}
+	},
+	showActivity:  function(component, event, helper) { 
+    	  var currentRecordId = component.get("v.singleRec").Id;
+    	  console.log("Id Activity" + currentRecordId);
+    	  var evt = $A.get("e.c:OrmShowActivityEvt");
+	        evt.setParams({
+	            "idActivity": currentRecordId
+	        });
+        evt.fire();
+    }
 })

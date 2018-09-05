@@ -27,6 +27,40 @@
 		// att. as false
 		component.set("v.nameEditMode", false);
 
-	}
+	},
+	/**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for delete selected records assumption
+	 * @history 2018-09-05 : Salimata NGOM - Implementation
+	 */
+	deleteSelected : function(component, event, helper) {
+
+		// create var for store record id's for selected checkboxes
+		var delId = [];
+		// get all checkboxes
+		var getAllId = component.find("boxAssumption");
+		// If the local ID is unique[in single record case], find() returns the
+		// component. not array
+		if (!Array.isArray(getAllId)) {
+			if (getAllId.get("v.value") == true) {
+				delId.push(getAllId.get("v.text"));
+			}
+		} else {
+			// play a for loop and check every checkbox values
+			// if value is checked(true) then add those Id (store in Text
+			// attribute on checkbox) in delId var.
+			for (var i = 0; i < getAllId.length; i++) {
+				if (getAllId[i].get("v.value") == true) {
+					delId.push(getAllId[i].get("v.text"));
+				}
+			}
+		}
+
+		// call the helper function and pass all selected record id's.
+		helper.deleteSelectedHelper(component, event, delId);
+
+	},
 
 })

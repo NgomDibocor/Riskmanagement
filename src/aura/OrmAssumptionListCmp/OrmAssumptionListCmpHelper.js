@@ -2,7 +2,19 @@
 	refreshList : function(component, event) {
 		// call the apex class method and fetch assumption list
 		var action = component.get("c.findAllAssumptionByAssessmentRisk");
+	//var assmntDataId =	"a051H00000ZoUNPQA3";
 		var assmntDataId = component.get('v.assessmentData').Id;
+			if(assmntDataId == null){
+			// alert("check if you have created the assessment");
+			var toast = $A.get('e.force:showToast');
+			toast.setParams({
+				'message' : $A.get("$Label.c.orm_toast_warning"),
+				'type' : 'warning',
+				'mode' : 'dismissible'
+			});
+
+			toast.fire();
+		} else {
 		action.setParam('asssessment', assmntDataId);
 		action.setCallback(this, function(response) {
 			var state = response.getState();
@@ -15,6 +27,8 @@
 			}
 		});
 		$A.enqueueAction(action);
+		}
+		
 	},
 	requiredValidation : function(component, event) {
 		// get all assumptionList
@@ -29,5 +43,5 @@
 			}
 		}
 		return isValid;
-	},
+	}
 })

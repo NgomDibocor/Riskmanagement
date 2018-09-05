@@ -66,7 +66,7 @@
     <aura:registerEvent name="OrmNewCauseClickedEvt"  type="c:OrmNewCauseClickedEvt"/>
     <aura:registerEvent name="OrmRiskIdentificationClickedEvt"  type="c:OrmRiskIdentificationClickedEvt"/>
     <aura:registerEvent name="ShowSpinner" type="c:OrmHideSpinnerEvt"  />
-       
+    <aura:registerEvent name="SendIdActivity" type="c:OrmSendIdActivityEvt"  />  
     
     <!-- return to list of Assessment -->
    
@@ -129,6 +129,9 @@
               <aura:if isTrue="{!v.showContextActivity}">
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
+              <aura:if isTrue="{!v.showContextActivityShow}">
+                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+               </aura:if>
               <aura:if isTrue="{!v.showContextWorkshop}">
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
@@ -1045,11 +1048,6 @@
                            </div>
                         </td>
                   </tr>
-                  <!--<tr>
-                     <td>
-                       <c:OrmListDocumentAssessmentCmp />
-                     </td>
-                  </tr>-->
                   <tr>
                        <td>
                              <div class="slds-col">
@@ -1132,7 +1130,11 @@
                     </tr>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextActivityShow}">
-                        <c:OrmActivityProofListCmp />
+                     <tr>
+                         <td>
+                              <c:OrmActivityProofListCmp />
+                         </td>
+                     </tr>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextWorkshop}">
                      <tr>
@@ -1256,6 +1258,9 @@
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
                </aura:if>
                <aura:if isTrue="{!v.showContextActivity}">
+                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+               </aura:if>
+               <aura:if isTrue="{!v.showContextActivityShow}">
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
                </aura:if>
                <aura:if isTrue="{!v.showContextWorkshop}">

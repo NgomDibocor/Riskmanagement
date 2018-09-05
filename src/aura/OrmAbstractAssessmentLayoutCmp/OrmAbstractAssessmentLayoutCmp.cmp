@@ -7,7 +7,9 @@
    <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
    <aura:registerEvent name="OrmInstantiateRiskAnalysisEvt" type="c:OrmInstantiateRiskAnalysisEvt" />
    <aura:registerEvent name="SendIdAssessmentRiskToCauseAndImpact" type="c:OrmSendIdAssessmentRiskToCauseEvt" />
-   <aura:registerEvent name="OrmInstanceRiskTreatmentEvt" type="c:OrmInstanceRiskTreatmentEvt" />   
+   <aura:registerEvent name="OrmInstanceRiskTreatmentEvt" type="c:OrmInstanceRiskTreatmentEvt" />  
+   
+    
        
      {!v.body}
      

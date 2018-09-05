@@ -10,6 +10,16 @@ public class OrmActivityController {
                   .get('RT Activity').getRecordTypeId();
         return RecordTypeId;
     }
+    /**
+ * @author David
+ * @version 1.0
+ * @description class for managing ActivityProof
+ */ 
+    public static Id getActivityProofRecordTypeId(){
+         Id recordTypeId = Schema.SObjectType.Product2.getRecordTypeInfosByName()
+                  .get('RT ActivityProof').getRecordTypeId();
+        return RecordTypeId;
+    }
     
  /**
  * find all activity 
@@ -156,5 +166,16 @@ public class OrmActivityController {
   return oErrorMsg;
  
  }
+ /**
+	 * @author David DIOP
+	 * @version 1.0
+	 * @description method to add an ActivityProof
+	 */
+    @AuraEnabled
+	public static Product2 addActivityProof(Product2 item){        
+        item.RecordTypeId = OrmActivityController.getActivityProofRecordTypeId();
+		upsert item;
+		return item;
+	}
   
 }

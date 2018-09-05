@@ -159,6 +159,5 @@
 		</div>
 		<!--###### MODAL BOX End  Here ######-->
 	</aura:if>
-	<c:OrmActivityProofListCmp />
 	<c:OrmActivityNewCmp />
 </aura:component>

@@ -14,7 +14,7 @@
   <div class="slds-col" >									
 		<div class="space"></div>
 		<span class="searchInput">
-        	<lightning:input class="search" placeholder="search assessment by name or description" type="search" onchange="{!c.filter}" value="{!v.key}"  />
+        	<lightning:input class="search" placeholder="{!$Label.c.orm_filter_assessment_placeholder}" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         <span class="btnNewAssessment" onclick="{!c.openModalDeletePhase}">
 			<lightning:icon iconName="utility:new" onclick="{!c.newAssessment}" size="medium" />

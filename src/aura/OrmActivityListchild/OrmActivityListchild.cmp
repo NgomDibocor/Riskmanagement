@@ -121,7 +121,8 @@
 		<td ondblclick="{!c.inlineEditStatus}" class="slds-cell-edit"><span
 			class="slds-grid slds-grid_align-spread"> <!-- show input and output section based on boolean flag -->
 				<aura:if isTrue="{!v.statusEditMode == false}">
-					<span class="slds-truncate" title="Status">{!v.singleRec.orm_activityStatus__c}</span>
+					<span  title="Status" class="{!v.singleRec.orm_activityStatus__c == 'In Progress' ? 'greenColor':'redColor'}">
+					{!v.singleRec.orm_activityStatus__c}</span>
 					<button onclick="{!c.inlineEditStatus}"
 						class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
 						tabindex="0" title="{!$Label.c.orm_edit_button_title}">

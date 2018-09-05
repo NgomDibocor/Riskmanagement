@@ -40,4 +40,10 @@
     right: 8px;
     max-width: 350px;
 }
+.THIS .showBloc {
+   display: block; 
+}
+.THIS .hideBloc {
+   display: none; 
+}
 

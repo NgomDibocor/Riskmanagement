@@ -460,7 +460,7 @@
         component.set("v.showContextActivityShow", true);
 	    var evt = $A.get("e.c:OrmShowActivityEvt");
         evt.setParams({
-            "idActivity": currentRecordId
+            "idActivity": event.getParam("idActivity")
         });
         evt.fire();
    },

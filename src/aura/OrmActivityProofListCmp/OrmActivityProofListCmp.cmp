@@ -5,7 +5,7 @@
   	<aura:attribute name="idActivity" type="string" />
   	<aura:attribute name="filter" type="String" />
 	
-	<aura:handler action="{!c.ormShowActivityProofList}" event="c:OrmShowActivityEvt" />
+	<aura:handler action="{!c.doInit}" event="c:OrmShowActivityEvt" />
 	Activity  proof
 	
 	

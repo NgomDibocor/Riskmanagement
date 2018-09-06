@@ -91,4 +91,44 @@
         component.set("v.activityProof",dataActivityProof);
         }
     },
+    
+	/**
+	 * 
+	 * @authorDavid diop
+	 * @version 1.0
+	 * @description method for show modal confirm delete Activity Proof
+	 * @history 2018-09-05 : Salimata NGOM - Implementation
+	 */ 
+	removeAssumption:function(component,event,helper){
+		// is checked delete assumption show popup message confirmation
+		// get all checkboxes 
+		//if not checked show toast warning
+		var getSelectedNumber = component.get("v.selectedRowsCount");
+		if(getSelectedNumber==0){
+		var toast = $A.get('e.force:showToast');
+					toast.setParams({
+						'message' : $A.get("$Label.c.orm_warning_checked_checkbox"),
+						'type' : 'warning',
+						'mode' : 'dismissible'
+					});      
+					toast.fire(); 
+		}else{
+	component.set("v.showConfirmRemoveAssumption",true);
+		}
+
+
+	},
+	 /**
+	 * 
+	 * @author Dvaid diop
+	 * @version 1.0
+	 * @description method for remove Activity Proofselected
+	 * @history 2018-09-05 : David diop- Implementation
+	 */ 
+    removeActivityProofSelected: function(component,event,helper){
+       component.set("v.showConfirmRemoveAssumption",false);
+        //fire event to childActivityList for delete activity selected
+		var evt = $A.get("e.c:OrmRemoveRecordActivityProofEvnt");
+		evt.fire();
+    },
 })

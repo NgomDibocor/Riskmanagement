@@ -43,15 +43,11 @@
     
     jsLoaded2 : function(component, event, helper) {
 	
-	    
-        
         //start second slider
-        var slider3 = component.find('slider3').getElement();
-        slider3 = this.createSlider(component, event, helper, slider3);
-        console.log(slider3)
+        var slider2 = component.find('slider2').getElement();
+        slider2 = this.createSlider(component, event, helper, slider2);        
         
-        
-        slider.noUiSlider.on('change', $A.getCallback(function(range) {
+        slider2.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));

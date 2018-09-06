@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component  controller="OrmActivityController" >
 	<aura:attribute name="activityProof" type="Product2" default="{'sobjectType' : 'Product2',
                                                                'Name' : '',
                                                                'Description' : '',
@@ -11,13 +11,16 @@
     <aura:attribute name="sNo" type="string" />
     <aura:attribute name="showErrorClass" type="boolean" default="false"/>
     <aura:attribute name="openfilesList" type="Boolean"  default="false"/>
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     
+    <aura:handler event="c:OrmRemoveRecordActivityProofEvnt" action="{!c.deleteSelected}" />
+    <aura:registerEvent name="OrmRefreshActivityProofEvnt" type="c:OrmRefreshActivityProofEvnt" />
     <tr>
     	<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
 			<div class="slds-form-element">
 		      <div class="slds-form-element__control">
 		    	<label class="slds-checkbox">
-		        	<ui:inputCheckbox text="{!v.mactivityProof.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
+		        	<ui:inputCheckbox text="{!v.activityProof.Id}"  aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
 		            <span class="slds-checkbox--faux"></span>
 		            <span class="slds-form-element__label text"></span>
 		       	</label>

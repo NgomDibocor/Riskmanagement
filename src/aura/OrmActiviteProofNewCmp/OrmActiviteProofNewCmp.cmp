@@ -1,16 +1,12 @@
-<aura:component  extends="c:OrmAbstractNewCmp" controller="OrmActivityController">
+<aura:component  extends="c:OrmAbstractNewCmp" controller="OrmActivityController" >
 
-<aura:handler action="{!c.openOrmActivityProofNew}" event="c:OrmNewActivityProofClickedEvt" />
-
-	
+    <aura:handler action="{!c.openOrmActivityProofNew}" event="c:OrmNewActivityProofClickedEvt" />
 	<aura:attribute name="activityProof" type="Product2" default="{'sobjectType' : 'Product2',
                                                                'Name' : '',
                                                                'Description' : '',
-                                                               'orm_Activite__c:''
+                                                               'orm_Activite__c':''
                                                                }"/>
-   <aura:attribute name="idActivity" type="string" />
-                                                               
-                                                               
+   <aura:attribute name="idActivity" type="string" />                                            
     <aura:if isTrue="{!v.isOpen}">
 			<!--###### MODAL BOX Start From Here ######-->    		
 			<div role="dialog" tabindex="-1" aria-labelledby="header99"

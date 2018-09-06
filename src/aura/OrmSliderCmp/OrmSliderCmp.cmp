@@ -30,9 +30,10 @@
 			    <th wtdth="33%">Description</th>
 			  </tr>
 		  </thead>
-		  <tbody class="{!v.showProbilityRanking == true ? 'showBloc' : 'hideBloc'}">
-	          <tr>
-		        <td  style="background-color:red" wtdth="34%"></td>
+		  <tbody >
+		  <!-- class="{!v.showProbilityRanking == true ? 'showBloc' : 'hideBloc'}" -->
+	          <tr >
+		        <td  style="background-color:red" wtdth="34%" ></td>
 		        <td  style="background-color:green">
 		                <div>
 					        <div class="label">{!v.label}</div>
@@ -43,26 +44,7 @@
 	          </tr>
            </tbody>
          </table>
-         <table>
-         <tr class="{!v.showHsseImpactsRanking == true ? 'showBloc' : 'hideBloc'}">
-            <td class="tdClass">
-               <H1>HSSE Impacts Ranking</H1>
-		       <div class="slds-size--1-of-1">       
-			        <div class="label">{!v.label}</div>
-				    <div aura:id="slider3" class="slider3" id="slider3"/>
-			    </div>
-            </td>
-         </tr>
-       </table>
-		    
-			        
-				    
-		    
-		      
-		     
-			       
-		    
-		    
+      
 		    <aura:if isTrue="{!v.showBusinessImpactsRanking}"> 
 		       <H1>Business Impacts Ranking</H1>
 		       

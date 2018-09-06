@@ -5,10 +5,15 @@
   	<aura:attribute name="idActivity" type="string" />
   	<aura:attribute name="filter" type="String" />
   	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
+	<aura:attribute name="showConfirmRemoveAssumption" type="boolean"
+		default="false" description="is true show popup  message confirmation" />
 	
 	<aura:handler action="{!c.doInit}" event="c:OrmSendIdActivityEvt" />
 	<aura:handler action="{!c.doInit}" event="c:OrmActivityProofCreatedEvt" />
 	<aura:registerEvent name="OrmNewActivityProofClickedEvt"  type="c:OrmNewActivityProofClickedEvt"/>
+	<aura:registerEvent name="OrmRemoveRecordActivityProofEvnt" type="c:OrmRemoveRecordActivityProofEvnt" />
+	<aura:handler event="c:OrmRefreshActivityProofEvnt" action="{!c.refreshList}" />
 	 <div class="slds-m-around_large">
 		<div class="topSpacing">
         	<label class="slds-form-element__label ">Activity  proof<span class="cmn_mandatory_indicator"></span></label>
@@ -22,6 +27,10 @@
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure"  onclick="{!c.openNewActivityProof}">
 	        	<lightning:icon iconName="utility:new" size="small" />
 	        </span>
+	          <span
+				class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
+					iconName="utility:delete" size="medium" />
+			</span>
 	        <br/><br/>
 	         <aura:if isTrue="{!v.showSaveCancelBtn}">
 	        	<div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
@@ -60,6 +69,7 @@
 	               <aura:iteration items="{!v.activityProof}" var="activityProof" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
 	                    <c:OrmActivityProofEditRowCmp activityProof="{!activityProof}"
+	                    				selectedRowsCount="{!v.selectedRowsCount}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />                       
 	                </aura:iteration>
@@ -69,5 +79,38 @@
 	       
 		</div>
 	</div>
+	<aura:if isTrue="{!v.showConfirmRemoveAssumption}">
+		<!--###### MODAL BOX Start From Here ######-->
+		<div class="demo-only" style="height: 640px;">
+			<section role="dialog" tabindex="-1"
+				aria-labelledby="modal-heading-01" aria-modal="true"
+				aria-describedby="modal-content-id-1"
+				class="slds-modal slds-fade-in-open">
+				<div class="slds-modal__container">
+					<header class="slds-modal__header slds-theme--error">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							onclick="{!c.closeModalRemove}" title="Close">
+							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+						</button>
+						<h3 id="modal-heading-01"
+							class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
+					</header>
+					<div class="slds-modal__content slds-p-around_medium"
+						id="modal-content-id-1">
+						<p>{!$Label.c.orm_deletion_message}</p>
+					</div>
+					<footer class="slds-modal__footer">
+						<button class="slds-button slds-button_neutral"
+							onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
+						<button class="slds-button slds-button_brand"
+							onclick="{!c.removeActivityProofSelected}">{!$Label.c.orm_delete_button_title}</button>
+					</footer>
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</div>
+		<!--###### MODAL BOX End  Here ######-->
+	</aura:if>
 	   <c:OrmActiviteProofNewCmp/>
 </aura:component>

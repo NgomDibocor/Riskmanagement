@@ -2,7 +2,6 @@
 	refreshList : function(component, event) {
 		// call the apex class method and fetch assumption list
 		var action = component.get("c.findAllAssumptionByAssessmentRisk");
-	//var assmntDataId =	"a051H00000ZoUNPQA3";
 		var assmntDataId = component.get('v.assessmentData').Id;
 			if(assmntDataId == null){
 			// alert("check if you have created the assessment");

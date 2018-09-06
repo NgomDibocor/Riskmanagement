@@ -11,14 +11,16 @@
 	<aura:attribute name="key" type="string" />
 	<aura:attribute name="showConfirmRemoveAssumption" type="boolean"
 		default="false" description="is true show popup  message confirmation" />
+	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
 	<!-- 	aura registerEvent -->
 	<aura:registerEvent name="OrmNewAssumptionClickedEvt"
 		type="c:OrmNewAssumptionClickedEvt" />
 	<aura:registerEvent name="OrmRemoveRecordAssumptEvnt"
 		type="c:OrmRemoveRecordAssumptEvnt" />
-<!-- 		declare aura:handler -->
-<aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
+	<!-- 		declare aura:handler -->
+	<aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
 	<!-- start header page content search bar and action button -->
+
 	<div class="slds-grid slds-gutters">
 		<div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>
 		<div class=" slds-size--6-of-12   slds-p-horizontal--small">
@@ -35,6 +37,7 @@
 				class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
 					iconName="utility:delete" size="medium" />
 			</span>
+
 			<!-- use aura:if for show/hide buttons -->
 			<aura:if isTrue="{!v.showSaveCancelBtn}">
 				<!--button for save and cancel Record after Inline Edit-->
@@ -81,6 +84,7 @@
 					<!-- start iteration -->
 					<c:OrmAssumptionListChildCmp assumption="{!assumption}"
 						assessmentData="{!v.assessmentData}"
+						selectedRowsCount="{!v.selectedRowsCount}"
 						showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
 				</aura:iteration>
 			</tbody>

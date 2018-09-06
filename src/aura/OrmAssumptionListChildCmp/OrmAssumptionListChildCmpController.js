@@ -61,6 +61,30 @@
 		// call the helper function and pass all selected record id's.
 		helper.deleteSelectedHelper(component, event, delId);
 
+	},
+	/**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for count the selected checkboxes
+	 * @history 2018-09-05 : Salimata NGOM - Implementation
+	 */
+	checkboxSelect : function(component, event, helper) {
+		// get the selected checkbox value
+		var selectedRec = event.getSource().get("v.value");
+		// get the selectedCount attrbute value(default is 0) for add/less
+		// numbers.
+		var getSelectedNumber = component.get("v.selectedRowsCount");
+		// check, if selected checkbox value is true then increment
+		// getSelectedNumber with 1
+		// else Decrement the getSelectedNumber with 1
+		if (selectedRec == true) {
+			getSelectedNumber++;
+		} else {
+			getSelectedNumber--;
+		}
+		// set the actual value on selectedCount attribute to show on header
+		// part.
+		component.set("v.selectedRowsCount", getSelectedNumber);
 	}
-
 })

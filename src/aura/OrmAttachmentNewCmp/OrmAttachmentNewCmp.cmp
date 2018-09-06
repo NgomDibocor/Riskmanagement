@@ -48,17 +48,17 @@
 										<div class="slds-form-element__control">
 										
                                             <lightning:input aura:id="titleFile" type="text" label="{!$Label.c.orm_title_file}" 
-                                     			value="{!v.titleFile}" />
+                                     			value="" />
 										</div>
 										<div class="slds-form-element__control">
 										
                                             <lightning:input aura:id="author" type="text" label="{!$Label.c.orm_author_file}" 
-                                     			value="{!v.authorFile}" />
+                                     			value="" />
 										</div>
 										<div class="slds-form-element__control">
 										
                                             <lightning:input aura:id="refnumber" type="text" label="{!$Label.c.orm_reference_number}" 
-                                     			value="{!v.referenceNumber}" />
+                                     			value="" />
 										</div>
 										<div class="slds-form-element__control">
 										<lightning:input aura:id="file" onchange="{!c.handleFilesChange}"

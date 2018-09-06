@@ -1,6 +1,7 @@
 <aura:component  extends="c:OrmAbstractNewCmp" controller="OrmActivityController" >
 
     <aura:handler action="{!c.openOrmActivityProofNew}" event="c:OrmNewActivityProofClickedEvt" />
+    <aura:registerEvent name="OrmActivityProofCreatedEvt" type="c:OrmActivityProofCreatedEvt" />
 	<aura:attribute name="activityProof" type="Product2" default="{'sobjectType' : 'Product2',
                                                                'Name' : '',
                                                                'Description' : '',
@@ -20,7 +21,7 @@
 							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
 						<h1 id="header99" class="slds-text-heading--medium">
-							{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}
+							{!$Label.c.new_title_label + ' ' + $Label.c.orm_activityProof_label}
 						</h1>
 					</div>
 					<!--###### MODAL BOX BODY Part Start From Here ######-->

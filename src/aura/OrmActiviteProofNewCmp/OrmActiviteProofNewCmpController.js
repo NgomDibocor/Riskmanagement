@@ -33,6 +33,12 @@
                     'mode': 'dismissible'
                 });
                 toastEvent.fire();
+                 var evt = $A.get("e.c:OrmActivityProofCreatedEvt");
+                 var idActivity = component.get('v.idActivity');
+                 evt.setParams({
+	            "idActivity": idActivity
+	        });
+                   evt.fire();
                 component.set("v.isOpen", false);
                 
             } else {

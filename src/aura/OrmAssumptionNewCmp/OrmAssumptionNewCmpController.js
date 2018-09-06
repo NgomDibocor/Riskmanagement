@@ -28,7 +28,7 @@
         	var newAssumption= component.get('v.assumption');
         	newAssumption.Name =name;
         	newAssumption.orm_assessment__c = component.get("v.assessmentData").Id;
-        	
+        	//var newAssumption.orm_assessment__c  =	"a051H00000ZoUNPQA3";
         	var action = component.get('c.add');
             action.setParams({
                 "item": newAssumption

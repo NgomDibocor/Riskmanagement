@@ -62,6 +62,7 @@ public with sharing class OrmAssumptionController {
  * @history 
  * 2018-09-05 : Salimata NGOM - Implementation
  */
+ 
    @AuraEnabled
  public static List < String > deleteRecordAssumption(List < String > lstRecordId) {
   // for store Error Messages  

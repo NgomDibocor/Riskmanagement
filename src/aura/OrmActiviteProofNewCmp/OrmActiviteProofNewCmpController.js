@@ -4,9 +4,11 @@
 		var idActivity = component.get('v.idActivity');
 		component.set("v.isOpen", true);
 	},
-	/** @author: David
+	/** 
+	 *  @author: David
 	 *  @date: Creation: 31/08/2018
-	 *  @description: method for creating activity proof*/
+	 *  @description: method for creating activity proof
+	 */
 	createMeasureProgression: function(component, event, helper){
 		var name = component.find('name').get('v.value');
         var Description = component.find('Description').get('v.value');
@@ -31,6 +33,12 @@
                     'mode': 'dismissible'
                 });
                 toastEvent.fire();
+                 var evt = $A.get("e.c:OrmActivityProofCreatedEvt");
+                 var idActivity = component.get('v.idActivity');
+                 evt.setParams({
+	            "idActivity": idActivity
+	        });
+                   evt.fire();
                 component.set("v.isOpen", false);
                 
             } else {

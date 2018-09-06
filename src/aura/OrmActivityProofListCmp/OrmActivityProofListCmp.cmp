@@ -4,8 +4,10 @@
   	<aura:attribute name="activityProofTemp" type="Product2[]" />
   	<aura:attribute name="idActivity" type="string" />
   	<aura:attribute name="filter" type="String" />
+  	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	
 	<aura:handler action="{!c.doInit}" event="c:OrmSendIdActivityEvt" />
+	<aura:handler action="{!c.doInit}" event="c:OrmActivityProofCreatedEvt" />
 	<aura:registerEvent name="OrmNewActivityProofClickedEvt"  type="c:OrmNewActivityProofClickedEvt"/>
 	 <div class="slds-m-around_large">
 		<div class="topSpacing">
@@ -14,14 +16,22 @@
 	    <div class="activityProof">
 	    	<div class="activityProofSearch">
 		    	<a href="javascript:void(0);" >
-					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_measure_placeholder}" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
+					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_measure_placeholder}" onchange="{!c.filterActivityProof}" value="{!v.filter}" label="" />
 				</a>
 			</div>
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure"  onclick="{!c.openNewActivityProof}">
 	        	<lightning:icon iconName="utility:new" size="small" />
 	        </span>
 	        <br/><br/>
-	         
+	         <aura:if isTrue="{!v.showSaveCancelBtn}">
+	        	<div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
+	        		<!--button for save and cancel Record after Inline Edit-->
+		            <lightning:buttonGroup class="slds-m-around_medium">
+		                <lightning:button label="{!$Label.c.orm_cancel_button_title}"  onclick="{!c.cancel}"/>
+		                <lightning:button label="{!$Label.c.orm_save_button_title}"  onclick="{!c.save}" variant="success"/>
+		            </lightning:buttonGroup>
+	        	</div>
+	        </aura:if>
 	         
 	         <table class="slds-table slds-table_bordered slds-table_cell-buffer">
 	            <thead>
@@ -46,14 +56,18 @@
 	            </thead>
 	            
 	            <tbody>
-	             
+	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
+	               <aura:iteration items="{!v.activityProof}" var="activityProof" indexVar="sNo">
+	                   <!-- Child Lightning Component --> 
+	                    <c:OrmActivityProofEditRowCmp activityProof="{!activityProof}"
+	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
+	                                     sNo="{!sNo + 1}" />                       
+	                </aura:iteration>
 	            </tbody>
 	        </table>
 	         
 	       
 		</div>
 	</div>
-	
-	
-	<!--<c:OrmActivityProofNewCmp/>  -->
+	   <c:OrmActiviteProofNewCmp/>
 </aura:component>

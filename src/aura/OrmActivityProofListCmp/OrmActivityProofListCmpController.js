@@ -17,6 +17,17 @@
 	/**
      * CreatedBy @David Diop
      * @version 1.0
+	 * @description method refreshList after add new measureProgression
+	 * @history 
+	 * 2018-08-31 : David diop - Implementation
+     */
+    
+    refreshList : function(component, event, helper) {
+		helper.getAllActivityProofByActivity(component,event);
+	},
+	/**
+     * CreatedBy @David Diop
+     * @version 1.0
 	 * @description method cancel save MeasureProgression
 	 * @history 
 	 * 2018-08-31 : David diop - Implementation
@@ -53,4 +64,31 @@
 	           $A.enqueueAction(action);
         } 
         },
+        
+    /**
+     * CreatedBy @David Diop
+     * @version 1.0
+	 * @description method Filter
+	 * @history 
+	 * 2018-08-31 : David diop - Implementation
+     */
+    filterActivityProof: function(component, event, helper) {
+        var dataActivityProof = component.get('v.activityProofTemp');
+        var term = component.get('v.filter');
+        var regex;
+        if ($A.util.isEmpty(term)) {
+           helper.getAllActivityProofByActivity(component, event);
+        } else {
+            term = "^" + term;
+        try {
+            regex = new RegExp(term, "i");
+        
+            dataActivityProof = dataActivityProof.filter(row => regex.test(row.Name) || regex.test(row.Description));
+            	
+        } catch (e) {
+            alert(e);
+        }
+        component.set("v.activityProof",dataActivityProof);
+        }
+    },
 })

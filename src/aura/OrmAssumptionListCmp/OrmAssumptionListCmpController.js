@@ -115,8 +115,22 @@
 	 * @history 2018-09-05 : Salimata NGOM - Implementation
 	 */ 
 	removeAssumption:function(component,event,helper){
-		// is checked delete activity show popup message confirmation
-		component.set("v.showConfirmRemoveAssumption",true);
+		// is checked delete assumption show popup message confirmation
+		// get all checkboxes 
+		//if not checked show toast warning
+		var getSelectedNumber = component.get("v.selectedRowsCount");
+		if(getSelectedNumber==0){
+		var toast = $A.get('e.force:showToast');
+					toast.setParams({
+						'message' : $A.get("$Label.c.orm_warning_checked_checkbox"),
+						'type' : 'warning',
+						'mode' : 'dismissible'
+					});      
+					toast.fire(); 
+		}else{
+	component.set("v.showConfirmRemoveAssumption",true);
+		}
+
 
 	},
 	     /**

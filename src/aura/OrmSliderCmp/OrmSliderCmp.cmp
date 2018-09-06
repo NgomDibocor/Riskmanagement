@@ -30,7 +30,8 @@
 			    <th wtdth="33%">Description</th>
 			  </tr>
 		  </thead>
-		  <tbody class="{!v.showProbilityRanking == true ? 'showBloc' : 'hideBloc'}">
+		  		<aura:if isTrue="{!v.showProbilityRanking == true}">
+		  		 <tbody>
 	          <tr>
 		        <td  style="background-color:red"></td>
 		        <td  style="background-color:green">
@@ -42,6 +43,13 @@
 		         <td  style="background-color:yellow"></td>
 	          </tr>
            </tbody>
+           <aura:set attribute="else">
+<!--           le cas où !v.showProbilityRanking==false  -->
+           </aura:set>
+		  		</aura:if>
+		  		
+		 
+           
          </table>
          <table>
          <tr class="{!v.showHsseImpactsRanking == true ? 'showBloc' : 'hideBloc'}">

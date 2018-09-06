@@ -29,9 +29,7 @@
 	
 	    //start first slider
         var slider = component.find('slider').getElement();
-        console.log(slider)
         slider = this.createSlider(component, event, helper, slider);
-         console.log(slider)
         
 		slider.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valCostmin", range[0].replace('%', ''))
@@ -39,6 +37,21 @@
         }));
         //end first slider
         
+<<<<<<< HEAD
+        //start second slider
+        var slider = component.find('slider2').getElement();
+        slider = this.createSlider(component, event, helper, slider);        
+        
+        slider.noUiSlider.on('change', $A.getCallback(function(range) {
+		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
+		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+        }));
+        //end second slider
+        
+        //start second slider
+        var slider = component.find('slider3').getElement();
+        slider = this.createSlider(component, event, helper, slider);        
+=======
     },
     
     jsLoaded2 : function(component, event, helper) {
@@ -46,6 +59,7 @@
         //start second slider
         var slider2 = component.find('slider2').getElement();
         slider2 = this.createSlider(component, event, helper, slider2);        
+>>>>>>> a2aba4b7a708d749b290cde6ab15a948bf69a81b
         
         slider2.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
@@ -53,8 +67,17 @@
         }));
         //end second slider
         
+        //start second slider
+        var slider = component.find('slider4').getElement();
+        slider = this.createSlider(component, event, helper, slider);        
         
+        slider.noUiSlider.on('change', $A.getCallback(function(range) {
+		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
+		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+        }));
+        //end second slider
         
     },
     
+   
 })

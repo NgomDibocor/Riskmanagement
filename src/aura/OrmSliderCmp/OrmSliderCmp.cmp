@@ -32,7 +32,7 @@
 		  </thead>
 		  <tbody class="{!v.showProbilityRanking == true ? 'showBloc' : 'hideBloc'}">
 	          <tr>
-		        <td  style="background-color:red" wtdth="34%"></td>
+		        <td  style="background-color:red"></td>
 		        <td  style="background-color:green">
 		                <div>
 					        <div class="label">{!v.label}</div>

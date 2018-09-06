@@ -120,7 +120,7 @@
 				<aura:iteration items="{!v.ActivityList}" var="activity"
 					indexVar="sNo">
 					<!-- start iteration -->
-					<c:OrmActivityListchild singleRec="{!activity}"
+					<c:OrmActivityListchild singleRec="{!activity}" selectedCount="{!v.selectedCount}"
 						showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
 				</aura:iteration>
 			</tbody>

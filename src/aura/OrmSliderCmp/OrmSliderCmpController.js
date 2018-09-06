@@ -1,7 +1,12 @@
 ({
     jsLoaded : function(component, event, helper) {
+<<<<<<< HEAD
         
         helper.jsLoaded(component, event, helper);
+=======
+        //helper.jsLoaded(component, event, helper);
+        helper.jsLoaded2(component, event, helper);
+>>>>>>> a2aba4b7a708d749b290cde6ab15a948bf69a81b
     },
     
     

@@ -33,6 +33,7 @@
 				  </thead>
 				  <tbody >
 			          <tr>
+<<<<<<< HEAD
 				            <td class="tdClassSlider" height="100">Probable</td>
 					        <td  class="tdClassSlider" height="100">
 					                <div>
@@ -55,11 +56,36 @@
 			          <tr>
 				        <td class="tdClassSlider" height="100">Unlikely</td>
 					        <td  class="tdClassSlider" height="100">
+=======
+				        <td class="tdClassSlider">Probable</td>
+					        <td  class="tdClassSlider">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider" id="slider" class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider">There is the good chance of the risk occurring</td>
+			           </tr>
+			           <tr>
+				             <td class="tdClassSlider">Possble</td>
+					         <td  class="tdClassSlider">
+					                <div>
+								        <div class="label">{!v.label2}</div>
+									    <div aura:id="slider2"  class="slider2"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider">There is a reasonable chance of this risk occurring</td>
+			          </tr>
+			          <tr>
+				        <td class="tdClassSlider">Unlikely</td>
+					        <td  class="tdClassSlider">
+>>>>>>> a2aba4b7a708d749b290cde6ab15a948bf69a81b
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="slider3"  class="slider"/>
 								    </div>
 					         </td>
+<<<<<<< HEAD
 					         <td  class="tdClassSlider" height="100">There is a small chance of this risk occurring</td>
 			          </tr>
 			          <tr>
@@ -71,6 +97,19 @@
 								    </div>
 					         </td>
 					         <td  class="tdClassSlider4" height="100">There risk is unlikely to occur under normal circumstances</td>
+=======
+					         <td  class="tdClassSlider">There is a small chance of this risk occurring</td>
+			          </tr>
+			          <tr>
+				        <td class="tdClassSlider">Rare</td>
+					        <td  class="tdClassSlider">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider2"  class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider4">There risk is unlikely to occur under normal circumstances</td>
+>>>>>>> a2aba4b7a708d749b290cde6ab15a948bf69a81b
 			          </tr>
 		           </tbody>
 		         </table>

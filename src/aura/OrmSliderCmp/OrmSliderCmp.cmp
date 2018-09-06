@@ -22,39 +22,62 @@
     <aura:attribute name="valpourcentagemax" type="Integer" default="100"/>
      
          <div class="{!v.showProbilityRanking == true ? 'showBloc' : 'hideBloc'}">
+             <div style="margin-bottom:20px"><H2>Probility Ranking</H2></div>
 		       <table wtdth="100%">
-		         <caption>Probility Ranking</caption>
 		          <thead>
 			         <tr>
-					    <th wtdth="34%">Probability</th>
-					    <th wtdth="33%">Pourcentage</th>
-					    <th wtdth="33%">Description</th>
+					    <th>Probability</th>
+					    <th>Pourcentage</th>
+					    <th>Description</th>
 					  </tr>
 				  </thead>
 				  <tbody >
 			          <tr>
-				        <td></td>
-				        <td>
-				                <div>
-							        <div class="label">{!v.label}</div>
-								    <div aura:id="slider" id="slider" class="slider"/>
-							    </div>
-				         </td>
-				         <td></td>
+				            <td class="tdClassSlider" height="100">Probable</td>
+					        <td  class="tdClassSlider" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider" class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider" height="100">There is the good chance of the risk occurring</td>
+			           </tr>
+			           <tr>
+				             <td class="tdClassSlider" height="100">Possible</td>
+					         <td  class="tdClassSlider" height="100">
+					                <div>
+								        <div class="">{!v.label2}</div>
+									    <div aura:id="slider2"  class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider" height="100">There is a reasonable chance of this risk occurring</td>
+			          </tr>
+			          <tr>
+				        <td class="tdClassSlider" height="100">Unlikely</td>
+					        <td  class="tdClassSlider" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider3"  class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider" height="100">There is a small chance of this risk occurring</td>
+			          </tr>
+			          <tr>
+				        <td class="tdClassSlider" height="100">Rare</td>
+					        <td  class="tdClassSlider" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider4"  class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider4" height="100">There risk is unlikely to occur under normal circumstances</td>
 			          </tr>
 		           </tbody>
 		         </table>
          </div>
          <div class="{!v.showHsseImpactsRanking == true ? 'showBloc' : 'hideBloc'}">
-	         <table>
-	         <tr>
-	            <td class="tdClass">
-	               <H1>HSSE Impacts Ranking</H1>
-			       
-	            </td>
-	         </tr>
-	       </table>
-       </div>
+	         
+         </div>
 		    
 			        
 				    

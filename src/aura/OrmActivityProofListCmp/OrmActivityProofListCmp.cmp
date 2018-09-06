@@ -22,7 +22,7 @@
 	    <div class="activityProof">
 	    	<div class="activityProofSearch">
 		    	<a href="javascript:void(0);" >
-					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_measure_placeholder}" onchange="{!c.filterActivityProof}" value="{!v.filter}" label="" />
+					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_activityProof_placeholder}" onchange="{!c.filterActivityProof}" value="{!v.filter}" label="" />
 				</a>
 			</div>
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure"  onclick="{!c.openNewActivityProof}">

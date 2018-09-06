@@ -177,5 +177,31 @@ public class OrmActivityController {
 		upsert item;
 		return item;
 	}
+	
+	 /**
+	 * @author: David diop
+	 * @date: Creation: 06/09/2018
+	 * @description: find allActivityProof related to the Activity
+	*/
+	@AuraEnabled
+	public static List<Product2> getAllMeasuresProgressionByMeasure(String idActivity){
+		return [SELECT Id,Description,Name,
+		orm_poucentageProgression__c,orm_dateProgression__c,orm_Activite__c
+		        FROM Product2 
+		        WHERE orm_Activite__c =: idActivity 
+		        AND RecordTypeId =: OrmActivityController.getActivityProofRecordTypeId()];
+	
+	}
+	
+	/**
+	 * @author: David
+	 * @date: Creation: 28/08/2018
+	 * @description: method for update records after inline editing
+	*/
+    @AuraEnabled
+    public static List <Product2> updateActiviteProof(List<Product2> activityProof) {
+        update activityProof;
+        return activityProof;
+    }
   
 }

@@ -243,8 +243,7 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
 	
-    onChangeOrganisation : function(component, event, helper)
-    {
+    onChangeOrganisation : function(component, event, helper){
     	var newItem = component.get("v.assessmentData");
     	newItem.orm_organisation__c = component.find("organisation").get("v.value");
         var action = component.get('c.add');

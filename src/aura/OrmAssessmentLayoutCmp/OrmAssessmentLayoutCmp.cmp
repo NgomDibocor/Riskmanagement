@@ -1132,7 +1132,7 @@
                    <aura:if isTrue="{!v.showContextActivityShow}">
                      <tr>
                          <td>
-                              <c:OrmActivityProofListCmp />
+                              <c:OrmActivityProofListCmp />  
                          </td>
                      </tr>
                    </aura:if>

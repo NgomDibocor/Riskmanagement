@@ -131,4 +131,14 @@
 		var evt = $A.get("e.c:OrmRemoveRecordActivityProofEvnt");
 		evt.fire();
     },
+    /**
+	 * 
+	 * @author David Diop
+	 * @version 1.0
+	 * @description cancel action and refresh the view
+	 * @history 2018-09-05 : David Diop- Implementation
+	 */  
+	closeModalRemove : function(component,event,helper){
+		// on cancel close modal
+		 component.set("v.showConfirmRemoveAssumption",false);	},
 })

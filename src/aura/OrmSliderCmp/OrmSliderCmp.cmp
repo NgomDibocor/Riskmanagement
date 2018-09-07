@@ -1,4 +1,4 @@
-<aura:component access="global">
+<aura:component access="global" controller="OrmSliderController">
     <ltng:require 
 		    styles="{!$Resource.noUiSlider + '/nouislider.min.css'}"
 		    scripts="{!$Resource.noUiSlider + '/nouislider.min.js'}"

@@ -10,6 +10,7 @@
 			//store state of response
 			var state = response.getState();
 			if (state === "SUCCESS") {
+			alert(component.get("v.selectedRowsCount"));
 				console.log(state);
 				if (response.getReturnValue() != '') {
 					// if getting any error while delete the records , then display a alert msg/
@@ -17,7 +18,8 @@
 				} else {
 					console.log('check it--> delete successful');
 				}
-				// call the onLoad function for refresh the List view    
+				// call the onLoad function for refresh the List view   
+				component.set("v.selectedRowsCount", 0) ;
 				var evt = $A.get('e.c:OrmMeasureCreatedEvt');
 				evt.fire();
 			}

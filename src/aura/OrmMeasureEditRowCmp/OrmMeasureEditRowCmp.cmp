@@ -12,6 +12,7 @@
                                                                'orm_measureCategorie__c':''
                                                                }"/>
     <aura:attribute name="selectedCount" type="integer" default="0"/>
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
      <aura:attribute name="statusPicklistOpts" type="string[]" />     
      <aura:attribute name="objInfoForPicklistValues" type="Assessment__c"
 		default="{sobjectType : 'Assessment__c'}"/>                       
@@ -21,6 +22,7 @@
     
     <!-- events -->
     <aura:registerEvent name="OrmShowButtondeleteMeasureEvt" type="c:OrmShowButtondeleteMeasureEvt" description="" />
+    <aura:registerEvent name="OrmMeasureCreatedEvt" type="c:OrmMeasureCreatedEvt" description="" />
                                                                
      <!--Table Row Start-->  
     <tr>

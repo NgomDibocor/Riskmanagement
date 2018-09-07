@@ -40,7 +40,7 @@
 									    <div aura:id="slider" class="slider"/>
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider" height="100" style="padding-left: 20px;">There is the good chance of the risk occurring</td>
+					         <td  class="tdClassSliderText" height="100" style="padding-left: 20px;">There is the good chance of the risk occurring</td>
 			           </tr>
 			           <tr>
 				             <td class="tdcouleurSlider" height="100" style="Background-Color: #FF8C00;text-align: center;">Possible</td>
@@ -50,7 +50,7 @@
 									    <div aura:id="slider2"  class="slider"/>
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider" height="100" style="padding-left: 20px;">There is a reasonable chance of this risk occurring</td>
+					         <td  class="tdClassSliderText" height="100" style="padding-left: 20px;">There is a reasonable chance of this risk occurring</td>
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSlider" height="100" style="Background-Color: #FFFF00;text-align: center;">Unlikely</td>
@@ -60,7 +60,7 @@
 									    <div aura:id="slider3"  class="slider"/>
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider" height="100" style="padding-left: 20px;">There is a small chance of this risk occurring</td>
+					         <td  class="tdClassSliderText" height="100" style="padding-left: 20px;">There is a small chance of this risk occurring</td>
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSlider" height="100" style="Background-Color: #32CD32;text-align: center;">Rare</td>
@@ -70,7 +70,7 @@
 									    <div aura:id="slider4"  class="slider"/>
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider" height="100" style="padding-left: 20px;">There risk is unlikely to occur under normal circumstances</td>
+					         <td  class="tdClassSliderText" height="100" style="padding-left: 20px;">There risk is unlikely to occur under normal circumstances</td>
 			          </tr>
 		           </tbody>
 		         </table>

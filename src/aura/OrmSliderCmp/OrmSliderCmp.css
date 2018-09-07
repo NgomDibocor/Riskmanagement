@@ -38,10 +38,36 @@
    display: block; 
 }
 .THIS .hideBloc {
-   display: none; 
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
 }
 
 .THIS .tdClassSlider{
-	width: 33%;
+	width: 44%;
 	white-space: normal;
+	padding-left: 4%;
+}
+.THIS .tdcouleurSlider{
+	width: 13%;
+	white-space: normal;
+	margin-right:3%;
+	text-align: center;
+}
+.THIS .tdClassSlider2{
+	width: 23%;
+	white-space: normal;
+	padding-left: 4%;
+}
+.THIS .tdcouleurSlider2{
+	width: 8%;
+	white-space: normal;
+	margin-right:3%;
+	text-align: center;
+}
+
+.THIS .tdClassSlider3{
+	width: 29%;
+	white-space: normal;
+	padding-left: 4%;
 }

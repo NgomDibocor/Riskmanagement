@@ -62,6 +62,8 @@
     {
     	component.set("v.openfilesList",false);
     },
+    
+   
     /**
 	 * 
 	 * @author David diop

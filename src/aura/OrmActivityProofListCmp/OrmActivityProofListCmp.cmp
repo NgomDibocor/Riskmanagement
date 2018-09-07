@@ -13,6 +13,7 @@
 	<aura:handler action="{!c.doInit}" event="c:OrmActivityProofCreatedEvt" />
 	<aura:registerEvent name="OrmNewActivityProofClickedEvt"  type="c:OrmNewActivityProofClickedEvt"/>
 	<aura:registerEvent name="OrmRemoveRecordActivityProofEvnt" type="c:OrmRemoveRecordActivityProofEvnt" />
+	<aura:registerEvent name="OrmEvtSelectAllActivityProof" type="c:OrmEvtSelectAllActivityProof" />
 	<aura:handler event="c:OrmRefreshActivityProofEvnt" action="{!c.refreshList}" />
 	 <div class="slds-m-around_large">
 		<div class="topSpacing">
@@ -21,14 +22,14 @@
 	    <div class="activityProof">
 	    	<div class="activityProofSearch">
 		    	<a href="javascript:void(0);" >
-					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_measure_placeholder}" onchange="{!c.filterActivityProof}" value="{!v.filter}" label="" />
+					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_activityProof_placeholder}" onchange="{!c.filterActivityProof}" value="{!v.filter}" label="" />
 				</a>
 			</div>
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure"  onclick="{!c.openNewActivityProof}">
 	        	<lightning:icon iconName="utility:new" size="small" />
 	        </span>
 	          <span
-				class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
+				class="btnDeleteActivity" onclick="{!c.removeActivityProof}"> <lightning:icon
 					iconName="utility:delete" size="medium" />
 			</span>
 	        <br/><br/>
@@ -46,16 +47,7 @@
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th style="width:3.25rem;" class="slds-text-align--right">
-		              	<div class="slds-form-element">
-		                	<div class="slds-form-element__control">
-		                    	<label class="slds-checkbox">
-		                        	<!--header checkbox for select all-->
-		                        	<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
-		                        	<span class="slds-checkbox--faux"></span>
-		                        	<span class="slds-form-element__label text"></span>
-		                     	</label>
-		                    </div>
-		                </div>
+		              	
 		              </th> 
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
 	                  <th scope="col"><div class="slds-truncate" title="{$Label.c.orm_name_activityProof}">{!$Label.c.orm_name_activityProof}</div></th>

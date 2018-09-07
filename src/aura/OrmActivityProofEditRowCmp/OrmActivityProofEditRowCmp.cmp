@@ -13,6 +13,7 @@
     <aura:attribute name="openfilesList" type="Boolean"  default="false"/>
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     
+    <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllActivityProof"/>
     <aura:handler event="c:OrmRemoveRecordActivityProofEvnt" action="{!c.deleteSelected}" />
     <aura:registerEvent name="OrmRefreshActivityProofEvnt" type="c:OrmRefreshActivityProofEvnt" />
     <tr>

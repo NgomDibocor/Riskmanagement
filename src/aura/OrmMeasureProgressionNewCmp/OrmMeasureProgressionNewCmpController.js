@@ -59,6 +59,14 @@
                 toastEvent.fire();
                 var evt = $A.get("e.c:OrmMeasureProgressionCreatedEvt");
                    evt.fire();
+                    component.set('v.measureProgression', {'sobjectType' : 'Product2',
+                                                               'Description' : '',
+                                                               'Family':'',
+                                                               'orm_poucentageProgression__c':'',
+                                                               'orm_dateProgression__c':'',
+                                                               'orm_measures__c':''
+                                                              
+                    });
                 component.set("v.isOpen", false);
                 
             } else {

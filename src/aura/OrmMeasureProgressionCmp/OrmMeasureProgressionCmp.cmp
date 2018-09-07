@@ -8,6 +8,7 @@
   	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
   	<aura:attribute name="openfilesList" type="Boolean"  default="false"/>
   	<aura:attribute name="showButtonDelete" type="Boolean" default="false" />
+  	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
   	<!-- events  -->
 	<aura:handler action="{!c.measureProgression}" event="c:OrmInstanceRiskTreatmentEvt" />
 	<aura:handler event="c:OrmMeasureProgressionCreatedEvt" action="{!c.refreshList}" />
@@ -32,12 +33,12 @@
 				<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure"   onclick="{!c.openMeasureProgressionNew}">
 		        	<lightning:icon iconName="utility:new" size="small" />
 		        </span>
-		         <aura:if isTrue="{!v.showButtonDelete}">
+<!-- 		         <aura:if isTrue="{!v.showButtonDelete}"> -->
 		        <span class="deleteMeasure" title="{!$Label.c.orm_delete_button_title}" 
-		       		onclick="{!c.openModalDeleteMeasureProgress}">
+		       		onclick="{!c.removeMeasureProgression}">
 						<lightning:icon iconName="utility:delete" size="small" />
 			    </span> 
-			    </aura:if>
+<!-- 			    </aura:if> -->
 			    <br/><br/>
 			   <aura:if isTrue="{!v.showSaveCancelBtn}">
 	        	<div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
@@ -68,12 +69,13 @@
 	               <aura:iteration items="{!v.measureProgression}" var="measureProgression" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
 	                    <c:OrmMeasureProgressionEditRowCmp measureProgression="{!measureProgression}"
+	                    				 selectedRowsCount="{!v.selectedRowsCount}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />                       
 	                </aura:iteration>
 	            </tbody>
 	        </table>
-	        
+	        <!-- 
 	        <aura:if isTrue="{!v.openModalConfirmDeletion}">    
 	    	<div class="demo-only" style="height: 640px;">
 			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
@@ -98,8 +100,41 @@
 			  <div class="slds-backdrop slds-backdrop_open"></div>
 			</div>	    
 	    </aura:if>
+	    -->
 	    
-	    
+	    <aura:if isTrue="{!v.openModalConfirmDeletion}">
+		<!--###### MODAL BOX Start From Here ######-->
+		<div class="demo-only" style="height: 640px;">
+			<section role="dialog" tabindex="-1"
+				aria-labelledby="modal-heading-01" aria-modal="true"
+				aria-describedby="modal-content-id-1"
+				class="slds-modal slds-fade-in-open">
+				<div class="slds-modal__container">
+					<header class="slds-modal__header slds-theme--error">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							onclick="{!c.cancelDeleteMeasureProgress}" title="Close">
+							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+						</button>
+						<h3 id="modal-heading-01"
+							class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
+					</header>
+					<div class="slds-modal__content slds-p-around_medium"
+						id="modal-content-id-1">
+						<p>{!$Label.c.orm_deletion_message}</p>
+					</div>
+					<footer class="slds-modal__footer">
+						<button class="slds-button slds-button_neutral"
+							onclick="{!c.cancelDeleteMeasureProgress}">{!$Label.c.orm_cancel_button_title}</button>
+						<button class="slds-button slds-button_brand"
+							onclick="{!c.removeMeasureProgressionSelected}">{!$Label.c.orm_delete_button_title}</button>
+					</footer>
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</div>
+		<!--###### MODAL BOX End  Here ######-->
+	</aura:if>
 	   
 		</div>
 	</div>

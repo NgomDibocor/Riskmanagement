@@ -16,6 +16,7 @@
                                                                'orm_measures__c':''
                                                                }"/>
     <aura:attribute name="selectedCount" type="integer" default="0"/>
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="statusPicklistOpts" type="string[]"
 		description="store picklist options values" />
 		<aura:attribute name="objInfoForPicklistValues" type="Product2"

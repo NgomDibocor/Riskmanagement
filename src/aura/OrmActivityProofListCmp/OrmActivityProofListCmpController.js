@@ -99,7 +99,7 @@
 	 * @description method for show modal confirm delete Activity Proof
 	 * @history 2018-09-05 : Salimata NGOM - Implementation
 	 */ 
-	removeAssumption:function(component,event,helper){
+	removeActivityProof:function(component,event,helper){
 		// is checked delete assumption show popup message confirmation
 		// get all checkboxes 
 		//if not checked show toast warning

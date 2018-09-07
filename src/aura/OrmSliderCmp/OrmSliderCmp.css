@@ -44,12 +44,17 @@
 }
 
 .THIS .tdClassSlider{
-	width: 44%;
+	width: 50%;
+	white-space: normal;
+	padding-left: 4%;
+}
+.THIS .tdClassSliderText{
+	width: 40%;
 	white-space: normal;
 	padding-left: 4%;
 }
 .THIS .tdcouleurSlider{
-	width: 13%;
+	width: 11%;
 	white-space: normal;
 	margin-right:3%;
 	text-align: center;

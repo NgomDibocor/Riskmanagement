@@ -21,115 +21,236 @@
     <aura:attribute name="valpourcentagemin" type="Integer" default="0"/>
     <aura:attribute name="valpourcentagemax" type="Integer" default="100"/>
      
-         <div class="{!v.showProbilityRanking == true ? 'showBloc' : 'hideBloc'}">
-             <div style="margin-bottom:20px"><H2>Probility Ranking</H2></div>
+         <div id="probility">
+             <div style="margin-bottom:20px; font-size: larger;">Probility Ranking</div>
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
-					    <th>Probability</th>
-					    <th>Pourcentage</th>
-					    <th>Description</th>
+					    <th style="text-align: center;">Probability</th>
+					    <th style="text-align: center;">Pourcentage</th>
+					    <th style="text-align: center;">Description</th>
 					  </tr>
 				  </thead>
 				  <tbody >
 			          <tr>
-<<<<<<< HEAD
-				            <td class="tdClassSlider" height="100">Probable</td>
+				            <td class="tdcouleurSlider" height="100" style="background-color: red;text-align: center;">Probable</td>
 					        <td  class="tdClassSlider" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="slider" class="slider"/>
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider" height="100">There is the good chance of the risk occurring</td>
+					         <td  class="tdClassSlider" height="100" style="padding-left: 20px;">There is the good chance of the risk occurring</td>
 			           </tr>
 			           <tr>
-				             <td class="tdClassSlider" height="100">Possible</td>
-					         <td  class="tdClassSlider" height="100">
+				             <td class="tdcouleurSlider" height="100" style="Background-Color: #FF8C00;text-align: center;">Possible</td>
+					         <td  class="tdClassSlider">
 					                <div>
 								        <div class="">{!v.label2}</div>
 									    <div aura:id="slider2"  class="slider"/>
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider" height="100">There is a reasonable chance of this risk occurring</td>
+					         <td  class="tdClassSlider" height="100" style="padding-left: 20px;">There is a reasonable chance of this risk occurring</td>
 			          </tr>
 			          <tr>
-				        <td class="tdClassSlider" height="100">Unlikely</td>
+				        <td class="tdcouleurSlider" height="100" style="Background-Color: #FFFF00;text-align: center;">Unlikely</td>
 					        <td  class="tdClassSlider" height="100">
-=======
-				        <td class="tdClassSlider">Probable</td>
-					        <td  class="tdClassSlider">
-					                <div>
-								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider" id="slider" class="slider"/>
-								    </div>
-					         </td>
-					         <td  class="tdClassSlider">There is the good chance of the risk occurring</td>
-			           </tr>
-			           <tr>
-				             <td class="tdClassSlider">Possble</td>
-					         <td  class="tdClassSlider">
-					                <div>
-								        <div class="label">{!v.label2}</div>
-									    <div aura:id="slider2"  class="slider2"/>
-								    </div>
-					         </td>
-					         <td  class="tdClassSlider">There is a reasonable chance of this risk occurring</td>
-			          </tr>
-			          <tr>
-				        <td class="tdClassSlider">Unlikely</td>
-					        <td  class="tdClassSlider">
->>>>>>> a2aba4b7a708d749b290cde6ab15a948bf69a81b
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="slider3"  class="slider"/>
 								    </div>
 					         </td>
-<<<<<<< HEAD
-					         <td  class="tdClassSlider" height="100">There is a small chance of this risk occurring</td>
+					         <td  class="tdClassSlider" height="100" style="padding-left: 20px;">There is a small chance of this risk occurring</td>
 			          </tr>
 			          <tr>
-				        <td class="tdClassSlider" height="100">Rare</td>
+				        <td class="tdcouleurSlider" height="100" style="Background-Color: #32CD32;text-align: center;">Rare</td>
 					        <td  class="tdClassSlider" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="slider4"  class="slider"/>
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider4" height="100">There risk is unlikely to occur under normal circumstances</td>
-=======
-					         <td  class="tdClassSlider">There is a small chance of this risk occurring</td>
-			          </tr>
-			          <tr>
-				        <td class="tdClassSlider">Rare</td>
-					        <td  class="tdClassSlider">
-					                <div>
-								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider2"  class="slider"/>
-								    </div>
-					         </td>
-					         <td  class="tdClassSlider4">There risk is unlikely to occur under normal circumstances</td>
->>>>>>> a2aba4b7a708d749b290cde6ab15a948bf69a81b
+					         <td  class="tdClassSlider" height="100" style="padding-left: 20px;">There risk is unlikely to occur under normal circumstances</td>
 			          </tr>
 		           </tbody>
 		         </table>
          </div>
-         <div class="{!v.showHsseImpactsRanking == true ? 'showBloc' : 'hideBloc'}">
-	         
+         <div  id="bir">
+	         <div style="margin-bottom:20px; font-size: larger;">Business Impacts Ranking</div>
+		       <table wtdth="100%">
+		          <thead>
+			         <tr>
+					    <th style="text-align: center;">Rating</th>
+					    <th style="text-align: center;">Cost as % of project budget</th>
+					    <th style="text-align: center;">Schedule as % of project baseline</th>
+					    <th style="text-align: center;">Production Loss (Weeks)</th>
+					    <th style="text-align: center;">Reputation</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+			          <tr>
+				            <td class="tdcouleurSlider2" height="100" style="background-color: red;text-align: center;">Very High</td>
+					        <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider5" id="slider5"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider6" />
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider2" height="100" style="text-align: center;">
+					                More then 26 weeks
+					         </td>
+					         <td class="tdClassSlider2">
+					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+                             </td>
+			           </tr>
+			           <tr>
+				             <td class="tdcouleurSlider2" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
+					         <td  class="tdClassSlider2">
+					                <div>
+								        <div class="">{!v.label2}</div>
+									    <div aura:id="slider7"  class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider8" />
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider9" />
+								    </div>
+					         </td>
+					         <td class="tdClassSlider2">
+					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="" change="" />
+					         </td>
+			          </tr>
+			          <tr>
+				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
+					        <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider10"  class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider11" />
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider12" />
+								    </div>
+					         </td>
+			                 <td class="tdClassSlider2">
+			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+			                 </td>
+			          </tr>
+			          <tr>
+				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
+					        <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider13"  class="slider"/>
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider2" height="100" >
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider14" />
+								    </div>
+					         </td>
+					         <td  class="tdClassSlider2" height="100">
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="slider15" />
+								    </div>
+					         </td>
+			                 <td class="tdClassSlider2">
+			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+			                 </td>
+			          </tr>
+		           </tbody>
+		         </table> 
+         </div>
+         
+         <div  id="hir">
+	         <div style="margin-bottom:20px; font-size: larger;">HSSE Impacts Ranking</div>
+		       <table wtdth="100%">
+		          <thead>
+			         <tr>
+					    <th style="text-align: center;">Rating</th>
+					    <th style="text-align: center;">Health And Safety</th>
+					    <th style="text-align: center;">Security</th>
+					    <th style="text-align: center;">Environment And Community</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+			          <tr>
+				            <td class="tdcouleurSlider" height="100" style="background-color: red;text-align: center;">Very High</td>
+					        <td  class="tdClassSlider3" height="100">
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+					         </td>
+					         <td  class="tdClassSlider3" height="100">
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+					         </td>
+					         <td class="tdClassSlider3">
+					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+                             </td>
+			           </tr>
+			           <tr>
+				             <td class="tdcouleurSlider" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
+					         <td  class="tdClassSlider3">
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+					         </td>
+					         <td  class="tdClassSlider3" height="100">
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+					         </td>
+					         <td class="tdClassSlider3">
+					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="" change="" />
+					         </td>
+			          </tr>
+			          <tr>
+				        <td class="tdcouleurSlider" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
+					        <td  class="tdClassSlider3" height="100">
+					              <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />  
+					         </td>
+					         <td  class="tdClassSlider3" height="100">
+					              <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />  
+					         </td>
+			                 <td class="tdClassSlider3">
+			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+			                 </td>
+			          </tr>
+			          <tr>
+				        <td class="tdcouleurSlider" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
+					        <td  class="tdClassSlider3" height="100">
+					               <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" /> 
+					         </td>
+					         <td  class="tdClassSlider3" height="100">
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+					         </td>
+			                 <td class="tdClassSlider3">
+			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+			                 </td>
+			          </tr>
+		           </tbody>
+		         </table> 
          </div>
 		    
-			        
-				    
 		    
-		      
-		     
-			       
-		    
-		    
-		    <aura:if isTrue="{!v.showBusinessImpactsRanking}"> 
-		       <H1>Business Impacts Ranking</H1>
-		       
-		    </aura:if>   
+	
 	  
 	    <lightning:icon class="iconPrev" onclick="{!c.PrevPage}" iconName="utility:chevronleft" size="large" />
 	    <lightning:icon class="iconNext" onclick="{!c.nextPage}" iconName="utility:chevronright" size="large" />

@@ -4,9 +4,10 @@
 .THIS .slds-icon-standard svg {
   fill: rgb(52,168,83);
 }
-.THIS .cols {
+.THIS .test {
     background-color: #80ffff;
     color: black;
+    size:15px;
 }
 .THIS .table{
      text-align: center;

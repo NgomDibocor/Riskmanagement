@@ -256,6 +256,9 @@
 			                });
 			                toast.fire();
 				       }else{
+				                var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	                            evtSpinner.fire();
+				                
 				                component.set("v.showRiskIdentif", false);
 				                component.set("v.showRiskAnalyse", true);
 				                helper.activeRiskAnalye(component, event);
@@ -290,8 +293,8 @@
 	         toast.fire();
 	         
 	    }else{
-	        //component.set("v.showRiskTreatment", true);
-	        //component.set("v.showMeasureInfo", true);
+	        var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	        evtSpinner.fire();
 	        helper.activeRiskTreatment(component, event);
 	        component.set("v.idMeasure", idMeasure);
 	        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");

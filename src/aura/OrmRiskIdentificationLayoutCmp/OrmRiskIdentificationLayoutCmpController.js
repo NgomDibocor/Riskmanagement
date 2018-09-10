@@ -26,27 +26,27 @@
     doInit: function(component, event, helper) {
         // Set the columns of the Table
         component.set('v.columns', [{
-            label: 'Risk Name',
+            label: $A.get("$Label.c.orm_name_risk"),
             fieldName: 'RiskName',
             type: 'text',
             iconName: 'standard:orders'
         }, {
-            label: 'Description',
+            label: $A.get("$Label.c.orm_description_risk"), 
             fieldName: 'RiskDescription',
             type: 'text',
             iconName: 'standard:orders'
         }, {
-            label: 'Risk category',
+            label:  $A.get("$Label.c.orm_risk_category"),
             fieldName: 'RiskcategorieRisk',
             type: 'text',
             iconName: 'standard:orders'
         }, {
-            label: 'Action',
+            label: $A.get("$Label.c.orm_table_action_label"),
             type: 'button',
             typeAttributes: {
-                label: 'Show',
-                name: 'Show',
-                title: 'Show'
+                label:  $A.get("$Label.c.orm_show_button_title"),
+                name: $A.get("$Label.c.orm_show_button_title"),
+                title: $A.get("$Label.c.orm_show_button_title")
             },
             iconName: 'utility:settings',
             /*cellAttributes: {
@@ -93,7 +93,7 @@
                     if (rows.length == 0) {
                         var toast = $A.get('e.force:showToast');
                         toast.setParams({
-                            'message': 'there is no risk associated or category is' + ' ' + categorieRiskValue,
+                            'message': $A.get("$Label.c.orm_risk_associated_category") + ' ' + categorieRiskValue,
                             'type': 'warning',
                             'mode': 'dismissible'
                         });
@@ -193,7 +193,7 @@
             } else {
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
-                    'message': 'failed association',
+                    'message': $A.get("$Label.c.orm_failed_association"),
                     'type': 'warning',
                     'mode': 'dismissible'
                 });
@@ -219,7 +219,7 @@
                 
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
-                    'message': 'successful dissociation',
+                    'message': $A.get("$Label.c.orm_successful_dissociation"),
                     'type': 'success',
                     'mode': 'dismissible'
                 });
@@ -229,7 +229,7 @@
             } else {
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
-                    'message': 'failed dissociation',
+                    'message': $A.get("$Label.c.orm_failed_dissociation"),
                     'type': 'warning',
                     'mode': 'dismissible'
                 });
@@ -255,17 +255,17 @@
         component.set("v.isOpen", true);
         // Set the columns of the Table
         component.set('v.columns2', [{
-            label: 'Risk Name',
+            label: $A.get("$Label.c.orm_name_risk"),
             fieldName: 'Name',
             type: 'text',
             iconName: 'standard:opportunity'
         }, {
-            label: 'Risk category',
+            label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'orm_categorieRisk__c',
             type: 'text',
             iconName: 'standard:opportunity'
         }, {
-            label: 'Description',
+            label: $A.get("$Label.c.orm_description_risk"),
             fieldName: 'Description',
             type: 'text',
             iconName: 'standard:opportunity'
@@ -305,7 +305,7 @@
                     if (rows.length == 0) {
                         var toast = $A.get('e.force:showToast');
                         toast.setParams({
-                            'message': 'there is no risk ' + ' ' + categorieRiskValue,
+                            'message': $A.get("$Label.c.orm_no_risk") + ' ' + categorieRiskValue,
                             'type': 'warning',
                             'mode': 'dismissible'
                         });

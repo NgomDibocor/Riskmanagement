@@ -8,6 +8,7 @@
   <aura:attribute name="key" type="string" description="" />
   <aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
   <aura:attribute name="showButtonDelete" type="Boolean" default="false" />
+  <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
 	
   <!-- events  -->
   <aura:registerEvent name="OrmNewMeasureClickedEvt"  type="c:OrmNewMeasureClickedEvt"/>
@@ -31,12 +32,9 @@
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" onclick="{!c.openNewMeasureCmp}">
 	        	<lightning:icon iconName="utility:new" size="small" />
 	        </span>
-	        
-	        <aura:if isTrue="{!v.showButtonDelete}">
-	        	<span class="deleteMeasure" onclick="{!c.openModalDeleteMeasure}">
+	        	<span class="deleteMeasure" onclick="{!c.removeMeasure}">
 					<lightning:icon iconName="utility:delete" size="small" />
 				</span>
-	        </aura:if>
 	        
 	
 			<!-- use aura:if for show/hide buttons --> 
@@ -79,6 +77,7 @@
 	                <aura:iteration items="{!v.measures}" var="measure" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
 	                    <c:OrmMeasureEditRowCmp measure="{!measure}"
+	                    			     selectedRowsCount="{!v.selectedRowsCount}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />                       
 	                </aura:iteration>

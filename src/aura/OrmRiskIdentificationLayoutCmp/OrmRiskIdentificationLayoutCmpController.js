@@ -47,6 +47,7 @@
                 label:  $A.get("$Label.c.orm_edit_button_title"),
                 name: $A.get("$Label.c.orm_edit_button_title"),
                 title: $A.get("$Label.c.orm_edit_button_title")
+                
             },
             iconName: 'utility:settings',
             /*cellAttributes: {

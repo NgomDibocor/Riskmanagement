@@ -16,10 +16,9 @@
 	<aura:registerEvent name="OrmEvtSelectAllMeasureProgress" type="c:OrmEvtSelectAllMeasureProgress" />
 	<aura:registerEvent name="OrmEvtDeleteMeasureProgress" type="c:OrmEvtDeleteMeasureProgress" description="" />
 	<aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
-	Measure Progression 
-	
-	
-
+	 <div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
+		 <center> <h1>{!$Label.c.orm_progressmeasure_label}</h1> </center>
+	 </div>
  	<div class="slds-m-around_large">
 		<div class="measureProgression">
 		    	<div class="measureSearch">

@@ -22,6 +22,7 @@
     <aura:attribute name="nbreRisk" type="String" />
     <aura:attribute name="isEmptyListAssessmentRisk" type="boolean" default="false" />
     <aura:attribute name="isEmptyListMeasure" type="boolean" default="false" />
+    <aura:attribute name="showSlider" type="boolean" default="false"/>
     
     <aura:attribute name="showChevronleft" type="boolean" default="false"/>
     <aura:attribute name="showChevronright" type="boolean" default="true"/>
@@ -1094,7 +1095,7 @@
                                     <span class="startSpaceOrg"></span>                                  
 							        <div class="orgSelect">
 							            <div class="topSpacing"> 
-			                                 <label class="slds-form-element__label">{!$Label.c.orm_organisation_label}</label>
+			                                 <label class="slds-form-element__label">{!$Label.c.orm_organisationUnit_label}</label>
 			                            </div>
 							            <div class="slds-form-element">
 							                 <div class="slds-form-element__control">
@@ -1132,17 +1133,12 @@
                         </td>
                      </tr>
                      <tr>
-                        <td>
-                         <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
-                       </td>
-                     </tr>
-                  <aura:if isTrue="{!or(v.typeProjet == true, v.assessmentData.orm_typeAssessment__c == 'Projet')}">
-                     <tr>
                          <td>
-                           <div style="height:50px"> </div>
-                            <c:OrmSliderCmp idAssessment="{!v.assessmentData.Id }" />
+                           <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
                          </td>
                      </tr>
+                  <aura:if isTrue="{!or(v.typeProjet == true, v.assessmentData.orm_typeAssessment__c == 'Projet')}">
+                     
                   </aura:if>
                   <aura:if isTrue="{!or(v.typeOrganisation == true, v.assessmentData.orm_typeAssessment__c == 'Organisation')}">
                   </aura:if>
@@ -1158,16 +1154,17 @@
 	                           </div>
 	                        </td>
 	                  </tr>
+	                  
                       <tr>
                           <td>
                                <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
                           </td>
                       </tr>
                       <tr>
-                         <td>
-                           <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
-                         </td>
-                    </tr>
+                           <td>
+	                         <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+	                       </td>
+                      </tr>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextActivityShow}">
                      <tr>
@@ -1189,6 +1186,14 @@
                             <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
                           </td>
                      </tr>
+                  </aura:if>  
+                  <aura:if isTrue="{!v.showSlider}">
+                      <tr>
+                          <td>
+                              <div style="height:50px"> </div>
+                              <c:OrmSliderCmp idAssessment="{!v.assessmentData.Id }" />
+                           </td>
+                       </tr>
                   </aura:if>
                   <aura:if isTrue="{!v.showRiskIdentif}">
                        <tr>

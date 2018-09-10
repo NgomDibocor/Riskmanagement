@@ -57,12 +57,9 @@
 																					            if (state === 'SUCCESS') { 
 																					                component.set('v.assessmentRiskData', response.getReturnValue());
 																					                component.set("v.displaySaveCancelBtn",false);
-																					                /*component.find("manageAbility").set("v.value", event.getSource().get("v.value"));
-																					                component.find("productionLoss").set("v.value", event.getSource().get("v.value"));
-																					                component.find("schedule").set("v.value", event.getSource().get("v.value"));
-																					                component.find("status").set("v.value", event.getSource().get("v.value"));
-																					                component.find("vulnerability").set("v.value", event.getSource().get("v.value"));
-																					                component.find("frequency").set("v.value", event.getSource().get("v.value"));*/
+																					                
+																					                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+	                                                                                                evtSpinner.fire(); 
 																					            } else {
 																					
 																					                alert($A.get("$Label.c.orm_not_found"));

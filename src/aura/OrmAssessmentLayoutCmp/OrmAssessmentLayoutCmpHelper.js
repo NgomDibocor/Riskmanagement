@@ -132,6 +132,22 @@
                 alert($A.get("$Label.c.orm_not_found"));
             }
         });
+        var actionSize = component.get('c.getSelectOptions');
+        actionSize.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_size__c'});
+        var optsSize = [];
+        actionSize.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                var allValuesSize = response.getReturnValue();
+                for (var i = 0; i < allValuesSize.length; i++) {
+                    optsSize.push(allValuesSize[i]);
+                }
+                component.set('v.allSize', optsSize);
+            } else {
+                alert($A.get("$Label.c.orm_not_found"));
+            }
+        });
+        
         var actionCurrency = component.get('c.getSelectOptions');
         actionCurrency.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_currency__c'});
         var opts4 = [];
@@ -172,6 +188,16 @@
                 alert($A.get("$Label.c.orm_not_found"));
             }
         });
+        var actionBudgetOrganisation = component.get("c.getSelectOptions");
+        actionBudgetOrganisation.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_budgetOrganisation__c'});
+        actionBudgetOrganisation.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+               component.set('v.allBudgetOrganisation', response.getReturnValue());
+            } else {
+                alert($A.get("$Label.c.orm_not_found"));
+            }
+        });
         var actionUser = component.get("c.getUsers");
         actionUser.setCallback(this, function(response){
             var state = response.getState();
@@ -186,7 +212,7 @@
         actionOrganisationSectorInd.setCallback(this, function(response){
             var state = response.getState();
             if(state === 'SUCCESS'){
-               component.set('v.allOrganisationIndustrySector', response.getReturnValue());
+               component.set('v.allOrganisationIndustrySector', response.getReturnValue().sort());
             } else {
                 alert($A.get("$Label.c.orm_not_found"));
             }
@@ -219,6 +245,8 @@
         $A.enqueueAction(actionOrgs);
         $A.enqueueAction(actionTypeProjet);
         $A.enqueueAction(actionStatus);
+        $A.enqueueAction(actionSize); 
+        $A.enqueueAction(actionBudgetOrganisation);
         $A.enqueueAction(actionCurrency);
         $A.enqueueAction(actionSchedule);
         $A.enqueueAction(actionSector);

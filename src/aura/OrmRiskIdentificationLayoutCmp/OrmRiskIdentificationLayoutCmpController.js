@@ -45,6 +45,7 @@
             type: 'button',
             typeAttributes: {
                 label:  $A.get("$Label.c.orm_show_button_title"),
+                class: 'cols',
                 name: $A.get("$Label.c.orm_show_button_title"),
                 title: $A.get("$Label.c.orm_show_button_title")
             },

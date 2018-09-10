@@ -51,6 +51,10 @@
           newItem.orm_region__c = region.get("v.value");
           var currency = component.find("currencyOrganisation");
           newItem.orm_currency__c = currency.get("v.value");
+          var size = component.find("size");
+          newItem.orm_size__c = size.get("v.value");
+          var budget = component.find("budgetOrganissation");
+          newItem.orm_budgetOrganisation__c = budget.get("v.value");
         }
         var action = component.get('c.add');
         action.setParams({
@@ -364,23 +368,21 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     
-    sendSizeToFD : function(component,event,helper){ 
-    	component.set("v.closeFieldDescription",false);
-        var field = $A.get("$Label.c.orm_size_label");
-        var description = $A.get("$Label.c.orm_size_description");
-        helper.sendValuesToFieldDescription(component, event, helper, field, description);
-    },
-    sendBudgetOrganisationToFD : function(component,event,helper){ 
-    	component.set("v.closeFieldDescription",false);
-        var field = $A.get("$Label.c.orm_budget_label");
+    onChangeBudgetOrganisation : function(component,event,helper){ 
+        component.set("v.displaySaveCancelBtn", true);
+    	component.find("size").set("v.value", event.getSource().get("v.value"));
+    	var field = $A.get("$Label.c.orm_budget_label");
         var description = $A.get("$Label.c.orm_budget_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    onChangeBudgetOrganisation : function(component,event,helper){ 
-       component.set("v.displaySaveCancelBtn",true);
-    },
+    
     onChangeSize : function(component, event, helper) {
-       component.set("v.displaySaveCancelBtn",true);
+        component.set("v.displaySaveCancelBtn", true);
+    	component.find("size").set("v.value", event.getSource().get("v.value"));
+    	var field = $A.get("$Label.c.orm_size_label");
+        var description = $A.get("$Label.c.orm_size_description");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+        
     },
     
     cancel : function(component, event, helper){

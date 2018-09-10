@@ -19,13 +19,11 @@
 	<aura:attribute name="key" type="string" description="" />
 	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
 	
-	<div class="slds-m-around_large">
-	
-		<div class="topSpacing">
-        	<label class="slds-form-element__label ">{!$Label.c.orm_label_cause}<span class="cmn_mandatory_indicator">*</span></label>
-        </div>                                        
+	<div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
+		 <center> <h1 style="font-family: 'customfontDisney'; src: url(/resource/disneyFont);">{!$Label.c.orm_label_cause}</h1></center>
+		</div>
+	<div class="slds-m-around_large">                                        
 	    <div class="cause">
-	    
 	    	<div class="icause">
 		    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
 					<lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="" />

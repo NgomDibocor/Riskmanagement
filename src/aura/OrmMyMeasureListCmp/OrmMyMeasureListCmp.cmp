@@ -5,7 +5,7 @@
 	    <div class="slds-box" style="width:100%;font-size: 30px;">
 	    <!-- font-family: 'customfontDisney';
     	font-size: 30px;src: url(/resource/disneyFont); -->
-		  <h1>List of Measures</h1>
+		  <h1 style="font-family: 'customfontDisney'; src: url(/resource/disneyFont);">List of Measures</h1>
 		</div>
 		<div class="slds-col">									
 		<div class="space"></div>

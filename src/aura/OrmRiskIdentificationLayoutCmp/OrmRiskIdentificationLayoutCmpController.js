@@ -42,12 +42,13 @@
             iconName: 'standard:orders'
         }, {
             label: $A.get("$Label.c.orm_table_action_label"),
+            class: 'slds-truncate',
             type: 'button',
             typeAttributes: {
-                label:  $A.get("$Label.c.orm_show_button_title"),
-                class: 'cols',
-                name: $A.get("$Label.c.orm_show_button_title"),
-                title: $A.get("$Label.c.orm_show_button_title")
+                label:  $A.get("$Label.c.orm_edit_button_title"),
+                name: $A.get("$Label.c.orm_edit_button_title"),
+                title: $A.get("$Label.c.orm_edit_button_title")
+                
             },
             iconName: 'utility:settings',
             /*cellAttributes: {

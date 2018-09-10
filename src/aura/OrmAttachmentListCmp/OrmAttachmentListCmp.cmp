@@ -7,7 +7,9 @@
 	<aura:attribute name="isOpenfileUploadNewCmp" default="false"
 		type="Boolean" description="check if form upload file is visible" />
 	<aura:attribute name="items" type="ContentDocument[]"
+	<aura:attribute name="itemsTemp" type="ContentDocument[]"
 		description="List attachment" />
+	<aura:attribute name="key" type="string" />
 	<!-- 	aura register event -->
 	<aura:registerEvent name="OrmOpenAttachmentNewEvent"
 		type="c:OrmOpenAttachmentNewEvent" />
@@ -41,16 +43,16 @@
 					<th scope="col"><div class="slds-truncate" title="">N°</div></th>
 					<th scope="col"><div class="slds-truncate"
 							title="{!$Label.c.orm_title_file}">{!$Label.c.orm_title_file}</div></th>
-							<th scope="col"><div class="slds-truncate"
+					<th scope="col"><div class="slds-truncate"
 							title="{!$Label.c.orm_author_file}">{!$Label.c.orm_author_file}</div></th>
-							
+
 					<th scope="col"><div class="slds-truncate"
 							title="{!$Label.c.orm_reference_number}">{!$Label.c.orm_reference_number}</div></th>
-		
-								<th scope="col"><div class="slds-truncate"
+
+					<th scope="col"><div class="slds-truncate"
 							title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div></th>
-			
-							</tr>
+
+				</tr>
 
 			</thead>
 
@@ -59,7 +61,7 @@
 				<aura:iteration items="{!v.items}" var="item" indexVar="i">
 					<tr class="slds-hint-parent">
 						<td>{!i+1}</td>
-						
+
 						<td><span class="slds-grid slds-grid_align-spread"> <span
 								class="slds-truncate" title="{!item.orm_title_document__c}">
 									{!item.ContentVersions[0].orm_title_document__c} </span>
@@ -76,7 +78,7 @@
 								class="slds-truncate" title="{!item.Title}"> <a
 									data-index="{!i}" onclick="{!c.openSingleFile}">{!item.Title}</a></span>
 						</span></td>
-					
+
 					</tr>
 
 				</aura:iteration>

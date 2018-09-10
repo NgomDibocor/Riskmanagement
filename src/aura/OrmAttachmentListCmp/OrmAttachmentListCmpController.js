@@ -34,6 +34,36 @@ openSingleFile : function (component,event, helper){
             recordIds: [eltselected.Id]
         });      
     },
+    	/**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description search filter
+	 * @history 2018-09-07: Salimata NGOM - Implementation
+	 */
+	filter : function (component, event, helper){
+		var ListAttachment= component.get('v.itemsTemp');
+		var data = ListAttachment;
+		var key = component.get('v.key');
+		var regex;    	
+
+		if ($A.util.isEmpty(key)) {    	
+			helper.refreshList(component, event);    		      
+		} else {
+			key = "^" + key;
+			try {
+				regex = new RegExp(key, "i");
+
+				// filter checks each row, constructs new array where
+				// function returns true
+				data=ListAttachment.filter(row => regex.test(row.Name));
+			} catch (e) {
+				alert(e)
+			}
+
+			component.set("v.items", data);
+		}        	
+	},
 
 
 })

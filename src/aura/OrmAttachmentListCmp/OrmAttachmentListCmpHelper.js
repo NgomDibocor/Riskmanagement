@@ -25,6 +25,7 @@
 			if (state == "SUCCESS") {
 			   console.log(JSON.stringify(response.getReturnValue()))
 			   component.set("v.items", response.getReturnValue());
+			     component.set("v.itemsTemp", response.getReturnValue());
 			} else if(state ==="ERROR") {
               let errors = response.getError();
               let message = 'Unknown error'; // Default error message

@@ -147,7 +147,7 @@
         </td>
         
         <td>
-        <lightning:button variant="brand" label="{!$Label.c.orm_show_button_title}" title="{!$Label.c.orm_show_button_title}" onclick="{! c.showMeasure }" /> 
+        <lightning:button variant="brand" label="{!$Label.c.orm_edit_button_title}" title="{!$Label.c.orm_edit_button_title}" onclick="{! c.showMeasure }" /> 
         </td>
     </tr>
 </aura:component>

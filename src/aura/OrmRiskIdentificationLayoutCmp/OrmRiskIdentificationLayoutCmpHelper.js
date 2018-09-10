@@ -23,6 +23,7 @@
                 }
                 component.set('v.allRisk', rows);
                 component.set('v.allRiskTemp', rows);
+               
                 var risk=component.get('v.allRisk');
                 if(risk == null){
                     var toast = $A.get('e.force:showToast');
@@ -43,13 +44,13 @@
                     if (state === 'SUCCESS' && component.isValid()) {
                         component.set('v.allCategorieRisk', response.getReturnValue());
                     } else {
-                        alert("the element was not found");
+                        alert($A.get('$Label.c.orm_not_found'));
                     }
                 });
                 $A.enqueueAction(action);
             } else {
 
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get('$Label.c.orm_not_found'));
             }
         });
 
@@ -93,13 +94,13 @@
                     if (state === 'SUCCESS' && component.isValid()) {
                         component.set('v.allCategorieRiskList', response.getReturnValue());
                     } else {
-                        alert("the element was not found");
+                        alert($A.get('$Label.c.orm_not_found'));
                     }
                 });
                 $A.enqueueAction(action);
             } else {
 
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get('$Label.c.orm_not_found'));
             }
         });
 

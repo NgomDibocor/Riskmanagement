@@ -12,6 +12,11 @@
 	    <aura:attribute name="filter" type="String" />
 	    <aura:attribute name="objInfoForPicklistValues" type="Macro"
 		default="{sobjectType : 'Macro'}"/>
+		
+		<div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
+		 <center> <h1 style="font-family: 'customfontDisney'; src: url(/resource/disneyFont);">{!$Label.c.orm_impact}</h1></center>
+		</div>
+		
 		<div class="slds-grid slds-gutters">
 	        <div class=" slds-size--3-of-12   slds-p-horizontal--small slds-float—left">  
 	        </div>

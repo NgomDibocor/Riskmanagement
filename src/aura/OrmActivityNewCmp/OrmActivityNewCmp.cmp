@@ -46,13 +46,13 @@
 								<div class="slds-col">
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
-                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_name_activity}" class="slds-input"
+                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_name_activity}" 
                                      			value="{!v.activity.Name}" required="true"/>
 										</div>
 									</div>
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
-											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" class="slds-input"
+											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" 
                                      			value="{!v.activity.orm_description__c}" required="true"/>
 										</div>
 									</div>

@@ -35,7 +35,7 @@
 	        
 	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.openModalDeleteCause}">
 				<lightning:icon iconName="utility:delete" size="small" />
-			</span>
+			</span><br/>
 	
 			<!-- use aura:if for show/hide buttons --> 
 	        <aura:if isTrue="{!v.showSaveCancelBtn}">
@@ -47,7 +47,7 @@
 		            </lightning:buttonGroup>
 	        	</div>
 	        </aura:if> 
-        
+        <aura:if isTrue="{!not(empty(v.causes ))}"> 
 	        <!--Data Table-->     
 	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
 	            <thead>
@@ -71,15 +71,20 @@
 	            
 	            <tbody>
 	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
+	             
 	                <aura:iteration items="{!v.causes}" var="cause" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
 	                    <c:OrmCauseEditRowCmp cause="{!cause}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />                       
 	                </aura:iteration>
+	                
 	            </tbody>
 	        </table>
-		    	
+		    	<aura:set attribute="else">
+			    la liste est vide
+			 </aura:set>
+           </aura:if>
 		</div>
         <!-- span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}" class="btnNewCause" onclick="{!c.openCauseNewCmp}">
         	<lightning:icon iconName="utility:new" size="medium" />

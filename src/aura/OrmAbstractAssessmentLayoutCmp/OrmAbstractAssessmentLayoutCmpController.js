@@ -6,6 +6,7 @@
         var showContextActivity = component.get("v.showContextActivity");
         var showContextActivityShow = component.get("v.showContextActivityShow");
         var showContextWorkshop = component.get("v.showContextWorkshop");
+        var showSlider = component.get("v.showSlider");  
         var showRiskIdentif = component.get("v.showRiskIdentif");
         var showRiskAnalyse = component.get("v.showRiskAnalyse");
         var showListCauseAndImpact = component.get("v.showListCauseAndImpact");
@@ -62,6 +63,12 @@
         
         if(showContextWorkshop == true){
             component.set("v.showContextWorkshop", false);
+            component.set("v.showSlider", true);
+            helper.activeSlider(component, event);
+        }
+        
+        if(showSlider == true){
+            component.set("v.showSlider", false);
             component.set("v.showRiskIdentif", true);
             helper.activeRiskIdentif(component, event);
         }
@@ -108,6 +115,7 @@
         var showContext2 = component.get("v.showContext2");
         var showContextActivity = component.get("v.showContextActivity");
         var showContextActivityShow = component.get("v.showContextActivityShow");
+        var showSlider = component.get("v.showSlider");  
         var showContextWorkshop = component.get("v.showContextWorkshop");
         var showRiskIdentif = component.get("v.showRiskIdentif");
         var showRiskAnalyse = component.get("v.showRiskAnalyse");
@@ -139,10 +147,15 @@
             helper.activeContextActivity(component, event);
         }
         
-        if(showRiskIdentif == true){
+        if(showSlider == true){
+            component.set("v.showSlider", false);
             component.set("v.showContextWorkshop", true);
-            component.set("v.showRiskIdentif", false);
             helper.activeContextWorkshop(component, event);
+        }
+        if(showRiskIdentif == true){
+            component.set("v.showSlider", true);
+            component.set("v.showRiskIdentif", false);
+            helper.activeSlider(component, event);
         }
         
         if(showRiskAnalyse == true){

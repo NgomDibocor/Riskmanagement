@@ -34,7 +34,8 @@
             label: $A.get("$Label.c.orm_description_risk"), 
             fieldName: 'RiskDescription',
             type: 'text',
-            iconName: 'standard:orders'
+            iconName: 'standard:orders',
+            cellAttributes: { class: 'descriptionToolTip' }
         }, {
             label:  $A.get("$Label.c.orm_risk_category"),
             fieldName: 'RiskcategorieRisk',
@@ -86,6 +87,7 @@
                     }
                     component.set('v.allRisk', rows);
                     if (rows.length == 0) {
+                    
                         var toast = $A.get('e.force:showToast');
                         toast.setParams({
                             'message': $A.get("$Label.c.orm_risk_associated_category") + ' ' + categorieRiskValue,

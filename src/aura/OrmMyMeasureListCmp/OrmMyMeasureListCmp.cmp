@@ -35,7 +35,7 @@
                             
                             <div class="slds-no-flex" style="margin-left:5px">
                                 <button id="{!item.Id}"
-                                        class="slds-button slds-button_neutral"
+                                        class="slds-button slds-button_brand"
                                         onclick="{!c.showMeasure}">
                                     {!$Label.c.orm_show_button_title}<span id="{!item.orm_assessmentRisk__r.orm_assessment__c}"></span>
                                     <span id="{!item.orm_assessmentRisk__c}"></span>
@@ -44,7 +44,7 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
-                        Description: <b>{!item.orm_description__c}</b>
+                       <b> Description: {!item.orm_description__c}</b>
                     </div>
                     <div class=" slds-card__body slds-card__body_inner">
 	                   

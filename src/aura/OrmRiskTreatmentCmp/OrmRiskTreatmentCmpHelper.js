@@ -30,7 +30,8 @@
 				                component.find("measureResponsable").set("v.value", component.get('v.measureData').orm_measureResponsable__c);
 				                
 				                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-	                            evtSpinner.fire(); 
+	                            evtSpinner.fire();
+	                             
 					          }else{
 					             alert($A.get('$Label.c.orm_not_found'));
 					          }

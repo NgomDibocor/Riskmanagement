@@ -43,6 +43,9 @@
                     var state = response.getState();
                     if (state === 'SUCCESS' && component.isValid()) {
                         component.set('v.allCategorieRisk', response.getReturnValue());
+                        //Hide spinner
+                        var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+	                    evtSpinner.fire();
                     } else {
                         alert($A.get('$Label.c.orm_not_found'));
                     }

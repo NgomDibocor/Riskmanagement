@@ -1250,7 +1250,7 @@
                       <td class="textInDiv">
                         <c:OrmCauseListCmp />
                       </td>
-                    </tr> <hr/>
+                    </tr> 
                     <tr>
                        <td class="textInDiv">
                           <c:OrmImpactListCmp />

@@ -138,6 +138,9 @@
               <aura:if isTrue="{!v.showContextWorkshop}">
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
+              <aura:if isTrue="{!v.showSlider}">
+                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+              </aura:if>
               <aura:if isTrue="{!v.showRiskIdentif}">
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
@@ -161,7 +164,25 @@
     <div class="{!(v.closeFieldDescription==true ? (v.showChevronleft == false ? (v.showChevronright== true ? 'slds-size--7-of-8' : 'slds-size--8-of-8'):(v.showChevronright== true ? 'slds-size--6-of-8': 'slds-size--7-of-8')) : (v.showChevronleft == true ? 'slds-size--4-of-8' : 'slds-size--5-of-8' ))}" style="margin-top:20px;margin-bottom:30px">
         <table class="slds-table">
               <aura:if isTrue="{!v.showContext}">
-                   <tr>
+                <aura:if isTrue="{!v.assessmentData.Id == null}">
+                    <tr>
+	                     <td >
+	                           <div style="margin-bottom:20px; font-size: large;font-weight: normal">
+	                               Création of an assessment
+	                           </div>
+	                     </td>
+	                </tr>
+                </aura:if>
+                <aura:if isTrue="{!v.assessmentData.Id != null}">
+                    <tr>
+	                     <td >
+	                           <div style="margin-bottom:20px; font-size: large;font-weight: normal">
+	                               Displaying of an assessment
+	                           </div>
+	                     </td>
+	                </tr>
+                </aura:if>
+                <tr>
                     <td class="textInDiv">
                        <div style="margin-top:10px; margin-bottom:10px">
                           <lightning:button label="{!$Label.c.orm_back_button_assessment}" 
@@ -1154,7 +1175,6 @@
 	                           </div>
 	                        </td>
 	                  </tr>
-	                  
                       <tr>
                           <td>
                                <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
@@ -1191,7 +1211,7 @@
                       <tr>
                           <td>
                               <div style="height:50px"> </div>
-                              <c:OrmSliderCmp idAssessment="{!v.assessmentData.Id }" />
+                                <c:OrmSliderCmp idAssessment="{!v.assessmentData.Id }" /> 
                            </td>
                        </tr>
                   </aura:if>
@@ -1309,6 +1329,9 @@
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
                </aura:if>
                <aura:if isTrue="{!v.showContextWorkshop}">
+                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+               </aura:if>
+               <aura:if isTrue="{!v.showSlider}">
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
                </aura:if>
                <aura:if isTrue="{!v.showRiskAnalyse}">        

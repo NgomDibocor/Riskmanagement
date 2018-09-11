@@ -4,6 +4,11 @@
 		    scripts="{!$Resource.noUiSlider + '/nouislider.min.js'}"
 		    afterScriptsLoaded="{!c.jsLoaded}" />
     
+    <aura:attribute name="probabilityData" type="Macro" default="{ 'sobjectType' : 'Macro',
+														  'orm_probability__c' : '',
+														  'orm_pourcentageMin__c' : '',
+														  'orm_pourcentageMax__c' : ''
+														}"/>
     <aura:attribute name="idAssessment" type="String"/>
     <aura:attribute name="label" type="String"/>
     <aura:attribute name="label2" type="String"/>

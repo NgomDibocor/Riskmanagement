@@ -196,6 +196,9 @@
         } 
     },
     activeContext : function(component, event, helper) {
+        //Hide the Spinner
+          var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+          evtSpinner.fire(); 
         helper.activeContext(component, event);
     },
     
@@ -218,7 +221,11 @@
 	                    'mode' : 'dismissible'
 	                });
 	                toast.fire();
-				 }else{
+				 }else{ 
+				      //Hide the Spinner
+		              var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+			          evtHideSpinner.fire(); 
+				 
 				      var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
 	                  evtSpinner.fire(); 
 				      helper.activeRiskIdentif(component, event);
@@ -240,6 +247,14 @@
 		            });
 		            toast.fire();
 		        }else{
+		            
+		            //Hide the Spinner
+	                var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+		            evtHideSpinner.fire(); 
+			 
+			        var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+                    evtSpinner.fire(); 
+		        
 			        component.set("v.showRiskIdentif", false);
 			        component.set("v.showRiskAnalyse", true);
 			        helper.activeRiskAnalye(component, event);
@@ -284,6 +299,10 @@
 			                });
 			                toast.fire();
 				       }else{
+				                //Hide the Spinner
+					            var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+						        evtHideSpinner.fire(); 
+						        
 				                var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
 	                            evtSpinner.fire();
 				                

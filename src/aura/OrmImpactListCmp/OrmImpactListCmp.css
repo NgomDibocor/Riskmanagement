@@ -1,3 +1,23 @@
 .THIS .header {
 	background-color: rgba(27, 82, 151, 1.0);
 }
+.THIS div.impact {
+    display: inline-block;
+    width:100%;
+}
+.THIS .iimpact {
+	display: inline-block;
+    width:80%;
+    margin-right: 15px;
+}
+
+.THIS .deleteImpact{
+	display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+.THIS span.btnNewImpact {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}

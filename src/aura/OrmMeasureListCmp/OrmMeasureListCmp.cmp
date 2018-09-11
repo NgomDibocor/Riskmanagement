@@ -33,7 +33,7 @@
 	        </span>
 	        	<span class="deleteMeasure" onclick="{!c.removeMeasure}">
 					<lightning:icon iconName="utility:delete" size="small" />
-				</span>
+				</span><br/>
 	        
 	
 			<!-- use aura:if for show/hide buttons --> 
@@ -46,7 +46,7 @@
 	            </lightning:buttonGroup>
 	        	</div>
 	        </aura:if> 
-        
+        <aura:if isTrue="{!not(empty(v.measures))}">
 	        <!--Data Table-->     
 	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
 	            <thead>
@@ -82,6 +82,10 @@
 	                </aura:iteration>
 	            </tbody>
 	        </table>
+	        <aura:set attribute="else">
+			    la liste est vide
+			</aura:set>
+           </aura:if>
 		</div>
 	</div>
 	

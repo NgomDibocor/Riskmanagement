@@ -68,6 +68,8 @@
         }
         
         if(showSlider == true){
+            var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	        evtSpinner.fire();
             component.set("v.showSlider", false);
             component.set("v.showRiskIdentif", true);
             helper.activeRiskIdentif(component, event);
@@ -194,6 +196,9 @@
         } 
     },
     activeContext : function(component, event, helper) {
+        //Hide the Spinner
+          var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+          evtSpinner.fire(); 
         helper.activeContext(component, event);
     },
     
@@ -208,7 +213,24 @@
             });
             toast.fire();
         }else{
-            helper.activeRiskIdentif(component, event);   
+	            if(component.get("v.isEmptyListAssessmentRisk")){
+	                var toast = $A.get('e.force:showToast');
+	                toast.setParams({
+	                    'message' : 'List assessmentRisk is empty',
+	                    'type' : 'warning',
+	                    'mode' : 'dismissible'
+	                });
+	                toast.fire();
+				 }else{ 
+				      //Hide the Spinner
+		              var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+			          evtHideSpinner.fire(); 
+				 
+				      var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	                  evtSpinner.fire(); 
+				      helper.activeRiskIdentif(component, event);
+				 }
+                    
         }
     },
     
@@ -225,6 +247,14 @@
 		            });
 		            toast.fire();
 		        }else{
+		            
+		            //Hide the Spinner
+	                var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+		            evtHideSpinner.fire(); 
+			 
+			        var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+                    evtSpinner.fire(); 
+		        
 			        component.set("v.showRiskIdentif", false);
 			        component.set("v.showRiskAnalyse", true);
 			        helper.activeRiskAnalye(component, event);
@@ -269,6 +299,10 @@
 			                });
 			                toast.fire();
 				       }else{
+				                //Hide the Spinner
+					            var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+						        evtHideSpinner.fire(); 
+						        
 				                var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
 	                            evtSpinner.fire();
 				                
@@ -348,7 +382,9 @@
 				                'mode' : 'dismissible'
 				            });
 				            toast.fire();
-				     }else{	      
+				     }else{	  
+				        var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	                    evtSpinner.fire();    
 				        helper.activeRiskTreatment(component, event);
 				        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
 				        evt.setParams({"MeasureId": idMeasure});

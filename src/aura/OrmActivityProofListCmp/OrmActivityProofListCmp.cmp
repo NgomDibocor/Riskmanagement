@@ -44,7 +44,8 @@
 		            </lightning:buttonGroup>
 	        	</div>
 	        </aura:if>
-	         
+	         <br/>
+	        <aura:if isTrue="{!not(empty(v.activityProof))}">
 	         <table class="slds-table slds-table_bordered slds-table_cell-buffer">
 	            <thead>
 	                <tr class="slds-text-title--caps">
@@ -69,7 +70,10 @@
 	                </aura:iteration>
 	            </tbody>
 	        </table>
-	         
+	       <aura:set attribute="else">
+			    la liste est vide
+		   </aura:set>
+           </aura:if>
 	       
 		</div>
 	</div>

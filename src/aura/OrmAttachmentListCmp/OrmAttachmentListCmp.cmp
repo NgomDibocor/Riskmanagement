@@ -6,7 +6,7 @@
 		description="Attribute for store the Id for Parent Record where we are attach our file" />
 	<aura:attribute name="isOpenfileUploadNewCmp" default="false"
 		type="Boolean" description="check if form upload file is visible" />
-	<aura:attribute name="items" type="ContentDocument[]"
+	<aura:attribute name="items" type="ContentDocument[]"/>
 	<aura:attribute name="itemsTemp" type="ContentDocument[]"
 		description="List attachment" />
 	<aura:attribute name="key" type="string" />
@@ -36,7 +36,7 @@
 	<!-- end header page content search bar and action button -->
 	<div class="slds-m-around_large">
 		<!--Data Table-->
-
+	<aura:if isTrue="{!not(empty(v.items))}">
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
@@ -84,6 +84,12 @@
 				</aura:iteration>
 			</tbody>
 		</table>
+		<aura:set attribute="else">
+			   <div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
+		 		<center> <h1>la liste est vide</h1></center>
+		       </div>
+			 </aura:set>
+           </aura:if>
 	</div>
 	<c:OrmAttachmentNewCmp />
 </aura:component>

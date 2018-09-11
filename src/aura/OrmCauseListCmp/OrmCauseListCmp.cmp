@@ -19,14 +19,14 @@
 	<aura:attribute name="key" type="string" description="" />
 	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
 	
-	<div class="slds-box" style="width:100%; height:10%; font-size: 20px; border:none;">
+	<div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
 		 <center> <h1>{!$Label.c.orm_label_causes}</h1></center>
 		</div>
 	<div class="slds-m-around_large">                                        
 	    <div class="cause">
 	    	<div class="icause">
 		    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
-					<lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="" />
+					<lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  placeholder="{!$Label.c.orm_filter_impact_placeholder}"/>
 				</a>
 			</div>
 			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}" class="btnNewCause" onclick="{!c.openCauseNewCmp}">
@@ -47,7 +47,7 @@
 		            </lightning:buttonGroup>
 	        	</div>
 	        </aura:if> 
-        <aura:if isTrue="{!not(empty(v.causes ))}"> 
+        <aura:if isTrue="{!not(empty(v.causes))}"> 
 	        <!--Data Table-->     
 	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
 	            <thead>

@@ -65,8 +65,8 @@
 	                	<lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.save}" variant="success"/>
 	            	</lightning:buttonGroup>
 	        	</div>
-	        </aura:if> 
-        
+	        </aura:if> <br/>
+        <aura:if isTrue="{!not(empty(v.phases))}">
 	        <!--Data Table-->     
 	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
 	            <thead>
@@ -102,7 +102,10 @@
 	                </aura:iteration>
 	            </tbody>
 	        </table>
-		    	
+		   <aura:set attribute="else">
+			    la liste est vide
+			 </aura:set>
+           </aura:if> 	
 		</div>
         
         <!-- span class="btnNewPhase" onclick="{!c.createItem}">

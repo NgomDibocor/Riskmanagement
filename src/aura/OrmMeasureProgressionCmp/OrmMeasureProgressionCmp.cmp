@@ -49,6 +49,7 @@
 	        	</div>
 	        </aura:if>
 	        	<br/>
+	        <aura:if isTrue="{!not(empty(v.measureProgression))}">
 			    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
 	            <thead>
 	                <tr class="slds-text-title--caps">
@@ -74,33 +75,10 @@
 	                </aura:iteration>
 	            </tbody>
 	        </table>
-	        <!-- 
-	        <aura:if isTrue="{!v.openModalConfirmDeletion}">    
-	    	<div class="demo-only" style="height: 640px;">
-			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
-			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-			    <div class="slds-modal__container">
-			      <header class="slds-modal__header header">
-			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
-			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.orm_close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
-			        </button>
-			      </header>
-			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			       <center> <p><b>{!$Label.c.deletion_message}</b></p> </center>
-			      </div>
-			      <footer class="slds-modal__footer">			        
-					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteMeasureProgress}">{!$Label.c.orm_cancel_button_title}</button>
-					<button class="slds-button slds-button_brand" onclick="{!c.confirmDeleteMeasureProgress}">{!$Label.c.orm_confirm_button}</button>					
-			      </footer>
-			    </div>
-			  </section>
-			  <div class="slds-backdrop slds-backdrop_open"></div>
-			</div>	    
-	    </aura:if>
-	    -->
-	    
+	       	<aura:set attribute="else">
+			    la liste est vide
+			 </aura:set>
+           </aura:if>
 	    <aura:if isTrue="{!v.openModalConfirmDeletion}">
 		<!--###### MODAL BOX Start From Here ######-->
 		<div class="demo-only" style="height: 640px;">

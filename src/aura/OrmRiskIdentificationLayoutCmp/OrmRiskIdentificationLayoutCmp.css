@@ -15,3 +15,7 @@
 .THIS .header {
 	background-color: rgba(27, 82, 151, 1.0);
 }
+
+.THIS .descriptionToolTip {
+	background-color: red;
+}

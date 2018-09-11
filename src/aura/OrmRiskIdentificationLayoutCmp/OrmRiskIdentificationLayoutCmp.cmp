@@ -91,6 +91,7 @@
               showRowNumberColumn="true"
               onrowselection="{!c.openPopupDissociate}"
               onrowaction="{! c.handleRowAction }"
+              onmouseover="{! c.mouseDescription }"
             />
 			 <aura:set attribute="else">
 			    la liste est vide

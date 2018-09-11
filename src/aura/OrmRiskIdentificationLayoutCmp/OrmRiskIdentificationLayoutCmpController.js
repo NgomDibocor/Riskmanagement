@@ -34,7 +34,8 @@
             label: $A.get("$Label.c.orm_description_risk"), 
             fieldName: 'RiskDescription',
             type: 'text',
-            iconName: 'standard:orders'
+            iconName: 'standard:orders',
+            cellAttributes: { class: 'descriptionToolTip' }
         }, {
             label:  $A.get("$Label.c.orm_risk_category"),
             fieldName: 'RiskcategorieRisk',

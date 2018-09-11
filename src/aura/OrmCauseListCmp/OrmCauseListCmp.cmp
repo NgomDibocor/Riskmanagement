@@ -19,8 +19,9 @@
 	<aura:attribute name="key" type="string" description="" />
 	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
 	
-	<div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
-		 <center> <h1>{!$Label.c.orm_label_causes}</h1></center>
+		
+    <div style="margin-bottom:20px;margin-top: 40px">
+		 <h1 class="titleCause">{!$Label.c.orm_label_causes}</h1>
 	</div>
 	<div class="slds-m-around_large">                                        
 	    <div class="cause">
@@ -82,13 +83,13 @@
 	            </tbody>
 	        </table>
 		    	<aura:set attribute="else">
-			    la liste est vide
+			        <div class="messageIsEmpty" style="padding-top: 20px">
+			 		   List of causes is empty
+			        </div>
 			 </aura:set>
            </aura:if>
 		</div>
-        <!-- span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_label_cause}" class="btnNewCause" onclick="{!c.openCauseNewCmp}">
-        	<lightning:icon iconName="utility:new" size="medium" />
-        </span -->	
+        	
 	</div>
 	
 	<!-- openModalConfirmDeletion  -->

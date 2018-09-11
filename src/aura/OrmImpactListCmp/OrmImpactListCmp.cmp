@@ -9,12 +9,12 @@
 	<aura:attribute name="impactsTemp" type="Macro[]" description="" />
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
-	    <aura:attribute name="filter" type="String" />
-	    <aura:attribute name="objInfoForPicklistValues" type="Macro"
-		default="{sobjectType : 'Macro'}"/>
+    <aura:attribute name="filter" type="String" />
+    <aura:attribute name="objInfoForPicklistValues" type="Macro" default="{sobjectType : 'Macro'}"/>
 		
-		<div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
-		 <center> <h1 style="font-family: 'customfontDisney'; src: url(/resource/disneyFont);">{!$Label.c.orm_impact}</h1></center>
+		
+		<div style="margin-bottom:20px;margin-top: 40px">
+			 <h1 class="titleImpact">{!$Label.c.orm_impact}</h1>
 		</div>
 		<div class="slds-m-around_large">  
 			<div class="impact">
@@ -68,7 +68,9 @@
 	            </tbody>
 	        </table> 
 	        <aura:set attribute="else">
-			    la liste est vide
+			    <div class="messageIsEmpty" style="padding-top: 20px">
+		 		   List of impacts is empty
+		        </div>
 			</aura:set>
             </aura:if>
 	        </div>

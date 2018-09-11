@@ -26,3 +26,16 @@
 .THIS .header {
 	background-color: rgba(27, 82, 151, 1.0);
 }
+.THIS .titleCause {
+  font-weight: 300;
+  font-size: 2em;
+ /* letter-spacing: -.07em; */
+  text-align: center;
+  white-space: normal;
+}
+.THIS .messageIsEmpty {
+  text-align: center;
+  font-size: 1em;
+  white-space: normal;
+  color: green;
+}

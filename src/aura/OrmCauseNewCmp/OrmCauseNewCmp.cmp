@@ -32,19 +32,10 @@
 						<form class="slds-form--stacked">
 							<div class="slds-grid slds-gutters">
 								<div class="slds-col">
-									<!-- 
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
-										
-                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_label_cause}" class="slds-input"
-                                     			value="{!v.cause.Name}" required="true"/>
-										</div>
-									</div>
-									-->
-									<div class="slds-form-element slds-is-required">
-										<div class="slds-form-element__control">
-											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" 
-                                     			value="{!v.cause.Description}" required="true"/>
+											<lightning:input aura:id="description" type="text" label="Cause" 
+                                     			value="{!v.cause.Description}" required="true"/><!-- {!$Label.c.orm_description} -->
 										</div>
 									</div>                          
 								</div>								

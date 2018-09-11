@@ -18,10 +18,11 @@
   <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.getIdAssessmentRisk}" />
   <aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
   
-    <div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
-		 <center> <h1>{!$Label.c.orm_measures_label}</h1> </center>
-	 </div>
-  <div class="slds-m-around_large">                                      
+    
+	 <div style="margin-bottom:20px;margin-top: 40px">
+		 <h1 class="titleMeasure">{!$Label.c.orm_measures_label}</h1>
+	</div>
+     <div class="slds-m-around_large">                                      
 	    <div class="measure">
 	    	<div class="measureSearch">
 		    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldMeasure}">
@@ -83,7 +84,9 @@
 	            </tbody>
 	        </table>
 	        <aura:set attribute="else">
-			    la liste est vide
+			    <div class="messageIsEmpty" style="padding-top: 20px">
+		 		   List of measures is empty
+		        </div>
 			</aura:set>
            </aura:if>
 		</div>

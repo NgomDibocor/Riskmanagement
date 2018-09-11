@@ -1287,6 +1287,13 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showListCauseAndImpact}">
                     <tr>
+                     <td >
+                          <div style="margin-bottom:20px;margin-top:10px">
+                               <h1 class="intro-title">Causes and Impacts of assessment</h1>
+                           </div>
+                     </td>
+                  </tr>
+                    <tr>
                       <td class="textInDiv">
                         <c:OrmCauseListCmp />
                       </td>

@@ -65,46 +65,51 @@
         </div>
         </div>
          <!-- end header page content search bar and action button -->
-	<div class="slds-m-around_large">
-		<!--Data Table-->
-		
-		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
-			<thead>
-				<tr class="slds-text-title--caps">
-					<th scope="col"><div class="slds-truncate" title="">N°</div></th>
-					<th scope="col"><div class="slds-truncate"
-							title="{!$Label.c.orm_title_workshop}">{!$Label.c.orm_title_workshop}</div></th>
-					<th scope="col"><div class="slds-truncate"
-							title="!$Label.c.orm_start_date + - +!$Label.c.orm_end_date}">{!$Label.c.orm_start_date}
-							- {!$Label.c.orm_end_date}</div></th>
-					<th scope="col">
-					<div class="slds-truncate"
-							title="{!$Label.c.orm_message_workshop}">{!$Label.c.orm_message_workshop}</div></th>
-							<th scope="col">
-					<div class="slds-truncate"
-							title="{!$Label.c.orm_date_invitation}">{!$Label.c.orm_date_invitation}</div></th>
-					<th style="width:3.25rem;" class="slds-text-align--right">
-               <div class="slds-form-element">
-                  <div class="slds-form-element__control">
-                     
-                  </div>
-               </div>
-            </th>
-				</tr>
-
-			</thead>
-
-			<tbody>
-				<!--### display all records of workshop attribute one by one by aura:iteration ###-->
-				<aura:iteration items="{!v.WorkshopList}" var="workshop"
-					indexVar="sNo">
-					<!-- start iteration -->
-					  <c:OrmWorkShopListChildCmp singleRec="{!workshop}" assessmentData="{!v.assessmentData}"
-						showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
-				</aura:iteration>
-			</tbody>
-		</table>
-	</div>
+	  <div class="slds-m-around_large">
+	      <aura:if isTrue="{!not(empty(v.WorkshopList))}"> 
+				<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+					<thead>
+							<tr class="slds-text-title--caps">
+								<th scope="col"><div class="slds-truncate" title="">N°</div></th>
+								<th scope="col"><div class="slds-truncate"
+										title="{!$Label.c.orm_title_workshop}">{!$Label.c.orm_title_workshop}</div></th>
+								<th scope="col"><div class="slds-truncate"
+										title="!$Label.c.orm_start_date + - +!$Label.c.orm_end_date}">{!$Label.c.orm_start_date}
+										- {!$Label.c.orm_end_date}</div></th>
+								<th scope="col">
+								<div class="slds-truncate"
+										title="{!$Label.c.orm_message_workshop}">{!$Label.c.orm_message_workshop}</div></th>
+										<th scope="col">
+								<div class="slds-truncate"
+										title="{!$Label.c.orm_date_invitation}">{!$Label.c.orm_date_invitation}</div></th>
+								<th style="width:3.25rem;" class="slds-text-align--right">
+			               <div class="slds-form-element">
+			                  <div class="slds-form-element__control">
+			                     
+			                  </div>
+			               </div>
+			            </th>
+							</tr>
+			
+						</thead>
+			
+						<tbody>
+							<!--### display all records of workshop attribute one by one by aura:iteration ###-->
+							<aura:iteration items="{!v.WorkshopList}" var="workshop"
+								indexVar="sNo">
+								<!-- start iteration -->
+								  <c:OrmWorkShopListChildCmp singleRec="{!workshop}" assessmentData="{!v.assessmentData}"
+									showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
+							</aura:iteration>
+					  </tbody>
+				</table>
+		 <aura:set attribute="else">
+		    <div class="messageIsEmpty">
+	 		   List of workshops is empty
+	        </div>
+		 </aura:set>
+	  </aura:if>
+	</div>  
 	 <c:OrmContactNewCmp />
 	  <c:OrmContactWorkshopListCmp />
 </aura:component>

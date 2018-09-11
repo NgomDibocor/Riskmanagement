@@ -1,2 +1,8 @@
 .THIS {
 }
+.THIS .messageIsEmpty {
+  text-align: center;
+  font-size: 1em;
+  white-space: normal;
+  color: green;
+}

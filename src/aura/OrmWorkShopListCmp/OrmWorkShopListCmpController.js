@@ -1,12 +1,12 @@
 ({
-	     initRecords: function(component, event, helper) {
-    
+	
+	initRecords: function(component, event, helper) {
       // call the apex class method and fetch activity list  
-         var action = component.get("c.findWorkshopByAssessment");
-       var assmntDataId=component.get('v.assessmentData').Id;
+        var action = component.get("c.findWorkshopByAssessment");
+        var assmntDataId=component.get('v.assessmentData').Id;
         var assmntDataOrganisation=component.get('v.assessmentData').orm_organisation__c;
         action.setParam('asssessment',assmntDataId);
-             action.setCallback(this, function(response) {
+        action.setCallback(this, function(response) {
               var state = response.getState();
               if (state === "SUCCESS") {
                   var storeResponse = response.getReturnValue();
@@ -23,24 +23,22 @@
       // Check required fields(Name) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)){
               // call the saveWorkshop apex method for update inline edit fields update 
-               var action = component.get("c.saveWorkShop");
-                  action.setParams({
-                    'lstWorkshop': component.get("v.WorkshopList")
-                  });
-            action.setCallback(this, function(response) {
-                var state = response.getState();
-                if (state === "SUCCESS") {
+                 var action = component.get("c.saveWorkShop");
+                 action.setParams({'lstWorkshop': component.get("v.WorkshopList")});
+                 action.setCallback(this, function(response) {
+                 var state = response.getState();
+                    if (state === "SUCCESS") {
                     var storeResponse = response.getReturnValue();
                     // set WorkshopList list with return value from server.
-                        console.log(JSON.stringify(storeResponse));
+                    console.log(JSON.stringify(storeResponse));
                     component.set("v.WorkshopList", storeResponse);
-                    		var toast = $A.get('e.force:showToast');
-            toast.setParams({
-            	'message' : $A.get("$Label.c.orm_updated"),
-                'type' : 'success',
-                'mode' : 'dismissible'
-            });      
-            toast.fire();  
+                    var toast = $A.get('e.force:showToast');
+		            toast.setParams({
+		            	'message' : $A.get("$Label.c.orm_updated"),
+		                'type' : 'success',
+		                'mode' : 'dismissible'
+		            });      
+                    toast.fire();  
                     // Hide the save and cancel buttons by setting the 'showSaveCancelBtn' false 
                     component.set("v.showSaveCancelBtn",false);
                   

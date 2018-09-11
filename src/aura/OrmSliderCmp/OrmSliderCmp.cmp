@@ -27,7 +27,9 @@
     <aura:attribute name="valpourcentagemax" type="Integer" default="100"/>
      
          <div id="probility">
-             <div style="margin-bottom:20px; font-size: larger;">Probility Ranking</div>
+             <div style="margin-bottom:30px;">
+                <h1 class="intro-title">Probility Ranking</h1>
+             </div>
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
@@ -81,7 +83,9 @@
 		         </table>
          </div>
          <div  id="bir">
-	         <div style="margin-bottom:20px; font-size: larger;">Business Impacts Ranking</div>
+             <div style="margin-bottom:30px;">
+                <h1 class="intro-title">Business Impacts Ranking</h1>
+             </div>
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
@@ -191,7 +195,9 @@
          </div>
          
          <div  id="hir">
-	         <div style="margin-bottom:20px; font-size: larger;">HSSE Impacts Ranking</div>
+             <div style="margin-bottom:30px;">
+                <h1 class="intro-title">HSSE Impacts Ranking</h1>
+             </div>	         
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>

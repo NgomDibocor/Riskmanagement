@@ -75,4 +75,11 @@
 	width: 29%;
 	white-space: normal;
 	padding-left: 4%;
+}  
+
+.THIS .intro-title {
+  font-weight: 600;
+  font-size: 3em;
+ /* letter-spacing: -.07em; */
+  text-align: center;
 }

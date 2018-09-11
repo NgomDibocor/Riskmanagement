@@ -16,6 +16,21 @@
 			        document.getElementById("myBtn").style.display = "none";
 			    }
           }
+          if(component.get("v.showContextActivity")){
+	           if (document.documentElement.scrollTop > 20) {
+		          document.getElementById("myBtn").style.display = "block";
+			    } else {
+			        document.getElementById("myBtn").style.display = "none";
+			    }
+          }
+          
+          if(component.get("v.showContext2")){
+	           if (document.documentElement.scrollTop > 20) {
+		          document.getElementById("myBtn").style.display = "block";
+			    } else {
+			        document.getElementById("myBtn").style.display = "none";
+			    }
+          }
             
         };    
     }

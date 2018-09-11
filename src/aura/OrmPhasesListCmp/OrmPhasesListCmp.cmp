@@ -26,11 +26,10 @@
 																			'orm_assessment__c': ''
 																		}" />
 	
-	
+	<div style="margin-bottom:20px;margin-top: 50px">
+		 <h1 class="titlePhase">{!$Label.c.orm_phase}</h1>
+	</div>
     <div class="slds-m-around_large">
-    	<div class="topSpacing">
-        	<label class="slds-form-element__label ">{!$Label.c.orm_phase}<span class="cmn_mandatory_indicator">*</span></label>
-        </div>                                        
 	    <div class="phase">
 				<!-- CREATE NEW Phase FORM -->
 				<form class="">					
@@ -103,18 +102,13 @@
 	            </tbody>
 	        </table>
 		   <aura:set attribute="else">
-			    la liste est vide
+			    <div class="messageIsEmpty">
+		 		   List of phases is empty
+		        </div>
 			 </aura:set>
            </aura:if> 	
 		</div>
-        
-        <!-- span class="btnNewPhase" onclick="{!c.createItem}">
-        	<lightning:icon iconName="utility:new" size="medium" />
-        </span -->
-        
-		<!-- span class="deletePhase" onclick="{!c.openModalDeletePhase}">
-			<lightning:icon iconName="utility:delete" size="medium" />
-		</span -->        
+       
         
         <!-- openModalError if the assessment is not created -->
         <aura:if isTrue="{!v.openModalError}">

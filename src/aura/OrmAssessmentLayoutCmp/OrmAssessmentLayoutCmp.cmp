@@ -167,8 +167,12 @@
                 <aura:if isTrue="{!v.assessmentData.Id == null}">
                     <tr>
 	                     <td >
-	                           <div style="margin-bottom:20px; font-size: large;font-weight: normal">
-	                               Création of an assessment
+	                          <div style="margin-bottom:20px; font-size: large;font-weight: normal">
+	                               <span><lightning:button label="{!$Label.c.orm_back_button_assessment}" 
+							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
+							                              iconName='utility:back'/>
+                                   </span>
+	                               <h1 class="intro-title">Creation of an assessment</h1>
 	                           </div>
 	                     </td>
 	                </tr>
@@ -176,21 +180,17 @@
                 <aura:if isTrue="{!v.assessmentData.Id != null}">
                     <tr>
 	                     <td >
-	                           <div style="margin-bottom:20px; font-size: large;font-weight: normal">
-	                               Displaying of an assessment
+	                           <div style="margin-bottom:20px;">
+	                               <span><lightning:button label="{!$Label.c.orm_back_button_assessment}" 
+							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
+							                              iconName='utility:back'/>
+                                   </span>
+                                   <h1 class="intro-title">Displaying of an assessment</h1>
 	                           </div>
 	                     </td>
 	                </tr>
                 </aura:if>
-                <tr>
-                    <td class="textInDiv">
-                       <div style="margin-top:10px; margin-bottom:10px">
-                          <lightning:button label="{!$Label.c.orm_back_button_assessment}" 
-                              onclick="{!c.navigateToListAssessment}" variant="neutral"
-                              iconName='utility:back'/>
-                       </div>
-                    </td>
-                 </tr>
+                
                    <tr>
                         <td class="textInDiv">
                            <div style="margin-bottom:20px">
@@ -1103,6 +1103,22 @@
                 </tr>    
             </aura:if>
             <aura:if isTrue="{!v.showContext2}">
+                   <tr>
+	                  <td class="textInDiv">
+	                     <div style="margin-bottom:10px">
+	                         <lightning:button label="{!$Label.c.orm_back_button_assessment}" 
+	                              onclick="{!c.navigateToListAssessment}" variant="neutral"
+	                              iconName='utility:back'/>
+	                     </div>
+	                  </td>
+	               </tr>  
+                  <tr>
+                     <td >
+                          <div style="margin-bottom:20px;">
+                               <h1 class="intro-title">Assumptions and Attachments of assessment</h1>
+                           </div>
+                     </td>
+                  </tr>
                   <tr>
                      <td class="textInDiv">
                            <div style="margin-bottom:20px">
@@ -1122,10 +1138,21 @@
                   <aura:if isTrue="{!or(v.typeOrganisation == true, v.assessmentData.orm_typeAssessment__c == 'Organisation')}">
                   </aura:if>
                   <aura:if isTrue="{!or(v.typeProcessus == true, v.assessmentData.orm_typeAssessment__c == 'Processus')}">
-                      
                   </aura:if>
-                  </aura:if>
-                  <aura:if isTrue="{!v.showContextActivity}">
+                  <tr>
+	                   <td class="textInDiv">
+	                       <button onclick="{!c.backToTopFunction}" id="myBtn" title="Go to top">Top</button> 
+	                   </td>
+	               </tr>
+                </aura:if>
+                <aura:if isTrue="{!v.showContextActivity}">
+                      <tr>
+	                     <td >
+	                          <div style="margin-bottom:20px;">
+	                               <h1 class="intro-title">Phases And Activities</h1>
+	                           </div>
+	                     </td>
+	                  </tr>
                       <tr>
 	                     <td class="textInDiv">
 	                           <div style="margin-bottom:20px">
@@ -1186,6 +1213,11 @@
                                <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
                           </td>
                       </tr>
+                      <tr>
+		                   <td class="textInDiv">
+		                       <button onclick="{!c.backToTopFunction}" id="myBtn" title="Go to top">Top</button> 
+		                   </td>
+		               </tr>    
                    </aura:if>
                    <aura:if isTrue="{!v.showContextActivityShow}">
                      <tr>
@@ -1195,6 +1227,13 @@
                      </tr>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextWorkshop}">
+                     <tr>
+	                     <td >
+	                          <div style="margin-bottom:20px;">
+	                               <h1 class="intro-title">Workshops</h1>
+	                           </div>
+	                     </td>
+	                 </tr>
                      <tr>
 	                     <td class="textInDiv">
 	                           <div style="margin-bottom:20px">
@@ -1311,7 +1350,7 @@
             
     </div>
     <aura:if isTrue="{!v.closeFieldDescription == false}">
-        <div class="slds-size--2-of-8 " style="margin-top:20px;padding-left:20px;padding-right:20px;padding-bottom:10px;position:sticky;top:100px">
+        <div class="slds-size--2-of-8 " style="margin-top:20px;padding-left:20px;padding-right:20px;padding-bottom:10px;position:sticky;top:160px">
             <c:OrmFieldDescriptionCmp/>
         </div>
     </aura:if> 

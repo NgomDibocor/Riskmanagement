@@ -27,32 +27,32 @@
 	<aura:attribute name="checkUpdateActivity" type="boolean"
 		default="false" />
 	<aura:attribute name="sNo" type="string" />
-	<aura:attribute name="singleRec" type="sobject"
-		default="{'sobjectType' : 'Assessment__c',
+	<aura:attribute name="nameEditMode" type="boolean" default="false" />
+	<aura:attribute name="statusEditMode" type="boolean" default="false" />
+	<aura:attribute name="periodEditMode" type="boolean" default="false" />
+	<aura:attribute name="assessmentData" type="Assessment__c" default="{
+																			'sobjectType' : 'Assessment__c',
+																			'Description':''
+																		}" />
+   <aura:attribute name="singleRec" type="sobject" default="{'sobjectType' : 'Assessment__c',
                                                                'Name' : '',
                                                                'orm_startDate__c' :'',
                                                                'orm_endDate__c' :'',
                                                                'orm_activityStatus__c': '',
                                                              	'orm_description__c':''
                                                                }" />
-	<aura:attribute name="nameEditMode" type="boolean" default="false" />
-	<aura:attribute name="statusEditMode" type="boolean" default="false" />
-	<aura:attribute name="periodEditMode" type="boolean" default="false" />
 
-	<aura:attribute name="assessmentData" type="Assessment__c"
-		default="{
-						'sobjectType' : 'Assessment__c',
-						'Description':''
-						
-					}" />
-
-	<aura:attribute name="showConfirmRemoveActivity" type="boolean"
-		default="false" description="is true show popup  message confirmation" />
+	<aura:attribute name="showConfirmRemoveActivity" type="boolean" default="false" description="is true show popup  message confirmation" />
 	<aura:attribute name="selectedCount" type="integer" default="0" />
 	<aura:attribute name="key" type="string" />
 	<aura:attribute name="storeListActivity" type="List" />
 
 
+
+
+    <div style="margin-bottom:20px;margin-top: 50px">
+		 <h1 class="titleActivity">Activities</h1>
+	</div>
 	<div class="slds-grid slds-gutters">
 		<div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>
 		<div class=" slds-size--6-of-12   slds-p-horizontal--small">

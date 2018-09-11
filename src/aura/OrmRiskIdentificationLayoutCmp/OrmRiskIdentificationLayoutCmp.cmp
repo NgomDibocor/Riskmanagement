@@ -80,6 +80,7 @@
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.dissociate_button_title}
 			</button>
 		 </aura:if> 
+		<aura:if isTrue="{!not(empty(v.allRisk ))}"> 
             <lightning:datatable aura:id="datatableRisk"
               data="{! v.allRisk }" 
               class="cols table"
@@ -91,6 +92,10 @@
               onrowselection="{!c.openPopupDissociate}"
               onrowaction="{! c.handleRowAction }"
             />
+			 <aura:set attribute="else">
+			    la liste est vide
+			 </aura:set>
+           </aura:if>
         </div>
     </div><br/>
 

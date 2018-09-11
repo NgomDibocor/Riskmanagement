@@ -8,7 +8,7 @@ public with sharing class OrmEmailTemplateController {
  */
     @AuraEnabled
     public static list<EmailTemplate> getTemplates(){
-        //RelatedEntityType='Account' AND 
+    
         list<EmailTemplate> emailTemp = new list<EmailTemplate>();
         emailTemp = [SELECT Id,Name,Subject,TemplateType FROM EmailTemplate WHERE TemplateType IN ('custom','text')];
         return emailTemp;

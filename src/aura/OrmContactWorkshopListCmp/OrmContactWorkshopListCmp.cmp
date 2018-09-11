@@ -4,7 +4,7 @@
 	<!--declare aura attributes-->
 	<aura:attribute name="ContactList" type="Contact[]"
 		description="store contact records list" />
-
+<aura:attribute name="contactListSelected" type="Contact[]" description="store contact records list selected" />
 	<aura:attribute name="ContactListTemp" type="Contact[]"
 		description="store contact records list temporarily"/>
 	<aura:attribute name="ContactWorkshopList"
@@ -16,6 +16,7 @@
 	<aura:attribute name="columns" type="List" />
 	<aura:attribute name="mailStatus" type="boolean" default="false"/>
 	<aura:attribute name="email" type="string"/>
+			<aura:attribute name="emailTemplate" type="boolean" default="false"/>
 
 	  <!-- handlers-->
 	 <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
@@ -71,6 +72,8 @@
 				<div class="slds-modal__footer">
 					<button class="slds-button slds-button--neutral"
 						onclick="{!c.closeModalWorkshopContact}">{!$Label.c.orm_cancel_button_title}</button>
+					<button class="slds-button slds-button--neutral"
+						onclick="{!c.openMailTemplate}">{!$Label.c.orm_sendmail_button_title}</button>
 					<button class="slds-button slds-button--brand"
 						onclick="{!c.createContactWorkshop}">
 						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
@@ -101,7 +104,11 @@
       </div>
       <div class="slds-backdrop slds-backdrop--open"></div>
    </aura:if>
+   	<!-- end Mail status -->
 	<!--  end  participants-->
-
-
+<!-- 	start email template -->
+ <aura:if isTrue="{!v.emailTemplate}">
+<c:OrmEmailTemplate emailTemplate="{!v.emailTemplate}" contactListSelected="{!v.contactListSelected}"/>
+ </aura:if>
+<!-- end email template -->
 </aura:component>

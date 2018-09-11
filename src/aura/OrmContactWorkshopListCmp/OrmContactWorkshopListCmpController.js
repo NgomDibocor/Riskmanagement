@@ -89,6 +89,7 @@
 				});
 
 		component.set("v.ContactWorkshopList", contactsWorkshop);
+		component.set("v.contactListSelected", selectedRows);
 
 	},
 /**
@@ -151,7 +152,19 @@
     // hide the Message box by set the mailStatus attribute to false 
     closeMessage: function(component, event, helper) {
         component.set("v.mailStatus", false);
-    }
-	
+    },
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method open modal email template
+ * @history 
+ * 2018-09-11 : Salimata NGOM - Implementation
+ */
+	openMailTemplate : function(component, event, helper) {
+                         
+		component.set("v.emailTemplate",true);
+	},
+
 
 })

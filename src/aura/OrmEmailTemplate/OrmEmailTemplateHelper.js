@@ -1,41 +1,34 @@
 ({
     getEmailTempaltes : function(component, event) {
         var action = component.get("c.getTemplates");
-        //action.setParams({"divisionId":selectedDivision});
         
         action.setCallback(this,function(response){
-            var loadResponse = response.getReturnValue();
+        var state = response.getState();
+				if (state == "SUCCESS") {
+				 var loadResponse = response.getReturnValue();
             console.log('templates..!',loadResponse);
-            
-            if(!$A.util.isEmpty(loadResponse)){
-                
-                component.set('v.templates',loadResponse);
-                
-            }
+				component.set('v.templates',loadResponse);
+				}else
+				{
+				let
+					errors = response.getError();
+					let
+					message = 'Unknown error'; // Default error message
+					// Retrieve the error message sent by the server
+					if (errors && Array.isArray(errors) && errors.length > 0) {
+						message = errors[0].message;
+					}
+					// Display the message
+					console.error(message);
+				}
+           
         });
         $A.enqueueAction(action);
     },
-    getSelctedAccountsOfOpportunity : function(component, event) {
+    getSelctedContacts : function(component, event) {
         
-        var accIdsofOpp = component.get("v.accIds");
-        
-        if(!$A.util.isEmpty(accIdsofOpp)){
-            
-            var action = component.get("c.getAccountsOfOpportunity");
-            action.setParams({"accIds":accIdsofOpp});
-            
-            action.setCallback(this,function(response){
-                var responseVal = response.getReturnValue();
-                console.log('responseVal..** ',responseVal);
-                
-                if(!$A.util.isEmpty(responseVal)){
-                    
-                    component.set("v.accRecords",responseVal);
-                    
-                }
-            });
-            $A.enqueueAction(action);
-        }
+        var listcontact = component.get("v.contactListSelected");
+       alert(JSON.stringify(listcontact));
         
     },
     sendEmails : function(component, event) {
@@ -108,46 +101,48 @@
         
     },
     getTemplate : function(component, event) {
-        
+    
         var templId = component.get("v.selTempl");
-        component.set("v.showLoader", true);
+      
+       
         if(!$A.util.isEmpty(templId)){
             
             var action = component.get("c.getTemplateDetails");
             action.setParams({"templteId":templId});
             
             action.setCallback(this,function(response){
-                component.set("v.showLoader", false);
-                var responseVal = response.getReturnValue();
+          var state = response.getState();
+				if (state == "SUCCESS") {
+				   var responseVal = response.getReturnValue();
                 console.log('responseVal..@getTemplate ',responseVal);
-                
-                if(!$A.util.isEmpty(responseVal)){
-                    
-                    component.set("v.templDetail",responseVal);
+                 component.set("v.templDetail",responseVal);
                     component.set("v.subjTxt",responseVal.Subject);
                     if(!$A.util.hasClass(component.find("emailBodyDiv"), "slds-hide")){
                         
                         $A.util.addClass(component.find("emailBodyDiv"), 'slds-hide'); 
                     }
-                    
-                }
+				}else{
+				let
+					errors = response.getError();
+					let
+					message = 'Unknown error'; // Default error message
+					// Retrieve the error message sent by the server
+					if (errors && Array.isArray(errors) && errors.length > 0) {
+						message = errors[0].message;
+					}
+					// Display the message
+					console.error(message);
+				}
+             
             });
             $A.enqueueAction(action);
         }
         else {
-            component.set("v.showLoader", false);
+            
             if($A.util.hasClass(component.find("emailBodyDiv"), "slds-hide")){
                 
                 $A.util.removeClass(component.find("emailBodyDiv"), 'slds-hide');
             }
         }
-    },
-    cancelAction: function(component, event){
-        var urlEvent = $A.get("e.force:navigateToURL");
-        urlEvent.setParams({
-            "url": '/006/o'
-        });
-        urlEvent.fire()
     }
-    
 })

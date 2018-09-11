@@ -68,6 +68,8 @@
         }
         
         if(showSlider == true){
+            var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	        evtSpinner.fire();
             component.set("v.showSlider", false);
             component.set("v.showRiskIdentif", true);
             helper.activeRiskIdentif(component, event);
@@ -208,7 +210,20 @@
             });
             toast.fire();
         }else{
-            helper.activeRiskIdentif(component, event);   
+	            if(component.get("v.isEmptyListAssessmentRisk")){
+	                var toast = $A.get('e.force:showToast');
+	                toast.setParams({
+	                    'message' : 'List assessmentRisk is empty',
+	                    'type' : 'warning',
+	                    'mode' : 'dismissible'
+	                });
+	                toast.fire();
+				 }else{
+				      var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	                  evtSpinner.fire(); 
+				      helper.activeRiskIdentif(component, event);
+				 }
+                    
         }
     },
     
@@ -348,7 +363,9 @@
 				                'mode' : 'dismissible'
 				            });
 				            toast.fire();
-				     }else{	      
+				     }else{	  
+				        var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	                    evtSpinner.fire();    
 				        helper.activeRiskTreatment(component, event);
 				        var evt = $A.get("e.c:OrmInstanceRiskTreatmentEvt");
 				        evt.setParams({"MeasureId": idMeasure});

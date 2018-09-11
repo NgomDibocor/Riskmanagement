@@ -301,6 +301,7 @@
         component.set("v.showContext2", false);
         component.set("v.showContextActivity", false);
         component.set("v.showContextWorkshop", false);
+        component.set("v.showSlider", false);
         component.set("v.showContextActivityShow", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
@@ -376,6 +377,7 @@
         component.set("v.showContextActivity", true);
         component.set("v.showContextActivityShow", false);
         component.set("v.showContextWorkshop", false);
+        component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showListCauseAndImpact", false);
@@ -415,6 +417,7 @@
         component.set("v.showContextActivity", false);
         component.set("v.showContextActivityShow", false);
         component.set("v.showContextWorkshop", true);
+        component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showListCauseAndImpact", false);
@@ -491,6 +494,7 @@
         component.set("v.showContextActivity", false);
         component.set("v.showContextActivityShow", false);
         component.set("v.showContextWorkshop", false);
+        component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", true);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showListCauseAndImpact", false);
@@ -531,6 +535,7 @@
         component.set("v.showContextActivity", false);
         component.set("v.showContextActivityShow", false);
         component.set("v.showContextWorkshop", false);
+        component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", true);
         component.set("v.showRiskTreatment", false);
@@ -565,6 +570,7 @@
         component.set("v.showContextActivity", false);
         component.set("v.showContextActivityShow", false);
         component.set("v.showContextWorkshop", false);
+        component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showListCauseAndImpact", true);
@@ -601,6 +607,7 @@
         component.set("v.showContextActivity", false);
         component.set("v.showContextActivityShow", false);
         component.set("v.showContextWorkshop", false);
+        component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showListCauseAndImpact", false);
@@ -638,6 +645,7 @@
         component.set("v.showContextActivity", false);
         component.set("v.showContextActivityShow", false);
         component.set("v.showContextWorkshop", false);
+        component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showListCauseAndImpact", false);
@@ -676,6 +684,7 @@
         component.set("v.showContextActivity", false);
         component.set("v.showContextActivityShow", false);
         component.set("v.showContextWorkshop", false);
+        component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
         component.set("v.showRiskTreatment", false);

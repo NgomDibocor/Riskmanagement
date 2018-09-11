@@ -74,7 +74,7 @@
     <!-- return to list of Assessment -->
    
     <!-- menu -->
-    <div class="slds-tabs--path" role="application">
+    <div class="slds-tabs--path" role="application" style="position:sticky;top:92px;z-index: 1">
       <ul class="slds-tabs--path__nav" role="tablist">
         <li aura:id="contextId" class="slds-tabs--path__item slds-is-current" role="presentation">
           <a class="slds-tabs--path__link" id="tabs-path-438" aria-controls="content-path-1" aria-selected="true" tabindex="-1" role="tab" 

@@ -21,7 +21,7 @@
     <!--Table Row Start-->  
     <tr>
     	
-    	<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+    	<td scope="row" class="slds-text-align--right" style="width:5%;" ><!-- style="width:3.25rem;" -->
 			<div class="slds-form-element">
 		      <div class="slds-form-element__control">
 		    	<label class="slds-checkbox">
@@ -33,9 +33,9 @@
 		    </div>
 		</td>
 		
-        <td><div class="slds-truncate">{!v.sNo}</div></td>
+        <td style="width:5%;"><div class="slds-truncate">{!v.sNo}</div></td>
        
-        <td ondblclick="{!c.inlineEditName}" class="slds-cell-edit">
+        <td ondblclick="{!c.inlineEditName}" class="slds-cell-edit" style="width:20%;">
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.nameEditMode == false}">
@@ -72,7 +72,7 @@
         </td> 
         
         
-        <td ondblclick="{!c.inlineEditDescription}" class="slds-cell-edit">
+        <td ondblclick="{!c.inlineEditDescription}" class="slds-cell-edit" style="width:50%;">
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.descriptionEditMode == false}">
@@ -110,7 +110,7 @@
     
     
     
-     <td ondblclick="{!c.inlineEditCategorieImpact}" class="slds-cell-edit">
+     <td ondblclick="{!c.inlineEditCategorieImpact}" class="slds-cell-edit" style="width:20%;">
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.categorieImpactEditMode == false}">

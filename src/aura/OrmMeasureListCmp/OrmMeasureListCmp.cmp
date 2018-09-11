@@ -19,7 +19,7 @@
   <aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
   
     <div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
-		 <center> <h1>{!$Label.c.orm_measure_label}</h1> </center>
+		 <center> <h1>{!$Label.c.orm_measures_label}</h1> </center>
 	 </div>
   <div class="slds-m-around_large">                                      
 	    <div class="measure">

@@ -18,7 +18,7 @@
 	<div class="slds-box" style="width:100%; height:10%; font-size: 30px; border:none;">
 	    <!-- font-family: 'customfontDisney';
     	font-size: 30px;src: url(/resource/disneyFont); -->
-		  <h1>{!$Label.c.orm_activityProof_label}</h1>
+		  <center><h1>{!$Label.c.orm_activityProof_label}</h1></center>
 		</div>
 	 <div class="slds-m-around_large">                                     
 	    <div class="activityProof">

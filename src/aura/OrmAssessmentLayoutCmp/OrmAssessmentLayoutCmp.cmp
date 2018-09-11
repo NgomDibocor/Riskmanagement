@@ -1110,8 +1110,31 @@
                            </div>
                         </td>
                   </tr>
-                  <tr>
-                       <td>
+                  
+                     <tr>
+                         <td>
+                           <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
+                         </td>
+                     </tr>
+                  <aura:if isTrue="{!or(v.typeProjet == true, v.assessmentData.orm_typeAssessment__c == 'Projet')}">
+                     
+                  </aura:if>
+                  <aura:if isTrue="{!or(v.typeOrganisation == true, v.assessmentData.orm_typeAssessment__c == 'Organisation')}">
+                  </aura:if>
+                  <aura:if isTrue="{!or(v.typeProcessus == true, v.assessmentData.orm_typeAssessment__c == 'Processus')}">
+                      
+                  </aura:if>
+                  </aura:if>
+                  <aura:if isTrue="{!v.showContextActivity}">
+                      <tr>
+	                     <td class="textInDiv">
+	                           <div style="margin-bottom:20px">
+	                               {!$Label.c.orm_context}
+	                           </div>
+	                        </td>
+	                  </tr>
+	                  <tr>
+                          <td>
                              <div class="slds-col">
                                     <span class="startSpaceOrg"></span>                                  
 							        <div class="orgSelect">
@@ -1151,39 +1174,17 @@
 							        
 							        <span class="endSpaceOrg"></span>
 							 </div>
-                        </td>
-                     </tr>
-                     <tr>
-                         <td>
-                           <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
                          </td>
-                     </tr>
-                  <aura:if isTrue="{!or(v.typeProjet == true, v.assessmentData.orm_typeAssessment__c == 'Projet')}">
-                     
-                  </aura:if>
-                  <aura:if isTrue="{!or(v.typeOrganisation == true, v.assessmentData.orm_typeAssessment__c == 'Organisation')}">
-                  </aura:if>
-                  <aura:if isTrue="{!or(v.typeProcessus == true, v.assessmentData.orm_typeAssessment__c == 'Processus')}">
-                      
-                  </aura:if>
-                  </aura:if>
-                  <aura:if isTrue="{!v.showContextActivity}">
-                      <tr>
-	                     <td class="textInDiv">
-	                           <div style="margin-bottom:20px">
-	                               {!$Label.c.orm_context}
-	                           </div>
-	                        </td>
-	                  </tr>
-                      <tr>
-                          <td>
-                               <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
-                          </td>
                       </tr>
                       <tr>
                            <td>
 	                         <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
 	                       </td>
+                      </tr>
+                      <tr>
+                          <td>
+                               <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
+                          </td>
                       </tr>
                    </aura:if>
                    <aura:if isTrue="{!v.showContextActivityShow}">

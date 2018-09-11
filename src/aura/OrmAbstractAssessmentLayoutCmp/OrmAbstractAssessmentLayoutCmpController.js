@@ -155,6 +155,9 @@
             helper.activeContextWorkshop(component, event);
         }
         if(showRiskIdentif == true){
+            //Hide the Spinner
+	        var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+	        evtSpinner.fire(); 
             component.set("v.showSlider", true);
             component.set("v.showRiskIdentif", false);
             helper.activeSlider(component, event);

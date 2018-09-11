@@ -44,10 +44,10 @@
 		            </lightning:buttonGroup>
 	        	</div>
 	        </aura:if>
-       <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+       <table class="slds-table slds-table_bordered slds-table_cell-buffer" width="100%">
 	            <thead>
 	                <tr class="slds-text-title--caps">
-	                  <th style="width:5%;" class="slds-text-align--right"><!-- 3.25rem; -->
+	                  <th  class="slds-text-align--right" ><!-- 3.25rem; -->
 		              	<div class="slds-form-element">
 		                	<div class="slds-form-element__control">
 		                    	<label class="slds-checkbox">
@@ -58,10 +58,10 @@
 		                    </div>
 		                </div>
 		              </th> 
-	                  <th scope="col" style="width:5%;"><div class="slds-truncate" title="">N°</div></th>
-	                   <th scope="col" style="width:20%;"><div class="slds-truncate" title="">{!$Label.c.orm_impact_libelle}</div></th>
-	                  <th scope="col" style="width:50%;"><div class="slds-truncate" title="" >{!$Label.c.orm_description}</div></th>
-	                  <th scope="col" style="width:20%;"><div class="slds-truncate" title="">{!$Label.c.orm_categorieImpact}</div></th>
+	                  <th scope="col" ><div class="slds-truncate" title="">N°</div></th>
+	                   <th scope="col" ><div class="slds-truncate" title="">{!$Label.c.orm_impact_libelle}</div></th>
+	                  <th scope="col" ><div class="slds-truncate" title="" >{!$Label.c.orm_description}</div></th>
+	                  <th scope="col" ><div class="slds-truncate" title="">{!$Label.c.orm_categorieImpact}</div></th>
 	                </tr>
 	            </thead>
 	            

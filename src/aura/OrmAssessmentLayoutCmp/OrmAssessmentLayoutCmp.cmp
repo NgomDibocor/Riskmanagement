@@ -1247,12 +1247,12 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showListCauseAndImpact}">
                     <tr>
-                      <td>
+                      <td class="textInDiv">
                         <c:OrmCauseListCmp />
                       </td>
                     </tr> <hr/>
                     <tr>
-                       <td>
+                       <td class="textInDiv">
                           <c:OrmImpactListCmp />
                        </td>
                     </tr>

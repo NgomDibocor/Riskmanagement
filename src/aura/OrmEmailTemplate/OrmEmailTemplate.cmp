@@ -90,7 +90,7 @@
 				<button class="slds-button slds-button--neutral"
 					onclick="{!c.closeMailTemplate}">{!$Label.c.orm_cancel_button_title}</button>
 				<button class="slds-button slds-button--neutral"
-					onclick="{!c.sendMail}">{!$Label.c.orm_sendmail_button_title}</button>
+					onclick="{!c.sendEmailAction}">{!$Label.c.orm_sendmail_button_title}</button>
 
 			</div>
 		</div>

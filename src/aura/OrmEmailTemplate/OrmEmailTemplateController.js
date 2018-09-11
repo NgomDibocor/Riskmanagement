@@ -38,19 +38,23 @@
         
     },
     
-      // function for clear the Record Selaction 
+      // function for clear the Record Selection 
     clear :function(component,event,heplper){
         var selectedPillId = event.getSource().get("v.name");
-        var AllPillsList = component.get("v.lstSelectedRecords"); 
+        var AllPillsList = component.get("v.contactListSelected"); 
         
         for(var i = 0; i < AllPillsList.length; i++){
             if(AllPillsList[i].Id == selectedPillId){
                 AllPillsList.splice(i, 1);
-                component.set("v.lstSelectedRecords", AllPillsList);
+                component.set("v.contactListSelected", AllPillsList);
             }  
         }
-        component.set("v.SearchKeyWord",null);
-        component.set("v.listOfSearchRecords", null );      
+        //component.set("v.SearchKeyWord",null);
+        //component.set("v.listOfSearchRecords", null );      
+    },
+      sendEmailAction : function(component, event, helper) {
+        helper.sendEmails(component, event);
+        
     },
     
 })

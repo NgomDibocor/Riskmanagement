@@ -79,7 +79,8 @@
 
 .THIS .intro-title {
   font-weight: 600;
-  font-size: 3em;
+  font-size: 2em;
  /* letter-spacing: -.07em; */
   text-align: center;
+  white-space: normal;
 }

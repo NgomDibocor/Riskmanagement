@@ -18,9 +18,7 @@
 	
 	
 	
-	<div style="margin-bottom:20px;margin-top: 40px">
-		 <h1 class="titleActivityProof" style="font-weight: 600; font-size: 2em; text-align: center; white-space: normal;">{!$Label.c.orm_activityProof_label}</h1>
-	</div>
+	
 	 <div class="slds-m-around_large">                                     
 	    <div class="activityProof">
 	    	<div class="activityProofSearch">

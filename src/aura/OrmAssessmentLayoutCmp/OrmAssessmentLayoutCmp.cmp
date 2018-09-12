@@ -1341,7 +1341,6 @@
                             <c:OrmRiskTreatmentCmp />
                         </td>
                     </tr>
-                    <hr/>
                      <tr>
                         <td >
                             <c:OrmMeasureProgressionCmp />

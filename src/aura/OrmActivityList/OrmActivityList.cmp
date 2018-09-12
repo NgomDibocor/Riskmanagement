@@ -45,10 +45,6 @@
 	<aura:attribute name="selectedCount" type="integer" default="0" />
 	<aura:attribute name="key" type="string" />
 	<aura:attribute name="storeListActivity" type="List" />
-
-
-
-
     <div style="margin-bottom:20px;margin-top: 50px">
 		 <h1 class="titleActivity">Activities</h1>
 	</div>

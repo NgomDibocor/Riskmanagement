@@ -25,7 +25,7 @@
 	            <span class="btnNewImpact" onclick="{!c.openImpactNewCmp}">
 	              <lightning:icon iconName="utility:new" size="small"   />
 	            </span>
-	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteIppact" onclick="{!c.openModalDeleteCause}">
+	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteImpact" onclick="{!c.openModalDeleteCause}">
 				<lightning:icon iconName="utility:delete" size="small" />
 			</span><br/><br/>
        <aura:if isTrue="{!v.showSaveCancelBtn}">

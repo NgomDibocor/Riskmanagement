@@ -85,3 +85,27 @@
   text-align: center;
   white-space: normal;
 }
+.THIS .spaceSlider {
+	display: inline-block;
+    width:40%;
+}
+.THIS .btnNext {
+	display: inline-block;
+    width:10%;
+}
+.THIS .spacebetween {
+	display: inline-block;
+    width:1%;
+}
+.THIS .btnPrev {
+	display: inline-block;
+    width:10%;
+}
+.THIS .btnSave {
+	display: inline-block;
+    width:10%;
+}
+.THIS .spaceSliderEnd {
+	display: inline-block;
+    width:29%;
+}

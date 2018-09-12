@@ -13,6 +13,7 @@
 		if (idAssessment == null) {
 			component.set('v.openModalError', true);
 		} else {
+		   console.log('ici')
 			var evt = $A.get('e.c:OrmEventNewPhaseClicked');
 			evt.fire();
 		}

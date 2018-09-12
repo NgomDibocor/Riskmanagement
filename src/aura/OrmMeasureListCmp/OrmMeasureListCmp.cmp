@@ -19,9 +19,6 @@
   <aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
   
     
-	 <div style="margin-bottom:20px;margin-top: 40px">
-		 <h1 class="titleMeasure">{!$Label.c.orm_measures_label}</h1>
-	</div>
      <div class="slds-m-around_large">                                      
 	    <div class="measure">
 	    	<div class="measureSearch">

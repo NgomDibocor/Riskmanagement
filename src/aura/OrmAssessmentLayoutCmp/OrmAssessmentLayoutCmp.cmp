@@ -1305,7 +1305,14 @@
                     </tr>
                 </aura:if>
                  
-                <aura:if isTrue="{!v.showListMeasure}">                  
+                <aura:if isTrue="{!v.showListMeasure}"> 
+                    <tr>
+	                     <td >
+	                          <div style="margin-bottom:20px;margin-top:10px">
+	                               <h1 class="intro-title">List of measures</h1>
+	                           </div>
+	                     </td>
+	                </tr>                 
                     <tr>
                         <td >
                             <c:OrmMeasureListCmp />
@@ -1313,6 +1320,13 @@
                     </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskTreatment}">
+                    <tr>
+	                     <td >
+	                          <div style="margin-bottom:20px;margin-top:10px">
+	                               <h1 class="intro-title">Measure treatment</h1>
+	                           </div>
+	                     </td>
+	                </tr>  
                     <tr>
 	                    <td class="textInDiv">
 	                       <div style="margin-top:10px; margin-bottom:10px">

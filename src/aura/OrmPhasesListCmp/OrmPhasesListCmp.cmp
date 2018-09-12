@@ -18,7 +18,7 @@
 	<aura:attribute name="key" type="string" description="" />
 	<aura:attribute name="selectedCount" type="integer" default="0"/>
 	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
-	
+	 <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
 	<!-- attributes for add -->
 	<aura:attribute name="newPhase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
 																			'Description' : '',
@@ -40,16 +40,13 @@
 										<lightning:input class="" aura:id="description" type="text" placeholder="make new phase"
                                      			value="{!v.newPhase.Description}" />
 									</a>	
-								</div>
-								
+								</div>								
 								<span class="btnNewPhase" onclick="{!c.createItem}">
 						        	<lightning:icon iconName="utility:new" size="small" />
-						        </span>
-						        
+						        </span>						        
 						        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
 									<lightning:icon iconName="utility:delete" size="small" />
-								</span>
-								
+								</span>								
 							</div>                            
 						</div>
 				</form>
@@ -96,6 +93,7 @@
 	                   <!-- Child Lightning Component -->
 	                    
 	                    <c:OrmPhaseEditRow phase="{!phase}"
+	                    				 selectedRowsCount="{!v.selectedRowsCount}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />
 	                </aura:iteration>

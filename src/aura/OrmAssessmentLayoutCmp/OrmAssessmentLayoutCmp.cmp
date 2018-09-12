@@ -1221,6 +1221,13 @@
                    </aura:if>
                    <aura:if isTrue="{!v.showContextActivityShow}">
                      <tr>
+	                     <td >
+	                          <div style="margin-bottom:20px;">
+	                               <h1 class="intro-title">List of Proofs of Activity </h1>
+	                           </div>
+	                     </td>
+	                 </tr>
+                     <tr>
                          <td>
                               <c:OrmActivityProofListCmp />  
                          </td>
@@ -1249,13 +1256,26 @@
                   </aura:if>  
                   <aura:if isTrue="{!v.showSlider}">
                       <tr>
+	                     <td >
+	                          <div style="margin-bottom:40px;">
+	                               <h1 class="intro-title">Risk Configuration </h1>
+	                           </div>
+	                     </td>
+	                 </tr>
+                      <tr>
                           <td>
-                              <div style="height:50px"> </div>
                                 <c:OrmSliderCmp idAssessment="{!v.assessmentData.Id }" /> 
                            </td>
                        </tr>
                   </aura:if>
                   <aura:if isTrue="{!v.showRiskIdentif}">
+                       <tr>
+	                       <td >
+	                          <div style="margin-bottom:20px;margin-top: 10px">
+	                               <h1 class="intro-title">Creation And Association of Risks</h1>
+	                           </div>
+	                       </td>
+		               </tr>
                        <tr>
 	                     <td class="textInDiv">
 	                           <div style="margin-bottom:20px">
@@ -1279,6 +1299,13 @@
 	                       </div>
 	                    </td>
 	                </tr>
+	                <tr>
+	                       <td >
+	                          <div style="margin-bottom:20px;margin-top: 10px">
+	                               <h1 class="intro-title">Details of Risk</h1>
+	                           </div>
+	                       </td>
+		            </tr>
                     <tr>
                       <td>
                           <c:OrmAssessmentRiskConfigCmp assessmentData="{!v.assessmentData}"  />

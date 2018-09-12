@@ -5,7 +5,7 @@
     <aura:attribute name="key" type="string" />
    
    <div class="slds-box" style="width:100%;font-size: large !important;">
-	  <h1>List of Assessment Risk</h1>
+	  <h1 style="font-weight: 600; font-size: 2em; text-align: center; white-space: normal;">List of Assessment Risk</h1>
 	</div>
    
   <div class="slds-col">									

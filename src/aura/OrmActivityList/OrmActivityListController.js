@@ -1,5 +1,7 @@
 ({
-
+	doInit : function(component, event, helper) {
+		helper.refresh(component, event);		
+	},
 	/**
 	 * 
 	 * @author Salimata NGOM
@@ -7,7 +9,7 @@
 	 * @description method for get activity list by assessment
 	 * @history 2018-08-20 : Salimata NGOM - Implementation
 	 */
-	doInit: function(component, event, helper) {
+	/*doInit: function(component, event, helper) {
 
 		// call the apex class method and fetch activity list
 		var action = component.get("c.findActivityByAssessment");
@@ -26,7 +28,7 @@
 		// set deafult count and select all checkbox value to false on load
 		component.set("v.selectedCount", 0);
 		component.find("box3").set("v.value", false);
-	},  
+	}, */ 
 	/**
 	 * 
 	 * @author Salimata NGOM

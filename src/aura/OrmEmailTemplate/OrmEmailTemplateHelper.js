@@ -83,15 +83,25 @@
       var subjMatter =component.find('subjMatter').get('v.value');    
         console.log('subjMatter ',subjMatter);
         var contactIds=component.get("v.contactListSelected");
+        alert(JSON.stringify(contactIds));
       if(!$A.util.isEmpty(subjMatter) || !$A.util.isEmpty(contactIds)){
-        var action = component.get("c.sendAnEmailMsg");
-                action.setParams({"templateId":templateId,
-                                  "contactIds":contactIds,
-                                  "subj" :subjMatter,
-                                  "addnlEmails" : ''
-                                  });
+        var action = component.get("c.sendMailMethod");
+              	// set the 3 params to sendMailMethod method
+		action.setParams({
+			'mailcontacts' : contactIds,
+			'mSubject' : subjMatter,
+			'templateId' : templateId
+		});
                                    action.setCallback(this,function(response){
-                                   
+                                   var state = response.getState();
+							if (state === "SUCCESS") {
+							var toast = $A.get('e.force:showToast');
+								toast.setParams({'message' : $A.get("Mail send sucess"),
+												 'type' : 'success',
+											     'mode' : 'dismissible'
+																	});
+															toast.fire();
+							}
                                    });
                                     $A.enqueueAction(action);
       }

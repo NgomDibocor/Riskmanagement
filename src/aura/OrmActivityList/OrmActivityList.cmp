@@ -11,7 +11,6 @@
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmRefreshActivityEvnt" action="{!c.doInit}" />
 	<aura:handler event="c:OrmActivityCreatedEvt" action="{!c.doInit}" />
-		description="on component load, fetch picklist values dynamically from apex controller" />
 	<!--declare aura attributes-->
 	<aura:attribute name="ActivityList" type="Assessment__c[]"
 		description="store activity records list" />
@@ -123,7 +122,7 @@
 		</table>
 		<aura:set attribute="else">
 			    <div class="messageIsEmpty">
-		 		   List of phases is empty
+		 		   {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_label_activities +'   ' + $Label.c.orm_is_empty}
 		        </div>
 		</aura:set>
        </aura:if>

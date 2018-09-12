@@ -25,7 +25,7 @@
 	            <span class="btnNewImpact" onclick="{!c.openImpactNewCmp}">
 	              <lightning:icon iconName="utility:new" size="small"   />
 	            </span>
-	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteIppact" onclick="{!c.openModalDeleteCause}">
+	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteImpact" onclick="{!c.openModalDeleteCause}">
 				<lightning:icon iconName="utility:delete" size="small" />
 			</span><br/><br/>
        <aura:if isTrue="{!v.showSaveCancelBtn}">
@@ -71,7 +71,7 @@
 	        </table> 
 	        <aura:set attribute="else">
 			    <div class="messageIsEmpty" style="padding-top: 20px">
-		 		   List of impacts is empty
+		 		    {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_impact +'   ' + $Label.c.orm_is_empty}
 		        </div>
 			</aura:set>
             </aura:if>

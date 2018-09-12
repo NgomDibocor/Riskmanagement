@@ -17,7 +17,8 @@
 				} else {
 					console.log('check it--> delete successful');
 				}
-				// call the onLoad function for refresh the List view    
+				// call the onLoad function for refresh the List view
+				component.set("v.selectedRowsCount", 0) ;     
 				var evt = $A.get('e.c:OrmCauseCreatedEvt');
 				//evt.setParams({'idAssessmentRisk': idAssessmentRisk});
 				evt.fire();

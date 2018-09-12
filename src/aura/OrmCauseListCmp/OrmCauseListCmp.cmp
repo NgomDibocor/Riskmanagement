@@ -18,7 +18,7 @@
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" description="" />
 	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
-	
+	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
 		
     <div style="margin-bottom:20px;margin-top: 40px">
 		 <h1 class="titleCause" style="font-weight: 600; font-size: 2em; text-align: center; white-space: normal;">{!$Label.c.orm_label_causes}</h1>
@@ -76,6 +76,7 @@
 	                <aura:iteration items="{!v.causes}" var="cause" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
 	                    <c:OrmCauseEditRowCmp cause="{!cause}"
+	                    				 selectedRowsCount="{!v.selectedRowsCount}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />                       
 	                </aura:iteration>

@@ -6,6 +6,7 @@
                                                                'Description' : '',
                                                                'orm_categorie_impact__c':''
                                                                }"/>
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="nameEditMode" type="boolean" default="false" />
     <aura:attribute name="categorieImpactEditMode" type="boolean" default="false" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />

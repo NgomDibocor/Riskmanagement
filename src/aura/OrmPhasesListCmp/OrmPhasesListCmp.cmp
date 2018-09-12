@@ -40,16 +40,13 @@
 										<lightning:input class="" aura:id="description" type="text" placeholder="make new phase"
                                      			value="{!v.newPhase.Description}" />
 									</a>	
-								</div>
-								
+								</div>								
 								<span class="btnNewPhase" onclick="{!c.createItem}">
 						        	<lightning:icon iconName="utility:new" size="small" />
-						        </span>
-						        
+						        </span>						        
 						        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
 									<lightning:icon iconName="utility:delete" size="small" />
-								</span>
-								
+								</span>								
 							</div>                            
 						</div>
 				</form>

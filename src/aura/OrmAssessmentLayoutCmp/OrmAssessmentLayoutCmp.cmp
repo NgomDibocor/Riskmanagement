@@ -1321,13 +1321,6 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showRiskTreatment}">
                     <tr>
-	                     <td >
-	                          <div style="margin-bottom:20px;margin-top:10px">
-	                               <h1 class="intro-title">Measure treatment</h1>
-	                           </div>
-	                     </td>
-	                </tr>  
-                    <tr>
 	                    <td class="textInDiv">
 	                       <div style="margin-top:10px; margin-bottom:10px">
 	                          <lightning:button label="{!$Label.c.orm_back_button_messureList}" 
@@ -1336,6 +1329,13 @@
 	                       </div>
 	                    </td>
 	                </tr>
+                    <tr>
+	                     <td >
+	                          <div style="margin-bottom:20px;margin-top:10px">
+	                               <h1 class="intro-title">Measure treatment</h1>
+	                           </div>
+	                     </td>
+	                </tr>  
                     <tr>
                         <td >
                             <c:OrmRiskTreatmentCmp />

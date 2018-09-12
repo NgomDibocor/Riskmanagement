@@ -110,10 +110,38 @@ doInit: function(component, event, helper) {
     		} 
     	}
     },
-    
-    checkboxSelect : function (component, event, helper) {
-    
-    },
+    /**
+	 * 
+	 * @author David diop
+	 * @version 1.0
+	 * @description method for count the selected checkboxes
+	 * @history 2018-09-05 : David diop - Implementation
+	 */
+	checkboxSelect : function(component, event, helper) {
+		// get the selected checkbox value
+		var selectedRec = event.getSource().get("v.value");
+		// get the selectedCount attrbute value(default is 0) for add/less
+		// numbers.
+		var getSelectedNumber = component.get("v.selectedRowsCount");
+		// check, if selected checkbox value is true then increment
+		// getSelectedNumber with 1
+		// else Decrement the getSelectedNumber with 1
+		if (selectedRec == true) {
+			getSelectedNumber++;
+		} else {
+			getSelectedNumber--;
+		}
+		// set the actual value on selectedCount attribute to show on header
+		// part.
+		component.set("v.selectedRowsCount", getSelectedNumber);
+	},
+	/**
+	 * 
+	 * @author David diop
+	 * @version 1.0
+	 * @description method for delete selected records activity Proof
+	 * @history 2018-09-05 : David diop - Implementation
+	 */
      deleteSelected : function (component, event, helper) {
     	var idAssessmentRisk = event.getParam('idAssessmentRisk');
     	// create var for store record id's for selected checkboxes  
@@ -138,5 +166,6 @@ doInit: function(component, event, helper) {
     	helper.deleteSelectedHelper(component, event, delId, idAssessmentRisk);
     	
     },
+  
     
 })

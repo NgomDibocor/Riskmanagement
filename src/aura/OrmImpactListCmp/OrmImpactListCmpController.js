@@ -82,17 +82,48 @@
     	evt.setParams({"selectAllCheckbox": selectedHeaderCheck});
     	evt.fire();
     },
-     openModalDeleteCause : function (component, event, helper) {
-    	component.set('v.openModalConfirmDeletion', true);
-    },
+    /**
+	 * 
+	 * @authorDavid diop
+	 * @version 1.0
+	 * @description method for show modal confirm delete MeasureProgression
+	 * @history 2018-09-05 : David diop - Implementation
+	 */ 
+	openModalDeleteCause:function(component,event,helper){
+		// is checked delete assumption show popup message confirmation
+		// get all checkboxes 
+		//if not checked show toast warning
+		var getSelectedNumber = component.get("v.selectedRowsCount");
+		if(getSelectedNumber==0){
+		var toast = $A.get('e.force:showToast');
+					toast.setParams({
+						'message' : $A.get("$Label.c.orm_warning_checked_checkbox"),
+						'type' : 'warning',
+						'mode' : 'dismissible'
+					});      
+					toast.fire(); 
+		}else{
+	component.set("v.openModalConfirmDeletion",true);
+		}
+
+
+	},
      cancelDeleteCause : function (component, event, helper) {
     	component.set('v.openModalConfirmDeletion', false);
     },
-    
+    /**
+	 * 
+	 * @author Dvaid diop
+	 * @version 1.0
+	 * @description method for remove Activity Proofselected
+	 * @history 2018-09-05 : David diop- Implementation
+	 */
     confirmDeleteCause : function (component, event, helper) {
     	var evt = $A.get('e.c:OrmEvtDeleteImpact');
     	evt.setParams({'idAssessmentRisk': component.get('v.idAssessmentRisk')});
     	evt.fire();
     	component.set('v.openModalConfirmDeletion', false);
     },
+     
+   
 })

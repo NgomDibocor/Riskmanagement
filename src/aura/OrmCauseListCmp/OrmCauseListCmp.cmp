@@ -21,7 +21,7 @@
 	
 		
     <div style="margin-bottom:20px;margin-top: 40px">
-		 <h1 class="titleCause">{!$Label.c.orm_label_causes}</h1>
+		 <h1 class="titleCause" style="font-weight: 600; font-size: 2em; text-align: center; white-space: normal;">{!$Label.c.orm_label_causes}</h1>
 	</div>
 	<div class="slds-m-around_large">                                        
 	    <div class="cause">
@@ -83,7 +83,7 @@
 	            </tbody>
 	        </table>
 		    	<aura:set attribute="else">
-			        <div class="messageIsEmpty" style="padding-top: 20px">
+			        <div class="messageIsEmpty" style="padding-top: 20px"> 
 			 		   List of causes is empty
 			        </div>
 			 </aura:set>

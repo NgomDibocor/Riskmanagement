@@ -35,7 +35,7 @@
 		
         <td width="5%"><div class="slds-truncate">{!v.sNo}</div></td>
        
-        <td ondblclick="{!c.inlineEditName}" class="slds-cell-edit" width="30%">
+        <td ondblclick="{!c.inlineEditName}"  width="30%">
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.nameEditMode == false}">
@@ -106,7 +106,7 @@
     
     
     
-     <td ondblclick="{!c.inlineEditCategorieImpact}" class="slds-cell-edit" width="20%">
+     <td ondblclick="{!c.inlineEditCategorieImpact}"  width="20%">
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.categorieImpactEditMode == false}">

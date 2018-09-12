@@ -51,7 +51,7 @@
 
 
     <div style="margin-bottom:20px;margin-top: 50px">
-		 <h1 class="titleActivity">Activities</h1>
+		 <h1 class="titleActivity" style="font-weight: 600; font-size: 2em; text-align: center; white-space: normal;">Activities</h1>
 	</div>
 	<div class="slds-grid slds-gutters">
 		<div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>

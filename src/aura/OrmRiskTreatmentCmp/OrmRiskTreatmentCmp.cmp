@@ -79,55 +79,50 @@
 		                        </ui:inputSelect>
 		                    </div>
 		                </div>
-		            </td>
-		            <td>
-		                <div class="topSpacing">
-		                    <b><label class="slds-form-element__label">{!$Label.c.orm_measure_cost}</label></b>
-		                </div>
-		                <div class="width">
-		                    <a href="javascript:void(0);">
-		                        <ui:inputNumber  aura:id="cost" class="slds-input" value="{!v.measureData.orm_measure_Cost__c}"  change="{!c.onCost}">
-		                        </ui:inputNumber>
-		                    </a>
-		                </div>
-		               
-		                
-		            </td>
-			        </tr>
+		              </td>
+		                <td>
+			                <div class="topSpacing">
+			                    <b><label class="slds-form-element__label">{!$Label.c.orm_measure_cost}</label></b>
+			                </div>
+			                <div class="width">
+			                    <a href="javascript:void(0);">
+			                        <ui:inputNumber  aura:id="cost" class="slds-input" value="{!v.measureData.orm_measure_Cost__c}"  change="{!c.onCost}">
+			                        </ui:inputNumber>
+			                    </a>
+			                </div>
+		                 </td>
+			          </tr>
 			        <tr>
-			        <td>
-			         <div class="topSpacing">
-		                    <b><label class="slds-form-element__label">{!$Label.c.orm_measure_description}</label></b>
-		                </div>
-		                <div class="width">
-		                    <a href="javascript:void(0);">
-		                        <ui:inputText aura:id="description" class="slds-input" value="{!v.measureData.orm_description__c}" change="{!c.onDescription}" >
-		                        </ui:inputText>
-		                    </a>
-		                </div>
+				        <td>
+				            <div class="topSpacing">
+			                    <b><label class="slds-form-element__label">{!$Label.c.orm_measure_description}</label></b>
+			                </div>
+			                <div class="width">
+			                    <a href="javascript:void(0);">
+			                        <ui:inputText aura:id="description" class="slds-input" value="{!v.measureData.orm_description__c}" change="{!c.onDescription}" >
+			                        </ui:inputText>
+			                    </a>
+			                </div>
+			            </td>
+			            <td>
+				            <div class="topSpacing">
+				               <b><label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label></b>
+				             </div>
+				            <div class="slds-form-element ">
+		                        <div class="slds-form-element__control">
+			                       <ui:inputSelect aura:id="measureResponsable"   
+			                               change="{!c.onChangeMeasureResponsable}" class="slds-select"
+			                               labelClass="slds-form-element__label" >
+			                               <ui:inputSelectOption  text="{!v.measureData.orm_measureResponsable__c}"
+			                                                   label="{!v.measureData.orm_measureResponsable__r.Name}"/>
+			                           <aura:iteration items="{!v.allUser}" var="rm">
+			                               <ui:inputSelectOption text = "{!rm.Id}"
+			                                                     label= "{!rm.Name}" />
+			                           </aura:iteration>
+			                        </ui:inputSelect>
+		                         </div>
+		                    </div>
 		                </td>
-			        
-		            <td>
-		            <div class="topSpacing">
-		               <b><label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label></b>
-		             </div>
-		            <div class="slds-form-element ">
-		                    <div class="slds-form-element__control">
-		                    
-		                       <ui:inputSelect aura:id="measureResponsable"   
-		                               change="{!c.onChangeMeasureResponsable}" class="slds-select"
-		                               labelClass="slds-form-element__label" >
-		                               <ui:inputSelectOption  text="{!v.measureData.orm_measureResponsable__c}"
-		                                                   label="{!v.measureData.orm_measureResponsable__r.Name}"/>
-		                           <aura:iteration items="{!v.allUser}" var="rm">
-		                               <ui:inputSelectOption text = "{!rm.Id}"
-		                                                     label= "{!rm.Name}" />
-		                           </aura:iteration>
-		                        </ui:inputSelect>
-		                       
-		                  </div>
-		             </div>
-		            </td>
-		        </tr>
-		 </table>
+		           </tr>
+		   </table>
 </aura:component>

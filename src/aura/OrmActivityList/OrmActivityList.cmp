@@ -11,7 +11,6 @@
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmRefreshActivityEvnt" action="{!c.doInit}" />
 	<aura:handler event="c:OrmActivityCreatedEvt" action="{!c.doInit}" />
-	<aura:handler name="init" value="{!this}" action="{!c.doInit}"
 		description="on component load, fetch picklist values dynamically from apex controller" />
 	<!--declare aura attributes-->
 	<aura:attribute name="ActivityList" type="Assessment__c[]"
@@ -81,6 +80,7 @@
 		</div>
 	</div>
 	<div class="slds-m-around_large">
+	<aura:if isTrue="{!not(empty(v.ActivityList))}">
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
@@ -125,6 +125,12 @@
 				</aura:iteration>
 			</tbody>
 		</table>
+		<aura:set attribute="else">
+			    <div class="messageIsEmpty">
+		 		   List of phases is empty
+		        </div>
+		</aura:set>
+       </aura:if>
 	</div>
 	<aura:if isTrue="{!v.showConfirmRemoveActivity}">
 		<!--###### MODAL BOX Start From Here ######-->

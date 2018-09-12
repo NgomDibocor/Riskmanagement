@@ -40,6 +40,25 @@
 			}
 		});
 		$A.enqueueAction(action);
-	}
+	},
+	refresh : function(component, event){
+	// call the apex class method and fetch activity list
+		var action = component.get("c.findActivityByAssessment");
+		action.setParam("assessment",component.get("v.assessmentData").Id);
+		action.setCallback(this, function(response) {
+			var state = response.getState();
+			if (state === "SUCCESS") {
+				var storeResponse = response.getReturnValue();
+				// set ActivityList list with return value from server.
+				component.set("v.ActivityList", storeResponse);
+				component.set("v.storeListActivity", storeResponse);
+
+			}
+		});
+		$A.enqueueAction(action);
+		// set deafult count and select all checkbox value to false on load
+		//component.set("v.selectedCount", 0);
+		//component.find("box3").set("v.value", false);
+	},
 	
 })

@@ -19,7 +19,7 @@
 															'Description' : ''
 															}" />
 															
-   
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
     
     <!--Table Row Start-->  

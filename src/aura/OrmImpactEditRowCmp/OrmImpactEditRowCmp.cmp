@@ -72,16 +72,14 @@
         </td> 
         
         
-        <td ondblclick="{!c.inlineEditDescription}"  width="40%" class="textInDiv"> <!-- style="word-wrap:break-word" -->
+        <td ondblclick="{!c.inlineEditDescription}"  width="40%" > <!-- style="word-wrap:break-word" -->
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.descriptionEditMode == false}">
                     <p title="{!v.impact.Description}" style="width:150px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;">{!v.impact.Description}</p>
-
                     <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_description}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
-                    
                     <!-- Inline Edit Section in else case-->  
                     <aura:set attribute="else">
                         <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" >

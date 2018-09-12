@@ -19,7 +19,7 @@
 	 
 	 
 	 <div style="margin-bottom:20px;margin-top: 40px">
-		 <h1 class="titleprogesMeasure" style="font-weight: 600; font-size: 2em; text-align: center; white-space: normal;" >{!$Label.c.orm_progressmeasure_label}</h1>
+		 <h1 class="titleprogesMeasure">{!$Label.c.orm_progressmeasure_label}</h1>
 	</div>
  	<div class="slds-m-around_large">
 		<div class="measureProgression">

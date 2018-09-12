@@ -5,10 +5,10 @@
 		    afterScriptsLoaded="{!c.jsLoaded}" />
     
     <aura:attribute name="probabilityData" type="Macro" default="{ 'sobjectType' : 'Macro',
-														  'orm_probability__c' : '',
-														  'orm_pourcentageMin__c' : '',
-														  'orm_pourcentageMax__c' : ''
-														}"/>
+																  'orm_probability__c' : '',
+																  'orm_pourcentageMin__c' : '',
+																  'orm_pourcentageMax__c' : ''
+																}"/>
     <aura:attribute name="idAssessment" type="String"/>
     <aura:attribute name="label" type="String"/>
     <aura:attribute name="label2" type="String"/>
@@ -28,7 +28,7 @@
      
          <div id="probility">
              <div style="margin-bottom:30px;">
-                <h1 class="intro-title">Probility Ranking</h1>
+                <h1 class="titleslider">Probility Ranking</h1>
              </div>
 		       <table wtdth="100%">
 		          <thead>
@@ -84,7 +84,7 @@
          </div>
          <div  id="bir">
              <div style="margin-bottom:30px;">
-                <h1 class="intro-title">Business Impacts Ranking</h1>
+                <h1 class="titleslider">Business Impacts Ranking</h1>
              </div>
 		       <table wtdth="100%">
 		          <thead>
@@ -196,7 +196,7 @@
          
          <div  id="hir">
              <div style="margin-bottom:30px;">
-                <h1 class="intro-title">HSSE Impacts Ranking</h1>
+                <h1 class="titleslider">HSSE Impacts Ranking</h1>
              </div>	         
 		       <table wtdth="100%">
 		          <thead>

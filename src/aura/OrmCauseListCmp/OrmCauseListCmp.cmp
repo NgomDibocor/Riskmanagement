@@ -70,9 +70,7 @@
 	                </tr>
 	            </thead>
 	            
-	            <tbody>
-	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-	             
+	            <tbody>	             
 	                <aura:iteration items="{!v.causes}" var="cause" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
 	                    <c:OrmCauseEditRowCmp cause="{!cause}"

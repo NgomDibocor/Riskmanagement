@@ -1256,6 +1256,13 @@
                   </aura:if>  
                   <aura:if isTrue="{!v.showSlider}">
                       <tr>
+	                     <td >
+	                          <div style="margin-bottom:20px;">
+	                               <h1 class="intro-title">Risk Configuration </h1>
+	                           </div>
+	                     </td>
+	                 </tr>
+                      <tr>
                           <td>
                               <div style="height:50px"> </div>
                                 <c:OrmSliderCmp idAssessment="{!v.assessmentData.Id }" /> 

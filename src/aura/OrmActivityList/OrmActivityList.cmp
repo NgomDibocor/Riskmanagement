@@ -122,7 +122,7 @@
 		</table>
 		<aura:set attribute="else">
 			    <div class="messageIsEmpty">
-		 		   List of phases is empty
+		 		   {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_label_activities +'   ' + $Label.c.orm_is_empty}
 		        </div>
 		</aura:set>
        </aura:if>

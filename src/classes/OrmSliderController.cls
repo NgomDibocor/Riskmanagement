@@ -28,4 +28,28 @@ public with sharing class OrmSliderController {
                        and 
                           RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()];                               
     }
+    
+    @AuraEnabled 
+    public static void deletePreviousProbalities(String assessment)
+    {
+          List<Macro> probabilities = [SELECT Id
+                  From Macro 
+                  WHERE   orm_assessment__c =:assessment 
+                       and 
+                          RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()]; 
+          
+          delete probabilities;                              
+    }
+    
+    @AuraEnabled 
+    public static Macro getProbability(String assessment, String probability)
+    {
+         return  [SELECT Id, orm_probability__c, orm_pourcentageMin__c, orm_pourcentageMax__c
+                  From Macro 
+                  WHERE   orm_assessment__c =:assessment 
+                       and 
+                          RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()
+                       and
+                          orm_probability__c =: probability];                               
+    }
 }

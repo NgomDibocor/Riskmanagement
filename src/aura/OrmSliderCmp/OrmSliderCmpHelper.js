@@ -25,28 +25,60 @@
         return slider;
 	},
 	
+	getProbability : function(component, event, helper, probability) {
+	      var actionProba = component.get('c.getProbability');
+	      actionProba.setParams({ "assessment" : component.get("v.idAssessment"),
+	                              "probability" : probability
+	                           });
+	      actionProba.setCallback(this, function(response) {
+		        if(response.getState() == 'SUCCESS'){
+		            var probable = {};
+                    probable.sobjectType = 'Macro';
+                    probable = response.getReturnValue();
+                    console.log(JSON.stringify(probable))
+		            //response.getReturnValue();
+		        } else {
+		        	alert("ERROR")	
+		        }
+	      });
+	      $A.enqueueAction(actionProba);
+	},
+	
 	jsLoaded : function(component, event, helper) {
 	
         //start sliderPossible
         var sliderPossible = component.find('sliderPossible').getElement();
-        sliderPossible = this.createSlider(component, event, helper, sliderPossible, 25, 75);        
-        
+        if(component.get("v.probabilities").length == 0){
+            sliderPossible = this.createSlider(component, event, helper, sliderPossible, 25, 75);
+        }else{
+           sliderPossible = this.createSlider(component, event, helper, sliderPossible, parseInt(component.get("v.possibleData").orm_pourcentageMin__c, 10), parseInt(component.get("v.possibleData").orm_pourcentageMax__c, 10) );
+          
+        }
+       
         sliderPossible.noUiSlider.on('change', $A.getCallback(function(range) {
         //update probableMin attribute
+        component.set("v.showBtnUpdate", true);
 	    component.set("v.possibleMin", parseInt(range[0].replace('%', ''), 10)) 
 	    component.set("v.possibleMax", parseInt(range[1].replace('%', ''), 10))
 	    component.set("v.probableMin", component.get("v.possibleMax"))
 	    component.set("v.unlikelyMax", component.get("v.possibleMin"))
         }));
-        //end sliderPossible
         
-        //start first slider
+        
         var sliderProbable = component.find('sliderProbable').getElement();
-        sliderProbable = this.createSlider(component, event, helper, sliderProbable, 75, 100);
+        if(component.get("v.probabilities").length == 0){
+            sliderProbable = this.createSlider(component, event, helper, sliderProbable, 75, 100);
+        }else{
+           sliderProbable = this.createSlider(component, event, helper, sliderProbable, parseInt(component.get("v.probableData").orm_pourcentageMin__c, 10), parseInt(component.get("v.probableData").orm_pourcentageMax__c, 10) );
+          
+        }
+        
+        
         var origins = sliderProbable.getElementsByClassName('noUi-origin');
         origins[1].setAttribute('disabled', true);
 		sliderProbable.noUiSlider.on('change', $A.getCallback(function(range) {
 	    //update probableMin attribute
+	    component.set("v.showBtnUpdate", true);
 		component.set("v.probableMin", parseInt(range[0].replace('%', ''), 10))
 		component.set("v.possibleMax", parseInt(range[0].replace('%', ''), 10))
 		    
@@ -66,9 +98,14 @@
         
         //start sliderUnlikely
         var sliderUnlikely = component.find('sliderUnlikely').getElement();
-        sliderUnlikely = this.createSlider(component, event, helper, sliderUnlikely, 5, 25);  
+        if(component.get("v.probabilities").length == 0){
+             sliderUnlikely = this.createSlider(component, event, helper, sliderUnlikely, 5, 25); 
+        }else{
+           sliderUnlikely = this.createSlider(component, event, helper, sliderUnlikely, parseInt(component.get("v.unlikelyData").orm_pourcentageMin__c, 10), parseInt(component.get("v.unlikelyData").orm_pourcentageMax__c, 10) );
+        }
         
         sliderUnlikely.noUiSlider.on('change', $A.getCallback(function(range) {
+            component.set("v.showBtnUpdate", true);
 		    component.set("v.unlikelyMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.unlikelyMax", parseInt(range[1].replace('%', ''), 10))
 	        component.set("v.possibleMin", component.get("v.unlikelyMax"));
@@ -88,11 +125,17 @@
         
         //start sliderRare
         var sliderRare = component.find('sliderRare').getElement();
-        sliderRare = this.createSlider(component, event, helper, sliderRare, 0, 5);  
+        if(component.get("v.probabilities").length == 0){
+             sliderRare = this.createSlider(component, event, helper, sliderRare, 0, 5); 
+        }else{
+           sliderRare = this.createSlider(component, event, helper, sliderRare, parseInt(component.get("v.RareData").orm_pourcentageMin__c, 10), parseInt(component.get("v.RareData").orm_pourcentageMax__c, 10) );
+        }
+        
         var origins = sliderRare.getElementsByClassName('noUi-origin');
         origins[0].setAttribute('disabled', true);
         
         sliderRare.noUiSlider.on('change', $A.getCallback(function(range) {
+            component.set("v.showBtnUpdate", true);
 		    component.set("v.rareMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.rareMax", parseInt(range[1].replace('%', ''), 10))
 	        component.set("v.unlikelyMin", component.get("v.rareMax"));
@@ -223,6 +266,51 @@
         //end second slider  
     },
     
+    
+    deleteProba : function(component, event, helper) {
+    
+        var actiondeletePrevious = component.get('c.deletePreviousProbalities');
+	      actiondeletePrevious.setParams({ "assessment": component.get("v.idAssessment") });
+	      actiondeletePrevious.setCallback(this, function(response) {
+	        if(response.getState() == 'SUCCESS'){
+	        	
+	        } else {
+	        	alert("ERROR")	
+	        }
+	     });
+	     $A.enqueueAction(actiondeletePrevious); 
+    },
+    
+    /*getProbilities : function(component, event, helper) {
+    	  var action = component.get('c.findAllProbabilitiesByAssessment');
+	      action.setParams({ "assessment": component.get("v.idAssessment") });
+	      action.setCallback(this, function(response) {
+	        if(response.getState() == 'SUCCESS'){
+	        	component.set("v.probabilities", response.getReturnValue());	
+	        	if(component.get("v.probabilities").length > 0){
+	        	   
+                   for (var i = 0; i < component.get("v.probabilities").length; i++) {
+                      if(component.get("v.probabilities")[i].orm_probability__c == 'Probable' ){
+                         component.set("v.probableData", component.get("v.probabilities")[i]);
+                      }
+                      if(component.get("v.probabilities")[i].orm_probability__c == 'Possible' ){
+                         component.set("v.possibleData", component.get("v.probabilities")[i]);
+                      }
+                      if(component.get("v.probabilities")[i].orm_probability__c == 'Unlikely' ){
+                         component.set("v.unlikelyData", component.get("v.probabilities")[i]);
+                      }
+                      if(component.get("v.probabilities")[i].orm_probability__c == 'Rare' ){
+                         component.set("v.RareData", component.get("v.probabilities")[i]);
+                      }
+                   }
+	        	}
+	        	
+	        } else {
+	        	alert("ERROR")	
+	        }
+	     });
+	     $A.enqueueAction(action);
+    }*/
     
     
    

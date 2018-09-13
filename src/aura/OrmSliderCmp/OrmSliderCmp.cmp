@@ -4,37 +4,67 @@
 		    scripts="{!$Resource.noUiSlider + '/nouislider.min.js'}"
 		    afterScriptsLoaded="{!c.jsLoaded}" />
     
+    <!-- start for prabability -->
     <aura:attribute name="probableData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'orm_probability__c' : '',
 																  'orm_pourcentageMin__c' : '',
 																  'orm_pourcentageMax__c' : ''
 																}"/>
 																
-  <aura:attribute name="possibleData" type="Macro" default="{ 'sobjectType' : 'Macro',
+   <aura:attribute name="possibleData" type="Macro" default="{ 'sobjectType' : 'Macro',
 															  'orm_probability__c' : '',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
 														   }"/>
 														   
- <aura:attribute name="unlikelyData" type="Macro" default="{ 'sobjectType' : 'Macro',
+    <aura:attribute name="unlikelyData" type="Macro" default="{ 'sobjectType' : 'Macro',
 															  'orm_probability__c' : '',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
 														   }"/>
 														   
- <aura:attribute name="RareData" type="Macro" default="{ 'sobjectType' : 'Macro',
+    <aura:attribute name="RareData" type="Macro" default="{ 'sobjectType' : 'Macro',
 															  'orm_probability__c' : '',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
 														   }"/>	
-														   													   
- <aura:attribute name="hsseImpactData" type="Order" default="{ 'sobjectType' : 'Order',
+	
+	<aura:attribute name="probabilities" type="Macro[]" />													   
+    <!-- end for prabability --> 
+
+    <!-- start for HSSE impact -->
+    <aura:attribute name="hsseVeryHighData" type="Order" default="{ 'sobjectType' : 'Order',
+																  'orm_rating__c' : '',
+																  'Description' : '', 
+																  'orm_security__c' : '',
+																  'orm_environmentAndCommunity__c' : ''
+																}"/>
+
+    <aura:attribute name="hsseHighData" type="Order" default="{ 'sobjectType' : 'Order',
+																  'orm_rating__c' : '',
+																  'Description' : '', 
+																  'orm_security__c' : '',
+																  'orm_environmentAndCommunity__c' : ''
+																}"/>
+
+    <aura:attribute name="hsseMediumData" type="Order" default="{ 'sobjectType' : 'Order',
 																  'orm_rating__c' : '',
 																  'Description' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
 																}"/>
 																
+    <aura:attribute name="hsseLowData" type="Order" default="{ 'sobjectType' : 'Order',
+																  'orm_rating__c' : '',
+																  'Description' : '', 
+																  'orm_security__c' : '',
+																  'orm_environmentAndCommunity__c' : ''
+																}"/>																
+	
+	<aura:attribute name="hsseImpacts" type="Order[]" />
+	<!-- end for HSSE impact -->
+	
+																																
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />															
     <aura:attribute name="idAssessment" type="String"/>
     <aura:attribute name="label" type="String"/>
@@ -43,7 +73,7 @@
     <aura:attribute name="min" type="String" default="0"/>
     <aura:attribute name="max" type="String" default="100"/>
     <aura:attribute name="step" type="String" default="1"/>
-    <aura:attribute name="probabilities" type="Macro[]" />
+    
     
     <aura:attribute name="showProbilityRanking" type="boolean" default="true"/>
     <aura:attribute name="showHsseImpactsRanking" type="boolean" default="false"/>
@@ -109,7 +139,7 @@
 					              <aura:set attribute="else">
 					                   <aura:if isTrue="{!v.showBtnSave}">
 						                  <lightning:buttonGroup class="slds-m-around_medium">
-							                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>
+							                      <!--<lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>  -->
 							                      <lightning:button label="{!$Label.c.orm_save_button}"
 							                                       variant="neutral"
 							                                       class="slds-button slds-button_success"
@@ -125,18 +155,33 @@
 						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
 						                      <lightning:button label="{!$Label.c.orm_save_button}"
 						                                       variant="neutral"
-						                                       class="slds-button"
+						                                       class="slds-button slds-button_success"
 						                                       onclick="{!c.createBusinessImpactsRanking}"/>
 					            </lightning:buttonGroup>
 					</aura:if>
 					<aura:if isTrue="{!v.showHsseImpactsRanking}">
-					            <lightning:buttonGroup class="slds-m-around_medium">
-						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
-						                      <lightning:button label="{!$Label.c.orm_save_button}"
+					       <aura:if isTrue="{!not(empty(v.probabilities))}">
+					                  <aura:if isTrue="{!v.showBtnUpdate}">
+					                      <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdate}"/>
+						                      <lightning:button label="update"
 						                                       variant="neutral"
-						                                       class="slds-button"
+						                                       class="slds-button slds-button_brand"
 						                                       onclick="{!c.createHsseImpactsRanking}"/>
-					            </lightning:buttonGroup>
+					                      </lightning:buttonGroup>
+					                   </aura:if>
+					              <aura:set attribute="else">
+					                   <aura:if isTrue="{!v.showBtnSave}">
+						                  <lightning:buttonGroup class="slds-m-around_medium">
+							                      <!--<lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>  -->
+							                      <lightning:button label="{!$Label.c.orm_save_button}"
+							                                       variant="neutral"
+							                                       class="slds-button slds-button_success"
+							                                       onclick="{!c.createHsseImpactsRanking}"/>
+						                  </lightning:buttonGroup>
+						               </aura:if>
+					             </aura:set>
+					       </aura:if>
 					</aura:if>
 				</span>
 				<span class="spaceSliderEnd"></span>	

@@ -173,7 +173,7 @@
       component.set("v.showBtnUpdate", false);
    }
    
-   /*createHsseImpactsRanking : function(component, event, helper) {
+   createHsseImpactsRanking : function(component, event, helper) {
       var hsseImpacts = [];
           var newItemVeryHigh = {};
           newItemVeryHigh.sobjectType = 'Order';
@@ -182,6 +182,6 @@
           newItemVeryHigh.orm_pourcentageMin__c = component.get("v.probableMin");
           newItemVeryHigh.orm_pourcentageMax__c = component.get("v.probableMax");
           probabilities.push(newItemVeryHigh);
-   }*/
+   }
    
 })

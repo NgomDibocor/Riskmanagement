@@ -4,6 +4,12 @@ public with sharing class OrmSliderController {
          Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
                   .get('RT probabilite').getRecordTypeId();
         return recordTypeId;
+    }   
+    
+    public static Id getHsseImpactRecordTypeId(){
+         Id recordTypeId = Schema.SObjectType.Order.getRecordTypeInfosByName()
+                  .get('RT HSSE Impact').getRecordTypeId();
+        return recordTypeId;
     }
     
     @AuraEnabled
@@ -33,10 +39,10 @@ public with sharing class OrmSliderController {
     public static void deletePreviousProbalities(String assessment)
     {
           List<Macro> probabilities = [SELECT Id
-                  From Macro 
-                  WHERE   orm_assessment__c =:assessment 
-                       and 
-                          RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()]; 
+					                   From Macro 
+					                   WHERE   orm_assessment__c =:assessment 
+					                       and 
+					                           RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()]; 
           
           delete probabilities;                              
     }
@@ -52,4 +58,30 @@ public with sharing class OrmSliderController {
                        and
                           orm_probability__c =: probability];                               
     }
+    
+    @AuraEnabled 
+    public static void deletePreviousHsseImpacts(String assessment)
+    {
+          List<Order> hsseImpacts = [SELECT Id
+					                 From Order 
+					                 WHERE   orm_assessment__c =:assessment 
+					                       and 
+					                          RecordTypeId=: OrmSliderController.getHsseImpactRecordTypeId()]; 
+          
+          delete hsseImpacts;                              
+    }
+    
+    @AuraEnabled
+    public static List<Order> addHsseImpacts(List<Order> items)
+    {
+    	List<Order> res = new List<Order>();
+    	for (Order item : items) {
+    		item.RecordTypeId = OrmSliderController.getHsseImpactRecordTypeId();
+		    upsert item;
+		    res.add(item);
+		}
+
+        return res;   
+   }
+    
 }

@@ -71,6 +71,7 @@
     <aura:registerEvent name="ShowSpinner" type="c:OrmHideSpinnerEvt"  />
     <aura:registerEvent name="SendIdActivity" type="c:OrmSendIdActivityEvt"  />  
     
+    
     <!-- return to list of Assessment -->
    
     <!-- menu -->
@@ -110,6 +111,15 @@
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
             <span class="slds-tabs--path__title">{!$Label.c.orm_risk_treatment_menu}</span>
+          </a>
+        </li>
+        <li aura:id="actionPlanId" class="slds-tabs--path__item slds-is-active" role="presentation">
+          <a class="slds-tabs--path__link" id="tabs-path-440" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
+             href="javascript:void(0);" aria-live="assertive" onclick="{!c.activeActionPlan}">
+            <span class="slds-tabs--path__stage">
+              <lightning:icon iconName="utility:sprite" size="xx-small" />
+            </span>
+            <span class="slds-tabs--path__title">Risk Picture</span>
           </a>
         </li>
         <li aura:id="actionPlanId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -1376,6 +1386,7 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showActionPlan}">
                     
+                     
                 </aura:if>
                 <aura:if isTrue="{!v.displaySaveCancelBtn}">
                     <tr>

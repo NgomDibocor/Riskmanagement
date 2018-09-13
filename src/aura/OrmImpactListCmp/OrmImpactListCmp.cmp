@@ -4,6 +4,7 @@
 	<aura:registerEvent name="OrmNewImpactClickedEvt"  type="c:OrmNewImpactClickedEvt"/>
 	<aura:registerEvent name="OrmEvtSelectAllImpact" type="c:OrmEvtSelectAllImpact" />
 	<aura:registerEvent name="OrmEvtDeleteImpact" type="c:OrmEvtDeleteImpact" description="" />
+	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="impacts" type="Macro[]" description="" />
 	<aura:attribute name="impactsTemp" type="Macro[]" description="" />
@@ -20,12 +21,14 @@
 		<div class="slds-m-around_large">  
 			<div class="impact">
 			 <div class="iimpact">
+			 <a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
 	          <lightning:input type="search"   onchange="{!c.filter}" value="{!v.filter}"  label="{!$Label.c.search_title_label}"  placeholder="{!$Label.c.orm_filter_impact_placeholder}" />
+	          </a>
 	        </div>
 	            <span class="btnNewImpact" onclick="{!c.openImpactNewCmp}">
 	              <lightning:icon iconName="utility:new" size="small"   />
 	            </span>
-	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteIppact" onclick="{!c.openModalDeleteCause}">
+	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteImpact" onclick="{!c.openModalDeleteCause}">
 				<lightning:icon iconName="utility:delete" size="small" />
 			</span><br/><br/>
        <aura:if isTrue="{!v.showSaveCancelBtn}">
@@ -38,7 +41,7 @@
 	        	</div>
 	        </aura:if>
 	  <aura:if isTrue="{!not(empty(v.impacts))}">
-       <table class="slds-table slds-table_bordered slds-table_cell-buffer" width="100%">
+       <table class="slds-table slds-table_bordered slds-table_cell-buffer" style=" width:90%;">
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th  class="slds-text-align--right" ><!-- 3.25rem; -->
@@ -71,7 +74,7 @@
 	        </table> 
 	        <aura:set attribute="else">
 			    <div class="messageIsEmpty" style="padding-top: 20px">
-		 		   List of impacts is empty
+		 		    {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_impact +'   ' + $Label.c.orm_is_empty}
 		        </div>
 			</aura:set>
             </aura:if>

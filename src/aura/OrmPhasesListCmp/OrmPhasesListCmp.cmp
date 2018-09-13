@@ -54,8 +54,7 @@
 	        	</div>
 	        </aura:if> 
             <aura:if isTrue="{!not(empty(v.phases))}">
-	        <!--Data Table-->     
-	        <table class="slds-table">
+	        <table class="slds-table">	        
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th style="width:3.25rem;" class="slds-text-align--right">

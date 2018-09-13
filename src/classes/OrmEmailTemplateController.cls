@@ -49,6 +49,7 @@ public with sharing class OrmEmailTemplateController {
       mail.setSubject(mSubject);
     mail.setTemplateID(templateId); 
      mail.setSaveAsActivity(false);
+     
 
     // Set list of people who should get the email
        List<String> sendTo = new List<String>();

@@ -50,7 +50,7 @@
 	        </aura:if> 
         <aura:if isTrue="{!not(empty(v.causes))}"> 
 	        <!--Data Table-->     
-	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+	        <table class="slds-table slds-table_bordered slds-table_cell-buffer" style=" width:90%;">
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th style="width:3.25rem;" class="slds-text-align--right">

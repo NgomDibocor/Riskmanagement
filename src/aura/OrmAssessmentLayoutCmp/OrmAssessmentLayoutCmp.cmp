@@ -161,7 +161,7 @@
               </aura:if>
         </div>
     </aura:if>
-    <div class="{!(v.closeFieldDescription==true ? (v.showChevronleft == false ? (v.showChevronright== true ? 'slds-size--7-of-8' : 'slds-size--8-of-8'):(v.showChevronright== true ? 'slds-size--6-of-8': 'slds-size--7-of-8')) : (v.showChevronleft == true ? 'slds-size--4-of-8' : 'slds-size--5-of-8' ))}" style="margin-top:20px;margin-bottom:30px">
+    <div class="{!(v.closeFieldDescription==true ? (v.showChevronleft == false ? (v.showChevronright== true ? 'slds-size--7-of-8' : 'slds-size--8-of-8'):(v.showChevronright== true ? 'slds-size--6-of-8': 'slds-size--7-of-8')) : (v.showChevronleft == true ? (v.showChevronright== true ? 'slds-size--4-of-8' : 'slds-size--5-of-8') : (v.showChevronright== true ? 'slds-size--5-of-8' : 'slds-size--6-of-8')))}"  style="margin-top:20px;margin-bottom:30px">
         <table class="slds-table">
               <aura:if isTrue="{!v.showContext}">
                 <aura:if isTrue="{!v.assessmentData.Id == null}">
@@ -1113,7 +1113,7 @@
 	                  </td>
 	               </tr>  
                   <tr>
-                     <td >
+                     <td class="textInDiv">
                           <div style="margin-bottom:20px;">
                                <h1 class="intro-title">Assumptions and Attachments of assessment</h1>
                            </div>
@@ -1128,7 +1128,7 @@
                   </tr>
                   
                      <tr>
-                         <td>
+                         <td class="textInDiv">
                            <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
                          </td>
                      </tr>
@@ -1147,7 +1147,7 @@
                 </aura:if>
                 <aura:if isTrue="{!v.showContextActivity}">
                       <tr>
-	                     <td >
+	                     <td class="textInDiv">
 	                          <div style="margin-bottom:20px;">
 	                               <h1 class="intro-title">Phases And Activities</h1>
 	                           </div>
@@ -1161,7 +1161,7 @@
 	                        </td>
 	                  </tr>
 	                  <tr>
-                          <td>
+                          <td class="textInDiv">
                              <div class="slds-col">
                                     <span class="startSpaceOrg"></span>                                  
 							        <div class="orgSelect">
@@ -1204,12 +1204,12 @@
                          </td>
                       </tr>
                       <tr>
-                           <td>
-	                         <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
+                           <td class="textInDiv">
+	                           <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
 	                       </td>
                       </tr>
                       <tr>
-                          <td>
+                          <td class="textInDiv">
                                <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
                           </td>
                       </tr>
@@ -1300,11 +1300,11 @@
 	                    </td>
 	                </tr>
 	                <tr>
-	                       <td >
-	                          <div style="margin-bottom:20px;margin-top: 10px">
-	                               <h1 class="intro-title">Details of Risk</h1>
-	                           </div>
-	                       </td>
+                       <td >
+                          <div style="margin-bottom:20px;margin-top: 10px">
+                               <h1 class="intro-title">Details of Risk</h1>
+                           </div>
+                       </td>
 		            </tr>
                     <tr>
                       <td>
@@ -1392,14 +1392,12 @@
                         </td>
                     </tr>
                 </aura:if>
-	                
-            </table>
-            
-    </div>
-    <aura:if isTrue="{!v.closeFieldDescription == false}">
-        <div class="slds-size--2-of-8 " style="margin-top:20px;padding-left:20px;padding-right:20px;padding-bottom:10px;position:sticky;top:160px">
-            <c:OrmFieldDescriptionCmp/>
-        </div>
+             </table>
+       </div>
+      <aura:if isTrue="{!v.closeFieldDescription == false}">
+       <div class="slds-size--2-of-8 " style="margin-top:20px;padding-left:20px;padding-right:20px;padding-bottom:10px;position:sticky;top:160px">
+           <c:OrmFieldDescriptionCmp/>
+       </div>
     </aura:if> 
     <aura:if isTrue="{!v.showChevronright}">
         <div class="slds-size--1-of-8" style="position:sticky;top:250px;padding-left:50px">

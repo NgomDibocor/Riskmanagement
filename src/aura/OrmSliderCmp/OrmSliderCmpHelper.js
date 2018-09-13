@@ -27,79 +27,84 @@
 	
 	jsLoaded : function(component, event, helper) {
 	
-        //start second slider
-        var slider2 = component.find('slider2').getElement();
-        slider2 = this.createSlider(component, event, helper, slider2, 25, 75);        
+        //start sliderPossible
+        var sliderPossible = component.find('sliderPossible').getElement();
+        sliderPossible = this.createSlider(component, event, helper, sliderPossible, 25, 75);        
         
-        slider2.noUiSlider.on('change', $A.getCallback(function(range) {
-            
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+        sliderPossible.noUiSlider.on('change', $A.getCallback(function(range) {
+        //update probableMin attribute
+	    component.set("v.possibleMin", parseInt(range[0].replace('%', ''), 10)) 
+	    component.set("v.possibleMax", parseInt(range[1].replace('%', ''), 10))
+	    component.set("v.probableMin", component.get("v.possibleMax"))
+	    component.set("v.unlikelyMax", component.get("v.possibleMin"))
         }));
-        //end second slider
+        //end sliderPossible
         
         //start first slider
-        var slider = component.find('slider').getElement();
-        slider = this.createSlider(component, event, helper, slider, 75, 100);
-        var origins = slider.getElementsByClassName('noUi-origin');
+        var sliderProbable = component.find('sliderProbable').getElement();
+        sliderProbable = this.createSlider(component, event, helper, sliderProbable, 75, 100);
+        var origins = sliderProbable.getElementsByClassName('noUi-origin');
         origins[1].setAttribute('disabled', true);
-		slider.noUiSlider.on('change', $A.getCallback(function(range) {
-				 
-			//console.log(slider.noUiSlider.get()[0].replace('%', ''))
-			//console.log(slider2.noUiSlider.get()[1].replace('%', ''))
-			   
-		    component.set("v.valCostmin", range[0].replace('%', ''))
-		    component.set("v.valCostmax", range[1].replace('%', ''))
+		sliderProbable.noUiSlider.on('change', $A.getCallback(function(range) {
+	    //update probableMin attribute
+		component.set("v.probableMin", parseInt(range[0].replace('%', ''), 10))
+		component.set("v.possibleMax", parseInt(range[0].replace('%', ''), 10))
+		    
         }));
         
         //Locking slider and slider2 together
-        slider.noUiSlider.on('slide', $A.getCallback(function(range){
-			slider2.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+        sliderProbable.noUiSlider.on('slide', $A.getCallback(function(range){
+			sliderPossible.noUiSlider.set([null, Number(range[0].replace('%', ''))]);			
 			
 		}));
-		slider2.noUiSlider.on('slide', $A.getCallback(function(range){
-			slider.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+		sliderPossible.noUiSlider.on('slide', $A.getCallback(function(range){
+			sliderProbable.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+			//component.set("v.probableMin", parseInt(range[1].replace('%', ''), 10))
 			
 		}));
         //Locking slider and slider2 together
         
-        //start second slider
-        var slider3 = component.find('slider3').getElement();
-        slider3 = this.createSlider(component, event, helper, slider3, 5, 25);  
+        //start sliderUnlikely
+        var sliderUnlikely = component.find('sliderUnlikely').getElement();
+        sliderUnlikely = this.createSlider(component, event, helper, sliderUnlikely, 5, 25);  
         
-        slider3.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+        sliderUnlikely.noUiSlider.on('change', $A.getCallback(function(range) {
+		    component.set("v.unlikelyMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.unlikelyMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.possibleMin", component.get("v.unlikelyMax"));
+	        component.set("v.rareMax", component.get("v.unlikelyMin"));
+	        
         }));
-        //end second slider 
+        //end sliderUnlikely
         
-        slider2.noUiSlider.on('slide', $A.getCallback(function(range){
-			slider3.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+        sliderPossible.noUiSlider.on('slide', $A.getCallback(function(range){
+			sliderUnlikely.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
 			
 		}));  
-		slider3.noUiSlider.on('slide', $A.getCallback(function(range){
-			slider2.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+		sliderUnlikely.noUiSlider.on('slide', $A.getCallback(function(range){
+			sliderPossible.noUiSlider.set([Number(range[1].replace('%', '')), null]);
 			
 		}));
         
-        //start second slider
-        var slider4 = component.find('slider4').getElement();
-        slider4 = this.createSlider(component, event, helper, slider4, 0, 5);  
-        var origins = slider4.getElementsByClassName('noUi-origin');
+        //start sliderRare
+        var sliderRare = component.find('sliderRare').getElement();
+        sliderRare = this.createSlider(component, event, helper, sliderRare, 0, 5);  
+        var origins = sliderRare.getElementsByClassName('noUi-origin');
         origins[0].setAttribute('disabled', true);
         
-        slider4.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+        sliderRare.noUiSlider.on('change', $A.getCallback(function(range) {
+		    component.set("v.rareMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.rareMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.unlikelyMin", component.get("v.rareMax"));
         }));
-        //end second slider   
+        //end sliderRare  
         
-        slider3.noUiSlider.on('slide', $A.getCallback(function(range){
-			slider4.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+        sliderUnlikely.noUiSlider.on('slide', $A.getCallback(function(range){
+			sliderRare.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
 			
 		}));  
-		slider4.noUiSlider.on('slide', $A.getCallback(function(range){
-			slider3.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+		sliderRare.noUiSlider.on('slide', $A.getCallback(function(range){
+			sliderUnlikely.noUiSlider.set([Number(range[1].replace('%', '')), null]);
 			
 		})); 
     },

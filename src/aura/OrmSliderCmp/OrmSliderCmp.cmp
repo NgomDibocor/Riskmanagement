@@ -9,6 +9,7 @@
 																  'orm_pourcentageMin__c' : '',
 																  'orm_pourcentageMax__c' : ''
 																}"/>
+	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />															
     <aura:attribute name="idAssessment" type="String"/>
     <aura:attribute name="label" type="String"/>
     <aura:attribute name="label2" type="String"/>
@@ -16,37 +17,80 @@
     <aura:attribute name="min" type="String" default="0"/>
     <aura:attribute name="max" type="String" default="100"/>
     <aura:attribute name="step" type="String" default="1"/>
+    <aura:attribute name="probabilities" type="Macro[]" />
     
     <aura:attribute name="showProbilityRanking" type="boolean" default="true"/>
     <aura:attribute name="showHsseImpactsRanking" type="boolean" default="false"/>
     <aura:attribute name="showBusinessImpactsRanking" type="boolean" default="false"/>
     
-    <aura:attribute name="valCostmin" type="Integer" default="0"/>
-    <aura:attribute name="valCostmax" type="Integer" default="100"/>
-    <aura:attribute name="valpourcentagemin" type="Integer" default="0"/>
-    <aura:attribute name="valpourcentagemax" type="Integer" default="100"/>
+    <aura:attribute name="probableMin" type="Integer" default="75"/>
+    <aura:attribute name="probableMax" type="Integer" default="100"/>
+    <aura:attribute name="possibleMin" type="Integer" default="25"/>
+    <aura:attribute name="possibleMax" type="Integer" default="75"/>
+    <aura:attribute name="unlikelyMin" type="Integer" default="5"/>
+    <aura:attribute name="unlikelyMax" type="Integer" default="25"/>
+    <aura:attribute name="rareMin" type="Integer" default="0"/>
+    <aura:attribute name="rareMax" type="Integer" default="5"/>
+    
+    
      
+     <!--<div>probableMin: {!v.probableMin}</div>
+     <div>probableMax: {!v.probableMax}</div>
+     <div>possibleMin: {!v.possibleMin}</div>
+     <div>possibleMax: {!v.possibleMax}</div>
+     <div>UnlikelyMin: {!v.unlikelyMin}</div>
+     <div>UnlikelyMax: {!v.unlikelyMax}</div>
+     <div>RareMin: {!v.rareMin}</div>
+     <div>RareMax: {!v.rareMax}</div>  -->
      
         <div class="slds-col" style="margin-bottom: 20px">
 		        <span class="spaceSlider"></span>									
 			    <span class="btnPrev" onclick="{!c.PrevPage}">
-			        <lightning:button label="Prev" variant="brand" iconName='utility:back' />
-		        	<!--<lightning:icon class="iconPrev"  iconName="utility:chevronleft" size="large" />  -->
+			        <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
 		        </span>
 				<span class="spacebetween"></span>
 				<span class="btnNext" onclick="{!c.nextPage}">
-		        	<!--<lightning:icon class="iconNext"  iconName="utility:chevronright" size="large" />  -->
-		        	<lightning:button label="Next" variant="brand" iconName='utility:forward' iconPosition='right'/>
+		        	<aura:if isTrue="{!v.showProbilityRanking}">
+		        	   <aura:if isTrue="{!not(empty(v.probabilities))}">
+					     <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					   </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					  <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					</aura:if>
+					<aura:if isTrue="{!v.showHsseImpactsRanking}">
+					  <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					</aura:if>
 		        </span>
-		        
+		        <span class="spacebetweenSave"></span>
 		        <span class="btnSave">
-					<lightning:buttonGroup class="slds-m-around_medium">
-	                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
-	                      <lightning:button label="{!$Label.c.orm_save_button}"
-	                                       variant="neutral"
-	                                       class="slds-button"
-	                                       onclick=""/>
-                      </lightning:buttonGroup>
+					<aura:if isTrue="{!v.showProbilityRanking}">
+					               <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
+						                      <lightning:button label="{!$Label.c.orm_save_button}"
+						                                       variant="neutral"
+						                                       class="slds-button"
+						                                       onclick="{!c.createProbilityRanking}"/>
+					               </lightning:buttonGroup>
+					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					            <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
+						                      <lightning:button label="{!$Label.c.orm_save_button}"
+						                                       variant="neutral"
+						                                       class="slds-button"
+						                                       onclick="{!c.createBusinessImpactsRanking}"/>
+					            </lightning:buttonGroup>
+					</aura:if>
+					<aura:if isTrue="{!v.showHsseImpactsRanking}">
+					            <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
+						                      <lightning:button label="{!$Label.c.orm_save_button}"
+						                                       variant="neutral"
+						                                       class="slds-button"
+						                                       onclick="{!c.createHsseImpactsRanking}"/>
+					            </lightning:buttonGroup>
+					</aura:if>
 				</span>
 				<span class="spaceSliderEnd"></span>	
 		</div>
@@ -69,7 +113,7 @@
 					        <td  class="tdClassSlider" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider" class="slider"/>
+									    <div aura:id="sliderProbable" class="slider"/>
 								    </div>
 					         </td>
 					         <td  class="tdClassSliderText" height="100" style="padding-left: 20px;">There is the good chance of the risk occurring</td>
@@ -79,7 +123,7 @@
 					         <td  class="tdClassSlider">
 					                <div>
 								        <div class="">{!v.label2}</div>
-									    <div aura:id="slider2"  class="slider"/>
+									    <div aura:id="sliderPossible"  class="slider"/>
 								    </div>
 					         </td>
 					         <td  class="tdClassSliderText" height="100" style="padding-left: 20px;">There is a reasonable chance of this risk occurring</td>
@@ -89,7 +133,7 @@
 					        <td  class="tdClassSlider" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider3"  class="slider"/>
+									    <div aura:id="sliderUnlikely"  class="slider"/>
 								    </div>
 					         </td>
 					         <td  class="tdClassSliderText" height="100" style="padding-left: 20px;">There is a small chance of this risk occurring</td>
@@ -99,7 +143,7 @@
 					        <td  class="tdClassSlider" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider4"  class="slider"/>
+									    <div aura:id="sliderRare"  class="slider"/>
 								    </div>
 					         </td>
 					         <td  class="tdClassSliderText" height="100" style="padding-left: 20px;">There risk is unlikely to occur under normal circumstances</td>

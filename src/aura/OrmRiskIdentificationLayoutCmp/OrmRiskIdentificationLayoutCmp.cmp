@@ -55,9 +55,9 @@
             </div>
         </div>
         <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
-            <!--  <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}"> </a> -->
+            <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}"> 
                 <lightning:input type="search" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}" placeholder="{!$Label.c.orm_filter_assessmentRisk_placeholder}" />
-           
+           </a> 
         </div>
         <div class=" slds-size--3-of-12   slds-p-horizontal--small slds-float—left">
             <br/>
@@ -74,7 +74,7 @@
     </div> <br/><br/>
     
     <div class="slds-grid slds-gutters">
-        <div class="slds-col slds-size_10-of-12">
+        <div class="slds-col slds-size--10-of-12">
          <aura:if isTrue="{!v.isOpenButton}"> 
 		    <button class="slds-button slds-button--brand" onclick="{!c.dissociateRiskfunction}">
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.dissociate_button_title}

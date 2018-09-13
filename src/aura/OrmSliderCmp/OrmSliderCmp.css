@@ -105,7 +105,11 @@
 	display: inline-block;
     width:10%;
 }
+.THIS .spacebetweenSave {
+	display: inline-block;
+    width:4%;
+}
 .THIS .spaceSliderEnd {
 	display: inline-block;
-    width:29%;
+    width:25%;
 }

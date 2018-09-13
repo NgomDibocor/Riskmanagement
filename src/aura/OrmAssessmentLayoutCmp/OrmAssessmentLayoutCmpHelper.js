@@ -529,6 +529,8 @@
         component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", true);
+        component.set("v.showListCauseAndImpact", false);
+        component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", false);
         component.set("v.showChevronleft", true); 
@@ -676,6 +678,8 @@
         component.set("v.showSlider", false);
         component.set("v.showRiskIdentif", false);
         component.set("v.showRiskAnalyse", false);
+        component.set("v.showListCauseAndImpact", false);
+        component.set("v.showListMeasure", false);
         component.set("v.showRiskTreatment", false);
         component.set("v.showActionPlan", true);
         component.set("v.showChevronleft", true);   

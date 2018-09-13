@@ -64,6 +64,15 @@ openSingleFile : function (component,event, helper){
 			component.set("v.items", data);
 		}        	
 	},
+	
+	sendDescriptionSearchToFD : function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": "Attachment",
+            "descriptionField": "Description"
+        });
+        evt.fire();
+    },
 
 
 })

@@ -146,4 +146,13 @@
 		var evt = $A.get("e.c:OrmRemoveRecordAssumptEvnt");
 		evt.fire();
     },
+    
+    sendDescriptionSearchToFD : function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": "Assumption",
+            "descriptionField": "Description"
+        });
+        evt.fire();
+    },
 })

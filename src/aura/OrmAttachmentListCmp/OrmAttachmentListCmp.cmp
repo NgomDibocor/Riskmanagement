@@ -9,6 +9,7 @@
 	<aura:attribute name="key" type="string" />
 	<!-- 	aura register event -->
 	<aura:registerEvent name="OrmOpenAttachmentNewEvent" type="c:OrmOpenAttachmentNewEvent" />
+	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:handler event="c:OrmNewFileUploadCreatedEvent" action="{!c.doInit}" />
 	

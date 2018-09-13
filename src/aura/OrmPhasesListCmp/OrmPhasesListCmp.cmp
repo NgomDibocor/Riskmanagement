@@ -26,31 +26,22 @@
 																			'orm_assessment__c': ''
 																		}" />
 	
-	<div style="margin-bottom:20px;margin-top: 50px">
+	<div style="margin-bottom:20px;margin-top: 40px">
 		 <h1 class="titlePhase">{!$Label.c.orm_phase}</h1>
 	</div>
     <div class="slds-m-around_large">
 	    <div class="phase">
-				<!-- CREATE NEW Phase FORM -->
-				<form class="">					
-						<div class="slds-col">									
-							<div class="">
-								<div class="iphase">
-									<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
-										<lightning:input class="" aura:id="description" type="text" placeholder="make new phase"
-                                     			value="{!v.newPhase.Description}" />
-									</a>	
-								</div>								
-								<span class="btnNewPhase" onclick="{!c.createItem}">
-						        	<lightning:icon iconName="utility:new" size="small" />
-						        </span>						        
-						        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
-									<lightning:icon iconName="utility:delete" size="small" />
-								</span>								
-							</div>                            
-						</div>
-				</form>
-			    <!-- / CREATE NEW Item FORM -->
+				<div class="iphase">
+					<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
+						<lightning:input  aura:id="description" type="text" placeholder="enter the phase" value="{!v.newPhase.Description}" />
+					</a>	
+				</div>								
+				<span class="btnNewPhase" onclick="{!c.createItem}">
+		        	<lightning:icon iconName="utility:new" size="small" />
+		        </span>						        
+		        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
+					<lightning:icon iconName="utility:delete" size="small" />
+				</span>								
 	
 			<!-- use aura:if for show/hide buttons --> 
 	        <aura:if isTrue="{!v.showSaveCancelBtn}">
@@ -61,10 +52,10 @@
 	                	<lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.save}" variant="success"/>
 	            	</lightning:buttonGroup>
 	        	</div>
-	        </aura:if> <br/>
-        <aura:if isTrue="{!not(empty(v.phases))}">
+	        </aura:if> 
+            <aura:if isTrue="{!not(empty(v.phases))}">
 	        <!--Data Table-->     
-	        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+	        <table class="slds-table">
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th style="width:3.25rem;" class="slds-text-align--right">
@@ -100,13 +91,13 @@
 	            </tbody>
 	        </table>
 		   <aura:set attribute="else">
-			    <div class="messageIsEmpty">
+			    <div class="messageIsEmpty" style="padding-top:20px">
 		 		   List of phases is empty
 		        </div>
 			 </aura:set>
            </aura:if> 	
 		</div>
-       
+       </div>
         
         <!-- openModalError if the assessment is not created -->
         <aura:if isTrue="{!v.openModalError}">
@@ -134,7 +125,7 @@
 			</div>	    
 	    </aura:if>
 	    
-	    <!-- openModalErrorIfFieldEmpty if the field is  is empty -->
+	    <!-- openModalErrorIfFieldEmpty if the field is  is empty
 	    <aura:if isTrue="{!v.openModalErrorIfFieldEmpty}">
     
 	    	<div class="demo-only" style="height: 640px;">
@@ -158,7 +149,7 @@
 			  </section>
 			  <div class="slds-backdrop slds-backdrop_open"></div>
 			</div>	    
-	    </aura:if>
+	    </aura:if> -->
 	    
 	    <!-- openModalConfirmDeletion  -->
 	    <aura:if isTrue="{!v.openModalConfirmDeletion}">    
@@ -186,7 +177,7 @@
 			</div>	    
 	    </aura:if>
 	    
-    </div>
+    
     
     
 	<!-- c:OrmPhaseNewCmp assessmentId="{!v.idAssessment}" / -->

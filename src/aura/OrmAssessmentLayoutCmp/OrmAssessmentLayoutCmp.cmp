@@ -135,7 +135,7 @@
     </div>
     <!-- menu -->
     <aura:if isTrue="{!v.showChevronleft}">
-        <div class="slds-size--1-of-8" style="position:sticky;top:250px;padding-left:40px">
+        <div class="slds-size--1-of-8" style="position:sticky;top:300px;padding-left:40px">
               <aura:if isTrue="{!v.showContext2}">
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
@@ -177,12 +177,12 @@
                 <aura:if isTrue="{!v.assessmentData.Id == null}">
                     <tr>
 	                     <td >
-	                          <div style="margin-bottom:20px; font-size: large;font-weight: normal">
+	                          <div style="margin-bottom:20px;">
 	                               <span><lightning:button label="{!$Label.c.orm_back_button_assessment}" 
 							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
 							                              iconName='utility:back'/>
                                    </span>
-	                               <h1 class="intro-title">Creation of an assessment</h1>
+	                               <h1 class="intro-title">New Assessment</h1>
 	                           </div>
 	                     </td>
 	                </tr>
@@ -195,7 +195,7 @@
 							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
 							                              iconName='utility:back'/>
                                    </span>
-                                   <h1 class="intro-title">Displaying of an assessment</h1>
+                                   <h1 class="intro-title">Show Assessment</h1>
 	                           </div>
 	                     </td>
 	                </tr>
@@ -1388,21 +1388,22 @@
                     
                      
                 </aura:if>
-                <aura:if isTrue="{!v.displaySaveCancelBtn}">
-                    <tr>
-                        <td class="textInDiv">
-                           <div style="margin-bottom:20px;">
-                               <lightning:buttonGroup class="slds-m-around_medium">
-		                         	  <lightning:button label="{!$Label.c.orm_save_button}"
-		                                          variant="neutral"
-		                                          class="slds-button"
-		                                          onclick="{!c.createAssessment}"/>
-                                      </lightning:buttonGroup>
-                                     <span style="color:red">{!v.assessmentData.Id == null ? $Label.c.orm_message_save : $Label.c.orm_message_update}</span>
-                           </div>
-                        </td>
-                    </tr>
-                </aura:if>
+                <aura:if isTrue="{!v.displaySaveCancelBtn}"> 
+                      <tr>
+                          <td class="textInDiv">
+                             <div style="margin-bottom:20px;">
+                                 <lightning:buttonGroup class="slds-m-around_medium">
+                                 <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
+                                 <lightning:button label="{!$Label.c.orm_save_button}"
+                                                  variant="neutral"
+                                                  class="slds-button"
+                                                  onclick="{!c.createAssessment}"/>
+                                 </lightning:buttonGroup>
+                                  <span style="color:red">{!v.assessmentData.Id == null ? $Label.c.orm_message_save : $Label.c.orm_message_update}</span>
+                             </div>
+                          </td>
+                      </tr>
+                    </aura:if>
              </table>
        </div>
       <aura:if isTrue="{!v.closeFieldDescription == false}">
@@ -1411,7 +1412,7 @@
        </div>
     </aura:if> 
     <aura:if isTrue="{!v.showChevronright}">
-        <div class="slds-size--1-of-8" style="position:sticky;top:250px;padding-left:50px">
+        <div class="slds-size--1-of-8" style="position:sticky;top:300px;padding-left:50px">
                <aura:if isTrue="{!v.showContext}">
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
                </aura:if>

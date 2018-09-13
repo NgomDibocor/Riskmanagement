@@ -41,7 +41,7 @@
 	        	</div>
 	        </aura:if>
 	  <aura:if isTrue="{!not(empty(v.impacts))}">
-       <table class="slds-table slds-table_bordered slds-table_cell-buffer" width="100%">
+       <table class="slds-table slds-table_bordered slds-table_cell-buffer" style=" width:90%;">
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th  class="slds-text-align--right" ><!-- 3.25rem; -->

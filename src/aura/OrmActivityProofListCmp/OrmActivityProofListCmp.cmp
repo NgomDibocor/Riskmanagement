@@ -31,7 +31,7 @@
 	        </span>
 	          <span
 				class="btnDeleteActivity" onclick="{!c.removeActivityProof}"> <lightning:icon
-					iconName="utility:delete" size="medium" />
+					iconName="utility:delete" size="small" />
 			</span>
 	        <br/><br/>
 	         <aura:if isTrue="{!v.showSaveCancelBtn}">

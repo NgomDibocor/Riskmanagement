@@ -20,3 +20,9 @@
 .THIS .descriptionToolTip {
 	/* background-color: red; */
 }
+.THIS .messageIsEmpty {
+  text-align: center;
+  font-size: 1em;
+  white-space: normal;
+  color: green;
+}

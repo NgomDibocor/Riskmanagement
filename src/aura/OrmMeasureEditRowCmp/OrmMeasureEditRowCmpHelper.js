@@ -10,7 +10,6 @@
 			//store state of response
 			var state = response.getState();
 			if (state === "SUCCESS") {
-			alert(component.get("v.selectedRowsCount"));
 				console.log(state);
 				if (response.getReturnValue() != '') {
 					// if getting any error while delete the records , then display a alert msg/

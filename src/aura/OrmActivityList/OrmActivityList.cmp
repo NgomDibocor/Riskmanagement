@@ -48,25 +48,26 @@
     <div style="margin-bottom:20px;margin-top: 50px">
 		 <h1 class="titleActivity">Activities</h1>
 	</div>
-	<div class="slds-grid slds-gutters">
-		<div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>
-		<div class=" slds-size--6-of-12   slds-p-horizontal--small">
-			<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
-			<span class="searchInput"> <lightning:input class="search"
+	<div class="slds-m-around_large">
+		<div class="measureProgression">
+	            <div class="measureSearch">
+			    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}" >
+						<lightning:input class="search"
 					type="search" onchange="{!c.filter}" value="{!v.key}"
 					label="{!$Label.c.search_title_label}" />
-			</span>
-			</a>
-		</div>
-		<div class=" slds-size--4-of-12   slds-p-horizontal--small">
-			<br /> <span class="btnNewAct" onclick="{!c.openActivityNewCmp}">
+					</a>
+				</div>
+		        <span onclick="{!c.openActivityNewCmp}" class="btnNewMeasure" >
 				<lightning:icon iconName="utility:new" size="small" />
-			</span> <span></span> <span class="btnDeleteActivity"
+			    </span> 
+
+			    <span class="deleteMeasure"  title="{!$Label.c.orm_delete_button_title}"
 				onclick="{!c.removeActivity}"> <lightning:icon
 					iconName="utility:delete" size="small" />
 			</span>
-			<!-- use aura:if for show/hide buttons -->
-			<aura:if isTrue="{!v.showSaveCancelBtn}">
+<!-- 			    </aura:if> -->
+			    <br/><br/>
+			    <aura:if isTrue="{!v.showSaveCancelBtn}">
 				<!--button for save and cancel Record after Inline Edit-->
 				<lightning:buttonGroup class="slds-m-around_medium">
 					<lightning:button label="{!$Label.c.orm_cancel_button_title}"
@@ -75,8 +76,6 @@
 						onclick="{!c.Save}" variant="success" />
 				</lightning:buttonGroup>
 			</aura:if>
-		</div>
-	</div>
 	<div class="slds-m-around_large">
 	<aura:if isTrue="{!not(empty(v.ActivityList))}">
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
@@ -163,5 +162,7 @@
 		</div>
 		<!--###### MODAL BOX End  Here ######-->
 	</aura:if>
+	</div>
+	</div>
 	<c:OrmActivityNewCmp />
 </aura:component>

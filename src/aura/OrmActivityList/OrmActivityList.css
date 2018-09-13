@@ -14,3 +14,22 @@
   white-space: normal;
   color: green;
 }
+.THIS span.btnNewMeasure {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+.THIS .deleteMeasure{
+	display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+.THIS .measureSearch {
+	display: inline-block;
+    width:85%;
+    margin-right: 15px;
+}
+.THIS div.measureProgression {
+    display: inline-block;
+    width:100%;
+}

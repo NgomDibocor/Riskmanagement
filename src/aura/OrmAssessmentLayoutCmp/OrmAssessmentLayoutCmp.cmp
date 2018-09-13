@@ -135,7 +135,7 @@
     </div>
     <!-- menu -->
     <aura:if isTrue="{!v.showChevronleft}">
-        <div class="slds-size--1-of-8" style="position:sticky;top:300px;padding-left:40px">
+        <div class="slds-size--1-of-8" style="position:sticky;top:420px;padding-left:40px">
               <aura:if isTrue="{!v.showContext2}">
                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
               </aura:if>
@@ -1412,7 +1412,7 @@
        </div>
     </aura:if> 
     <aura:if isTrue="{!v.showChevronright}">
-        <div class="slds-size--1-of-8" style="position:sticky;top:300px;padding-left:50px">
+        <div class="slds-size--1-of-8" style="position:sticky;top:420px;padding-left:50px">
                <aura:if isTrue="{!v.showContext}">
                    <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
                </aura:if>

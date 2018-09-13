@@ -94,7 +94,7 @@
               onmouseover="{! c.mouseDescription }"
             />
 			 <aura:set attribute="else">
-			    la liste est vide
+			   {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_impact +'   ' + $Label.c.orm_is_empty}
 			 </aura:set>
            </aura:if>
         </div>

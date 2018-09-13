@@ -4,6 +4,7 @@
 	<aura:registerEvent name="OrmNewImpactClickedEvt"  type="c:OrmNewImpactClickedEvt"/>
 	<aura:registerEvent name="OrmEvtSelectAllImpact" type="c:OrmEvtSelectAllImpact" />
 	<aura:registerEvent name="OrmEvtDeleteImpact" type="c:OrmEvtDeleteImpact" description="" />
+	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="impacts" type="Macro[]" description="" />
 	<aura:attribute name="impactsTemp" type="Macro[]" description="" />
@@ -20,7 +21,9 @@
 		<div class="slds-m-around_large">  
 			<div class="impact">
 			 <div class="iimpact">
+			 <a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
 	          <lightning:input type="search"   onchange="{!c.filter}" value="{!v.filter}"  label="{!$Label.c.search_title_label}"  placeholder="{!$Label.c.orm_filter_impact_placeholder}" />
+	          </a>
 	        </div>
 	            <span class="btnNewImpact" onclick="{!c.openImpactNewCmp}">
 	              <lightning:icon iconName="utility:new" size="small"   />

@@ -235,5 +235,22 @@
         });
         evt.fire();
     },
+    handleRangeChange : function(component, event, helper) { 
+    component.set("v.sliderValue",component.find("slider1").get("v.value")) 
+    var sliderValue = component.find("slider1").get("v.value");
+    if(sliderValue>=0 && sliderValue<= 5){
+    document.getElementById("divColor").style.backgroundColor = "green";
+    document.getElementById("divColor").innerHTML= 'Rare';
+    }else if (sliderValue>5 && sliderValue<= 25){
+    document.getElementById("divColor").style.backgroundColor = "yellow";
+    document.getElementById("divColor").innerHTML= 'Unlikely';
+    } else if (sliderValue>25 && sliderValue<= 75){
+    document.getElementById("divColor").style.backgroundColor = "orange";
+    document.getElementById("divColor").innerHTML= 'Possible';
+    }else{
+    document.getElementById("divColor").style.backgroundColor = "red";
+    document.getElementById("divColor").innerHTML= 'Probable';
+    }
+    }
 	
 })

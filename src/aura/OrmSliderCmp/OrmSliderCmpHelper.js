@@ -25,7 +25,7 @@
         return slider;
 	},
 	
-	getProbability : function(component, event, helper, probability) {
+	/*getProbability : function(component, event, helper, probability) {
 	      var actionProba = component.get('c.getProbability');
 	      actionProba.setParams({ "assessment" : component.get("v.idAssessment"),
 	                              "probability" : probability
@@ -42,7 +42,7 @@
 		        }
 	      });
 	      $A.enqueueAction(actionProba);
-	},
+	},*/
 	
 	jsLoaded : function(component, event, helper) {
 	

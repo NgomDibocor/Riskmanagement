@@ -234,6 +234,17 @@
                 alert($A.get("$Label.c.orm_not_found"));
             }
         });
+        var actionBuget = component.get("c.getSelectOptions");
+        actionBuget.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_budgetOrganisation__c'});
+        actionBuget.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                component.set('v.allBudgetOrganisation', response.getReturnValue());
+                
+            } else {
+                alert($A.get("$Label.c.orm_not_found"));
+            }
+        });
         $A.enqueueAction(actionTypeAssessment);
         $A.enqueueAction(actionOrgs);
         $A.enqueueAction(actionTypeProjet);
@@ -246,6 +257,7 @@
         $A.enqueueAction(actionOrganisationSectorInd);
         $A.enqueueAction(actionCountry);
         $A.enqueueAction(actionRegion);
+        $A.enqueueAction(actionBuget); 
 	},
    
     verifTypeAssessment  : function(component, event, helper, typeAssessment) {

@@ -47,7 +47,7 @@ public with sharing class OrmSliderController {
           delete probabilities;                              
     }
     
-    @AuraEnabled 
+    /*@AuraEnabled 
     public static Macro getProbability(String assessment, String probability)
     {
          return  [SELECT Id, orm_probability__c, orm_pourcentageMin__c, orm_pourcentageMax__c
@@ -57,7 +57,7 @@ public with sharing class OrmSliderController {
                           RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()
                        and
                           orm_probability__c =: probability];                               
-    }
+    }*/
     
     @AuraEnabled 
     public static void deletePreviousHsseImpacts(String assessment)

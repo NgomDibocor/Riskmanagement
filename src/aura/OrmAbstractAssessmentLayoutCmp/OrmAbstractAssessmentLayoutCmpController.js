@@ -31,13 +31,19 @@
          }  
         
         if(showContext2 == true){
+            //console.log(assessment.orm_organisation__c)
+            component.set("v.showContext2", false);
+            component.set("v.showContextActivity", true);
+            helper.activeContextActivity(component, event);
+        }
+        
+        if(showContextActivity == true){
             var assessment = component.get("v.assessmentData");
-            console.log(assessment.orm_organisation__c)
-    	    if(assessment.orm_organisation__c != undefined){
-    	    
-	              component.set("v.showContext2", false);
-	              component.set("v.showContextActivity", true);
-	              helper.activeContextActivity(component, event);
+            if(assessment.orm_organisation__c != undefined){
+    	       component.set("v.showContextActivity", false);
+               component.set("v.showContextWorkshop", true);
+               helper.activeContextWorkshop(component, event); 
+	              
             }else{
                   var toast = $A.get('e.force:showToast');
 	              toast.setParams({
@@ -47,12 +53,7 @@
 	              });
 	              toast.fire();
             }
-        }
-        
-        if(showContextActivity == true){
-            component.set("v.showContextActivity", false);
-            component.set("v.showContextWorkshop", true);
-            helper.activeContextWorkshop(component, event);
+            
         }
         
         if( showContextActivityShow == true){ 

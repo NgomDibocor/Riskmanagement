@@ -83,7 +83,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />  
             </span>
-            <span class="slds-tabs--path__title">{!$Label.c.orm_context_menu}</span>
+            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">{!$Label.c.orm_context_menu}</span>
           </a>
         </li>
         <li aura:id="riskIdentifId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -92,7 +92,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">{!$Label.c.orm_risk_identification_menu}</span>
+            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">{!$Label.c.orm_risk_identification_menu}</span>
           </a>
         </li>
         <li aura:id="riskAnalyseId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -101,7 +101,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">{!$Label.c.orm_risk_analysis_menu}</span>
+            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">{!$Label.c.orm_risk_analysis_menu}</span>
           </a>
         </li>
         <li aura:id="riskTreatmentId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -110,7 +110,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">{!$Label.c.orm_risk_treatment_menu}</span>
+            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">{!$Label.c.orm_risk_treatment_menu}</span>
           </a>
         </li>
         <li aura:id="actionPlanId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -119,7 +119,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">Risk Picture</span>
+            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">Risk Picture</span>
           </a>
         </li>
         <li aura:id="actionPlanId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -128,7 +128,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title">{!$Label.c.orm_action_plan_menu}</span>
+            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">{!$Label.c.orm_action_plan_menu}</span>
           </a>
         </li>
       </ul>

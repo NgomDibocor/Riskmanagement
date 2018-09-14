@@ -7,25 +7,25 @@
 	<aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
 	
 	
-	<div class="slds-box" style="width:100%;font-size: large !important;">
-	  <h1>List of Assessment</h1>
+	<div  style="width:100%;padding-top:10px;padding-left:10px">
+	  <h1 class="titleListAssessment">List of Assessment</h1>
 	</div>
    
-  <div class="slds-col" >									
+  <div class="slds-col" style="margin-bottom:20px" >									
 		<div class="space"></div>
 		<span class="searchInput">
         	<lightning:input class="search" placeholder="{!$Label.c.orm_filter_assessment_placeholder}" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         <span class="btnNewAssessment" onclick="{!c.openModalDeletePhase}">
-			<lightning:icon iconName="utility:new" onclick="{!c.newAssessment}" size="medium" />
+			<lightning:icon class="couleurFond" iconName="utility:new" onclick="{!c.newAssessment}" size="medium" />
 		</span>
    </div>
    
-   <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px">
+   <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px;margin-bottom: 20px">
     <aura:iteration items="{!v.PaginationList}" var="item">
    
         <div class="slds-size_1-of-3">
-            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:95%;">
+            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:95%;">
                 <article class="slds-card" style="height:130px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
@@ -63,7 +63,7 @@
        
     </aura:iteration>
   </div>
-  <div style="margin:auto; padding-bottom:10px">
+  <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
     <lightning:buttonGroup >
           <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
                             onclick="{!c.previous}" variant="brand"

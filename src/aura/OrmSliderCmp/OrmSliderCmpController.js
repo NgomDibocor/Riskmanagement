@@ -50,7 +50,7 @@
        var showBusinessImpactsRanking = component.get("v.showBusinessImpactsRanking");
        
        if(showProbilityRanking == true){
-          
+           component.set("v.showBtnSave", true);
            component.set("v.showBusinessImpactsRanking", true);
 	       component.set("v.showProbilityRanking", false);
 	       document.getElementById("bir").style.display = "block";
@@ -62,6 +62,7 @@
        }
        
        if(showBusinessImpactsRanking == true){
+           
 	       component.set("v.showBusinessImpactsRanking", false);
            component.set("v.showHsseImpactsRanking", true);
            
@@ -87,7 +88,7 @@
        } 
        
        if(showHsseImpactsRanking == true){
-           
+           component.set("v.showBtnSave", false);
            component.set("v.showBusinessImpactsRanking", true);
 	       component.set("v.showHsseImpactsRanking", false);
 	       

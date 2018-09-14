@@ -1,5 +1,6 @@
 ({
 	fetchPicklist : function(component, event, idAsssessmentRisk) {
+		console.log( component.get("v.assessmentData").Id);
 		var actionFrequency = component.get("c.getSelectOptions");
         actionFrequency.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_frequency__c'});
         actionFrequency.setCallback(this, function(response){
@@ -101,5 +102,42 @@
             }
         });
         $A.enqueueAction(actionFrequency);
+      
+        
+        
+	},
+	
+	getProbality : function(component, event) {
+	   var action = component.get('c.findAllProbabilitiesByAssessment');
+	      action.setParams({ "assessment":component.get("v.assessmentData").Id});
+	      action.setCallback(this, function(response) {
+		        if(response.getState() == 'SUCCESS'){
+		        
+		        	component.set("v.probabilities", response.getReturnValue());
+		        	console.log(JSON.stringify(response.getReturnValue()));
+		        	if(component.get("v.probabilities").length > 0){
+	        	   
+	                   for (var i = 0; i < component.get("v.probabilities").length; i++) {
+		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Probable' ){
+		                         component.set("v.probableData", component.get("v.probabilities")[i]);
+		                      }
+		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Possible' ){
+		                         component.set("v.possibleData", component.get("v.probabilities")[i]);
+		                      }
+		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Unlikely' ){
+		                         component.set("v.unlikelyData", component.get("v.probabilities")[i]);
+		                      }
+		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Rare' ){
+		                         component.set("v.RareData", component.get("v.probabilities")[i]);
+		                      }
+		                   }
+			        	}	
+		        	
+		        	
+		        } else {
+		        	alert("ERROR")	
+		        }
+	      });
+	      $A.enqueueAction(action); 
 	}
 })

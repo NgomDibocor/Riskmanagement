@@ -1214,7 +1214,7 @@
                          </td>
                       </tr>
                       <tr>
-                           <td class="textInDiv">
+                           <td class="textInDiv" >
 	                           <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
 	                       </td>
                       </tr>

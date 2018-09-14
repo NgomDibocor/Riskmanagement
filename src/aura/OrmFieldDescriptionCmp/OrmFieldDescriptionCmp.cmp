@@ -11,11 +11,11 @@
          
         <table style="width:80%;margin:auto">
             <tr>
-	         <td>{!v.nomField}</td>
+	         <td class="titleFD">{!v.nomField}</td>
 	        </tr>
-	        <tr style="height:50px"></tr>
+	        <tr style="height:40px"></tr>
 	        <tr>
-	          <td>{!v.descriptionField}</td>
+	          <td class="descriptionFD">{!v.descriptionField}</td>
 	        </tr>
         </table> 
         

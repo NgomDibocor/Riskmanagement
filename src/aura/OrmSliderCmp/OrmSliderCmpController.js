@@ -7,9 +7,9 @@
         document.getElementById("bir").style.display = "none";
         document.getElementById("hir").style.display = "none";
         
-          var action = component.get('c.findAllProbabilitiesByAssessment');
-	      action.setParams({ "assessment": component.get("v.idAssessment") });
-	      action.setCallback(this, function(response) {
+          var actionGetProbabilities = component.get('c.findAllProbabilitiesByAssessment');
+	      actionGetProbabilities.setParams({ "assessment": component.get("v.idAssessment") });
+	      actionGetProbabilities.setCallback(this, function(response) {
 		        if(response.getState() == 'SUCCESS'){
 		        
 		        	component.set("v.probabilities", response.getReturnValue());
@@ -37,7 +37,7 @@
 		        	alert("ERROR")	
 		        }
 	      });
-	      $A.enqueueAction(action);  
+	      $A.enqueueAction(actionGetProbabilities);  
           
           
 
@@ -171,17 +171,74 @@
    
    cancelUpdate : function(component, event, helper) {
       component.set("v.showBtnUpdate", false);
-   }
+   },
    
-   createHsseImpactsRanking : function(component, event, helper) {
+   /*createHsseImpactsRanking : function(component, event, helper) {
       var hsseImpacts = [];
           var newItemVeryHigh = {};
           newItemVeryHigh.sobjectType = 'Order';
           newItemVeryHigh.orm_assessment__c = component.get("v.idAssessment");
-          newItemVeryHigh.orm_rating__c = 'Very High';
-          newItemVeryHigh.orm_pourcentageMin__c = component.get("v.probableMin");
-          newItemVeryHigh.orm_pourcentageMax__c = component.get("v.probableMax");
-          probabilities.push(newItemVeryHigh);
-   }
+          newItemVeryHigh.orm_rating__c = 'VeryHigh';
+          newItemVeryHigh.Description = '';
+          newItemVeryHigh.orm_security__c = '';
+          newItemVeryHigh.orm_environmentAndCommunity__c = '';
+          hsseImpacts.push(newItemVeryHigh);
+       
+          var newItemHigh = {};
+          newItemHigh.sobjectType = 'Order';
+          newItemHigh.orm_assessment__c = component.get("v.idAssessment");
+          newItemHigh.orm_rating__c = 'High';
+          newItemHigh.Description = '';
+          newItemHigh.orm_security__c = '';
+          newItemHigh.orm_environmentAndCommunity__c = '';
+          hsseImpacts.push(newItemHigh);
+          
+          var newItemMedium = {};
+          newItemMedium.sobjectType = 'Order';
+          newItemMedium.orm_assessment__c = component.get("v.idAssessment");
+          newItemMedium.orm_rating__c = 'Medium';
+          newItemMedium.Description = '';
+          newItemMedium.orm_security__c = '';
+          newItemMedium.orm_environmentAndCommunity__c = '';
+          hsseImpacts.push(newItemMedium);
+
+          var newItemLow = {};
+          newItemLow.sobjectType = 'Order';
+          newItemLow.orm_assessment__c = component.get("v.idAssessment");
+          newItemLow.orm_rating__c = 'Low';
+          newItemLow.Description = '';
+          newItemLow.orm_security__c = '';
+          newItemLow.orm_environmentAndCommunity__c = '';
+          hsseImpacts.push(newItemLow);
+
+          var actiondeletePrevious = component.get('c.deletePreviousHsseImpacts');
+	      actiondeletePrevious.setParams({ "assessment": component.get("v.idAssessment") });
+	      actiondeletePrevious.setCallback(this, function(response) {
+	        if(response.getState() == 'SUCCESS'){
+	        	  var action = component.get('c.addHsseImpacts');
+			      action.setParams({ "items": hsseImpacts });
+			      action.setCallback(this, function(response) {
+			        if(response.getState() == 'SUCCESS'){
+			            component.set("v.showBtnUpdate", false);
+			        	component.set("v.hsseImpacts", response.getReturnValue());
+			        	var toast = $A.get('e.force:showToast');
+						toast.setParams({
+							'message' : "HSSE Impacts Ranking was successfully saved",
+							'type' : 'success',
+							'mode' : 'dismissible'
+						});      
+						toast.fire(); 	
+			        } else {
+			        	alert("ERROR")	
+			        }
+			     });
+			     $A.enqueueAction(action);
+	        } else {
+	        	alert("ERROR")	
+	        }
+	     });
+	     $A.enqueueAction(actiondeletePrevious);
+
+   }*/
    
 })

@@ -137,37 +137,59 @@
     <aura:if isTrue="{!v.showChevronleft}">
         <div class="slds-size--1-of-8" style="position:sticky;top:420px;padding-left:40px">
               <aura:if isTrue="{!v.showContext2}">
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showContextActivity}">
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showContextActivityShow}">
-                   <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                   </span>
                </aura:if>
               <aura:if isTrue="{!v.showContextWorkshop}">
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showSlider}">
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showRiskIdentif}">
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showRiskAnalyse}">        
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showListCauseAndImpact}">        
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showListMeasure}">        
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showRiskTreatment}">        
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
               <aura:if isTrue="{!v.showActionPlan}">        
-                  <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:chevronleft" size="large" />
+                  </span>
               </aura:if>
         </div>
     </aura:if>
@@ -1214,7 +1236,7 @@
                          </td>
                       </tr>
                       <tr>
-                           <td class="textInDiv">
+                           <td class="textInDiv" >
 	                           <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
 	                       </td>
                       </tr>
@@ -1407,41 +1429,61 @@
              </table>
        </div>
       <aura:if isTrue="{!v.closeFieldDescription == false}">
-       <div class="slds-size--2-of-8 " style="margin-top:20px;padding-left:20px;padding-right:20px;padding-bottom:10px;position:sticky;top:160px">
+       <div class="slds-size--2-of-8 " style="margin-top:20px;padding-left:5px;padding-right:5px;padding-bottom:10px;text-justify: inter-word;position:sticky;top:160px">
            <c:OrmFieldDescriptionCmp/>
        </div>
     </aura:if> 
     <aura:if isTrue="{!v.showChevronright}">
         <div class="slds-size--1-of-8" style="position:sticky;top:420px;padding-left:50px">
                <aura:if isTrue="{!v.showContext}">
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showContext2}">
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+	               <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showContextActivity}">
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showContextActivityShow}">
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showContextWorkshop}">
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showSlider}">
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showRiskAnalyse}">        
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showListCauseAndImpact}">        
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showListAssumption}">        
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
                <aura:if isTrue="{!v.showRiskTreatment}">        
-                   <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:chevronright" size="large" />
+                   </span>
                </aura:if>
         </div>
      </aura:if> 

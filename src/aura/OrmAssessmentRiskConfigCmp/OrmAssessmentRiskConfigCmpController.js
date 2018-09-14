@@ -3,23 +3,24 @@
      * CreatedBy @David Diop
      *
      */
-    doInit: function(component, event, helper) {
+    InstantantiateRisk: function(component, event, helper) {
         var riskAssessmentId = event.getParam('riskAssessmentId');
 	    component.set("v.assessmentRiskId" ,riskAssessmentId);
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
         helper.fetchPicklist(component, event, idAsssessmentRisk);
+         helper.getProbality(component, event);
       },
       
       updateAssessmentRisk : function(component, event, helper) {
 	       var assessmentRisk = component.get("v.assessmentRiskData");
 	       var assessment= component.get("v.assessmentRiskData.orm_assessment__c");
+	       console.log(assessment);
 	       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
-	      
 	       assessmentRisk.orm_assessment__c = assessment;
 	       assessmentRisk.orm_Risk__c = risk;
 	       if(component.get("v.assessmentData").orm_typeAssessment__c == 'Projet'){
-		       var dateRisk=component.find("dateRisk");
-		       assessmentRisk.orm_date__c =dateRisk.get("v.value");
+		      // var dateRisk=component.find("dateRisk");
+		      // assessmentRisk.orm_date__c =dateRisk.get("v.value");
 		       var environmentAndCommunity =  component.find("environmentAndCommunity");
 		       assessmentRisk.orm_environmentAndCommunity__c =environmentAndCommunity.get("v.value");
 		       var frequency = component.find("frequency");
@@ -44,8 +45,8 @@
 		       assessmentRisk.orm_healthAndSafety__c =healthAndSafety.get("v.value");
 	       }
 	       if(component.get("v.assessmentData").orm_typeAssessment__c == 'Organisation'){
-		       var dateRisk=component.find("dateRisk");
-		       assessmentRisk.orm_date__c =dateRisk.get("v.value");
+		      /* var dateRisk=component.find("dateRisk");
+		       assessmentRisk.orm_date__c =dateRisk.get("v.value");*/
 		       var frequency = component.find("frequency");
 		       assessmentRisk.orm_frequency__c =frequency.get("v.value");
 		       var status = component.find("status");
@@ -56,8 +57,8 @@
 		       assessmentRisk.orm_manageAbility__c =manageAbility.get("v.value");
 	       }
 	       if(component.get("v.assessmentData").orm_typeAssessment__c == 'Processus'){
-	           var dateRisk=component.find("dateRisk");
-		       assessmentRisk.orm_date__c =dateRisk.get("v.value");
+	           /*var dateRisk=component.find("dateRisk");
+		       assessmentRisk.orm_date__c =dateRisk.get("v.value");*/
 		       var frequency = component.find("frequency");
 		       assessmentRisk.orm_frequency__c =frequency.get("v.value");
 		       var status = component.find("status");
@@ -238,19 +239,49 @@
     handleRangeChange : function(component, event, helper) { 
     component.set("v.sliderValue",component.find("slider1").get("v.value")) 
     var sliderValue = component.find("slider1").get("v.value");
-    if(sliderValue>=0 && sliderValue<= 5){
+    if(sliderValue>=component.get("v.RareData.orm_pourcentageMin__c") && sliderValue<= component.get("v.RareData.orm_pourcentageMax__c")){
     document.getElementById("divColor").style.backgroundColor = "green";
-    document.getElementById("divColor").innerHTML= 'Rare';
-    }else if (sliderValue>5 && sliderValue<= 25){
+    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c");
+    }else if (sliderValue>component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue<= component.get("v.unlikelyData.orm_pourcentageMax__c")){
     document.getElementById("divColor").style.backgroundColor = "yellow";
-    document.getElementById("divColor").innerHTML= 'Unlikely';
-    } else if (sliderValue>25 && sliderValue<= 75){
+    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c");
+    } else if (sliderValue>component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
     document.getElementById("divColor").style.backgroundColor = "orange";
-    document.getElementById("divColor").innerHTML= 'Possible';
+    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c");
     }else{
     document.getElementById("divColor").style.backgroundColor = "red";
-    document.getElementById("divColor").innerHTML= 'Probable';
+    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c");
     }
-    }
+    },
+     
+    /**
+	 * 
+	 * @author David diop
+	 * @version 1.0
+	 * @description method for count the selected checkboxes
+	 * @history 2018-09-05 : David diop - Implementation
+	 */
+	checkboxSelect : function(component, event, helper) {
+		 var selected = event.getSource().getLocalId();
+		 if(selected=='r0')
+		 {
+			 document.getElementById('hs').style.backgroundColor = "red";
+			 document.getElementById("hs").innerHTML= 'very high';
+		 }else if (selected=='r1')
+		 {
+			 document.getElementById('hs').style.backgroundColor = "orange";
+			 document.getElementById("hs").innerHTML= 'high';
+		 }
+		 else if (selected=='r2')
+		 {
+			 document.getElementById('hs').style.backgroundColor = "yellow";
+			 document.getElementById("hs").innerHTML= 'Medium';
+		 }
+		 else
+		 {
+		  document.getElementById('hs').style.backgroundColor = "green";
+		  document.getElementById("hs").innerHTML= 'Low';
+		 }
+	},
 	
 })

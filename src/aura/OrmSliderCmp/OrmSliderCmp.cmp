@@ -151,13 +151,28 @@
 					               
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
-					            <lightning:buttonGroup class="slds-m-around_medium">
-						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
-						                      <lightning:button label="{!$Label.c.orm_save_button}"
+					         <aura:if isTrue="{!not(empty(v.probabilities))}">
+					                  <aura:if isTrue="{!v.showBtnUpdate}">
+					                      <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdate}"/>
+						                      <lightning:button label="update"
 						                                       variant="neutral"
-						                                       class="slds-button slds-button_success"
+						                                       class="slds-button slds-button_brand"
 						                                       onclick="{!c.createBusinessImpactsRanking}"/>
-					            </lightning:buttonGroup>
+					                      </lightning:buttonGroup>
+					                   </aura:if>
+					              <aura:set attribute="else">
+					                   <aura:if isTrue="{!v.showBtnSave}">
+						                  <lightning:buttonGroup class="slds-m-around_medium">
+							                      <!--<lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>  -->
+							                      <lightning:button label="{!$Label.c.orm_save_button}"
+							                                       variant="neutral"
+							                                       class="slds-button slds-button_success"
+							                                       onclick="{!c.createBusinessImpactsRanking}"/>
+						                  </lightning:buttonGroup>
+						               </aura:if>
+					            </aura:set>
+					         </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showHsseImpactsRanking}">
 					       <aura:if isTrue="{!not(empty(v.probabilities))}">

@@ -91,7 +91,7 @@ public with sharing class OrmSliderController {
                   From Order 
                   WHERE   orm_assessment__c =:assessment 
                        and 
-                          RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()];                               
+                          RecordTypeId=: OrmSliderController.getHsseImpactRecordTypeId()];                               
     }
     
 }

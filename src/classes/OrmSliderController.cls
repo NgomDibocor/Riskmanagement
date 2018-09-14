@@ -83,5 +83,15 @@ public with sharing class OrmSliderController {
 
         return res;   
    }
+   
+   @AuraEnabled 
+    public static List<Order> findHsseImpactsByAssessment(String assessment)
+    {
+         return  [SELECT Id, Description, orm_security__c, orm_environmentAndCommunity__c
+                  From Order 
+                  WHERE   orm_assessment__c =:assessment 
+                       and 
+                          RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()];                               
+    }
     
 }

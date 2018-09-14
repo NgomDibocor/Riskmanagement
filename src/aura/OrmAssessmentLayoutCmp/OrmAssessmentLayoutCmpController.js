@@ -248,21 +248,38 @@
 	},
 	
     onChangeOrganisation : function(component, event, helper){
+        console.log('*******************************')
+        console.log('id organisation before'+component.find("organisation").get("v.value"))
     	var newItem = component.get("v.assessmentData");
+    	console.log(JSON.stringify(component.get("v.assessmentData")))
+    	
     	newItem.orm_organisation__c = component.find("organisation").get("v.value");
         var action = component.get('c.add');
         action.setParams({"item": newItem});
         action.setCallback(this, function(response){
             var state = response.getState();
             if(state === 'SUCCESS'){
-                component.set('v.assessmentData', response.getReturnValue());
-                var toast = $A.get('e.force:showToast');
-                toast.setParams({
-            	'message' : newItem.orm_organisation__r.Name+' '+$A.get("$Label.c.orm_success_associated"),
-                'type' : 'success',
-                'mode' : 'dismissible'
-            });
-            toast.fire();
+                
+                var actiongetAssessment = component.get('c.getAssessment');
+		        actiongetAssessment.setParams({"idAss": component.get("v.assessmentData").Id });
+		        actiongetAssessment.setCallback(this, function(response){
+		            var state = response.getState();
+		            if(state === 'SUCCESS'){
+		                
+		                component.set('v.assessmentData', response.getReturnValue());
+		                var toast = $A.get('e.force:showToast');
+		                toast.setParams({
+			            	'message' : component.get("v.assessmentData").orm_organisation__r.Name+' '+$A.get("$Label.c.orm_success_associated"),
+			                'type' : 'success',
+			                'mode' : 'dismissible'
+			            });
+			            toast.fire();
+            
+		            } else {
+		                alert($A.get("$Label.c.orm_update_failed"));
+		            }
+		        });
+		        $A.enqueueAction(actiongetAssessment);
             
             } else {
                 alert($A.get("$Label.c.orm_update_failed"));

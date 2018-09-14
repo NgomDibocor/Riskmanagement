@@ -33,7 +33,7 @@
     },
 
     getTemplate : function(component, event) {
-    
+    	//get Id template selected
         var templId = component.get("v.selTempl");
       
        
@@ -49,10 +49,10 @@
                 console.log('responseVal..@getTemplate ',responseVal);
                  component.set("v.templDetail",responseVal);
                     component.set("v.subjTxt",responseVal.Subject);
-//                    if(!$A.util.hasClass(component.find("emailBodyDiv"), "slds-hide")){
-//                        
-//                        $A.util.addClass(component.find("emailBodyDiv"), 'slds-hide'); 
-//                    }
+                    if(!$A.util.hasClass(component.find("emailBodyDiv"), "slds-hide")){
+                        
+                      $A.util.addClass(component.find("emailBodyDiv"), 'slds-hide'); 
+                                         }
 				}else{
 				let
 					errors = response.getError();
@@ -94,13 +94,15 @@
 		});
                                    action.setCallback(this,function(response){
                                    var state = response.getState();
-							if (state === "SUCCESS") {
-							var toast = $A.get('e.force:showToast');
-								toast.setParams({'message' : $A.get("Mail send sucess"),
-												 'type' : 'success',
-											     'mode' : 'dismissible'
-																	});
-															toast.fire();
+							if (state == "SUCCESS") {
+								var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : 'send mail success',
+                'type' : 'success',
+                'mode' : 'dismissible'
+            });      
+            toast.fire();
+              component.set("v.emailTemplate", false);
 							}
                                    });
                                     $A.enqueueAction(action);

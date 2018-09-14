@@ -101,7 +101,7 @@ public with sharing class OrmContactController {
   @AuraEnabled 
     public static List<orm_ContactWorkshop__c> findAllContactWorkshop(String item){
         List<orm_ContactWorkshop__c> allContact = new List<orm_ContactWorkshop__c>();
-        allContact = [Select orm_contact__c, orm_contact__r.Id,orm_Workshop__c,orm_Workshop__r.Name,orm_notification__c
+        allContact = [Select orm_contact__c, orm_contact__r.Id, orm_contact__r.orm_organisation__c, orm_Workshop__c,orm_Workshop__r.Name,orm_notification__c
                     From orm_ContactWorkshop__c where 
                     RecordTypeId=:OrmContactController.getContactWorkshopRecordTypeId() and  
                     orm_Workshop__c=:item

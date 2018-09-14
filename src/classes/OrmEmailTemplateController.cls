@@ -25,7 +25,7 @@ public with sharing class OrmEmailTemplateController {
         
         EmailTemplate emailTemp = new EmailTemplate();
         list<EmailTemplate> emailTempLst = new list<EmailTemplate>();
-        emailTempLst = [SELECT Id,Name,Subject,TemplateType,body FROM EmailTemplate WHERE ID=: templteId];
+        emailTempLst = [SELECT Id,Name,Subject,TemplateType,Body,HtmlValue FROM EmailTemplate WHERE ID=: templteId];
         
         emailTemp = emailTempLst.size()>0 ? emailTempLst[0] : emailTemp;
         return emailTemp;
@@ -40,7 +40,9 @@ public with sharing class OrmEmailTemplateController {
  */
      @AuraEnabled 
     public static void sendMailMethod(List<Contact> mailcontacts ,String mSubject ,String templateId){
-    
+    	//get template details
+    	
+    	
      List<Messaging.SingleEmailMessage> mails =  new List<Messaging.SingleEmailMessage>();     
   
      //  Create a new Email
@@ -48,24 +50,24 @@ public with sharing class OrmEmailTemplateController {
           //  Set email contents - you can use variables and Id template
       mail.setSubject(mSubject);
     mail.setTemplateID(templateId); 
-     mail.setSaveAsActivity(false);
-     
-
-    // Set list of people who should get the email
-       List<String> sendTo = new List<String>();
-       for(Contact contactId:mailcontacts){
-       sendTo.add(contactId.Email);
-       }
-       mail.setToAddresses(sendTo);
-    
-    // Set who the email is sent from
+     mail.setSaveAsActivity(true);
+  	system.debug('templateid'+templateId);
+ // Set who the email is sent from
        mail.setReplyTo('noreply@gmail.com'); // change it with your mail address.
        mail.setSenderDisplayName('salesforce User'); 
-    
- 
-    
-    //  Add your email to the master list
-      mails.add(mail);
+    // Set list of contact who should get the email
+      // List<String> sendTo = new List<String>();
+       for(Contact contactId:mailcontacts){
+       	   mail.setTargetObjectId(contactId.Id);
+       	   system.debug('setTargetObjectId'+contactId.Id);
+       	   mail.setWhatId(contactId.orm_organisation__c);
+       	   system.debug('setWhatId'+contactId.orm_organisation__c);
+       	   mail.setHTMLBody(getTemplateDetails(templateId).Body);
+       	   mail.setPlainTextBody(getTemplateDetails(templateId).Body);
+       	  //  Add your email to the master list
+       	  system.debug('getHtmlbody'+mail.getHTMLBody());
+          mails.add(mail);
+       }
     
   // Send all emails in the master list
      Messaging.sendEmail(mails);

@@ -5,9 +5,9 @@
 	<aura:attribute name="emailTemplate" type="boolean" />
 	<aura:attribute name="disableTemplate" type="boolean" default="false"
 		description="" />
-	<aura:attribute name="templates" type="EmailTemplate[]" default="[]" />
+	<aura:attribute name="templates" type="EmailTemplate[]" default="[]" description="list mail template" />
 	<aura:attribute name="templDetail" type="EmailTemplate" default="{}" />
-	<aura:attribute name="selTempl" type="String" description="" />
+	<aura:attribute name="selTempl" type="String" description="Id template selected" />
 	<aura:attribute name="subjTxt" type="String" default="" description="" />
 	<aura:attribute name="contactListSelected" type="Contact[]"
 		description="store contact records list" />
@@ -15,6 +15,7 @@
 	<aura:attribute name="oRecord" type="sObject" />
 
 	<aura:handler name="init" value="{!this}" action="{!c.loadComponent}" />
+	 <aura:if isTrue="{!v.emailTemplate}">
 	<div role="dialog" tabindex="-1" aria-labelledby="prompt-heading-id"
 		aria-describedby="prompt-message-wrapper"
 		class="slds-modal slds-fade-in-open slds-modal--prompt">
@@ -38,8 +39,8 @@
 							<div class="slds-form-element slds-is-required">
 								<div class="slds-form-element__control">
 									<div class="slds-input-has-icon slds-input-has-icon--right">
-									 <aura:iteration items="{!v.contactListSelected}" var="sr">
-                        <lightning:pill class="slds-m-around_xx-small" label="{!sr.Name}" name="{!sr.Id}" onremove="{!c.clear }">
+									 <aura:iteration items="{!v.contactListSelected}" var="contact">
+                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" onremove="{!c.clear }">
                             <aura:set attribute="media">
                                 <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
                             </aura:set>
@@ -69,6 +70,12 @@
 
 								</div>
 							</div>
+							<div class="slds-form-element" aura:id="emailBodyDiv">
+								<div class="slds-form-element__control">
+								<lightning:inputrichtext label="Content" />
+								</div>
+								</div>
+					
 							<div class="slds-form-element slds-is-required">
 								<div class="slds-form-element__control">
 
@@ -77,7 +84,7 @@
 											value="{!v.templDetail.Body}" label="Content" maxlength="700"
 											class="txtAreaCls" disabled="true" />
 
-									</aura:if>
+									</aura:if> 
 								</div>
 							</div>
 						</div>
@@ -96,4 +103,5 @@
 		</div>
 	</div>
 	<div class="slds-backdrop slds-backdrop--open"></div>
+	</aura:if>
 </aura:component>

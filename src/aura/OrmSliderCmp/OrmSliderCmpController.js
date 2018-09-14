@@ -171,7 +171,7 @@
    
    cancelUpdate : function(component, event, helper) {
       component.set("v.showBtnUpdate", false);
-   }
+   },
    
    createHsseImpactsRanking : function(component, event, helper) {
       var hsseImpacts = [];

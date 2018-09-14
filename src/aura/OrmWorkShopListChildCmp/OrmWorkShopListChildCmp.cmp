@@ -171,7 +171,7 @@
                   <div class="slds-form-element">
                      <div class="slds-form-element__control">
                         <span class="btnContactworkshop" title="{!v.singleRec.Name}" onclick="{!c.openModalContactWorkshop}">
-           <lightning:icon iconName="action:add_contact" size="small" /></span>
+           <lightning:icon iconName="action:new_group" size="small" /></span>
                      </div>
                   </div>
                </td>

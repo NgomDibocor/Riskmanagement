@@ -27,7 +27,7 @@
 																		}" />
 	
 	<div style="margin-bottom:20px;margin-top: 40px;">
-		 <h1 class="titlePhase">{!$Label.c.orm_phase}</h1>
+		 <h1 class="titlePhase"><span class="dot">{!$Label.c.orm_phase}</span></h1>
 	</div>
     <div class="slds-m-around_large" >
 	    <div class="phase">

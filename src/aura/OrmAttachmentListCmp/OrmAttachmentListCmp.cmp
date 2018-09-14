@@ -17,7 +17,7 @@
 	
 	
 	<div style="margin-bottom:20px;margin-top: 50px">
-		 <h1 class="titleAattachment">Attachments</h1>
+		 <h1 class="titleAattachment"><span class="dot">Attachments</span></h1>
 	</div>
 	<div class="slds-grid slds-gutters">
 		<div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>

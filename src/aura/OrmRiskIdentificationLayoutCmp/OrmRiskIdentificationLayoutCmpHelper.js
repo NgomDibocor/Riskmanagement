@@ -4,6 +4,7 @@
         var nameCategorieRisk= component.find("categorieRisk");
         var item = nameCategorieRisk.get("v.value");
          var assessment= component.get("v.idAssessment");
+         console.log(assessment);
         var actionOrgs = component.get("c.findAllAssessmentRisk");
         actionOrgs.setParams({
             "item": categoryRisk,

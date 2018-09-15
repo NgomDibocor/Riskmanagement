@@ -281,26 +281,26 @@
 	     $A.enqueueAction(actiondeletePrevious); 
     },
     
-    /*getProbilities : function(component, event, helper) {
-    	  var action = component.get('c.findAllProbabilitiesByAssessment');
+    getHsseImpacts : function(component, event, helper) {
+    	  var action = component.get('c.findHsseImpactsByAssessment');
 	      action.setParams({ "assessment": component.get("v.idAssessment") });
 	      action.setCallback(this, function(response) {
 	        if(response.getState() == 'SUCCESS'){
-	        	component.set("v.probabilities", response.getReturnValue());	
-	        	if(component.get("v.probabilities").length > 0){
+	        	component.set("v.hsseImpacts", response.getReturnValue());	
+	        	if(component.get("v.hsseImpacts").length > 0){
 	        	   
-                   for (var i = 0; i < component.get("v.probabilities").length; i++) {
-                      if(component.get("v.probabilities")[i].orm_probability__c == 'Probable' ){
-                         component.set("v.probableData", component.get("v.probabilities")[i]);
+                   for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
+                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
+                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
                       }
-                      if(component.get("v.probabilities")[i].orm_probability__c == 'Possible' ){
-                         component.set("v.possibleData", component.get("v.probabilities")[i]);
+                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
+                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
                       }
-                      if(component.get("v.probabilities")[i].orm_probability__c == 'Unlikely' ){
-                         component.set("v.unlikelyData", component.get("v.probabilities")[i]);
+                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
+                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
                       }
-                      if(component.get("v.probabilities")[i].orm_probability__c == 'Rare' ){
-                         component.set("v.RareData", component.get("v.probabilities")[i]);
+                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
+                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
                       }
                    }
 	        	}
@@ -310,7 +310,7 @@
 	        }
 	     });
 	     $A.enqueueAction(action);
-    }*/
+    }
     
     
    

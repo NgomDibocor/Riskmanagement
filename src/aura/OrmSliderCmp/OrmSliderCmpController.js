@@ -62,12 +62,13 @@
        }
        
        if(showBusinessImpactsRanking == true){
-            component.set("v.showBtnSave", true);
+           component.set("v.showBtnSave", true);
 	       component.set("v.showBusinessImpactsRanking", false);
            component.set("v.showHsseImpactsRanking", true);
            
            document.getElementById("hir").style.display = "block";
            document.getElementById("bir").style.display = "none";
+          // helper.getHsseImpacts(component, event, helper);
        }
       
     },
@@ -174,14 +175,15 @@
       component.set("v.showBtnUpdate", false);
    },
    
-   createHsseImpactsRanking : function(component, event, helper) {
-    if(component.get("v.hsseVeryHighData").Description != ""){
-       alert((component.get("v.hsseVeryHighData").Description))
-    }else{
-       alert('vide')
-    }
+    createHsseImpactsRanking : function(component, event, helper) {
+         console.log(JSON.stringify(component.get("v.hsseVeryHighData")))
+		  /*if(component.get("v.hsseVeryHighData").Description != ""){
+		       alert((component.get("v.hsseVeryHighData").Description))
+		  }else{
+		       alert('vide')
+		  }
       
-      /*var hsseImpacts = [];
+          /*var hsseImpacts = [];
           var newItemVeryHigh = {};
           newItemVeryHigh.sobjectType = 'Order';
           newItemVeryHigh.orm_assessment__c = component.get("v.idAssessment");
@@ -247,6 +249,6 @@
 	     });
 	     $A.enqueueAction(actiondeletePrevious);*/
 
-   }
+   },
    
 })

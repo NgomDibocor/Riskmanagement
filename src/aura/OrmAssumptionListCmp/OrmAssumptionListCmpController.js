@@ -7,7 +7,7 @@
 	openNewAssumption : function(component, event, helper){
 
 		var idAssessment = component.get("v.assessmentData").Id;
-		alert('idAssessment='+idAssessment);
+		//alert('idAssessment='+idAssessment);
 		if(idAssessment == null){
 			// alert("check if you have created the assessment");
 			var toast = $A.get('e.force:showToast');

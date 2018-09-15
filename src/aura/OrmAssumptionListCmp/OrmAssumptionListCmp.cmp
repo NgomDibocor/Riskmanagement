@@ -137,5 +137,4 @@
 		<!--###### MODAL BOX End  Here ######-->
 	</aura:if>
 	<c:OrmAssumptionNewCmp />
-	<c:OrmAttachmentListCmp parentId="{!v.assessmentData.Id}" />
 </aura:component>

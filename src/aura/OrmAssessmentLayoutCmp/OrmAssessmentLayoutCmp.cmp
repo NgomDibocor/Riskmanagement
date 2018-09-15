@@ -1158,12 +1158,16 @@
                            </div>
                         </td>
                   </tr>
-                  
-                     <tr>
-                         <td class="textInDiv">
-                           <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
-                         </td>
-                     </tr>
+                   <tr>
+                       <td class="textInDivCmp">
+                         <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td class="textInDivCmp">
+                           <c:OrmAttachmentListCmp parentId="{!v.assessmentData.Id}" />
+                       </td>
+                   </tr>
                   <aura:if isTrue="{!or(v.typeProjet == true, v.assessmentData.orm_typeAssessment__c == 'Projet')}">
                      
                   </aura:if>
@@ -1267,7 +1271,7 @@
 	                     </td>
 	                 </tr>
                      <tr>
-                         <td>
+                         <td class="textInDivCmp">
                               <c:OrmActivityProofListCmp />  
                          </td>
                      </tr>
@@ -1288,7 +1292,7 @@
 	                        </td>
 	                  </tr>
                      <tr>
-                          <td>
+                          <td class="textInDivCmp">
                             <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
                           </td>
                      </tr>
@@ -1360,12 +1364,12 @@
                      </td>
                   </tr>
                     <tr>
-                      <td class="textInDiv">
+                      <td class="textInDivCmp">
                         <c:OrmCauseListCmp />
                       </td>
                     </tr> 
                     <tr>
-                       <td class="textInDiv">
+                       <td class="textInDivCmp">
                           <c:OrmImpactListCmp />
                        </td>
                     </tr>

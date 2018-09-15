@@ -11,6 +11,11 @@
 	text-align: justify;
     text-justify: inter-word;
  }
+ .THIS .textInDivCmp{
+	white-space: normal;
+	text-align: justify;
+    text-justify: inter-word;
+ }
 .THIS div.organisation {
     display: inline-block;
     width:95%;

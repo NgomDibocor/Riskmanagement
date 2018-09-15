@@ -35,9 +35,9 @@
                                 </span>
                             </div>
                             <div class="slds-media__body">
-                                <h2>
+                                <h2 class="styleText">
 	                                <a href="javascript:void(0);" class="slds-card__header-link"
-	                                    title=""><ui:outputText value="{!item.value.assessment.Name}" />
+	                                    title="">Name: <ui:outputText value="{!item.value.assessment.Name}" />
 	                                </a>
 	                            </h2>
                             </div>
@@ -50,11 +50,11 @@
                             </div>
                         </header>
                     </div>
-                    <div class=" slds-card__body slds-card__body_inner" style="height:20px">
+                    <div class=" slds-card__body slds-card__body_inner styleText" style="height:20px">
                         <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> 
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                     <span>Risk <b>{!item.value.nbreRisk}</b></span>
+                     <span class="styleText">Number of Risks: <i class="cercle">{!item.value.nbreRisk}</i></span>
                     </div>
                    
                 </article>

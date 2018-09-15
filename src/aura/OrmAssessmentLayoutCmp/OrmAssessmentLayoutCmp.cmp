@@ -200,7 +200,7 @@
                     <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;">
-	                               <span><lightning:button label="{!$Label.c.orm_back_button_assessment}" 
+	                               <span class="textInDiv"><lightning:button label="{!$Label.c.orm_back_button_assessment}" 
 							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
 							                              iconName='utility:back'/>
                                    </span>
@@ -213,7 +213,7 @@
                     <tr>
 	                     <td >
 	                           <div style="margin-bottom:20px;">
-	                               <span><lightning:button label="{!$Label.c.orm_back_button_assessment}" 
+	                               <span class="textInDiv"><lightning:button label="{!$Label.c.orm_back_button_assessment}" 
 							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
 							                              iconName='utility:back'/>
                                    </span>

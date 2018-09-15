@@ -238,7 +238,7 @@
                                  <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
                                  <lightning:button label="{!$Label.c.orm_save_button}"
                                                   variant="neutral"
-                                                  class="slds-button"
+                                                  class="slds-button slds-button_success"
                                                   onclick="{!c.createAssessment}"/>
                                  </lightning:buttonGroup>
                                   <span style="color:red">{!v.assessmentData.Id == null ? $Label.c.orm_message_save : $Label.c.orm_message_update}</span>
@@ -1429,7 +1429,7 @@
                                  <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
                                  <lightning:button label="{!$Label.c.orm_save_button}"
                                                   variant="neutral"
-                                                  class="slds-button"
+                                                  class="slds-button slds-button_success"
                                                   onclick="{!c.createAssessment}"/>
                                  </lightning:buttonGroup>
                                   <span style="color:red">{!v.assessmentData.Id == null ? $Label.c.orm_message_save : $Label.c.orm_message_update}</span>

@@ -282,31 +282,63 @@
     },
     
     getHsseImpacts : function(component, event, helper) {
+          console.log('in ')
     	  var action = component.get('c.findHsseImpactsByAssessment');
 	      action.setParams({ "assessment": component.get("v.idAssessment") });
 	      action.setCallback(this, function(response) {
 	        if(response.getState() == 'SUCCESS'){
+	            
 	        	component.set("v.hsseImpacts", response.getReturnValue());	
+	        	console.log('*****want to see the size******')
+	            console.log(component.get("v.hsseImpacts").length) 
+	            //console.log(JSON.stringify(component.get("v.hsseImpacts")))
 	        	if(component.get("v.hsseImpacts").length > 0){
 	        	   
-                   for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
-                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
-                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
-                      }
-                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
-                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
-                      }
-                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
-                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
-                      }
-                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
-                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
-                      }
-                   }
-	        	}
+	                   for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
+		                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
+		                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
+		                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
+		                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
+		                      }
+	                    }
+	                    
+	        	  }else{
+	        	  
+	        	      var newItemHsseVeryHigh = component.get("v.hsseVeryHighData");
+	        	      newItemHsseVeryHigh.orm_healthAndSafety__c = "Fatality";
+	        	      newItemHsseVeryHigh.orm_security__c = "Security breach with major property damage and loss";
+	        	      newItemHsseVeryHigh.orm_environmentAndCommunity__c = "Uncontained spill or event with severe environmental or community impact.  Mandatory obligation to Regulator";
+	        	      component.set("v.hsseVeryHighData", newItemHsseVeryHigh);
+	        	      
+	        	      var newItemHsseHigh = component.get("v.hsseHighData");
+	        	      newItemHsseHigh.orm_healthAndSafety__c = "Lost Time Incident";
+	        	      newItemHsseHigh.orm_security__c = "Security breach with serious property damage and loss";
+	        	      newItemHsseHigh.orm_environmentAndCommunity__c = "Uncontained spill or event with serious environmental or community impact. Necessary to obtain directive from Regulator";
+	        	      component.set("v.hsseHighData", newItemHsseHigh);
+	        	      
+	        	      var newItemHsseMedium = component.get("v.hsseMediumData");
+	        	      newItemHsseMedium.orm_healthAndSafety__c = "Medical Treatment Case";
+	        	      newItemHsseMedium.orm_security__c = "Security breach with moderate property damage and loss";
+	        	      newItemHsseMedium.orm_environmentAndCommunity__c = "Uncontained spill  or event with minor environmental or community impact. Recommended engagement with Regulator";
+	        	      component.set("v.hsseMediumData", newItemHsseMedium);
+	        	      
+	        	      var newItemHsseLow = component.get("v.hsseLowData");
+	        	      newItemHsseLow.orm_healthAndSafety__c = "First Aid Case";
+	        	      newItemHsseLow.orm_security__c = "Security breach with minor property damage and/or loss";
+	        	      newItemHsseLow.orm_environmentAndCommunity__c = "Local contained spill or event with no environmental or community impact. No need to engage Regulator";
+	        	      component.set("v.hsseLowData", newItemHsseLow);
+	        	  
+	        	  }
 	        	
 	        } else {
-	        	alert("ERROR")	
+	        	alert("ERROR getHsseImpacts")	
 	        }
 	     });
 	     $A.enqueueAction(action);

@@ -33,35 +33,39 @@
     <!-- end for prabability --> 
 
     <!-- start for HSSE impact -->
-    <aura:attribute name="hsseVeryHighData" type="Order" default="{ 'sobjectType' : 'Order',
-																  'orm_rating__c' : '',
-																  'Description' : '', 
+    <aura:attribute name="hsseVeryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'VeryHigh',
+																  'orm_healthAndSafety__c' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
 																}"/>
 
-    <aura:attribute name="hsseHighData" type="Order" default="{ 'sobjectType' : 'Order',
-																  'orm_rating__c' : '',
-																  'Description' : '', 
+    <aura:attribute name="hsseHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'High',
+																  'orm_healthAndSafety__c' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
 																}"/>
 
-    <aura:attribute name="hsseMediumData" type="Order" default="{ 'sobjectType' : 'Order',
-																  'orm_rating__c' : '',
-																  'Description' : '', 
+    <aura:attribute name="hsseMediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'Medium',
+																  'orm_healthAndSafety__c' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
 																}"/>
 																
-    <aura:attribute name="hsseLowData" type="Order" default="{ 'sobjectType' : 'Order',
-																  'orm_rating__c' : '',
-																  'Description' : '', 
+    <aura:attribute name="hsseLowData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'Low',
+																  'orm_healthAndSafety__c' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
 																}"/>																
 	
-	<aura:attribute name="hsseImpacts" type="Order[]" />
+	<aura:attribute name="hsseImpacts" type="Macro[]" />
 	<!-- end for HSSE impact -->
 	
 																																
@@ -105,7 +109,16 @@
         <div class="slds-col" style="margin-bottom: 20px">
 		        <span class="spaceSlider"></span>									
 			    <span class="btnPrev" onclick="{!c.PrevPage}">
-			        <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+			        <aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					   <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+					</aura:if>
+					<aura:if isTrue="{!v.showHsseImpactsRanking}">
+					    <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
+					       <aura:if isTrue="{!v.showBtnUpdate == false}">
+				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+			               </aura:if>
+			            </aura:if>
+					</aura:if>
 		        </span>
 				<span class="spacebetween"></span>
 				<span class="btnNext" onclick="{!c.nextPage}">
@@ -120,7 +133,7 @@
 					  <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
 					</aura:if>
 					<aura:if isTrue="{!v.showHsseImpactsRanking}">
-					  <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					    <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
 					</aura:if>
 		        </span>
 		        <span class="spacebetweenSave"></span>
@@ -199,7 +212,16 @@
 					       </aura:if>
 					</aura:if>
 				</span>
-				<span class="spaceSliderEnd"></span>	
+				<span class="spaceSliderEnd">
+				   <!--<aura:if isTrue="{!v.showHsseImpactsRanking}">
+					    <aura:if isTrue="{!v.showBtnUpdate == false}">
+					          already saved
+					        <aura:set attribute="else">
+					          not yet saved
+					        </aura:set>
+				        </aura:if>
+				   </aura:if>  -->
+				</span>	
 		</div>
          
          <div id="probility">
@@ -209,9 +231,9 @@
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
-					    <th style="text-align: center;">Probability</th>
-					    <th style="text-align: center;">Pourcentage</th>
-					    <th style="text-align: center;">Description</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Probability</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Pourcentage</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Description</th>
 					  </tr>
 				  </thead>
 				  <tbody >
@@ -265,11 +287,11 @@
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
-					    <th style="text-align: center;">Rating</th>
-					    <th style="text-align: center;">Cost as % of project budget</th>
-					    <th style="text-align: center;">Schedule as % of project baseline</th>
-					    <th style="text-align: center;">Production Loss (Weeks)</th>
-					    <th style="text-align: center;">Reputation</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Rating</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Cost as % of project budget</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Schedule as % of project baseline</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Production Loss (Weeks)</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Reputation</th>
 					  </tr>
 				  </thead>
 				  <tbody>
@@ -378,59 +400,59 @@
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
-					    <th style="text-align: center;">Rating</th>
-					    <th style="text-align: center;">Health And Safety</th>
-					    <th style="text-align: center;">Security</th>
-					    <th style="text-align: center;">Environment And Community</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Rating</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Health And Safety</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Security</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Environment And Community</th>
 					  </tr>
 				  </thead>
 				  <tbody>
 			          <tr>
-				            <td class="tdcouleurSlider" height="100" style="background-color: red;text-align: center;">Very High</td>
-					        <td  class="tdClassSlider3" height="100">
-					                <ui:inputTextArea aura:id="veryHighHS" class="slds-input"  value="{!v.hsseVeryHighData.Description}" change="" />
+				            <td class="tdcouleurSliderHSSE" height="100" style="background-color: red;text-align: center;">Very High</td>
+					        <td  class="tdClassRating" height="100">
+					                <ui:inputTextArea aura:id="veryHighHS" class="slds-input"  value="{!v.hsseVeryHighData.orm_healthAndSafety__c}" change="{!c.onChangeVeryHighHS}" />
 					         </td>
 					         <td  class="tdClassSlider3" height="100">
-					                <ui:inputTextArea aura:id="veryHighSec" class="slds-input"  value="{!v.hsseVeryHighData.orm_security__c}" change="" />
+					                <ui:inputTextArea aura:id="veryHighSec" class="slds-input"  value="{!v.hsseVeryHighData.orm_security__c}"  />
 					         </td>
 					         <td class="tdClassSlider3">
-					                 <ui:inputTextArea aura:id="veryHighEC" class="slds-input" value="{!v.hsseVeryHighData.orm_environmentAndCommunity__c}" change="" />
+					                 <ui:inputTextArea aura:id="veryHighEC" class="slds-input" value="{!v.hsseVeryHighData.orm_environmentAndCommunity__c}"  />
                              </td>
 			           </tr>
 			           <tr>
-				             <td class="tdcouleurSlider" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
-					         <td  class="tdClassSlider3">
-					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseHighData.Description}" change="" />
+				             <td class="tdcouleurSliderHSSE" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
+					         <td  class="tdClassRating">
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseHighData.orm_healthAndSafety__c}"  />
 					         </td>
 					         <td  class="tdClassSlider3" height="100">
-					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseHighData.orm_security__c}" change="" />
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseHighData.orm_security__c}"  />
 					         </td>
 					         <td class="tdClassSlider3">
-					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.hsseHighData.orm_environmentAndCommunity__c}" change="" />
+					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.hsseHighData.orm_environmentAndCommunity__c}"  />
 					         </td>
 			          </tr>
 			          <tr>
-				        <td class="tdcouleurSlider" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
-					        <td  class="tdClassSlider3" height="100">
-					              <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.Description}" change="" />  
+				        <td class="tdcouleurSliderHSSE" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
+					        <td  class="tdClassRating" height="100">
+					              <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_healthAndSafety__c}"  />  
 					         </td>
 					         <td  class="tdClassSlider3" height="100">
-					              <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_security__c}" change="" />  
+					              <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_security__c}"  />  
 					         </td>
 			                 <td class="tdClassSlider3">
-			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_environmentAndCommunity__c}" change="" />
+			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_environmentAndCommunity__c}" />
 			                 </td>
 			          </tr>
 			          <tr>
-				        <td class="tdcouleurSlider" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
-					        <td  class="tdClassSlider3" height="100">
-					               <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.Description}" change="" /> 
+				        <td class="tdcouleurSliderHSSE" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
+					        <td  class="tdClassRating" height="100">
+					               <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_healthAndSafety__c}"  /> 
 					         </td>
 					         <td  class="tdClassSlider3" height="100">
-					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_security__c}" change="" />
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_security__c}"  />
 					         </td>
 			                 <td class="tdClassSlider3">
-			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_environmentAndCommunity__c}" change="" />
+			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_environmentAndCommunity__c}" />
 			                 </td>
 			          </tr>
 		           </tbody>

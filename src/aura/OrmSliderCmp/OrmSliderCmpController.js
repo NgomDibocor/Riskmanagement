@@ -68,7 +68,7 @@
            
            document.getElementById("hir").style.display = "block";
            document.getElementById("bir").style.display = "none";
-          // helper.getHsseImpacts(component, event, helper);
+           helper.getHsseImpacts(component, event, helper);
        }
       
     },
@@ -176,79 +176,61 @@
    },
    
     createHsseImpactsRanking : function(component, event, helper) {
-         console.log(JSON.stringify(component.get("v.hsseVeryHighData")))
-		  /*if(component.get("v.hsseVeryHighData").Description != ""){
-		       alert((component.get("v.hsseVeryHighData").Description))
-		  }else{
-		       alert('vide')
-		  }
-      
-          /*var hsseImpacts = [];
-          var newItemVeryHigh = {};
-          newItemVeryHigh.sobjectType = 'Order';
+         
+          var hsseImpacts = [];
+          var newItemVeryHigh = component.get("v.hsseVeryHighData");
           newItemVeryHigh.orm_assessment__c = component.get("v.idAssessment");
-          newItemVeryHigh.orm_rating__c = 'VeryHigh';
-          newItemVeryHigh.Description = '';
-          newItemVeryHigh.orm_security__c = '';
-          newItemVeryHigh.orm_environmentAndCommunity__c = '';
           hsseImpacts.push(newItemVeryHigh);
        
-          var newItemHigh = {};
-          newItemHigh.sobjectType = 'Order';
+          var newItemHigh = component.get("v.hsseHighData");
           newItemHigh.orm_assessment__c = component.get("v.idAssessment");
-          newItemHigh.orm_rating__c = 'High';
-          newItemHigh.Description = '';
-          newItemHigh.orm_security__c = '';
-          newItemHigh.orm_environmentAndCommunity__c = '';
           hsseImpacts.push(newItemHigh);
           
-          var newItemMedium = {};
-          newItemMedium.sobjectType = 'Order';
+          var newItemMedium = component.get("v.hsseMediumData");
           newItemMedium.orm_assessment__c = component.get("v.idAssessment");
-          newItemMedium.orm_rating__c = 'Medium';
-          //$A.get("$Label.c.orm_objectif_assessment");
-          newItemMedium.Description = '';
-          newItemMedium.orm_security__c = '';
-          newItemMedium.orm_environmentAndCommunity__c = '';
           hsseImpacts.push(newItemMedium);
 
-          var newItemLow = {};
-          newItemLow.sobjectType = 'Order';
+          var newItemLow = component.get("v.hsseLowData");
           newItemLow.orm_assessment__c = component.get("v.idAssessment");
-          newItemLow.orm_rating__c = 'Low';
-          newItemLow.Description = '';
-          newItemLow.orm_security__c = '';
-          newItemLow.orm_environmentAndCommunity__c = '';
           hsseImpacts.push(newItemLow);
-
-          var actiondeletePrevious = component.get('c.deletePreviousHsseImpacts');
-	      actiondeletePrevious.setParams({ "assessment": component.get("v.idAssessment") });
-	      actiondeletePrevious.setCallback(this, function(response) {
-	        if(response.getState() == 'SUCCESS'){
-	        	  var action = component.get('c.addHsseImpacts');
-			      action.setParams({ "items": hsseImpacts });
-			      action.setCallback(this, function(response) {
-			        if(response.getState() == 'SUCCESS'){
-			            component.set("v.showBtnUpdate", false);
-			        	component.set("v.hsseImpacts", response.getReturnValue());
-			        	var toast = $A.get('e.force:showToast');
-						toast.setParams({
-							'message' : "HSSE Impacts Ranking was successfully saved",
-							'type' : 'success',
-							'mode' : 'dismissible'
-						});      
-						toast.fire(); 	
-			        } else {
-			        	alert("ERROR")	
-			        }
-			     });
-			     $A.enqueueAction(action);
-	        } else {
-	        	alert("ERROR")	
-	        }
+          console.log('******verif bfore******')
+		  console.log(JSON.stringify(hsseImpacts))
+          
+          var actiondeletePreviousHsse = component.get('c.deletePreviousHsseImpacts');
+	      actiondeletePreviousHsse.setParams({ "assessment": component.get("v.idAssessment") });
+	      actiondeletePreviousHsse.setCallback(this, function(response) {
+		      if(response.getState() == 'SUCCESS'){
+			        	  var actionAddHSSE = component.get('c.addHsseImpacts');
+					      actionAddHSSE.setParams({ "items": hsseImpacts });
+					      actionAddHSSE.setCallback(this, function(response) {
+						        if(response.getState() == 'SUCCESS'){
+						            console.log('******Size if click on create button******')
+						            console.log(JSON.stringify(response.getReturnValue().length))
+						            component.set("v.showBtnUpdate", false);
+						        	component.set("v.hsseImpacts", response.getReturnValue());
+						        	var toast = $A.get('e.force:showToast');
+									toast.setParams({
+										'message' : "HSSE Impacts Ranking was successfully saved",
+										'type' : 'success',
+										'mode' : 'dismissible'
+									});      
+									toast.fire(); 	
+						         }else {
+						        	alert("ERROR create")	
+						         }
+					      });
+					      $A.enqueueAction(actionAddHSSE);
+		      }else {
+		      
+		        alert("ERROR DELETE")	
+		      }
 	     });
-	     $A.enqueueAction(actiondeletePrevious);*/
+	     $A.enqueueAction(actiondeletePreviousHsse);
 
+   },
+   
+   onChangeVeryHighHS : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
    },
    
 })

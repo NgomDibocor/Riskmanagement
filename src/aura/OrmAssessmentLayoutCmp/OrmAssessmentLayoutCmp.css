@@ -5,6 +5,8 @@
     text-decoration: none;
 }
 .THIS .textInDiv{
+	font-weight: 600;
+    font-size: 1.2em;
 	white-space: normal;
 	text-align: justify;
     text-justify: inter-word;
@@ -102,6 +104,7 @@
 
 .THIS .dot {
     height: 50px;
+    line-height: 50px;
     width: 50px;
     background-color: #bbb;
     border-radius: 50%;

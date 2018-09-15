@@ -50,7 +50,7 @@
        var showBusinessImpactsRanking = component.get("v.showBusinessImpactsRanking");
        
        if(showProbilityRanking == true){
-           component.set("v.showBtnSave", true);
+          
            component.set("v.showBusinessImpactsRanking", true);
 	       component.set("v.showProbilityRanking", false);
 	       document.getElementById("bir").style.display = "block";
@@ -62,7 +62,7 @@
        }
        
        if(showBusinessImpactsRanking == true){
-           
+            component.set("v.showBtnSave", true);
 	       component.set("v.showBusinessImpactsRanking", false);
            component.set("v.showHsseImpactsRanking", true);
            
@@ -174,8 +174,14 @@
       component.set("v.showBtnUpdate", false);
    },
    
-   /*createHsseImpactsRanking : function(component, event, helper) {
-      var hsseImpacts = [];
+   createHsseImpactsRanking : function(component, event, helper) {
+    if(component.get("v.hsseVeryHighData").Description != ""){
+       alert((component.get("v.hsseVeryHighData").Description))
+    }else{
+       alert('vide')
+    }
+      
+      /*var hsseImpacts = [];
           var newItemVeryHigh = {};
           newItemVeryHigh.sobjectType = 'Order';
           newItemVeryHigh.orm_assessment__c = component.get("v.idAssessment");
@@ -198,6 +204,7 @@
           newItemMedium.sobjectType = 'Order';
           newItemMedium.orm_assessment__c = component.get("v.idAssessment");
           newItemMedium.orm_rating__c = 'Medium';
+          //$A.get("$Label.c.orm_objectif_assessment");
           newItemMedium.Description = '';
           newItemMedium.orm_security__c = '';
           newItemMedium.orm_environmentAndCommunity__c = '';
@@ -238,8 +245,8 @@
 	        	alert("ERROR")	
 	        }
 	     });
-	     $A.enqueueAction(actiondeletePrevious);
+	     $A.enqueueAction(actiondeletePrevious);*/
 
-   }*/
+   }
    
 })

@@ -267,21 +267,35 @@
     },
     
     cancelModifProbabiliy : function(component, event, helper){
-          
+            console.log('*********dans cancelMofProba***********');
+        	console.log('Size: '+ component.get("v.probabilities").length);
+        	
         	if(component.get("v.probabilities").length > 0){
     	   
                for (var i = 0; i < component.get("v.probabilities").length; i++) {
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Probable' ){
                          component.set("v.probableData", component.get("v.probabilities")[i]);
+                         
+                         var sliderProbable = component.find('sliderProbable').getElement();
+                         sliderProbable.noUiSlider.set([component.get("v.probableData").orm_pourcentageMin__c, null]);
                       }
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Possible' ){
                          component.set("v.possibleData", component.get("v.probabilities")[i]);
+                         
+                         var sliderPossible = component.find('sliderPossible').getElement();
+                         sliderPossible.noUiSlider.set([component.get("v.possibleData").orm_pourcentageMin__c, component.get("v.possibleData").orm_pourcentageMax__c]);
                       }
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Unlikely' ){
                          component.set("v.unlikelyData", component.get("v.probabilities")[i]);
+                         
+                         var sliderUnlikely  = component.find('sliderUnlikely ').getElement();
+                         sliderUnlikely.noUiSlider.set([component.get("v.unlikelyData").orm_pourcentageMin__c, component.get("v.unlikelyData").orm_pourcentageMax__c]);
                       }
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Rare' ){
                          component.set("v.RareData", component.get("v.probabilities")[i]);
+                         
+                         var sliderRare   = component.find('sliderRare  ').getElement();
+                         sliderRare.noUiSlider.set([component.get("v.RareData").orm_pourcentageMin__c, component.get("v.RareData").orm_pourcentageMax__c]);
                       }
                    }
 	        	}	

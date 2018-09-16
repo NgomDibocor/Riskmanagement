@@ -51,7 +51,7 @@
                         </header>
                     </div>
                     <div class=" slds-card__body slds-card__body_inner styleText" style="height:20px">
-                        <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> 
+                        Description: <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> 
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
                      <span class="styleText">Number of Risks: <i class="cercle">{!item.value.nbreRisk}</i></span>

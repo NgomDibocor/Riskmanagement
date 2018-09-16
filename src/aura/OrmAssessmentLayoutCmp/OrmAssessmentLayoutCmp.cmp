@@ -1327,7 +1327,7 @@
 	                        </td>
 	                   </tr>
                        <tr>
-                          <td >
+                          <td class="textInDivCmp">
                                <c:OrmRiskIdentificationLayoutCmp idAssessment="{!v.assessmentData.Id}" /> 
                           </td>
                        </tr>

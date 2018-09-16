@@ -8,3 +8,7 @@
 .THIS span{
 	margin-left:15px;
 }
+.THIS .tdWidth{
+	width: 50%;
+	white-space: normal !important;
+}

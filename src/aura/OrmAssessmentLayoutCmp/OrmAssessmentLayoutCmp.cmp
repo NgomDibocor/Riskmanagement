@@ -1204,7 +1204,7 @@
 	                        </td>
 	                  </tr>
 	                  <tr>
-                          <td class="textInDiv">
+                          <td class="textInDivCmp">
                              <div class="slds-col">
                                     <span class="startSpaceOrg"></span>                                  
 							        <div class="orgSelect">
@@ -1247,12 +1247,12 @@
                          </td>
                       </tr>
                       <tr>
-                           <td class="textInDiv" >
+                           <td class="textInDivCmp" >
 	                           <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
 	                       </td>
                       </tr>
                       <tr>
-                          <td class="textInDiv">
+                          <td class="textInDivCmp">
                                <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
                           </td>
                       </tr>

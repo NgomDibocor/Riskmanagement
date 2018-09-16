@@ -11,4 +11,6 @@
 .THIS .tdWidth{
 	width: 50%;
 	white-space: normal !important;
+	text-align: justify;
+    text-justify: inter-word;
 }

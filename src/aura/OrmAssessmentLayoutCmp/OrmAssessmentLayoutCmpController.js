@@ -248,10 +248,11 @@
 	},
 	
     onChangeOrganisation : function(component, event, helper){
-        console.log('*******************************')
-        console.log('id organisation before'+component.find("organisation").get("v.value"))
+        var field = $A.get("$Label.c.orm_organisationUnit_label");
+        var description = $A.get("$Label.c.orm_organisationUnit_description");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+        
     	var newItem = component.get("v.assessmentData");
-    	console.log(JSON.stringify(component.get("v.assessmentData")))
     	
     	newItem.orm_organisation__c = component.find("organisation").get("v.value");
         var action = component.get('c.add');

@@ -2,33 +2,7 @@
 	doInit : function(component, event, helper) {
 		helper.refresh(component, event);		
 	},
-	/**
-	 * 
-	 * @author Salimata NGOM
-	 * @version 1.0
-	 * @description method for get activity list by assessment
-	 * @history 2018-08-20 : Salimata NGOM - Implementation
-	 */
-	/*doInit: function(component, event, helper) {
-
-		// call the apex class method and fetch activity list
-		var action = component.get("c.findActivityByAssessment");
-		action.setParam("assessment",component.get("v.assessmentData").Id);
-		action.setCallback(this, function(response) {
-			var state = response.getState();
-			if (state === "SUCCESS") {
-				var storeResponse = response.getReturnValue();
-				// set ActivityList list with return value from server.
-				component.set("v.ActivityList", storeResponse);
-				component.set("v.storeListActivity", storeResponse);
-
-			}
-		});
-		$A.enqueueAction(action);
-		// set deafult count and select all checkbox value to false on load
-		component.set("v.selectedCount", 0);
-		component.find("box3").set("v.value", false);
-	}, */ 
+	
 	/**
 	 * 
 	 * @author Salimata NGOM
@@ -189,8 +163,8 @@
 	sendDescriptionFieldCause : function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": "Phase",
-            "descriptionField": "Description"
+            "nomField": "Activity",
+            "descriptionField": "This field describes the main activity relevant to the subject for te assessment. This could for example be a project or a specific operation such as a lifting operation."
         });
         evt.fire();
     },

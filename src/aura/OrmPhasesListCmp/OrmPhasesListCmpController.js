@@ -7,16 +7,9 @@
 		helper.refresh(component, event);
 	},
 	
-	openOrmPhaseNewCmp : function(component, event, helper) {
-		
-		var idAssessment = component.get('v.idAssessment');
-		if (idAssessment == null) {
-			component.set('v.openModalError', true);
-		} else {
-		   console.log('ici')
-			var evt = $A.get('e.c:OrmEventNewPhaseClicked');
-			evt.fire();
-		}
+	openPopupNewPhase : function(component, event, helper) {
+		var evt = $A.get('e.c:OrmEventNewPhaseClicked');
+	    evt.fire();
 	},
 	
 	closeOpenModalError : function(component, event, helper) {
@@ -29,9 +22,12 @@
 	
 	cancel : function(component,event,helper) {
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
-        $A.get('e.force:refreshView').fire();
+        //$A.get('e.force:refreshView').fire();
     },
+    
+	filter : function(component, event, helper) {
 	
+	},
 	save: function(component, event, helper) {
 		// Check required fields(Name) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)){

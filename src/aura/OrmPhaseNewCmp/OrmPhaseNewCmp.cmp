@@ -1,36 +1,36 @@
 <aura:component extends="c:OrmAbstractNewCmp" controller="OrmPhaseController">
 	
 	<!-- methodes -->
-	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+	<!-- <aura:handler action="{!c.doInit}" name="init" value="{!this}" /> -->
 	<aura:handler event="c:OrmEventNewPhaseClicked" action="{!c.openPhaseNewCmp}" />
 	
 	<!-- events -->
 	<aura:registerEvent name="OrmEventNewPhaseCreated" type="c:OrmEventNewPhaseCreated" description="" />
 	
 	<!-- attributes -->	
-	<aura:attribute name="phase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
+	<aura:attribute name="phaseData" type="Macro" description="" default="{	'sobjectType' : 'Macro',
 																		'Description' : '',
 																		'orm_phase__c': '',
 																		'orm_assessment__c': ''
 																		}" />
 	<aura:attribute name="assessmentId" type="String" description="" />
-	<aura:attribute name="allPhases" type="String[]" description="" />	
 	
 	<aura:if isTrue="{!v.isOpen}">
 			<!--###### MODAL BOX Start From Here ######-->    		
 			<div role="dialog" tabindex="-1" aria-labelledby="header99"
 				class="slds-modal slds-fade-in-open slds-modal_medium">
 				<div class="slds-modal__container form-style-6">
-					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
-					<div class="slds-modal__header" style="background-color: #007add;">
-						<span>Warning</span>
-						<button
-							class="slds-button slds-modal__close slds-button--icon-inverse"
-							title="Close" onclick="{!c.closeModal}">
-							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
-						</button>
-						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label + ' ' +$Label.c.orm_phase}</h1>
-					</div>
+				<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+				<div class="slds-modal__header">
+					<button
+						class="slds-button slds-modal__close slds-button--icon-inverse"
+						title="Close" onclick="{!c.closeModal}">
+						X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+					</button>
+					<h1 id="header99" class="slds-text-heading--medium">Add new Phase</h1>
+				</div>
+				<!--###### MODAL BOX BODY Part Start From Here ######-->
+				
 					<!--###### MODAL BOX BODY Part Start From Here ######-->
 					<div class="slds-modal__content slds-p-around--medium">
 						<!-- CREATE NEW Phase FORM -->
@@ -39,11 +39,8 @@
 								<div class="slds-col">									
 									<div class="slds-form-element">
 										<div class="slds-form-element__control">
-											<lightning:select aura:id="phase" name="phase" label="{!$Label.c.orm_phase}">
-                                                <aura:iteration items="{!v.allPhases}" var="phase">
-                                                    <option  text="{!phase}"></option>
-                                                </aura:iteration>
-                                            </lightning:select>
+                                             <lightning:input aura:id="phase" type="text" label="Phase" 
+                                     			value="{!v.phaseData.Name}" required="true"/><!-- {!$Label.c.orm_phase} -->
 										</div>
 									</div>                            
 								</div>								

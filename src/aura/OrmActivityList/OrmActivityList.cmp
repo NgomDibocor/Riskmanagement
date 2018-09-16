@@ -54,10 +54,8 @@
 	<div class="slds-m-around_large">
 		<div class="measureProgression">
 	            <div class="measureSearch">
-			    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}" >
-						<lightning:input class="search"
-					type="search" onchange="{!c.filter}" value="{!v.key}"
-					label="{!$Label.c.search_title_label}" />
+			    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}" > 
+						<lightning:input class="search" type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search activity" />
 					</a>
 				</div>
 		        <span onclick="{!c.openActivityNewCmp}" class="btnNewMeasure" >

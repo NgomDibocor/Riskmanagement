@@ -151,6 +151,11 @@
 			        if(response.getState() == 'SUCCESS'){
 			            component.set("v.showBtnUpdate", false);
 			        	component.set("v.probabilities", response.getReturnValue());
+			        	
+			        	//Hide the Spinner
+		                var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+			            evtHideSpinner.fire(); 
+			        	
 			        	var toast = $A.get('e.force:showToast');
 						toast.setParams({
 							'message' : "Probalility Ranking was successfully saved",
@@ -176,7 +181,9 @@
    },
    
     createHsseImpactsRanking : function(component, event, helper) {
-         
+          var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	      evtShowSpinner.fire();
+	                  
           var hsseImpacts = [];
           var newItemVeryHigh = component.get("v.hsseVeryHighData");
           newItemVeryHigh.orm_assessment__c = component.get("v.idAssessment");
@@ -208,13 +215,6 @@
 						            console.log(JSON.stringify(response.getReturnValue().length))
 						            component.set("v.showBtnUpdate", false);
 						        	component.set("v.hsseImpacts", response.getReturnValue());
-						        	var toast = $A.get('e.force:showToast');
-									toast.setParams({
-										'message' : "HSSE Impacts Ranking was successfully saved",
-										'type' : 'success',
-										'mode' : 'dismissible'
-									});      
-									toast.fire(); 	
 									
 									for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
 					                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
@@ -230,6 +230,17 @@
 					                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
 					                      }
 				                    }
+				                    //Hide the Spinner
+					                var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+						            evtHideSpinner.fire(); 
+						            
+						            var toast = $A.get('e.force:showToast');
+									toast.setParams({
+										'message' : "HSSE Impacts Ranking was successfully saved",
+										'type' : 'success',
+										'mode' : 'dismissible'
+									});      
+									toast.fire();
 									
 						         }else {
 						        	alert("ERROR create")	

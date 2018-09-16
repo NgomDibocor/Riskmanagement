@@ -95,7 +95,8 @@
     <aura:attribute name="rareMin" type="Integer" default="0"/>
     <aura:attribute name="rareMax" type="Integer" default="5"/>
     
-    
+    <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
+    <aura:registerEvent name="HideSpinner" type="c:OrmHideSpinnerEvt"  />
      
      <!--<div>probableMin: {!v.probableMin}</div>
      <div>probableMax: {!v.probableMax}</div>

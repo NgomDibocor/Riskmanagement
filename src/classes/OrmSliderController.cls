@@ -51,7 +51,7 @@ public with sharing class OrmSliderController {
     
     
     
-    @AuraEnabled 
+    /*@AuraEnabled 
     public static void deletePreviousHsseImpacts(String assessment)
     {
           List<Macro> hsseImpacts = [SELECT Id
@@ -63,7 +63,7 @@ public with sharing class OrmSliderController {
               delete hsseImpacts; 
           }
                                        
-    }
+    }*/
     
     @AuraEnabled
     public static List<Macro> addHsseImpacts(List<Macro> items)

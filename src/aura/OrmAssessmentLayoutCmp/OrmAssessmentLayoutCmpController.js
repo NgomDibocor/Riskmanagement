@@ -361,6 +361,35 @@
             component.set("v.displaySaveCancelBtn",true);
         }
     },
+    
+    onchangeDescriptionOrganisation : function(component,event,helper){ 
+       component.set("v.displaySaveCancelBtn",true);
+    },
+     
+    onchangeObjectifOrganisation : function(component,event,helper){ 
+       component.set("v.displaySaveCancelBtn",true);
+    },
+     
+    onChangeClientName : function(component,event,helper){ 
+       component.set("v.displaySaveCancelBtn",true);
+    },
+    
+    onChangeBudgetCommercial : function(component,event,helper){ 
+       component.set("v.displaySaveCancelBtn",true);
+    },
+    
+    sendDesciptionBudgetCommercial  : function(component,event,helper){ 
+        var field = 'Commercial Budget';
+        var description = 'Description Commercial Budget';
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+     
+    sendDesciptionClientName  : function(component,event,helper){ 
+        var field = 'Client Name';
+        var description = 'Description Client Name';
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+     
     sendTitleToFD : function(component,event,helper){ 
         var field = $A.get("$Label.c.orm_title_assessment");
         var description = $A.get("$Label.c.orm_description_assessment");

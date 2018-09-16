@@ -322,12 +322,10 @@
                                     <label class="slds-form-element__label">{!$Label.c.orm_projectName_label}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="width"> 
-                                  <a href=""  onclick="{!c.sendProjectNameToFD}">
                                       <ui:inputText aura:id="Name" class="slds-input"
                                                value="{!v.assessmentData.Name}" 
-                                               change="{!c.onNameProjectChange}">
+                                               keyup="{!c.onNameProjectChange}" focus="{!c.sendProjectNameToFD}">
                                      </ui:inputText>
-                                  </a> 
                                 </div>
                             </td>
                         </tr>
@@ -337,12 +335,10 @@
                                     <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="width">  
-                                  <a href=""  onclick="{!c.sendObjectifToFD}">
                                     <ui:inputText class="slds-input"  
                                            value="{!v.assessmentData.orm_objectif__c}"
-                                           change="{!c.onObjectifProjectChange}">
+                                           keyup="{!c.onObjectifProjectChange}" focus="{!c.sendObjectifToFD}">
                                     </ui:inputText>
-                                  </a>
                                 </div>
                             </td>
                             <td class="tdClass">
@@ -448,13 +444,11 @@
                                   </div>
                                   
                                   <div class="width">
-                                     <a href=""  onclick="{!c.sendPlannedStartDateToFD}">
                                       <ui:inputDate class="slds-input" aura:id="plannedSD" 
                                                     value="{!v.assessmentData.orm_startDate__c}" 
                                                     displayDatePicker="true"
-                                                    change="{!c.onChangePlannedSD}">
+                                                    change="{!c.onChangePlannedSD}" focus="{!c.sendPlannedStartDateToFD}">
                                       </ui:inputDate>
-                                     </a>
                                   </div>
                               </td>    
                               <td class="tdClass">
@@ -462,13 +456,11 @@
                                       <label class="slds-form-element__label">{!$Label.c.orm_plannedEndDate_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>
                                   <div class="width">
-                                    <a href=""  onclick="{!c.sendPlannedEndDateToFD}">
                                       <ui:inputDate class="slds-input" aura:id="plannedED" 
                                                     value="{!v.assessmentData.orm_endDate__c}" 
                                                     displayDatePicker="true"
-                                                    change="{!c.onChangePlannedED}">
+                                                    change="{!c.onChangePlannedED}"  focus="{!c.sendPlannedEndDateToFD}">
                                       </ui:inputDate>
-                                     </a>
                                   </div>
                               </td>    
                           </tr>
@@ -543,7 +535,9 @@
                                   </div>
                                   
                                   <div class="width">
-                                      <ui:inputnumber class="slds-input" aura:id="commercialBudget" value="{!v.assessmentData.orm_commercialBudget__c}"></ui:inputnumber>
+                                      <ui:inputnumber class="slds-input" aura:id="commercialBudget" 
+                                                 value="{!v.assessmentData.orm_commercialBudget__c}" keyup="{!c.onChangeBudgetCommercial}" focus="{!c.sendDesciptionBudgetCommercial}" >
+                                      </ui:inputnumber>
                                   </div>
                               </td>    
                               <td class="tdClass">
@@ -594,7 +588,9 @@
                                   </div>
                                   
                                   <div class="width">
-                                      <ui:inputText class="slds-input" aura:id="clientName" value="{!v.assessmentData.orm_client_name__c}"></ui:inputText>
+                                      <ui:inputText class="slds-input" aura:id="clientName" 
+                                                 value="{!v.assessmentData.orm_client_name__c}" keyup="{!c.onChangeClientName}" focus="{!c.sendDesciptionClientName}">
+                                      </ui:inputText>
                                   </div>
                               </td>    
                           </tr>
@@ -604,12 +600,9 @@
                                     <label class="slds-form-element__label">{!$Label.c.orm_description_object_assessment}</label>
                                 </div>
 	                                <div class="width">
-	                                  <a href=""  onclick="{!c.sendDesciptionToFD}">
 	                                    <ui:inputTextArea class="slds-input" 
-	                                             value="{!v.assessmentData.orm_description__c}"
-	                                             change="{!c.onChangeDescriptionProject}">
+	                                             value="{!v.assessmentData.orm_description__c}" keyup="{!c.onChangeDescriptionProject}" focus="{!c.sendDesciptionToFD}">
 	                                    </ui:inputTextArea>
-	                                  </a>
 	                                </div>
                             </td>
                         </tr>
@@ -996,11 +989,9 @@
                                     <label class="slds-form-element__label">{!$Label.c.orm_objectif_assessment}<span class="cmn_mandatory_indicator">*</span></label>
                                 </div>
                                 <div class="width">  
-                                  <a href="javascript:void(0);"  onclick="{!c.sendObjectifToFD}">
                                     <ui:inputText class="slds-input"  
-                                           value="{!v.assessmentData.orm_objectif__c}">
+                                           value="{!v.assessmentData.orm_objectif__c}" keyup="{!c.onchangeObjectifOrganisation}" focus="{!c.sendObjectifToFD}">
                                     </ui:inputText>
-                                  </a>
                                 </div>
                             </td>
                         </tr>
@@ -1109,11 +1100,9 @@
                                 </div>
                                 
                                 <div class="width">
-                                  <a href="javascript:void(0);"  onclick="{!c.sendDesciptionToFD}">
                                     <ui:inputTextArea class="slds-input" 
-                                             value="{!v.assessmentData.orm_description__c}">
+                                             value="{!v.assessmentData.orm_description__c}" keyup="{!c.onchangeDescriptionOrganisation}" focus="{!c.sendDesciptionToFD}" >
                                     </ui:inputTextArea>
-                                  </a>
                                 </div>
                             </td> 
                             <td class="tdClass"></td>

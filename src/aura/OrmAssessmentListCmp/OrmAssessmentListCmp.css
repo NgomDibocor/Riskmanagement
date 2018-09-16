@@ -35,3 +35,10 @@
     border-radius: 50%;
     display: inline-block;
 }
+.THIS .truncateText {
+  height:20px;
+  padding-right:20px;
+  white-space: initial;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

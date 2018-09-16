@@ -351,6 +351,12 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     
+    sendOrganisationNameToFD   : function(component,event,helper){ 
+        var field = 'Organisation Name';
+        var description = 'This field represents the name of this assessment';
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    
     onChangeNameOrganisation : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);

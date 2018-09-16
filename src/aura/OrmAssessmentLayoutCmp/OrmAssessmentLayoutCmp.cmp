@@ -782,12 +782,10 @@
                                       <label class="slds-form-element__label">{!$Label.c.orm_orgName_label}</label>
                                   </div>
                                   <div class="width"> 
-                                    <a href=""  onclick="{!c.sendOrganisationNameToFD}">
                                         <ui:inputText class="slds-input" aura:id="Name" 
                                                  value="{!v.assessmentData.Name}" 
-                                                 change="{!c.onTitleChange}">
+                                                 keyup="{!c.onChangeNameOrganisation}" focus="{!c.sendOrganisationNameToFD}">
                                        </ui:inputText>
-                                    </a> 
                                   </div>
                                </td>
                                <td class="tdClass">

@@ -351,7 +351,7 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     
-    onTitleChange : function(component,event,helper){ 
+    onChangeNameOrganisation : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
         }

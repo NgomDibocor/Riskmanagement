@@ -196,10 +196,10 @@
           console.log('******verif bfore******')
 		  console.log(JSON.stringify(hsseImpacts))
           
-          var actiondeletePreviousHsse = component.get('c.deletePreviousHsseImpacts');
+          /*var actiondeletePreviousHsse = component.get('c.deletePreviousHsseImpacts');
 	      actiondeletePreviousHsse.setParams({ "assessment": component.get("v.idAssessment") });
 	      actiondeletePreviousHsse.setCallback(this, function(response) {
-		      if(response.getState() == 'SUCCESS'){
+		      if(response.getState() == 'SUCCESS'){*/
 			        	  var actionAddHSSE = component.get('c.addHsseImpacts');
 					      actionAddHSSE.setParams({ "items": hsseImpacts });
 					      actionAddHSSE.setCallback(this, function(response) {
@@ -215,17 +215,33 @@
 										'mode' : 'dismissible'
 									});      
 									toast.fire(); 	
+									
+									for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
+					                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
+					                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
+					                      }
+					                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
+					                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
+					                      }
+					                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
+					                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
+					                      }
+					                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
+					                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
+					                      }
+				                    }
+									
 						         }else {
 						        	alert("ERROR create")	
 						         }
 					      });
 					      $A.enqueueAction(actionAddHSSE);
-		      }else {
+		     /* }else {
 		      
 		        alert("ERROR DELETE")	
 		      }
 	     });
-	     $A.enqueueAction(actiondeletePreviousHsse);
+	     $A.enqueueAction(actiondeletePreviousHsse);*/
 
    },
    

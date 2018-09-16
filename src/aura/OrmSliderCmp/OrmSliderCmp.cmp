@@ -143,7 +143,7 @@
 					           <aura:if isTrue="{!not(empty(v.probabilities))}">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
 					                      <lightning:buttonGroup class="slds-m-around_medium">
-						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdate}"/>
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateProbility}"/>
 						                      <lightning:button label="update"
 						                                       variant="neutral"
 						                                       class="slds-button slds-button_brand"
@@ -192,7 +192,7 @@
 					       <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
 					                      <lightning:buttonGroup class="slds-m-around_medium">
-						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdate}"/>
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateHsseImpact}"/>
 						                      <lightning:button label="update"
 						                                       variant="neutral"
 						                                       class="slds-button slds-button_brand"
@@ -411,49 +411,49 @@
 			          <tr>
 				            <td class="tdcouleurSliderHSSE" height="100" style="background-color: red;text-align: center;">Very High</td>
 					        <td  class="tdClassRating" height="100">
-					                <ui:inputTextArea aura:id="veryHighHS" class="slds-input"  value="{!v.hsseVeryHighData.orm_healthAndSafety__c}" change="{!c.onChangeVeryHighHS}" />
+					                <ui:inputTextArea aura:id="veryHighHS" class="slds-input"  value="{!v.hsseVeryHighData.orm_healthAndSafety__c}" keyup="{!c.onChangeVeryHighHS}" />
 					         </td>
 					         <td  class="tdClassSlider3" height="100">
-					                <ui:inputTextArea aura:id="veryHighSec" class="slds-input"  value="{!v.hsseVeryHighData.orm_security__c}"  />
+					                <ui:inputTextArea aura:id="veryHighSec" class="slds-input"  value="{!v.hsseVeryHighData.orm_security__c}"  keyup="{!c.onChangeVeryHighSecurity}" />
 					         </td>
 					         <td class="tdClassSlider3">
-					                 <ui:inputTextArea aura:id="veryHighEC" class="slds-input" value="{!v.hsseVeryHighData.orm_environmentAndCommunity__c}"  />
+					                 <ui:inputTextArea aura:id="veryHighEC" class="slds-input" value="{!v.hsseVeryHighData.orm_environmentAndCommunity__c}" keyup="{!c.onChangeVeryHighEnvCom}" />
                              </td>
 			           </tr>
 			           <tr>
 				             <td class="tdcouleurSliderHSSE" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
 					         <td  class="tdClassRating">
-					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseHighData.orm_healthAndSafety__c}"  />
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseHighData.orm_healthAndSafety__c}" keyup="{!c.onChangeHighHS}" />
 					         </td>
 					         <td  class="tdClassSlider3" height="100">
-					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseHighData.orm_security__c}"  />
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseHighData.orm_security__c}" keyup="{!c.onChangeHighSecurity}" />
 					         </td>
 					         <td class="tdClassSlider3">
-					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.hsseHighData.orm_environmentAndCommunity__c}"  />
+					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.hsseHighData.orm_environmentAndCommunity__c}" keyup="{!c.onChangeHighEnvCom}" />
 					         </td>
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSliderHSSE" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
 					        <td  class="tdClassRating" height="100">
-					              <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_healthAndSafety__c}"  />  
+					              <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_healthAndSafety__c}" keyup="{!c.onChangeMediumHS}" />  
 					         </td>
 					         <td  class="tdClassSlider3" height="100">
-					              <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_security__c}"  />  
+					              <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_security__c}" keyup="{!c.onChangeMediumSecurity}" />  
 					         </td>
 			                 <td class="tdClassSlider3">
-			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_environmentAndCommunity__c}" />
+			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseMediumData.orm_environmentAndCommunity__c}" keyup="{!c.onChangeMediumEnvCom}" />
 			                 </td>
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSliderHSSE" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
 					        <td  class="tdClassRating" height="100">
-					               <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_healthAndSafety__c}"  /> 
+					               <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_healthAndSafety__c}" keyup="{!c.onChangeLowHS}" /> 
 					         </td>
 					         <td  class="tdClassSlider3" height="100">
-					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_security__c}"  />
+					                <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_security__c}" keyup="{!c.onChangeLowSecurity}" />
 					         </td>
 			                 <td class="tdClassSlider3">
-			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_environmentAndCommunity__c}" />
+			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_environmentAndCommunity__c}" keyup="{!c.onChangeLowEnvCom}" />
 			                 </td>
 			          </tr>
 		           </tbody>

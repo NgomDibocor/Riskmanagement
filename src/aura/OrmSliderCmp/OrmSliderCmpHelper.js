@@ -266,23 +266,29 @@
         //end second slider  
     },
     
-    
-    deleteProba : function(component, event, helper) {
-    
-        var actiondeletePrevious = component.get('c.deletePreviousProbalities');
-	      actiondeletePrevious.setParams({ "assessment": component.get("v.idAssessment") });
-	      actiondeletePrevious.setCallback(this, function(response) {
-	        if(response.getState() == 'SUCCESS'){
-	        	
-	        } else {
-	        	alert("ERROR")	
-	        }
-	     });
-	     $A.enqueueAction(actiondeletePrevious); 
+    cancelModifProbabiliy : function(component, event, helper){
+          
+        	if(component.get("v.probabilities").length > 0){
+    	   
+               for (var i = 0; i < component.get("v.probabilities").length; i++) {
+                      if(component.get("v.probabilities")[i].orm_probability__c == 'Probable' ){
+                         component.set("v.probableData", component.get("v.probabilities")[i]);
+                      }
+                      if(component.get("v.probabilities")[i].orm_probability__c == 'Possible' ){
+                         component.set("v.possibleData", component.get("v.probabilities")[i]);
+                      }
+                      if(component.get("v.probabilities")[i].orm_probability__c == 'Unlikely' ){
+                         component.set("v.unlikelyData", component.get("v.probabilities")[i]);
+                      }
+                      if(component.get("v.probabilities")[i].orm_probability__c == 'Rare' ){
+                         component.set("v.RareData", component.get("v.probabilities")[i]);
+                      }
+                   }
+	        	}	
+		        	
     },
     
     getHsseImpacts : function(component, event, helper) {
-          console.log('in ')
     	  var action = component.get('c.findHsseImpactsByAssessment');
 	      action.setParams({ "assessment": component.get("v.idAssessment") });
 	      action.setCallback(this, function(response) {
@@ -291,7 +297,6 @@
 	        	component.set("v.hsseImpacts", response.getReturnValue());	
 	        	console.log('*****want to see the size******')
 	            console.log(component.get("v.hsseImpacts").length) 
-	            //console.log(JSON.stringify(component.get("v.hsseImpacts")))
 	        	if(component.get("v.hsseImpacts").length > 0){
 	        	   
 	                   for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {

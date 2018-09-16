@@ -49,22 +49,6 @@ public with sharing class OrmSliderController {
           }
     }
     
-    
-    
-    /*@AuraEnabled 
-    public static void deletePreviousHsseImpacts(String assessment)
-    {
-          List<Macro> hsseImpacts = [SELECT Id
-					                 From Macro 
-					                 WHERE   orm_assessment__c =:assessment 
-					                       and 
-					                          RecordTypeId=: OrmSliderController.getHsseImpactRecordTypeId()]; 
-          if(hsseImpacts.size() > 0){
-              delete hsseImpacts; 
-          }
-                                       
-    }*/
-    
     @AuraEnabled
     public static List<Macro> addHsseImpacts(List<Macro> items)
     {

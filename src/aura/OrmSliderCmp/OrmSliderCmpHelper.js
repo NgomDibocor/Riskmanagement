@@ -288,13 +288,13 @@
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Unlikely' ){
                          component.set("v.unlikelyData", component.get("v.probabilities")[i]);
                          
-                         var sliderUnlikely  = component.find('sliderUnlikely ').getElement();
+                         var sliderUnlikely  = component.find('sliderUnlikely').getElement();
                          sliderUnlikely.noUiSlider.set([component.get("v.unlikelyData").orm_pourcentageMin__c, component.get("v.unlikelyData").orm_pourcentageMax__c]);
                       }
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Rare' ){
                          component.set("v.RareData", component.get("v.probabilities")[i]);
                          
-                         var sliderRare   = component.find('sliderRare  ').getElement();
+                         var sliderRare   = component.find('sliderRare').getElement();
                          sliderRare.noUiSlider.set([component.get("v.RareData").orm_pourcentageMin__c, component.get("v.RareData").orm_pourcentageMax__c]);
                       }
                    }

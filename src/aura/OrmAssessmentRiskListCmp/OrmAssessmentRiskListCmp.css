@@ -7,6 +7,24 @@
 }
 .THIS .searchInput{
 	display: inline-block;
-    width:35%;
-    margin-right:2%;
+    width:36%;
+    margin-right: 1%;
+}
+.THIS .titleListAssessmentRisk{
+    font-size: 2em;
+    font-weight: 600;
+    color: white;
+} 
+.THIS .styleText{
+    font-weight: 600;
+    font-size: 1.2em; 
+}
+.THIS .cercle {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    width: 35px;
+    background-color: #5B86BE;
+    border-radius: 50%;
+    display: inline-block;
 }

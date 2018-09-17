@@ -14,7 +14,9 @@
 }
 .THIS .descriptionFD{
     font-size: 1.1em;
-    font-weight: 600
+    font-weight: 600;
+    text-align: justify;
+    text-justify: inter-word;
 }
 .THIS .ico svg{
     position: absolute;

@@ -73,7 +73,7 @@
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th>
 	                  
 	                  <th scope="col">
-	                  	<div class="slds-truncate" title="{!$Label.c.orm_phase}">{!$Label.c.orm_phase}</div>
+	                  	<div class="slds-truncate thTable" title="{!$Label.c.orm_phase}">Phase</div><!-- {!$Label.c.orm_phase} -->
 	                  </th>
 	                </tr>
 	            </thead>

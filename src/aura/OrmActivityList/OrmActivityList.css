@@ -44,3 +44,7 @@
     display: inline-block;
 }
 
+.THIS .thTable {
+  font-weight: 600;
+  font-size: 1.2em;
+}

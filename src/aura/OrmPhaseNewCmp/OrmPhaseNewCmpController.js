@@ -45,7 +45,7 @@
             		newPhase = response.getReturnValue();
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
-			           'message' : newPhase.Name +' has been added',
+			           'message' : 'Phase has been added',
 			           'type' : 'success',
 			           'mode' : 'dismissible'
 		            });	

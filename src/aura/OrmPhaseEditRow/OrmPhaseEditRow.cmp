@@ -63,7 +63,7 @@
                                                       required="true"
                                                       label="{!$Label.c.orm_description}"
                                                       value="{!v.phase.Description}" />
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                             <span id="form-end" tabindex="0"></span>

@@ -61,9 +61,12 @@ public with sharing class OrmEmailTemplateController {
        	   mail.setTargetObjectId(contactId.Id);
        	   system.debug('setTargetObjectId'+contactId.Id);
        	   mail.setWhatId(contactId.orm_organisation__c);
+       	  // mail.setWhatId('0011H00001RmdmkQAB');
        	   system.debug('setWhatId'+contactId.orm_organisation__c);
-       	   mail.setHTMLBody(getTemplateDetails(templateId).Body);
-       	   mail.setPlainTextBody(getTemplateDetails(templateId).Body);
+       	   String htmlbody=getTemplateDetails(templateId).htmlvalue;
+       	   htmlbody=htmlbody.replace('{Contact.Name}',contactId.Name);
+       	   mail.setHTMLBody(htmlbody);
+       	 //  mail.setPlainTextBody(htmlbody);
        	  //  Add your email to the master list
        	  system.debug('getHtmlbody'+mail.getHTMLBody());
           mails.add(mail);

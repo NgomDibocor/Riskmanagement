@@ -248,10 +248,11 @@
 	},
 	
     onChangeOrganisation : function(component, event, helper){
-        console.log('*******************************')
-        console.log('id organisation before'+component.find("organisation").get("v.value"))
+        var field = $A.get("$Label.c.orm_organisationUnit_label");
+        var description = $A.get("$Label.c.orm_organisationUnit_description");
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+        
     	var newItem = component.get("v.assessmentData");
-    	console.log(JSON.stringify(component.get("v.assessmentData")))
     	
     	newItem.orm_organisation__c = component.find("organisation").get("v.value");
         var action = component.get('c.add');
@@ -350,7 +351,13 @@
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
     
-    onTitleChange : function(component,event,helper){ 
+    sendOrganisationNameToFD   : function(component,event,helper){ 
+        var field = 'Organisation Name';
+        var description = 'This field represents the name of this assessment';
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    
+    onChangeNameOrganisation : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
         }
@@ -360,6 +367,35 @@
             component.set("v.displaySaveCancelBtn",true);
         }
     },
+    
+    onchangeDescriptionOrganisation : function(component,event,helper){ 
+       component.set("v.displaySaveCancelBtn",true);
+    },
+     
+    onchangeObjectifOrganisation : function(component,event,helper){ 
+       component.set("v.displaySaveCancelBtn",true);
+    },
+     
+    onChangeClientName : function(component,event,helper){ 
+       component.set("v.displaySaveCancelBtn",true);
+    },
+    
+    onChangeBudgetCommercial : function(component,event,helper){ 
+       component.set("v.displaySaveCancelBtn",true);
+    },
+    
+    sendDesciptionBudgetCommercial  : function(component,event,helper){ 
+        var field = 'Commercial Budget';
+        var description = 'Description Commercial Budget';
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+     
+    sendDesciptionClientName  : function(component,event,helper){ 
+        var field = 'Client Name';
+        var description = 'Description Client Name';
+        helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+     
     sendTitleToFD : function(component,event,helper){ 
         var field = $A.get("$Label.c.orm_title_assessment");
         var description = $A.get("$Label.c.orm_description_assessment");

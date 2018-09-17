@@ -48,10 +48,13 @@
         <div class=" slds-size--4-of-12   slds-p-horizontal--small">
           <br/>
          <span class="btnNewWorkshop" onclick="{!c.openNewWorkshop}">
-           <lightning:icon iconName="utility:new" size="medium" /></span>
-       	<span></span>
+           <lightning:icon class="curseur" iconName="utility:new" size="medium" /></span>
+       	<span>
+       	      <lightning:icon class="curseur" onclick="{!c.openNewContact}" iconName="action:add_contact" size="small" />
+       	</span>
          <span class="btnDeleteActivity" onclick="{!c.removeWorkshop}">
-	<button class="slds-button slds-button_brand" onclick="{!c.openNewContact}">{!$Label.c.new_title_label+'  '+ $Label.c.orm_contact_menu}</button>		</span>
+         </span>
+	     <!--<button class="slds-button slds-button_brand" onclick="{!c.openNewContact}">{!$Label.c.new_title_label+'  '+ $Label.c.orm_contact_menu}</button>  -->		
         <!-- use aura:if for show/hide buttons -->
 		<aura:if isTrue="{!v.showSaveCancelBtn}">
 			<!--button for save and cancel Record after Inline Edit-->

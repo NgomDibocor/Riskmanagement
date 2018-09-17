@@ -60,14 +60,14 @@
     <!-- end for prabability --> 
     <table class="slds-table">
         <tr>
-            <td>
+            <td class="tdWidth">
                 <lightning:card variant="Narrow" title="{!v.assessmentRiskData.orm_Risk__r.Name}" iconName="standard:account">
                     <p class="slds-p-horizontal_small">
                         <b>{!v.assessmentRiskData.orm_Risk__r.Description}</b>
                     </p>
                 </lightning:card>
             </td>
-            <td>
+            <td class="tdWidth">
                 <aura:if isTrue="{!v.displaySaveCancelBtn}">
                     <div style="margin-bottom:20px;">
                         <lightning:buttonGroup class="slds-m-around_medium">

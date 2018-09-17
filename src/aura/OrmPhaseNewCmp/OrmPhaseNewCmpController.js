@@ -1,5 +1,5 @@
 ({
-	doInit : function(component, event, helper) {
+	/*doInit : function(component, event, helper) {
 	
 		var action = component.get('c.getSelectOptions');    
         action.setParams({'objObject' : component.get("v.phase"), 'fld' : 'orm_phase__c'});
@@ -12,26 +12,24 @@
             }
         });
         $A.enqueueAction(action); 
-	},
+	},*/
 	
 	openPhaseNewCmp : function (component, event, helper) {
-		helper.openModal(component, event, helper);
+		component.set("v.isOpen", true); 
 	},
 	
 	createItem : function(component, event, helper) {
-		var phaseStatus = component.find('phase').get('v.value');
+		var phase = component.find('phase').get('v.value');
         
         /* we test the validity of data */
         var isItemsValid = true;
-        if($A.util.isEmpty(phaseStatus)) {
+        if($A.util.isEmpty(phase)) {
             isItemsValid = false;           
         }
         
         if(isItemsValid){
-        	var newPhase = component.get('v.phase');
+        	var newPhase = component.get('v.phaseData');
         	newPhase.Name = "XXXX"; // not used but it's required for Macro
-        	newPhase.orm_phase__c = phaseStatus;
-        	console.log("id Assessment in add ", component.get('v.assessmentId'));
         	newPhase.orm_assessment__c = component.get('v.assessmentId');
         	
         	
@@ -41,10 +39,13 @@
             });
             action.setCallback(this, function(response) {
             	if(response.getState() == 'SUCCESS'){
+            	
+            	    component.set("v.isOpen", false);
+            	    
             		newPhase = response.getReturnValue();
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({
-			           'message' : newPhase.orm_phase__c +' has been added',
+			           'message' : newPhase.Name +' has been added',
 			           'type' : 'success',
 			           'mode' : 'dismissible'
 		            });	
@@ -53,11 +54,13 @@
 		            var evt = $A.get("e.c:OrmEventNewPhaseCreated");
                     evt.fire();
 		            
-            		helper.closeModal(component, event);
+            		
                     component.set('v.phase', { 'sobjectType' : 'Macro',
 											   'orm_phase__c': '',
 											   'orm_assessment__c': ''
-                    });
+											 }
+                    );
+                    
             	} else {
             		var toast = $A.get('e.force:showToast');
             		toast.setParams({

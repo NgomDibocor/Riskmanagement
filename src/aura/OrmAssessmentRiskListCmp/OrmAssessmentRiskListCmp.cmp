@@ -4,23 +4,24 @@
     <aura:attribute name="assessmentRisks" type="List" />
     <aura:attribute name="key" type="string" />
    
-   <div class="slds-box" style="width:100%;font-size: large !important;">
-	  <h1 style="font-weight: 600; font-size: 2em; text-align: center; white-space: normal;">List of Assessment Risk</h1>
+   
+	<div  style="width:100%;padding-top:10px;padding-left:10px">
+	    <h1 class="titleListAssessmentRisk">List of Assessment Risk</h1>
 	</div>
    
-  <div class="slds-col">									
+   <div class="slds-col" style="margin-bottom:20px">									
 		<div class="space"></div>
 		<span class="searchInput">
         	<lightning:input aura:id="searchAssRisk" class="search" placeholder="{!$Label.c.orm_filter_assessmentRiskList_placeholder}" type="search" onchange="{!c.filter}" value="{!v.key}"  />
         </span>
         
-   </div>
+    </div>
  
-    <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px">
-      <aura:iteration items="{!v.PaginationList}" var="item">
+    <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px;margin-bottom: 20px">
+      <aura:iteration items="{!v.PaginationList}" var="item">  
         <div class="slds-size_1-of-3">
-            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:95%;">
-                <article class="slds-card" style="height:150px;">
+            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:95%;">
+                <article class="slds-card" style="height:170px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
                             <div class="slds-media__figure">
@@ -29,14 +30,13 @@
                                 </span>
                             </div>
                             <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                               <h2>
+                               <h2 class="styleText">
                                   Assessment: <b><ui:outputText value="{!item[3]}" /></b>
                               </h2>
                             </div>
-                            
                             <div class="slds-no-flex" style="margin-left:5px">
                                 <button id="{!item[0]}" 
-                                        class="slds-button slds-button_brand"
+                                        class="slds-button slds-button_neutral"
                                         onclick="{!c.showAssessmentRisk}">
                                     {!$Label.c.orm_show_button_title}<span id="{!item[6]}"></span>
                                     
@@ -46,30 +46,30 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
-                        <h2>
+                        <h2 class="styleText">
                            Risk: <b><ui:outputText value="{!item[1]}" /></b>
                         </h2>
                     </div>
-                    <div class="slds-card__body slds-card__body_inner slds-truncate">
+                    <div class="styleText slds-card__body slds-card__body_inner slds-truncate">
                         Description: <b><ui:outputText value="{!item[2]}" /></b> 
                     </div>
                     <div class=" slds-card__body slds-card__body_inner">
 	                    <table style="width:100%">
 	                      <tr>
-	                        <td width="34%">Measures: <b><ui:outputText value="{!item[4]}" /></b></td>
-	                        <td width="33%">Causes: <b><ui:outputText value="{!item[5]}" /></b></td>
-	                        <td width="33%"><ui:outputText value="" /></td>
+	                        <td width="40%" class="styleText">Number of Measures: <i class="cercle"><ui:outputText value="{!item[4]}" /></i></td>
+	                        <td width="3%"></td>
+	                        <td width="40%" class="styleText" >Number of Causes:  <i class="cercle"><ui:outputText value="{!item[5]}" /></i></td>
+	                        <td width="17%"></td>
 	                      </tr>
 	                    </table>
                     </div>
-                    
                 </article>
             </div>
         </div>
        
     </aura:iteration>
   </div>
-    <div style="margin:auto; padding-bottom:10px">
+    <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
 	    <lightning:buttonGroup >
 	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
 	                            onclick="{!c.previous}" variant="brand"

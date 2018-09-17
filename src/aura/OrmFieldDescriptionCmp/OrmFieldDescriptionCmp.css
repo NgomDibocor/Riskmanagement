@@ -1,5 +1,6 @@
 .THIS {
-    background-color: rgb(68, 68, 68);
+    /*  */
+    background-color: #0077AB;
     height:400px;
     line-height: 1.5;
     font-size: 1.05em;
@@ -15,7 +16,6 @@
     font-size: 1.1em;
     font-weight: 600
 }
-
 .THIS .ico svg{
     position: absolute;
     top: 0;

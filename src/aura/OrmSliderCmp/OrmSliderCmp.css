@@ -43,6 +43,11 @@
 	margin-right:3%;
 	text-align: center;
 }
+.THIS .tdcouleurSliderHSSE{
+	width: 8%;
+	white-space: normal;
+	text-align: center;
+}
 .THIS .tdClassSlider2{
 	width: 23%;
 	white-space: normal;
@@ -56,14 +61,20 @@
 }
 
 .THIS .tdClassSlider3{
-	width: 29%;
+	width: 35%;
 	white-space: normal;
-	padding-left: 4%;
+	padding-left: 3px;
+} 
+
+.THIS .tdClassRating{
+	width: 26%;
+	white-space: normal;
+	padding-left: 3px;
 }  
 
 
 .THIS .titleslider {
-  font-weight: 300;
+  font-weight: 600;
   font-size: 2em;
  /* letter-spacing: -.07em; */
   text-align: center;

@@ -62,7 +62,7 @@
 										<div class="slds-form-element__control">
 											<ui:inputnumber aura:id="budget" label="Size"
 												class="slds-input" labelClass="slds-form-element__label"
-												value="{!v.item.NumberOfEmployees}" required="true" />
+												value="{!v.item.NumberOfEmployees}" />
 										</div>
 									</div>
 									<div class="slds-form-element slds-is-required">
@@ -109,14 +109,14 @@
 										<div class="slds-form-element__control">
 											<ui:inputText aura:id="budget" label="Budget"
 												class="slds-input" labelClass="slds-form-element__label"
-												value="{!v.item.AnnualRevenue}" required="true" />
+												value="{!v.item.AnnualRevenue}"  />
 										</div>
 									</div>
                                     <div class="slds-form-element">
 										<div class="slds-form-element__control">
 											<ui:inputText aura:id="website" label="{!$Label.c.orm_website}"
 												class="slds-input" labelClass="slds-form-element__label"
-												value="{!v.item.orm_website__c}" required="true" />
+												value="{!v.item.orm_website__c}" />
 										</div>
 									</div>
                                     <div class="slds-form-element">

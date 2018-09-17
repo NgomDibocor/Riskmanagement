@@ -1,7 +1,7 @@
 .THIS {
 }
 .THIS .titleAattachment {
-  font-weight: 300;
+  font-weight: 600;
   font-size: 2em;
  /* letter-spacing: -.07em; */
   text-align: center;
@@ -9,7 +9,16 @@
 }
 .THIS .messageIsEmpty {
   text-align: center;
-  font-size: 1em;
+  font-weight: 600;
+  font-size: 1.2em;
   white-space: normal;
   color: green;
+}
+.THIS .dot {
+    height: 55px;
+    line-height: 55px;
+    width: 300px;
+    border-radius:0;
+    background-color: #5B86BE;
+    display: inline-block;
 }

@@ -1,9 +1,17 @@
 .THIS {
+	
 }
 .THIS a{
     text-decoration: none;
 }
 .THIS .textInDiv{
+	font-weight: 600;
+    font-size: 1.2em;
+	white-space: normal;
+	text-align: justify;
+    text-justify: inter-word;
+ }
+ .THIS .textInDivCmp{
 	white-space: normal;
 	text-align: justify;
     text-justify: inter-word;
@@ -55,7 +63,7 @@
 }
 .THIS .orgSelect {
     display: inline-block;
-    width:85%;
+    width:77%;
     margin-right: 15px;
 }
 .THIS span.btnNewOrganisation {
@@ -65,11 +73,11 @@
 }
 .THIS .endSpaceOrg {
     display: inline-block;
-    width:7%;
+    width:16%;
 }
 .THIS .startSpaceOrg {
     display: inline-block;
-    width:3%;
+    width:2%;
 }
 .THIS #myBtn {
     display: none; /* Hidden by default */
@@ -101,8 +109,24 @@
 
 .THIS .dot {
     height: 50px;
+    line-height: 50px;
     width: 50px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
+}
+
+.THIS .organisationUnit {
+    height: 55px;
+    width: 300px;
+    line-height: 55px;
+    background-color: #5B86BE;
+    display: inline-block;
+}
+.THIS .titleOrganisationUnit {
+  font-weight: 600;
+  font-size: 2em;
+ /* letter-spacing: -.07em; */
+  text-align: center;
+  white-space: normal;
 }

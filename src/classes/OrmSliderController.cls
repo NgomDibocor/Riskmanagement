@@ -7,7 +7,7 @@ public with sharing class OrmSliderController {
     }   
     
     public static Id getHsseImpactRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Order.getRecordTypeInfosByName()
+         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
                   .get('RT HSSE Impact').getRecordTypeId();
         return recordTypeId;
     }
@@ -43,39 +43,17 @@ public with sharing class OrmSliderController {
 					                   WHERE   orm_assessment__c =:assessment 
 					                       and 
 					                           RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()]; 
-          
-          delete probabilities;                              
-    }
-    
-    /*@AuraEnabled 
-    public static Macro getProbability(String assessment, String probability)
-    {
-         return  [SELECT Id, orm_probability__c, orm_pourcentageMin__c, orm_pourcentageMax__c
-                  From Macro 
-                  WHERE   orm_assessment__c =:assessment 
-                       and 
-                          RecordTypeId=: OrmSliderController.getProbabilityRecordTypeId()
-                       and
-                          orm_probability__c =: probability];                               
-    }*/
-    
-    @AuraEnabled 
-    public static void deletePreviousHsseImpacts(String assessment)
-    {
-          List<Order> hsseImpacts = [SELECT Id
-					                 From Order 
-					                 WHERE   orm_assessment__c =:assessment 
-					                       and 
-					                          RecordTypeId=: OrmSliderController.getHsseImpactRecordTypeId()]; 
-          
-          delete hsseImpacts;                              
+         
+         if(probabilities.size() > 0){
+              delete probabilities; 
+          }
     }
     
     @AuraEnabled
-    public static List<Order> addHsseImpacts(List<Order> items)
+    public static List<Macro> addHsseImpacts(List<Macro> items)
     {
-    	List<Order> res = new List<Order>();
-    	for (Order item : items) {
+    	List<Macro> res = new List<Macro>();
+    	for (Macro item : items) {
     		item.RecordTypeId = OrmSliderController.getHsseImpactRecordTypeId();
 		    upsert item;
 		    res.add(item);
@@ -85,10 +63,10 @@ public with sharing class OrmSliderController {
    }
    
    @AuraEnabled 
-    public static List<Order> findHsseImpactsByAssessment(String assessment)
+    public static List<Macro> findHsseImpactsByAssessment(String assessment)
     {
-         return  [SELECT Id, Description, orm_security__c, orm_environmentAndCommunity__c
-                  From Order 
+         return  [SELECT Id, orm_rating__c, orm_healthAndSafety__c, orm_security__c, orm_environmentAndCommunity__c
+                  From Macro 
                   WHERE   orm_assessment__c =:assessment 
                        and 
                           RecordTypeId=: OrmSliderController.getHsseImpactRecordTypeId()];                               

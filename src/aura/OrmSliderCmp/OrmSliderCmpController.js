@@ -37,7 +37,7 @@
 		        	alert("ERROR")	
 		        }
 	      });
-	      $A.enqueueAction(actionGetProbabilities);  
+	      $A.enqueueAction(actionGetProbabilities);    
           
           
 
@@ -62,11 +62,13 @@
        }
        
        if(showBusinessImpactsRanking == true){
+           component.set("v.showBtnSave", true);
 	       component.set("v.showBusinessImpactsRanking", false);
            component.set("v.showHsseImpactsRanking", true);
            
            document.getElementById("hir").style.display = "block";
            document.getElementById("bir").style.display = "none";
+           helper.getHsseImpacts(component, event, helper);
        }
       
     },
@@ -87,7 +89,7 @@
        } 
        
        if(showHsseImpactsRanking == true){
-           
+           component.set("v.showBtnSave", false);
            component.set("v.showBusinessImpactsRanking", true);
 	       component.set("v.showHsseImpactsRanking", false);
 	       
@@ -100,7 +102,6 @@
     
     createProbilityRanking : function(component, event, helper) {
     
-      
           var probabilities = [];
           var newItemProbable = {};
           newItemProbable.sobjectType = 'Macro';
@@ -149,6 +150,11 @@
 			        if(response.getState() == 'SUCCESS'){
 			            component.set("v.showBtnUpdate", false);
 			        	component.set("v.probabilities", response.getReturnValue());
+			        	
+			        	//Hide the Spinner
+		                var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+			            evtHideSpinner.fire(); 
+			        	
 			        	var toast = $A.get('e.force:showToast');
 						toast.setParams({
 							'message' : "Probalility Ranking was successfully saved",
@@ -169,76 +175,126 @@
           
    },
    
-   cancelUpdate : function(component, event, helper) {
+   cancelUpdateProbility : function(component, event, helper) {
       component.set("v.showBtnUpdate", false);
+      helper.cancelModifProbabiliy(component, event, helper);
    },
    
-   /*createHsseImpactsRanking : function(component, event, helper) {
-      var hsseImpacts = [];
-          var newItemVeryHigh = {};
-          newItemVeryHigh.sobjectType = 'Order';
+   cancelUpdateHsseImpact : function(component, event, helper) {
+      component.set("v.showBtnUpdate", false);
+      helper.getHsseImpacts(component, event, helper);
+   },
+   
+    createHsseImpactsRanking : function(component, event, helper) {
+          var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	      evtShowSpinner.fire();
+	                  
+          var hsseImpacts = [];
+          var newItemVeryHigh = component.get("v.hsseVeryHighData");
           newItemVeryHigh.orm_assessment__c = component.get("v.idAssessment");
-          newItemVeryHigh.orm_rating__c = 'VeryHigh';
-          newItemVeryHigh.Description = '';
-          newItemVeryHigh.orm_security__c = '';
-          newItemVeryHigh.orm_environmentAndCommunity__c = '';
           hsseImpacts.push(newItemVeryHigh);
        
-          var newItemHigh = {};
-          newItemHigh.sobjectType = 'Order';
+          var newItemHigh = component.get("v.hsseHighData");
           newItemHigh.orm_assessment__c = component.get("v.idAssessment");
-          newItemHigh.orm_rating__c = 'High';
-          newItemHigh.Description = '';
-          newItemHigh.orm_security__c = '';
-          newItemHigh.orm_environmentAndCommunity__c = '';
           hsseImpacts.push(newItemHigh);
           
-          var newItemMedium = {};
-          newItemMedium.sobjectType = 'Order';
+          var newItemMedium = component.get("v.hsseMediumData");
           newItemMedium.orm_assessment__c = component.get("v.idAssessment");
-          newItemMedium.orm_rating__c = 'Medium';
-          newItemMedium.Description = '';
-          newItemMedium.orm_security__c = '';
-          newItemMedium.orm_environmentAndCommunity__c = '';
           hsseImpacts.push(newItemMedium);
 
-          var newItemLow = {};
-          newItemLow.sobjectType = 'Order';
+          var newItemLow = component.get("v.hsseLowData");
           newItemLow.orm_assessment__c = component.get("v.idAssessment");
-          newItemLow.orm_rating__c = 'Low';
-          newItemLow.Description = '';
-          newItemLow.orm_security__c = '';
-          newItemLow.orm_environmentAndCommunity__c = '';
           hsseImpacts.push(newItemLow);
-
-          var actiondeletePrevious = component.get('c.deletePreviousHsseImpacts');
-	      actiondeletePrevious.setParams({ "assessment": component.get("v.idAssessment") });
-	      actiondeletePrevious.setCallback(this, function(response) {
-	        if(response.getState() == 'SUCCESS'){
-	        	  var action = component.get('c.addHsseImpacts');
-			      action.setParams({ "items": hsseImpacts });
-			      action.setCallback(this, function(response) {
-			        if(response.getState() == 'SUCCESS'){
-			            component.set("v.showBtnUpdate", false);
-			        	component.set("v.hsseImpacts", response.getReturnValue());
-			        	var toast = $A.get('e.force:showToast');
-						toast.setParams({
-							'message' : "HSSE Impacts Ranking was successfully saved",
-							'type' : 'success',
-							'mode' : 'dismissible'
-						});      
-						toast.fire(); 	
-			        } else {
-			        	alert("ERROR")	
-			        }
-			     });
-			     $A.enqueueAction(action);
-	        } else {
-	        	alert("ERROR")	
-	        }
-	     });
-	     $A.enqueueAction(actiondeletePrevious);
-
-   }*/
+          
+    	  var actionAddHSSE = component.get('c.addHsseImpacts');
+	      actionAddHSSE.setParams({ "items": hsseImpacts });
+	      actionAddHSSE.setCallback(this, function(response) {
+		        if(response.getState() == 'SUCCESS'){
+		            console.log('******Size if click on create button******')
+		            console.log(JSON.stringify(response.getReturnValue().length))
+		            component.set("v.showBtnUpdate", false);
+		        	component.set("v.hsseImpacts", response.getReturnValue());
+					
+					for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
+	                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
+	                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
+	                      }
+	                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
+	                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
+	                      }
+	                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
+	                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
+	                      }
+	                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
+	                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
+	                      }
+                    }
+                    //Hide the Spinner
+	                var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+		            evtHideSpinner.fire(); 
+		            
+		            var toast = $A.get('e.force:showToast');
+					toast.setParams({
+						'message' : "HSSE Impacts Ranking was successfully saved",
+						'type' : 'success',
+						'mode' : 'dismissible'
+					});      
+					toast.fire();
+					
+		         }else {
+		        	alert("ERROR create")	
+			         }
+	      });
+	      $A.enqueueAction(actionAddHSSE);
+   },
+   
+   onChangeVeryHighHS : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeVeryHighSecurity : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeVeryHighEnvCom : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeHighHS : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeHighSecurity : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeHighEnvCom : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeMediumHS : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeMediumSecurity : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeMediumEnvCom : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeLowHS : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeLowSecurity : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeLowEnvCom : function(component, event, helper) {
+      component.set("v.showBtnUpdate", true);
+   },
+   
    
 })

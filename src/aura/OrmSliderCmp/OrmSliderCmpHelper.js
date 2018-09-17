@@ -266,51 +266,102 @@
         //end second slider  
     },
     
-    
-    deleteProba : function(component, event, helper) {
-    
-        var actiondeletePrevious = component.get('c.deletePreviousProbalities');
-	      actiondeletePrevious.setParams({ "assessment": component.get("v.idAssessment") });
-	      actiondeletePrevious.setCallback(this, function(response) {
-	        if(response.getState() == 'SUCCESS'){
-	        	
-	        } else {
-	        	alert("ERROR")	
-	        }
-	     });
-	     $A.enqueueAction(actiondeletePrevious); 
-    },
-    
-    /*getProbilities : function(component, event, helper) {
-    	  var action = component.get('c.findAllProbabilitiesByAssessment');
-	      action.setParams({ "assessment": component.get("v.idAssessment") });
-	      action.setCallback(this, function(response) {
-	        if(response.getState() == 'SUCCESS'){
-	        	component.set("v.probabilities", response.getReturnValue());	
-	        	if(component.get("v.probabilities").length > 0){
-	        	   
-                   for (var i = 0; i < component.get("v.probabilities").length; i++) {
+    cancelModifProbabiliy : function(component, event, helper){
+            console.log('*********dans cancelMofProba***********');
+        	console.log('Size: '+ component.get("v.probabilities").length);
+        	
+        	if(component.get("v.probabilities").length > 0){
+    	   
+               for (var i = 0; i < component.get("v.probabilities").length; i++) {
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Probable' ){
                          component.set("v.probableData", component.get("v.probabilities")[i]);
+                         
+                         var sliderProbable = component.find('sliderProbable').getElement();
+                         sliderProbable.noUiSlider.set([component.get("v.probableData").orm_pourcentageMin__c, null]);
                       }
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Possible' ){
                          component.set("v.possibleData", component.get("v.probabilities")[i]);
+                         
+                         var sliderPossible = component.find('sliderPossible').getElement();
+                         sliderPossible.noUiSlider.set([component.get("v.possibleData").orm_pourcentageMin__c, component.get("v.possibleData").orm_pourcentageMax__c]);
                       }
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Unlikely' ){
                          component.set("v.unlikelyData", component.get("v.probabilities")[i]);
+                         
+                         var sliderUnlikely  = component.find('sliderUnlikely').getElement();
+                         sliderUnlikely.noUiSlider.set([component.get("v.unlikelyData").orm_pourcentageMin__c, component.get("v.unlikelyData").orm_pourcentageMax__c]);
                       }
                       if(component.get("v.probabilities")[i].orm_probability__c == 'Rare' ){
                          component.set("v.RareData", component.get("v.probabilities")[i]);
+                         
+                         var sliderRare   = component.find('sliderRare').getElement();
+                         sliderRare.noUiSlider.set([component.get("v.RareData").orm_pourcentageMin__c, component.get("v.RareData").orm_pourcentageMax__c]);
                       }
                    }
-	        	}
+	        	}	
+		        	
+    },
+    
+    getHsseImpacts : function(component, event, helper) {
+    	  var action = component.get('c.findHsseImpactsByAssessment');
+	      action.setParams({ "assessment": component.get("v.idAssessment") });
+	      action.setCallback(this, function(response) {
+	        if(response.getState() == 'SUCCESS'){
+	            
+	        	component.set("v.hsseImpacts", response.getReturnValue());	
+	        	console.log('*****want to see the size******')
+	            console.log(component.get("v.hsseImpacts").length) 
+	        	if(component.get("v.hsseImpacts").length > 0){
+	        	   
+	                   for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
+		                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
+		                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
+		                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
+		                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
+		                      }
+	                    }
+	                    
+	        	  }else{
+	        	  
+	        	      var newItemHsseVeryHigh = component.get("v.hsseVeryHighData");
+	        	      newItemHsseVeryHigh.orm_healthAndSafety__c = "Fatality";
+	        	      newItemHsseVeryHigh.orm_security__c = "Security breach with major property damage and loss";
+	        	      newItemHsseVeryHigh.orm_environmentAndCommunity__c = "Uncontained spill or event with severe environmental or community impact.  Mandatory obligation to Regulator";
+	        	      component.set("v.hsseVeryHighData", newItemHsseVeryHigh);
+	        	      
+	        	      var newItemHsseHigh = component.get("v.hsseHighData");
+	        	      newItemHsseHigh.orm_healthAndSafety__c = "Lost Time Incident";
+	        	      newItemHsseHigh.orm_security__c = "Security breach with serious property damage and loss";
+	        	      newItemHsseHigh.orm_environmentAndCommunity__c = "Uncontained spill or event with serious environmental or community impact. Necessary to obtain directive from Regulator";
+	        	      component.set("v.hsseHighData", newItemHsseHigh);
+	        	      
+	        	      var newItemHsseMedium = component.get("v.hsseMediumData");
+	        	      newItemHsseMedium.orm_healthAndSafety__c = "Medical Treatment Case";
+	        	      newItemHsseMedium.orm_security__c = "Security breach with moderate property damage and loss";
+	        	      newItemHsseMedium.orm_environmentAndCommunity__c = "Uncontained spill  or event with minor environmental or community impact. Recommended engagement with Regulator";
+	        	      component.set("v.hsseMediumData", newItemHsseMedium);
+	        	      
+	        	      var newItemHsseLow = component.get("v.hsseLowData");
+	        	      newItemHsseLow.orm_healthAndSafety__c = "First Aid Case";
+	        	      newItemHsseLow.orm_security__c = "Security breach with minor property damage and/or loss";
+	        	      newItemHsseLow.orm_environmentAndCommunity__c = "Local contained spill or event with no environmental or community impact. No need to engage Regulator";
+	        	      component.set("v.hsseLowData", newItemHsseLow);
+	        	  
+	        	  }
 	        	
 	        } else {
-	        	alert("ERROR")	
+	        	alert("ERROR getHsseImpacts")	
 	        }
 	     });
 	     $A.enqueueAction(action);
-    }*/
+    }
     
     
    

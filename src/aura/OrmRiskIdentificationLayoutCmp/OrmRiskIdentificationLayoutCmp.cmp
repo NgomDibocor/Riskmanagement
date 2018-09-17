@@ -64,9 +64,9 @@
             <span class="btnNewRisk" onclick="{!c.openModalNewRisk}">
            <!--  <button class="slds-button slds-button_brand" >add new risk</button> -->
              <lightning:icon iconName="utility:new" size="medium" /></span>
-            <button class="slds-button slds-button--brand" onclick="{!c.openModalRisk}">
-			<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title} 
-	       </button>
+            <button class="slds-button slds-button--brand" onclick="{!c.openModalRisk}">Others Risks
+			<i class="fa fa-paper-plane-o" aria-hidden="true"></i> 
+	       </button><!-- {!$Label.c.associate_button_title} -->
         </div>
         <div class=" slds-size--2-of-12   slds-p-horizontal--small slds-float—left">
 
@@ -95,7 +95,9 @@
             />
 			 <aura:set attribute="else">
 			 <div class="messageIsEmpty" style="padding-top: 20px">
-		 		    {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_impact +'   ' + $Label.c.orm_is_empty}
+			        List of Associated Risk is empty for this category, change the category
+			        
+		 		   <!-- {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_impact +'   ' + $Label.c.orm_is_empty}  -->
 		        </div>
 			 </aura:set>
            </aura:if>
@@ -111,10 +113,14 @@
                     <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.c.orm_close_button_title}" onclick="{!c.closeModal}">
 							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
-                    <h1 id="header99" class="slds-text-heading--medium" style="color: white;"> {!$Label.c.associate_button_title} </h1>
+                    <h1 id="header99" class="slds-text-heading--medium" style="color: white;">Association </h1>
                 </header>
+                
                 <!--###### MODAL BOX BODY Part Start From Here ######-->
                 <div class="slds-modal__content slds-p-around--medium">
+                  <div class="textInDiv" style="margin-bottom:10px;margin-top:0px">
+                    For associating risks at the assessment, click on the checbox button on the first column and then the associate button
+                 </div>
                     <!-- CREATE NEW Activity FORM -->
                     <div class="slds-grid slds-gutters">
                         <div class=" slds-size--4-of-12   slds-p-horizontal--small slds-float—left">
@@ -137,16 +143,23 @@
 
                         </div>
                     </div> <br/><br/>
-                    <lightning:datatable aura:id="datatableRisk"
-                     data="{! v.allRiskList }"
-                      class="slds-m-top_medium" 
-                      columns="{! v.columns2 }"
-                       keyField="id" 
-                       resizeColumnDisabled="true" 
-                       showRowNumberColumn="true" 
-                       selectedRows="{! v.assessmentRisk}"
-                       onrowselection="{!c.openPopupAssociation}"
-                       />
+                   <aura:if isTrue="{!not(empty(v.allRiskList ))}">
+		                    <lightning:datatable aura:id="datatableRisk"
+		                     data="{! v.allRiskList }"
+		                      class="slds-m-top_medium" 
+		                      columns="{! v.columns2 }"
+		                       keyField="id" 
+		                       resizeColumnDisabled="true" 
+		                       showRowNumberColumn="true" 
+		                       selectedRows="{! v.assessmentRisk}"
+		                       onrowselection="{!c.openPopupAssociation}"
+		                       />
+                      <aura:set attribute="else">
+						 <div class="messageIsEmpty" style="padding-top: 20px">
+					        List of Risk is empty for this category, change the category
+				         </div>
+			      </aura:set>
+                 </aura:if>   
                     <!-- / CREATE NEW Item FORM -->
 
                 </div>

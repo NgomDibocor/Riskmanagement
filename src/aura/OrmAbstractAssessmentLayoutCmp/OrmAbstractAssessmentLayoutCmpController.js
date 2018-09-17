@@ -217,7 +217,7 @@
             });
             toast.fire();
         }else{
-	            if(component.get("v.isEmptyListAssessmentRisk")){
+	            /*if(component.get("v.isEmptyListAssessmentRisk")){
 	                var toast = $A.get('e.force:showToast');
 	                toast.setParams({
 	                    'message' : 'List assessmentRisk is empty',
@@ -225,7 +225,7 @@
 	                    'mode' : 'dismissible'
 	                });
 	                toast.fire();
-				 }else{ 
+				 }else{ */
 				      //Hide the Spinner
 		              var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
 			          evtHideSpinner.fire(); 
@@ -233,7 +233,7 @@
 				      var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
 	                  evtSpinner.fire(); 
 				      helper.activeRiskIdentif(component, event);
-				 }
+				 //}
                     
         }
     },

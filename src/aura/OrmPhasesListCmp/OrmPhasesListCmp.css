@@ -26,7 +26,7 @@
 	background-color: rgba(27, 82, 151, 1.0);
 }
 .THIS .titlePhase {
-  font-weight: 300;
+  font-weight: 600;
   font-size: 2em;
  /* letter-spacing: -.07em; */
   text-align: center;
@@ -34,7 +34,16 @@
 }
 .THIS .messageIsEmpty {
   text-align: center;
-  font-size: 1em;
+  font-weight: 600;
+  font-size: 1.2em;
   white-space: normal;
   color: green;
+}
+.THIS .dot {
+    height: 50px;
+    width: 300px;
+    line-height: 50px;
+    border-radius:0;
+    background-color: #5B86BE;
+    display: inline-block;
 }

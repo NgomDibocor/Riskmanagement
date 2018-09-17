@@ -2,7 +2,7 @@
     width:85%;
 }
 .THIS .titleActivity {
-  font-weight: 300;
+  font-weight: 600;
   font-size: 2em;
  /* letter-spacing: -.07em; */
   text-align: center;
@@ -10,7 +10,8 @@
 }
 .THIS .messageIsEmpty {
   text-align: center;
-  font-size: 1em;
+  font-weight: 600;
+  font-size: 1.2em;
   white-space: normal;
   color: green;
 }
@@ -33,3 +34,13 @@
     display: inline-block;
     width:100%;
 }
+
+.THIS .dot {
+    height: 50px;
+    line-height: 50px;
+    width: 300px;
+    border-radius:0;
+    background-color: #5B86BE;
+    display: inline-block;
+}
+

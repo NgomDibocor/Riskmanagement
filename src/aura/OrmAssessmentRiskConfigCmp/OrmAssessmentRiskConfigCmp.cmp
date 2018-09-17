@@ -292,57 +292,57 @@
             <td id="environment"></td>
             </tr>
             <tr>
-                <td>
+                <td style="white-space: normal !important;">
                 <ui:inputRadio aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}" />
 		        <span class="slds-form-element__label text">{!v.hsseVeryHighData.orm_healthAndSafety__c}</span>
                 </td>
-                <td>
+                <td style="white-space: normal !important;">
                     <ui:inputRadio aura:id="rr0" name="security"  change="{!c.checkboxSelect}"/>
 		            <span class="slds-form-element__label text">{!v.hsseVeryHighData.orm_security__c}</span>
                 </td>
-                <td>
+                <td style="white-space: normal !important;">
                     <ui:inputRadio aura:id="rrr0" name="environmentAndCommunity"  change="{!c.checkboxSelect}"/>
 		            <span class="slds-form-element__label text">{!v.hsseVeryHighData.orm_environmentAndCommunity__c}</span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td style="white-space: normal !important;">
                    <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}"/> 
 		            <span class="slds-form-element__label text">{!v.hsseHighData.orm_healthAndSafety__c}</span>
                 </td>
-                <td>
+                <td style="white-space: normal !important;">
                     <ui:inputRadio aura:id="rr1" name="security" change="{!c.checkboxSelect}"/>
 		            <span class="slds-form-element__label text">{!v.hsseHighData.orm_security__c}</span>
                 </td>
-                <td>
+                <td style="white-space: normal !important;">
                    <ui:inputRadio aura:id="rrr1" name="environmentAndCommunity" change="{!c.checkboxSelect}" />
 		            <span class="slds-form-element__label text">{!v.hsseHighData.orm_environmentAndCommunity__c}</span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td style="white-space: normal !important;">
                    <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}" />
 		            <span class="slds-form-element__label text">{!v.hsseMediumData.orm_healthAndSafety__c}</span>
                 </td>
-                <td>
+                <td style="white-space: normal !important;">
                     <ui:inputRadio aura:id="rr2" name="security" change="{!c.checkboxSelect}"/>
 		            <span class="slds-form-element__label text">{!v.hsseMediumData.orm_security__c}</span>
                 </td>
-                <td>
+                <td style="white-space: normal !important;">
                    <ui:inputRadio aura:id="rrr2" name="environmentAndCommunity" change="{!c.checkboxSelect}"/>
 		            <span class="slds-form-element__label text">{!v.hsseMediumData.orm_environmentAndCommunity__c}</span>
                 </td>
             </tr>
             <tr>
-                <td class="tdWidth">
+                <td style="white-space: normal !important;">
                    <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}" />
 		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_healthAndSafety__c}</span> 
                 </td>
-                <td class="tdWidth">
+                <td style="white-space: normal !important;">
                     <ui:inputRadio aura:id="rr3" name="security" change="{!c.checkboxSelect}"/>
 		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_security__c}</span>
                 </td>
-                <td class="tdWidth">
+                <td style="white-space: normal !important;">
                     <ui:inputRadio aura:id="rrr3" name="environmentAndCommunity" change="{!c.checkboxSelect}"/>
 		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_environmentAndCommunity__c}</span>
                 </td>

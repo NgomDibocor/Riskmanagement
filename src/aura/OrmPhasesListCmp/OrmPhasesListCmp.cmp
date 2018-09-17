@@ -58,7 +58,12 @@
 	        <table class="slds-table">	        
 	            <thead>
 	                <tr class="slds-text-title--caps">
-	                  <th style="width:3.25rem;" class="slds-text-align--right">
+	                  <th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
+	                  
+	                  <th scope="col">
+	                  	 <div class="slds-truncate thTable" title="{!$Label.c.orm_phase}">Phase</div><!-- {!$Label.c.orm_phase} -->
+	                  </th>
+	                  <th  class="slds-text-align--right">
 		              	<div class="slds-form-element">
 		                	<div class="slds-form-element__control">
 		                    	<label class="slds-checkbox">
@@ -70,11 +75,6 @@
 		                    </div>
 		                </div>
 		              </th> 
-	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th>
-	                  
-	                  <th scope="col">
-	                  	<div class="slds-truncate thTable" title="{!$Label.c.orm_phase}">Phase</div><!-- {!$Label.c.orm_phase} -->
-	                  </th>
 	                </tr>
 	            </thead>
 	            

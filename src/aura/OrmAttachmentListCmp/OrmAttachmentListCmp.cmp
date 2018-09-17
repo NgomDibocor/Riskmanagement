@@ -43,13 +43,13 @@
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
-					<th scope="col"><div class="slds-truncate" title="">N°</div></th>
-					<th scope="col"><div class="slds-truncate"
+					<th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
+					<th scope="col"><div class="slds-truncate thTable"
 							title="{!$Label.c.orm_title_file}">{!$Label.c.orm_title_file}</div></th>
-					<th scope="col"><div class="slds-truncate"
+					<th scope="col"><div class="slds-truncate thTable"
 							title="{!$Label.c.orm_author_file}">{!$Label.c.orm_author_file}</div></th>
 
-					<th scope="col"><div class="slds-truncate"
+					<th scope="col"><div class="slds-truncate thTable"
 							title="{!$Label.c.orm_reference_number}">{!$Label.c.orm_reference_number}</div></th>
 
 					<th scope="col"><div class="slds-truncate"

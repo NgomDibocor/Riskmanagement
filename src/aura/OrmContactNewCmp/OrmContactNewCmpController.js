@@ -52,10 +52,15 @@
                 'type' : 'success',
                 'mode' : 'dismissible'
             });      
-            toast.fire();           
+              
+            toast.fire(); 
             component.set("v.isOpen", false);
-         
-					
+//            var evt = $A.get("e.c:OrmNewContactEvt");
+//			evt.setParams({
+//			   "Assessmentdata" : component.get('v.assessmentData').orm_organisation__c
+//			});
+//			evt.fire();          
+          	
 				} else {
 					let
 					errors = response.getError();
@@ -85,7 +90,8 @@
 
 	},
 	openModalContact : function(component, event) {
-		component.set("v.isOpen", true);
+		        component.set("v.isOpen", true);
+		        component.set("v.isOpenModalContactWorkshop",false);
 		component.set('v.assessmentData', event.getParam('Assessmentdata'));
 	},
 })

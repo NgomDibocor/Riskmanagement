@@ -11,17 +11,13 @@
                          'FirstName':'',
                         'LastName':''
 					}" />
-	<aura:attribute name="assessmentData" type="Assessment__c"
-		default="{
-						'sobjectType' : 'Assessment__c',
-					
-						
-					}" />
+	<aura:attribute name="assessmentData" type="Assessment__c"/>
+		 />
   <aura:attribute name="isOpen" type="boolean" default="false"/>
-
+<!-- aura register event -->
+<aura:registerEvent name="OrmNewContactEvt" type="c:OrmNewContactEvt" description="" />
 	<!--  handler event fired-->
 	<aura:handler event="c:OrmNewContactEvt" action="{!c.openModalContact}" />
-	 <aura:registerEvent name="OrmNewContactEvt"  type="c:OrmNewContactEvt"/>
 	<!--  start form contact-->
 	<aura:if isTrue="{!v.isOpen}">
 		<!--###### MODAL BOX Start From Here ######-->

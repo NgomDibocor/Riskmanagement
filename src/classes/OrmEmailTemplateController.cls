@@ -41,10 +41,7 @@ public with sharing class OrmEmailTemplateController {
      @AuraEnabled 
     public static void sendMailMethod(List<Contact> mailcontacts ,String mSubject ,String templateId){
     	//get template details
-    	
-    	
      List<Messaging.SingleEmailMessage> mails =  new List<Messaging.SingleEmailMessage>();     
-  
      //  Create a new Email
        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
           //  Set email contents - you can use variables and Id template
@@ -56,19 +53,19 @@ public with sharing class OrmEmailTemplateController {
        mail.setReplyTo('noreply@gmail.com'); // change it with your mail address.
        mail.setSenderDisplayName('salesforce User'); 
     // Set list of contact who should get the email
-      // List<String> sendTo = new List<String>();
        for(Contact contactId:mailcontacts){
        	   mail.setTargetObjectId(contactId.Id);
        	   system.debug('setTargetObjectId'+contactId.Id);
        	   mail.setWhatId(contactId.orm_organisation__c);
        	  // mail.setWhatId('0011H00001RmdmkQAB');
        	   system.debug('setWhatId'+contactId.orm_organisation__c);
-       	   String htmlbody=getTemplateDetails(templateId).htmlvalue;
-       	   htmlbody=htmlbody.replace('{Contact.Name}',contactId.Name);
-       	   mail.setHTMLBody(htmlbody);
-       	 //  mail.setPlainTextBody(htmlbody);
-       	  //  Add your email to the master list
+       	  String htmlbody=getTemplateDetails(templateId).htmlvalue;
+       	  htmlbody=htmlbody.replace('{!Contact.Name}',contactId.Name);
+       	  // mail.setHTMLBody(htmlbody);
+       	  mail.setPlainTextBody(htmlbody);
+       	 // mail.setPlainTextBody('salimata');
        	  system.debug('getHtmlbody'+mail.getHTMLBody());
+        //  Add  email to the master list
           mails.add(mail);
        }
     

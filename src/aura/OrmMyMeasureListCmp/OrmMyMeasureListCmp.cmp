@@ -2,23 +2,22 @@
  	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
 	<aura:attribute name="myMeasure" type="List" />
      <aura:attribute name="key" type="string" />
-	    <div class="slds-box" style="width:100%;font-size: 30px;">
-	    <!-- font-family: 'customfontDisney';
-    	font-size: 30px;src: url(/resource/disneyFont); -->
-		  <h1 style="font-family: 'customfontDisney'; src: url(/resource/disneyFont);">List of Measures</h1>
+	    
+	    
+	    <div  style="width:100%;padding-top:10px;padding-left:10px">
+		    <h1 class="titleListMeasure">List of Measures</h1>
 		</div>
-		<div class="slds-col">									
-		<div class="space"></div>
-		<span class="searchInput">
-        	<lightning:input aura:id="searchMeasure" class="search" placeholder="{!$Label.c.orm_filter_mymeasure_placeholder}" type="search" onchange="{!c.filter}" value="{!v.key}" />
-        </span>
-        
+		<div class="slds-col" style="margin-bottom:20px">									
+			<div class="space"></div>
+			<span class="searchInput">
+	        	<lightning:input aura:id="searchMeasure" class="search" placeholder="{!$Label.c.orm_filter_mymeasure_placeholder}" type="search" onchange="{!c.filter}" value="{!v.key}" />
+	        </span>
    		</div>
 	
-    <div class="slds-grid slds-wrap" style="width:100%;margin-left:3%">
+    <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px;margin-bottom: 20px">
        <aura:iteration items="{!v.PaginationList}" var="item"> 
         <div class="slds-size_1-of-3">
-            <div class="slds-box slds-box_x-small slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:90%;">
+            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:90%;">
                 <article class="slds-card" style="height:120px;">
                     <div class="slds-card__header slds-grid">
                         <header class="slds-media slds-media_center slds-has-flexi-truncate">
@@ -29,13 +28,13 @@
                             </div>
                             <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
                                <h2>
-                                  <b>Measure:{!item.Name} </b>
+                                  <i class="styleTitre">Measure: </i><i class="styleText">{!item.Name} </i>
                               </h2>
                             </div>
                             
                             <div class="slds-no-flex" style="margin-left:5px">
                                 <button id="{!item.Id}"
-                                        class="slds-button slds-button_brand"
+                                        class="slds-button slds-button_neutral styleTitre"
                                         onclick="{!c.showMeasure}">
                                     {!$Label.c.orm_show_button_title}<span id="{!item.orm_assessmentRisk__r.orm_assessment__c}"></span>
                                     <span id="{!item.orm_assessmentRisk__c}"></span>
@@ -44,7 +43,7 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
-                       <b> Description: {!item.orm_description__c}</b>
+                       <i class="styleTitre">Description: </i><i class="styleText">{!item.orm_description__c}</i>
                     </div>
                     <div class=" slds-card__body slds-card__body_inner">
 	                   
@@ -56,7 +55,7 @@
        
       </aura:iteration>
   </div>
-  <div style="margin:auto; padding-bottom:10px">
+  <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
 	    <lightning:buttonGroup >
 	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
 	                            onclick="{!c.previous}" variant="brand"

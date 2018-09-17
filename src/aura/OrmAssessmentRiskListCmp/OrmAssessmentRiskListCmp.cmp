@@ -36,7 +36,7 @@
                             </div>
                             <div class="slds-no-flex" style="margin-left:5px">
                                 <button id="{!item[0]}" 
-                                        class="slds-button slds-button_neutral"
+                                        class="slds-button slds-button_neutral styleTitre"
                                         onclick="{!c.showAssessmentRisk}">
                                     {!$Label.c.orm_show_button_title}<span id="{!item[6]}"></span>
                                     

@@ -73,16 +73,14 @@
 
 
 		} else {
-				let
-					errors = response.getError();
-					let
-					message = 'Unknown error'; // Default error message
-					// Retrieve the error message sent by the server
-					if (errors && Array.isArray(errors) && errors.length > 0) {
-						message = errors[0].message;
-					}
-					// Display the message
-					console.error(message);
+		
+						var toast = $A.get('e.force:showToast');
+			toast.setParams({
+				'message' : $A.get("$Label.c.orm_error_field_empty"),
+				'type' : 'error',
+				'mode' : 'dismissible'
+			});
+			toast.fire();
 		}
 
 	},

@@ -20,6 +20,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {                 
             	component.set("v.phases", response.getReturnValue());
+            	component.set("v.phasesTemp", response.getReturnValue());
             }
         });
         $A.enqueueAction(action);

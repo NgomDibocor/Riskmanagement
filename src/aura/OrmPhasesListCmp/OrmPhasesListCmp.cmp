@@ -12,6 +12,7 @@
 	<!-- attributes -->
 	<aura:attribute name="idAssessment" type="String" description="" />
 	<aura:attribute name="phases" type="Macro[]" description=""  />
+	<aura:attribute name="phasesTemp" type="Macro[]" description=""  />
 	<aura:attribute name="openModalError" type="Boolean"  default="false"/>
 	<aura:attribute name="openModalErrorIfFieldEmpty" type="Boolean"  default="false"/>	
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />

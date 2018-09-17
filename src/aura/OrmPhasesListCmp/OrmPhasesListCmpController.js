@@ -26,7 +26,23 @@
     },
     
 	filter : function(component, event, helper) {
-	
+		var phases = component.get('v.phasesTemp');
+    	var key = component.get('v.key');
+    	var regex;    	
+    	
+    	if ($A.util.isEmpty(key)) {    	
+    		helper.refresh(component, event);   		      
+         } else {
+        	key = "^" + key;
+        	try {
+        	 		regex = new RegExp(key, "i");
+        	 		// filter checks each row, constructs new array where function returns true
+        	 		phases = phases.filter(row => regex.test(row.Description));
+		        } catch (e) {
+		    	   
+		        }
+		   component.set("v.phases", phases);
+         }        	
 	},
 	save: function(component, event, helper) {
 		// Check required fields(Name) first in helper method which is return true/false

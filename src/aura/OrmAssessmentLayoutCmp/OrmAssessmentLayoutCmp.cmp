@@ -821,8 +821,8 @@
                                  
                                </td>
                           </tr>
-                          <tr>
-                              <td class="textInDiv">
+                          <tr> 
+                              <td class="tdClass">
                                   <div class="topSpacing">
                                     <label class="slds-form-element__label">{!$Label.c.orm_currency_label}<span class="cmn_mandatory_indicator">*</span></label>
                                   </div>

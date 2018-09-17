@@ -281,60 +281,72 @@
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "red";
 			 document.getElementById("healthAndSafety").innerHTML= 'very high';
+			 var  healthAndSafety =document.getElementById(selected).innerHTML;
 		 } if (selected=='r1')
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "orange";
 			 document.getElementById("healthAndSafety").innerHTML= 'high';
+			 var  healthAndSafety =document.getElementById(selected).innerHTML;
 		 }
 		  if (selected=='r2')
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
 			 document.getElementById("healthAndSafety").innerHTML= 'Medium';
+			 var  healthAndSafety =document.getElementById(selected).innerHTML;
 		 }
 		 if(selected=='r3')
 		 {
 		  document.getElementById('healthAndSafety').style.backgroundColor = "green";
 		  document.getElementById("healthAndSafety").innerHTML= 'Low';
+		  var  healthAndSafety =document.getElementById(selected).innerHTML;
 		 }
 		 
 		  if(selected=='rr0')
 		 {
 			 document.getElementById('security').style.backgroundColor = "red";
 			 document.getElementById("security").innerHTML= 'very high';
+			 var  security =document.getElementById(selected).innerHTML;
 		 } if (selected=='rr1')
 		 {
 			 document.getElementById('security').style.backgroundColor = "orange";
 			 document.getElementById("security").innerHTML= 'high';
+			 var  security =document.getElementById(selected).innerHTML;
 		 }
 		  if (selected=='rr2')
 		 {
 			 document.getElementById('security').style.backgroundColor = "yellow";
 			 document.getElementById("security").innerHTML= 'Medium';
+			 var  security =document.getElementById(selected).innerHTML;
 		 }
 		 if(selected=='rr3')
 		 {
 		  document.getElementById('security').style.backgroundColor = "green";
 		  document.getElementById("security").innerHTML= 'Low';
+		  var  security =document.getElementById(selected).innerHTML;
 		 }
 		 
 		  if(selected=='rrr0')
 		 {
 			 document.getElementById('environment').style.backgroundColor = "red";
 			 document.getElementById("environment").innerHTML= 'very high';
+			 var  environment =document.getElementById(selected).innerHTML;
 		 } if (selected=='rrr1')
 		 {
 			 document.getElementById('environment').style.backgroundColor = "orange";
 			 document.getElementById("environment").innerHTML= 'high';
+			 var  environment =document.getElementById(selected).innerHTML;
 		 }
 		  if (selected=='rrr2')
 		 {
 			 document.getElementById('environment').style.backgroundColor = "yellow";
 			 document.getElementById("environment").innerHTML= 'Medium';
+			 var  environment =document.getElementById(selected).innerHTML;
 		 }
 		 if(selected=='rrr3')
 		 {
 		  document.getElementById('environment').style.backgroundColor = "green";
 		  document.getElementById("environment").innerHTML= 'Low';
+		  var  environment =document.getElementById(selected).innerHTML;
 		 }
 	},
 	

@@ -273,78 +273,71 @@
     </table>
     <br/><br/>
     <center>
-        <table class="slds-table" style="width: 70%;" cellspacing="10">
+        <table class="slds-table" style="width: 90%;" cellspacing="10">
             <tr>
-                <th>
-                   <b> health and safety </b>
-                </th>
-                <th>
-                    <b>security </b>
-                </th>
-                <th>
-                   <b> Environment and community</b>
-                   
-                </th>
+                <th class="thTable">health and safety </th>
+                <th  class="thTable" >security </th>
+                <th  class="thTable" > Environment and community </th>
             </tr>
             <tr>
             <td id="healthAndSafety" class="healthAndSafety"></td>
             <td id="security"></td>
             <td id="environment"></td>
             </tr>
-            <tr>
-                <td style="white-space: normal !important;">
-                <ui:inputRadio aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}" />
-		        <span class="slds-form-element__label text">{!v.hsseVeryHighData.orm_healthAndSafety__c}</span>
+            <tr style="border-bottom:1px solid;" >
+                <td style="white-space: normal !important;" height="100">
+                <ui:inputRadio aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}"/>
+		        <span id="r0" >{!v.hsseVeryHighData.orm_healthAndSafety__c}</span>		        
                 </td>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                     <ui:inputRadio aura:id="rr0" name="security"  change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text">{!v.hsseVeryHighData.orm_security__c}</span>
+		           <b> <span id="rr0">{!v.hsseVeryHighData.orm_security__c}</span></b>
                 </td>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                     <ui:inputRadio aura:id="rrr0" name="environmentAndCommunity"  change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text">{!v.hsseVeryHighData.orm_environmentAndCommunity__c}</span>
+		            <b><span id="rrr0">{!v.hsseVeryHighData.orm_environmentAndCommunity__c}</span></b>
                 </td>
             </tr>
             <tr>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                    <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}"/> 
-		            <span class="slds-form-element__label text">{!v.hsseHighData.orm_healthAndSafety__c}</span>
+		           <b> <span id="r1">{!v.hsseHighData.orm_healthAndSafety__c}</span></b>
                 </td>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                     <ui:inputRadio aura:id="rr1" name="security" change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text">{!v.hsseHighData.orm_security__c}</span>
+		           <b> <span id="rr1">{!v.hsseHighData.orm_security__c}</span></b>
                 </td>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                    <ui:inputRadio aura:id="rrr1" name="environmentAndCommunity" change="{!c.checkboxSelect}" />
-		            <span class="slds-form-element__label text">{!v.hsseHighData.orm_environmentAndCommunity__c}</span>
+		            <b><span id="rrr1">{!v.hsseHighData.orm_environmentAndCommunity__c}</span></b>
                 </td>
             </tr>
             <tr>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                    <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}" />
-		            <span class="slds-form-element__label text">{!v.hsseMediumData.orm_healthAndSafety__c}</span>
+		           <b> <span id="r2">{!v.hsseMediumData.orm_healthAndSafety__c}</span></b>
                 </td>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                     <ui:inputRadio aura:id="rr2" name="security" change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text">{!v.hsseMediumData.orm_security__c}</span>
+		            <b><span id="rr2" >{!v.hsseMediumData.orm_security__c}</span></b>
                 </td>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                    <ui:inputRadio aura:id="rrr2" name="environmentAndCommunity" change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text">{!v.hsseMediumData.orm_environmentAndCommunity__c}</span>
+		           <b> <span id="rrr2">{!v.hsseMediumData.orm_environmentAndCommunity__c}</span></b>
                 </td>
             </tr>
             <tr>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;"  height="100">
                    <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}" />
-		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_healthAndSafety__c}</span> 
+		            <b><span id="r3">{!v.hsseLowData.orm_healthAndSafety__c}</span> </b>
                 </td>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                     <ui:inputRadio aura:id="rr3" name="security" change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_security__c}</span>
+		            <b><span id="rr3" >{!v.hsseLowData.orm_security__c}</span></b>
                 </td>
-                <td style="white-space: normal !important;">
+                <td style="white-space: normal !important;" height="100">
                     <ui:inputRadio aura:id="rrr3" name="environmentAndCommunity" change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_environmentAndCommunity__c}</span>
+		            <b><span id="rrr3">{!v.hsseLowData.orm_environmentAndCommunity__c}</span></b>
                 </td>
             </tr>
         </table>

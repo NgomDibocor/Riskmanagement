@@ -1,11 +1,9 @@
 ({
-    doInit : function(component, event, helper) {
-         //helper.getProbilities(component, event, helper); 
-    },
-    
+   
     jsLoaded : function(component, event, helper) {
         document.getElementById("bir").style.display = "none";
         document.getElementById("hir").style.display = "none";
+        document.getElementById("ro").style.display = "none";
         
           var actionGetProbabilities = component.get('c.findAllProbabilitiesByAssessment');
 	      actionGetProbabilities.setParams({ "assessment": component.get("v.idAssessment") });
@@ -48,6 +46,7 @@
        var showProbilityRanking = component.get("v.showProbilityRanking");
        var showHsseImpactsRanking = component.get("v.showHsseImpactsRanking");
        var showBusinessImpactsRanking = component.get("v.showBusinessImpactsRanking");
+       var showRiskOccurrence = component.get("v.showRiskOccurrence");
        
        if(showProbilityRanking == true){
           
@@ -62,13 +61,23 @@
        }
        
        if(showBusinessImpactsRanking == true){
-           component.set("v.showBtnSave", true);
+           component.set("v.showBtnSave", false);
 	       component.set("v.showBusinessImpactsRanking", false);
            component.set("v.showHsseImpactsRanking", true);
            
            document.getElementById("hir").style.display = "block";
            document.getElementById("bir").style.display = "none";
            helper.getHsseImpacts(component, event, helper);
+       }
+       
+       if(showHsseImpactsRanking == true){
+           component.set("v.showBtnSave", false);
+	       component.set("v.showHsseImpactsRanking", false);
+           component.set("v.showRiskOccurrence", true);
+           
+           document.getElementById("ro").style.display = "block";
+           document.getElementById("hir").style.display = "none";
+           //helper.getHsseImpacts(component, event, helper);
        }
       
     },
@@ -77,6 +86,7 @@
        var showProbilityRanking = component.get("v.showProbilityRanking");
        var showHsseImpactsRanking = component.get("v.showHsseImpactsRanking");
        var showBusinessImpactsRanking = component.get("v.showBusinessImpactsRanking");
+       var showRiskOccurrence = component.get("v.showRiskOccurrence");
        
        if(showBusinessImpactsRanking == true){
            
@@ -95,7 +105,15 @@
 	       
 	       document.getElementById("bir").style.display = "block";
            document.getElementById("hir").style.display = "none";
-           
+       }
+       
+       if(showRiskOccurrence == true){
+           component.set("v.showBtnSave", false);
+           component.set("v.showHsseImpactsRanking", true);
+	       component.set("v.showRiskOccurrence", false);
+	       
+	       document.getElementById("hir").style.display = "block";
+           document.getElementById("ro").style.display = "none";
        }
         
     },

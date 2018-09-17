@@ -261,7 +261,7 @@
             </td>
             <td>
                 <div class="width">
-                    <lightning:slider label="Probability" aura:id="slider1" value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }" />
+                    <lightning:slider label="Probability" aura:id="slider1"  value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }" />
                 </div><br/>
                 <center>
                     <div style="width:70px; height:20px;" id="divColor" class="divColor">

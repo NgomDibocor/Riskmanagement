@@ -79,7 +79,7 @@
 	        </table>
 	       	<aura:set attribute="else">
 			    <div class="messageIsEmpty">
-		 		   List of progression measure is empty
+		 		   {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_progressmeasure_label +'   ' + $Label.c.orm_is_empty}
 		        </div>
 			 </aura:set>
            </aura:if>

@@ -35,27 +35,24 @@
                                 </span>
                             </div>
                             <div class="slds-media__body">
-                                <h2 >
-	                                <a href="javascript:void(0);" class="slds-card__header-link"
-	                                    title="">Name: <ui:outputText class="styleText" value="{!item.value.assessment.Name}" />
-	                                </a>
+                                <h2>
+	                                <i class="styleTitre">Name: </i><i class="styleText"><ui:outputText value="{!item.value.assessment.Name}" /></i> 
 	                            </h2>
                             </div>
-                            
                             <div class="slds-no-flex">
                                 <button id="{!item.value.assessment.Id}" 
-                                        class="slds-button slds-button_neutral"
+                                        class="slds-button slds-button_neutral styleTitre"
                                         onclick="{!c.showAssessment}">
 							       {!$Label.c.orm_show_button_title}<span id="{!item.value.nbreRisk}"></span>
                                 </button>
                             </div>
                         </header>
                     </div>
-                    <div class="slds-card__body slds-card__body_inner styleText truncateText" >
-                        <ui:outputRichText value="{!item.value.assessment.orm_description__c}" /> 
+                    <div class="slds-card__body slds-card__body_inner  truncateText" >
+                        <i class="styleTitre">Description: </i><i class="styleText"><ui:outputText value="{!item.value.assessment.orm_description__c}" /></i> 
                     </div>
                     <div class="slds-card__body slds-card__body_inner">
-                     <span>Number of Risks: <i class="cercle styleText">{!item.value.nbreRisk}</i></span>
+                       <i class="styleTitre">Number of Risks: </i><i class="cercle">{!item.value.nbreRisk}</i>
                     </div>
                    
                 </article>

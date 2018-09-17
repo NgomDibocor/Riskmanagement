@@ -1,16 +1,30 @@
 
-.THIS .divColor{
-	background:orange
-}
-.THIS .hs{
+.THIS #healthAndSafety{
 	text-align: center;
+	font-weight: 600;
+    font-size: 1.2em;
+}
+.THIS #security{
+	text-align: center;
+	font-weight: 600;
+    font-size: 1.2em;
+}
+.THIS #environment{
+	text-align: center;
+	font-weight: 600;
+    font-size: 1.2em;
 }
 .THIS span{
-	margin-left:15px;
+	
 }
 .THIS .tdWidth{
 	width: 50%;
 	white-space: normal !important;
 	text-align: justify;
     text-justify: inter-word;
+}
+.THIS .thTable {
+ font-weight: 800;
+ font-size: 1.2em;
+ text-align:center
 }

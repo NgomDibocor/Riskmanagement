@@ -63,8 +63,8 @@
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
-					<th scope="col"><div class="slds-truncate" title="">N°</div></th>
-					<th scope="col"><div class="slds-truncate"
+					<th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
+					<th scope="col"><div class="slds-truncate thTable"
 							title="{!$Label.c.orm_name_assumption}">{!$Label.c.orm_name_assumption}</div></th>
 
 					<th style="width: 3.25rem;" class="slds-text-align--right">

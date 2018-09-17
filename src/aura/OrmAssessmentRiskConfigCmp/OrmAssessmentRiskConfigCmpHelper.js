@@ -139,5 +139,38 @@
 		        }
 	      });
 	      $A.enqueueAction(action); 
-	}
+	},
+	getHsseImpacts : function(component, event, helper) {
+    	  var action = component.get('c.findHsseImpactsByAssessment');
+	      action.setParams({ "assessment":component.get("v.assessmentData").Id});
+	      action.setCallback(this, function(response) {
+	        if(response.getState() == 'SUCCESS'){
+	            
+	        	component.set("v.hsseImpacts", response.getReturnValue());
+	        	if(component.get("v.hsseImpacts").length > 0){
+	        	   
+	                   for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
+		                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
+		                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
+		                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
+		                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
+		                      }
+	                    }
+	                    
+	        	  }
+	        	
+	        } else {
+	        	alert("ERROR getHsseImpacts")	
+	        }
+	     });
+	     $A.enqueueAction(action);
+    }
+    
 })

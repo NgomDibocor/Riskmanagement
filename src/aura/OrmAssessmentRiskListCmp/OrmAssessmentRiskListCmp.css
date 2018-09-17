@@ -15,16 +15,24 @@
     font-weight: 600;
     color: white;
 } 
-.THIS .styleText{
-    font-weight: 500;
-    font-size: 1 em; 
+.THIS .styleTitre{
+    font-weight: 600;
+    font-size: 1.2em; 
 }
+.THIS .styleText{
+    font-weight: 300;
+    font-size: 1.2em; 
+}
+
 .THIS .cercle {
     height: 35px;
     line-height: 35px;
     text-align: center;
     width: 35px;
+    color:white;
     background-color: #5B86BE;
     border-radius: 50%;
     display: inline-block;
+    font-weight: 600;
+    font-size: 1em;
 }

@@ -7,10 +7,10 @@
  * @history 
  * 2018-08-27 : David diop - Implementation
  */
-doInit : function(component, event, helper)
-    {
-       helper.refreshList(component, event);
-    },
+  doInit : function(component, event, helper){
+      helper.refreshList(component, event);
+  },
+  
  /**
  *
  * @author David diop

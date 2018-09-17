@@ -10,7 +10,6 @@
 	<!-- attributes -->	
 	<aura:attribute name="phaseData" type="Macro" description="" default="{	'sobjectType' : 'Macro',
 																		'Description' : '',
-																		'orm_phase__c': '',
 																		'orm_assessment__c': ''
 																		}" />
 	<aura:attribute name="assessmentId" type="String" description="" />
@@ -40,7 +39,7 @@
 									<div class="slds-form-element">
 										<div class="slds-form-element__control">
                                              <lightning:input aura:id="phase" type="text" label="Phase" 
-                                     			value="{!v.phaseData.Name}" required="true"/><!-- {!$Label.c.orm_phase} -->
+                                     			value="{!v.phaseData.Description}" required="true"/><!-- {!$Label.c.orm_phase} -->
 										</div>
 									</div>                            
 								</div>								

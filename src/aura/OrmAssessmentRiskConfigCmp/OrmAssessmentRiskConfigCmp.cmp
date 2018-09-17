@@ -336,15 +336,15 @@
             <tr>
                 <td class="tdWidth">
                    <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}" />
-		            <span class="slds-form-element__label text">{!v.hsseLowData.orm_healthAndSafety__c}</span> 
+		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_healthAndSafety__c}</span> 
                 </td>
                 <td class="tdWidth">
                     <ui:inputRadio aura:id="rr3" name="security" change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text">{!v.hsseLowData.orm_security__c}</span>
+		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_security__c}</span>
                 </td>
                 <td class="tdWidth">
                     <ui:inputRadio aura:id="rrr3" name="environmentAndCommunity" change="{!c.checkboxSelect}"/>
-		            <span class="slds-form-element__label text">{!v.hsseLowData.orm_environmentAndCommunity__c}</span>
+		            <span class="slds-form-element__label text tdWidth">{!v.hsseLowData.orm_environmentAndCommunity__c}</span>
                 </td>
             </tr>
         </table>

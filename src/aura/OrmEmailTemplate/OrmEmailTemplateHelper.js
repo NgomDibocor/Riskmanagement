@@ -28,7 +28,6 @@
     getSelctedContacts : function(component, event) {
         
         var listcontact = component.get("v.contactListSelected");
-       alert(JSON.stringify(listcontact));
         
     },
 
@@ -83,7 +82,6 @@
       var subjMatter =component.find('subjMatter').get('v.value');    
         console.log('subjMatter ',subjMatter);
         var contactIds=component.get("v.contactListSelected");
-        alert(JSON.stringify(contactIds));
       if(!$A.util.isEmpty(subjMatter) || !$A.util.isEmpty(contactIds)){
         var action = component.get("c.sendMailMethod");
               	// set the 3 params to sendMailMethod method

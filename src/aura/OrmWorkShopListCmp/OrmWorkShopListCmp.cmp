@@ -29,7 +29,7 @@
      
 	 <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
 	 <aura:registerEvent name="OrmNewWorkShopEvt"  type="c:OrmNewWorkShopEvt"/>
-	 <aura:handler event="c:OrmNewContactEvt" action="{!c.RefreshContacts}" />
+	 <aura:registerEvent type="c:OrmNewContactEvt" name="OrmNewContactEvt" />
 	   <!-- start header page content search bar and action button -->
   
   
@@ -113,6 +113,6 @@
 		 </aura:set>
 	  </aura:if>
 	</div>  
-	 <c:OrmContactNewCmp />
+<!-- 	 <c:OrmContactNewCmp/> -->
 	  <c:OrmContactWorkshopListCmp />
 </aura:component>

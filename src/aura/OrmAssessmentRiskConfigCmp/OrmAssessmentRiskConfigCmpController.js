@@ -8,7 +8,8 @@
 	    component.set("v.assessmentRiskId" ,riskAssessmentId);
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
         helper.fetchPicklist(component, event, idAsssessmentRisk);
-         helper.getProbality(component, event);
+         helper.getProbality(component, event); 
+          helper.getHsseImpacts(component, event);
       },
       
       updateAssessmentRisk : function(component, event, helper) {
@@ -43,6 +44,8 @@
 		       assessmentRisk.orm_cost__c =cost.get("v.value");	
 		       var healthAndSafety = component.find("healthAndSafety");
 		       assessmentRisk.orm_healthAndSafety__c =healthAndSafety.get("v.value");
+		       var probability = component.find("slider1");
+		       assessmentRisk.orm_probability__c = probability.get("v.value");
 	       }
 	       if(component.get("v.assessmentData").orm_typeAssessment__c == 'Organisation'){
 		      /* var dateRisk=component.find("dateRisk");
@@ -55,6 +58,8 @@
 		       assessmentRisk.orm_vulnerability__c =vulnerability.get("v.value");
 		       var manageAbility = component.find("manageAbility");
 		       assessmentRisk.orm_manageAbility__c =manageAbility.get("v.value");
+		        var probability = component.find("slider1");
+		       assessmentRisk.orm_probability__c = probability.get("v.value");
 	       }
 	       if(component.get("v.assessmentData").orm_typeAssessment__c == 'Processus'){
 	           /*var dateRisk=component.find("dateRisk");
@@ -67,6 +72,8 @@
 		       assessmentRisk.orm_vulnerability__c =vulnerability.get("v.value");
 		       var manageAbility = component.find("manageAbility");
 		       assessmentRisk.orm_manageAbility__c =manageAbility.get("v.value");
+		       var probability = component.find("slider1");
+		       assessmentRisk.orm_probability__c = probability.get("v.value");
 	       }
 	       
 	       		 
@@ -237,6 +244,13 @@
         evt.fire();
     },
     handleRangeChange : function(component, event, helper) { 
+     var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
+        component.set("v.displaySaveCancelBtn",true);
     component.set("v.sliderValue",component.find("slider1").get("v.value")) 
     var sliderValue = component.find("slider1").get("v.value");
     if(sliderValue>=component.get("v.RareData.orm_pourcentageMin__c") && sliderValue<= component.get("v.RareData.orm_pourcentageMax__c")){
@@ -265,22 +279,62 @@
 		 var selected = event.getSource().getLocalId();
 		 if(selected=='r0')
 		 {
-			 document.getElementById('hs').style.backgroundColor = "red";
-			 document.getElementById("hs").innerHTML= 'very high';
-		 }else if (selected=='r1')
+			 document.getElementById('healthAndSafety').style.backgroundColor = "red";
+			 document.getElementById("healthAndSafety").innerHTML= 'very high';
+		 } if (selected=='r1')
 		 {
-			 document.getElementById('hs').style.backgroundColor = "orange";
-			 document.getElementById("hs").innerHTML= 'high';
+			 document.getElementById('healthAndSafety').style.backgroundColor = "orange";
+			 document.getElementById("healthAndSafety").innerHTML= 'high';
 		 }
-		 else if (selected=='r2')
+		  if (selected=='r2')
 		 {
-			 document.getElementById('hs').style.backgroundColor = "yellow";
-			 document.getElementById("hs").innerHTML= 'Medium';
+			 document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
+			 document.getElementById("healthAndSafety").innerHTML= 'Medium';
 		 }
-		 else
+		 if(selected=='r3')
 		 {
-		  document.getElementById('hs').style.backgroundColor = "green";
-		  document.getElementById("hs").innerHTML= 'Low';
+		  document.getElementById('healthAndSafety').style.backgroundColor = "green";
+		  document.getElementById("healthAndSafety").innerHTML= 'Low';
+		 }
+		 
+		  if(selected=='rr0')
+		 {
+			 document.getElementById('security').style.backgroundColor = "red";
+			 document.getElementById("security").innerHTML= 'very high';
+		 } if (selected=='rr1')
+		 {
+			 document.getElementById('security').style.backgroundColor = "orange";
+			 document.getElementById("security").innerHTML= 'high';
+		 }
+		  if (selected=='rr2')
+		 {
+			 document.getElementById('security').style.backgroundColor = "yellow";
+			 document.getElementById("security").innerHTML= 'Medium';
+		 }
+		 if(selected=='rr3')
+		 {
+		  document.getElementById('security').style.backgroundColor = "green";
+		  document.getElementById("security").innerHTML= 'Low';
+		 }
+		 
+		  if(selected=='rrr0')
+		 {
+			 document.getElementById('environment').style.backgroundColor = "red";
+			 document.getElementById("environment").innerHTML= 'very high';
+		 } if (selected=='rrr1')
+		 {
+			 document.getElementById('environment').style.backgroundColor = "orange";
+			 document.getElementById("environment").innerHTML= 'high';
+		 }
+		  if (selected=='rrr2')
+		 {
+			 document.getElementById('environment').style.backgroundColor = "yellow";
+			 document.getElementById("environment").innerHTML= 'Medium';
+		 }
+		 if(selected=='rrr3')
+		 {
+		  document.getElementById('environment').style.backgroundColor = "green";
+		  document.getElementById("environment").innerHTML= 'Low';
 		 }
 	},
 	

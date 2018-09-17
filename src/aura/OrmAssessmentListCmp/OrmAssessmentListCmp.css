@@ -20,8 +20,9 @@
     color: white;
 } 
 .THIS .couleurFond{
-    background-color: white; 
+    background-color: white !important; 
 }
+
 .THIS .styleText{
     font-weight: 600;
     font-size: 1.2em; 

@@ -1,8 +1,11 @@
 
-.THIS .divColor{
-	background:orange
+.THIS #healthAndSafety{
+	text-align: center;
 }
-.THIS .hs{
+.THIS #security{
+	text-align: center;
+}
+.THIS #environment{
 	text-align: center;
 }
 .THIS span{

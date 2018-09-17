@@ -22,8 +22,12 @@
 .THIS .couleurFond{
     background-color: white; 
 }
-.THIS .styleText{
+.THIS .styleTitre{
     font-weight: 600;
+    font-size: 1.2em; 
+}
+.THIS .styleText{
+    font-weight: 300;
     font-size: 1.2em; 
 }
 .THIS .cercle {

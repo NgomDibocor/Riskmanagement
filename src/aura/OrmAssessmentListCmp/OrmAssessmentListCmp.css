@@ -40,6 +40,8 @@
     background-color: #5B86BE;
     border-radius: 50%;
     display: inline-block;
+    font-weight: 600;
+    font-size: 1em;
 }
 .THIS .truncateText {
   height:20px;

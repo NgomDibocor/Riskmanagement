@@ -41,7 +41,7 @@
                             </div>
                             <div class="slds-no-flex">
                                 <button id="{!item.value.assessment.Id}" 
-                                        class="slds-button slds-button_neutral"
+                                        class="slds-button slds-button_neutral styleTitre"
                                         onclick="{!c.showAssessment}">
 							       {!$Label.c.orm_show_button_title}<span id="{!item.value.nbreRisk}"></span>
                                 </button>

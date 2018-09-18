@@ -1,0 +1,5 @@
+<aura:component access="global" controller="OrmSliderController">
+	
+	
+	<p>Le composant qui affiche les matrices</p>
+</aura:component>

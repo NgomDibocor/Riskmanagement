@@ -98,9 +98,8 @@
                                                                     document.getElementById("divColor").style.backgroundColor = "red";
                                                                     document.getElementById("divColor").innerHTML = component.get("v.probableData.orm_probability__c");
                                                                 }
-                                                                
-                                                                component.set("v.displaySaveCancelBtn", false);
 
+                                                                	this.getSliderDefault(component, event);
                                                                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
                                                                 evtSpinner.fire();
                                                             } else {
@@ -198,7 +197,7 @@
                     for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
                         if (component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh') {
                             component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
-                            
+
                         }
                         if (component.get("v.hsseImpacts")[i].orm_rating__c == 'High') {
                             component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
@@ -210,20 +209,44 @@
                             component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
                         }
                     }
-
                 }
-                	 var r0 = component.find("r0").get("v.value");
-                	 var r1 = component.find("r1").get("v.value");
-                	 var r2 = component.find("r2").get("v.value");
-                	 var r3 = component.find("r3").get("v.value");
-                	 alert(r0);
-                	 var selected = component.get('v.assessmentRiskData').orm_healthAndSafety__c;
-                	 alert(component.get('v.assessmentRiskData').orm_healthAndSafety__c);
             } else {
                 alert("ERROR getHsseImpacts")
             }
         });
         $A.enqueueAction(action);
+    },
+    getSliderDefault: function(component, event, helper) {
+
+        var r0 = component.find("r0").get("v.value");
+        var r1 = component.find("r1").get("v.value");
+        var r2 = component.find("r2").get("v.value");
+        var r3 = component.find("r3").get("v.value");
+
+        if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r0) {
+            document.getElementById('healthAndSafety').style.backgroundColor = "red";
+            document.getElementById("healthAndSafety").innerHTML = 'very high';
+            var healthAndSafety = document.getElementById(component.get("v.selected")).innerHTML;
+            component.set("v.healthAndSafety", healthAndSafety);
+        }
+        if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r1) {
+            document.getElementById('healthAndSafety').style.backgroundColor = "orange";
+            document.getElementById("healthAndSafety").innerHTML = 'high';
+            var healthAndSafety = document.getElementById(component.get("v.selected")).innerHTML;
+            component.set("v.healthAndSafety", healthAndSafety);
+        }
+        if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r2) {
+            document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
+            document.getElementById("healthAndSafety").innerHTML = 'Medium';
+            var healthAndSafety = document.getElementById(component.get("v.selected")).innerHTML;
+            component.set("v.healthAndSafety", healthAndSafety);
+        }
+        if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r3) {
+            document.getElementById('healthAndSafety').style.backgroundColor = "green";
+            document.getElementById("healthAndSafety").innerHTML = 'Low';
+            var healthAndSafety = document.getElementById(component.get("v.selected")).innerHTML;
+            component.set("v.healthAndSafety", healthAndSafety);
+        }
     }
 
 })

@@ -9,9 +9,8 @@
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
         helper.fetchPicklist(component, event, idAsssessmentRisk);
         helper.getProbality(component, event); 
-       helper.getSliderDefault(component, event);
        // helper.getHsseImpacts(component, event);
-       // helper.getSliderDefault(component, event);
+       //helper.getSliderDefault(component, event);
       },
       
       updateAssessmentRisk : function(component, event, helper) {
@@ -259,7 +258,6 @@
 	
 		 component.set('v.selected',event.getSource().getLocalId());
 		 var selectedRadio = event.getSource().get("v.value");
-		 alert(component.get("v.selected"));
 		 if(component.get("v.selected")=='r0')
 		 {	 
 			 document.getElementById('healthAndSafety').style.backgroundColor = "red";

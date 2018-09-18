@@ -307,13 +307,13 @@
 					        <td  class="tdClassSlider2" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider5" id="slider5"/>
+									    <div aura:id="sliderCostProjectVeryHigh" id="sliderCostProjectVeryHigh"/>
 								    </div>
 					         </td>
 					         <td  class="tdClassSlider2" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider6" />
+									    <div aura:id="sliderScheduleProjectVeryHigh" />
 								    </div>
 					         </td>
 					         <td  class="tdClassSlider2" height="100" style="text-align: center;">
@@ -329,19 +329,19 @@
 					         <td  class="tdClassSlider2">
 					                <div>
 								        <div class="">{!v.label2}</div>
-									    <div aura:id="slider7"  class="slider"/>
+									    <div aura:id="sliderCostProjectHigh"  class="slider"/>
 								    </div>
 					         </td>
 					         <td  class="tdClassSlider2" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider8" />
+									    <div aura:id="sliderScheduleProjectHigh" />
 								    </div>
 					         </td>
 					         <td  class="tdClassSlider2" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider9" />
+									    <div aura:id="sliderProductionHigh" />
 								    </div>
 					         </td>
 					         <td class="tdClassSlider2">

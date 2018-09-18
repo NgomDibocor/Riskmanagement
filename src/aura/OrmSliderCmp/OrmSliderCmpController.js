@@ -54,7 +54,7 @@
 	       component.set("v.showProbilityRanking", false);
 	       document.getElementById("bir").style.display = "block";
            document.getElementById("probility").style.display = "none";
-	       if(!document.getElementById("slider5").classList.contains("noUi-target")){
+	       if(!document.getElementById("sliderCostProjectVeryHigh").classList.contains("noUi-target")){
 	           helper.jsLoaded2(component, event, helper);
 	       }
 	       

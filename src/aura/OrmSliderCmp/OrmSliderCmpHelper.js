@@ -150,116 +150,82 @@
     
     jsLoaded2 : function(component, event, helper) {
 	
-	    //start first slider
         var sliderCostProjectVeryHigh = component.find('sliderCostProjectVeryHigh').getElement();
         sliderCostProjectVeryHigh = this.createSlider(component, event, helper, sliderCostProjectVeryHigh, 60, 100);
-        
 		sliderCostProjectVeryHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valCostmin", range[0].replace('%', ''))
 		    component.set("v.valCostmax", range[1].replace('%', ''))
         }));
-        //end first slider
         
-
-        //start second slider
         var sliderScheduleProjectVeryHigh = component.find('sliderScheduleProjectVeryHigh').getElement();
         sliderScheduleProjectVeryHigh = this.createSlider(component, event, helper, sliderScheduleProjectVeryHigh, 60, 100);        
-        
         sliderScheduleProjectVeryHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider
         
-        //start second slider
         var sliderCostProjectHigh = component.find('sliderCostProjectHigh').getElement();
         sliderCostProjectHigh = this.createSlider(component, event, helper, sliderCostProjectHigh, 15, 60);  
-        
         sliderCostProjectHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider   
         
-        //start second slider
         var sliderScheduleProjectHigh = component.find('sliderScheduleProjectHigh').getElement();
         sliderScheduleProjectHigh = this.createSlider(component, event, helper, sliderScheduleProjectHigh, 15, 60);  
-        
         sliderScheduleProjectHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider   
         
-        //start second slider
         var sliderProductionHigh = component.find('sliderProductionHigh').getElement();
         sliderProductionHigh = this.createSlider(component, event, helper, sliderProductionHigh, 12, 26);  
-        
         sliderProductionHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider 
         
-        //start second slider
         var sliderCostProjectMedium = component.find('sliderCostProjectMedium').getElement();
         sliderCostProjectMedium = this.createSlider(component, event, helper, sliderCostProjectMedium, 5, 15);  
-        
         sliderCostProjectMedium.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider    
         
-        //start second slider
         var sliderScheduleProjectMedium = component.find('sliderScheduleProjectMedium').getElement();
         sliderScheduleProjectMedium = this.createSlider(component, event, helper, sliderScheduleProjectMedium, 5, 15);  
-        
         sliderScheduleProjectMedium.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider 
         
-        //start second slider
         var sliderProductionMedium = component.find('sliderProductionMedium').getElement();
         sliderProductionMedium = this.createSlider(component, event, helper, sliderProductionMedium, 4, 12);  
-        
         sliderProductionMedium.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider 
         
-        //start second slider
         var sliderCostProjectLow = component.find('sliderCostProjectLow').getElement();
         sliderCostProjectLow = this.createSlider(component, event, helper, sliderCostProjectLow, 0, 5);  
-        
         sliderCostProjectLow.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider 
         
-        //start second slider
         var sliderScheduleProjectLow = component.find('sliderScheduleProjectLow').getElement();
         sliderScheduleProjectLow = this.createSlider(component, event, helper, sliderScheduleProjectLow, 0, 5);  
-        
         sliderScheduleProjectLow.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider  
         
-        //start second slider
         var sliderProductionLow = component.find('sliderProductionLow').getElement();
         sliderProductionLow = this.createSlider(component, event, helper, sliderProductionLow, 0, 4);  
-        
         sliderProductionLow.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
 		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
         }));
-        //end second slider  
         
         //----cost----------------------
         

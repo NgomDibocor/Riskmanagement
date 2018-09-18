@@ -4,7 +4,7 @@
 		    scripts="{!$Resource.noUiSlider + '/nouislider.min.js'}"
 		    afterScriptsLoaded="{!c.jsLoaded}" />
     
-    <!-- start for prabability -->
+    <!-- Objects prababilities -->
     <aura:attribute name="probableData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'orm_probability__c' : '',
 																  'orm_pourcentageMin__c' : '',
@@ -30,7 +30,51 @@
 														   }"/>	
 	
 	<aura:attribute name="probabilities" type="Macro[]" />													   
-    <!-- end for prabability --> 
+    <!-- end Objects prababilities --> 
+    
+    <!-- Objects Business Impacts -->
+    <aura:attribute name="veryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'orm_rating__c' : '',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_reputation__c' : ''
+																}"/>
+	
+	<aura:attribute name="highData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'orm_rating__c' : '',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : ''
+																}"/>
+							
+	<aura:attribute name="mediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'orm_rating__c' : '',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : ''
+																}"/>	
+																
+	<aura:attribute name="lowData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'orm_rating__c' : '',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : ''
+																}"/>																				
+    <!-- end Objects Business Impacts -->
 
     <!-- start for HSSE impact -->
     <aura:attribute name="hsseVeryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',

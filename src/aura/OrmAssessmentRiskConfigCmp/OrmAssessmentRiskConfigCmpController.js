@@ -8,8 +8,8 @@
 	    component.set("v.assessmentRiskId" ,riskAssessmentId);
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
         helper.fetchPicklist(component, event, idAsssessmentRisk);
-         helper.getProbality(component, event); 
-          helper.getHsseImpacts(component, event);
+        helper.getProbality(component, event); 
+        helper.getHsseImpacts(component, event);
       },
       
       updateAssessmentRisk : function(component, event, helper) {
@@ -104,7 +104,7 @@
     },
    
       
-     onEnvironmentAndCommunity : function(component, event, helper)
+    onEnvironmentAndCommunity : function(component, event, helper)
     {
     	  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
@@ -112,7 +112,7 @@
 	            "descriptionField": $A.get("$Label.c.search_description_title")
 	        });
            evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
+           component.set("v.displaySaveCancelBtn",true);
 	},
 	 onFrequency : function(component, event, helper)
     {
@@ -243,6 +243,7 @@
         });
         evt.fire();
     },
+    
     handleRangeChange : function(component, event, helper) { 
      var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
@@ -251,21 +252,22 @@
 	        });
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-    component.set("v.sliderValue",component.find("slider1").get("v.value")) 
-    var sliderValue = component.find("slider1").get("v.value");
-    if(sliderValue>=component.get("v.RareData.orm_pourcentageMin__c") && sliderValue<= component.get("v.RareData.orm_pourcentageMax__c")){
-    document.getElementById("divColor").style.backgroundColor = "green";
-    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c");
-    }else if (sliderValue>component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue<= component.get("v.unlikelyData.orm_pourcentageMax__c")){
-    document.getElementById("divColor").style.backgroundColor = "yellow";
-    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c");
-    } else if (sliderValue>component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
-    document.getElementById("divColor").style.backgroundColor = "orange";
-    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c");
-    }else{
-    document.getElementById("divColor").style.backgroundColor = "red";
-    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c");
-    }
+    
+        component.set("v.sliderValue",component.find("slider1").get("v.value")) 
+	    var sliderValue = component.find("slider1").get("v.value");
+	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
+		    document.getElementById("divColor").style.backgroundColor = "green";
+		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c");
+	    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
+		    document.getElementById("divColor").style.backgroundColor = "yellow";
+		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c");
+	    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
+		    document.getElementById("divColor").style.backgroundColor = "orange";
+		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c");
+	    }else{
+		    document.getElementById("divColor").style.backgroundColor = "red";
+		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c");
+	    }
     },
      
     /**
@@ -301,49 +303,57 @@
 		  var  healthAndSafety =document.getElementById(selected).innerHTML;
 		 }
 		 
-		  if(selected=='rr0')
-		 {
+		  if(selected=='rr0'){
+		  
 			 document.getElementById('security').style.backgroundColor = "red";
 			 document.getElementById("security").innerHTML= 'very high';
 			 var  security =document.getElementById(selected).innerHTML;
-		 } if (selected=='rr1')
-		 {
+			 
+		 } 
+		 
+		 if (selected=='rr1'){
+		 
 			 document.getElementById('security').style.backgroundColor = "orange";
 			 document.getElementById("security").innerHTML= 'high';
 			 var  security =document.getElementById(selected).innerHTML;
 		 }
-		  if (selected=='rr2')
-		 {
+		 
+		  if (selected=='rr2'){
+		  
 			 document.getElementById('security').style.backgroundColor = "yellow";
 			 document.getElementById("security").innerHTML= 'Medium';
 			 var  security =document.getElementById(selected).innerHTML;
 		 }
-		 if(selected=='rr3')
-		 {
+		 
+		 if(selected=='rr3'){
+		 
 		  document.getElementById('security').style.backgroundColor = "green";
 		  document.getElementById("security").innerHTML= 'Low';
 		  var  security =document.getElementById(selected).innerHTML;
 		 }
 		 
-		  if(selected=='rrr0')
-		 {
+		  if(selected=='rrr0'){
+		  
 			 document.getElementById('environment').style.backgroundColor = "red";
 			 document.getElementById("environment").innerHTML= 'very high';
 			 var  environment =document.getElementById(selected).innerHTML;
-		 } if (selected=='rrr1')
-		 {
+		 } 
+		 
+		 if (selected=='rrr1'){
+		 
 			 document.getElementById('environment').style.backgroundColor = "orange";
 			 document.getElementById("environment").innerHTML= 'high';
 			 var  environment =document.getElementById(selected).innerHTML;
 		 }
-		  if (selected=='rrr2')
-		 {
+		 
+		 if (selected=='rrr2'){
+		 
 			 document.getElementById('environment').style.backgroundColor = "yellow";
 			 document.getElementById("environment").innerHTML= 'Medium';
 			 var  environment =document.getElementById(selected).innerHTML;
 		 }
-		 if(selected=='rrr3')
-		 {
+		 if(selected=='rrr3'){
+		 
 		  document.getElementById('environment').style.backgroundColor = "green";
 		  document.getElementById("environment").innerHTML= 'Low';
 		  var  environment =document.getElementById(selected).innerHTML;

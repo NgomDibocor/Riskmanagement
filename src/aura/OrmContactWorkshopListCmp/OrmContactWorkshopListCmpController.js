@@ -162,9 +162,61 @@
  * 2018-09-11 : Salimata NGOM - Implementation
  */
 	openMailTemplate : function(component, event, helper) {
-                         
-		component.set("v.emailTemplate",true);
+	//check if contact selected
+	if($A.util.isEmpty(component.get("v.contactListSelected")))
+	{
+                		var toast = $A.get('e.force:showToast');
+			toast.setParams({
+				'message' : $A.get("$Label.c.orm_warning_checked_checkbox"),
+				'type' : 'warning',
+				'mode' : 'dismissible'
+			});
+			toast.fire();
+		}         
+		
+	else{
+	component.set("v.emailTemplate",true);
+	}
 	},
+	 /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method open modal add new contact
+ * @history 
+ * 2018-09-17 : Salimata NGOM - Implementation
+ */
+	     openNewContact : function(component, event, helper){
+                
+        var idworkshop = component.get("v.workshop").Id;
+       if($A.util.isEmpty(idworkshop)){
+       	var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : $A.get("$Label.c.orm_toast_warning"),
+                'type' : 'warning',
+                'mode' : 'dismissible'
+            });
 
+            toast.fire();
+       } else {
+     
+        	var evt = $A.get("e.c:OrmNewContactEvt");
+			evt.setParams({
+			   "Assessmentdata" : component.get("v.workshop").orm_Assessment__c
+			});
+			evt.fire();
+        }
+    },
+/**
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method refresh contact workshoplist
+ * @history 
+ * 2018-09-17 : Salimata NGOM - Implementation
+ */
+refreshContact:function(component, event, helper){
+
+helper.refreshContactWorkshop(component);
+}
 
 })

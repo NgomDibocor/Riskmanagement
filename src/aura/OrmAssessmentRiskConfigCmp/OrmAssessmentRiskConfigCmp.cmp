@@ -10,6 +10,7 @@
     <aura:attribute name="schedule" type="String[]" />
     <aura:attribute name="status" type="String[]" />
     <aura:attribute name="vulnerability" type="String[]" />
+    <aura:attribute name="allUser" type="User[]" />
     <aura:attribute name="objInfo" type="orm_assessmentRisk__c" default="{sobjectType : 'orm_assessmentRisk__c'}" />
     <aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{
 																						'sobjectType' : 'orm_assessmentRisk__c',
@@ -114,7 +115,26 @@
                 </aura:if>
             </td>
         </tr>
-
+        <!--<tr>
+            <td class="tdWidth">
+            	<div class="topSpacing"> 
+                   <label class="slds-form-element__label">{!$Label.c.orm_risk_manager_label}</label>
+                </div>
+                     <div class="slds-form-element">
+                          <div class="slds-form-element__control">
+                                 <ui:inputSelect aura:id="riskManager" 
+                                          change="{!c.onChangeRiskManager}" class="slds-select"
+                                          labelClass="slds-form-element__label">
+                                      <aura:iteration items="{!v.allUser}" var="rm">
+                                          <ui:inputSelectOption text="{!rm.Id}"
+                                                                label="{!rm.Name}" />
+                                      </aura:iteration>
+                                 </ui:inputSelect>
+                            </div>
+                      </div>
+              </td>
+              <td class="tdWidth"></td>
+        </tr>  -->
         <tr>
             <td>
                 <div class="slds-form-element ">
@@ -261,7 +281,7 @@
             </td>
             <td>
                 <div class="width">
-                    <lightning:slider label="Probability" aura:id="slider1" value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }" />
+                    <lightning:slider label="Probability" aura:id="slider1"  value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }" />
                 </div><br/>
                 <center>
                     <div style="width:70px; height:20px;" id="divColor" class="divColor">
@@ -280,9 +300,9 @@
                 <th  class="thTable" > Environment and community </th>
             </tr>
             <tr>
-            <td id="healthAndSafety" class="healthAndSafety"></td>
-            <td id="security"></td>
-            <td id="environment"></td>
+	            <td id="healthAndSafety" class="healthAndSafety"></td>
+	            <td id="security"></td>
+	            <td id="environment"></td>
             </tr>
             <tr style="border-bottom:1px solid;" >
                 <td style="white-space: normal !important;" height="100">

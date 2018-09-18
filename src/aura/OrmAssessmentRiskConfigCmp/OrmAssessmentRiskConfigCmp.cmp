@@ -277,8 +277,8 @@
             </tr>
             <tr style="border-bottom:1px solid;" >
                 <td style="white-space: normal !important;" height="100">
-                <ui:inputRadio aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}"/>
-		        <span id="r0" >{!v.hsseVeryHighData.orm_healthAndSafety__c}</span>		        
+                <ui:inputRadio aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseVeryHighData.orm_healthAndSafety__c ? 'true':'false' }" />
+		        <b><span id="r0" >{!v.hsseVeryHighData.orm_healthAndSafety__c}</span></b>	        
                 </td>
                 <td style="white-space: normal !important;" height="100">
                     <ui:inputRadio aura:id="rr0" name="security"  change="{!c.checkboxSelect}"/>
@@ -291,7 +291,7 @@
             </tr>
             <tr style="border-bottom:1px solid;">
                 <td style="white-space: normal !important;" height="100">
-                   <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}"/> 
+                   <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseHighData.orm_healthAndSafety__c ? 'true':'false' }"/> 
 		           <b> <span id="r1">{!v.hsseHighData.orm_healthAndSafety__c}</span></b>
                 </td>
                 <td style="white-space: normal !important;" height="100">
@@ -305,7 +305,7 @@
             </tr>
             <tr style="border-bottom:1px solid;">
                 <td style="white-space: normal !important;" height="100">
-                   <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}" />
+                   <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}"  value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseMediumData.orm_healthAndSafety__c ? 'true':'false' }"/>
 		           <b> <span id="r2">{!v.hsseMediumData.orm_healthAndSafety__c}</span></b>
                 </td>
                 <td style="white-space: normal !important;" height="100">
@@ -319,7 +319,7 @@
             </tr>
             <tr>
                 <td style="white-space: normal !important;"  height="100">
-                   <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}" />
+                   <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}"  value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseLowData.orm_healthAndSafety__c ? 'true':'false' }"/>
 		            <b><span id="r3">{!v.hsseLowData.orm_healthAndSafety__c}</span> </b>
                 </td>
                 <td style="white-space: normal !important;" height="100">

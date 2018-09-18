@@ -12,10 +12,10 @@
                         'LastName':''
 					}" />
 	<aura:attribute name="assessmentData" type="Assessment__c"/>
-		 />
+		 
   <aura:attribute name="isOpen" type="boolean" default="false"/>
 <!-- aura register event -->
-<aura:registerEvent name="OrmNewContactEvt" type="c:OrmNewContactEvt" description="" />
+<aura:registerEvent name="OrmContactCreatedEvt" type="c:OrmContactCreatedEvt" description="" />
 	<!--  handler event fired-->
 	<aura:handler event="c:OrmNewContactEvt" action="{!c.openModalContact}" />
 	<!--  start form contact-->

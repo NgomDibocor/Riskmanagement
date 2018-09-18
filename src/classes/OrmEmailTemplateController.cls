@@ -57,20 +57,37 @@ public with sharing class OrmEmailTemplateController {
        	   mail.setTargetObjectId(contactId.Id);
        	   system.debug('setTargetObjectId'+contactId.Id);
        	   mail.setWhatId(contactId.orm_organisation__c);
-       	  // mail.setWhatId('0011H00001RmdmkQAB');
        	   system.debug('setWhatId'+contactId.orm_organisation__c);
        	  String htmlbody=getTemplateDetails(templateId).htmlvalue;
-       	  htmlbody=htmlbody.replace('{!Contact.Name}',contactId.Name);
-       	  // mail.setHTMLBody(htmlbody);
-       	  mail.setPlainTextBody(htmlbody);
-       	 // mail.setPlainTextBody('salimata');
-       	  system.debug('getHtmlbody'+mail.getHTMLBody());
+       	  if(htmlbody!=null){
+       	 htmlbody=htmlbody.replace('{!Contact.Name}',contactId.Name);
+       	   mail.setHTMLBody(htmlbody);
+       	   system.debug('getHtmlbody'+mail.getHTMLBody());
+       	  }
+       	  String textbody=getTemplateDetails(templateId).body;
+       	  if(textbody!=null){
+       	  textbody=textbody.replace('{!Contact.Name}',contactId.Name);
+       	  mail.setPlainTextBody(textbody);
+       	  system.debug('getPlainTextBody'+mail.getPlainTextBody());
+       	  }
         //  Add  email to the master list
           mails.add(mail);
        }
     
   // Send all emails in the master list
-     Messaging.sendEmail(mails);
+     List<Messaging.SendEmailResult> sendEmailResults = Messaging.sendEmail(mails);
+     //get 
+     
    }
-
+  /**
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method to update orm_ContactWorkshop__c item
+ * @history 
+ * 2018-09-18: Salimata NGOM - Implementation
+ */
+    @AuraEnabled
+	public static orm_ContactWorkshop__c updateContactWorkshop(orm_ContactWorkshop__c item){        
+        return OrmContactController.updateContactWorkshop(item);
+	}
 }

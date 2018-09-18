@@ -13,6 +13,9 @@
 		description="store contact records list" />
 	<aura:attribute name="IconName" type="string" />
 	<aura:attribute name="oRecord" type="sObject" />
+<aura:attribute name="email" type="string" />
+	<aura:attribute name="workshop" type="Contract" />
+	<aura:attribute name="mailStatus" type="boolean" default="false" />
 
 	<aura:handler name="init" value="{!this}" action="{!c.loadComponent}" />
 	 <aura:if isTrue="{!v.emailTemplate}">

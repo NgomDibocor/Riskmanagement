@@ -25,6 +25,7 @@
 		type="orm_ContactWorkshop__c[]"
 		description="store contact workshop records list" />
   <aura:registerEvent name="OrmContactWorkshopListEvt"  type="c:OrmContactWorkshopListEvt"/>
+  
 	
 	<!--Table Row Start-->
 	<tr>

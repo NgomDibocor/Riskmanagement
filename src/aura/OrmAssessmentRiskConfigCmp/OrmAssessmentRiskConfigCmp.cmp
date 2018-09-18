@@ -97,6 +97,7 @@
 	<aura:attribute name="healthAndSafety" type="String"/>
 	<aura:attribute name="security" type="String"/>
 	<aura:attribute name="environmentAndCommunity" type="String"/>
+	<aura:attribute name="selected" type="String"/>
 	<!-- end for HSSE impact -->
     <table class="slds-table">
         <tr>
@@ -276,12 +277,13 @@
 	            <td id="environment"></td>
             </tr>
             <tr style="border-bottom:1px solid;" >
-                <td style="white-space: normal !important;" height="100">
-                <ui:inputRadio aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseVeryHighData.orm_healthAndSafety__c ? 'true':'false' }" />
+                <td style="white-space: normal !important;" height="100" class="">
+                <lightning:input  type="radio" name="healthAndSafety" aura:id="r0" onchange="{!c.checkboxSelect}" value="{!v.hsseVeryHighData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseVeryHighData.orm_healthAndSafety__c  }"/>
+<!--                   <ui:inputRadio   class="" aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseVeryHighData.orm_healthAndSafety__c ? 'true':'false' }" /> -->
 		        <b><span id="r0" >{!v.hsseVeryHighData.orm_healthAndSafety__c}</span></b>	        
                 </td>
                 <td style="white-space: normal !important;" height="100">
-                    <ui:inputRadio aura:id="rr0" name="security"  change="{!c.checkboxSelect}"/>
+                    <ui:inputRadio aura:id="rr0" name="security"  change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_security__c == v.hsseVeryHighData.orm_security__c ? 'true':'false' }"/>
 		           <b> <span id="rr0">{!v.hsseVeryHighData.orm_security__c}</span></b>
                 </td>
                 <td style="white-space: normal !important;" height="100">
@@ -291,7 +293,8 @@
             </tr>
             <tr style="border-bottom:1px solid;">
                 <td style="white-space: normal !important;" height="100">
-                   <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseHighData.orm_healthAndSafety__c ? 'true':'false' }"/> 
+                 <lightning:input  type="radio" name="healthAndSafety" aura:id="r1" onchange="{!c.checkboxSelect}" value="{!v.hsseHighData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseHighData.orm_healthAndSafety__c }"/>
+<!--                    <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseHighData.orm_healthAndSafety__c ? 'true':'false' }"/>  -->
 		           <b> <span id="r1">{!v.hsseHighData.orm_healthAndSafety__c}</span></b>
                 </td>
                 <td style="white-space: normal !important;" height="100">
@@ -305,7 +308,8 @@
             </tr>
             <tr style="border-bottom:1px solid;">
                 <td style="white-space: normal !important;" height="100">
-                   <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}"  value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseMediumData.orm_healthAndSafety__c ? 'true':'false' }"/>
+                <lightning:input  type="radio" name="healthAndSafety" aura:id="r2" onchange="{!c.checkboxSelect}" value="{!v.hsseMediumData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseMediumData.orm_healthAndSafety__c }"/>
+<!--                    <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}"  value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseMediumData.orm_healthAndSafety__c ? 'true':'false' }"/> -->
 		           <b> <span id="r2">{!v.hsseMediumData.orm_healthAndSafety__c}</span></b>
                 </td>
                 <td style="white-space: normal !important;" height="100">
@@ -319,7 +323,9 @@
             </tr>
             <tr>
                 <td style="white-space: normal !important;"  height="100">
-                   <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}"  value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseLowData.orm_healthAndSafety__c ? 'true':'false' }"/>
+                <lightning:input  type="radio" name="healthAndSafety" aura:id="r3" onchange="{!c.checkboxSelect}" value="{!v.hsseLowData.orm_healthAndSafety__c }"  checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseLowData.orm_healthAndSafety__c  }"/>
+
+<!--                    <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}"  value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseLowData.orm_healthAndSafety__c ? 'true':'false' }"/> -->
 		            <b><span id="r3">{!v.hsseLowData.orm_healthAndSafety__c}</span> </b>
                 </td>
                 <td style="white-space: normal !important;" height="100">

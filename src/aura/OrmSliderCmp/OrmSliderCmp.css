@@ -48,10 +48,15 @@
 	white-space: normal;
 	text-align: center;
 }
-.THIS .tdClassSlider2{
-	width: 23%;
+.THIS .tdBusinessImpactReputation{
+	width: 20%;
 	white-space: normal;
-	padding-left: 4%;
+	padding-left: 10px;
+}
+.THIS .tdBusinessImpact{
+	width: 24%;
+	white-space: normal;
+	padding-left: 3%;
 }
 .THIS .tdcouleurSlider2{
 	width: 8%;

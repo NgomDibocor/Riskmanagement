@@ -9,8 +9,8 @@
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
         helper.fetchPicklist(component, event, idAsssessmentRisk);
         helper.getProbality(component, event); 
-        helper.getHsseImpacts(component, event);
-       // helper.getSliderDefault(component, event);
+       // helper.getHsseImpacts(component, event);
+       //helper.getSliderDefault(component, event);
       },
       
       updateAssessmentRisk : function(component, event, helper) {
@@ -67,7 +67,7 @@
 	                component.set("v.assessmentRiskData",response.getReturnValue());
 	                    var toastEvent = $A.get('e.force:showToast');
 	                        toastEvent.setParams({
-	                            'message' :assessmentRisk.orm_Risk__r.qName+' '+$A.get("$Label.c.orm_success_updated"),
+	                            'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
 	                            'type' : 'success',
 	                            'mode' : 'dismissible'
 	                        });
@@ -255,96 +255,98 @@
 	 */
 	checkboxSelect : function(component, event, helper) {
 	component.set("v.displaySaveCancelBtn",true);
-		 var selected = event.getSource().getLocalId();
-		 if(selected=='r0')
-		 {
+	
+		 component.set('v.selected',event.getSource().getLocalId());
+		 var selectedRadio = event.getSource().get("v.value");
+		 if(component.get("v.selected")=='r0')
+		 {	 
 			 document.getElementById('healthAndSafety').style.backgroundColor = "red";
 			 document.getElementById("healthAndSafety").innerHTML= 'very high';
-			 var  healthAndSafety =document.getElementById(selected).innerHTML;
+			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
-		 } if (selected=='r1')
+		 } if (component.get("v.selected")=='r1')
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "orange";
 			 document.getElementById("healthAndSafety").innerHTML= 'high';
-			 var  healthAndSafety =document.getElementById(selected).innerHTML;
+			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
 		 }
-		  if (selected=='r2')
+		  if (component.get("v.selected")=='r2')
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
 			 document.getElementById("healthAndSafety").innerHTML= 'Medium';
-			 var  healthAndSafety =document.getElementById(selected).innerHTML;
+			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
 		 }
-		 if(selected=='r3')
+		 if(component.get("v.selected")=='r3')
 		 {
 		  document.getElementById('healthAndSafety').style.backgroundColor = "green";
 		  document.getElementById("healthAndSafety").innerHTML= 'Low';
-		  var  healthAndSafety =document.getElementById(selected).innerHTML;
+		  var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.healthAndSafety" ,healthAndSafety);
 		 }
 		 
-		  if(selected=='rr0'){
+		  if(component.get("v.selected")=='rr0'){
 		  
 			 document.getElementById('security').style.backgroundColor = "red";
 			 document.getElementById("security").innerHTML= 'very high';
-			 var  security =document.getElementById(selected).innerHTML;
+			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
 			 
 		 } 
 		 
-		 if (selected=='rr1'){
+		 if (component.get("v.selected")=='rr1'){
 		 
 			 document.getElementById('security').style.backgroundColor = "orange";
 			 document.getElementById("security").innerHTML= 'high';
-			 var  security =document.getElementById(selected).innerHTML;
+			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
 		 }
 		 
-		  if (selected=='rr2'){
+		  if (component.get("v.selected")=='rr2'){
 		  
 			 document.getElementById('security').style.backgroundColor = "yellow";
 			 document.getElementById("security").innerHTML= 'Medium';
-			 var  security =document.getElementById(selected).innerHTML;
+			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
 		 }
 		 
-		 if(selected=='rr3'){
+		 if(component.get("v.selected")=='rr3'){
 		 
 		  document.getElementById('security').style.backgroundColor = "green";
 		  document.getElementById("security").innerHTML= 'Low';
-		  var  security =document.getElementById(selected).innerHTML;
+		  var  security =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.security" ,security);
 		 }
 		 
-		  if(selected=='rrr0'){
+		  if(component.get("v.selected")=='rrr0'){
 		  
 			 document.getElementById('environment').style.backgroundColor = "red";
 			 document.getElementById("environment").innerHTML= 'very high';
-			 var  environment =document.getElementById(selected).innerHTML;
+			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
 		 } 
 		 
-		 if (selected=='rrr1'){
+		 if (component.get("v.selected")=='rrr1'){
 		 
 			 document.getElementById('environment').style.backgroundColor = "orange";
 			 document.getElementById("environment").innerHTML= 'high';
-			 var  environment =document.getElementById(selected).innerHTML;
+			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
 		 }
 		 
-		 if (selected=='rrr2'){
+		 if (component.get("v.selected")=='rrr2'){
 		 
 			 document.getElementById('environment').style.backgroundColor = "yellow";
 			 document.getElementById("environment").innerHTML= 'Medium';
-			 var  environment =document.getElementById(selected).innerHTML;
+			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
 		 }
-		 if(selected=='rrr3'){
+		 if(component.get("v.selected")=='rrr3'){
 		 
 		  document.getElementById('environment').style.backgroundColor = "green";
 		  document.getElementById("environment").innerHTML= 'Low';
-		  var  environment =document.getElementById(selected).innerHTML;
+		  var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.environmentAndCommunity" ,environment);
 		 }
 	},

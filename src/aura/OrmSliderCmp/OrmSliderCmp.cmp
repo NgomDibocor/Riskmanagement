@@ -86,6 +86,7 @@
     <aura:attribute name="showBtnSave" type="boolean" default="true"/>
     <aura:attribute name="showBtnUpdate" type="boolean" default="false"/>
     
+    <!-- Proba attributes -->
     <aura:attribute name="probableMin" type="Integer" default="75"/>
     <aura:attribute name="probableMax" type="Integer" default="100"/>
     <aura:attribute name="possibleMin" type="Integer" default="25"/>
@@ -94,6 +95,35 @@
     <aura:attribute name="unlikelyMax" type="Integer" default="25"/>
     <aura:attribute name="rareMin" type="Integer" default="0"/>
     <aura:attribute name="rareMax" type="Integer" default="5"/>
+    <!-- end -->
+    
+    <!-- Business Impacts attributes -->
+    <aura:attribute name="costProjectVeryHighMin" type="Integer" default="60"/>
+    <aura:attribute name="costProjectVeryHighMax" type="Integer" default="100"/>
+    <aura:attribute name="costProjectHighMin" type="Integer" default="15"/>
+    <aura:attribute name="costProjectHighMax" type="Integer" default="60"/>
+    <aura:attribute name="costProjectMediumMin" type="Integer" default="5"/>
+    <aura:attribute name="costProjectMediumMax" type="Integer" default="15"/>
+    <aura:attribute name="costProjectLowMin" type="Integer" default="0"/>
+    <aura:attribute name="costProjectLowMax" type="Integer" default="5"/>
+    
+    <aura:attribute name="scheduleProjectVeryHighMin" type="Integer" default="60"/>
+    <aura:attribute name="scheduleProjectVeryHighMax" type="Integer" default="100"/>
+    <aura:attribute name="scheduleProjectHighMin" type="Integer" default="15"/>
+    <aura:attribute name="scheduleProjectHighMax" type="Integer" default="60"/>
+    <aura:attribute name="scheduleProjectMediumMin" type="Integer" default="5"/>
+    <aura:attribute name="scheduleProjectMediumMax" type="Integer" default="15"/>
+    <aura:attribute name="scheduleProjectLowMin" type="Integer" default="0"/>
+    <aura:attribute name="scheduleProjectLowMax" type="Integer" default="5"/>
+    
+    
+    <aura:attribute name="ProductionLossHighMin" type="Integer" default="12"/>
+    <aura:attribute name="ProductionLossHighMax" type="Integer" default="26"/>
+    <aura:attribute name="ProductionLossMediumMin" type="Integer" default="4"/>
+    <aura:attribute name="ProductionLossMediumMax" type="Integer" default="12"/>
+    <aura:attribute name="ProductionLossLowMin" type="Integer" default="0"/>
+    <aura:attribute name="ProductionLossLowMax" type="Integer" default="4"/>
+    <!-- end -->
     
     <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
     <aura:registerEvent name="HideSpinner" type="c:OrmHideSpinnerEvt"  />

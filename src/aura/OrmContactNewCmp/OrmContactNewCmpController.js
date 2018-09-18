@@ -55,11 +55,11 @@
               
             toast.fire(); 
             component.set("v.isOpen", false);
-//            var evt = $A.get("e.c:OrmNewContactEvt");
-//			evt.setParams({
-//			   "Assessmentdata" : component.get('v.assessmentData').orm_organisation__c
-//			});
-//			evt.fire();          
+            var evt = $A.get("e.c:OrmContactCreatedEvt");
+			evt.setParams({
+			   "Assessmentdata" : component.get('v.assessmentData').orm_organisation__c
+			});
+			evt.fire();          
           	
 				} else {
 					let

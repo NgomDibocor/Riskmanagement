@@ -75,8 +75,10 @@ public with sharing class OrmEmailTemplateController {
        }
     
   // Send all emails in the master list
-     List<Messaging.SendEmailResult> sendEmailResults = Messaging.sendEmail(mails);
-     //get 
+    // List<Messaging.SendEmailResult> 
+     //sendEmailResults =
+      Messaging.sendEmail(mails);
+
      
    }
   /**

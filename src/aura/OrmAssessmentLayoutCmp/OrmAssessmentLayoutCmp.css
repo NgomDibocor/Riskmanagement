@@ -111,12 +111,12 @@
     height: 50px;
     line-height: 50px;
     width: 50px;
-    background-color: #bbb;
+    background-color: #FFFFFF;
     border-radius: 50%;
     display: inline-block;
 }
 .THIS .dot:hover{
-   background-color:#0077AB;
+   background-color:#B0C4DF;
 }
 .THIS .organisationUnit {
     height: 55px;

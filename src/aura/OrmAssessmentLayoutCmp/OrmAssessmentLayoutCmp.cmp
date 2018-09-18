@@ -187,6 +187,11 @@
                      <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:back" size="large" />
                   </span>
               </aura:if>
+              <aura:if isTrue="{!v.showRiskPicture}">        
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:back" size="large" />
+                  </span>
+              </aura:if>
               <aura:if isTrue="{!v.showActionPlan}">        
                   <span class="dot">
                      <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:back" size="large" />
@@ -1487,6 +1492,11 @@
                    </span>
                </aura:if>
                <aura:if isTrue="{!v.showRiskTreatment}">        
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:forward" size="large" />
+                   </span>
+               </aura:if>
+               <aura:if isTrue="{!v.showRiskPicture}">        
                    <span class="dot">
                      <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:forward" size="large" />
                    </span>

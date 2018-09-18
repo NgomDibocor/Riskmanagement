@@ -94,6 +94,9 @@
 																}"/>																
 	
 	<aura:attribute name="hsseImpacts" type="Macro[]" />
+	<aura:attribute name="healthAndSafety" type="String"/>
+	<aura:attribute name="security" type="String"/>
+	<aura:attribute name="environmentAndCommunity" type="String"/>
 	<!-- end for HSSE impact -->
     <table class="slds-table">
         <tr>
@@ -153,7 +156,7 @@
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
                         <b> <lightning:select aura:id="manageAbility" name="manage Ability" label="{!$Label.c.orm_manageAbility_assessmentRisk}" class="select-auto-width" onchange="{!c.onManageAbility}">
-	                             <option text="{!v.assessmentRiskData.orm_manageAbility__c}" ></option>
+	                             <option text="{!v.assessmentRiskData.orm_manageability__c}" ></option>
 	                            <aura:iteration items="{!v.manageAbility}" var="manageAbility">
 	                                <option text="{!manageAbility}"></option>
 	                            </aura:iteration>

@@ -9,7 +9,7 @@
                 component.set('v.frequency', response.getReturnValue());
                 //manageAbility
                 var actionmanageAbility = component.get("c.getSelectOptions");
-		        actionmanageAbility.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_manageAbility__c'});
+		        actionmanageAbility.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_manageability__c'});
 		        actionmanageAbility.setCallback(this, function(response){
 		            var state = response.getState();
 		            if(state === 'SUCCESS'){
@@ -57,6 +57,7 @@
 																					            var state = response.getState();
 																					            if (state === 'SUCCESS') { 
 																					                component.set('v.assessmentRiskData', response.getReturnValue());
+																					                component.find("manageAbility").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
 																					                component.set("v.displaySaveCancelBtn",false);
 																					                
 																					                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");

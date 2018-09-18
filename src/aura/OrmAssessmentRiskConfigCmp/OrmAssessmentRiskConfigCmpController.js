@@ -15,19 +15,24 @@
       updateAssessmentRisk : function(component, event, helper) {
 	       var assessmentRisk = component.get("v.assessmentRiskData");
 	       var assessment= component.get("v.assessmentRiskData.orm_assessment__c");
-	       console.log(assessment);
+	       var healthAndSafety =component.get("v.healthAndSafety");
+	       var security =component.get("v.security");
+	       var environmentAndCommunity =component.get("v.environmentAndCommunity");
+	       console.log(healthAndSafety);
+	       console.log(security);
+	       console.log(environmentAndCommunity);
 	       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
 	       assessmentRisk.orm_assessment__c = assessment;
 	       assessmentRisk.orm_Risk__c = risk;
-	       if(component.get("v.assessmentData").orm_typeAssessment__c == 'Projet'){
+	       
 		      // var dateRisk=component.find("dateRisk");
 		      // assessmentRisk.orm_date__c =dateRisk.get("v.value");
-		       var environmentAndCommunity =  component.find("environmentAndCommunity");
-		       assessmentRisk.orm_environmentAndCommunity__c =environmentAndCommunity.get("v.value");
+		      // var environmentAndCommunity =  component.find("environmentAndCommunity");
+		       assessmentRisk.orm_environmentAndCommunity__c =environmentAndCommunity;
 		       var frequency = component.find("frequency");
 		       assessmentRisk.orm_frequency__c =frequency.get("v.value");
 		       var manageAbility = component.find("manageAbility");
-		       assessmentRisk.orm_manageAbility__c =manageAbility.get("v.value");
+		       assessmentRisk.orm_manageability__c =manageAbility.get("v.value");
 		       var productionLoss = component.find("productionLoss");     
 		       assessmentRisk.orm_productionLoss__c =productionLoss.get("v.value");
 		       var schedule = component.find("schedule");
@@ -36,47 +41,17 @@
 		       assessmentRisk.orm_status__c =status.get("v.value");
 		       var vulnerability = component.find("vulnerability");
 		       assessmentRisk.orm_vulnerability__c =vulnerability.get("v.value");
-		       var security = component.find("security");
-		       assessmentRisk.orm_security__c =security.get("v.value");
+		      //var security = component.find("security");
+		       assessmentRisk.orm_security__c =security;
 		       var reputation = component.find("reputation");
 		       assessmentRisk.orm_reputation__c =reputation.get("v.value");
 		       var cost = component.find("cost");
 		       assessmentRisk.orm_cost__c =cost.get("v.value");	
-		       var healthAndSafety = component.find("healthAndSafety");
-		       assessmentRisk.orm_healthAndSafety__c =healthAndSafety.get("v.value");
+		       //var healthAndSafety = component.find("healthAndSafety");
+		       assessmentRisk.orm_healthAndSafety__c =healthAndSafety;
 		       var probability = component.find("slider1");
 		       assessmentRisk.orm_probability__c = probability.get("v.value");
-	       }
-	       if(component.get("v.assessmentData").orm_typeAssessment__c == 'Organisation'){
-		      /* var dateRisk=component.find("dateRisk");
-		       assessmentRisk.orm_date__c =dateRisk.get("v.value");*/
-		       var frequency = component.find("frequency");
-		       assessmentRisk.orm_frequency__c =frequency.get("v.value");
-		       var status = component.find("status");
-		       assessmentRisk.orm_status__c =status.get("v.value");
-		       var vulnerability = component.find("vulnerability");
-		       assessmentRisk.orm_vulnerability__c =vulnerability.get("v.value");
-		       var manageAbility = component.find("manageAbility");
-		       assessmentRisk.orm_manageAbility__c =manageAbility.get("v.value");
-		        var probability = component.find("slider1");
-		       assessmentRisk.orm_probability__c = probability.get("v.value");
-	       }
-	       if(component.get("v.assessmentData").orm_typeAssessment__c == 'Processus'){
-	           /*var dateRisk=component.find("dateRisk");
-		       assessmentRisk.orm_date__c =dateRisk.get("v.value");*/
-		       var frequency = component.find("frequency");
-		       assessmentRisk.orm_frequency__c =frequency.get("v.value");
-		       var status = component.find("status");
-		       assessmentRisk.orm_status__c =status.get("v.value");
-		       var vulnerability = component.find("vulnerability");
-		       assessmentRisk.orm_vulnerability__c =vulnerability.get("v.value");
-		       var manageAbility = component.find("manageAbility");
-		       assessmentRisk.orm_manageAbility__c =manageAbility.get("v.value");
-		       var probability = component.find("slider1");
-		       assessmentRisk.orm_probability__c = probability.get("v.value");
-	       }
 	       
-	       		 
 	       var action = component.get('c.addAssessmentRisk');
 	        action.setParams({
 	            "item": assessmentRisk
@@ -91,7 +66,7 @@
 	                component.set("v.assessmentRiskData",response.getReturnValue());
 	                    var toastEvent = $A.get('e.force:showToast');
 	                        toastEvent.setParams({
-	                            'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
+	                            'message' :assessmentRisk.orm_Risk__r.qName+' '+$A.get("$Label.c.orm_success_updated"),
 	                            'type' : 'success',
 	                            'mode' : 'dismissible'
 	                        });
@@ -278,29 +253,34 @@
 	 * @history 2018-09-05 : David diop - Implementation
 	 */
 	checkboxSelect : function(component, event, helper) {
+	component.set("v.displaySaveCancelBtn",true);
 		 var selected = event.getSource().getLocalId();
 		 if(selected=='r0')
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "red";
 			 document.getElementById("healthAndSafety").innerHTML= 'very high';
 			 var  healthAndSafety =document.getElementById(selected).innerHTML;
+			 component.set("v.healthAndSafety" ,healthAndSafety);
 		 } if (selected=='r1')
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "orange";
 			 document.getElementById("healthAndSafety").innerHTML= 'high';
 			 var  healthAndSafety =document.getElementById(selected).innerHTML;
+			 component.set("v.healthAndSafety" ,healthAndSafety);
 		 }
 		  if (selected=='r2')
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
 			 document.getElementById("healthAndSafety").innerHTML= 'Medium';
 			 var  healthAndSafety =document.getElementById(selected).innerHTML;
+			 component.set("v.healthAndSafety" ,healthAndSafety);
 		 }
 		 if(selected=='r3')
 		 {
 		  document.getElementById('healthAndSafety').style.backgroundColor = "green";
 		  document.getElementById("healthAndSafety").innerHTML= 'Low';
 		  var  healthAndSafety =document.getElementById(selected).innerHTML;
+		  component.set("v.healthAndSafety" ,healthAndSafety);
 		 }
 		 
 		  if(selected=='rr0'){
@@ -308,6 +288,7 @@
 			 document.getElementById('security').style.backgroundColor = "red";
 			 document.getElementById("security").innerHTML= 'very high';
 			 var  security =document.getElementById(selected).innerHTML;
+			 component.set("v.security" ,security);
 			 
 		 } 
 		 
@@ -316,6 +297,7 @@
 			 document.getElementById('security').style.backgroundColor = "orange";
 			 document.getElementById("security").innerHTML= 'high';
 			 var  security =document.getElementById(selected).innerHTML;
+			 component.set("v.security" ,security);
 		 }
 		 
 		  if (selected=='rr2'){
@@ -323,6 +305,7 @@
 			 document.getElementById('security').style.backgroundColor = "yellow";
 			 document.getElementById("security").innerHTML= 'Medium';
 			 var  security =document.getElementById(selected).innerHTML;
+			 component.set("v.security" ,security);
 		 }
 		 
 		 if(selected=='rr3'){
@@ -330,6 +313,7 @@
 		  document.getElementById('security').style.backgroundColor = "green";
 		  document.getElementById("security").innerHTML= 'Low';
 		  var  security =document.getElementById(selected).innerHTML;
+		  component.set("v.security" ,security);
 		 }
 		 
 		  if(selected=='rrr0'){
@@ -337,6 +321,7 @@
 			 document.getElementById('environment').style.backgroundColor = "red";
 			 document.getElementById("environment").innerHTML= 'very high';
 			 var  environment =document.getElementById(selected).innerHTML;
+			 component.set("v.environmentAndCommunity" ,environment);
 		 } 
 		 
 		 if (selected=='rrr1'){
@@ -344,6 +329,7 @@
 			 document.getElementById('environment').style.backgroundColor = "orange";
 			 document.getElementById("environment").innerHTML= 'high';
 			 var  environment =document.getElementById(selected).innerHTML;
+			 component.set("v.environmentAndCommunity" ,environment);
 		 }
 		 
 		 if (selected=='rrr2'){
@@ -351,12 +337,14 @@
 			 document.getElementById('environment').style.backgroundColor = "yellow";
 			 document.getElementById("environment").innerHTML= 'Medium';
 			 var  environment =document.getElementById(selected).innerHTML;
+			 component.set("v.environmentAndCommunity" ,environment);
 		 }
 		 if(selected=='rrr3'){
 		 
 		  document.getElementById('environment').style.backgroundColor = "green";
 		  document.getElementById("environment").innerHTML= 'Low';
 		  var  environment =document.getElementById(selected).innerHTML;
+		  component.set("v.environmentAndCommunity" ,environment);
 		 }
 	},
 	

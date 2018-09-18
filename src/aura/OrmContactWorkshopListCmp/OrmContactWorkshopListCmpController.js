@@ -112,10 +112,22 @@
 			var state = response.getState();
 			console.log(state);
 			if (state == "SUCCESS") {
-				alert("successful association");
+					var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : $A.get("$Label.c.orm_success_associated"),
+                'type' : 'success',
+                'mode' : 'dismissible'
+            });      
+            toast.fire();
 				helper.refreshContactWorkshop(component);
 			} else {
-				alert("failed association");
+					var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : $A.get("$Label.c.orm_failed_association"),
+                'type' : 'error',
+                'mode' : 'dismissible'
+            });      
+            toast.fire();
 			}
 		});
 		$A.enqueueAction(action);
@@ -141,7 +153,8 @@
 			helper.addContactWorkshop(component, row);
 			break;
 		case 'send_email':
-			helper.sendMailContactWorkshop(component, row);
+		component.set('v.contactListSelected',row);
+		component.set("v.emailTemplate",true);
 			break;
 		default:
 			break;
@@ -161,7 +174,7 @@
  * @history 
  * 2018-09-11 : Salimata NGOM - Implementation
  */
-	openMailTemplate : function(component, event, helper) {
+	openMailTemplate : function(component,row) {
 	//check if contact selected
 	if($A.util.isEmpty(component.get("v.contactListSelected")))
 	{
@@ -215,7 +228,6 @@
  * 2018-09-17 : Salimata NGOM - Implementation
  */
 refreshContact:function(component, event, helper){
-
 helper.refreshContactWorkshop(component);
 }
 

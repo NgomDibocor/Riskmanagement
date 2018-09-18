@@ -53,6 +53,7 @@
         //component.set("v.listOfSearchRecords", null );      
     },
       sendEmailAction : function(component, event, helper) {
+
         helper.sendEmails(component, event);
         
     },

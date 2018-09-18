@@ -314,9 +314,7 @@
 															.getState();
 													console.log(state);
 													if (state == "SUCCESS") {
-														if ($A.util
-																.isEmpty(respcontactworkshop
-																		.getReturnValue())) {
+														if ($A.util.isEmpty(respcontactworkshop.getReturnValue())) {
 															var toast = $A
 																	.get('e.force:showToast');
 															toast

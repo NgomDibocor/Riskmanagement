@@ -20,6 +20,13 @@
 					}
 					// Display the message
 					console.error(message);
+					   var toast = $A.get('e.force:showToast');
+		                toast.setParams({
+			            	'message' : "$Label.c.orm_error",
+			                'type' : 'error',
+			                'mode' : 'dismissible'
+			            });
+			            toast.fire();
 				}
            
         });
@@ -92,7 +99,11 @@
 		});
                                    action.setCallback(this,function(response){
                                    var state = response.getState();
+                                   
 							if (state == "SUCCESS") {
+							//update listcontact
+							
+								//end update listcontact
 								var toast = $A.get('e.force:showToast');
             toast.setParams({
             	'message' : 'send mail success',
@@ -101,6 +112,17 @@
             });      
             toast.fire();
               component.set("v.emailTemplate", false);
+							}else if(state== "ERROR"){
+							 let
+					errors = response.getError();
+					let
+					message = 'Unknown error'; // Default error message
+					// Retrieve the error message sent by the server
+					if (errors && Array.isArray(errors) && errors.length > 0) {
+						message = errors[0].message;
+					}
+					// Display the message
+					console.error(message);
 							}
                                    });
                                     $A.enqueueAction(action);

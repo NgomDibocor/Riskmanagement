@@ -224,18 +224,7 @@
         </tr>
         <tr>
             <td>
-                <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_security_assessmentRisk}</label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputText aura:id="security" class="slds-input" value="{!v.assessmentRiskData.orm_security__c}" change="{!c.onSecurity}">
-                        </ui:inputText>
-                    </a>
-                </div>
-            </td>
-            <td>
-                <div class="topSpacing">
+               <div class="topSpacing">
                     <b><label class="slds-form-element__label">{!$Label.c.orm_reputation_assessmentRisk}</label></b>
                 </div>
                 <div class="width">
@@ -245,10 +234,8 @@
                     </a>
                 </div>
             </td>
-        </tr>
-        <tr>
             <td>
-                <div class="topSpacing">
+               <div class="topSpacing">
                     <b><label class="slds-form-element__label">{!$Label.c.orm_cost_assessmentRisk}</label></b>
                 </div>
                 <div class="width">
@@ -256,41 +243,22 @@
                         <ui:inputNumber aura:id="cost" class="slds-input" value="{!v.assessmentRiskData.orm_cost__c}" change="{!c.onCost}">
                         </ui:inputNumber>
                     </a>
-                </div>
-            </td>
-            <td>
-                <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_healthAndSafety_assessmentRisk}</label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputText aura:id="healthAndSafety" class="slds-input" value="{!v.assessmentRiskData.orm_healthAndSafety__c}" change="{!c.onHealthAndSafety}">
-                        </ui:inputText>
-                    </a>
-                </div>
+                </div>  
             </td>
         </tr>
         <tr>
-            <td>
-                <div class="topSpacing">
-                    <b> <label class="slds-form-element__label">{!$Label.c.orm_environmentAndCommunity}</label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
-                        <ui:inputText aura:id="environmentAndCommunity" class="slds-input" value="{!v.assessmentRiskData.orm_environmentAndCommunity__c}" change="{!c.onEnvironmentAndCommunity}">
-                        </ui:inputText>
-                    </a>
-                </div>
-            </td>
             <td>
                 <div class="width">
                     <lightning:slider label="Probability" aura:id="slider1"  value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }" />
                 </div><br/>
                 <center>
-                    <div style="width:70px; height:20px;" id="divColor" class="divColor">
-                        Possible
+                    <div style="width:90px; height:20px;" id="divColor" class="divColor">
+                       
                     </div>
                 </center>
+            </td>
+            <td>
+               
             </td>
         </tr>
     </table>

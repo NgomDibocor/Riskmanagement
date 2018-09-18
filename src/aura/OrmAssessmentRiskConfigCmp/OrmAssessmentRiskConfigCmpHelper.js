@@ -58,6 +58,24 @@
 																					            if (state === 'SUCCESS') { 
 																					                component.set('v.assessmentRiskData', response.getReturnValue());
 																					                component.find("manageAbility").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
+																					                component.find("frequency").set("v.value", component.get('v.assessmentRiskData').orm_frequency__c);
+																					                component.find("slider1").set("v.value", component.get('v.assessmentRiskData').orm_probability__c);
+																					                
+																								        var sliderValue = component.get("v.assessmentRiskData").orm_probability__c;
+																								         console.log(sliderValue);
+																								    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
+																									    document.getElementById("divColor").style.backgroundColor = "green";
+																									    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c");
+																								    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
+																									    document.getElementById("divColor").style.backgroundColor = "yellow";
+																									    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c");
+																								    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
+																									    document.getElementById("divColor").style.backgroundColor = "orange";
+																									    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c");
+																								    }else{
+																									    document.getElementById("divColor").style.backgroundColor = "red";
+																									    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c");
+																								    }
 																					                component.set("v.displaySaveCancelBtn",false);
 																					                
 																					                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");

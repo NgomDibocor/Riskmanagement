@@ -10,6 +10,7 @@
         helper.fetchPicklist(component, event, idAsssessmentRisk);
         helper.getProbality(component, event); 
         helper.getHsseImpacts(component, event);
+       // helper.getSliderDefault(component, event);
       },
       
       updateAssessmentRisk : function(component, event, helper) {

@@ -94,6 +94,9 @@
 																}"/>																
 	
 	<aura:attribute name="hsseImpacts" type="Macro[]" />
+	<aura:attribute name="healthAndSafety" type="String"/>
+	<aura:attribute name="security" type="String"/>
+	<aura:attribute name="environmentAndCommunity" type="String"/>
 	<!-- end for HSSE impact -->
     <table class="slds-table">
         <tr>
@@ -153,7 +156,7 @@
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
                         <b> <lightning:select aura:id="manageAbility" name="manage Ability" label="{!$Label.c.orm_manageAbility_assessmentRisk}" class="select-auto-width" onchange="{!c.onManageAbility}">
-	                             <option text="{!v.assessmentRiskData.orm_manageAbility__c}" ></option>
+	                             <option text="{!v.assessmentRiskData.orm_manageability__c}" ></option>
 	                            <aura:iteration items="{!v.manageAbility}" var="manageAbility">
 	                                <option text="{!manageAbility}"></option>
 	                            </aura:iteration>
@@ -221,18 +224,7 @@
         </tr>
         <tr>
             <td>
-                <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_security_assessmentRisk}</label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputText aura:id="security" class="slds-input" value="{!v.assessmentRiskData.orm_security__c}" change="{!c.onSecurity}">
-                        </ui:inputText>
-                    </a>
-                </div>
-            </td>
-            <td>
-                <div class="topSpacing">
+               <div class="topSpacing">
                     <b><label class="slds-form-element__label">{!$Label.c.orm_reputation_assessmentRisk}</label></b>
                 </div>
                 <div class="width">
@@ -242,10 +234,8 @@
                     </a>
                 </div>
             </td>
-        </tr>
-        <tr>
             <td>
-                <div class="topSpacing">
+               <div class="topSpacing">
                     <b><label class="slds-form-element__label">{!$Label.c.orm_cost_assessmentRisk}</label></b>
                 </div>
                 <div class="width">
@@ -253,41 +243,22 @@
                         <ui:inputNumber aura:id="cost" class="slds-input" value="{!v.assessmentRiskData.orm_cost__c}" change="{!c.onCost}">
                         </ui:inputNumber>
                     </a>
-                </div>
-            </td>
-            <td>
-                <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_healthAndSafety_assessmentRisk}</label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputText aura:id="healthAndSafety" class="slds-input" value="{!v.assessmentRiskData.orm_healthAndSafety__c}" change="{!c.onHealthAndSafety}">
-                        </ui:inputText>
-                    </a>
-                </div>
+                </div>  
             </td>
         </tr>
         <tr>
-            <td>
-                <div class="topSpacing">
-                    <b> <label class="slds-form-element__label">{!$Label.c.orm_environmentAndCommunity}</label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
-                        <ui:inputText aura:id="environmentAndCommunity" class="slds-input" value="{!v.assessmentRiskData.orm_environmentAndCommunity__c}" change="{!c.onEnvironmentAndCommunity}">
-                        </ui:inputText>
-                    </a>
-                </div>
-            </td>
             <td>
                 <div class="width">
                     <lightning:slider label="Probability" aura:id="slider1"  value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }" />
                 </div><br/>
                 <center>
-                    <div style="width:70px; height:20px;" id="divColor" class="divColor">
-                        Possible
+                    <div style="width:90px; height:20px;" id="divColor" class="divColor">
+                       
                     </div>
                 </center>
+            </td>
+            <td>
+               
             </td>
         </tr>
     </table>
@@ -306,8 +277,8 @@
             </tr>
             <tr style="border-bottom:1px solid;" >
                 <td style="white-space: normal !important;" height="100">
-                <ui:inputRadio aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}"/>
-		        <span id="r0" >{!v.hsseVeryHighData.orm_healthAndSafety__c}</span>		        
+                <ui:inputRadio aura:id="r0" name="healthAndSafety" change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseVeryHighData.orm_healthAndSafety__c ? 'true':'false' }" />
+		        <b><span id="r0" >{!v.hsseVeryHighData.orm_healthAndSafety__c}</span></b>	        
                 </td>
                 <td style="white-space: normal !important;" height="100">
                     <ui:inputRadio aura:id="rr0" name="security"  change="{!c.checkboxSelect}"/>
@@ -320,7 +291,7 @@
             </tr>
             <tr style="border-bottom:1px solid;">
                 <td style="white-space: normal !important;" height="100">
-                   <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}"/> 
+                   <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}" value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseHighData.orm_healthAndSafety__c ? 'true':'false' }"/> 
 		           <b> <span id="r1">{!v.hsseHighData.orm_healthAndSafety__c}</span></b>
                 </td>
                 <td style="white-space: normal !important;" height="100">
@@ -334,7 +305,7 @@
             </tr>
             <tr style="border-bottom:1px solid;">
                 <td style="white-space: normal !important;" height="100">
-                   <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}" />
+                   <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}"  value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseMediumData.orm_healthAndSafety__c ? 'true':'false' }"/>
 		           <b> <span id="r2">{!v.hsseMediumData.orm_healthAndSafety__c}</span></b>
                 </td>
                 <td style="white-space: normal !important;" height="100">
@@ -348,7 +319,7 @@
             </tr>
             <tr>
                 <td style="white-space: normal !important;"  height="100">
-                   <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}" />
+                   <ui:inputRadio aura:id="r3" name="healthAndSafety"  change="{!c.checkboxSelect}"  value="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseLowData.orm_healthAndSafety__c ? 'true':'false' }"/>
 		            <b><span id="r3">{!v.hsseLowData.orm_healthAndSafety__c}</span> </b>
                 </td>
                 <td style="white-space: normal !important;" height="100">

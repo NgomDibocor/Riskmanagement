@@ -9,7 +9,7 @@
                 component.set('v.frequency', response.getReturnValue());
                 //manageAbility
                 var actionmanageAbility = component.get("c.getSelectOptions");
-		        actionmanageAbility.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_manageAbility__c'});
+		        actionmanageAbility.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_manageability__c'});
 		        actionmanageAbility.setCallback(this, function(response){
 		            var state = response.getState();
 		            if(state === 'SUCCESS'){
@@ -57,6 +57,28 @@
 																					            var state = response.getState();
 																					            if (state === 'SUCCESS') { 
 																					                component.set('v.assessmentRiskData', response.getReturnValue());
+																					                component.find("manageAbility").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
+																					                component.find("frequency").set("v.value", component.get('v.assessmentRiskData').orm_frequency__c);
+																					                component.find("slider1").set("v.value", component.get('v.assessmentRiskData').orm_probability__c);
+																					                component.find("productionLoss").set("v.value", component.get('v.assessmentRiskData').orm_productionLoss__c);
+																					                component.find("schedule").set("v.value", component.get('v.assessmentRiskData').orm_schedule__c);
+																					                component.find("status").set("v.value", component.get('v.assessmentRiskData').orm_status__c);
+																					                component.find("vulnerability").set("v.value", component.get('v.assessmentRiskData').orm_vulnerability__c);
+																								        var sliderValue = component.get("v.assessmentRiskData").orm_probability__c;
+																								         console.log(sliderValue);
+																								    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
+																									    document.getElementById("divColor").style.backgroundColor = "green";
+																									    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c");
+																								    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
+																									    document.getElementById("divColor").style.backgroundColor = "yellow";
+																									    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c");
+																								    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
+																									    document.getElementById("divColor").style.backgroundColor = "orange";
+																									    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c");
+																								    }else{
+																									    document.getElementById("divColor").style.backgroundColor = "red";
+																									    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c");
+																								    }
 																					                component.set("v.displaySaveCancelBtn",false);
 																					                
 																					                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");

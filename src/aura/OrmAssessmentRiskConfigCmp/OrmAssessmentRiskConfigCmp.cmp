@@ -298,7 +298,7 @@
 		            <b><span id="rrr0">{!v.hsseVeryHighData.orm_environmentAndCommunity__c}</span></b>
                 </td>
             </tr>
-            <tr>
+            <tr style="border-bottom:1px solid;">
                 <td style="white-space: normal !important;" height="100">
                    <ui:inputRadio aura:id="r1" name="healthAndSafety" change="{!c.checkboxSelect}"/> 
 		           <b> <span id="r1">{!v.hsseHighData.orm_healthAndSafety__c}</span></b>
@@ -312,7 +312,7 @@
 		            <b><span id="rrr1">{!v.hsseHighData.orm_environmentAndCommunity__c}</span></b>
                 </td>
             </tr>
-            <tr>
+            <tr style="border-bottom:1px solid;">
                 <td style="white-space: normal !important;" height="100">
                    <ui:inputRadio aura:id="r2" name="healthAndSafety"  change="{!c.checkboxSelect}" />
 		           <b> <span id="r2">{!v.hsseMediumData.orm_healthAndSafety__c}</span></b>

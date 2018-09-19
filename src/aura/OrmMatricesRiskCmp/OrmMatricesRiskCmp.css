@@ -1,0 +1,14 @@
+.THIS {
+}
+.THIS table {
+    border-collapse: collapse;
+    border: 1px solid white;
+}
+
+.THIS th {
+    border: 1px solid white;
+}
+
+.THIS td {
+    border: 1px solid white;
+}

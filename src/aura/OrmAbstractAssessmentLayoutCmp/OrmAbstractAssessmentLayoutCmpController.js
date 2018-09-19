@@ -12,6 +12,7 @@
         var showListCauseAndImpact = component.get("v.showListCauseAndImpact");
         var showListMeasure = component.get("v.showListMeasure");
         var showRiskTreatment = component.get("v.showRiskTreatment");
+        var showRiskPicture = component.get("v.showRiskPicture");
         
         if(showContext == true){
             var idAssessment = component.get("v.assessmentData").Id;
@@ -107,8 +108,13 @@
         }*/
         
         if(showRiskTreatment == true){
-            component.set("v.showActionPlan", true);
+            component.set("v.showRiskPicture", true);
             component.set("v.showRiskTreatment", false);
+            helper.activeRiskPicture(component, event);
+        }
+        if(showRiskPicture == true){
+            component.set("v.showActionPlan", true);
+            component.set("v.showRiskPicture", false);
             helper.activeActionPlan(component, event);
         }
         
@@ -125,6 +131,7 @@
         var showListCauseAndImpact = component.get("v.showListCauseAndImpact");
         var showListMeasure = component.get("v.showListMeasure");
         var showRiskTreatment = component.get("v.showRiskTreatment");
+        var showRiskPicture = component.get("v.showRiskPicture");
         var showActionPlan = component.get("v.showActionPlan");
         
         if(showContext2 == true){
@@ -193,10 +200,15 @@
             evt.fire();
             helper.activeRiskAnalyeListMeasure(component, event);
         }
-        if(showActionPlan == true){
+        if(showRiskPicture == true){
             component.set("v.showRiskTreatment", true);
             component.set("v.showActionPlan", false);
             helper.activeRiskTreatment(component, event);
+        } 
+        if(showActionPlan == true){
+            component.set("v.showRiskPicture", true);
+            component.set("v.showActionPlan", false);
+            helper.activeRiskPicture(component, event);
         } 
     },
     activeContext : function(component, event, helper) {
@@ -416,6 +428,21 @@
         var description = "You must select a  measure in Risk Analysis before to navigate to this tab";
         helper.sendValuesToFieldDescription(component, event, helper, field, description);*/
   },
+  
+  activeRiskPicture : function(component, event, helper) {
+        var idAssessment = component.get("v.assessmentData").Id;
+        if(idAssessment != null){
+	        helper.activeRiskPicture(component, event);   
+        }else{
+             var toast = $A.get('e.force:showToast');
+             toast.setParams({
+            	'message' : 'Create first an assessment',
+                'type' : 'warning',
+                'mode' : 'dismissible'
+             });
+             toast.fire();
+         }        
+    },
     
     activeActionPlan : function(component, event, helper) {
         var idAssessment = component.get("v.assessmentData").Id;

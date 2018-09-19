@@ -4,7 +4,7 @@
 		    scripts="{!$Resource.noUiSlider + '/nouislider.min.js'}"
 		    afterScriptsLoaded="{!c.jsLoaded}" />
     
-    <!-- start for prabability -->
+    <!-- Objects prababilities -->
     <aura:attribute name="probableData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'orm_probability__c' : '',
 																  'orm_pourcentageMin__c' : '',
@@ -30,7 +30,51 @@
 														   }"/>	
 	
 	<aura:attribute name="probabilities" type="Macro[]" />													   
-    <!-- end for prabability --> 
+    <!-- end Objects prababilities --> 
+    
+    <!-- Objects Business Impacts -->
+    <aura:attribute name="veryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'orm_rating__c' : '',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_reputation__c' : ''
+																}"/>
+	
+	<aura:attribute name="highData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'orm_rating__c' : '',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : ''
+																}"/>
+							
+	<aura:attribute name="mediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'orm_rating__c' : '',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : ''
+																}"/>	
+																
+	<aura:attribute name="lowData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'orm_rating__c' : '',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : ''
+																}"/>																				
+    <!-- end Objects Business Impacts -->
 
     <!-- start for HSSE impact -->
     <aura:attribute name="hsseVeryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
@@ -86,6 +130,7 @@
     <aura:attribute name="showBtnSave" type="boolean" default="true"/>
     <aura:attribute name="showBtnUpdate" type="boolean" default="false"/>
     
+    <!-- Proba attributes -->
     <aura:attribute name="probableMin" type="Integer" default="75"/>
     <aura:attribute name="probableMax" type="Integer" default="100"/>
     <aura:attribute name="possibleMin" type="Integer" default="25"/>
@@ -94,6 +139,35 @@
     <aura:attribute name="unlikelyMax" type="Integer" default="25"/>
     <aura:attribute name="rareMin" type="Integer" default="0"/>
     <aura:attribute name="rareMax" type="Integer" default="5"/>
+    <!-- end -->
+    
+    <!-- Business Impacts attributes -->
+    <aura:attribute name="costProjectVeryHighMin" type="Integer" default="60"/>
+    <aura:attribute name="costProjectVeryHighMax" type="Integer" default="100"/>
+    <aura:attribute name="costProjectHighMin" type="Integer" default="15"/>
+    <aura:attribute name="costProjectHighMax" type="Integer" default="60"/>
+    <aura:attribute name="costProjectMediumMin" type="Integer" default="5"/>
+    <aura:attribute name="costProjectMediumMax" type="Integer" default="15"/>
+    <aura:attribute name="costProjectLowMin" type="Integer" default="0"/>
+    <aura:attribute name="costProjectLowMax" type="Integer" default="5"/>
+    
+    <aura:attribute name="scheduleProjectVeryHighMin" type="Integer" default="60"/>
+    <aura:attribute name="scheduleProjectVeryHighMax" type="Integer" default="100"/>
+    <aura:attribute name="scheduleProjectHighMin" type="Integer" default="15"/>
+    <aura:attribute name="scheduleProjectHighMax" type="Integer" default="60"/>
+    <aura:attribute name="scheduleProjectMediumMin" type="Integer" default="5"/>
+    <aura:attribute name="scheduleProjectMediumMax" type="Integer" default="15"/>
+    <aura:attribute name="scheduleProjectLowMin" type="Integer" default="0"/>
+    <aura:attribute name="scheduleProjectLowMax" type="Integer" default="5"/>
+    
+    
+    <aura:attribute name="ProductionLossHighMin" type="Integer" default="12"/>
+    <aura:attribute name="ProductionLossHighMax" type="Integer" default="26"/>
+    <aura:attribute name="ProductionLossMediumMin" type="Integer" default="4"/>
+    <aura:attribute name="ProductionLossMediumMax" type="Integer" default="12"/>
+    <aura:attribute name="ProductionLossLowMin" type="Integer" default="0"/>
+    <aura:attribute name="ProductionLossLowMax" type="Integer" default="4"/>
+    <!-- end -->
     
     <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
     <aura:registerEvent name="HideSpinner" type="c:OrmHideSpinnerEvt"  />
@@ -106,6 +180,31 @@
      <div>UnlikelyMax: {!v.unlikelyMax}</div>
      <div>RareMin: {!v.rareMin}</div>
      <div>RareMax: {!v.rareMax}</div>  -->
+     
+     <div>costProjectVeryHighMin: {!v.costProjectVeryHighMin}</div>
+     <div>costProjectVeryHighMax: {!v.costProjectVeryHighMax}</div>
+     <div>costProjectHighMin: {!v.costProjectHighMin}</div>
+     <div>costProjectHighMax: {!v.costProjectHighMax}</div>
+     <div>costProjectMediumMin: {!v.costProjectMediumMin}</div>
+     <div>costProjectMediumMax: {!v.costProjectMediumMax}</div>
+     <div>costProjectLowMin: {!v.costProjectLowMin}</div>
+     <div>costProjectLowMax: {!v.costProjectLowMax}</div>
+     
+     <div>scheduleProjectVeryHighMin: {!v.scheduleProjectVeryHighMin}</div>
+     <div>scheduleProjectVeryHighMax: {!v.scheduleProjectVeryHighMax}</div>
+     <div>scheduleProjectHighMin: {!v.scheduleProjectHighMin}</div>
+     <div>scheduleProjectHighMax: {!v.scheduleProjectHighMax}</div>
+     <div>scheduleProjectMediumMin: {!v.scheduleProjectMediumMin}</div>
+     <div>scheduleProjectMediumMax: {!v.scheduleProjectMediumMax}</div>
+     <div>scheduleProjectLowMin: {!v.scheduleProjectLowMin}</div>
+     <div>scheduleProjectLowMax: {!v.scheduleProjectLowMax}</div>
+     
+     <div>ProductionLossHighMin: {!v.ProductionLossHighMin}</div>
+     <div>ProductionLossHighMax: {!v.ProductionLossHighMax}</div>
+     <div>ProductionLossMediumMin: {!v.ProductionLossMediumMin}</div>
+     <div>ProductionLossMediumMax: {!v.ProductionLossMediumMax}</div>
+     <div>ProductionLossLowMin: {!v.ProductionLossLowMin}</div>
+     <div>ProductionLossLowMax: {!v.ProductionLossLowMax}</div>
      
         <div class="slds-col" style="margin-bottom: 20px">
 		        <span class="spaceSlider"></span>									
@@ -304,95 +403,95 @@
 				  <tbody>
 			          <tr>
 				            <td class="tdcouleurSlider2" height="100" style="background-color: red;text-align: center;">Very High</td>
-					        <td  class="tdClassSlider2" height="100">
+					        <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider5" id="slider5"/>
+									    <div aura:id="sliderCostProjectVeryHigh" id="sliderCostProjectVeryHigh" />
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider2" height="100">
+					         <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider6" />
+									    <div aura:id="sliderScheduleProjectVeryHigh" />
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider2" height="100" style="text-align: center;">
+					         <td  class="tdBusinessImpact" height="100" style="text-align: center;">
 					                More then 26 weeks
 					         </td>
-					         <td class="tdClassSlider2">
+					         <td class="tdBusinessImpactReputation">
 					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
                              </td>
                              
 			           </tr>
 			           <tr>
 				             <td class="tdcouleurSlider2" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
-					         <td  class="tdClassSlider2">
+					         <td  class="tdBusinessImpact">
 					                <div>
 								        <div class="">{!v.label2}</div>
-									    <div aura:id="slider7"  class="slider"/>
+									    <div aura:id="sliderCostProjectHigh" />
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider2" height="100">
+					         <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider8" />
+									    <div aura:id="sliderScheduleProjectHigh" />
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider2" height="100">
+					         <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider9" />
+									    <div aura:id="sliderProductionHigh" />
 								    </div>
 					         </td>
-					         <td class="tdClassSlider2">
+					         <td class="tdBusinessImpactReputation">
 					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="" change="" />
 					         </td>
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
-					        <td  class="tdClassSlider2" height="100">
+					        <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider10"  class="slider"/>
+									    <div aura:id="sliderCostProjectMedium" />
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider2" height="100">
+					         <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider11" />
+									    <div aura:id="sliderScheduleProjectMedium" />
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider2" height="100">
+					         <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider12" />
+									    <div aura:id="sliderProductionMedium" />
 								    </div>
 					         </td>
-			                 <td class="tdClassSlider2">
+			                 <td class="tdBusinessImpactReputation">
 			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
 			                 </td>
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
-					        <td  class="tdClassSlider2" height="100">
+					        <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider13"  class="slider"/>
+									    <div aura:id="sliderCostProjectLow" />
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider2" height="100" >
+					         <td  class="tdBusinessImpact" height="100" >
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider14" />
+									    <div aura:id="sliderScheduleProjectLow" />
 								    </div>
 					         </td>
-					         <td  class="tdClassSlider2" height="100">
+					         <td  class="tdBusinessImpact" height="100">
 					                <div>
 								        <div class="label">{!v.label}</div>
-									    <div aura:id="slider15" />
+									    <div aura:id="sliderProductionLow" />
 								    </div>
 					         </td>
-			                 <td class="tdClassSlider2">
+			                 <td class="tdBusinessImpactReputation">
 			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
 			                 </td>
 			          </tr>

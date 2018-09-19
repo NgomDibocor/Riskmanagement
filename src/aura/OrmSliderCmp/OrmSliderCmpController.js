@@ -16,15 +16,25 @@
 	                   for (var i = 0; i < component.get("v.probabilities").length; i++) {
 		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Probable' ){
 		                         component.set("v.probableData", component.get("v.probabilities")[i]);
+		                         component.set("v.probableMin", component.get("v.probableData").orm_pourcentageMin__c);
 		                      }
 		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Possible' ){
 		                         component.set("v.possibleData", component.get("v.probabilities")[i]);
+		                         
+		                         component.set("v.possibleMin", component.get("v.possibleData").orm_pourcentageMin__c);
+		                         component.set("v.possibleMax", component.get("v.possibleData").orm_pourcentageMax__c);
 		                      }
 		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Unlikely' ){
 		                         component.set("v.unlikelyData", component.get("v.probabilities")[i]);
+		                         
+		                         component.set("v.unlikelyMin", component.get("v.unlikelyData").orm_pourcentageMin__c);
+		                         component.set("v.unlikelyMax", component.get("v.unlikelyData").orm_pourcentageMax__c);
 		                      }
 		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Rare' ){
 		                         component.set("v.RareData", component.get("v.probabilities")[i]);
+		                         
+		                         component.set("v.rareMin", component.get("v.RareData").orm_pourcentageMin__c);
+		                         component.set("v.rareMax", component.get("v.RareData").orm_pourcentageMax__c);
 		                      }
 		                   }
 			        	}	
@@ -49,12 +59,12 @@
        var showRiskOccurrence = component.get("v.showRiskOccurrence");
        
        if(showProbilityRanking == true){
-          
+           component.set("v.showBtnSave", false);
            component.set("v.showBusinessImpactsRanking", true);
 	       component.set("v.showProbilityRanking", false);
 	       document.getElementById("bir").style.display = "block";
            document.getElementById("probility").style.display = "none";
-	       if(!document.getElementById("slider5").classList.contains("noUi-target")){
+	       if(!document.getElementById("sliderCostProjectVeryHigh").classList.contains("noUi-target")){
 	           helper.jsLoaded2(component, event, helper);
 	       }
 	       

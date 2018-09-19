@@ -153,78 +153,93 @@
         var sliderCostProjectVeryHigh = component.find('sliderCostProjectVeryHigh').getElement();
         sliderCostProjectVeryHigh = this.createSlider(component, event, helper, sliderCostProjectVeryHigh, 60, 100);
 		sliderCostProjectVeryHigh.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valCostmin", range[0].replace('%', ''))
-		    component.set("v.valCostmax", range[1].replace('%', ''))
+		    component.set("v.costProjectVeryHighMin", parseInt(range[0].replace('%', ''), 10))
+		    component.set("v.costProjectHighMax", parseInt(range[0].replace('%', ''), 10))
         }));
         
         var sliderScheduleProjectVeryHigh = component.find('sliderScheduleProjectVeryHigh').getElement();
         sliderScheduleProjectVeryHigh = this.createSlider(component, event, helper, sliderScheduleProjectVeryHigh, 60, 100);        
         sliderScheduleProjectVeryHigh.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.scheduleProjectVeryHighMin", parseInt(range[0].replace('%', ''), 10))
+		    component.set("v.scheduleProjectHighMax", parseInt(range[0].replace('%', ''), 10))
         }));
         
         var sliderCostProjectHigh = component.find('sliderCostProjectHigh').getElement();
         sliderCostProjectHigh = this.createSlider(component, event, helper, sliderCostProjectHigh, 15, 60);  
         sliderCostProjectHigh.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.costProjectHighMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.costProjectHighMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.costProjectVeryHighMin", component.get("v.costProjectHighMax"))
+	        component.set("v.costProjectMediumMax", component.get("v.costProjectHighMin"))
         }));
         
         var sliderScheduleProjectHigh = component.find('sliderScheduleProjectHigh').getElement();
         sliderScheduleProjectHigh = this.createSlider(component, event, helper, sliderScheduleProjectHigh, 15, 60);  
         sliderScheduleProjectHigh.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    
+		    component.set("v.scheduleProjectHighMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.scheduleProjectHighMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.scheduleProjectVeryHighMin", component.get("v.scheduleProjectHighMax"))
+	        component.set("v.scheduleProjectMediumMax", component.get("v.scheduleProjectHighMin"))
         }));
         
         var sliderProductionHigh = component.find('sliderProductionHigh').getElement();
         sliderProductionHigh = this.createSlider(component, event, helper, sliderProductionHigh, 12, 26);  
         sliderProductionHigh.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.ProductionLossHighMin", parseInt(range[0].replace('%', ''), 10))
+		    component.set("v.ProductionLossHighMax", parseInt(range[1].replace('%', ''), 10))
+		    component.set("v.ProductionLossMediumMax", parseInt(range[0].replace('%', ''), 10))
         }));
         
         var sliderCostProjectMedium = component.find('sliderCostProjectMedium').getElement();
         sliderCostProjectMedium = this.createSlider(component, event, helper, sliderCostProjectMedium, 5, 15);  
         sliderCostProjectMedium.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.costProjectMediumMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.costProjectMediumMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.costProjectHighMin", component.get("v.costProjectMediumMax"));
+	        component.set("v.costProjectLowMax", component.get("v.costProjectMediumMin"));
         }));
         
         var sliderScheduleProjectMedium = component.find('sliderScheduleProjectMedium').getElement();
         sliderScheduleProjectMedium = this.createSlider(component, event, helper, sliderScheduleProjectMedium, 5, 15);  
         sliderScheduleProjectMedium.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.scheduleProjectMediumMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.scheduleProjectMediumMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.scheduleProjectHighMin", component.get("v.scheduleProjectMediumMax"));
+	        component.set("v.scheduleProjectLowMax", component.get("v.scheduleProjectMediumMin"));
         }));
         
         var sliderProductionMedium = component.find('sliderProductionMedium').getElement();
         sliderProductionMedium = this.createSlider(component, event, helper, sliderProductionMedium, 4, 12);  
         sliderProductionMedium.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.ProductionLossMediumMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.ProductionLossMediumMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.ProductionLossHighMin", component.get("v.ProductionLossMediumMax"))
+	        component.set("v.ProductionLossLowMax", component.get("v.ProductionLossMediumMin"))
         }));
         
         var sliderCostProjectLow = component.find('sliderCostProjectLow').getElement();
         sliderCostProjectLow = this.createSlider(component, event, helper, sliderCostProjectLow, 0, 5);  
         sliderCostProjectLow.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.costProjectLowMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.costProjectLowMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.costProjectMediumMin", component.get("v.costProjectLowMax"));
         }));
         
         var sliderScheduleProjectLow = component.find('sliderScheduleProjectLow').getElement();
         sliderScheduleProjectLow = this.createSlider(component, event, helper, sliderScheduleProjectLow, 0, 5);  
         sliderScheduleProjectLow.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.scheduleProjectLowMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.scheduleProjectLowMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.scheduleProjectMediumMin", component.get("v.scheduleProjectLowMax"));
         }));
         
         var sliderProductionLow = component.find('sliderProductionLow').getElement();
         sliderProductionLow = this.createSlider(component, event, helper, sliderProductionLow, 0, 4);  
         sliderProductionLow.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.valpourcentagemin", range[0].replace('%', ''))
-		    component.set("v.valpourcentagemax", range[1].replace('%', ''))
+		    component.set("v.ProductionLossLowMin", parseInt(range[0].replace('%', ''), 10)) 
+	        component.set("v.ProductionLossLowMax", parseInt(range[1].replace('%', ''), 10))
+	        component.set("v.ProductionLossMediumMin", component.get("v.ProductionLossLowMax"));
         }));
         
         //----cost----------------------

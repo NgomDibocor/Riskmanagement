@@ -181,6 +181,31 @@
      <div>RareMin: {!v.rareMin}</div>
      <div>RareMax: {!v.rareMax}</div>  -->
      
+     <div>costProjectVeryHighMin: {!v.costProjectVeryHighMin}</div>
+     <div>costProjectVeryHighMax: {!v.costProjectVeryHighMax}</div>
+     <div>costProjectHighMin: {!v.costProjectHighMin}</div>
+     <div>costProjectHighMax: {!v.costProjectHighMax}</div>
+     <div>costProjectMediumMin: {!v.costProjectMediumMin}</div>
+     <div>costProjectMediumMax: {!v.costProjectMediumMax}</div>
+     <div>costProjectLowMin: {!v.costProjectLowMin}</div>
+     <div>costProjectLowMax: {!v.costProjectLowMax}</div>
+     
+     <div>scheduleProjectVeryHighMin: {!v.scheduleProjectVeryHighMin}</div>
+     <div>scheduleProjectVeryHighMax: {!v.scheduleProjectVeryHighMax}</div>
+     <div>scheduleProjectHighMin: {!v.scheduleProjectHighMin}</div>
+     <div>scheduleProjectHighMax: {!v.scheduleProjectHighMax}</div>
+     <div>scheduleProjectMediumMin: {!v.scheduleProjectMediumMin}</div>
+     <div>scheduleProjectMediumMax: {!v.scheduleProjectMediumMax}</div>
+     <div>scheduleProjectLowMin: {!v.scheduleProjectLowMin}</div>
+     <div>scheduleProjectLowMax: {!v.scheduleProjectLowMax}</div>
+     
+     <div>ProductionLossHighMin: {!v.ProductionLossHighMin}</div>
+     <div>ProductionLossHighMax: {!v.ProductionLossHighMax}</div>
+     <div>ProductionLossMediumMin: {!v.ProductionLossMediumMin}</div>
+     <div>ProductionLossMediumMax: {!v.ProductionLossMediumMax}</div>
+     <div>ProductionLossLowMin: {!v.ProductionLossLowMin}</div>
+     <div>ProductionLossLowMax: {!v.ProductionLossLowMax}</div>
+     
         <div class="slds-col" style="margin-bottom: 20px">
 		        <span class="spaceSlider"></span>									
 			    <span class="btnPrev" onclick="{!c.PrevPage}">

@@ -1,5 +1,36 @@
 <aura:component access="global" controller="OrmSliderController">
 	
 	
-	<p>Le composant qui affiche les matrices</p>
+	
+	
+	<div style="width:60%;margin:auto;margin-top:30px">
+	    <table class="">
+	      <tr>
+	        <td style="background-color: yellow;" height="100"></td>
+	        <td style="background-color: #FF8C00;" height="100"></td>
+	        <td style="background-color: red;" height="100"></td>
+	        <td style="background-color: red;" height="100"></td>
+	      </tr>
+	      <tr>
+	        <td style="background-color: green;" height="100"></td>
+	        <td style="background-color: yellow;" height="100"></td>
+	        <td style="background-color: #FF8C00;" height="100"></td>
+	        <td style="background-color: red;" height="100"></td>
+	      </tr>
+	      <tr>
+	        <td style="background-color: green;" height="100"></td>
+	        <td style="background-color: yellow;" height="100"></td>
+	        <td style="background-color: yellow;" height="100"></td>
+	        <td style="background-color: #FF8C00;" height="100"></td>
+	      </tr>
+	      <tr>
+	        <td style="background-color: green;" height="100"></td>
+	        <td style="background-color: green;" height="100"></td>
+	        <td style="background-color: green;" height="100"></td>
+	        <td style="background-color: yellow;" height="100"></td>
+	      </tr>
+	      
+	    </table>  
+	</div>
+	
 </aura:component>

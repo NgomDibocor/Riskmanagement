@@ -221,14 +221,7 @@
     },
     
     handleRangeChange : function(component, event, helper) { 
-     var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-    
         component.set("v.sliderValue",component.find("slider1").get("v.value")) 
 	    var sliderValue = component.find("slider1").get("v.value");
 	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){

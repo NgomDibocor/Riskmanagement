@@ -118,11 +118,12 @@
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.DescriptionEditMode == false}">
                     <span class="slds-truncate" title="{!$Label.c.orm_ProductDescription_label}">{!v.measureProgression.Description}</span>
+                    <lightning:helptext content="{!v.measureProgression.Description}"/>
                     <button onclick="{!c.inlineEditDescription}" 
                     	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     		tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_ProductDescription_label}">
                       <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
-                    </button>
+                    </button> 
                    
                     <!-- Inline Edit Section in else case-->  
                     <aura:set attribute="else">

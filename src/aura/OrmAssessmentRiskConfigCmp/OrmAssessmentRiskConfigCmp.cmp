@@ -98,6 +98,7 @@
 	<aura:attribute name="security" type="String"/>
 	<aura:attribute name="environmentAndCommunity" type="String"/>
 	<aura:attribute name="selected" type="String"/>
+	<aura:attribute name="disabledSlider" type="boolean" default="false"/>
 	<!-- end for HSSE impact -->
     <table class="slds-table">
         <tr>
@@ -250,7 +251,7 @@
         <tr>
             <td>
                 <div class="width">
-                  <b>  <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }" /></b>
+                  <b>  <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }"  disabled="{!v.disabledSlider}"/></b>
                 </div><br/>
                 <center>
                     <div style="width:100px; height:30px;" id="divColor" class="divColor">
@@ -265,8 +266,9 @@
     </table>
     <br/><br/>
     <center>
+    <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
         <table class="slds-table" style="width: 90%;" cellspacing="10">
-            <tr>
+            <tr> 
                 <th class="thTable">health and safety </th>
                 <th  class="thTable" >security </th>
                 <th  class="thTable" > Environment and community </th>
@@ -333,5 +335,11 @@
                 </td>
             </tr>
         </table>
+        <aura:set attribute="else">
+			    <div class="messageIsEmpty" style="padding-top: 20px">
+		 		   List of hsseImpacts is empty
+		        </div>
+			</aura:set>
+           </aura:if>
     </center>
 </aura:component>

@@ -64,12 +64,10 @@
                                                     var state = response.getState();
                                                     if (state === 'SUCCESS') {
                                                         component.set('v.vulnerability', response.getReturnValue());
-
                                                         //
                                                         var actionOrgs = component.get("c.findAssessmentRisk");
                                                         actionOrgs.setParams({
                                                             "item": idAsssessmentRisk
-
                                                         });
                                                         // component.set("v.categorieRisk", item);
                                                         actionOrgs.setCallback(this, function(response) {
@@ -84,19 +82,18 @@
                                                                 component.find("status").set("v.value", component.get('v.assessmentRiskData').orm_status__c);
                                                                 component.find("vulnerability").set("v.value", component.get('v.assessmentRiskData').orm_vulnerability__c);
                                                                 var sliderValue = component.get("v.assessmentRiskData").orm_probability__c;
-                                                                console.log(sliderValue);
                                                                 if (sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")) {
                                                                     document.getElementById("divColor").style.backgroundColor = "green";
-                                                                    document.getElementById("divColor").innerHTML = component.get("v.RareData.orm_probability__c");
+                                                                    document.getElementById("divColor").innerHTML = component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
                                                                 } else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")) {
                                                                     document.getElementById("divColor").style.backgroundColor = "yellow";
-                                                                    document.getElementById("divColor").innerHTML = component.get("v.unlikelyData.orm_probability__c");
+                                                                    document.getElementById("divColor").innerHTML = component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
                                                                 } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue <= component.get("v.possibleData.orm_pourcentageMax__c")) {
                                                                     document.getElementById("divColor").style.backgroundColor = "orange";
-                                                                    document.getElementById("divColor").innerHTML = component.get("v.possibleData.orm_probability__c");
+                                                                    document.getElementById("divColor").innerHTML = component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
                                                                 } else {
                                                                     document.getElementById("divColor").style.backgroundColor = "red";
-                                                                    document.getElementById("divColor").innerHTML = component.get("v.probableData.orm_probability__c");
+                                                                    document.getElementById("divColor").innerHTML = component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
                                                                 }
 
                                                                 	this.getSliderDefault(component, event);
@@ -143,9 +140,6 @@
             }
         });
         $A.enqueueAction(actionFrequency);
-
-
-
     },
 
     getProbality: function(component, event) {
@@ -175,8 +169,6 @@
                         }
                     }
                 }
-
-
             } else {
                 alert("ERROR")
             }
@@ -222,31 +214,71 @@
         var r1 = component.find("r1").get("v.value");
         var r2 = component.find("r2").get("v.value");
         var r3 = component.find("r3").get("v.value");
-
+        
+        var rr0 = component.find("rr0").get("v.value");
+        var rr1 = component.find("rr1").get("v.value");
+        var rr2 = component.find("rr2").get("v.value");
+        var rr3 = component.find("rr3").get("v.value");
+        
+        var rrr0 = component.find("rrr0").get("v.value");
+        var rrr1 = component.find("rrr1").get("v.value");
+        var rrr2 = component.find("rrr2").get("v.value");
+        var rrr3 = component.find("rrr3").get("v.value");
+        
         if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r0) {
             document.getElementById('healthAndSafety').style.backgroundColor = "red";
-            document.getElementById("healthAndSafety").innerHTML = 'very high';
-            var healthAndSafety = document.getElementById(component.get("v.selected")).innerHTML;
-            component.set("v.healthAndSafety", healthAndSafety);
+            document.getElementById('healthAndSafety').innerHTML = 'very high'; 
         }
         if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r1) {
             document.getElementById('healthAndSafety').style.backgroundColor = "orange";
             document.getElementById("healthAndSafety").innerHTML = 'high';
-            var healthAndSafety = document.getElementById(component.get("v.selected")).innerHTML;
-            component.set("v.healthAndSafety", healthAndSafety);
         }
         if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r2) {
             document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
             document.getElementById("healthAndSafety").innerHTML = 'Medium';
-            var healthAndSafety = document.getElementById(component.get("v.selected")).innerHTML;
-            component.set("v.healthAndSafety", healthAndSafety);
         }
         if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r3) {
             document.getElementById('healthAndSafety').style.backgroundColor = "green";
             document.getElementById("healthAndSafety").innerHTML = 'Low';
-            var healthAndSafety = document.getElementById(component.get("v.selected")).innerHTML;
-            component.set("v.healthAndSafety", healthAndSafety);
         }
+         if(component.get('v.assessmentRiskData').orm_security__c  == rr0){
+			 document.getElementById('security').style.backgroundColor = "red";
+			 document.getElementById("security").innerHTML= 'very high';
+		 } 
+		 
+		 if (component.get('v.assessmentRiskData').orm_security__c == rr1){
+			 document.getElementById('security').style.backgroundColor = "orange";
+			 document.getElementById("security").innerHTML= 'high';
+		 }
+		 
+		  if (component.get('v.assessmentRiskData').orm_security__c == rr2 ){
+			  document.getElementById('security').style.backgroundColor = "yellow";
+			  document.getElementById("security").innerHTML= 'Medium';
+		 }
+		 
+		 if(component.get('v.assessmentRiskData').orm_security__c == rr3 ){
+			  document.getElementById('security').style.backgroundColor = "green";
+			  document.getElementById("security").innerHTML= 'Low';
+		 }
+		 
+		 if(component.get('v.assessmentRiskData').orm_environmentAndCommunity__c  == rrr0){
+			 document.getElementById('environment').style.backgroundColor = "red";
+			 document.getElementById("environment").innerHTML= 'very high';
+		 } 
+		 
+		 if (component.get('v.assessmentRiskData').orm_environmentAndCommunity__c == rrr1 ){
+			 document.getElementById('environment').style.backgroundColor = "orange";
+			 document.getElementById("environment").innerHTML= 'high';
+		 }
+		 
+		 if (component.get('v.assessmentRiskData').orm_environmentAndCommunity__c == rrr2){
+			 document.getElementById('environment').style.backgroundColor = "yellow";
+			 document.getElementById("environment").innerHTML= 'Medium';
+		 }
+		 if(component.get('v.assessmentRiskData').orm_environmentAndCommunity__c == rrr3){
+			  document.getElementById('environment').style.backgroundColor = "green";
+			  document.getElementById("environment").innerHTML= 'Low';
+		 }
     }
 
 })

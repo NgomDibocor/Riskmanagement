@@ -39,7 +39,7 @@
 																  'orm_costProjectBudgetMax__c' : '',
 																  'orm_scheduleProjectBaselineMin__c' : '',
 																  'orm_scheduleProjectBaselineMax__c' : '',
-																  'orm_reputation__c' : ''
+																  'orm_reputation__c' : 'Severe Damage'
 																}"/>
 	
 	<aura:attribute name="highData" type="Macro" default="{ 'sobjectType' : 'Macro',
@@ -50,7 +50,7 @@
 																  'orm_scheduleProjectBaselineMax__c' : '',
 																  'orm_productionLossMin__c' : '',
 																  'orm_productionLossMax__c' : '',
-																  'orm_reputation__c' : ''
+																  'orm_reputation__c' : 'Long Term Damage'
 																}"/>
 							
 	<aura:attribute name="mediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
@@ -61,7 +61,7 @@
 																  'orm_scheduleProjectBaselineMax__c' : '',
 																  'orm_productionLossMin__c' : '',
 																  'orm_productionLossMax__c' : '',
-																  'orm_reputation__c' : ''
+																  'orm_reputation__c' : 'Medium Term Damage'
 																}"/>	
 																
 	<aura:attribute name="lowData" type="Macro" default="{ 'sobjectType' : 'Macro',
@@ -72,8 +72,11 @@
 																  'orm_scheduleProjectBaselineMax__c' : '',
 																  'orm_productionLossMin__c' : '',
 																  'orm_productionLossMax__c' : '',
-																  'orm_reputation__c' : ''
-																}"/>																				
+																  'orm_reputation__c' : 'Short Term Damage'
+																}"/>
+		
+	<aura:attribute name="businessImpacts" type="Macro[]" />														
+																						
     <!-- end Objects Business Impacts -->
 
     <!-- start for HSSE impact -->
@@ -120,6 +123,7 @@
     <aura:attribute name="min" type="String" default="0"/>
     <aura:attribute name="max" type="String" default="100"/>
     <aura:attribute name="step" type="String" default="1"/>
+    <aura:attribute name="maxProductionLoss" type="String" default="26"/>
     
     
     <aura:attribute name="showProbilityRanking" type="boolean" default="true"/>
@@ -167,6 +171,8 @@
     <aura:attribute name="ProductionLossMediumMax" type="Integer" default="12"/>
     <aura:attribute name="ProductionLossLowMin" type="Integer" default="0"/>
     <aura:attribute name="ProductionLossLowMax" type="Integer" default="4"/>
+    
+    
     <!-- end -->
     
     <aura:registerEvent name="ShowSpinner" type="c:OrmShowSpinnerEvt"  />
@@ -181,7 +187,7 @@
      <div>RareMin: {!v.rareMin}</div>
      <div>RareMax: {!v.rareMax}</div>  -->
      
-     <div>costProjectVeryHighMin: {!v.costProjectVeryHighMin}</div>
+    <!-- <div>costProjectVeryHighMin: {!v.costProjectVeryHighMin}</div>
      <div>costProjectVeryHighMax: {!v.costProjectVeryHighMax}</div>
      <div>costProjectHighMin: {!v.costProjectHighMin}</div>
      <div>costProjectHighMax: {!v.costProjectHighMax}</div>
@@ -204,7 +210,7 @@
      <div>ProductionLossMediumMin: {!v.ProductionLossMediumMin}</div>
      <div>ProductionLossMediumMax: {!v.ProductionLossMediumMax}</div>
      <div>ProductionLossLowMin: {!v.ProductionLossLowMin}</div>
-     <div>ProductionLossLowMax: {!v.ProductionLossLowMax}</div>
+     <div>ProductionLossLowMax: {!v.ProductionLossLowMax}</div>   -->
      
         <div class="slds-col" style="margin-bottom: 20px">
 		        <span class="spaceSlider"></span>									
@@ -270,7 +276,7 @@
 					               
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
-					         <aura:if isTrue="{!not(empty(v.probabilities))}">
+					         <aura:if isTrue="{!not(empty(v.businessImpacts))}">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
 					                      <lightning:buttonGroup class="slds-m-around_medium">
 						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdate}"/>

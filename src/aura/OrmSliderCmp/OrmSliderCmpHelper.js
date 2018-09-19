@@ -25,6 +25,32 @@
         return slider;
 	},
 	
+	createSliderProduction : function(component, event, helper, slider, start, end) {
+	     var min = parseInt(component.get("v.min"), 10);
+         var max = parseInt(component.get("v.maxProductionLoss"), 10);
+         var step = parseInt(component.get("v.step"), 10);
+	
+		 noUiSlider.create(slider, {
+            start: [start, end],
+            connect: true,
+            tooltips: true,
+            step: step,
+            format: {
+                to: function (value ) {
+					return Math.round(value) + 'weeks';
+                },
+                from: function ( value ) {
+                    return value;
+                }
+            },
+            range: {
+                'min': min,
+                'max': max
+            }
+        });
+        return slider;
+	},
+	
 	jsLoaded : function(component, event, helper) {
 	
         //start sliderPossible
@@ -184,11 +210,11 @@
         }));
         
         var sliderProductionHigh = component.find('sliderProductionHigh').getElement();
-        sliderProductionHigh = this.createSlider(component, event, helper, sliderProductionHigh, 12, 26);  
+        sliderProductionHigh = this.createSliderProduction(component, event, helper, sliderProductionHigh, 12, 26);  
         sliderProductionHigh.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.ProductionLossHighMin", parseInt(range[0].replace('%', ''), 10))
-		    component.set("v.ProductionLossHighMax", parseInt(range[1].replace('%', ''), 10))
-		    component.set("v.ProductionLossMediumMax", parseInt(range[0].replace('%', ''), 10))
+		    component.set("v.ProductionLossHighMin", parseInt(range[0].replace('weeks', ''), 10))
+		    component.set("v.ProductionLossHighMax", parseInt(range[1].replace('weeks', ''), 10))
+		    component.set("v.ProductionLossMediumMax", parseInt(range[0].replace('weeks', ''), 10))
         }));
         
         var sliderCostProjectMedium = component.find('sliderCostProjectMedium').getElement();
@@ -210,10 +236,10 @@
         }));
         
         var sliderProductionMedium = component.find('sliderProductionMedium').getElement();
-        sliderProductionMedium = this.createSlider(component, event, helper, sliderProductionMedium, 4, 12);  
+        sliderProductionMedium = this.createSliderProduction(component, event, helper, sliderProductionMedium, 4, 12);  
         sliderProductionMedium.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.ProductionLossMediumMin", parseInt(range[0].replace('%', ''), 10)) 
-	        component.set("v.ProductionLossMediumMax", parseInt(range[1].replace('%', ''), 10))
+		    component.set("v.ProductionLossMediumMin", parseInt(range[0].replace('weeks', ''), 10)) 
+	        component.set("v.ProductionLossMediumMax", parseInt(range[1].replace('weeks', ''), 10))
 	        component.set("v.ProductionLossHighMin", component.get("v.ProductionLossMediumMax"))
 	        component.set("v.ProductionLossLowMax", component.get("v.ProductionLossMediumMin"))
         }));
@@ -235,10 +261,10 @@
         }));
         
         var sliderProductionLow = component.find('sliderProductionLow').getElement();
-        sliderProductionLow = this.createSlider(component, event, helper, sliderProductionLow, 0, 4);  
+        sliderProductionLow = this.createSliderProduction(component, event, helper, sliderProductionLow, 0, 4);  
         sliderProductionLow.noUiSlider.on('change', $A.getCallback(function(range) {
-		    component.set("v.ProductionLossLowMin", parseInt(range[0].replace('%', ''), 10)) 
-	        component.set("v.ProductionLossLowMax", parseInt(range[1].replace('%', ''), 10))
+		    component.set("v.ProductionLossLowMin", parseInt(range[0].replace('weeks', ''), 10)) 
+	        component.set("v.ProductionLossLowMax", parseInt(range[1].replace('weeks', ''), 10))
 	        component.set("v.ProductionLossMediumMin", component.get("v.ProductionLossLowMax"));
         }));
         
@@ -247,19 +273,34 @@
         var origins = sliderCostProjectVeryHigh.getElementsByClassName('noUi-origin');
         origins[1].setAttribute('disabled', true);
         sliderCostProjectVeryHigh.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderCostProjectHigh.noUiSlider.set([null, Number(range[0].replace('%', ''))]);			
+			
+			if(Number(range[0].replace('%', '')) >= component.get("v.costProjectHighMin")){
+               sliderCostProjectHigh.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+            }else{
+               sliderCostProjectVeryHigh.noUiSlider.set([component.get("v.costProjectHighMin"), null]);
+            }			
 			
 		}));
 		
 		sliderCostProjectHigh.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderCostProjectVeryHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
-			sliderCostProjectMedium.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+			
+			if(Number(range[0].replace('%', '')) >= component.get("v.costProjectMediumMin")){
+               sliderCostProjectVeryHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+			   sliderCostProjectMedium.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+            }else{
+               sliderCostProjectHigh.noUiSlider.set([component.get("v.costProjectMediumMin"), null]);
+            }
 			
 		}));
 		
 		sliderCostProjectMedium.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderCostProjectHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
-			sliderCostProjectLow.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+			
+			if(Number(range[1].replace('%', '')) <= component.get("v.costProjectHighMax") ){
+		      sliderCostProjectHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+			  sliderCostProjectLow.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+		   }else{
+		      sliderCostProjectMedium.noUiSlider.set([null, component.get("v.costProjectHighMax")]);
+		   }
 			
 		}));
 		
@@ -267,7 +308,14 @@
         origins[0].setAttribute('disabled', true);
         
         sliderCostProjectLow.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderCostProjectMedium.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+            if(Number(range[1].replace('%', '')) <= component.get("v.costProjectMediumMax") ){
+            
+		      sliderCostProjectMedium.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+		      
+		    }else{
+		      sliderCostProjectLow.noUiSlider.set([null, component.get("v.costProjectMediumMax")]);
+		    }
+			
 		})); 
 		//---------end cost----------
 		//----------------------schedule--------------------
@@ -275,19 +323,34 @@
 		var origins = sliderScheduleProjectVeryHigh.getElementsByClassName('noUi-origin');
         origins[1].setAttribute('disabled', true);
         sliderScheduleProjectVeryHigh.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderScheduleProjectHigh.noUiSlider.set([null, Number(range[0].replace('%', ''))]);			
+			
+			if(Number(range[0].replace('%', '')) >= component.get("v.scheduleProjectHighMin")){
+               sliderScheduleProjectHigh.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+            }else{
+               sliderScheduleProjectVeryHigh.noUiSlider.set([component.get("v.scheduleProjectHighMin"), null]);
+            }			
 			
 		}));
 		
 		sliderScheduleProjectHigh.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderScheduleProjectVeryHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
-			sliderScheduleProjectMedium.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+			
+			if(Number(range[0].replace('%', '')) >= component.get("v.scheduleProjectMediumMin")){
+               sliderScheduleProjectVeryHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+			   sliderScheduleProjectMedium.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+            }else{
+               sliderScheduleProjectHigh.noUiSlider.set([component.get("v.scheduleProjectMediumMin"), null]);
+            }
 			
 		}));
 		
 		sliderScheduleProjectMedium.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderScheduleProjectHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
-			sliderScheduleProjectLow.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+			
+			if(Number(range[1].replace('%', '')) <= component.get("v.scheduleProjectHighMax") ){
+		       sliderScheduleProjectHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+			   sliderScheduleProjectLow.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+		   }else{
+		       sliderScheduleProjectMedium.noUiSlider.set([null, component.get("v.scheduleProjectHighMax")]);
+		   }
 			
 		}));
 		
@@ -295,20 +358,36 @@
         origins[0].setAttribute('disabled', true);
         
         sliderScheduleProjectLow.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderScheduleProjectMedium.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+			
+			if(Number(range[1].replace('%', '')) <= component.get("v.scheduleProjectMediumMax") ){
+		       sliderScheduleProjectMedium.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+		    }else{
+		       sliderScheduleProjectLow.noUiSlider.set([null, component.get("v.scheduleProjectMediumMax")]);
+		    }
+		    
 		})); 
 		//----------------end schedule--------------------
 		
 		//----------------Production--------------------
 		
 		sliderProductionHigh.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderProductionMedium.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+			
+			if(Number(range[0].replace('weeks', '')) >= component.get("v.ProductionLossMediumMin")){
+               sliderProductionMedium.noUiSlider.set([null, Number(range[0].replace('weeks', ''))]);
+            }else{
+               sliderProductionHigh.noUiSlider.set([component.get("v.ProductionLossMediumMin"), null]);
+            }
 			
 		}));
 		
 		sliderProductionMedium.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderProductionHigh.noUiSlider.set([Number(range[1].replace('%', '')), null]);
-			sliderProductionLow.noUiSlider.set([null, Number(range[0].replace('%', ''))]);
+			
+			if(Number(range[1].replace('weeks', '')) <= component.get("v.ProductionLossHighMax") ){
+		      sliderProductionHigh.noUiSlider.set([Number(range[1].replace('weeks', '')), null]);
+			  sliderProductionLow.noUiSlider.set([null, Number(range[0].replace('weeks', ''))]);
+		    }else{
+		      sliderProductionMedium.noUiSlider.set([null, component.get("v.ProductionLossHighMax")]);
+		    }
 			
 		}));
 		
@@ -316,7 +395,15 @@
         origins[0].setAttribute('disabled', true);
         
         sliderProductionLow.noUiSlider.on('slide', $A.getCallback(function(range){
-			sliderProductionMedium.noUiSlider.set([Number(range[1].replace('%', '')), null]);
+			
+			if(Number(range[1].replace('weeks', '')) <= component.get("v.ProductionLossMediumMax") ){
+            
+		      sliderProductionMedium.noUiSlider.set([Number(range[1].replace('weeks', '')), null]);
+		      
+		    }else{
+		      sliderProductionLow.noUiSlider.set([null, component.get("v.ProductionLossMediumMax")]);
+		    }
+			
 		})); 
 		//--------------end Production--------------------
         

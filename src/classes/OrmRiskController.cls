@@ -37,6 +37,11 @@ public with sharing class OrmRiskController {
                   .get('RT HSSE Impact').getRecordTypeId();
         return recordTypeId;
     }
+     public static Id getBusinessImpactRecordTypeId(){
+         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
+                  .get('RT Business Impact').getRecordTypeId();
+        return recordTypeId;
+    }
     /*
     *David mignane diop
     *risk list function
@@ -157,7 +162,8 @@ public with sharing class OrmRiskController {
        return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
                        orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description,orm_cost__c,orm_date__c,orm_schedule__c,
                        orm_environmentAndCommunity__c,orm_frequency__c,orm_healthAndSafety__c,orm_manageAbility__c,
-                       orm_productionLoss__c,orm_reputation__c,orm_security__c,orm_status__c,orm_vulnerability__c,orm_probability__c,orm_riskManager__c,orm_riskManager__r.Name
+                       orm_productionLoss__c,orm_reputation__c,orm_security__c,orm_status__c,orm_vulnerability__c,orm_probability__c,orm_riskManager__c,orm_riskManager__r.Name,orm_ScheduleRisk__c,
+                       orm_production_Loss_Risk__c
                         From orm_assessmentRisk__c 
                where Id =:item];
     }
@@ -192,6 +198,17 @@ public with sharing class OrmRiskController {
     public static List<User> getUsers(){
         return [Select Id, Name From User ];
          
+    }
+      @AuraEnabled 
+    public static List<Macro> findBusinessImpactsByAssessment(String assessment)
+    {
+         return  [SELECT Id, orm_rating__c, orm_costProjectBudgetMin__c, orm_costProjectBudgetMax__c, 
+                         orm_scheduleProjectBaselineMin__c, orm_scheduleProjectBaselineMax__c, 
+                         orm_productionLossMin__c, orm_productionLossMax__c, orm_reputation__c
+                  From Macro 
+                  WHERE   orm_assessment__c =:assessment 
+                       and 
+                          RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];                               
     }
     
    

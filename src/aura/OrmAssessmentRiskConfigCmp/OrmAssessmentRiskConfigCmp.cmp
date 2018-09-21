@@ -21,7 +21,7 @@
 																                         'orm_date__c':'',
 																                         'orm_environmentAndCommunity__c':'',
 																                         'orm_healthAndSafety__c':'',
-																                         'orm_manageAbility__c':'',
+																                         'orm_manageability__c':'',
 																                         'orm_productionLoss__c':'',
 																                         'orm_reputation__c':'',
 																                         'orm_security__c':'',
@@ -29,7 +29,9 @@
 																                         'orm_vulnerability__c':'',
 																                         'orm_probability__c':'',
 																                         'orm_riskManager__c':'',
-																                         'orm_schedule__c':''
+																                         'orm_ScheduleRisk__c':'',
+																                         'orm_schedule__c':'',
+																                         'orm_production_Loss_Risk__c':''
 																					}" />
     <aura:attribute name="displaySaveCancelBtn" type="boolean" default="false" />
     <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}" />
@@ -96,11 +98,63 @@
 	
 	<aura:attribute name="hsseImpacts" type="Macro[]" />
 	<aura:attribute name="healthAndSafety" type="String"/>
+	<aura:attribute name="reputation" type="String"/>
 	<aura:attribute name="security" type="String"/>
 	<aura:attribute name="environmentAndCommunity" type="String"/>
 	<aura:attribute name="selected" type="String"/>
+	<aura:attribute name="selectedReputation" type="String"/>
 	<aura:attribute name="disabledSlider" type="boolean" default="false"/>
 	<!-- end for HSSE impact -->
+	 <!-- Objects Business Impacts -->
+    <aura:attribute name="businessImpVeryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+                                                                  'Name' : 'XXXX',
+																  'orm_rating__c' : 'VeryHigh',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_reputation__c' : 'Severe Damage'
+																}"/>
+	
+	<aura:attribute name="businessImpHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'High',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : 'Long Term Damage'
+																}"/>
+							
+	<aura:attribute name="businessImpMediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'Medium',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : 'Medium Term Damage'
+																}"/>	
+																
+	<aura:attribute name="businessImpLowData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'Low',
+																  'orm_costProjectBudgetMin__c' : '',
+																  'orm_costProjectBudgetMax__c' : '',
+																  'orm_scheduleProjectBaselineMin__c' : '',
+																  'orm_scheduleProjectBaselineMax__c' : '',
+																  'orm_productionLossMin__c' : '',
+																  'orm_productionLossMax__c' : '',
+																  'orm_reputation__c' : 'Short Term Damage' 
+																}"/>
+		
+	<aura:attribute name="businessImpacts" type="Macro[]" />														
+																						
+    <!-- end Objects Business Impacts -->
     <table class="slds-table">
         <tr>
             <td class="tdWidth">
@@ -121,12 +175,7 @@
                 </aura:if>
             </td>
         </tr>
-        <tr>
-            <td class="tdWidth">
-            	
-              </td>
-              <td class="tdWidth"></td>
-        </tr>  
+         
         <tr>
             <td>
                 <div class="slds-form-element ">
@@ -148,34 +197,6 @@
 	                             <option text="{!v.assessmentRiskData.orm_manageability__c}" ></option>
 	                            <aura:iteration items="{!v.manageAbility}" var="manageAbility">
 	                                <option text="{!manageAbility}"></option>
-	                            </aura:iteration>
-	                        </lightning:select>
-	                        </b>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="slds-form-element ">
-                    <div class="slds-form-element__control">
-                        <b><lightning:select aura:id="productionLoss" name="productionLoss" label="{!$Label.c.orm_productionLoss_assessmentRisk}" class="select-auto-width" onchange="{!c.onProductionLoss}">
-	                            <option text="{!v.assessmentRiskData.orm_productionLoss__c}" ></option>
-	                            <aura:iteration items="{!v.productionLoss}" var="productionLoss">
-	                                <option text="{!productionLoss}"></option>
-	                            </aura:iteration>
-	                        </lightning:select>
-	                        </b>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="slds-form-element ">
-                    <div class="slds-form-element__control">
-                        <b> <lightning:select aura:id="schedule" name="schedule" label="{!$Label.c.orm_schedule_assessmentRisk}" class="select-auto-width" onchange="{!c.onSchedule}">
-	                           <option text="{!v.assessmentRiskData.orm_schedule__c}"></option>
-	                            <aura:iteration items="{!v.schedule}" var="schedule">
-	                                <option text="{!schedule}"></option>
 	                            </aura:iteration>
 	                        </lightning:select>
 	                        </b>
@@ -213,41 +234,7 @@
         </tr>
         <tr>
             <td>
-               <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_reputation_assessmentRisk}</label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputText aura:id="reputation" class="slds-input" value="{!v.assessmentRiskData.orm_reputation__c}" change="{!c.onReputation}">
-                        </ui:inputText>
-                    </a>
-                </div>
-            </td>
-            <td>
-               <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_cost_assessmentRisk}</label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputNumber aura:id="cost" class="slds-input" value="{!v.assessmentRiskData.orm_cost__c}" change="{!c.onCost}">
-                        </ui:inputNumber>
-                    </a>
-                </div>  
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="width">
-                  <b>  <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }"  disabled="{!v.disabledSlider}"/></b>
-                </div><br/>
-                <center>
-                    <div style="width:100px; height:30px;" id="divColor" class="divColor">
-                       
-                    </div>
-                </center>
-            </td>
-            <td>
-               	<div class="topSpacing"> 
+            <div class="topSpacing"> 
                    <label class="slds-form-element__label">{!$Label.c.orm_risk_manager_label}</label>
                 </div>
                      <div class="slds-form-element">
@@ -264,6 +251,17 @@
                                  </ui:inputSelect>
                             </div>
                       </div>
+                
+            </td>
+            <td>
+               	<div class="width">
+                  <b>  <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }"  disabled="{!v.disabledSlider}"/></b>
+                </div><br/>
+                <center>
+                    <div style="width:100px; height:30px;" id="divColor" class="divColor">
+                       
+                    </div>
+                </center>
             </td>
         </tr>
     </table>
@@ -338,14 +336,13 @@
                 </td>
             </tr>
         </table>
-        <hr/>
+       
         <aura:set attribute="else">
 			    <div class="messageIsEmpty" style="padding-top: 20px">
 		 		   List of hsseImpacts is empty
 		        </div>
 			</aura:set>
            </aura:if>
-           
            <table class="slds-table" style="width: 90%;" cellspacing="10">
             <tr> 
                 <th  class="thTable">Cost </th>
@@ -358,6 +355,24 @@
 	            <td id="schedule"></td>
 	            <td id="production"></td>
 	            <td id="reputation"></td>
+            </tr>
+             <tr style="border-bottom:1px solid;" >
+                <td style="white-space: normal !important;" height="100" class="">
+               <center><lightning:slider type="vertical" aura:id="cost1"  value="{!v.assessmentRiskData.orm_cost__c}"  onchange="{! c.handleRangeChangeCost }" />	</center>        
+                </td>
+                <td style="white-space: normal !important;" height="100">
+               <center> <lightning:slider  type="vertical" aura:id="schedule1"   value="{!v.assessmentRiskData.orm_ScheduleRisk__c}"  onchange="{! c.handleRangeChangeSchedule }" /></center>	
+                	0000
+                </td>
+                <td style="white-space: normal !important;" height="100">
+              <center><lightning:slider  type="vertical" aura:id="production"  min="4" max="52" value="{!v.assessmentRiskData.orm_production_Loss_Risk__c}" onchange="{! c.handleRangeChangeProduction }"  />	</center>
+                </td>
+                <td style="white-space: normal !important;" height="100">
+                <lightning:input  aura:id="reputation1" type="radio" name="reputation" value="{!v.businessImpVeryHighData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}"  checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpVeryHighData.orm_reputation__c }" /><b><span id="reputation1">{!v.businessImpVeryHighData.orm_reputation__c}</span></b><br/>
+                <lightning:input  aura:id="reputation2" type="radio" name="reputation" value="{!v.businessImpHighData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}" checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpHighData.orm_reputation__c }" /><b><span id="reputation2" >{!v.businessImpHighData.orm_reputation__c}</span></b><br/>
+                <lightning:input  aura:id="reputation3" type="radio" name="reputation" value="{!v.businessImpMediumData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}" checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpMediumData.orm_reputation__c }"/><b><span id="reputation3" >{!v.businessImpMediumData.orm_reputation__c}</span></b><br/>
+                <lightning:input  aura:id="reputation4" type="radio" name="reputation" value="{!v.businessImpLowData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}" checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpLowData.orm_reputation__c }"/><b><span id="reputation4">{!v.businessImpLowData.orm_reputation__c}</span></b>
+                </td>
             </tr>
             </table>
     </center>

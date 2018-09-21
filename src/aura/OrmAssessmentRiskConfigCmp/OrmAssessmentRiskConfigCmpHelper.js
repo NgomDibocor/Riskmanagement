@@ -1,6 +1,7 @@
 ({
     fetchPicklist: function(component, event, idAsssessmentRisk) {
         this.getHsseImpacts(component, event);
+        this.getBusinessImpacts(component, event);
         console.log(component.get("v.assessmentData").Id);
         var actionFrequency = component.get("c.getSelectOptions");
         actionFrequency.setParams({
@@ -21,28 +22,6 @@
                     var state = response.getState();
                     if (state === 'SUCCESS') {
                         component.set('v.manageAbility', response.getReturnValue());
-                        //productionLoss
-                        var actionproductionLoss = component.get("c.getSelectOptions");
-                        actionproductionLoss.setParams({
-                            "objObject": component.get("v.objInfo"),
-                            "fld": 'orm_productionLoss__c'
-                        });
-                        actionproductionLoss.setCallback(this, function(response) {
-                            var state = response.getState();
-                            if (state === 'SUCCESS') {
-                                component.set('v.productionLoss', response.getReturnValue());
-
-                                //schedule
-                                var actionschedule = component.get("c.getSelectOptions");
-                                actionschedule.setParams({
-                                    "objObject": component.get("v.objInfo"),
-                                    "fld": 'orm_schedule__c'
-                                });
-                                actionschedule.setCallback(this, function(response) {
-                                    var state = response.getState();
-                                    if (state === 'SUCCESS') {
-                                        component.set('v.schedule', response.getReturnValue());
-
                                         //status
                                         var actionstatus = component.get("c.getSelectOptions");
                                         actionstatus.setParams({
@@ -82,12 +61,11 @@
                                                                 component.find("manageAbility").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
                                                                 component.find("frequency").set("v.value", component.get('v.assessmentRiskData').orm_frequency__c);
                                                                 component.find("slider1").set("v.value", component.get('v.assessmentRiskData').orm_probability__c);
-                                                                component.find("productionLoss").set("v.value", component.get('v.assessmentRiskData').orm_productionLoss__c);
-                                                                component.find("schedule").set("v.value", component.get('v.assessmentRiskData').orm_schedule__c);
                                                                 component.find("status").set("v.value", component.get('v.assessmentRiskData').orm_status__c);
                                                                 component.find("vulnerability").set("v.value", component.get('v.assessmentRiskData').orm_vulnerability__c);
                                                                 component.find("riskManager").set("v.value", component.get('v.assessmentRiskData').orm_riskManager__c);
                                                                 var sliderValue = component.get("v.assessmentRiskData").orm_probability__c;
+                                                               
                                                                 if(sliderValue==null)
                                                                 {
                                                                 	document.getElementById("divColor").style.color = "green";
@@ -111,6 +89,7 @@
                                                                 }}
 
                                                                 	this.getSliderDefault(component, event);
+                                                                	this. getSliderBusinessDefault(component,event);
                                                                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
                                                                 evtSpinner.fire();
                                                             } else {
@@ -138,17 +117,7 @@
                                         });
                                         $A.enqueueAction(actionstatus);
 
-                                    } else {
-                                        alert($A.get("$Label.c.orm_not_found"));
-                                    }
-                                });
-                                $A.enqueueAction(actionschedule);
-                            } else {
-                                alert($A.get("$Label.c.orm_not_found"));
-                            }
-                        });
-                        $A.enqueueAction(actionproductionLoss);
-
+                                   
                     } else {
                         alert($A.get("$Label.c.orm_not_found"));
                     }
@@ -228,6 +197,68 @@
         });
         $A.enqueueAction(action);
     },
+    getBusinessImpacts: function(component, event) {
+               var actionGetBusinessImpacts = component.get('c.findBusinessImpactsByAssessment');
+	            actionGetBusinessImpacts.setParams({ "assessment": component.get("v.assessmentData").Id });
+	            actionGetBusinessImpacts.setCallback(this, function(response) {
+				        if(response.getState() == 'SUCCESS'){
+				        	component.set("v.businessImpacts", response.getReturnValue());
+				        	console.log('*******Size business impact********')
+				        	console.log(JSON.stringify(response.getReturnValue()));
+				        	if(component.get("v.businessImpacts").length > 0){
+				        	
+			        	       for (var i = 0; i < component.get("v.businessImpacts").length; i++) {
+			        	       
+			                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'VeryHigh' ){
+			                         component.set("v.businessImpVeryHighData", component.get("v.businessImpacts")[i]);
+			                         
+			                         component.set("v.costProjectVeryHighMin", component.get("v.businessImpVeryHighData").orm_costProjectBudgetMin__c );
+			                         component.set("v.costProjectVeryHighMax", component.get("v.businessImpVeryHighData").orm_costProjectBudgetMax__c );
+			                         component.set("v.scheduleProjectVeryHighMin", component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMin__c );
+			                         component.set("v.scheduleProjectVeryHighMax", component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMax__c );
+			                      
+			                      }
+			                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'High' ){
+			                         component.set("v.businessImpHighData", component.get("v.businessImpacts")[i]);
+			                         
+			                         component.set("v.costProjectHighMin", component.get("v.businessImpHighData").orm_costProjectBudgetMin__c );
+			                         component.set("v.costProjectHighMax", component.get("v.businessImpHighData").orm_costProjectBudgetMax__c );
+			                         component.set("v.scheduleProjectHighMin", component.get("v.businessImpHighData").orm_scheduleProjectBaselineMin__c );
+			                         component.set("v.scheduleProjectHighMax", component.get("v.businessImpHighData").orm_scheduleProjectBaselineMax__c );
+			                         component.set("v.ProductionLossHighMin", component.get("v.businessImpHighData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossHighMax", component.get("v.businessImpHighData").orm_productionLossMax__c );
+			                      }
+			                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Medium' ){
+			                         component.set("v.businessImpMediumData", component.get("v.businessImpacts")[i]);
+			                         
+			                         component.set("v.costProjectMediumMin", component.get("v.businessImpMediumData").orm_costProjectBudgetMin__c );
+			                         component.set("v.costProjectMediumMax", component.get("v.businessImpMediumData").orm_costProjectBudgetMax__c );
+			                         component.set("v.scheduleProjectMediumMin", component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMin__c );
+			                         component.set("v.scheduleProjectMediumMax", component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMax__c );
+			                         component.set("v.ProductionLossMediumMin", component.get("v.businessImpMediumData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossMediumMax", component.get("v.businessImpMediumData").orm_productionLossMax__c );
+			                      }
+			                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Low' ){
+			                         component.set("v.businessImpLowData", component.get("v.businessImpacts")[i]);
+			                         
+			                         component.set("v.costProjectLowMin", component.get("v.businessImpLowData").orm_costProjectBudgetMin__c );
+			                         component.set("v.costProjectLowMax", component.get("v.businessImpLowData").orm_costProjectBudgetMax__c );
+			                         component.set("v.scheduleProjectLowMin", component.get("v.businessImpLowData").orm_scheduleProjectBaselineMin__c );
+			                         component.set("v.scheduleProjectLowMax", component.get("v.businessImpLowData").orm_scheduleProjectBaselineMax__c );
+			                         component.set("v.ProductionLossLowMin", component.get("v.businessImpLowData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossLowMax", component.get("v.businessImpLowData").orm_productionLossMax__c );
+			                      }
+		                        }
+					        }	
+				        	
+				        } else {
+				        	alert("ERROR")	
+				        }
+	               });
+	               $A.enqueueAction(actionGetBusinessImpacts);
+	         
+	         },
+	         
     getSliderDefault: function(component, event, helper) {
     	if(component.get("v.hsseImpacts").length == 0){
     	}else{
@@ -301,6 +332,107 @@
 			  document.getElementById("environment").innerHTML= 'Low';
 		 }
 		 }
+    },
+    getSliderBusinessDefault : function(component, event, helper) {
+    	 var sliderCost = component.get("v.assessmentRiskData").orm_cost__c;
+         var sliderSchedule = component.get("v.assessmentRiskData").orm_ScheduleRisk__c;
+         var sliderProduction = component.get("v.assessmentRiskData").orm_production_Loss_Risk__c;
+         var reputation =component.get("v.assessmentRiskData").orm_reputation__c;
+         if(sliderCost == null){
+        	 document.getElementById("cost").style.color = "green";
+              document.getElementById("cost").innerHTML = 'null Cost';
+         }
+         else{
+        	 if(sliderCost >= component.get("v.businessImpHighData.orm_costProjectBudgetMin__c") && sliderCost <= component.get("v.businessImpHighData.orm_costProjectBudgetMax__c")){
+		    document.getElementById("cost").style.backgroundColor = "orange";
+		    document.getElementById("cost").innerHTML= 'high';
+	    }if (sliderCost >= component.get("v.businessImpMediumData.orm_costProjectBudgetMin__c") && sliderCost <= component.get("v.businessImpMediumData.orm_costProjectBudgetMax__c")){
+		    document.getElementById("cost").style.backgroundColor = "yellow";
+		    document.getElementById("cost").innerHTML= 'Medium';
+	    } if (sliderCost >= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c") && sliderCost<= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c")){
+		    document.getElementById("cost").style.backgroundColor = "green";
+		    document.getElementById("cost").innerHTML='low' ;
+	    } 
+	    if (sliderCost >= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c") && sliderCost<= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c")){
+		    document.getElementById("cost").style.backgroundColor = "red";
+		    document.getElementById("cost").innerHTML='veryHigh' ;
+	    }
+         }
+         if(sliderSchedule == null){
+        	 document.getElementById("schedule").style.color = "green";
+              document.getElementById("schedule").innerHTML = 'null schedule';
+         }
+         else{
+	    if(sliderSchedule >= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMin__c") && sliderSchedule <= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMax__c")){
+		    document.getElementById("schedule").style.backgroundColor = "orange";
+		    document.getElementById("schedule").innerHTML= 'high';
+	    }if (sliderSchedule >= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMin__c") && sliderSchedule <= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMax__c")){
+		    document.getElementById("schedule").style.backgroundColor = "yellow";
+		    document.getElementById("schedule").innerHTML= 'Medium';
+	    } if (sliderSchedule >= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMin__c") && sliderSchedule<= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMax__c")){
+		    document.getElementById("schedule").style.backgroundColor = "green";
+		    document.getElementById("schedule").innerHTML='low' ;
+	    } 
+	    if (sliderSchedule >= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMin__c") && sliderSchedule<= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMax__c")){
+		    document.getElementById("schedule").style.backgroundColor = "red";
+		    document.getElementById("schedule").innerHTML='veryHigh' ;
+	    } 
+         
+         }
+         if(sliderProduction == null){
+        	 document.getElementById("production").style.color = "green";
+              document.getElementById("production").innerHTML = 'null production';
+         }
+         else{
+        	   if(sliderProduction >= component.get("v.businessImpLowData.orm_productionLossMin__c") && sliderProduction <= component.get("v.businessImpLowData.orm_productionLossMax__c")){
+		    document.getElementById("production").style.backgroundColor = "green";
+		    document.getElementById("production").innerHTML= 'low';
+	    }else if (sliderProduction > component.get("v.businessImpMediumData.orm_productionLossMin__c") && sliderProduction <= component.get("v.businessImpMediumData.orm_productionLossMax__c")){
+		    document.getElementById("production").style.backgroundColor = "yellow";
+		    document.getElementById("production").innerHTML= 'Medium';
+	    } else if (sliderProduction > component.get("v.businessImpHighData.orm_productionLossMin__c") && sliderProduction<= component.get("v.businessImpHighData.orm_productionLossMax__c")){
+		    document.getElementById("production").style.backgroundColor = "orange";
+		    document.getElementById("production").innerHTML= 'High';
+	    }else
+	    {
+		    document.getElementById("production").style.backgroundColor = "red";
+		    document.getElementById("production").innerHTML= 'VeryHigh';
+	    } 
+         }
+         if(reputation== null){
+        	 document.getElementById("reputation").style.color = "green";
+             document.getElementById("reputation").innerHTML = 'null reputation';
+         }
+         else{
+        	var reputation1 = component.find("reputation1").get("v.value");
+	        var reputation2 = component.find("reputation2").get("v.value");
+	        var reputation3 = component.find("reputation3").get("v.value");
+	        var reputation4 = component.find("reputation4").get("v.value");
+         
+         
+	         if(component.get('v.assessmentRiskData').orm_reputation__c ==  reputation1)
+		 {	 
+			 document.getElementById('reputation').style.backgroundColor = "red";
+			 document.getElementById("reputation").innerHTML= 'very high';
+	       
+		 } if (component.get('v.assessmentRiskData').orm_reputation__c ==reputation2)
+		 {
+			 document.getElementById('reputation').style.backgroundColor = "orange";
+			 document.getElementById("reputation").innerHTML= 'high';
+		 }
+		  if (component.get('v.assessmentRiskData').orm_reputation__c == reputation3)
+		 {
+			 document.getElementById('reputation').style.backgroundColor = "yellow";
+			 document.getElementById("reputation").innerHTML= 'Medium';
+		 }
+		 if(component.get('v.assessmentRiskData').orm_reputation__c == reputation4)
+		 {
+		  document.getElementById('reputation').style.backgroundColor = "green";
+		  document.getElementById("reputation").innerHTML= 'Low';
+		
+		 }
+         }
+         
     }
 
 })

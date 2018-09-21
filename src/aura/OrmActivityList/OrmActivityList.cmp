@@ -79,7 +79,7 @@
 			</aura:if>
 	<div class="slds-m-around_large">
 	<aura:if isTrue="{!not(empty(v.ActivityList))}">
-		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+		<table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols">
 			<thead>
 				<tr class="slds-text-title--caps">
 					<th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>

@@ -12,6 +12,12 @@ public with sharing class OrmSliderController {
         return recordTypeId;
     }
     
+    public static Id getBusinessImpactRecordTypeId(){
+         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
+                  .get('RT Business Impact').getRecordTypeId();
+        return recordTypeId;
+    }
+    
     @AuraEnabled
     public static List<Macro> addProbabilities(List<Macro> items)
     {
@@ -70,6 +76,44 @@ public with sharing class OrmSliderController {
                   WHERE   orm_assessment__c =:assessment 
                        and 
                           RecordTypeId=: OrmSliderController.getHsseImpactRecordTypeId()];                               
+    }
+    
+    @AuraEnabled
+    public static List<Macro> addBusinessImpacts(List<Macro> items)
+    {
+    	List<Macro> res = new List<Macro>();
+    	for (Macro item : items) {
+    		item.RecordTypeId = OrmSliderController.getBusinessImpactRecordTypeId();
+		    upsert item;
+		    res.add(item);
+		}
+
+        return res;   
+   }
+   
+   @AuraEnabled 
+    public static List<Macro> findBusinessImpactsByAssessment(String assessment)
+    {
+         return  [SELECT Id, orm_rating__c, orm_costProjectBudgetMin__c, orm_costProjectBudgetMax__c, 
+                         orm_scheduleProjectBaselineMin__c, orm_scheduleProjectBaselineMax__c, 
+                         orm_productionLossMin__c, orm_productionLossMax__c, orm_reputation__c
+                  From Macro 
+                  WHERE   orm_assessment__c =:assessment 
+                       and 
+                          RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];                               
+    }
+    
+    @AuraEnabled 
+    public static void deleteBI(String assessment)
+    {
+         List<Macro> listBI = [SELECT Id
+			                  From Macro 
+			                  WHERE   orm_assessment__c =:assessment 
+			                       and 
+			                          RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];     
+                  System.debug('size before delete: '+listBI.size());
+                  
+                  delete listBI;                         
     }
     
 }

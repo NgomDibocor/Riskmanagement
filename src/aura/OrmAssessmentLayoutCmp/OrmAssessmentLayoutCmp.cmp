@@ -10,8 +10,9 @@
     <aura:attribute name="showRiskAnalyse" type="boolean" default="false"/>
     <aura:attribute name="showListCauseAndImpact" type="boolean" default="false"/>
     <aura:attribute name="showListMeasure" type="boolean" default="false"/>
-     <aura:attribute name="showRiskTreatment" type="boolean" default="false"/>
-     <aura:attribute name="showActionPlan" type="boolean" default="false"/>
+    <aura:attribute name="showRiskTreatment" type="boolean" default="false"/>
+    <aura:attribute name="showRiskPicture" type="boolean" default="false"/>
+    <aura:attribute name="showActionPlan" type="boolean" default="false"/>
     <aura:attribute name="setMessage" type="String"/> 
     <aura:attribute name="checkUpdateActivity" type="boolean" default="false"/>
     <aura:attribute name="message" type="String" default="NoError"/>
@@ -113,9 +114,9 @@
             <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">{!$Label.c.orm_risk_treatment_menu}</span>
           </a>
         </li>
-        <li aura:id="actionPlanId" class="slds-tabs--path__item slds-is-active" role="presentation">
+        <li aura:id="riskPictureId" class="slds-tabs--path__item slds-is-active" role="presentation">
           <a class="slds-tabs--path__link" id="tabs-path-440" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" 
-             href="javascript:void(0);" aria-live="assertive" onclick="{!c.activeActionPlan}">
+             href="javascript:void(0);" aria-live="assertive" onclick="{!c.activeRiskPicture}">
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
@@ -182,6 +183,11 @@
                   </span>
               </aura:if>
               <aura:if isTrue="{!v.showRiskTreatment}">        
+                  <span class="dot">
+                     <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:back" size="large" />
+                  </span>
+              </aura:if>
+              <aura:if isTrue="{!v.showRiskPicture}">        
                   <span class="dot">
                      <lightning:icon class="iconPrev" onclick="{!c.prevTab}" iconName="utility:back" size="large" />
                   </span>
@@ -1404,6 +1410,13 @@
                         </td>
                     </tr>
                 </aura:if>
+                <aura:if isTrue="{!v.showRiskPicture}">
+                     <tr>
+                        <td >
+                            <c:OrmMatricesRiskCmp />
+                        </td>
+                    </tr>
+                </aura:if>
                 <aura:if isTrue="{!v.showActionPlan}">
                     
                      
@@ -1479,6 +1492,11 @@
                    </span>
                </aura:if>
                <aura:if isTrue="{!v.showRiskTreatment}">        
+                   <span class="dot">
+                     <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:forward" size="large" />
+                   </span>
+               </aura:if>
+               <aura:if isTrue="{!v.showRiskPicture}">        
                    <span class="dot">
                      <lightning:icon class="iconNext" onclick="{!c.nextTab}" iconName="utility:forward" size="large" />
                    </span>

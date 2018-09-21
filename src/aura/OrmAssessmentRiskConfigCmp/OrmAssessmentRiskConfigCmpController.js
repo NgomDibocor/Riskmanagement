@@ -221,14 +221,7 @@
     },
     
     handleRangeChange : function(component, event, helper) { 
-     var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-    
         component.set("v.sliderValue",component.find("slider1").get("v.value")) 
 	    var sliderValue = component.find("slider1").get("v.value");
 	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
@@ -254,22 +247,34 @@
 	 * @history 2018-09-05 : David diop - Implementation
 	 */
 	checkboxSelect : function(component, event, helper) {
-	component.set("v.displaySaveCancelBtn",true);
-	
+		 component.set("v.displaySaveCancelBtn",true);
 		 component.set('v.selected',event.getSource().getLocalId());
 		 var selectedRadio = event.getSource().get("v.value");
+		 
 		 if(component.get("v.selected")=='r0')
 		 {	 
 			 document.getElementById('healthAndSafety').style.backgroundColor = "red";
 			 document.getElementById("healthAndSafety").innerHTML= 'very high';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 } if (component.get("v.selected")=='r1')
 		 {
 			 document.getElementById('healthAndSafety').style.backgroundColor = "orange";
 			 document.getElementById("healthAndSafety").innerHTML= 'high';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 		  if (component.get("v.selected")=='r2')
 		 {
@@ -277,6 +282,12 @@
 			 document.getElementById("healthAndSafety").innerHTML= 'Medium';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 		 if(component.get("v.selected")=='r3')
 		 {
@@ -284,70 +295,116 @@
 		  document.getElementById("healthAndSafety").innerHTML= 'Low';
 		  var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.healthAndSafety" ,healthAndSafety);
+		   var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 		 
 		  if(component.get("v.selected")=='rr0'){
-		  
 			 document.getElementById('security').style.backgroundColor = "red";
 			 document.getElementById("security").innerHTML= 'very high';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	          evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 			 
 		 } 
 		 
 		 if (component.get("v.selected")=='rr1'){
-		 
 			 document.getElementById('security').style.backgroundColor = "orange";
 			 document.getElementById("security").innerHTML= 'high';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	          evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 		 
 		  if (component.get("v.selected")=='rr2'){
-		  
 			 document.getElementById('security').style.backgroundColor = "yellow";
 			 document.getElementById("security").innerHTML= 'Medium';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	          evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 		 
 		 if(component.get("v.selected")=='rr3'){
-		 
 		  document.getElementById('security').style.backgroundColor = "green";
 		  document.getElementById("security").innerHTML= 'Low';
 		  var  security =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.security" ,security);
+		   var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 		 
 		  if(component.get("v.selected")=='rrr0'){
-		  
 			 document.getElementById('environment').style.backgroundColor = "red";
 			 document.getElementById("environment").innerHTML= 'very high';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 } 
 		 
 		 if (component.get("v.selected")=='rrr1'){
-		 
 			 document.getElementById('environment').style.backgroundColor = "orange";
 			 document.getElementById("environment").innerHTML= 'high';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 		 
 		 if (component.get("v.selected")=='rrr2'){
-		 
 			 document.getElementById('environment').style.backgroundColor = "yellow";
 			 document.getElementById("environment").innerHTML= 'Medium';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 		 if(component.get("v.selected")=='rrr3'){
-		 
 		  document.getElementById('environment').style.backgroundColor = "green";
 		  document.getElementById("environment").innerHTML= 'Low';
 		  var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.environmentAndCommunity" ,environment);
+		   var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.search_title_label"),
+	            "descriptionField": $A.get("$Label.c.search_description_title")
+	        });
+           evt.fire();
 		 }
 	},
 	

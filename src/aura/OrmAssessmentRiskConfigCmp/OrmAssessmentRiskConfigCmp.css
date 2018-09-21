@@ -2,17 +2,19 @@
 .THIS #healthAndSafety{
 	text-align: center;
 	font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .THIS #security{
 	text-align: center;
 	font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    border-left: 5px solid white;
 }
 .THIS #environment{
 	text-align: center;
 	font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    border-left: 5px solid white;
 }
 .THIS span{
 	
@@ -26,10 +28,17 @@
 .THIS .thTable {
  font-weight: 800;
  font-size: 1.2em;
- text-align:center
+ text-align:center;
 }
 .THIS .divColor {
  font-weight: 800;
  font-size: 1.2em;
  text-align:center
+}
+.THIS .messageIsEmpty {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.3em;
+  white-space: normal;
+  color: green;
 }

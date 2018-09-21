@@ -287,7 +287,7 @@
 					         <aura:if isTrue="{!not(empty(v.businessImpacts))}">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
 					                      <lightning:buttonGroup class="slds-m-around_medium">
-						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdate}"/>
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateBusinessImpact}"/>
 						                      <lightning:button label="update"
 						                                       variant="neutral"
 						                                       class="slds-button slds-button_brand"

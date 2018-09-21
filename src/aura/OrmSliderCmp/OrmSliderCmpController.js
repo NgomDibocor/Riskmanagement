@@ -490,4 +490,54 @@
 	     $A.enqueueAction(addBusinessImpactAction);
    },
    
+   cancelUpdateBusinessImpact : function(component, event, helper) {
+       
+       component.set("v.showBtnUpdate", false);
+       if(component.get("v.businessImpacts").length > 0){
+				        	
+			 for (var i = 0; i < component.get("v.businessImpacts").length; i++) {
+			        	       
+                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'VeryHigh' ){
+                         component.set("v.businessImpVeryHighData", component.get("v.businessImpacts")[i]);
+                         
+                         component.set("v.costProjectVeryHighMin", component.get("v.businessImpVeryHighData").orm_costProjectBudgetMin__c );
+                         component.set("v.costProjectVeryHighMax", component.get("v.businessImpVeryHighData").orm_costProjectBudgetMax__c );
+                         component.set("v.scheduleProjectVeryHighMin", component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMin__c );
+                         component.set("v.scheduleProjectVeryHighMax", component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMax__c );
+                      
+                      }
+                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'High' ){
+                         component.set("v.businessImpHighData", component.get("v.businessImpacts")[i]);
+                         
+                         component.set("v.costProjectHighMin", component.get("v.businessImpHighData").orm_costProjectBudgetMin__c );
+                         component.set("v.costProjectHighMax", component.get("v.businessImpHighData").orm_costProjectBudgetMax__c );
+                         component.set("v.scheduleProjectHighMin", component.get("v.businessImpHighData").orm_scheduleProjectBaselineMin__c );
+                         component.set("v.scheduleProjectHighMax", component.get("v.businessImpHighData").orm_scheduleProjectBaselineMax__c );
+                         component.set("v.ProductionLossHighMin", component.get("v.businessImpHighData").orm_productionLossMin__c );
+                         component.set("v.ProductionLossHighMax", component.get("v.businessImpHighData").orm_productionLossMax__c );
+                      }
+                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Medium' ){
+                         component.set("v.businessImpMediumData", component.get("v.businessImpacts")[i]);
+                         
+                         component.set("v.costProjectMediumMin", component.get("v.businessImpMediumData").orm_costProjectBudgetMin__c );
+                         component.set("v.costProjectMediumMax", component.get("v.businessImpMediumData").orm_costProjectBudgetMax__c );
+                         component.set("v.scheduleProjectMediumMin", component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMin__c );
+                         component.set("v.scheduleProjectMediumMax", component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMax__c );
+                         component.set("v.ProductionLossMediumMin", component.get("v.businessImpMediumData").orm_productionLossMin__c );
+                         component.set("v.ProductionLossMediumMax", component.get("v.businessImpMediumData").orm_productionLossMax__c );
+                      }
+                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Low' ){
+                         component.set("v.businessImpLowData", component.get("v.businessImpacts")[i]);
+                         
+                         component.set("v.costProjectLowMin", component.get("v.businessImpLowData").orm_costProjectBudgetMin__c );
+                         component.set("v.costProjectLowMax", component.get("v.businessImpLowData").orm_costProjectBudgetMax__c );
+                         component.set("v.scheduleProjectLowMin", component.get("v.businessImpLowData").orm_scheduleProjectBaselineMin__c );
+                         component.set("v.scheduleProjectLowMax", component.get("v.businessImpLowData").orm_scheduleProjectBaselineMax__c );
+                         component.set("v.ProductionLossLowMin", component.get("v.businessImpLowData").orm_productionLossMin__c );
+                         component.set("v.ProductionLossLowMax", component.get("v.businessImpLowData").orm_productionLossMax__c );
+                      }
+		       }
+		}
+   },
+   
 })

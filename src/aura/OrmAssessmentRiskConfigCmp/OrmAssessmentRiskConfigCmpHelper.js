@@ -64,6 +64,11 @@
                                                     var state = response.getState();
                                                     if (state === 'SUCCESS') {
                                                         component.set('v.vulnerability', response.getReturnValue());
+                                                       var actionUser = component.get("c.getUsers");
+													        actionUser.setCallback(this, function(response){
+													            var state = response.getState();
+													            if(state === 'SUCCESS'){
+													                component.set('v.allUser', response.getReturnValue());
                                                         //
                                                         var actionOrgs = component.get("c.findAssessmentRisk");
                                                         actionOrgs.setParams({
@@ -81,6 +86,7 @@
                                                                 component.find("schedule").set("v.value", component.get('v.assessmentRiskData').orm_schedule__c);
                                                                 component.find("status").set("v.value", component.get('v.assessmentRiskData').orm_status__c);
                                                                 component.find("vulnerability").set("v.value", component.get('v.assessmentRiskData').orm_vulnerability__c);
+                                                                component.find("riskManager").set("v.value", component.get('v.assessmentRiskData').orm_riskManager__c);
                                                                 var sliderValue = component.get("v.assessmentRiskData").orm_probability__c;
                                                                 if(sliderValue==null)
                                                                 {
@@ -113,10 +119,16 @@
                                                             }
                                                         });
                                                         $A.enqueueAction(actionOrgs);
-
+                                                        } else {
+												                alert($A.get("$Label.c.orm_not_found"));
+												            }
+												        });
+										               $A.enqueueAction(actionUser);
+                                                        	
                                                     } else {
                                                         alert($A.get("$Label.c.orm_not_found"));
                                                     }
+                                                    
                                                 });
                                                 $A.enqueueAction(actionvulnerability);
 

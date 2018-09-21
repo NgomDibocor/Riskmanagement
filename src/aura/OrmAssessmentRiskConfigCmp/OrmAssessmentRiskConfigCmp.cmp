@@ -362,7 +362,6 @@
                 </td>
                 <td style="white-space: normal !important;" height="100">
                <center> <lightning:slider  type="vertical" aura:id="schedule1"   value="{!v.assessmentRiskData.orm_ScheduleRisk__c}"  onchange="{! c.handleRangeChangeSchedule }" /></center>	
-                	0000
                 </td>
                 <td style="white-space: normal !important;" height="100">
               <center><lightning:slider  type="vertical" aura:id="production"  min="4" max="52" value="{!v.assessmentRiskData.orm_production_Loss_Risk__c}" onchange="{! c.handleRangeChangeProduction }"  />	</center>

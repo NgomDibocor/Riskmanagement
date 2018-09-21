@@ -92,6 +92,7 @@ public with sharing class OrmEmailTemplateController {
    }
    return listcontact;
    }
+   
   /**
  * @author Salimata NGOM
  * @version 1.0

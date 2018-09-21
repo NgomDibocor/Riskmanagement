@@ -45,7 +45,7 @@
 								<div class="slds-form-element__control">
 									<div class="slds-input-has-icon slds-input-has-icon--right">
 									 <aura:iteration items="{!v.contactListSelected}" var="contact">
-                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" onremove="{!c.clear }">
+                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" onremove="{!c.clear }" title="{!contact.Email}"  >
                             <aura:set attribute="media">
                                 <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
                             </aura:set>

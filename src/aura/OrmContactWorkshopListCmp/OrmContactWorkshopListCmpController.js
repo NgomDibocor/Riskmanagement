@@ -153,7 +153,8 @@
 			helper.addContactWorkshop(component, row);
 			break;
 		case 'send_email':
-		component.set('v.contactListSelected',row);
+		
+		component.set("v.contactListSelected",row);
 		component.set("v.emailTemplate",true);
 			break;
 		default:

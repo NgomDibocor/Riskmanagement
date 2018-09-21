@@ -192,7 +192,9 @@
     },
     
     createProbilityRanking : function(component, event, helper) {
-    
+          var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	      evtShowSpinner.fire();
+	      
           var probabilities = [];
           var newItemProbable = component.get("v.probableData");
           newItemProbable.orm_assessment__c = component.get("v.idAssessment");

@@ -39,10 +39,12 @@ public with sharing class OrmEmailTemplateController {
  * 2018-09-11: Salimata NGOM - Implementation
  */
      @AuraEnabled 
-    public static void sendMailMethod(List<Contact> mailcontacts ,String mSubject ,String templateId){
+    public static List<orm_ContactWorkshop__c> sendMailMethod(List<Contact> mailcontacts ,String mSubject ,String templateId,String workshop){
     	//get template details
      List<Messaging.SingleEmailMessage> mails =  new List<Messaging.SingleEmailMessage>();     
-     //  Create a new Email
+     List<orm_ContactWorkshop__c> listcontact=new List<orm_ContactWorkshop__c>();
+       for(Contact contactId : mailcontacts){
+       	//  Create a new Email
        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
           //  Set email contents - you can use variables and Id template
       mail.setSubject(mSubject);
@@ -53,18 +55,17 @@ public with sharing class OrmEmailTemplateController {
        mail.setReplyTo('noreply@gmail.com'); // change it with your mail address.
        mail.setSenderDisplayName('salesforce User'); 
     // Set list of contact who should get the email
-       for(Contact contactId:mailcontacts){
        	   mail.setTargetObjectId(contactId.Id);
-       	   system.debug('setTargetObjectId'+contactId.Id);
+       	   system.debug('setTargetObjectId'+mail.getTargetObjectId());
        	   mail.setWhatId(contactId.orm_organisation__c);
        	   system.debug('setWhatId'+contactId.orm_organisation__c);
        	  String htmlbody=getTemplateDetails(templateId).htmlvalue;
+       	  String textbody=getTemplateDetails(templateId).body;
        	  if(htmlbody!=null){
        	 htmlbody=htmlbody.replace('{!Contact.Name}',contactId.Name);
        	   mail.setHTMLBody(htmlbody);
        	   system.debug('getHtmlbody'+mail.getHTMLBody());
        	  }
-       	  String textbody=getTemplateDetails(templateId).body;
        	  if(textbody!=null){
        	  textbody=textbody.replace('{!Contact.Name}',contactId.Name);
        	  mail.setPlainTextBody(textbody);
@@ -75,11 +76,21 @@ public with sharing class OrmEmailTemplateController {
        }
     
   // Send all emails in the master list
-    // List<Messaging.SendEmailResult> 
-     //sendEmailResults =
-      Messaging.sendEmail(mails);
-
-     
+   
+      Messaging.SendEmailResult [] sendEmailResults =   Messaging.sendEmail(mails);
+      System.debug('workshop'+workshop);
+      Integer i=0;
+    for(Messaging.SendEmailResult result:sendEmailResults){
+        
+        //update notification contact workshop if result issuccess
+        if(result.isSuccess() == true){
+			orm_ContactWorkshop__c contactwroshop = OrmContactController.getContactWorkshop(workshop,mails.get(i).getTargetObjectId());
+        	System.debug('Email result ' +mails.get(i).getTargetObjectId());
+        	listcontact.add(contactwroshop);
+        }
+	i=i+1;
+   }
+   return listcontact;
    }
   /**
  * @author Salimata NGOM
@@ -92,4 +103,5 @@ public with sharing class OrmEmailTemplateController {
 	public static orm_ContactWorkshop__c updateContactWorkshop(orm_ContactWorkshop__c item){        
         return OrmContactController.updateContactWorkshop(item);
 	}
+
 }

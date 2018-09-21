@@ -456,14 +456,14 @@
           newItemLow.orm_productionLossMax__c = component.get("v.ProductionLossMediumMax");
           businessImpacts.push(newItemLow);
           
-          var addBusinessImpactAction = component.get('c.addProbabilities');
+          var addBusinessImpactAction = component.get('c.addBusinessImpacts');
 	      addBusinessImpactAction.setParams({ "items": businessImpacts });
 	      addBusinessImpactAction.setCallback(this, function(response) {
 	        if(response.getState() == 'SUCCESS'){
 	            //component.set("v.showBtnUpdate", false);
 	        	component.set("v.businessImpacts", response.getReturnValue());
 	        	console.log('******after create business impact********')
-	        	console.log(response.getReturnValue().length)
+	        	console.log(response.getReturnValue())
 	        	if(component.get("v.businessImpacts").length > 0){
 		        	
 	        	         for (var i = 0; i < component.get("v.businessImpacts").length; i++) {

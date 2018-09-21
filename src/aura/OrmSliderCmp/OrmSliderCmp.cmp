@@ -250,7 +250,7 @@
 					  <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
 					</aura:if>
 					<aura:if isTrue="{!v.showHsseImpactsRanking}">
-					    <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					    <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
 					</aura:if>
 					<aura:if isTrue="{!v.showRiskOccurrence}">
 					   <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>

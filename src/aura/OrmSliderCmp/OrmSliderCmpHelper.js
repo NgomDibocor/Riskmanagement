@@ -183,21 +183,39 @@
 	    //this.getBusinessImpacts(component, event, helper);
 	    
         var sliderCostProjectVeryHigh = component.find('sliderCostProjectVeryHigh').getElement();
-        sliderCostProjectVeryHigh = this.createSlider(component, event, helper, sliderCostProjectVeryHigh, 60, 100);
+        if(component.get("v.businessImpacts").length == 0){
+            sliderCostProjectVeryHigh = this.createSlider(component, event, helper, sliderCostProjectVeryHigh, 60, 100);
+        }else{
+            sliderCostProjectVeryHigh = this.createSlider(component, event, helper, sliderCostProjectVeryHigh, parseInt(component.get("v.businessImpVeryHighData").orm_costProjectBudgetMin__c, 10), parseInt(component.get("v.businessImpVeryHighData").orm_costProjectBudgetMax__c, 10) );
+          
+        }
+        
 		sliderCostProjectVeryHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.costProjectVeryHighMin", parseInt(range[0].replace('%', ''), 10))
 		    component.set("v.costProjectHighMax", parseInt(range[0].replace('%', ''), 10))
         }));
         
         var sliderScheduleProjectVeryHigh = component.find('sliderScheduleProjectVeryHigh').getElement();
-        sliderScheduleProjectVeryHigh = this.createSlider(component, event, helper, sliderScheduleProjectVeryHigh, 60, 100);        
+        if(component.get("v.businessImpacts").length == 0){
+            sliderScheduleProjectVeryHigh = this.createSlider(component, event, helper, sliderScheduleProjectVeryHigh, 60, 100);
+        }else{
+            sliderScheduleProjectVeryHigh = this.createSlider(component, event, helper, sliderScheduleProjectVeryHigh, parseInt(component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMin__c, 10), parseInt(component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMax__c, 10) );
+          
+        }
+                
         sliderScheduleProjectVeryHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.scheduleProjectVeryHighMin", parseInt(range[0].replace('%', ''), 10))
 		    component.set("v.scheduleProjectHighMax", parseInt(range[0].replace('%', ''), 10))
         }));
         
         var sliderCostProjectHigh = component.find('sliderCostProjectHigh').getElement();
-        sliderCostProjectHigh = this.createSlider(component, event, helper, sliderCostProjectHigh, 15, 60);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderCostProjectHigh = this.createSlider(component, event, helper, sliderCostProjectHigh, 15, 60);
+        }else{
+            sliderCostProjectHigh = this.createSlider(component, event, helper, sliderCostProjectHigh, parseInt(component.get("v.businessImpHighData").orm_costProjectBudgetMin__c, 10), parseInt(component.get("v.businessImpHighData").orm_costProjectBudgetMax__c, 10) );
+          
+        }
+          
         sliderCostProjectHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.costProjectHighMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.costProjectHighMax", parseInt(range[1].replace('%', ''), 10))
@@ -206,7 +224,13 @@
         }));
         
         var sliderScheduleProjectHigh = component.find('sliderScheduleProjectHigh').getElement();
-        sliderScheduleProjectHigh = this.createSlider(component, event, helper, sliderScheduleProjectHigh, 15, 60);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderScheduleProjectHigh = this.createSlider(component, event, helper, sliderScheduleProjectHigh, 15, 60);
+        }else{
+            sliderScheduleProjectHigh = this.createSlider(component, event, helper, sliderScheduleProjectHigh, parseInt(component.get("v.businessImpHighData").orm_scheduleProjectBaselineMin__c, 10), parseInt(component.get("v.businessImpHighData").orm_scheduleProjectBaselineMax__c, 10) );
+          
+        }
+          
         sliderScheduleProjectHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    
 		    component.set("v.scheduleProjectHighMin", parseInt(range[0].replace('%', ''), 10)) 
@@ -216,7 +240,13 @@
         }));
         
         var sliderProductionHigh = component.find('sliderProductionHigh').getElement();
-        sliderProductionHigh = this.createSliderProduction(component, event, helper, sliderProductionHigh, 12, 26);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderProductionHigh = this.createSliderProduction(component, event, helper, sliderProductionHigh, 12, 26);  
+        }else{
+            sliderProductionHigh = this.createSliderProduction(component, event, helper, sliderProductionHigh, parseInt(component.get("v.businessImpHighData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpHighData").orm_productionLossMax__c, 10) );
+          
+        }
+        
         sliderProductionHigh.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.ProductionLossHighMin", parseInt(range[0].replace('weeks', ''), 10))
 		    component.set("v.ProductionLossHighMax", parseInt(range[1].replace('weeks', ''), 10))
@@ -224,7 +254,13 @@
         }));
         
         var sliderCostProjectMedium = component.find('sliderCostProjectMedium').getElement();
-        sliderCostProjectMedium = this.createSlider(component, event, helper, sliderCostProjectMedium, 5, 15);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderCostProjectMedium = this.createSlider(component, event, helper, sliderCostProjectMedium, 5, 15);
+        }else{
+            sliderCostProjectMedium = this.createSlider(component, event, helper, sliderCostProjectMedium, parseInt(component.get("v.businessImpMediumData").orm_costProjectBudgetMin__c, 10), parseInt(component.get("v.businessImpMediumData").orm_costProjectBudgetMax__c, 10) );
+          
+        }
+          
         sliderCostProjectMedium.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.costProjectMediumMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.costProjectMediumMax", parseInt(range[1].replace('%', ''), 10))
@@ -233,7 +269,13 @@
         }));
         
         var sliderScheduleProjectMedium = component.find('sliderScheduleProjectMedium').getElement();
-        sliderScheduleProjectMedium = this.createSlider(component, event, helper, sliderScheduleProjectMedium, 5, 15);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderScheduleProjectMedium = this.createSlider(component, event, helper, sliderScheduleProjectMedium, 5, 15);  
+        }else{
+            sliderScheduleProjectMedium = this.createSlider(component, event, helper, sliderScheduleProjectMedium, parseInt(component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMin__c, 10), parseInt(component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMax__c, 10) );
+          
+        }
+        
         sliderScheduleProjectMedium.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.scheduleProjectMediumMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.scheduleProjectMediumMax", parseInt(range[1].replace('%', ''), 10))
@@ -242,7 +284,13 @@
         }));
         
         var sliderProductionMedium = component.find('sliderProductionMedium').getElement();
-        sliderProductionMedium = this.createSliderProduction(component, event, helper, sliderProductionMedium, 4, 12);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderProductionMedium = this.createSliderProduction(component, event, helper, sliderProductionMedium, 4, 12);  
+        }else{
+            sliderProductionMedium = this.createSliderProduction(component, event, helper, sliderProductionMedium, parseInt(component.get("v.businessImpMediumData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpMediumData").orm_productionLossMax__c, 10) );
+          
+        }
+          
         sliderProductionMedium.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.ProductionLossMediumMin", parseInt(range[0].replace('weeks', ''), 10)) 
 	        component.set("v.ProductionLossMediumMax", parseInt(range[1].replace('weeks', ''), 10))
@@ -251,7 +299,13 @@
         }));
         
         var sliderCostProjectLow = component.find('sliderCostProjectLow').getElement();
-        sliderCostProjectLow = this.createSlider(component, event, helper, sliderCostProjectLow, 0, 5);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderCostProjectLow = this.createSlider(component, event, helper, sliderCostProjectLow, 0, 5);  
+        }else{
+            sliderCostProjectLow = this.createSlider(component, event, helper, sliderCostProjectLow, parseInt(component.get("v.businessImpLowData").orm_costProjectBudgetMin__c, 10), parseInt(component.get("v.businessImpLowData").orm_costProjectBudgetMax__c, 10) );
+          
+        }
+          
         sliderCostProjectLow.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.costProjectLowMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.costProjectLowMax", parseInt(range[1].replace('%', ''), 10))
@@ -259,7 +313,13 @@
         }));
         
         var sliderScheduleProjectLow = component.find('sliderScheduleProjectLow').getElement();
-        sliderScheduleProjectLow = this.createSlider(component, event, helper, sliderScheduleProjectLow, 0, 5);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderScheduleProjectLow = this.createSlider(component, event, helper, sliderScheduleProjectLow, 0, 5);  
+        }else{
+            sliderScheduleProjectLow = this.createSlider(component, event, helper, sliderScheduleProjectLow, parseInt(component.get("v.businessImpLowData").orm_scheduleProjectBaselineMin__c, 10), parseInt(component.get("v.businessImpLowData").orm_scheduleProjectBaselineMax__c, 10) );
+          
+        }
+          
         sliderScheduleProjectLow.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.scheduleProjectLowMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.scheduleProjectLowMax", parseInt(range[1].replace('%', ''), 10))
@@ -267,7 +327,13 @@
         }));
         
         var sliderProductionLow = component.find('sliderProductionLow').getElement();
-        sliderProductionLow = this.createSliderProduction(component, event, helper, sliderProductionLow, 0, 4);  
+        if(component.get("v.businessImpacts").length == 0){
+            sliderProductionLow = this.createSliderProduction(component, event, helper, sliderProductionLow, 0, 4);
+        }else{
+            sliderProductionLow = this.createSliderProduction(component, event, helper, sliderProductionLow, parseInt(component.get("v.businessImpLowData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpLowData").orm_productionLossMax__c, 10) );
+          
+        }
+          
         sliderProductionLow.noUiSlider.on('change', $A.getCallback(function(range) {
 		    component.set("v.ProductionLossLowMin", parseInt(range[0].replace('weeks', ''), 10)) 
 	        component.set("v.ProductionLossLowMax", parseInt(range[1].replace('weeks', ''), 10))

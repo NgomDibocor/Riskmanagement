@@ -68,19 +68,6 @@
            
 	       if(!document.getElementById("sliderCostProjectVeryHigh").classList.contains("noUi-target")){
 	            
-	            var deleteBusinessImpacts = component.get('c.deleteBI');
-		      deleteBusinessImpacts.setParams({ "assessment": component.get("v.idAssessment") });
-		      deleteBusinessImpacts.setCallback(this, function(response) {
-			        if(response.getState() == 'SUCCESS'){
-			        
-			        	
-			        } else {
-			        	alert("ERROR")	
-			        }
-		      });
-		      $A.enqueueAction(deleteBusinessImpacts); 
-	            
-	       
 	            var actionGetBusinessImpacts = component.get('c.findBusinessImpactsByAssessment');
 	            actionGetBusinessImpacts.setParams({ "assessment": component.get("v.idAssessment") });
 	            actionGetBusinessImpacts.setCallback(this, function(response) {
@@ -88,7 +75,8 @@
 				        
 				        	component.set("v.businessImpacts", response.getReturnValue());
 				        	console.log('*******Size business impact********')
-				        	console.log(response.getReturnValue().length);
+				        	console.log(component.get("v.businessImpacts").length);
+				        	console.log(JSON.stringify(component.get("v.businessImpacts")));
 				        	if(component.get("v.businessImpacts").length > 0){
 				        	
 			        	       for (var i = 0; i < component.get("v.businessImpacts").length; i++) {

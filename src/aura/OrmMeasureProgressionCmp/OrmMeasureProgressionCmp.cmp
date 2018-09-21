@@ -52,11 +52,10 @@
 	        </aura:if>
 	        	<br/>
 	        <aura:if isTrue="{!not(empty(v.measureProgression))}">
-			    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+			    <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" >
 	            <thead>
-	                <tr class="slds-text-title--caps">
+	                <tr>
 	                  <th style="width:3.25rem;" class="slds-text-align--right">
-		              	
 		              </th> 
 	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
 	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_DateProgression_label}">{!$Label.c.orm_DateProgression_label}</div></th>

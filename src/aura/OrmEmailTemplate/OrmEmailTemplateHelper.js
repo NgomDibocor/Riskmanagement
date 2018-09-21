@@ -90,6 +90,8 @@
       var subjMatter =component.find('subjMatter').get('v.value');    
         console.log('subjMatter ',subjMatter);
         var contactIds=component.get("v.contactListSelected");
+        console.log('workshop'+component.get('v.workshop').Id);
+        
       if(!$A.util.isEmpty(subjMatter) || !$A.util.isEmpty(contactIds)){
         var action = component.get("c.sendMailMethod");
               	// set the 3 params to sendMailMethod method
@@ -105,6 +107,7 @@
 							if (state == "SUCCESS") {
 							//update listcontactworshop
 						var listcontactworkshop=response.getReturnValue();
+						
 						listcontactworkshop.forEach(function(contactworkshopItem) {
 						contactworkshopItem.orm_notification__c = true;
 						var updatecontactworkshop = component
@@ -138,7 +141,7 @@
 			});
 			evt.fire();
 																				} else if (state === "ERROR") {
-																					
+																					console.log('error update');
 																				}
 																			});
 															$A
@@ -148,6 +151,8 @@
 								//end update listcontact
 								
 							}else if(state== "ERROR"){
+							
+							console.log('error send mail method');
 							 let
 					errors = response.getError();
 					let

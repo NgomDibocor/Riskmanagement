@@ -29,6 +29,8 @@
 		      // var dateRisk=component.find("dateRisk");
 		      // assessmentRisk.orm_date__c =dateRisk.get("v.value");
 		      // var environmentAndCommunity =  component.find("environmentAndCommunity");
+		      var riskManager = component.find("riskManager");
+              assessmentRisk.orm_riskManager__c = riskManager.get("v.value");
 		       assessmentRisk.orm_environmentAndCommunity__c =environmentAndCommunity;
 		       var frequency = component.find("frequency");
 		       assessmentRisk.orm_frequency__c =frequency.get("v.value");
@@ -65,6 +67,7 @@
 	                if (state == "SUCCESS") {
 	                component.set("v.displaySaveCancelBtn", false);
 	                component.set("v.assessmentRiskData",response.getReturnValue());
+	                helper.fetchPicklist(component, event, idAsssessmentRisk);
 	                    var toastEvent = $A.get('e.force:showToast');
 	                        toastEvent.setParams({
 	                            'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
@@ -77,6 +80,24 @@
 	                }
 	            });
 	        $A.enqueueAction(action);
+    },
+       /**
+ *
+ * @author David diop
+ * @version 1.0
+ * @description method description fields status
+ * @history 
+ * 2018-08-27 : David diop - Implementation
+ */
+    onChangeRiskManager : function(component, event, helper) {
+        component.find("riskManager").set("v.value", event.getSource().get("v.value"));
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.search_title_label"),
+            "descriptionField": $A.get("$Label.c.search_description_title")
+        });
+        evt.fire();
+        component.set("v.displaySaveCancelBtn", true);
     },
    
       

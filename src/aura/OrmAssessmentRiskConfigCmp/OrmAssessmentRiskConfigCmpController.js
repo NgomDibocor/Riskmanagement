@@ -9,7 +9,7 @@
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
         helper.fetchPicklist(component, event, idAsssessmentRisk);
         helper.getProbality(component, event); 
-       // helper.getHsseImpacts(component, event);
+        //helper.getBusinessImpacts(component, event);
        //helper.getSliderDefault(component, event);
       },
       
@@ -17,6 +17,7 @@
 	       var assessmentRisk = component.get("v.assessmentRiskData");
 	       var assessment= component.get("v.assessmentRiskData.orm_assessment__c");
 	       var healthAndSafety =component.get("v.healthAndSafety");
+	       var reputation = component.get("v.reputation");
 	       var security =component.get("v.security");
 	       var environmentAndCommunity =component.get("v.environmentAndCommunity");
 	       console.log(healthAndSafety);
@@ -36,24 +37,24 @@
 		       assessmentRisk.orm_frequency__c =frequency.get("v.value");
 		       var manageAbility = component.find("manageAbility");
 		       assessmentRisk.orm_manageability__c =manageAbility.get("v.value");
-		       var productionLoss = component.find("productionLoss");     
-		       assessmentRisk.orm_productionLoss__c =productionLoss.get("v.value");
-		       var schedule = component.find("schedule");
-		       assessmentRisk.orm_schedule__c =schedule.get("v.value");
 		       var status = component.find("status");
 		       assessmentRisk.orm_status__c =status.get("v.value");
 		       var vulnerability = component.find("vulnerability");
 		       assessmentRisk.orm_vulnerability__c =vulnerability.get("v.value");
 		      //var security = component.find("security");
 		       assessmentRisk.orm_security__c =security;
-		       var reputation = component.find("reputation");
-		       assessmentRisk.orm_reputation__c =reputation.get("v.value");
-		       var cost = component.find("cost");
+		       //var reputation = component.find("reputation");
+		       assessmentRisk.orm_reputation__c =reputation;
+		       var cost = component.find("cost1");
 		       assessmentRisk.orm_cost__c =cost.get("v.value");	
 		       //var healthAndSafety = component.find("healthAndSafety");
 		       assessmentRisk.orm_healthAndSafety__c =healthAndSafety;
 		       var probability = component.find("slider1");
 		       assessmentRisk.orm_probability__c = probability.get("v.value");
+		       var scheduleRisk = component.find("schedule1");
+		       assessmentRisk.orm_ScheduleRisk__c = scheduleRisk.get("v.value");
+		       var productionRisk = component.find("production");
+		       assessmentRisk.orm_production_Loss_Risk__c = productionRisk.get("v.value");
 	       
 	       var action = component.get('c.addAssessmentRisk');
 	        action.setParams({
@@ -67,7 +68,6 @@
 	                if (state == "SUCCESS") {
 	                component.set("v.displaySaveCancelBtn", false);
 	                component.set("v.assessmentRiskData",response.getReturnValue());
-	                helper.fetchPicklist(component, event, idAsssessmentRisk);
 	                    var toastEvent = $A.get('e.force:showToast');
 	                        toastEvent.setParams({
 	                            'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
@@ -91,12 +91,7 @@
  */
     onChangeRiskManager : function(component, event, helper) {
         component.find("riskManager").set("v.value", event.getSource().get("v.value"));
-        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-        evt.setParams({
-            "nomField": $A.get("$Label.c.search_title_label"),
-            "descriptionField": $A.get("$Label.c.search_description_title")
-        });
-        evt.fire();
+     
         component.set("v.displaySaveCancelBtn", true);
     },
    
@@ -258,6 +253,101 @@
 		    document.getElementById("divColor").style.backgroundColor = "red";
 		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c");
 	    }
+    },
+     handleRangeChangeCost : function(component, event, helper) { 
+        component.set("v.displaySaveCancelBtn",true);
+	    var sliderValue = component.find("cost1").get("v.value");
+	    if(sliderValue >= component.get("v.businessImpHighData.orm_costProjectBudgetMin__c") && sliderValue <= component.get("v.businessImpHighData.orm_costProjectBudgetMax__c")){
+		    document.getElementById("cost").style.backgroundColor = "orange";
+		    document.getElementById("cost").innerHTML= 'high';
+	    }if (sliderValue >= component.get("v.businessImpMediumData.orm_costProjectBudgetMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_costProjectBudgetMax__c")){
+		    document.getElementById("cost").style.backgroundColor = "yellow";
+		    document.getElementById("cost").innerHTML= 'Medium';
+	    } if (sliderValue >= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c") && sliderValue<= component.get("v.businessImpLowData.orm_costProjectBudgetMax__c")){
+		    document.getElementById("cost").style.backgroundColor = "green";
+		    document.getElementById("cost").innerHTML='low' ;
+	    } 
+	    if (sliderValue >= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c") && sliderValue<= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMax__c")){
+		    document.getElementById("cost").style.backgroundColor = "red";
+		    document.getElementById("cost").innerHTML='veryHigh' ;
+	    }
+        
+        
+    },
+     handleRangeChangeSchedule : function(component, event, helper) { 
+        component.set("v.displaySaveCancelBtn",true);
+        component.set("v.sliderValue",component.find("slider1").get("v.value")) 
+	    var sliderValue = component.find("schedule1").get("v.value");
+	    if(sliderValue >= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMin__c") && sliderValue <= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMax__c")){
+		    document.getElementById("schedule").style.backgroundColor = "orange";
+		    document.getElementById("schedule").innerHTML= 'high';
+	    }if (sliderValue >= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMax__c")){
+		    document.getElementById("schedule").style.backgroundColor = "yellow";
+		    document.getElementById("schedule").innerHTML= 'Medium';
+	    } if (sliderValue >= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMin__c") && sliderValue<= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMax__c")){
+		    document.getElementById("schedule").style.backgroundColor = "green";
+		    document.getElementById("schedule").innerHTML='low' ;
+	    } 
+	    if (sliderValue >= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMin__c") && sliderValue<= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMax__c")){
+		    document.getElementById("schedule").style.backgroundColor = "red";
+		    document.getElementById("schedule").innerHTML='veryHigh' ;
+	    } 
+    },
+     handleRangeChangeProduction : function(component, event, helper) { 
+        component.set("v.displaySaveCancelBtn",true);
+	    var sliderValue = component.find("production").get("v.value");
+	    if(sliderValue >= component.get("v.businessImpLowData.orm_productionLossMin__c") && sliderValue <= component.get("v.businessImpLowData.orm_productionLossMax__c")){
+		    document.getElementById("production").style.backgroundColor = "green";
+		    document.getElementById("production").innerHTML= 'low';
+	    }else if (sliderValue > component.get("v.businessImpMediumData.orm_productionLossMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_productionLossMax__c")){
+		    document.getElementById("production").style.backgroundColor = "yellow";
+		    document.getElementById("production").innerHTML= 'Medium';
+	    } else if (sliderValue > component.get("v.businessImpHighData.orm_productionLossMin__c") && sliderValue<= component.get("v.businessImpHighData.orm_productionLossMax__c")){
+		    document.getElementById("production").style.backgroundColor = "orange";
+		    document.getElementById("production").innerHTML= 'High';
+	    }else{
+		    document.getElementById("production").style.backgroundColor = "red";
+		    document.getElementById("production").innerHTML= 'VeryHigh';
+	    }
+    },
+    checkboxSelectreputation  : function(component, event, helper) {
+    	component.set("v.displaySaveCancelBtn",true);
+		 component.set('v.selectedReputation',event.getSource().getLocalId());
+		 
+		 
+		  if(component.get("v.selectedReputation")=='reputation1')
+		 {	 
+			 document.getElementById('reputation').style.backgroundColor = "red";
+			 document.getElementById("reputation").innerHTML= 'very high';
+			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
+			 component.set("v.reputation" ,reputation);
+	       
+		 } if (component.get("v.selectedReputation")=='reputation2')
+		 {
+			 document.getElementById('reputation').style.backgroundColor = "orange";
+			 document.getElementById("reputation").innerHTML= 'high';
+			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         component.set("v.reputation" ,reputation);
+		 }
+		  if (component.get("v.selectedReputation")=='reputation3')
+		 {
+			 document.getElementById('reputation').style.backgroundColor = "yellow";
+			 document.getElementById("reputation").innerHTML= 'Medium';
+			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        component.set("v.reputation" ,reputation);
+		 }
+		 if(component.get("v.selectedReputation")=='reputation4')
+		 {
+		  document.getElementById('reputation').style.backgroundColor = "green";
+		  document.getElementById("reputation").innerHTML= 'Low';
+		  var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
+		  component.set("v.reputation" ,reputation);
+		
+		 }
+		 
+    
     },
      
     /**
@@ -427,6 +517,6 @@
 	        });
            evt.fire();
 		 }
-	},
+	}
 	
 })

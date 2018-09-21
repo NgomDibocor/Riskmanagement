@@ -436,12 +436,12 @@
           
           var newItemLow = component.get("v.businessImpLowData");
           newItemLow.orm_assessment__c = component.get("v.idAssessment");
-          newItemLow.orm_costProjectBudgetMin__c = component.get("v.costProjectMediumMin");
-          newItemLow.orm_costProjectBudgetMax__c = component.get("v.costProjectMediumMax");
-          newItemLow.orm_scheduleProjectBaselineMin__c = component.get("v.scheduleProjectMediumMin");
-          newItemLow.orm_scheduleProjectBaselineMax__c = component.get("v.scheduleProjectMediumMax");
-          newItemLow.orm_productionLossMin__c = component.get("v.ProductionLossMediumMin");
-          newItemLow.orm_productionLossMax__c = component.get("v.ProductionLossMediumMax");
+          newItemLow.orm_costProjectBudgetMin__c = component.get("v.costProjectLowMin");
+          newItemLow.orm_costProjectBudgetMax__c = component.get("v.costProjectLowMax");
+          newItemLow.orm_scheduleProjectBaselineMin__c = component.get("v.scheduleProjectLowMin");
+          newItemLow.orm_scheduleProjectBaselineMax__c = component.get("v.scheduleProjectLowMax");
+          newItemLow.orm_productionLossMin__c = component.get("v.ProductionLossLowMin");
+          newItemLow.orm_productionLossMax__c = component.get("v.ProductionLossLowMax");
           businessImpacts.push(newItemLow);
           
           var addBusinessImpactAction = component.get('c.addBusinessImpacts');
@@ -491,53 +491,23 @@
    },
    
    cancelUpdateBusinessImpact : function(component, event, helper) {
-       
        component.set("v.showBtnUpdate", false);
-       if(component.get("v.businessImpacts").length > 0){
-				        	
-			 for (var i = 0; i < component.get("v.businessImpacts").length; i++) {
-			        	       
-                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'VeryHigh' ){
-                         component.set("v.businessImpVeryHighData", component.get("v.businessImpacts")[i]);
-                         
-                         component.set("v.costProjectVeryHighMin", component.get("v.businessImpVeryHighData").orm_costProjectBudgetMin__c );
-                         component.set("v.costProjectVeryHighMax", component.get("v.businessImpVeryHighData").orm_costProjectBudgetMax__c );
-                         component.set("v.scheduleProjectVeryHighMin", component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMin__c );
-                         component.set("v.scheduleProjectVeryHighMax", component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMax__c );
-                      
-                      }
-                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'High' ){
-                         component.set("v.businessImpHighData", component.get("v.businessImpacts")[i]);
-                         
-                         component.set("v.costProjectHighMin", component.get("v.businessImpHighData").orm_costProjectBudgetMin__c );
-                         component.set("v.costProjectHighMax", component.get("v.businessImpHighData").orm_costProjectBudgetMax__c );
-                         component.set("v.scheduleProjectHighMin", component.get("v.businessImpHighData").orm_scheduleProjectBaselineMin__c );
-                         component.set("v.scheduleProjectHighMax", component.get("v.businessImpHighData").orm_scheduleProjectBaselineMax__c );
-                         component.set("v.ProductionLossHighMin", component.get("v.businessImpHighData").orm_productionLossMin__c );
-                         component.set("v.ProductionLossHighMax", component.get("v.businessImpHighData").orm_productionLossMax__c );
-                      }
-                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Medium' ){
-                         component.set("v.businessImpMediumData", component.get("v.businessImpacts")[i]);
-                         
-                         component.set("v.costProjectMediumMin", component.get("v.businessImpMediumData").orm_costProjectBudgetMin__c );
-                         component.set("v.costProjectMediumMax", component.get("v.businessImpMediumData").orm_costProjectBudgetMax__c );
-                         component.set("v.scheduleProjectMediumMin", component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMin__c );
-                         component.set("v.scheduleProjectMediumMax", component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMax__c );
-                         component.set("v.ProductionLossMediumMin", component.get("v.businessImpMediumData").orm_productionLossMin__c );
-                         component.set("v.ProductionLossMediumMax", component.get("v.businessImpMediumData").orm_productionLossMax__c );
-                      }
-                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Low' ){
-                         component.set("v.businessImpLowData", component.get("v.businessImpacts")[i]);
-                         
-                         component.set("v.costProjectLowMin", component.get("v.businessImpLowData").orm_costProjectBudgetMin__c );
-                         component.set("v.costProjectLowMax", component.get("v.businessImpLowData").orm_costProjectBudgetMax__c );
-                         component.set("v.scheduleProjectLowMin", component.get("v.businessImpLowData").orm_scheduleProjectBaselineMin__c );
-                         component.set("v.scheduleProjectLowMax", component.get("v.businessImpLowData").orm_scheduleProjectBaselineMax__c );
-                         component.set("v.ProductionLossLowMin", component.get("v.businessImpLowData").orm_productionLossMin__c );
-                         component.set("v.ProductionLossLowMax", component.get("v.businessImpLowData").orm_productionLossMax__c );
-                      }
-		       }
-		}
+       helper.cancelModifBusinessImpact(component, event, helper);
    },
    
+   onChangeVeryHighRepution : function(component, event, helper) {
+       component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeHighRepution : function(component, event, helper) {
+       component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeMediumRepution : function(component, event, helper) {
+       component.set("v.showBtnUpdate", true);
+   },
+   
+   onChangeLowRepution : function(component, event, helper) {
+       component.set("v.showBtnUpdate", true);
+   },
 })

@@ -433,7 +433,7 @@
 					                More then 26 weeks
 					         </td>
 					         <td class="tdBusinessImpactReputation">
-					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpVeryHighData.orm_reputation__c}" />
+					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpVeryHighData.orm_reputation__c}"  keyup="{!c.onChangeVeryHighRepution}" />
                              </td>
                              
 			           </tr>
@@ -458,7 +458,7 @@
 								    </div>
 					         </td>
 					         <td class="tdBusinessImpactReputation">
-					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.businessImpHighData.orm_reputation__c}" />
+					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.businessImpHighData.orm_reputation__c}" keyup="{!c.onChangeHighRepution}" />
 					         </td>
 			          </tr>
 			          <tr>
@@ -482,7 +482,7 @@
 								    </div>
 					         </td>
 			                 <td class="tdBusinessImpactReputation">
-			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpMediumData.orm_reputation__c}"  />
+			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpMediumData.orm_reputation__c}" keyup="{!c.onChangeMediumRepution}" />
 			                 </td>
 			          </tr>
 			          <tr>
@@ -506,7 +506,7 @@
 								    </div>
 					         </td>
 			                 <td class="tdBusinessImpactReputation">
-			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpLowData.orm_reputation__c}"  />
+			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpLowData.orm_reputation__c}" keyup="{!c.onChangeLowRepution}"  />
 			                 </td>
 			          </tr>
 		           </tbody>

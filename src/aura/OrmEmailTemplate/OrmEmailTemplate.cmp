@@ -18,6 +18,8 @@
 	<aura:attribute name="mailStatus" type="boolean" default="false" />
 
 	<aura:handler name="init" value="{!this}" action="{!c.loadComponent}" />
+		 <aura:registerEvent name="OrmRefreshContactWorkshopEvt"  type="c:OrmRefreshContactWorkshopEvt"/>
+	
 	 <aura:if isTrue="{!v.emailTemplate}">
 	<div role="dialog" tabindex="-1" aria-labelledby="prompt-heading-id"
 		aria-describedby="prompt-message-wrapper"

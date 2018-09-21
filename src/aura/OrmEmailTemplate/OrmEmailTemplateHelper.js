@@ -84,6 +84,7 @@
         }
     },
      sendEmails : function(component, event) {
+  
       var templateId = component.get("v.selTempl");
          console.log('sel template ', templateId);
       var subjMatter =component.find('subjMatter').get('v.value');    
@@ -95,16 +96,34 @@
 		action.setParams({
 			'mailcontacts' : contactIds,
 			'mSubject' : subjMatter,
-			'templateId' : templateId
+			'templateId' : templateId,
+			'workshop':component.get('v.workshop').Id
 		});
                                    action.setCallback(this,function(response){
                                    var state = response.getState();
                                    
 							if (state == "SUCCESS") {
-							//update listcontact
-							
-								//end update listcontact
-								var toast = $A.get('e.force:showToast');
+							//update listcontactworshop
+						var listcontactworkshop=response.getReturnValue();
+						listcontactworkshop.forEach(function(contactworkshopItem) {
+						contactworkshopItem.orm_notification__c = true;
+						var updatecontactworkshop = component
+																	.get('c.updateContactWorkshop');
+															updatecontactworkshop
+																	.setParams({
+																		"item" : contactworkshopItem
+																	});
+															updatecontactworkshop
+																	.setCallback(
+																			this,
+																			function(
+																					respUpdate) {
+																				var state = respUpdate
+																						.getState();
+																				if (state === "SUCCESS") {
+																					
+																					//fire toast
+																					var toast = $A.get('e.force:showToast');
             toast.setParams({
             	'message' : 'send mail success',
                 'type' : 'success',
@@ -112,6 +131,22 @@
             });      
             toast.fire();
               component.set("v.emailTemplate", false);
+																					//fire event for refresh list contact
+																					var evt = $A.get("e.c:OrmRefreshContactWorkshopEvt");
+			evt.setParams({
+			   "Workshop" : component.get("v.workshop")
+			});
+			evt.fire();
+																				} else if (state === "ERROR") {
+																					
+																				}
+																			});
+															$A
+																	.enqueueAction(updatecontactworkshop);
+						});
+					
+								//end update listcontact
+								
 							}else if(state== "ERROR"){
 							 let
 					errors = response.getError();
@@ -128,4 +163,5 @@
                                     $A.enqueueAction(action);
       }
      }
+     
 })

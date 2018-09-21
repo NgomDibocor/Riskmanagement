@@ -64,6 +64,9 @@
         }
         
         if(showContextWorkshop == true){
+           var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	       evtShowSpinner.fire();
+        
             component.set("v.showContextWorkshop", false);
             component.set("v.showSlider", true);
             helper.activeSlider(component, event);
@@ -164,8 +167,9 @@
         }
         if(showRiskIdentif == true){
             //Hide the Spinner
-	        var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-	        evtSpinner.fire(); 
+	        var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	        evtShowSpinner.fire();
+	        
             component.set("v.showSlider", true);
             component.set("v.showRiskIdentif", false);
             helper.activeSlider(component, event);

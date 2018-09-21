@@ -22,6 +22,7 @@
 	<!-- handlers-->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactCreatedEvt" action="{!c.refreshContact}" />
+	<aura:handler event="c:OrmRefreshContactWorkshopEvt" action="{!c.refreshContact}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 	<!--  start modal participants-->
@@ -119,7 +120,7 @@
 	<!-- 	start email template -->
 	<aura:if isTrue="{!v.emailTemplate}">
 		<c:OrmEmailTemplate emailTemplate="{!v.emailTemplate}"
-			contactListSelected="{!v.contactListSelected}" />
+			contactListSelected="{!v.contactListSelected}" workshop="{!v.workshop}"/>
 	</aura:if>
 	<!-- end email template -->
 <c:OrmContactNewCmp/>

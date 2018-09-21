@@ -6,25 +6,29 @@
     
     <!-- Objects prababilities -->
     <aura:attribute name="probableData" type="Macro" default="{ 'sobjectType' : 'Macro',
-																  'orm_probability__c' : '',
+																  'Name' : 'XXXX',
+																  'orm_probability__c' : 'Probable',
 																  'orm_pourcentageMin__c' : '',
 																  'orm_pourcentageMax__c' : ''
 																}"/>
 																
    <aura:attribute name="possibleData" type="Macro" default="{ 'sobjectType' : 'Macro',
-															  'orm_probability__c' : '',
+															  'Name' : 'XXXX',
+															  'orm_probability__c' : 'Possible',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
 														   }"/>
 														   
     <aura:attribute name="unlikelyData" type="Macro" default="{ 'sobjectType' : 'Macro',
-															  'orm_probability__c' : '',
+															  'Name' : 'XXXX',
+															  'orm_probability__c' : 'Unlikely',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
 														   }"/>
 														   
     <aura:attribute name="RareData" type="Macro" default="{ 'sobjectType' : 'Macro',
-															  'orm_probability__c' : '',
+															  'Name' : 'XXXX',
+															  'orm_probability__c' : 'Rare',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
 														   }"/>	
@@ -33,8 +37,9 @@
     <!-- end Objects prababilities --> 
     
     <!-- Objects Business Impacts -->
-    <aura:attribute name="veryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
-																  'orm_rating__c' : '',
+    <aura:attribute name="businessImpVeryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+                                                                  'Name' : 'XXXX',
+																  'orm_rating__c' : 'VeryHigh',
 																  'orm_costProjectBudgetMin__c' : '',
 																  'orm_costProjectBudgetMax__c' : '',
 																  'orm_scheduleProjectBaselineMin__c' : '',
@@ -42,8 +47,9 @@
 																  'orm_reputation__c' : 'Severe Damage'
 																}"/>
 	
-	<aura:attribute name="highData" type="Macro" default="{ 'sobjectType' : 'Macro',
-																  'orm_rating__c' : '',
+	<aura:attribute name="businessImpHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'High',
 																  'orm_costProjectBudgetMin__c' : '',
 																  'orm_costProjectBudgetMax__c' : '',
 																  'orm_scheduleProjectBaselineMin__c' : '',
@@ -53,8 +59,9 @@
 																  'orm_reputation__c' : 'Long Term Damage'
 																}"/>
 							
-	<aura:attribute name="mediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
-																  'orm_rating__c' : '',
+	<aura:attribute name="businessImpMediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'Medium',
 																  'orm_costProjectBudgetMin__c' : '',
 																  'orm_costProjectBudgetMax__c' : '',
 																  'orm_scheduleProjectBaselineMin__c' : '',
@@ -64,8 +71,9 @@
 																  'orm_reputation__c' : 'Medium Term Damage'
 																}"/>	
 																
-	<aura:attribute name="lowData" type="Macro" default="{ 'sobjectType' : 'Macro',
-																  'orm_rating__c' : '',
+	<aura:attribute name="businessImpLowData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																  'Name' : 'XXXX',
+																  'orm_rating__c' : 'Low',
 																  'orm_costProjectBudgetMin__c' : '',
 																  'orm_costProjectBudgetMax__c' : '',
 																  'orm_scheduleProjectBaselineMin__c' : '',
@@ -425,7 +433,7 @@
 					                More then 26 weeks
 					         </td>
 					         <td class="tdBusinessImpactReputation">
-					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpVeryHighData.orm_reputation__c}" />
                              </td>
                              
 			           </tr>
@@ -450,7 +458,7 @@
 								    </div>
 					         </td>
 					         <td class="tdBusinessImpactReputation">
-					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="" change="" />
+					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.businessImpHighData.orm_reputation__c}" />
 					         </td>
 			          </tr>
 			          <tr>
@@ -474,7 +482,7 @@
 								    </div>
 					         </td>
 			                 <td class="tdBusinessImpactReputation">
-			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpMediumData.orm_reputation__c}"  />
 			                 </td>
 			          </tr>
 			          <tr>
@@ -498,7 +506,7 @@
 								    </div>
 					         </td>
 			                 <td class="tdBusinessImpactReputation">
-			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="" change="" />
+			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpLowData.orm_reputation__c}"  />
 			                 </td>
 			          </tr>
 		           </tbody>

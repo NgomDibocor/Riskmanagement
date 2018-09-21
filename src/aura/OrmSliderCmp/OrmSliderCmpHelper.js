@@ -172,6 +172,10 @@
 		   }
 			
 		})); 
+		
+		//Hide the Spinner
+        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+        evtHideSpinner.fire();
     },
     
     jsLoaded2 : function(component, event, helper) {
@@ -409,6 +413,9 @@
 		})); 
 		//--------------end Production--------------------
         
+        //Hide the Spinner
+        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+        evtHideSpinner.fire();
     },
     
     cancelModifProbabiliy : function(component, event, helper){

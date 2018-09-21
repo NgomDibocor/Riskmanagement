@@ -103,4 +103,17 @@ public with sharing class OrmSliderController {
                           RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];                               
     }
     
+    @AuraEnabled 
+    public static void deleteBI(String assessment)
+    {
+         List<Macro> listBI = [SELECT Id
+			                  From Macro 
+			                  WHERE   orm_assessment__c =:assessment 
+			                       and 
+			                          RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];     
+                  System.debug('size before delete: '+listBI.size());
+                  
+                  delete listBI;                         
+    }
+    
 }

@@ -60,13 +60,26 @@
        var showRiskOccurrence = component.get("v.showRiskOccurrence");
        
        if(showProbilityRanking == true){
-           component.set("v.showBtnSave", false);
+           //component.set("v.showBtnSave", false);
            component.set("v.showBusinessImpactsRanking", true);
 	       component.set("v.showProbilityRanking", false);
 	       document.getElementById("bir").style.display = "block";
            document.getElementById("probility").style.display = "none";
            
 	       if(!document.getElementById("sliderCostProjectVeryHigh").classList.contains("noUi-target")){
+	            
+	            var deleteBusinessImpacts = component.get('c.deleteBI');
+		      deleteBusinessImpacts.setParams({ "assessment": component.get("v.idAssessment") });
+		      deleteBusinessImpacts.setCallback(this, function(response) {
+			        if(response.getState() == 'SUCCESS'){
+			        
+			        	
+			        } else {
+			        	alert("ERROR")	
+			        }
+		      });
+		      $A.enqueueAction(deleteBusinessImpacts); 
+	            
 	       
 	            var actionGetBusinessImpacts = component.get('c.findBusinessImpactsByAssessment');
 	            actionGetBusinessImpacts.setParams({ "assessment": component.get("v.idAssessment") });
@@ -74,6 +87,8 @@
 				        if(response.getState() == 'SUCCESS'){
 				        
 				        	component.set("v.businessImpacts", response.getReturnValue());
+				        	console.log('*******Size business impact********')
+				        	console.log(response.getReturnValue().length);
 				        	if(component.get("v.businessImpacts").length > 0){
 				        	
 			        	       for (var i = 0; i < component.get("v.businessImpacts").length; i++) {
@@ -133,7 +148,7 @@
        }
        
        if(showBusinessImpactsRanking == true){
-           component.set("v.showBtnSave", false);
+           //component.set("v.showBtnSave", false);
 	       component.set("v.showBusinessImpactsRanking", false);
            component.set("v.showHsseImpactsRanking", true);
            
@@ -144,7 +159,7 @@
        }
        
        if(showHsseImpactsRanking == true){
-           component.set("v.showBtnSave", false);
+           //component.set("v.showBtnSave", false);
 	       component.set("v.showHsseImpactsRanking", false);
            component.set("v.showRiskOccurrence", true);
            
@@ -172,7 +187,7 @@
        } 
        
        if(showHsseImpactsRanking == true){
-           component.set("v.showBtnSave", false);
+          // component.set("v.showBtnSave", false);
            component.set("v.showBusinessImpactsRanking", true);
 	       component.set("v.showHsseImpactsRanking", false);
 	       
@@ -181,7 +196,7 @@
        }
        
        if(showRiskOccurrence == true){
-           component.set("v.showBtnSave", false);
+           //component.set("v.showBtnSave", false);
            component.set("v.showHsseImpactsRanking", true);
 	       component.set("v.showRiskOccurrence", false);
 	       
@@ -309,24 +324,27 @@
 		            component.set("v.showBtnUpdate", false);
 		        	component.set("v.hsseImpacts", response.getReturnValue());
 					
-					for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
+					if(component.get("v.hsseImpacts").length > 0){
+					   for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
 					
-	                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
-	                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
-	                      }
-	                      
-	                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
-	                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
-	                      }
-	                      
-	                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
-	                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
-	                      }
-	                      
-	                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
-	                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
-	                      }
-                    }
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
+		                         component.set("v.hsseVeryHighData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'High' ){
+		                         component.set("v.hsseHighData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Medium' ){
+		                         component.set("v.hsseMediumData", component.get("v.hsseImpacts")[i]);
+		                      }
+		                      
+		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'Low' ){
+		                         component.set("v.hsseLowData", component.get("v.hsseImpacts")[i]);
+		                      }
+	                    }
+					}
+					
                     //Hide the Spinner
 	                var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
 		            evtHideSpinner.fire(); 
@@ -444,7 +462,8 @@
 	        if(response.getState() == 'SUCCESS'){
 	            //component.set("v.showBtnUpdate", false);
 	        	component.set("v.businessImpacts", response.getReturnValue());
-	        	
+	        	console.log('******after create business impact********')
+	        	console.log(response.getReturnValue().length)
 	        	if(component.get("v.businessImpacts").length > 0){
 		        	
 	        	         for (var i = 0; i < component.get("v.businessImpacts").length; i++) {

@@ -82,6 +82,14 @@
                                                                 component.find("status").set("v.value", component.get('v.assessmentRiskData').orm_status__c);
                                                                 component.find("vulnerability").set("v.value", component.get('v.assessmentRiskData').orm_vulnerability__c);
                                                                 var sliderValue = component.get("v.assessmentRiskData").orm_probability__c;
+                                                                if(sliderValue==null)
+                                                                {
+                                                                	document.getElementById("divColor").style.color = "green";
+                                                                	component.set("v.disabledSlider",true);
+                                                                	document.getElementById("divColor").innerHTML = 'null probability';
+                                                                }
+                                                                else
+                                                                {
                                                                 if (sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")) {
                                                                     document.getElementById("divColor").style.backgroundColor = "green";
                                                                     document.getElementById("divColor").innerHTML = component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
@@ -94,7 +102,7 @@
                                                                 } else {
                                                                     document.getElementById("divColor").style.backgroundColor = "red";
                                                                     document.getElementById("divColor").innerHTML = component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
-                                                                }
+                                                                }}
 
                                                                 	this.getSliderDefault(component, event);
                                                                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
@@ -209,7 +217,8 @@
         $A.enqueueAction(action);
     },
     getSliderDefault: function(component, event, helper) {
-
+    	if(component.get("v.hsseImpacts").length == 0){
+    	}else{
         var r0 = component.find("r0").get("v.value");
         var r1 = component.find("r1").get("v.value");
         var r2 = component.find("r2").get("v.value");
@@ -278,6 +287,7 @@
 		 if(component.get('v.assessmentRiskData').orm_environmentAndCommunity__c == rrr3){
 			  document.getElementById('environment').style.backgroundColor = "green";
 			  document.getElementById("environment").innerHTML= 'Low';
+		 }
 		 }
     }
 

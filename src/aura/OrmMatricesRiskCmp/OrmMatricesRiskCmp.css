@@ -61,3 +61,15 @@
      border-top: none !important ;  
      border-bottom: none !important ; 
 }
+.THIS .yellowColor{
+	background-color: yellow;
+}
+.THIS .orangeColor{
+	background-color: #FF8C00;
+}
+.THIS .redColor{
+	background-color: red;
+}
+.THIS .greenColor{
+	background-color: green;
+}

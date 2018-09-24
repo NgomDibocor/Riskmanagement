@@ -2,37 +2,41 @@
 	
 	
 	
+		 <div style="width:60%;margin:auto;margin-top:30px;margin-bottom:30px">
+		 
+			    <table>
+			      <tr><td rowspan="6" width="50"><span class="monTexte">Probability</span></td></tr>
+			      <tr>
+			        <td style="background-color: yellow;" height="100"></td>
+			        <td style="background-color: #FF8C00;" height="100"></td>
+			        <td style="background-color: red;" height="100"></td>
+			        <td style="background-color: red;" height="100"></td>
+			      </tr>
+			      <tr>
+			        <td style="background-color: green;" height="100"></td>
+			        <td style="background-color: yellow;" height="100"></td>
+			        <td style="background-color: #FF8C00;" height="100"></td>
+			        <td style="background-color: red;" height="100"></td>
+			      </tr>
+			      <tr>
+			        <td style="background-color: green;" height="100"></td>
+			        <td style="background-color: yellow;" height="100"></td>
+			        <td style="background-color: yellow;" height="100"></td>
+			        <td style="background-color: #FF8C00;" height="100"></td>
+			      </tr>
+			      <tr>
+			        <td style="background-color: green;" height="100"></td>
+			        <td style="background-color: green;" height="100"></td>
+			        <td style="background-color: green;" height="100"></td>
+			        <td style="background-color: yellow;" height="100"></td>
+			      </tr>
+			      <tr><td colspan="5" style="text-align: center;">Impact</td></tr>
+			    </table>  
+			    
+			</div>
 	
-	<div style="width:60%;margin:auto;margin-top:30px;margin-bottom:30px">
-	    <table>
-	      <tr>
-	        <td style="background-color: yellow;" height="100"></td>
-	        <td style="background-color: #FF8C00;" height="100"></td>
-	        <td style="background-color: red;" height="100"></td>
-	        <td style="background-color: red;" height="100"></td>
-	      </tr>
-	      <tr>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: yellow;" height="100"></td>
-	        <td style="background-color: #FF8C00;" height="100"></td>
-	        <td style="background-color: red;" height="100"></td>
-	      </tr>
-	      <tr>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: yellow;" height="100"></td>
-	        <td style="background-color: yellow;" height="100"></td>
-	        <td style="background-color: #FF8C00;" height="100"></td>
-	      </tr>
-	      <tr>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: yellow;" height="100"></td>
-	      </tr>
-	    </table>  
-	    <div class="monTexte">Probability</div>
-	</div>
-	<div style="width:90%;margin:auto;margin-top:50px;margin-bottom:30px">
+	
+	<!--<div style="width:90%;margin:auto;margin-top:50px;margin-bottom:30px">
 	     <table>
 	     <thead>
 		      <tr height="80">
@@ -78,6 +82,6 @@
 	           </td>
 	      </tr>	  	      
 	    </table>  
-	</div>
+	</div>  -->
 	
 </aura:component>

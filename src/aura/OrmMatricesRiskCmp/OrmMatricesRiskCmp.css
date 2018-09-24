@@ -33,6 +33,10 @@
 	text-align: center;
 }
 .THIS .monTexte {
-  writing-mode: vertical-rl;
-  text-orientation: sideways;
+      display:flex;
+      writing-mode: vertical-lr;
+      min-height: 10em;
+      vertical-align: middle;
+      line-height: 2em;
+      justify-content:center;
 }

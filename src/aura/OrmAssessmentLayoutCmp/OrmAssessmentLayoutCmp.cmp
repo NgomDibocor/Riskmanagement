@@ -1366,6 +1366,11 @@
                           <c:OrmImpactListCmp />
                        </td>
                     </tr>
+                    <tr>
+                       <td class="textInDivCmp">
+                          <c:OrmPhaseAssessmentRiskListCmp />
+                       </td>
+                    </tr>
                 </aura:if>
                  
                 <aura:if isTrue="{!v.showListMeasure}"> 

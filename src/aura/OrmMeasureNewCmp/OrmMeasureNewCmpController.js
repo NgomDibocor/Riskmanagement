@@ -22,6 +22,8 @@
 	   var name = component.find('name').get('v.value');
        var description = component.find('description').get('v.value');
        var measureCategorie  = component.find('measureCategorie').get('v.value');
+       console.log('**********ds create measure*******')
+       console.log(measureCategorie)
        
        /* we test the validity of data */
         var isItemsValid = true;

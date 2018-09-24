@@ -2,13 +2,37 @@
 }
 .THIS table {
     border-collapse: collapse;
-    border: 1px solid white;
 }
 
 .THIS th {
-    border: 1px solid white;
+	background-clip: padding-box;
+    border: 3px solid black;
 }
 
 .THIS td {
-    border: 1px solid white;
+	background-clip: padding-box;
+    border: 3px solid black;
+}
+.THIS .tdRanking{
+	width: 15%;
+	font-weight: 600;
+    font-size: 1.2em;
+	text-align: center;
+}
+.THIS .tdDefinition{
+	width: 85%;
+	font-weight: 600;
+    font-size: 1em;
+	white-space: normal !important;
+	text-align: justify;
+    text-justify: inter-word;
+}
+.THIS .textCenter{
+	font-weight: 600;
+    font-size: 1.5em;
+	text-align: center;
+}
+.THIS .monTexte {
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
 }

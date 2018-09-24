@@ -139,7 +139,7 @@
     <aura:attribute name="showBusinessImpactsRanking" type="boolean" default="false"/>
     <aura:attribute name="showRiskOccurrence" type="boolean" default="false"/>
     
-    <aura:attribute name="showBtnSave" type="boolean" default="true"/>
+    <aura:attribute name="showBtnSave" type="boolean" default="false"/>
     <aura:attribute name="showBtnUpdate" type="boolean" default="false"/>
     
     <!-- Proba attributes -->
@@ -223,8 +223,12 @@
         <div class="slds-col" style="margin-bottom: 20px">
 		        <span class="spaceSlider"></span>									
 			    <span class="btnPrev" onclick="{!c.PrevPage}">
-			        <aura:if isTrue="{!v.showBusinessImpactsRanking}">
-					   <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					    <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					       <aura:if isTrue="{!v.showBtnUpdate == false}">
+				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+			               </aura:if>
+			            </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showHsseImpactsRanking}">
 					    <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
@@ -247,7 +251,11 @@
 					   </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
-					  <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					  <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
+					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					       </aura:if>
+					   </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showHsseImpactsRanking}">
 					    <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
@@ -615,5 +623,137 @@
 			           </tr>
 		         </table> 
          </div>
+         
+         <div class="slds-col" style="margin-bottom: 20px">
+		        <span class="spaceSlider"></span>									
+			    <span class="btnPrev" onclick="{!c.PrevPage}">
+					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					    <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					       <aura:if isTrue="{!v.showBtnUpdate == false}">
+				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+			               </aura:if>
+			            </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showHsseImpactsRanking}">
+					    <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
+					       <aura:if isTrue="{!v.showBtnUpdate == false}">
+				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+			               </aura:if>
+			            </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showRiskOccurrence}">
+					   <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+					</aura:if>
+		        </span>
+				<span class="spacebetween"></span>
+				<span class="btnNext" onclick="{!c.nextPage}">
+		        	<aura:if isTrue="{!v.showProbilityRanking}">
+		        	   <aura:if isTrue="{!not(empty(v.probabilities))}">
+		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
+					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					       </aura:if>
+					   </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					  <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
+					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					       </aura:if>
+					   </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showHsseImpactsRanking}">
+					    <lightning:button label="Next" disabled="{!v.showHsseImpactsRanking == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					</aura:if>
+					<aura:if isTrue="{!v.showRiskOccurrence}">
+					   <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					</aura:if>
+		        </span>
+		        <span class="spacebetweenSave"></span>
+		        <span class="btnSave">
+					<aura:if isTrue="{!v.showProbilityRanking}">
+					           <aura:if isTrue="{!not(empty(v.probabilities))}">
+					                  <aura:if isTrue="{!v.showBtnUpdate}">
+					                      <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateProbility}"/>
+						                      <lightning:button label="update"
+						                                       variant="neutral"
+						                                       class="slds-button slds-button_brand"
+						                                       onclick="{!c.createProbilityRanking}"/>
+					                      </lightning:buttonGroup>
+					                   </aura:if>
+					              <aura:set attribute="else">
+					                   <aura:if isTrue="{!v.showBtnSave}">
+						                  <lightning:buttonGroup class="slds-m-around_medium">
+							                      <!--<lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>  -->
+							                      <lightning:button label="{!$Label.c.orm_save_button}"
+							                                       variant="neutral"
+							                                       class="slds-button slds-button_success"
+							                                       onclick="{!c.createProbilityRanking}"/>
+						                  </lightning:buttonGroup>
+						               </aura:if>
+					              </aura:set>
+					           </aura:if>
+					               
+					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					         <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					                  <aura:if isTrue="{!v.showBtnUpdate}">
+					                      <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateBusinessImpact}"/>
+						                      <lightning:button label="update"
+						                                       variant="neutral"
+						                                       class="slds-button slds-button_brand"
+						                                       onclick="{!c.createBusinessImpactsRanking}"/>
+					                      </lightning:buttonGroup>
+					                   </aura:if>
+					              <aura:set attribute="else">
+					                   <aura:if isTrue="{!v.showBtnSave}">
+						                  <lightning:buttonGroup class="slds-m-around_medium">
+							                      <!--<lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>  -->
+							                      <lightning:button label="{!$Label.c.orm_save_button}"
+							                                       variant="neutral"
+							                                       class="slds-button slds-button_success"
+							                                       onclick="{!c.createBusinessImpactsRanking}"/>
+						                  </lightning:buttonGroup>
+						               </aura:if>
+					            </aura:set>
+					         </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showHsseImpactsRanking}">
+					       <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
+					                  <aura:if isTrue="{!v.showBtnUpdate}">
+					                      <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateHsseImpact}"/>
+						                      <lightning:button label="update"
+						                                       variant="neutral"
+						                                       class="slds-button slds-button_brand"
+						                                       onclick="{!c.createHsseImpactsRanking}"/>
+					                      </lightning:buttonGroup>
+					                   </aura:if>
+					              <aura:set attribute="else">
+					                   <aura:if isTrue="{!v.showBtnSave}">
+						                  <lightning:buttonGroup class="slds-m-around_medium">
+							                      <!--<lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>  -->
+							                      <lightning:button label="{!$Label.c.orm_save_button}"
+							                                       variant="neutral"
+							                                       class="slds-button slds-button_success"
+							                                       onclick="{!c.createHsseImpactsRanking}"/>
+						                  </lightning:buttonGroup>
+						               </aura:if>
+					             </aura:set>
+					       </aura:if>
+					</aura:if>
+				</span>
+				<span class="spaceSliderEnd">
+				   <!--<aura:if isTrue="{!v.showHsseImpactsRanking}">
+					    <aura:if isTrue="{!v.showBtnUpdate == false}">
+					          already saved
+					        <aura:set attribute="else">
+					          not yet saved
+					        </aura:set>
+				        </aura:if>
+				   </aura:if>  -->
+				</span>	
+		</div>
 		
 </aura:component>

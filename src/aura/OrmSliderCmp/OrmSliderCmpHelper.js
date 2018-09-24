@@ -265,6 +265,7 @@
           
         sliderCostProjectMedium.noUiSlider.on('change', $A.getCallback(function(range) {
             component.set("v.showBtnUpdate", true);
+            document.documentElement.scrollTop = 0; 
 		    component.set("v.costProjectMediumMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.costProjectMediumMax", parseInt(range[1].replace('%', ''), 10))
 	        component.set("v.costProjectHighMin", component.get("v.costProjectMediumMax"));
@@ -281,6 +282,7 @@
         
         sliderScheduleProjectMedium.noUiSlider.on('change', $A.getCallback(function(range) {
             component.set("v.showBtnUpdate", true);
+            document.documentElement.scrollTop = 0; 
 		    component.set("v.scheduleProjectMediumMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.scheduleProjectMediumMax", parseInt(range[1].replace('%', ''), 10))
 	        component.set("v.scheduleProjectHighMin", component.get("v.scheduleProjectMediumMax"));
@@ -297,6 +299,7 @@
           
         sliderProductionMedium.noUiSlider.on('change', $A.getCallback(function(range) {
             component.set("v.showBtnUpdate", true);
+            document.documentElement.scrollTop = 0; 
 		    component.set("v.ProductionLossMediumMin", parseInt(range[0].replace('weeks', ''), 10)) 
 	        component.set("v.ProductionLossMediumMax", parseInt(range[1].replace('weeks', ''), 10))
 	        component.set("v.ProductionLossHighMin", component.get("v.ProductionLossMediumMax"))
@@ -313,6 +316,7 @@
           
         sliderCostProjectLow.noUiSlider.on('change', $A.getCallback(function(range) {
             component.set("v.showBtnUpdate", true);
+            document.documentElement.scrollTop = 0; 
 		    component.set("v.costProjectLowMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.costProjectLowMax", parseInt(range[1].replace('%', ''), 10))
 	        component.set("v.costProjectMediumMin", component.get("v.costProjectLowMax"));
@@ -328,6 +332,7 @@
           
         sliderScheduleProjectLow.noUiSlider.on('change', $A.getCallback(function(range) {
             component.set("v.showBtnUpdate", true);
+            document.documentElement.scrollTop = 0; 
 		    component.set("v.scheduleProjectLowMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.scheduleProjectLowMax", parseInt(range[1].replace('%', ''), 10))
 	        component.set("v.scheduleProjectMediumMin", component.get("v.scheduleProjectLowMax"));
@@ -343,6 +348,7 @@
           
         sliderProductionLow.noUiSlider.on('change', $A.getCallback(function(range) {
             component.set("v.showBtnUpdate", true);
+            document.documentElement.scrollTop = 0; 
 		    component.set("v.ProductionLossLowMin", parseInt(range[0].replace('weeks', ''), 10)) 
 	        component.set("v.ProductionLossLowMax", parseInt(range[1].replace('weeks', ''), 10))
 	        component.set("v.ProductionLossMediumMin", component.get("v.ProductionLossLowMax"));
@@ -618,7 +624,8 @@
 	                    }
 	                    
 	        	  }else{
-	        	  
+	        	      component.set("v.showBtnSave", true);
+	        	      
 	        	      var newItemHsseVeryHigh = component.get("v.hsseVeryHighData");
 	        	      newItemHsseVeryHigh.orm_healthAndSafety__c = "Fatality";
 	        	      newItemHsseVeryHigh.orm_security__c = "Security breach with major property damage and loss";

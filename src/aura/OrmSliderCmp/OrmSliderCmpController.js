@@ -12,7 +12,7 @@
 		        
 		        	component.set("v.probabilities", response.getReturnValue());
 		        	if(component.get("v.probabilities").length > 0){
-	        	   
+	        	       
 	                   for (var i = 0; i < component.get("v.probabilities").length; i++) {
 		                      if(component.get("v.probabilities")[i].orm_probability__c == 'Probable' ){
 		                         component.set("v.probableData", component.get("v.probabilities")[i]);
@@ -38,6 +38,8 @@
 		                         component.set("v.rareMax", component.get("v.RareData").orm_pourcentageMax__c);
 		                      }
 		                   }
+			        	}else{
+			        	   component.set("v.showBtnSave", true);
 			        	}	
 		        	
 		        	helper.jsLoaded(component, event, helper);
@@ -121,7 +123,10 @@
 			                         component.set("v.ProductionLossLowMax", component.get("v.businessImpLowData").orm_productionLossMax__c );
 			                      }
 		                        }
-					        }	
+					        }else{
+					        
+				        	   component.set("v.showBtnSave", true);
+				        	}	
 				        	
 				        	helper.jsLoaded2(component, event, helper);
 				        	
@@ -313,6 +318,7 @@
 		        	component.set("v.hsseImpacts", response.getReturnValue());
 					
 					if(component.get("v.hsseImpacts").length > 0){
+					   
 					   for (var i = 0; i < component.get("v.hsseImpacts").length; i++) {
 					
 		                      if(component.get("v.hsseImpacts")[i].orm_rating__c == 'VeryHigh' ){
@@ -497,6 +503,7 @@
    
    onChangeVeryHighRepution : function(component, event, helper) {
        component.set("v.showBtnUpdate", true);
+       
    },
    
    onChangeHighRepution : function(component, event, helper) {

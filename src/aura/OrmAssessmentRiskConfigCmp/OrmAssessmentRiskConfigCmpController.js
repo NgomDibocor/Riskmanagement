@@ -96,18 +96,6 @@
      
         component.set("v.displaySaveCancelBtn", true);
     },
-   
-      
-    onEnvironmentAndCommunity : function(component, event, helper)
-    {
-    	  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-           component.set("v.displaySaveCancelBtn",true);
-	},
 	 onFrequency : function(component, event, helper)
     {
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
@@ -129,47 +117,7 @@
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
 	},
-	 
-    onReputation: function(component, event, helper)
-    {
-    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);	
-	},
-	onCost: function(component, event, helper)
-    {
-		 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-	},
-	onHealthAndSafety: function(component, event, helper)
-    {
-		 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-	},
-    onSecurity : function(component, event, helper)
-    {
-    	var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-	},
+	
     onVulnerability: function(component, event, helper)
     {
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
@@ -191,28 +139,6 @@
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
     	component.find("status").set("v.value", event.getSource().get("v.value"));
-	},
-    onSchedule : function(component, event, helper)
-    {
-    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-    	component.find("schedule").set("v.value", event.getSource().get("v.value"));
-	},
-    onProductionLoss:  function(component, event, helper)
-    {
-    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-    	component.find("productionLoss").set("v.value", event.getSource().get("v.value"));
 	},
     onManageAbility : function(component, event, helper)
     {
@@ -244,16 +170,16 @@
 	    var sliderValue = component.find("slider1").get("v.value");
 	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
 		    document.getElementById("divColor").style.backgroundColor = "green";
-		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c");
+		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
 	    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
 		    document.getElementById("divColor").style.backgroundColor = "yellow";
-		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c");
+		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
 	    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
 		    document.getElementById("divColor").style.backgroundColor = "orange";
-		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c");
+		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
 	    }else{
 		    document.getElementById("divColor").style.backgroundColor = "red";
-		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c");
+		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
 	    }
     },
      handleRangeChangeCost : function(component, event, helper) { 

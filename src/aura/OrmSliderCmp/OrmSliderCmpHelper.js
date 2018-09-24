@@ -143,7 +143,7 @@
 		      sliderUnlikely.noUiSlider.set([null, component.get("v.possibleMax")]);
 		   }
 			
-		}));
+		})); 
         
         //start sliderRare
         var sliderRare = component.find('sliderRare').getElement();
@@ -179,9 +179,7 @@
     },
     
     jsLoaded2 : function(component, event, helper) {
-	    
-	    //this.getBusinessImpacts(component, event, helper);
-	    
+	    	    
         var sliderCostProjectVeryHigh = component.find('sliderCostProjectVeryHigh').getElement();
         if(component.get("v.businessImpacts").length == 0){
             sliderCostProjectVeryHigh = this.createSlider(component, event, helper, sliderCostProjectVeryHigh, 60, 100);
@@ -194,7 +192,7 @@
 		    component.set("v.showBtnUpdate", true);
 		    component.set("v.costProjectVeryHighMin", parseInt(range[0].replace('%', ''), 10))
 		    component.set("v.costProjectHighMax", parseInt(range[0].replace('%', ''), 10))
-        }));
+        }));  
         
         var sliderScheduleProjectVeryHigh = component.find('sliderScheduleProjectVeryHigh').getElement();
         if(component.get("v.businessImpacts").length == 0){
@@ -533,18 +531,18 @@
     cancelModifBusinessImpact : function(component, event, helper){
     
         if(component.get("v.businessImpacts").length > 0){
-				        	
+		console.log(JSON.stringify(component.get("v.businessImpacts")));
 			 for (var i = 0; i < component.get("v.businessImpacts").length; i++) {
-			        	       
+			        	        
                       if(component.get("v.businessImpacts")[i].orm_rating__c == 'VeryHigh' ){
                          component.set("v.businessImpVeryHighData", component.get("v.businessImpacts")[i]);
-                         
+                          
                          var sliderCostProjectVeryHigh = component.find('sliderCostProjectVeryHigh').getElement();
                          sliderCostProjectVeryHigh.noUiSlider.set([component.get("v.businessImpVeryHighData").orm_costProjectBudgetMin__c, null]);
                          
                          var sliderScheduleProjectVeryHigh = component.find('sliderScheduleProjectVeryHigh').getElement();
                          sliderScheduleProjectVeryHigh.noUiSlider.set([component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMin__c, component.get("v.businessImpVeryHighData").orm_scheduleProjectBaselineMax__c]);
-                         
+                           
                       }
                       if(component.get("v.businessImpacts")[i].orm_rating__c == 'High' ){
                          component.set("v.businessImpHighData", component.get("v.businessImpacts")[i]);

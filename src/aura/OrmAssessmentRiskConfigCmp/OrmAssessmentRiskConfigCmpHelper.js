@@ -209,7 +209,6 @@
 			        	       
 			                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'VeryHigh' ){
 			                         component.set("v.businessImpVeryHighData", component.get("v.businessImpacts")[i]);
-			                      
 			                      }
 			                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'High' ){
 			                         component.set("v.businessImpHighData", component.get("v.businessImpacts")[i]);

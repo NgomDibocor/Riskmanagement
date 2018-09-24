@@ -267,6 +267,9 @@
     </table>
     <br/><br/>
     <center>
+    
+     <lightning:accordion aura:id="accordion" >
+        <lightning:accordionSection name="hsseImpacts" label="hsseImpacts" >
     <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
         <table class="slds-table" style="width: 90%;" cellspacing="10">
             <tr> 
@@ -343,6 +346,8 @@
 		        </div>
 			</aura:set>
            </aura:if>
+           </lightning:accordionSection>
+           <lightning:accordionSection name="businessImpacts" label="businessImpacts">
            <table class="slds-table" style="width: 90%;" cellspacing="10">
             <tr> 
                 <th  class="thTable">Cost </th>
@@ -374,5 +379,7 @@
                 </td>
             </tr>
             </table>
+         </lightning:accordionSection>
+    </lightning:accordion>
     </center>
 </aura:component>

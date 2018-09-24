@@ -20,9 +20,6 @@
 	       var reputation = component.get("v.reputation");
 	       var security =component.get("v.security");
 	       var environmentAndCommunity =component.get("v.environmentAndCommunity");
-	       console.log(healthAndSafety);
-	       console.log(security);
-	       console.log(environmentAndCommunity);
 	       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
 	       assessmentRisk.orm_assessment__c = assessment;
 	       assessmentRisk.orm_Risk__c = risk;
@@ -76,6 +73,8 @@
 	                        });
 	
 			                toastEvent.fire();
+			                var idAsssessmentRisk = component.get("v.assessmentRiskId");
+			                helper.fetchPicklist(component, event, idAsssessmentRisk);
 	                    
 	                }
 	            });

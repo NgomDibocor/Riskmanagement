@@ -22,7 +22,7 @@
     <!--Table Row Start-->  
     <tr>
     	
-    	<td scope="row" class="slds-text-align--right" width="5%"><!-- style="width:3.25rem;" -->
+    	<td scope="row" class="slds-text-align--right" ><!-- style="width:3.25rem;" -->
 			<div class="slds-form-element">
 		      <div class="slds-form-element__control">
 		    	<label class="slds-checkbox">
@@ -34,9 +34,9 @@
 		    </div>
 		</td>
 		
-        <td width="5%"><div class="slds-truncate">{!v.sNo}</div></td>
+        <td><div class="slds-truncate">{!v.sNo}</div></td>
        
-        <td ondblclick="{!c.inlineEditName}"  width="30%">
+        <td ondblclick="{!c.inlineEditName}">
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.nameEditMode == false}">
@@ -73,27 +73,24 @@
         </td> 
         
         
-        <td ondblclick="{!c.inlineEditDescription}"  width="40%" > <!-- style="word-wrap:break-word" -->
-                <!-- show input and output section based on boolean flag --> 
+        <td ondblclick="{!c.inlineEditDescription}" >  
+         <span class="slds-grid slds-grid_align-spread" >
                 <aura:if isTrue="{!v.descriptionEditMode == false}">
-                 <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px">
-       				<div class="slds-size_2-of-3">
-                    <p title="{!v.impact.Description}" style="width:150px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;">{!v.impact.Description}</p>
-                    </div>
-                    <div class="slds-size_1-of-3">
+             <p class="slds-truncate">{!v.impact.Description}</p>
+					   <lightning:helptext content="{!v.impact.Description}"/>
+                   
                     <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_description}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
-                    </div>
-                    </div>
+                   
                     <!-- Inline Edit Section in else case-->  
                     <aura:set attribute="else">
                         <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" >
                             <div class="slds-popover__body" >
                                 <div class="slds-form-element">
                                     <div class="slds-form-element__control">
-                                          <ui:inputText class="slds-input inputFieldWidth"
+                                          <ui:inputTextArea class="slds-input inputFieldWidth"
                                                       labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
                                                       aura:id="idDescription"
                                                       blur="{!c.closeDescriptionBox}"
@@ -109,11 +106,12 @@
                     </aura:set>  
                     
                 </aura:if> 
+                </span>
         </td> 
     
     
     
-     <td ondblclick="{!c.inlineEditCategorieImpact}"  width="20%">
+     <td ondblclick="{!c.inlineEditCategorieImpact}">
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.categorieImpactEditMode == false}">

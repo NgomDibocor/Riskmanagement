@@ -5,7 +5,7 @@
 		 <div style="width:60%;margin:auto;margin-top:30px;margin-bottom:30px">
 		 
 			    <table>
-			      <tr><td rowspan="6" width="50"><span class="monTexte">Probability</span></td></tr>
+			      <tr><td rowspan="5" width="50" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 			      <tr>
 			        <td style="background-color: yellow;" height="100"></td>
 			        <td style="background-color: #FF8C00;" height="100"></td>
@@ -30,7 +30,10 @@
 			        <td style="background-color: green;" height="100"></td>
 			        <td style="background-color: yellow;" height="100"></td>
 			      </tr>
-			      <tr><td colspan="5" style="text-align: center;">Impact</td></tr>
+			      <tr>
+			          <td class="removeAllBorder"></td>
+			          <td colspan="4" class="removeBorderLastRow">Impact</td>
+			       </tr>
 			    </table>  
 			    
 			</div>

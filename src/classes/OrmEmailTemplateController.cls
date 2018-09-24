@@ -77,7 +77,7 @@ public with sharing class OrmEmailTemplateController {
     
   // Send all emails in the master list
    
-      Messaging.SendEmailResult [] sendEmailResults =   Messaging.sendEmail(mails);
+      Messaging.SendEmailResult [] sendEmailResults =   Messaging.sendEmail(mails,false);
       System.debug('workshop'+workshop);
       Integer i=0;
     for(Messaging.SendEmailResult result:sendEmailResults){
@@ -87,6 +87,9 @@ public with sharing class OrmEmailTemplateController {
 			orm_ContactWorkshop__c contactwroshop = OrmContactController.getContactWorkshop(workshop,mails.get(i).getTargetObjectId());
         	System.debug('Email result ' +mails.get(i).getTargetObjectId());
         	listcontact.add(contactwroshop);
+        }else{
+        	System.debug('Email not success  ' +result.isSuccess());
+        	listcontact=null;
         }
 	i=i+1;
    }
@@ -95,6 +98,7 @@ public with sharing class OrmEmailTemplateController {
    
   /**
  * @author Salimata NGOM
+ 
  * @version 1.0
  * @description method to update orm_ContactWorkshop__c item
  * @history 

@@ -178,7 +178,10 @@
                 </aura:if>
             </td>
         </tr>
-         
+        </table>
+        <lightning:accordion aura:id="accordion" >
+        	<lightning:accordionSection name="hsseImpacts" label="Details of Risk" >
+        <table class="slds-table">
         <tr>
             <td>
                 <div class="slds-form-element ">
@@ -269,17 +272,16 @@
             </td>
         </tr>
     </table>
-    <br/><br/>
+    </lightning:accordionSection>
     <center>
     
-     <lightning:accordion aura:id="accordion" >
         <lightning:accordionSection name="hsseImpacts" label="hsseImpacts" >
     <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
         <table class="slds-table" style="width: 90%;" cellspacing="10">
             <tr> 
-                <th class="thTable">health and safety </th>
-                <th  class="thTable" >security </th>
-                <th  class="thTable" > Environment and community </th>
+                <th class="thTable">{!$Label.c.orm_healthandSafety_title} </th>
+                <th  class="thTable" >{!$Label.c.orm_security_title} </th>
+                <th  class="thTable" >{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
             </tr>
             <tr>
 	            <td id="healthAndSafety" class="healthAndSafety" ></td>
@@ -355,10 +357,10 @@
            <aura:if isTrue="{!not(empty(v.businessImpacts))}">
            <table class="slds-table" style="width: 90%;" cellspacing="10">
             <tr> 
-                <th  class="thTable">Cost </th>
-                <th  class="thTable" >Schedule </th>
-                <th  class="thTable" > Production</th>
-                <th  class="thTable" > Reputation</th>
+                <th  class="thTable"> {!$Label.c.orm_cost_title} </th>
+                <th  class="thTable" >{!$Label.c.orm_schedule_title} </th>
+                <th  class="thTable" > {!$Label.c.orm_production_title} </th>
+                <th  class="thTable" > {!$Label.c.orm_reputation_title}</th>
             </tr>
             <tr>
 	            <td id="cost"></td>
@@ -391,6 +393,7 @@
 			</aura:set>
            </aura:if>
          </lightning:accordionSection>
+         </center>
     </lightning:accordion>
-    </center>
+    
 </aura:component>

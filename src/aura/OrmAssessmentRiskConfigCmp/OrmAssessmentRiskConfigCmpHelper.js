@@ -309,8 +309,7 @@
          var sliderProduction = component.get("v.assessmentRiskData").orm_production_Loss_Risk__c;
          var reputation =component.get("v.assessmentRiskData").orm_reputation__c;
          if(sliderCost == null){
-        	 document.getElementById("cost").style.color = "green";
-              document.getElementById("cost").innerHTML = 'null Cost';
+        	
          }
          else{
         	 if(sliderCost >= component.get("v.businessImpHighData.orm_costProjectBudgetMin__c") && sliderCost <= component.get("v.businessImpHighData.orm_costProjectBudgetMax__c")){
@@ -321,19 +320,18 @@
 		    document.getElementById("cost").style.backgroundColor = "yellow";
 		    document.getElementById("cost").innerHTML= 'Medium';
         	 }
-        	  if (sliderCost >= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c") && sliderCost<= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c")){
+        	  if (sliderCost >= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c") && sliderCost<= component.get("v.businessImpLowData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "green";
 		    document.getElementById("cost").innerHTML='low' ;
 	        } 
-        	 if (sliderCost >= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c") && sliderCost<= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c")){
+        	 if (sliderCost >= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c") && sliderCost<= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "red";
 		    document.getElementById("cost").innerHTML='veryHigh' ;
         	 }
             }
          
          if(sliderSchedule == null){
-        	 document.getElementById("schedule").style.color = "green";
-              document.getElementById("schedule").innerHTML = 'null schedule';
+        	
          }
          else{
 	    if(sliderSchedule >= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMin__c") && sliderSchedule <= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMax__c")){
@@ -353,8 +351,7 @@
          
          }
          if(sliderProduction == null){
-        	 document.getElementById("production").style.color = "green";
-              document.getElementById("production").innerHTML = 'null production';
+        	 
          }
          else{
         	   if(sliderProduction >= component.get("v.businessImpLowData.orm_productionLossMin__c") && sliderProduction <= component.get("v.businessImpLowData.orm_productionLossMax__c")){
@@ -373,8 +370,7 @@
 	    } 
          }
          if(reputation== null){
-        	 document.getElementById("reputation").style.color = "green";
-             document.getElementById("reputation").innerHTML = 'null reputation';
+        	 
          }
          else{
         	var reputation1 = component.find("reputation1").get("v.value");

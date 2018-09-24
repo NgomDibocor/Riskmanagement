@@ -27,28 +27,28 @@
 			    <table>
 			      <tr><td rowspan="5" width="50" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 			      <tr>
-			        <td class="yellowColor" height="100"></td>
-			        <td class="orangeColor" height="100"></td>
-			        <td class="redColor" height="100"></td>
-			        <td class="redColor" height="100"></td>
+			        <td class="yellowColor" height="100" id="11"></td>
+			        <td class="orangeColor" height="100" id="12"></td>
+			        <td class="redColor" height="100" id="13"></td>
+			        <td class="redColor" height="100" id="14"></td>
 			      </tr>
 			      <tr>
-			        <td class="greenColor" height="100"></td>
-			        <td class="yellowColor" height="100"></td>
-			        <td class="orangeColor" height="100"></td>
-			        <td class="redColor" height="100"></td>
+			        <td class="greenColor" height="100" id="21"></td>
+			        <td class="yellowColor" height="100" id="22"></td>
+			        <td class="orangeColor" height="100" id="23"></td>
+			        <td class="redColor" height="100" id="24"></td>
 			      </tr>
 			      <tr>
-			        <td class="greenColor" height="100"></td>
-			        <td class="yellowColor" height="100"></td>
-			        <td class="yellowColor" height="100"></td>
-			        <td class="orangeColor" height="100"></td>
+			        <td class="greenColor" height="100" id="31"></td>
+			        <td class="yellowColor" height="100" id="32"></td>
+			        <td class="yellowColor" height="100" id="33"></td>
+			        <td class="orangeColor" height="100" id="34"></td>
 			      </tr>
 			      <tr>
-			        <td class="greenColor" height="100"></td>
-			        <td class="greenColor" height="100"></td>
-			        <td class="orangeColor" height="100"></td>
-			        <td class="yellowColor" height="100"></td>
+			        <td class="greenColor" height="100" id="41"></td>
+			        <td class="greenColor" height="100" id="42"></td>
+			        <td class="greenColor" height="100" id="43"></td>
+			        <td class="yellowColor" height="100" id="44"></td>
 			      </tr>
 			      <tr>
 			          <td class="removeAllBorder"></td>

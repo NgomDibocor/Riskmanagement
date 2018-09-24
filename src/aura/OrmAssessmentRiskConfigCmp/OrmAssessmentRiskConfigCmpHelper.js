@@ -69,7 +69,6 @@
                                                                 if(sliderValue==null)
                                                                 {
                                                                 	document.getElementById("divColor").style.color = "green";
-                                                                	component.set("v.disabledSlider",true);
                                                                 	document.getElementById("divColor").innerHTML = 'null probability';
                                                                 }
                                                                 else

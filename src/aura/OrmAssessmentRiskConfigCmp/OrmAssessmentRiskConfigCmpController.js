@@ -19,10 +19,10 @@
 	       var healthAndSafety =component.get("v.healthAndSafety");
 	       var reputation = component.get("v.reputation");
 	       var security =component.get("v.security");
+	       var cost =component.get("v.cost");
+	       var schedule =component.get("v.schedule");
+	       var production =component.get("v.production");
 	       var environmentAndCommunity =component.get("v.environmentAndCommunity");
-	       console.log(healthAndSafety);
-	       console.log(security);
-	       console.log(environmentAndCommunity);
 	       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
 	       assessmentRisk.orm_assessment__c = assessment;
 	       assessmentRisk.orm_Risk__c = risk;
@@ -45,16 +45,16 @@
 		       assessmentRisk.orm_security__c =security;
 		       //var reputation = component.find("reputation");
 		       assessmentRisk.orm_reputation__c =reputation;
-		       var cost = component.find("cost1");
-		       assessmentRisk.orm_cost__c =cost.get("v.value");	
+		       //var cost = component.find("cost1");
+		       assessmentRisk.orm_cost__c =cost;	
 		       //var healthAndSafety = component.find("healthAndSafety");
 		       assessmentRisk.orm_healthAndSafety__c =healthAndSafety;
 		       var probability = component.find("slider1");
 		       assessmentRisk.orm_probability__c = probability.get("v.value");
-		       var scheduleRisk = component.find("schedule1");
-		       assessmentRisk.orm_ScheduleRisk__c = scheduleRisk.get("v.value");
-		       var productionRisk = component.find("production");
-		       assessmentRisk.orm_production_Loss_Risk__c = productionRisk.get("v.value");
+		       //var scheduleRisk = component.find("schedule1");
+		       assessmentRisk.orm_ScheduleRisk__c = schedule;
+		      // var productionRisk = component.find("production");
+		       assessmentRisk.orm_production_Loss_Risk__c = production;
 	       
 	       var action = component.get('c.addAssessmentRisk');
 	        action.setParams({
@@ -76,6 +76,8 @@
 	                        });
 	
 			                toastEvent.fire();
+			                var idAsssessmentRisk = component.get("v.assessmentRiskId");
+			                helper.fetchPicklist(component, event, idAsssessmentRisk);
 	                    
 	                }
 	            });
@@ -94,18 +96,6 @@
      
         component.set("v.displaySaveCancelBtn", true);
     },
-   
-      
-    onEnvironmentAndCommunity : function(component, event, helper)
-    {
-    	  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-           component.set("v.displaySaveCancelBtn",true);
-	},
 	 onFrequency : function(component, event, helper)
     {
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
@@ -127,47 +117,7 @@
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
 	},
-	 
-    onReputation: function(component, event, helper)
-    {
-    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);	
-	},
-	onCost: function(component, event, helper)
-    {
-		 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-	},
-	onHealthAndSafety: function(component, event, helper)
-    {
-		 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-	},
-    onSecurity : function(component, event, helper)
-    {
-    	var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-	},
+	
     onVulnerability: function(component, event, helper)
     {
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
@@ -189,28 +139,6 @@
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
     	component.find("status").set("v.value", event.getSource().get("v.value"));
-	},
-    onSchedule : function(component, event, helper)
-    {
-    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-    	component.find("schedule").set("v.value", event.getSource().get("v.value"));
-	},
-    onProductionLoss:  function(component, event, helper)
-    {
-    	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
-        component.set("v.displaySaveCancelBtn",true);
-    	component.find("productionLoss").set("v.value", event.getSource().get("v.value"));
 	},
     onManageAbility : function(component, event, helper)
     {
@@ -242,16 +170,16 @@
 	    var sliderValue = component.find("slider1").get("v.value");
 	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
 		    document.getElementById("divColor").style.backgroundColor = "green";
-		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c");
+		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
 	    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
 		    document.getElementById("divColor").style.backgroundColor = "yellow";
-		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c");
+		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
 	    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
 		    document.getElementById("divColor").style.backgroundColor = "orange";
-		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c");
+		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
 	    }else{
 		    document.getElementById("divColor").style.backgroundColor = "red";
-		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c");
+		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
 	    }
     },
      handleRangeChangeCost : function(component, event, helper) { 
@@ -260,16 +188,20 @@
 	    if(sliderValue >= component.get("v.businessImpHighData.orm_costProjectBudgetMin__c") && sliderValue <= component.get("v.businessImpHighData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "orange";
 		    document.getElementById("cost").innerHTML= 'high';
+		    component.set("v.cost" ,sliderValue);
 	    }if (sliderValue >= component.get("v.businessImpMediumData.orm_costProjectBudgetMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "yellow";
 		    document.getElementById("cost").innerHTML= 'Medium';
+		    component.set("v.cost" ,sliderValue);
 	    } if (sliderValue >= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c") && sliderValue<= component.get("v.businessImpLowData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "green";
 		    document.getElementById("cost").innerHTML='low' ;
+		    component.set("v.cost" ,sliderValue);
 	    } 
 	    if (sliderValue >= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c") && sliderValue<= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "red";
 		    document.getElementById("cost").innerHTML='veryHigh' ;
+		    component.set("v.cost" ,sliderValue);
 	    }
         
         
@@ -281,16 +213,20 @@
 	    if(sliderValue >= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMin__c") && sliderValue <= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMax__c")){
 		    document.getElementById("schedule").style.backgroundColor = "orange";
 		    document.getElementById("schedule").innerHTML= 'high';
+		    component.set("v.schedule" ,sliderValue);
 	    }if (sliderValue >= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMax__c")){
 		    document.getElementById("schedule").style.backgroundColor = "yellow";
 		    document.getElementById("schedule").innerHTML= 'Medium';
+		    component.set("v.schedule" ,sliderValue);
 	    } if (sliderValue >= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMin__c") && sliderValue<= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMax__c")){
 		    document.getElementById("schedule").style.backgroundColor = "green";
 		    document.getElementById("schedule").innerHTML='low' ;
+		    component.set("v.schedule" ,sliderValue);
 	    } 
 	    if (sliderValue >= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMin__c") && sliderValue<= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMax__c")){
 		    document.getElementById("schedule").style.backgroundColor = "red";
 		    document.getElementById("schedule").innerHTML='veryHigh' ;
+		    component.set("v.schedule" ,sliderValue);
 	    } 
     },
      handleRangeChangeProduction : function(component, event, helper) { 
@@ -299,15 +235,19 @@
 	    if(sliderValue >= component.get("v.businessImpLowData.orm_productionLossMin__c") && sliderValue <= component.get("v.businessImpLowData.orm_productionLossMax__c")){
 		    document.getElementById("production").style.backgroundColor = "green";
 		    document.getElementById("production").innerHTML= 'low';
+		    component.set("v.production" ,sliderValue);
 	    }else if (sliderValue > component.get("v.businessImpMediumData.orm_productionLossMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_productionLossMax__c")){
 		    document.getElementById("production").style.backgroundColor = "yellow";
 		    document.getElementById("production").innerHTML= 'Medium';
+		    component.set("v.production" ,sliderValue);
 	    } else if (sliderValue > component.get("v.businessImpHighData.orm_productionLossMin__c") && sliderValue<= component.get("v.businessImpHighData.orm_productionLossMax__c")){
 		    document.getElementById("production").style.backgroundColor = "orange";
 		    document.getElementById("production").innerHTML= 'High';
+		    component.set("v.production" ,sliderValue);
 	    }else{
 		    document.getElementById("production").style.backgroundColor = "red";
 		    document.getElementById("production").innerHTML= 'VeryHigh';
+		    component.set("v.production" ,sliderValue);
 	    }
     },
     checkboxSelectreputation  : function(component, event, helper) {

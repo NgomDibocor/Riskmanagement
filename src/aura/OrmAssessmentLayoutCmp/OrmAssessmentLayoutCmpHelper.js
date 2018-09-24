@@ -94,6 +94,7 @@
                 alert($A.get("$Label.c.orm_not_found"));
             }
         });
+        
         var actionOrgs = component.get("c.getOrganisations");
         actionOrgs.setCallback(this, function(response){
             var state = response.getState();
@@ -103,6 +104,7 @@
                 alert($A.get("$Label.c.orm_not_found"));
             }
         });
+        
         var actionTypeProjet = component.get('c.getSelectOptions');
         actionTypeProjet.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_typeProjet__c'});
         var opts2 = [];
@@ -122,6 +124,7 @@
                 alert($A.get("$Label.c.orm_not_found"));
             }
         });
+        
         var actionStatus = component.get('c.getSelectOptions');
         actionStatus.setParams({"objObject": component.get("v.objInfo"), "fld": 'orm_statusAssessment__c'});
         var opts3 = [];

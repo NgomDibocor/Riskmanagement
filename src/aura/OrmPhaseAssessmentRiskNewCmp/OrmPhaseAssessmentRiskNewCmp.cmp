@@ -1,0 +1,67 @@
+<aura:component extends="c:OrmAbstractNewCmp" controller="OrmPhaseAssessmentRiskController">
+	
+	<!-- methodes -->
+	<!-- <aura:handler action="{!c.doInit}" name="init" value="{!this}" /> -->
+	<aura:handler event="c:OrmEventNewPhaseAssessmentRiskClicked" action="{!c.openPhaseNewCmp}" />
+	
+	<!-- events -->
+	<aura:registerEvent name="OrmEventNewPhaseAssessmentRiskCreated" type="c:OrmEventNewPhaseAssessmentRiskCreated" description="" />
+	
+	<!-- attributes -->	
+	<aura:attribute name="phaseData" type="Macro" description="" default="{	'sobjectType' : 'Macro',
+																		'Description' : '',
+																		'orm_assessmentRisk__c': ''
+																		}" />
+	<aura:attribute name="assessmentId" type="String" description="" />
+	<aura:attribute name="idAssessmentRisk" type="string" />
+	<aura:if isTrue="{!v.isOpen}">
+			<!--###### MODAL BOX Start From Here ######-->    		
+			<div role="dialog" tabindex="-1" aria-labelledby="header99"
+				class="slds-modal slds-fade-in-open slds-modal_medium">
+				<div class="slds-modal__container form-style-6">
+				<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+				<div class="slds-modal__header">
+					<button
+						class="slds-button slds-modal__close slds-button--icon-inverse"
+						title="Close" onclick="{!c.closeModal}">
+						X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+					</button>
+					<h1 id="header99" class="slds-text-heading--medium">Add new Phase</h1>
+				</div>
+				<!--###### MODAL BOX BODY Part Start From Here ######-->
+				
+					<!--###### MODAL BOX BODY Part Start From Here ######-->
+					<div class="slds-modal__content slds-p-around--medium">
+						<!-- CREATE NEW Phase FORM -->
+						<form class="slds-form--stacked">
+							<div class="slds-grid slds-gutters">
+								<div class="slds-col">									
+									<div class="slds-form-element">
+										<div class="slds-form-element__control">
+                                             <lightning:input aura:id="phase" type="text" label="Phase" 
+                                     			value="{!v.phaseData.Description}" required="true"/><!-- {!$Label.c.orm_phase} -->
+										</div>
+									</div>                            
+								</div>								
+							</div>
+						</form>
+						<!-- / CREATE NEW Item FORM -->
+
+					</div>
+					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+					<div class="slds-modal__footer">
+						<button class="slds-button slds-button--neutral"
+							onclick="{!c.closeModal}">{!$Label.c.orm_cancel_button_title}</button>
+						<button class="slds-button slds-button--brand"
+							onclick="{!c.createItem}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.orm_save_button_title}
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+			<!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
+	
+	
+</aura:component>

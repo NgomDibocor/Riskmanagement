@@ -7,7 +7,7 @@
     <aura:attribute name="frequency" type="String[]" />
     <aura:attribute name="manageAbility" type="String[]" />
     <aura:attribute name="productionLoss" type="String[]" />
-    <aura:attribute name="schedule" type="String[]" />
+<!--     <aura:attribute name="schedule" type="String[]" /> -->
     <aura:attribute name="status" type="String[]" />
     <aura:attribute name="vulnerability" type="String[]" />
     <aura:attribute name="allUser" type="User[]" />
@@ -99,6 +99,9 @@
 	<aura:attribute name="hsseImpacts" type="Macro[]" />
 	<aura:attribute name="healthAndSafety" type="String"/>
 	<aura:attribute name="reputation" type="String"/>
+	<aura:attribute name="cost" type="String" />
+	<aura:attribute name="schedule" type="String" />
+	<aura:attribute name="production" type="String" />
 	<aura:attribute name="security" type="String"/>
 	<aura:attribute name="environmentAndCommunity" type="String"/>
 	<aura:attribute name="selected" type="String"/>
@@ -175,7 +178,10 @@
                 </aura:if>
             </td>
         </tr>
-         
+        </table>
+        <lightning:accordion aura:id="accordion" >
+        	<lightning:accordionSection name="hsseImpacts" label="Details of Risk" >
+        <table class="slds-table">
         <tr>
             <td>
                 <div class="slds-form-element ">
@@ -235,11 +241,11 @@
         <tr>
             <td>
             <div class="topSpacing"> 
-                   <label class="slds-form-element__label">{!$Label.c.orm_risk_manager_label}</label>
+                 <b>  <label class="slds-form-element__label">{!$Label.c.orm_risk_manager_label}</label> </b>
                 </div>
                      <div class="slds-form-element">
                           <div class="slds-form-element__control">
-                                 <ui:inputSelect aura:id="riskManager" 
+                                <b> <ui:inputSelect aura:id="riskManager" 
                                           change="{!c.onChangeRiskManager}" class="slds-select"
                                           labelClass="slds-form-element__label">
                                            <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_riskManager__c}"
@@ -249,6 +255,7 @@
                                                                 label="{!rm.Name}" />
                                       </aura:iteration>
                                  </ui:inputSelect>
+                                 </b>
                             </div>
                       </div>
                 
@@ -265,14 +272,16 @@
             </td>
         </tr>
     </table>
-    <br/><br/>
+    </lightning:accordionSection>
     <center>
+    
+        <lightning:accordionSection name="hsseImpacts" label="hsseImpacts" >
     <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
         <table class="slds-table" style="width: 90%;" cellspacing="10">
             <tr> 
-                <th class="thTable">health and safety </th>
-                <th  class="thTable" >security </th>
-                <th  class="thTable" > Environment and community </th>
+                <th class="thTable">{!$Label.c.orm_healthandSafety_title} </th>
+                <th  class="thTable" >{!$Label.c.orm_security_title} </th>
+                <th  class="thTable" >{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
             </tr>
             <tr>
 	            <td id="healthAndSafety" class="healthAndSafety" ></td>
@@ -339,16 +348,19 @@
        
         <aura:set attribute="else">
 			    <div class="messageIsEmpty" style="padding-top: 20px">
-		 		   List of hsseImpacts is empty
+		 		   HSSE  Impacts Ranking is not configured yet
 		        </div>
 			</aura:set>
            </aura:if>
+           </lightning:accordionSection>
+           <lightning:accordionSection name="businessImpacts" label="businessImpacts">
+           <aura:if isTrue="{!not(empty(v.businessImpacts))}">
            <table class="slds-table" style="width: 90%;" cellspacing="10">
             <tr> 
-                <th  class="thTable">Cost </th>
-                <th  class="thTable" >Schedule </th>
-                <th  class="thTable" > Production</th>
-                <th  class="thTable" > Reputation</th>
+                <th  class="thTable"> {!$Label.c.orm_cost_title} </th>
+                <th  class="thTable" >{!$Label.c.orm_schedule_title} </th>
+                <th  class="thTable" > {!$Label.c.orm_production_title} </th>
+                <th  class="thTable" > {!$Label.c.orm_reputation_title}</th>
             </tr>
             <tr>
 	            <td id="cost"></td>
@@ -356,7 +368,7 @@
 	            <td id="production"></td>
 	            <td id="reputation"></td>
             </tr>
-             <tr style="border-bottom:1px solid;" >
+             <tr  >
                 <td style="white-space: normal !important;" height="100" class="">
                <center><lightning:slider type="vertical" aura:id="cost1"  value="{!v.assessmentRiskData.orm_cost__c}"  onchange="{! c.handleRangeChangeCost }" />	</center>        
                 </td>
@@ -364,7 +376,7 @@
                <center> <lightning:slider  type="vertical" aura:id="schedule1"   value="{!v.assessmentRiskData.orm_ScheduleRisk__c}"  onchange="{! c.handleRangeChangeSchedule }" /></center>	
                 </td>
                 <td style="white-space: normal !important;" height="100">
-              <center><lightning:slider  type="vertical" aura:id="production"  min="4" max="52" value="{!v.assessmentRiskData.orm_production_Loss_Risk__c}" onchange="{! c.handleRangeChangeProduction }"  />	</center>
+              <center><lightning:slider  type="vertical" aura:id="production"  min="0" max="52" value="{!v.assessmentRiskData.orm_production_Loss_Risk__c}" onchange="{! c.handleRangeChangeProduction }"  />	</center>
                 </td>
                 <td style="white-space: normal !important;" height="100">
                 <lightning:input  aura:id="reputation1" type="radio" name="reputation" value="{!v.businessImpVeryHighData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}"  checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpVeryHighData.orm_reputation__c }" /><b><span id="reputation1">{!v.businessImpVeryHighData.orm_reputation__c}</span></b><br/>
@@ -374,5 +386,14 @@
                 </td>
             </tr>
             </table>
-    </center>
+           <aura:set attribute="else">
+			    <div class="messageIsEmpty" style="padding-top: 20px">
+		 		   Business Impacts Ranking is not configured yet
+		        </div>
+			</aura:set>
+           </aura:if>
+         </lightning:accordionSection>
+         </center>
+    </lightning:accordion>
+    
 </aura:component>

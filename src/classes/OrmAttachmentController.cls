@@ -66,13 +66,18 @@ public with sharing class OrmAttachmentController {
 */
      @AuraEnabled
       public static void DeleteAttachment(List<Id> att) {
-	
+
 		system.debug('ORM_Attachment --> DeleteAttachment');
+		try{
 	  List <ContentDocument> lstDeleteRec = [select Id from ContentDocument where id IN: att];
-	delete.lstDeleteRec ;
+	delete(lstDeleteRec );
   
-   
+		} catch (Exception ex) {
+
+			String message = 'EXCEPTION - Message: ' + ex.getMessage() + 'Cause: ' + ex.getCause();
+			system.debug('message error'+message);
+		
   }
- 
+      }  
 	
 }

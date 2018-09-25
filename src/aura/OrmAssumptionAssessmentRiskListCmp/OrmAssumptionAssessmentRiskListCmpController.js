@@ -13,12 +13,13 @@
                 "AssessmentRisk": idAssessmentRisk
             });
             evt.fire();
-        }
-    },
-    updateAssumption: function(component, event, helper) {
+        },
+    
+    updateAssumpt: function(component, event, helper) {
         // Check required fields(Name) first in helper method which is return
         // true/false
-        alert("bien");
+console.log('test');
+
         if (helper.requiredValidation(component, event)) {
             // call the saveAssumption apex method for update inline edit
             // fields update
@@ -48,6 +49,7 @@
             $A.enqueueAction(action);
         }
     },
+
     cancel: function(component, event, helper) {
         alert("cancel");
     },

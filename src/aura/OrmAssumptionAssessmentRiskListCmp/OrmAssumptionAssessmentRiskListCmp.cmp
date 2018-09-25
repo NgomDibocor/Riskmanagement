@@ -27,8 +27,8 @@
             <aura:if isTrue="{!v.showSaveCancelBtn}">
                 <!--button for save and cancel Record after Inline Edit-->
                 <lightning:buttonGroup class="slds-m-around_medium">
-                    <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}" />
-                    <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.updateAssumption}" variant="success" />
+                    <lightning:button label="{!$Label.c.orm_cancel_button_title}"  onclick="{!c.cancel}" />
+                    <lightning:button label="{!$Label.c.orm_save_button_title}" title="test" onclick="{!c.updateAssumpt}" variant="success" />
                 </lightning:buttonGroup>
             </aura:if>
         </div>

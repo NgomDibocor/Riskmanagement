@@ -56,8 +56,12 @@
 }
 .THIS .thTable {
  font-weight: 800;
- font-size: 1.2em;
+ font-size: 1.5em;
  text-align:center;
+}
+.THIS .thTableBI {
+ font-weight: 800;
+ font-size: 1.5em;
 }
 .THIS .divColor {
  font-weight: 800;

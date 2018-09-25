@@ -1,2 +1,38 @@
 .THIS {
 }
+.THIS div.phase {
+    display: inline-block;
+    width: 100%;
+}
+.THIS span.btnNewPhase {
+    display: inline-block;
+    cursor: pointer;
+    width:5%;
+}
+.THIS .deletePhase {
+	display: inline-block;
+    width:5%;
+}
+.THIS .iphase {
+	display: inline-block;
+    width:80%;
+    margin-right: 15px;
+}
+
+.THIS .titlePhase {
+  font-weight: 600;
+  font-size: 2em;
+ /* letter-spacing: -.07em; */
+  text-align: center;
+  white-space: normal;
+}
+.THIS .messageIsEmpty {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
+  white-space: normal;
+  color: green;
+}
+.THIS table {
+    margin-top: 20px;
+}

@@ -39,8 +39,8 @@
                     evt.fire();
 		            
             		
-                    component.set('v.phase', { 'sobjectType' : 'Macro',
-											   'orm_phase__c': '',
+                    component.set('v.phaseData', { 'sobjectType' : 'Macro',
+											   'Description': '',
 											   'orm_assessmentRisk__c': ''
 											 }
                     );

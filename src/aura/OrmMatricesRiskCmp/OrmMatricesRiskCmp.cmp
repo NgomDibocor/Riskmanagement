@@ -1,38 +1,65 @@
-<aura:component access="global" controller="OrmSliderController">
+<aura:component access="global" controller="OrmRiskController">
+	
+	<aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{
+																						'sobjectType' : 'orm_assessmentRisk__c',
+																                         'orm_assessment__c': '',  
+																                         'orm_Risk__c':'',
+																                         'orm_frequency__c' :'',
+																                         'orm_cost__c':'',
+																                         'orm_date__c':'',
+																                         'orm_environmentAndCommunity__c':'',
+																                         'orm_healthAndSafety__c':'',
+																                         'orm_manageability__c':'',
+																                         'orm_productionLoss__c':'',
+																                         'orm_reputation__c':'',
+																                         'orm_security__c':'',
+																                         'orm_status__c':'',
+																                         'orm_vulnerability__c':'',
+																                         'orm_probability__c':'',
+																                         'orm_riskManager__c':'',
+																                         'orm_ScheduleRisk__c':'',
+																                         'orm_schedule__c':'',
+																                         'orm_production_Loss_Risk__c':''
+																					}" />
+	
+		 <div style="width:60%;margin:auto;margin-top:30px;margin-bottom:30px">
+		 
+			    <table>
+			      <tr><td rowspan="5" width="50" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+			      <tr>
+			        <td class="yellowColor" height="100" id="11"></td>
+			        <td class="orangeColor" height="100" id="12"></td>
+			        <td class="redColor" height="100" id="13"></td>
+			        <td class="redColor" height="100" id="14"></td>
+			      </tr>
+			      <tr>
+			        <td class="greenColor" height="100" id="21"></td>
+			        <td class="yellowColor" height="100" id="22"></td>
+			        <td class="orangeColor" height="100" id="23"></td>
+			        <td class="redColor" height="100" id="24"></td>
+			      </tr>
+			      <tr>
+			        <td class="greenColor" height="100" id="31"></td>
+			        <td class="yellowColor" height="100" id="32"></td>
+			        <td class="yellowColor" height="100" id="33"></td>
+			        <td class="orangeColor" height="100" id="34"></td>
+			      </tr>
+			      <tr>
+			        <td class="greenColor" height="100" id="41"></td>
+			        <td class="greenColor" height="100" id="42"></td>
+			        <td class="greenColor" height="100" id="43"></td>
+			        <td class="yellowColor" height="100" id="44"></td>
+			      </tr>
+			      <tr>
+			          <td class="removeAllBorder"></td>
+			          <td colspan="4" class="removeBorderLastRow">Severity</td>
+			       </tr>
+			    </table>  
+			    
+			</div>
 	
 	
-	
-	
-	<div style="width:60%;margin:auto;margin-top:30px;margin-bottom:30px">
-	    <table>
-	      <tr>
-	        <td style="background-color: yellow;" height="100"></td>
-	        <td style="background-color: #FF8C00;" height="100"></td>
-	        <td style="background-color: red;" height="100"></td>
-	        <td style="background-color: red;" height="100"></td>
-	      </tr>
-	      <tr>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: yellow;" height="100"></td>
-	        <td style="background-color: #FF8C00;" height="100"></td>
-	        <td style="background-color: red;" height="100"></td>
-	      </tr>
-	      <tr>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: yellow;" height="100"></td>
-	        <td style="background-color: yellow;" height="100"></td>
-	        <td style="background-color: #FF8C00;" height="100"></td>
-	      </tr>
-	      <tr>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: green;" height="100"></td>
-	        <td style="background-color: yellow;" height="100"></td>
-	      </tr>
-	    </table>  
-	    <div class="monTexte">Probability</div>
-	</div>
-	<div style="width:90%;margin:auto;margin-top:50px;margin-bottom:30px">
+	<!--<div style="width:90%;margin:auto;margin-top:50px;margin-bottom:30px">
 	     <table>
 	     <thead>
 		      <tr height="80">
@@ -78,6 +105,6 @@
 	           </td>
 	      </tr>	  	      
 	    </table>  
-	</div>
+	</div>  -->
 	
 </aura:component>

@@ -33,6 +33,43 @@
 	text-align: center;
 }
 .THIS .monTexte {
-  writing-mode: vertical-rl;
-  text-orientation: sideways;
+	  font-weight: 600;
+      font-size: 1.5em;
+      display:flex;
+      writing-mode: vertical-lr;
+      min-height: 10em;
+      vertical-align: middle;
+      line-height: 2em;
+      justify-content:center;
+}
+.THIS .removeBorderFirstColumn {
+     border-left: none !important ; 
+     border-top: none !important ; 
+     border-bottom: none !important ; 
+}
+.THIS .removeBorderLastRow {
+	 font-weight: 600;
+     font-size: 1.5em;
+     border-left: none !important ; 
+     border-right: none !important ; 
+     border-bottom: none !important ; 
+     text-align: center;
+}
+.THIS .removeAllBorder {
+     border-left: none !important ; 
+     border-right: none !important ;
+     border-top: none !important ;  
+     border-bottom: none !important ; 
+}
+.THIS .yellowColor{
+	background-color: yellow;
+}
+.THIS .orangeColor{
+	background-color: #FF8C00;
+}
+.THIS .redColor{
+	background-color: red;
+}
+.THIS .greenColor{
+	background-color: green;
 }

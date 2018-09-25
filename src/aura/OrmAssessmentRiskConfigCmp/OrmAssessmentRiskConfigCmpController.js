@@ -11,6 +11,7 @@
         helper.getProbality(component, event); 
         //helper.getBusinessImpacts(component, event);
        //helper.getSliderDefault(component, event);
+       console.log(JSON.stringify(component.get("v.assessmentRiskData")))
       },
       
       updateAssessmentRisk : function(component, event, helper) {
@@ -457,6 +458,8 @@
 	        });
            evt.fire();
 		 }
-	}
+	},
+	
+	goToRiskPucture : function(component, event, helper) {},
 	
 })

@@ -22,7 +22,7 @@ public with sharing class OrmAssumptionAssessmentRiskController {
 	
 	}
 /**
- * @author: Salimata NGOM
+ * @author: SDavid diop
  * @date: Creation: 30/08/2018
  * @description: add new Assumption
 */

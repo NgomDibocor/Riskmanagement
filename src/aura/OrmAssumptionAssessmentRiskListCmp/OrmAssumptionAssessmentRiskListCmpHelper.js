@@ -20,7 +20,7 @@
 			if (state === "SUCCESS") {
 				var storeResponse = response.getReturnValue();
 				// set assumptionList list with return value from server.
-				component.set("v.assumptionList", storeResponse);
+				component.set("v.assumptionRiskList", storeResponse);
 
 			}
 		});

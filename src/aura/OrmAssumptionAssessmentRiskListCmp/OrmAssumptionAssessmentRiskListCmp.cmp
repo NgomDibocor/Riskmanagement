@@ -1,7 +1,7 @@
 <aura:component controller="OrmAssumptionAssessmentRiskController" extends="c:ormAbstractListCmp" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
     <aura:handler event="c:OrmSendIdAssessmentRiskToCauseEvt" action="{!c.getAssessmentRiskId}" />
     <aura:attribute name="idAssessmentRisk" type="string" />
-    <aura:attribute name="assumptionList" type="Macro[]" />
+    <aura:attribute name="assumptionRiskList" type="Macro[]" />
     <aura:attribute name="storeAssumptionList" type="Macro[]" />
     <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
@@ -64,7 +64,7 @@
 
             <tbody>
                 <!--### display all records of workshop attribute one by one by aura:iteration ###-->
-                <aura:iteration items="{!v.assumptionList}" var="assumption" indexVar="sNo">
+                <aura:iteration items="{!v.assumptionRiskList}" var="assumption" indexVar="sNo">
                     <!-- start iteration -->
                     <c:OrmAssumptionAssessmentRiskEditRow assumption="{!assumption}" selectedRowsCount="{!v.selectedRowsCount}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
                 </aura:iteration>

@@ -11,7 +11,7 @@
             	component.set("v.phasesTemp", response.getReturnValue());
             	alert(JSON.stringify(response.getReturnValue()));
             	
-            }
+            }else{alert("bien");}
         });
         $A.enqueueAction(action);
 	}

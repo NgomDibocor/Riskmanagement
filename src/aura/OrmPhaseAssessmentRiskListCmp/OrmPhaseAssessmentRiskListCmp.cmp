@@ -5,16 +5,14 @@
 	<aura:registerEvent name="OrmEventNewPhaseAssessmentRiskClicked" type="c:OrmEventNewPhaseAssessmentRiskClicked" description="" />
 	<aura:handler event="c:OrmEventNewPhaseAssessmentRiskCreated" action="{!c.refreshList}" />
 <!-- 	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" /> -->
-<!-- 	<aura:registerEvent name="OrmEvtDeletePhases" type="c:OrmEvtDeletePhases" description="" /> -->
+	<aura:registerEvent name="OrmEvtDeletePhasesAssRisk" type="c:OrmEvtDeletePhasesAssRisk" description="" />
 <!-- 	<aura:registerEvent name="OrmEvtSelectAllPhases" type="c:OrmEvtSelectAllPhases" /> -->
 	
 	<!-- attributes -->
 	<!-- attributes -->
 	<aura:attribute name="idAssessmentRisk" type="string" />
-	<aura:attribute name="phases" type="Macro[]" description=""  />
+	<aura:attribute name="phasesList" type="Macro[]" description=""  />
 	<aura:attribute name="phasesTemp" type="Macro[]" description=""  />
-	<aura:attribute name="openModalError" type="Boolean"  default="false"/>
-	<aura:attribute name="openModalErrorIfFieldEmpty" type="Boolean"  default="false"/>	
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" description="" />
 	<aura:attribute name="selectedCount" type="integer" default="0"/>
@@ -54,7 +52,7 @@
 	            	</lightning:buttonGroup>
 	        	</div>
 	        </aura:if> 
-            <aura:if isTrue="{!not(empty(v.phases))}">
+             <aura:if isTrue="{!not(empty(v.phasesList))}">
 	        <table class="slds-table">	        
 	            <thead>
 	                <tr class="slds-text-title--caps">
@@ -80,17 +78,16 @@
 	            
 	            <tbody>
 	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-	                <aura:iteration items="{!v.phases}" var="phase" indexVar="sNo">
+	                <aura:iteration items="{!v.phasesList}" var="phase" indexVar="sNo">
 	                   <!-- Child Lightning Component -->
-	                    
-	                    <c:OrmPhaseAssessmentRiskEditRow phase="{!phase}"
-	                    				 selectedRowsCount="{!v.selectedRowsCount}"
-	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
-	                                     sNo="{!sNo + 1}" />
+	                    <!-- 	                    				 selectedRowsCount="{!v.selectedRowsCount}" -->
+	                    <c:OrmPhaseAssessmentRiskEditRow phaseAss="{!phase}" 
+	                    	selectedRowsCount="{!v.selectedRowsCount}"
+	                     showSaveCancelBtn="{!v.showSaveCancelBtn}"  sNo="{!sNo + 1}" />
 	                </aura:iteration>
 	            </tbody>
 	        </table>
-		   <aura:set attribute="else">
+		    <aura:set attribute="else">
 			    <div class="messageIsEmpty" style="padding-top:20px">
 		 	{!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_phase +'   ' + $Label.c.orm_is_empty}
 		        </div>
@@ -99,34 +96,6 @@
 		</div>
        </div>
         
-        <!-- openModalError if the assessment is not created -->
-        <aura:if isTrue="{!v.openModalError}">
-    
-	    	<div class="demo-only" style="height: 640px;">
-			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" 
-			  	aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-			    <div class="slds-modal__container">
-			      <header class="slds-modal__header header">
-			      	<span style="color: white;">Warning</span>
-			        <button onclick="{!c.closeOpenModalError}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse " 
-			        	title="{!$Label.c.orm_close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
-			        </button>
-			      </header>
-			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			        <p> Create the Assessment Before</p>
-			      </div>
-			      <footer class="slds-modal__footer">
-			        <button class="slds-button slds-button_brand" onclick="{!c.closeOpenModalError}">{!$Label.c.orm_close_button_title}</button>
-			      </footer>
-			    </div>
-			  </section>
-			  <div class="slds-backdrop slds-backdrop_open"></div>
-			</div>	    
-	    </aura:if>
-	    
-	    
-	    
 	    <!-- openModalConfirmDeletion  -->
 	    <aura:if isTrue="{!v.openModalConfirmDeletion}">    
 	    	<div class="demo-only" style="height: 640px;">

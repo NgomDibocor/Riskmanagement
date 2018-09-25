@@ -68,8 +68,7 @@
                                                                
                                                                 if(sliderValue==null)
                                                                 {
-                                                                	document.getElementById("divColor").style.color = "green";
-                                                                	document.getElementById("divColor").innerHTML = 'null probability';
+                                                                	
                                                                 }
                                                                 else
                                                                 {

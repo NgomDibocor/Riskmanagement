@@ -179,8 +179,7 @@
             </td>
         </tr>
         </table>
-        <lightning:accordion aura:id="accordion" >
-        	<lightning:accordionSection name="hsseImpacts" label="Details of Risk" >
+        
         <table class="slds-table">
         <tr>
             <td>
@@ -261,7 +260,13 @@
                 
             </td>
             <td>
-               	<div class="width">
+               	
+            </td>
+        </tr>
+    </table>
+    <lightning:accordion aura:id="accordion" >
+    <lightning:accordionSection name="Probability" label="Probability" >
+    	<div class="width">
                   <b>  <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }"  disabled="{!v.disabledSlider}"/></b>
                 </div><br/>
                 <center>
@@ -269,9 +274,6 @@
                        
                     </div>
                 </center>
-            </td>
-        </tr>
-    </table>
     </lightning:accordionSection>
     <center>
     

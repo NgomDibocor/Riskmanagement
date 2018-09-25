@@ -155,7 +155,9 @@
 																  'orm_reputation__c' : 'Short Term Damage' 
 																}"/>
 		
-	<aura:attribute name="businessImpacts" type="Macro[]" />														
+	<aura:attribute name="businessImpacts" type="Macro[]" />	
+	
+	<aura:registerEvent name="ShowMatriceAssessmentRiskt" type="c:OrmShowMatriceAssessmentRiskEvt" />													
 																						
     <!-- end Objects Business Impacts -->
     <table class="slds-table">
@@ -284,11 +286,11 @@
                 <th  class="thTable" width="33%">{!$Label.c.orm_security_title} </th>
                 <th  class="thTable" width="33%">{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
                 <th width="16%">
-                     <aura:if isTrue="{!v.assessmentRiskData. !=}">
-                          <lightning:button label="Risk Pucture"
-                                                  variant="neutral"
-                                                  class="slds-button slds-button--neutral"
-                                                  onclick="{!c.goToRiskPucture}"/>
+                     <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
+                          <lightning:button label="Risk Picture"
+	                                             variant="neutral"
+	                                             class="slds-button slds-button--neutral"
+	                                             onclick="{!c.goToRiskPucture}"/>
                      </aura:if>
                 </th>
             </tr>

@@ -251,7 +251,31 @@
 						});
 		$A.enqueueAction(action);
 	},
-
-	
+	/**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description check if contact exist in contactworkshop
+	 * @history 2018-09-25 : Salimata NGOM - Implementation
+	 */
+	checkContactWorkshop:function(component,event,contact,workshop){
+	var action=component.get('c.getContactWorkshop');
+			action.setParams({
+				'item':'8001H000000xCHGQA2',
+				'contact':'0031H00001tbem0QAA'
+			}
+			);
+			alert('workshop'+workshop+'contact'+contact);
+			action.setCallback(this,function(response) {
+				var state = response.getState();
+				console.log('resultat'+state);
+				if (state == "SUCCESS") {
+					var contactworkshopItem = response.getReturnValue();
+									return contactworkshopItem;
+					
+				}
+			});
+			$A.enqueueAction(action);
+	}
 
 })

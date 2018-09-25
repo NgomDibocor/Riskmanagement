@@ -7,9 +7,7 @@
      */
     openModalAssumption: function(component, event, helper) {
         component.set("v.isOpen", true);
-
         component.set('v.idAssessmentRisk', event.getParam('AssessmentRisk'));
-
     },
     /** @author:david 
      *  @date: Creation: 30/08/2018

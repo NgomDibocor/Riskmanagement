@@ -101,7 +101,18 @@
  * 2018-08-13 : Salimata NGOM - Implementation
  */
 	createContactWorkshop : function(component, event, helper) {
-
+		//check if contact selected
+	if($A.util.isEmpty(component.get("v.ContactWorkshopList")))
+	{
+                		var toast = $A.get('e.force:showToast');
+			toast.setParams({
+				'message' : $A.get("$Label.c.orm_warning_checked_checkbox"),
+				'type' : 'warning',
+				'mode' : 'dismissible'
+			});
+			toast.fire();
+		} else{
+		
 		var relatedcontactworkshop = component.get("v.ContactWorkshopList");
 		var action = component.get('c.addWorkShopContact');
 		action.setParams({
@@ -132,6 +143,7 @@
 		});
 		$A.enqueueAction(action);
 		//component.set("v.isOpenModalContactWorkshop", false);
+		}
 	},
 /**
  *

@@ -5,6 +5,8 @@
 */
 
 public with sharing class OrmAttachmentController {
+	public static Map<String, Object> error;
+	
 /**
  * @author: Salimata NGOM
  * @date: Creation: 31/08/2018
@@ -57,5 +59,32 @@ public with sharing class OrmAttachmentController {
         return [SELECT Id,Title,ParentId, (SELECT orm_title_document__c, orm_auteur__c, orm_numeroDeReference__c FROM ContentVersions) from ContentDocument where Id IN :idcds ];
 }
     
-    
+/**
+ * @author: Salimata NGOM
+ * @date: Creation: 24/09/2018
+ * @description:  method for delete attachment  
+*/
+     @AuraEnabled
+      public static List < String > DeleteAttachment(List<ContentDocument> att) {
+	// for store Error Messages  
+  List < String > oErrorMsg = new List < String > ();
+		system.debug('ORM_Attachment --> DeleteAttachment');
+	  List <ContentDocument> lstDeleteRec = [select Id from ContentDocument where id IN: att];
+	Database.DeleteResult[] DR_Dels = Database.delete(lstDeleteRec, false);
+  // Iterate through each returned result
+  for (Database.DeleteResult dr: DR_Dels) {
+   if (dr.isSuccess()) {
+      system.debug('successful delete attachment');
+     // Operation was successful
+   } else {
+    // Operation failed, so get all errors   
+    oErrorMsg.add('');
+    for (Database.Error err: dr.getErrors()) {
+     // add Error message to oErrorMsg list and return the list
+     oErrorMsg.add(err.getStatusCode() + ': ' + err.getMessage());
+    }
+   }
+  }
+  return oErrorMsg;
+	}
 }

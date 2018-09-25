@@ -28,4 +28,6 @@
 		component.set("v.nameEditMode", false);
 
 	},
+	
+	
 })

@@ -44,7 +44,6 @@
 		$A.enqueueAction(action);
 	},
 	deleteSelectedHelper: function(component, event, deleteRecordsIds) {
-	alert('deleteRecordsIds'+JSON.stringify(deleteRecordsIds));
   //call apex class method
   var action = component.get('c.DeleteAttachment');
   // pass the all selected record's Id's to apex method 

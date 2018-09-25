@@ -283,10 +283,13 @@
                 <th class="thTableBI" width="18%">{!$Label.c.orm_healthandSafety_title }</th>
                 <th  class="thTable" width="33%">{!$Label.c.orm_security_title} </th>
                 <th  class="thTable" width="33%">{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
-                <th width="16%"><lightning:button label="Risk Pucture"
+                <th width="16%">
+                     <aura:if isTrue="{!v.assessmentRiskData. !=}">
+                          <lightning:button label="Risk Pucture"
                                                   variant="neutral"
                                                   class="slds-button slds-button--neutral"
                                                   onclick="{!c.goToRiskPucture}"/>
+                     </aura:if>
                 </th>
             </tr>
             <tr>

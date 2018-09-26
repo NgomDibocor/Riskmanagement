@@ -3,10 +3,13 @@
     <aura:attribute name="idAssessmentRisk" type="string" />
     <aura:attribute name="assumptionRiskList" type="Macro[]" />
     <aura:attribute name="storeAssumptionList" type="Macro[]" />
+    <aura:attribute name="key" type="string" />
     <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
+    <aura:attribute name="showConfirmRemoveAssumption" type="boolean" default="false" />
     <aura:registerEvent name="OrmNewAssumptionAssessmentRiskClickedEvt" type="c:OrmNewAssumptionAssessmentRiskClickedEvt" />
     <aura:handler event="c:OrmAssumptionAssessmentRiskCreatedEvt" action="{!c.refresh}" />
+    <aura:registerEvent name="OrmRemoveRecordAssumptAssRiskEvnt" type="c:OrmRemoveRecordAssumptAssRiskEvnt" />
     <div style="margin-bottom:20px;">
         <h1 class="titleAssumtion"><span class="dot">Assumptions</span></h1>
     </div>
@@ -27,7 +30,7 @@
             <aura:if isTrue="{!v.showSaveCancelBtn}">
                 <!--button for save and cancel Record after Inline Edit-->
                 <lightning:buttonGroup class="slds-m-around_medium">
-                    <lightning:button label="{!$Label.c.orm_cancel_button_title}"  onclick="{!c.cancel}" />
+                    <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}" />
                     <lightning:button label="{!$Label.c.orm_save_button_title}" title="test" onclick="{!c.updateAssumpt}" variant="success" />
                 </lightning:buttonGroup>
             </aura:if>

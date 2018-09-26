@@ -21,7 +21,7 @@
 				var storeResponse = response.getReturnValue();
 				// set assumptionList list with return value from server.
 				component.set("v.assumptionRiskList", storeResponse);
-
+				component.set("v.storeAssumptionList", storeResponse);
 			}
 		});
 		$A.enqueueAction(action);
@@ -30,7 +30,7 @@
 	},
 	requiredValidation : function(component, event) {
 		// get all assumptionList
-		var allRecords = component.get("v.assumptionList");
+		var allRecords = component.get("v.assumptionRiskList");
 		var isValid = true;
 		// play a for loop on all assumptionList list and check that assumption
 		// name is not null,

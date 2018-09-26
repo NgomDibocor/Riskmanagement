@@ -157,8 +157,8 @@
 		
 	<aura:attribute name="businessImpacts" type="Macro[]" />	
 	
-	<aura:attribute name="infosProbability" type="String[]" />
-	<aura:attribute name="infoHsseImpacts" type="String[]" />
+	<aura:attribute name="choiceProbability" type="String" />
+	<aura:attribute name="choiceHsseImpact" type="String" />
 	
 	
 	<aura:registerEvent name="ShowMatriceAssessmentRiskt" type="c:OrmShowMatriceAssessmentRiskEvt" />													
@@ -265,7 +265,16 @@
                       </div>
                 
             </td>
-            <td class="tdWidth"></td>
+            <td class="tdWidth" style="padding-top:30px;">
+                <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
+                   <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
+                        <lightning:button label="View Risk Picture"
+                                            variant="neutral"
+                                            class="slds-button slds-button--neutral widthBtn"
+                                            onclick="{!c.goToRiskPucture}"/>
+                   </aura:if>
+                </aura:if> 
+            </td>
         </tr>
     </table>
     <lightning:accordion aura:id="accordion" >
@@ -286,19 +295,9 @@
       <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
         <table class="slds-table" style="width: 100%;margin-top:30px" cellspacing="10">
             <tr> 
-                <th class="thTableBI" width="18%">{!$Label.c.orm_healthandSafety_title }</th>
-                <th  class="thTable" width="33%">{!$Label.c.orm_security_title} </th>
-                <th  class="thTable" width="33%">{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
-                <th width="16%">
-                   <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
-	                     <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
-	                          <lightning:button label="Risk Picture"
-		                                             variant="neutral"
-		                                             class="slds-button slds-button--neutral"
-		                                             onclick="{!c.goToRiskPucture}"/>
-	                     </aura:if>
-                   </aura:if>  
-                </th>
+                <th class="thTableBI" width="17%">{!$Label.c.orm_healthandSafety_title }</th>
+                <th  class="thTable" width="40%">{!$Label.c.orm_security_title} </th>
+                <th  class="thTable" width="43%">{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
             </tr>
             <tr>
 	            <td id="healthAndSafety" class="healthAndSafety" ></td>

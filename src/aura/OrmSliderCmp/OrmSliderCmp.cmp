@@ -72,15 +72,15 @@
 																}"/>	
 																
 	<aura:attribute name="businessImpLowData" type="Macro" default="{ 'sobjectType' : 'Macro',
-																  'Name' : 'XXXX',
-																  'orm_rating__c' : 'Low',
-																  'orm_costProjectBudgetMin__c' : '',
-																  'orm_costProjectBudgetMax__c' : '',
-																  'orm_scheduleProjectBaselineMin__c' : '',
-																  'orm_scheduleProjectBaselineMax__c' : '',
-																  'orm_productionLossMin__c' : '',
-																  'orm_productionLossMax__c' : '',
-																  'orm_reputation__c' : 'Short Term Damage'
+																	  'Name' : 'XXXX',
+																	  'orm_rating__c' : 'Low',
+																	  'orm_costProjectBudgetMin__c' : '',
+																	  'orm_costProjectBudgetMax__c' : '',
+																	  'orm_scheduleProjectBaselineMin__c' : '',
+																	  'orm_scheduleProjectBaselineMax__c' : '',
+																	  'orm_productionLossMin__c' : '',
+																	  'orm_productionLossMax__c' : '',
+																	  'orm_reputation__c' : 'Short Term Damage'
 																}"/>
 		
 	<aura:attribute name="businessImpacts" type="Macro[]" />														
@@ -88,7 +88,7 @@
     <!-- end Objects Business Impacts -->
 
     <!-- start for HSSE impact -->
-    <aura:attribute name="hsseVeryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+   <aura:attribute name="hsseVeryHighData" type="Macro" default="{'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
 																  'orm_rating__c' : 'VeryHigh',
 																  'orm_healthAndSafety__c' : '', 
@@ -137,6 +137,8 @@
     <aura:attribute name="showProbilityRanking" type="boolean" default="true"/>
     <aura:attribute name="showHsseImpactsRanking" type="boolean" default="false"/>
     <aura:attribute name="showBusinessImpactsRanking" type="boolean" default="false"/>
+    <aura:attribute name="showBusinessImpactsRanking2" type="boolean" default="false"/>
+    <aura:attribute name="alreadySaveBusinessImpacts2" type="boolean" default="false"/>
     <aura:attribute name="showRiskOccurrence" type="boolean" default="false"/>
     
     <aura:attribute name="showBtnSave" type="boolean" default="false"/>
@@ -230,6 +232,13 @@
 			               </aura:if>
 			            </aura:if>
 					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
+					    <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					       <aura:if isTrue="{!v.showBtnUpdate == false}">
+				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+			               </aura:if>
+			            </aura:if>
+					</aura:if>
 					<aura:if isTrue="{!v.showHsseImpactsRanking}">
 					    <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
 					       <aura:if isTrue="{!v.showBtnUpdate == false}">
@@ -251,6 +260,13 @@
 					   </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					  <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
+					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					       </aura:if>
+					   </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
 					  <aura:if isTrue="{!not(empty(v.businessImpacts))}">
 		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
 					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
@@ -315,6 +331,30 @@
 					            </aura:set>
 					         </aura:if>
 					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
+					         <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					                  <aura:if isTrue="{!v.showBtnUpdate}">
+					                      <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateBusinessImpact}"/>
+						                      <lightning:button label="update"
+						                                       variant="neutral"
+						                                       class="slds-button slds-button_brand"
+						                                       onclick="{!c.createBusinessImpactsRanking2}"/>
+					                      </lightning:buttonGroup>
+					                   </aura:if>
+					              <aura:set attribute="else">
+					                   <aura:if isTrue="{!v.showBtnSave}">
+						                  <lightning:buttonGroup class="slds-m-around_medium">
+							                      <!--<lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>  -->
+							                      <lightning:button label="{!$Label.c.orm_save_button}"
+							                                       variant="neutral"
+							                                       class="slds-button slds-button_success"
+							                                       onclick="{!c.createBusinessImpactsRanking2}"/>
+						                  </lightning:buttonGroup>
+						               </aura:if>
+					            </aura:set>
+					         </aura:if>
+					</aura:if>
 					<aura:if isTrue="{!v.showHsseImpactsRanking}">
 					       <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
@@ -359,9 +399,9 @@
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Probability</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Pourcentage</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Description</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;">Probability</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;">Pourcentage</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;">Description</th>
 					  </tr>
 				  </thead>
 				  <tbody >
@@ -410,22 +450,20 @@
          </div>
          <div  id="bir">
              <div style="margin-bottom:30px;">
-                <h1 class="titleslider">Business Impacts Ranking</h1>
+                <h1 class="titleslider">Business Impacts Ranking 1/2</h1>
              </div>
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Rating</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Cost as % of project budget</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Schedule as % of project baseline</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Production Loss (Weeks)</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Reputation</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Rating</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Cost as % of budget</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Schedule as % of baseline</th>
 					  </tr>
 				  </thead>
-				  <tbody>
+				      <tr><td height="5"></td><td height="5"></td><td height="5"></td></tr>
 			          <tr>
 				            <td class="tdcouleurSlider2" height="100" style="background-color: red;text-align: center;">Very High</td>
-					        <td  class="tdBusinessImpact" height="100">
+					        <td  class="tdBusinessImpact" height="100" >
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="sliderCostProjectVeryHigh" id="sliderCostProjectVeryHigh" />
@@ -437,17 +475,10 @@
 									    <div aura:id="sliderScheduleProjectVeryHigh" />
 								    </div>
 					         </td>
-					         <td  class="tdBusinessImpact" height="100" style="text-align: center;">
-					                More then 26 weeks
-					         </td>
-					         <td class="tdBusinessImpactReputation">
-					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpVeryHighData.orm_reputation__c}"  keyup="{!c.onChangeVeryHighRepution}" />
-                             </td>
-                             
 			           </tr>
 			           <tr>
 				             <td class="tdcouleurSlider2" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
-					         <td  class="tdBusinessImpact">
+					         <td  class="tdBusinessImpact" >
 					                <div>
 								        <div class="">{!v.label2}</div>
 									    <div aura:id="sliderCostProjectHigh" />
@@ -459,19 +490,10 @@
 									    <div aura:id="sliderScheduleProjectHigh" />
 								    </div>
 					         </td>
-					         <td  class="tdBusinessImpact" height="100">
-					                <div>
-								        <div class="label">{!v.label}</div>
-									    <div aura:id="sliderProductionHigh" />
-								    </div>
-					         </td>
-					         <td class="tdBusinessImpactReputation">
-					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.businessImpHighData.orm_reputation__c}" keyup="{!c.onChangeHighRepution}" />
-					         </td>
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
-					        <td  class="tdBusinessImpact" height="100">
+					        <td  class="tdBusinessImpact" height="100" >
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="sliderCostProjectMedium" />
@@ -483,19 +505,10 @@
 									    <div aura:id="sliderScheduleProjectMedium" />
 								    </div>
 					         </td>
-					         <td  class="tdBusinessImpact" height="100">
-					                <div>
-								        <div class="label">{!v.label}</div>
-									    <div aura:id="sliderProductionMedium" />
-								    </div>
-					         </td>
-			                 <td class="tdBusinessImpactReputation">
-			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpMediumData.orm_reputation__c}" keyup="{!c.onChangeMediumRepution}" />
-			                 </td>
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
-					        <td  class="tdBusinessImpact" height="100">
+					        <td  class="tdBusinessImpact" height="100" >
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="sliderCostProjectLow" />
@@ -507,20 +520,68 @@
 									    <div aura:id="sliderScheduleProjectLow" />
 								    </div>
 					         </td>
-					         <td  class="tdBusinessImpact" height="100">
+			          </tr>
+		         </table> 
+         </div>
+         <div  id="bir2">
+             <div style="margin-bottom:30px;">
+                <h1 class="titleslider">Business Impacts Ranking 2/2</h1>
+             </div>
+		       <table wtdth="100%">
+		          <thead>
+			         <tr>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Rating</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Production Loss (Weeks)</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Reputation</th>
+					  </tr>
+				  </thead>
+			          <tr>
+				            <td class="tdcouleurSlider2" height="100" style="background-color: red;text-align: center;">Very High</td>
+					         <td  class="tdBusinessImpact3" height="100" style="text-align: center;">
+					                More then 26 weeks
+					         </td>
+					         <td class="tdBusinessImpact4">
+					                 <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpVeryHighData.orm_reputation__c}"  keyup="{!c.onChangeVeryHighRepution}" />
+                             </td>
+			           </tr>
+			           <tr>
+				             <td class="tdcouleurSlider2" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
+					         <td  class="tdBusinessImpact3" height="100" >
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="sliderProductionHigh" id="sliderProductionHigh"/>
+								    </div>
+					         </td>
+					         <td class="tdBusinessImpact4">
+					               <ui:inputTextArea class="slds-input" aura:id="Name2" value="{!v.businessImpHighData.orm_reputation__c}" keyup="{!c.onChangeHighRepution}" />
+					         </td>
+			          </tr>
+			          <tr>
+				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
+					         <td  class="tdBusinessImpact3" height="100" >
+					                <div>
+								        <div class="label">{!v.label}</div>
+									    <div aura:id="sliderProductionMedium" />
+								    </div>
+					         </td>
+			                 <td class="tdBusinessImpact4">
+			                      <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpMediumData.orm_reputation__c}" keyup="{!c.onChangeMediumRepution}" />
+			                 </td>
+			          </tr>
+			          <tr>
+				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
+					         <td  class="tdBusinessImpact3" height="100" >
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="sliderProductionLow" />
 								    </div>
 					         </td>
-			                 <td class="tdBusinessImpactReputation">
+			                 <td class="tdBusinessImpact4">
 			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.businessImpLowData.orm_reputation__c}" keyup="{!c.onChangeLowRepution}"  />
 			                 </td>
 			          </tr>
-		           </tbody>
 		         </table> 
          </div>
-         
          <div  id="hir">
              <div style="margin-bottom:30px;">
                 <h1 class="titleslider">HSSE Impacts Ranking</h1>
@@ -528,13 +589,13 @@
 		       <table wtdth="100%">
 		          <thead>
 			         <tr>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Rating</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Health And Safety</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Security</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.2em;">Environment And Community</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Rating</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Health And Safety</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Security</th>
+					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Environment And Community</th>
 					  </tr>
 				  </thead>
-				  <tbody>
+				      <tr><td height="5"></td><td height="5"></td><td height="5"></td></tr>
 			          <tr>
 				            <td class="tdcouleurSliderHSSE" height="100" style="background-color: red;text-align: center;">Very High</td>
 					        <td  class="tdClassRating" height="100">
@@ -583,7 +644,6 @@
 			                     <ui:inputTextArea class="slds-input" aura:id="Name" value="{!v.hsseLowData.orm_environmentAndCommunity__c}" keyup="{!c.onChangeLowEnvCom}" />
 			                 </td>
 			          </tr>
-		           </tbody>
 		         </table> 
          </div>
          <div  id="ro">
@@ -624,10 +684,17 @@
 		         </table> 
          </div>
          
-         <div class="slds-col" style="margin-bottom: 20px">
+         <div class="slds-col" style="margin-bottom: 20px;margin-top:20px">
 		        <span class="spaceSlider"></span>									
 			    <span class="btnPrev" onclick="{!c.PrevPage}">
 					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					    <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					       <aura:if isTrue="{!v.showBtnUpdate == false}">
+				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
+			               </aura:if>
+			            </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
 					    <aura:if isTrue="{!not(empty(v.businessImpacts))}">
 					       <aura:if isTrue="{!v.showBtnUpdate == false}">
 				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
@@ -655,6 +722,13 @@
 					   </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					  <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
+					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
+					       </aura:if>
+					   </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
 					  <aura:if isTrue="{!not(empty(v.businessImpacts))}">
 		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
 					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
@@ -696,6 +770,30 @@
 					               
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking}">
+					         <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					                  <aura:if isTrue="{!v.showBtnUpdate}">
+					                      <lightning:buttonGroup class="slds-m-around_medium">
+						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateBusinessImpact}"/>
+						                      <lightning:button label="update"
+						                                       variant="neutral"
+						                                       class="slds-button slds-button_brand"
+						                                       onclick="{!c.createBusinessImpactsRanking}"/>
+					                      </lightning:buttonGroup>
+					                   </aura:if>
+					              <aura:set attribute="else">
+					                   <aura:if isTrue="{!v.showBtnSave}">
+						                  <lightning:buttonGroup class="slds-m-around_medium">
+							                      <!--<lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelSave}"/>  -->
+							                      <lightning:button label="{!$Label.c.orm_save_button}"
+							                                       variant="neutral"
+							                                       class="slds-button slds-button_success"
+							                                       onclick="{!c.createBusinessImpactsRanking}"/>
+						                  </lightning:buttonGroup>
+						               </aura:if>
+					            </aura:set>
+					         </aura:if>
+					</aura:if>
+					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
 					         <aura:if isTrue="{!not(empty(v.businessImpacts))}">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
 					                      <lightning:buttonGroup class="slds-m-around_medium">

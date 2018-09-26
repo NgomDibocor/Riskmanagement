@@ -61,27 +61,23 @@
 	        action.setParams({
 	            "item": assessmentRisk
 	        });
-	        action
-	        .setCallback(
-	            this,
-	            function(response) {
-	                var state = response.getState();
-	                if (state == "SUCCESS") {
+	        action.setCallback(this,function(response) {
+                var state = response.getState();
+                if (state == "SUCCESS") {
 	                component.set("v.displaySaveCancelBtn", false);
 	                component.set("v.assessmentRiskData",response.getReturnValue());
-	                    var toastEvent = $A.get('e.force:showToast');
-	                        toastEvent.setParams({
-	                            'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
-	                            'type' : 'success',
-	                            'mode' : 'dismissible'
-	                        });
-	
-			                toastEvent.fire();
-			                var idAsssessmentRisk = component.get("v.assessmentRiskId");
-			                helper.fetchPicklist(component, event, idAsssessmentRisk);
-	                    
-	                }
-	            });
+                    var toastEvent = $A.get('e.force:showToast');
+                    toastEvent.setParams({
+                        'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
+                        'type' : 'success',
+                        'mode' : 'dismissible'
+                    });
+	                toastEvent.fire();
+	                var idAsssessmentRisk = component.get("v.assessmentRiskId");
+	                helper.fetchPicklist(component, event, idAsssessmentRisk);
+
+                }
+	        });
 	        $A.enqueueAction(action);
     },
        /**
@@ -171,39 +167,19 @@
         component.set("v.sliderValue",component.find("slider1").get("v.value")) 
 	    var sliderValue = component.find("slider1").get("v.value");
 	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
-		    var infosProbability = [];
-		    infosProbability.push(sliderValue);
-		    infosProbability.push(component.get("v.RareData.orm_probability__c"));
-		    component.set("v.infosProbability", infosProbability);
-		    console.log('*******proba Rare*********');
-		    console.log(JSON.stringify(component.get("v.infosProbability")))
+		    component.set("v.choiceProbability", component.get("v.RareData.orm_probability__c"));
 		    document.getElementById("divColor").style.backgroundColor = "green";
 		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
 	    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
-		    var infosProbability = [];
-		    infosProbability.push(sliderValue);
-		    infosProbability.push(component.get("v.unlikelyData.orm_probability__c"));
-		    component.set("v.infosProbability", infosProbability);
-		    console.log('*******proba Unlike*********');
-		    console.log(JSON.stringify(component.get("v.infosProbability")))
+		    component.set("v.choiceProbability", component.get("v.unlikelyData.orm_probability__c"));
 		    document.getElementById("divColor").style.backgroundColor = "yellow";
 		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
 	    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
-		    var infosProbability = [];
-		    infosProbability.push(sliderValue);
-		    infosProbability.push(component.get("v.possibleData.orm_probability__c"));
-		    component.set("v.infosProbability", infosProbability);
-		    console.log('*******proba Possible*********');
-		    console.log(JSON.stringify(component.get("v.infosProbability")))
+		    component.set("v.choiceProbability", component.get("v.possibleData.orm_probability__c"));
 		    document.getElementById("divColor").style.backgroundColor = "orange";
 		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
 	    }else{
-	        var infosProbability = [];
-		    infosProbability.push(sliderValue);
-		    infosProbability.push(component.get("v.probableData.orm_probability__c"));
-		    component.set("v.infosProbability", infosProbability);
-		    console.log('*******proba Probable*********');
-		    console.log(JSON.stringify(component.get("v.infosProbability")))
+	        component.set("v.choiceProbability", component.get("v.probableData.orm_probability__c"));
 		    document.getElementById("divColor").style.backgroundColor = "red";
 		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
 	    }
@@ -277,32 +253,28 @@
 	    }
     },
     checkboxSelectreputation  : function(component, event, helper) {
-    	component.set("v.displaySaveCancelBtn",true);
-		 component.set('v.selectedReputation',event.getSource().getLocalId());
-		 
-		 
-		  if(component.get("v.selectedReputation")=='reputation1')
-		 {	 
+          component.set("v.displaySaveCancelBtn",true);
+		  component.set('v.selectedReputation',event.getSource().getLocalId());
+		  
+		  if(component.get("v.selectedReputation")=='reputation1'){	 
 			 document.getElementById('reputation').style.backgroundColor = "red";
 			 document.getElementById("reputation").innerHTML= 'very high';
 			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
 			 component.set("v.reputation" ,reputation);
 	       
-		 } if (component.get("v.selectedReputation")=='reputation2')
-		 {
+		 } if (component.get("v.selectedReputation")=='reputation2'){
 			 document.getElementById('reputation').style.backgroundColor = "orange";
 			 document.getElementById("reputation").innerHTML= 'high';
 			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
 			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         component.set("v.reputation" ,reputation);
 		 }
-		  if (component.get("v.selectedReputation")=='reputation3')
-		 {
+		  if (component.get("v.selectedReputation")=='reputation3'){
 			 document.getElementById('reputation').style.backgroundColor = "yellow";
 			 document.getElementById("reputation").innerHTML= 'Medium';
 			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        component.set("v.reputation" ,reputation);
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         component.set("v.reputation" ,reputation);
 		 }
 		 if(component.get("v.selectedReputation")=='reputation4')
 		 {
@@ -333,12 +305,12 @@
 			 document.getElementById("healthAndSafety").innerHTML= 'very high';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 		 } 
 		 if (component.get("v.selected")=='r1'){
 			 document.getElementById('healthAndSafety').style.backgroundColor = "orange";
@@ -387,7 +359,6 @@
 	            "descriptionField": $A.get("$Label.c.search_description_title")
 	         });
              evt.fire();
-			 
 		 } 
 		 if (component.get("v.selected")=='rr1'){
 			 document.getElementById('security').style.backgroundColor = "orange";
@@ -478,9 +449,12 @@
 	goToRiskPucture : function(component, event, helper) {
 	    var evtShowMatrice = $A.get("e.c:OrmShowMatriceAssessmentRiskEvt");
 	    evtShowMatrice.setParams({
-	            "assessmentRisk": component.get("v.assessmentRiskData")
+	            "assessmentRisk": component.get("v.assessmentRiskData"),
+	            "choiceProbability": component.get("v.choiceProbability"),
+                "choiceHsseImpact": component.get("v.choiceHsseImpact")  
 	    });
         evtShowMatrice.fire();
+       
 	},
 	
 })

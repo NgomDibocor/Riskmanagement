@@ -122,7 +122,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">Risk Picture</span>
+            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">Risk Table</span>
           </a>
         </li>
         <li aura:id="actionPlanId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -1358,7 +1358,7 @@
                   <aura:if isTrue="{!v.showMatriceAssessmentRisk}">
 	                    <tr>
 	                       <td>
-	                           <c:OrmMatricesRiskCmp assessmentRiskData="{!v.assessmentRiskData}" />
+	                           <c:OrmMatricesRiskCmp assessmentRiskData="{!v.assessmentRiskData}" choiceProbability="{!v.choiceProbability}" choiceHsseImpact="{!v.choiceHsseImpact}"  />
 	                       </td>
 	                    </tr>
                   </aura:if>

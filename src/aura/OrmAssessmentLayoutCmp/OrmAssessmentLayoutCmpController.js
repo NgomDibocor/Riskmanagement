@@ -518,4 +518,8 @@
         });
         evt.fire();
    },
+   
+   showMatriceAssessmentRiskAction : function(component, event, helper){
+      helper.activeMatriceAssessmentRisk(component, event, helper);
+   },
 })

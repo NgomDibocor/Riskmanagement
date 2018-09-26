@@ -5,7 +5,6 @@ public with sharing class OrmPhaseAssessmentRiskController {
                   .get('RT Phase').getRecordTypeId();
         return RecordTypeId;
     }
-    
     /**
 	 * @author: david
 	 * @date: Creation: 28/08/2018
@@ -15,10 +14,9 @@ public with sharing class OrmPhaseAssessmentRiskController {
 	public static List<Macro> findAllPhaseByAssessmentRisk(String idAssRisk){
 		return [SELECT Id, Description, orm_assessmentRisk__c FROM Macro WHERE orm_assessmentRisk__c=: idAssRisk AND 
 					RecordTypeId =: OrmPhaseAssessmentRiskController.getPhaseRecordTypeId()];
-	
 	}
 	  /**
-	 * @author: Laye
+	 * @author: David
 	 * @date: Creation: 06/08/2018
 	 * @description: add Phase
 	*/
@@ -29,7 +27,7 @@ public with sharing class OrmPhaseAssessmentRiskController {
 		return item;
 	}
 	/**
-	 * @author: Laye
+	 * @author: David
 	 * @date: Creation: 07/08/2018
 	 * @description: method for update records after inline editing
 	*/
@@ -39,13 +37,12 @@ public with sharing class OrmPhaseAssessmentRiskController {
         return phases;
     }
     /**
-	 * @author: Laye
+	 * @author: David
 	 * @date: Creation: 10/08/2018
 	 * @description: delete all phases where the iD is in phaseIds list 
 	*/
 	@AuraEnabled
 	public static List <String> deletePhases(List<String> phaseIds){
-		
 		// for store Error Messages  
   		List <String> oErrorMsg = new List <String>();
   		// Query Records for delete where id in lstRecordId [which is pass from client side controller]

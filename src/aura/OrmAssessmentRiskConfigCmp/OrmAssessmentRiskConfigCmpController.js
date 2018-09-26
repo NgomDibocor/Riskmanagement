@@ -460,6 +460,9 @@
 		 }
 	},
 	
-	goToRiskPucture : function(component, event, helper) {},
+	goToRiskPucture : function(component, event, helper) {
+	    var evtShowMatrice = $A.get("e.c:OrmShowMatriceAssessmentRiskEvt");
+        evtShowMatrice.fire();
+	},
 	
 })

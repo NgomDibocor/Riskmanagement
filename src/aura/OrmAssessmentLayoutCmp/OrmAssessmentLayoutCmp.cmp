@@ -7,7 +7,8 @@
     <aura:attribute name="showContextActivityShow" type="boolean" default="false"/>
     <aura:attribute name="showContextWorkshop" type="boolean" default="false"/>
     <aura:attribute name="showRiskIdentif" type="boolean" default="false"/>
-    <aura:attribute name="showRiskAnalyse" type="boolean" default="false"/>
+    <aura:attribute name="showRiskAnalyse" type="boolean" default="false"/>  
+    <aura:attribute name="showMatriceAssessmentRisk" type="boolean" default="false"/>
     <aura:attribute name="showListCauseAndImpact" type="boolean" default="false"/>
     <aura:attribute name="showListMeasure" type="boolean" default="false"/>
     <aura:attribute name="showRiskTreatment" type="boolean" default="false"/>
@@ -63,6 +64,7 @@
     <aura:handler event="c:OrmNotifyAfterdeletingAssessmentRiskEvt" action="{!c.afterdeletingAssessmentRisk}" />
     <aura:handler event="c:OrmListMeasureNotEmptyEvt" action="{!c.afterAddingMeasure}" />
     <aura:handler event="c:OrmShowActivityEvt" action="{!c.showActivity}" />
+    <aura:handler event="c:OrmShowMatriceAssessmentRiskEvt" action="{!c.showMatriceAssessmentRiskAction}" />
     
     <!-- events -->
     <aura:registerEvent name="OrmOpenNewOrganisation" type="c:OrmOpenNewOrganisationEvt" />
@@ -1347,6 +1349,13 @@
                           <c:OrmAssessmentRiskConfigCmp assessmentData="{!v.assessmentData}"  />
                       </td>
                     </tr>
+                    <aura:if isTrue="{!v.showMatriceAssessmentRisk}">
+	                    <tr>
+	                       <td>
+	                           <c:OrmMatricesRiskCmp />
+	                       </td>
+	                    </tr>
+                    </aura:if>
                 </aura:if>
                 <aura:if isTrue="{!v.showListCauseAndImpact}">
                     <tr>

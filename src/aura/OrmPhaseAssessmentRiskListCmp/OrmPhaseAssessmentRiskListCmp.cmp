@@ -49,22 +49,14 @@
 	        <table class="slds-table">	        
 	            <thead>
 	                <tr class="slds-text-title--caps">
+	                 <th  class="slds-text-align--right">
+		              	
+		              </th>
 	                  <th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
 	                  <th scope="col">
 	                  	 <div class="slds-truncate thTable" title="{!$Label.c.orm_phase}">Phase</div><!-- {!$Label.c.orm_phase} -->
 	                  </th>
-	                  <th  class="slds-text-align--right">
-		              	<div class="slds-form-element">
-		                	<div class="slds-form-element__control">
-		                    	<label class="slds-checkbox">
-		                        	<!--header checkbox for select all-->
-		                        	<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
-		                        	<span class="slds-checkbox--faux"></span>
-		                        	<span class="slds-form-element__label text"></span>
-		                     	</label>
-		                    </div>
-		                </div>
-		              </th> 
+	                  
 	                </tr>
 	            </thead>
 	            <tbody>

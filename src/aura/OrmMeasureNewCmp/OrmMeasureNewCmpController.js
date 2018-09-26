@@ -1,27 +1,13 @@
 ({
 	openOrmMeasureNewCmp : function(component, event, helper) {
 		component.set("v.isOpen", true);
-		
-		var actionstatus = component.get("c.getSelectOptions");
-        actionstatus.setParams({
-            "objObject": component.get("v.objInfo"),
-            "fld": 'orm_measureCategorie__c'
-        });
-        actionstatus.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === 'SUCCESS') {
-                component.set('v.measureCategorie', response.getReturnValue());
-            } else {
-                alert("l'Element n'a pas été retrouvé");
-            }
-        });
-        $A.enqueueAction(actionstatus);
+		helper.refreshList(component, event);
 	},
 	
 	createItem : function(component, event, helper) {
 	   var name = component.find('name').get('v.value');
        var description = component.find('description').get('v.value');
-       var measureCategorie  = component.find('measureCategorie').get('v.value');
+       var measureCategorie  = component.find('measureCategorie');
        console.log('**********ds create measure*******')
        console.log(measureCategorie)
        
@@ -35,8 +21,9 @@
         	var newMeasure = component.get('v.measure');
         	newMeasure.Name = name;
         	newMeasure.orm_description__c = description;
-        	newMeasure.orm_measureCategorie__c = measureCategorie;
+        	newMeasure.orm_measureCategorie__c = measureCategorie.get('v.value');
         	newMeasure.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
+        	console.log(measureCategorie.get('v.value'))
         	
         	var action = component.get('c.add');
             action.setParams({

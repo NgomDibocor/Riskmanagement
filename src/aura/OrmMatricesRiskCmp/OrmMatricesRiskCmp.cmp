@@ -1,5 +1,7 @@
 <aura:component access="global" controller="OrmRiskController">
 	
+	<aura:attribute name="infosProbability" type="String[]" />
+	<aura:attribute name="infoHsseImpacts" type="String[]" />
 	<aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{
 																						'sobjectType' : 'orm_assessmentRisk__c',
 																                         'orm_assessment__c': '',  
@@ -22,7 +24,7 @@
 																                         'orm_production_Loss_Risk__c':''
 																					}" />
 	  
-		     
+	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />   
 		    
 		    
 		     <div style="display: inline-block;width:80%;height:450px;">

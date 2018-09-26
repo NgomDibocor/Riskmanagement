@@ -157,6 +157,10 @@
 		
 	<aura:attribute name="businessImpacts" type="Macro[]" />	
 	
+	<aura:attribute name="infosProbability" type="String[]" />
+	<aura:attribute name="infoHsseImpacts" type="String[]" />
+	
+	
 	<aura:registerEvent name="ShowMatriceAssessmentRiskt" type="c:OrmShowMatriceAssessmentRiskEvt" />													
 																						
     <!-- end Objects Business Impacts -->
@@ -269,7 +273,7 @@
 	    <table class="slds-table" style="width: 90%;" cellspacing="10">
 	            <tr> 
 	    	        <div class=""  >
-	                    <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.handleRangeChange }"  disabled="{!v.disabledSlider}"/>
+	                    <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.onProbabilityChange }"  disabled="{!v.disabledSlider}"/>
 	                </div><br/>
 	                <center>
 	                    <div style="width:120px; height:50px;line-height: 50px;" id="divColor" class="divColor"></div>
@@ -286,12 +290,14 @@
                 <th  class="thTable" width="33%">{!$Label.c.orm_security_title} </th>
                 <th  class="thTable" width="33%">{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
                 <th width="16%">
-                     <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
-                          <lightning:button label="Risk Picture"
-	                                             variant="neutral"
-	                                             class="slds-button slds-button--neutral"
-	                                             onclick="{!c.goToRiskPucture}"/>
-                     </aura:if>
+                   <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
+	                     <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
+	                          <lightning:button label="Risk Picture"
+		                                             variant="neutral"
+		                                             class="slds-button slds-button--neutral"
+		                                             onclick="{!c.goToRiskPucture}"/>
+	                     </aura:if>
+                   </aura:if>  
                 </th>
             </tr>
             <tr>

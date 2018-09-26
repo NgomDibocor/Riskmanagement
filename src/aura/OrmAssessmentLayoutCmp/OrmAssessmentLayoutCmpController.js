@@ -520,6 +520,7 @@
    },
    
    showMatriceAssessmentRiskAction : function(component, event, helper){
+      component.set("v.assessmentRiskData", event.getParam("assessmentRisk"));
       helper.activeMatriceAssessmentRisk(component, event, helper);
    },
 })

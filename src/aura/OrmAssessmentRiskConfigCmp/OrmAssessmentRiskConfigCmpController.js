@@ -165,20 +165,45 @@
         evt.fire();
     },
     
-    handleRangeChange : function(component, event, helper) { 
+    onProbabilityChange : function(component, event, helper) { 
+        
         component.set("v.displaySaveCancelBtn",true);
         component.set("v.sliderValue",component.find("slider1").get("v.value")) 
 	    var sliderValue = component.find("slider1").get("v.value");
 	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
+		    var infosProbability = [];
+		    infosProbability.push(sliderValue);
+		    infosProbability.push(component.get("v.RareData.orm_probability__c"));
+		    component.set("v.infosProbability", infosProbability);
+		    console.log('*******proba Rare*********');
+		    console.log(JSON.stringify(component.get("v.infosProbability")))
 		    document.getElementById("divColor").style.backgroundColor = "green";
 		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
 	    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
+		    var infosProbability = [];
+		    infosProbability.push(sliderValue);
+		    infosProbability.push(component.get("v.unlikelyData.orm_probability__c"));
+		    component.set("v.infosProbability", infosProbability);
+		    console.log('*******proba Unlike*********');
+		    console.log(JSON.stringify(component.get("v.infosProbability")))
 		    document.getElementById("divColor").style.backgroundColor = "yellow";
 		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
 	    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
+		    var infosProbability = [];
+		    infosProbability.push(sliderValue);
+		    infosProbability.push(component.get("v.possibleData.orm_probability__c"));
+		    component.set("v.infosProbability", infosProbability);
+		    console.log('*******proba Possible*********');
+		    console.log(JSON.stringify(component.get("v.infosProbability")))
 		    document.getElementById("divColor").style.backgroundColor = "orange";
 		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
 	    }else{
+	        var infosProbability = [];
+		    infosProbability.push(sliderValue);
+		    infosProbability.push(component.get("v.probableData.orm_probability__c"));
+		    component.set("v.infosProbability", infosProbability);
+		    console.log('*******proba Probable*********');
+		    console.log(JSON.stringify(component.get("v.infosProbability")))
 		    document.getElementById("divColor").style.backgroundColor = "red";
 		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
 	    }
@@ -303,8 +328,7 @@
 		 component.set('v.selected',event.getSource().getLocalId());
 		 var selectedRadio = event.getSource().get("v.value");
 		 
-		 if(component.get("v.selected")=='r0')
-		 {	 
+		 if(component.get("v.selected")=='r0'){	 
 			 document.getElementById('healthAndSafety').style.backgroundColor = "red";
 			 document.getElementById("healthAndSafety").innerHTML= 'very high';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
@@ -315,136 +339,127 @@
 	            "descriptionField": $A.get("$Label.c.search_description_title")
 	        });
            evt.fire();
-		 } if (component.get("v.selected")=='r1')
-		 {
+		 } 
+		 if (component.get("v.selected")=='r1'){
 			 document.getElementById('healthAndSafety').style.backgroundColor = "orange";
 			 document.getElementById("healthAndSafety").innerHTML= 'high';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 		 }
-		  if (component.get("v.selected")=='r2')
-		 {
+		 if (component.get("v.selected")=='r2'){
 			 document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
 			 document.getElementById("healthAndSafety").innerHTML= 'Medium';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 		 }
-		 if(component.get("v.selected")=='r3')
-		 {
+		 if(component.get("v.selected")=='r3'){
 		  document.getElementById('healthAndSafety').style.backgroundColor = "green";
 		  document.getElementById("healthAndSafety").innerHTML= 'Low';
 		  var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.healthAndSafety" ,healthAndSafety);
-		   var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+		  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	      evt.setParams({
+	           "nomField": $A.get("$Label.c.search_title_label"),
+	           "descriptionField": $A.get("$Label.c.search_description_title")
+	      });
+          evt.fire();
 		 }
-		 
-		  if(component.get("v.selected")=='rr0'){
+		 if(component.get("v.selected")=='rr0'){
 			 document.getElementById('security').style.backgroundColor = "red";
 			 document.getElementById("security").innerHTML= 'very high';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	          evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 			 
 		 } 
-		 
 		 if (component.get("v.selected")=='rr1'){
 			 document.getElementById('security').style.backgroundColor = "orange";
 			 document.getElementById("security").innerHTML= 'high';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	          evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 		 }
-		 
-		  if (component.get("v.selected")=='rr2'){
+		 if (component.get("v.selected")=='rr2'){
 			 document.getElementById('security').style.backgroundColor = "yellow";
 			 document.getElementById("security").innerHTML= 'Medium';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	          evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 		 }
-		 
 		 if(component.get("v.selected")=='rr3'){
-		  document.getElementById('security').style.backgroundColor = "green";
-		  document.getElementById("security").innerHTML= 'Low';
-		  var  security =document.getElementById(component.get("v.selected")).innerHTML;
-		  component.set("v.security" ,security);
-		   var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+			  document.getElementById('security').style.backgroundColor = "green";
+			  document.getElementById("security").innerHTML= 'Low';
+			  var  security =document.getElementById(component.get("v.selected")).innerHTML;
+			  component.set("v.security" ,security);
+			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+		      evt.setParams({
+		            "nomField": $A.get("$Label.c.search_title_label"),
+		            "descriptionField": $A.get("$Label.c.search_description_title")
+		      });
+	          evt.fire();
 		 }
-		 
-		  if(component.get("v.selected")=='rrr0'){
+		 if(component.get("v.selected")=='rrr0'){
 			 document.getElementById('environment').style.backgroundColor = "red";
 			 document.getElementById("environment").innerHTML= 'very high';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 		 } 
-		 
 		 if (component.get("v.selected")=='rrr1'){
 			 document.getElementById('environment').style.backgroundColor = "orange";
 			 document.getElementById("environment").innerHTML= 'high';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 		 }
-		 
 		 if (component.get("v.selected")=='rrr2'){
 			 document.getElementById('environment').style.backgroundColor = "yellow";
 			 document.getElementById("environment").innerHTML= 'Medium';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-	        evt.setParams({
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
 	            "descriptionField": $A.get("$Label.c.search_description_title")
-	        });
-           evt.fire();
+	         });
+             evt.fire();
 		 }
 		 if(component.get("v.selected")=='rrr3'){
 		  document.getElementById('environment').style.backgroundColor = "green";
@@ -462,6 +477,9 @@
 	
 	goToRiskPucture : function(component, event, helper) {
 	    var evtShowMatrice = $A.get("e.c:OrmShowMatriceAssessmentRiskEvt");
+	    evtShowMatrice.setParams({
+	            "assessmentRisk": component.get("v.assessmentRiskData")
+	    });
         evtShowMatrice.fire();
 	},
 	

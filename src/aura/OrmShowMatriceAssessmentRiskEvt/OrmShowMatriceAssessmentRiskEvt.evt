@@ -1,1 +1,3 @@
-<aura:event type="APPLICATION" description="Event template" />
+<aura:event type="APPLICATION" description="Event template" >
+   <aura:attribute name="assessmentRisk" type="orm_assessmentRisk__c" description="" />
+</aura:event>

@@ -9,6 +9,7 @@
         var showSlider = component.get("v.showSlider");  
         var showRiskIdentif = component.get("v.showRiskIdentif");
         var showRiskAnalyse = component.get("v.showRiskAnalyse");
+        var showMatriceAssessmentRisk = component.get("v.showMatriceAssessmentRisk");
         var showListCauseAndImpact = component.get("v.showListCauseAndImpact");
         var showListMeasure = component.get("v.showListMeasure");
         var showRiskTreatment = component.get("v.showRiskTreatment");
@@ -85,7 +86,6 @@
             component.set("v.showRiskAnalyse", true);
             helper.activeRiskAnalye(component, event);
         }   
-        
         if(showRiskAnalyse == true){
             component.set("v.showListCauseAndImpact", true);
             component.set("v.showRiskAnalyse", false);
@@ -95,7 +95,15 @@
             evt.fire();
             helper.activeRiskAnalyeListCauseAndImpact(component, event);
         }
-        
+        if(showMatriceAssessmentRisk == true){
+            component.set("v.showListCauseAndImpact", true);
+            component.set("v.showRiskAnalyse", false);
+            //send idAseessmentRisk to CauseListCmp
+            var evt = $A.get("e.c:OrmSendIdAssessmentRiskToCauseEvt");
+            evt.setParams({"idAssessmentRisk": component.get("v.idAssessmentRisk")});
+            evt.fire();
+            helper.activeRiskAnalyeListCauseAndImpact(component, event);
+        }
         if(showListCauseAndImpact == true){
             component.set("v.showListMeasure", true);
             component.set("v.showListCauseAndImpact", false);
@@ -131,6 +139,7 @@
         var showContextWorkshop = component.get("v.showContextWorkshop");
         var showRiskIdentif = component.get("v.showRiskIdentif");
         var showRiskAnalyse = component.get("v.showRiskAnalyse");
+        var showMatriceAssessmentRisk = component.get("v.showMatriceAssessmentRisk");
         var showListCauseAndImpact = component.get("v.showListCauseAndImpact");
         var showListMeasure = component.get("v.showListMeasure");
         var showRiskTreatment = component.get("v.showRiskTreatment");
@@ -169,16 +178,22 @@
             //Hide the Spinner
 	        var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
 	        evtShowSpinner.fire();
-	        
             component.set("v.showSlider", true);
             component.set("v.showRiskIdentif", false);
             helper.activeSlider(component, event);
         }
-        
         if(showRiskAnalyse == true){
             component.set("v.showRiskIdentif", true);
             component.set("v.showRiskAnalyse", false);
             helper.activeRiskIdentif(component, event);
+        }
+        if(showMatriceAssessmentRisk == true){
+            component.set("v.showRiskAnalyse", true);
+            component.set("v.showListCauseAndImpact", false);
+            helper.activeRiskAnalye(component, event);
+            var evt = $A.get("e.c:OrmInstantiateRiskAnalysisEvt");
+            evt.setParams({"riskAssessmentId": component.get("v.idAssessmentRisk")});
+            evt.fire();
         }
         if(showListCauseAndImpact == true){
             component.set("v.showRiskAnalyse", true);

@@ -6,7 +6,7 @@
 		description="store contact records list" />
 	<aura:attribute name="contactListSelected" type="Contact[]"
 		description="store contact records list selected" />
-			<aura:attribute name="contactnotassociated" type="Contact[]"
+			<aura:attribute name="contactnotassociated" type="Contact"
 		description="store contact selected not associated" />
 	<aura:attribute name="ContactListTemp" type="Contact[]"
 		description="store contact records list temporarily" />
@@ -74,16 +74,16 @@
 				</div>
 				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 				<div class="slds-modal__footer">
-				 <lightning:buttonIconStateful iconName="action:add_contact"  onclick="{! c.openNewContact }" alternativeText="{!$Label.c.new_title_label
-						+ ' ' +$Label.c.orm_contact_menu}" />
+				 
 					
 					<button class="slds-button slds-button--neutral"
 						onclick="{!c.closeModalWorkshopContact}">{!$Label.c.orm_cancel_button_title}</button>
 					<button class="slds-button slds-button--neutral"
 						onclick="{!c.openMailTemplate}">{!$Label.c.orm_sendmail_button_title}</button>
-					<button class="slds-button slds-button--brand"
-						onclick="{!c.createContactWorkshop}">
-						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.associate_button_title}
+					<button class="slds-button slds-button--brand " 
+						onclick="{!c.openNewContact}">
+						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.new_title_label
+						+ ' ' +$Label.c.orm_contact_menu}
 					</button>
 				</div>
 			</div>

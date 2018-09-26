@@ -1,72 +1,57 @@
 <aura:component controller="OrmPhaseAssessmentRiskController">
-	
-	<!-- methods -->
-
-    <aura:handler action="{!c.deleteSelected}" event="c:OrmEvtDeletePhasesAssRisk"/>
+    <aura:handler action="{!c.deleteSelected}" event="c:OrmEvtDeletePhasesAssRisk" />
     <aura:registerEvent name="OrmEventNewPhaseAssessmentRiskCreated" type="c:OrmEventNewPhaseAssessmentRiskCreated" description="" />
-<!--     <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllPhases"/> -->
-    
     <!-- attributes -->
-    <aura:attribute name="objInfo" type="macro" default="{ 'sobjectType' : 'Macro'}" 
-    	description="object information to fetch picklist values"/>
-    <aura:attribute name="showSaveCancelBtn" type="boolean"/>
-    <aura:attribute name="showErrorClass" type="boolean" default="false"/>
+    <aura:attribute name="objInfo" type="macro" default="{ 'sobjectType' : 'Macro'}" description="object information to fetch picklist values" />
+    <aura:attribute name="showSaveCancelBtn" type="boolean" />
+    <aura:attribute name="showErrorClass" type="boolean" default="false" />
     <aura:attribute name="sNo" type="string" />
     <aura:attribute name="phaseAss" type="Macro" />
-															
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
-    
-    <!--Table Row Start-->  
+    <!--Table Row Start-->
     <tr>
-    	
-        <td><div class="slds-truncate">{!v.sNo}</div></td>
-        
+    	<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <label class="slds-checkbox">
+		        	<ui:inputCheckbox text="{!v.phaseAss.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
+		            <span class="slds-checkbox--faux"></span>
+		            <span class="slds-form-element__label text"></span>
+		       	</label>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="slds-truncate">{!v.sNo}</div>
+        </td>
         <td ondblclick="{!c.inlineEditDescription}" class="slds-cell-edit">
             <span class="">
                 <!-- show input and output section based on boolean flag --> 
                  <aura:if isTrue="{!v.descriptionEditMode == false}">
                     <span class="slds-truncate" title="{!$Label.c.orm_description}">{!v.phaseAss.Description}</span>
-                    <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
-                    	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_description}">
+            <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_description}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
-                    
-                    <!-- Inline Edit Section in else case-->  
-                     <aura:set attribute="else">
-                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" 
-                        	style="position: absolute; top: 0px">
-                            <div class="slds-popover__body">
-                                <div class="slds-form-element slds-grid slds-wrap">
-                                    <div class="slds-form-element__control slds-grow">
-                                        <ui:inputText class="slds-input inputFieldWidth"
-                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
-                                                      aura:id="idDescription"
-                                                      blur="{!c.closeDescriptionBox}"
-                                                      change="{!c.onDescriptionChange}"
-                                                      required="true"
-                                                      label="{!$Label.c.orm_description}"
-                                                      value="{!v.phaseAss.Description}" />
-                                    </div> 
-                                </div>
+
+            <!-- Inline Edit Section in else case-->
+            <aura:set attribute="else">
+                <section tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                    <div class="slds-popover__body">
+                        <div class="slds-form-element slds-grid slds-wrap">
+                            <div class="slds-form-element__control slds-grow">
+                                <ui:inputText class="slds-input inputFieldWidth" labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex" aura:id="idDescription" blur="{!c.closeDescriptionBox}" change="{!c.onDescriptionChange}" required="true" label="{!$Label.c.orm_description}"
+                                    value="{!v.phaseAss.Description}" />
                             </div>
-                            <span id="form-end" tabindex="0"></span>
-                        </section>  
-                    </aura:set>
-                </aura:if> 
-               
+                        </div>
+                    </div>
+                    <span id="form-end" tabindex="0"></span>
+                </section>
+            </aura:set>
+            </aura:if>
+
             </span>
-        </td> 
-        <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
-			<div class="slds-form-element">
-		      <div class="slds-form-element__control">
-		    	<label class="slds-checkbox">
-		        	<ui:inputCheckbox text="{!v.phaseAss.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
-		            <span class="slds-checkbox--faux"></span>
-		            <span class="slds-form-element__label text"></span>
-		       	</label>
-		      </div>
-		    </div>
-		</td>
+        </td>
+        
     </tr>
 </aura:component>

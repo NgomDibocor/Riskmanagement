@@ -1,14 +1,9 @@
 <aura:component controller="OrmPhaseAssessmentRiskController" extends="c:ormAbstractListCmp" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
-	
 	<!-- methodes -->
 	<aura:handler event="c:OrmSendIdAssessmentRiskToCauseEvt" action="{!c.getAssessmentRiskId}" />
 	<aura:registerEvent name="OrmEventNewPhaseAssessmentRiskClicked" type="c:OrmEventNewPhaseAssessmentRiskClicked" description="" />
 	<aura:handler event="c:OrmEventNewPhaseAssessmentRiskCreated" action="{!c.refreshList}" />
-<!-- 	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" /> -->
 	<aura:registerEvent name="OrmEvtDeletePhasesAssRisk" type="c:OrmEvtDeletePhasesAssRisk" description="" />
-<!-- 	<aura:registerEvent name="OrmEvtSelectAllPhases" type="c:OrmEvtSelectAllPhases" /> -->
-	
-	<!-- attributes -->
 	<!-- attributes -->
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="phasesList" type="Macro[]" description=""  />
@@ -24,7 +19,6 @@
 																			'orm_phase__c': '',
 																			'orm_assessmentRisk__c': ''
 																		}" />
-	
 	<div style="margin-bottom:20px;margin-top: 40px;">
 		 <h1 class="titlePhase"><span class="dot">{!$Label.c.orm_phase}</span></h1>
 	</div>
@@ -40,8 +34,7 @@
 		        </span>						        
 		        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
 					<lightning:icon iconName="utility:delete" size="small" />
-				</span>								
-	
+				</span>		
 			<!-- use aura:if for show/hide buttons --> 
 	        <aura:if isTrue="{!v.showSaveCancelBtn}">
 	        	<div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
@@ -57,7 +50,6 @@
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
-	                  
 	                  <th scope="col">
 	                  	 <div class="slds-truncate thTable" title="{!$Label.c.orm_phase}">Phase</div><!-- {!$Label.c.orm_phase} -->
 	                  </th>
@@ -75,15 +67,12 @@
 		              </th> 
 	                </tr>
 	            </thead>
-	            
 	            <tbody>
 	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
 	                <aura:iteration items="{!v.phasesList}" var="phase" indexVar="sNo">
-	                   <!-- Child Lightning Component -->
-	                    <!-- 	                    				 selectedRowsCount="{!v.selectedRowsCount}" -->
 	                    <c:OrmPhaseAssessmentRiskEditRow phaseAss="{!phase}" 
 	                    	selectedRowsCount="{!v.selectedRowsCount}"
-	                     showSaveCancelBtn="{!v.showSaveCancelBtn}"  sNo="{!sNo + 1}" />
+	                    	 showSaveCancelBtn="{!v.showSaveCancelBtn}"  sNo="{!sNo + 1}" />
 	                </aura:iteration>
 	            </tbody>
 	        </table>
@@ -95,32 +84,29 @@
            </aura:if> 	
 		</div>
        </div>
-        
-	    <!-- openModalConfirmDeletion  -->
-	    <aura:if isTrue="{!v.openModalConfirmDeletion}">    
-	    	<div class="demo-only" style="height: 640px;">
-			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
-			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-			    <div class="slds-modal__container">
-			      <header class="slds-modal__header header">
-			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
-			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.orm_close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
-			        </button>
-			      </header>
-			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			        <p>{!$Label.c.orm_error_field_empty}</p>
-			      </div>
-			      <footer class="slds-modal__footer">			        
-					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeletePhases}">{!$Label.c.orm_cancel_button_title}</button>
-					<button class="slds-button slds-button_brand" onclick="{!c.confirmDeletePhases}">{!$Label.c.orm_confirm_button}</button>					
-			      </footer>
-			    </div>
-			  </section>
-			  <div class="slds-backdrop slds-backdrop_open"></div>
-			</div>	    
-	    </aura:if>
-	    
+        <aura:if isTrue="{!v.openModalConfirmDeletion}">
+        <!--###### MODAL BOX Start From Here ######-->
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-theme--error">
+                        <button class="slds-button slds-modal__close slds-button--icon-inverse" onclick="{!c.closeModalRemove}" title="Close">
+							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+						</button>
+                        <h3 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>{!$Label.c.orm_deletion_message}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick="{!c.cancelDeletePhases}">{!$Label.c.orm_cancel_button_title}</button>
+                        <button class="slds-button slds-button_brand" onclick="{!c.confirmDeletePhases}">{!$Label.c.orm_delete_button_title}</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        <!--###### MODAL BOX End  Here ######-->
+    </aura:if>
 	<c:OrmPhaseAssessmentRiskNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

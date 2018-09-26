@@ -26,7 +26,6 @@
 		});
 		$A.enqueueAction(action);
 		}
-		
 	},
 	requiredValidation : function(component, event) {
 		// get all assumptionList

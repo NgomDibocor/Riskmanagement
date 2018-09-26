@@ -22,8 +22,8 @@
         </div>
         <div class=" slds-size--4-of-12   slds-p-horizontal--small">
             <br /> <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> <lightning:icon
-					iconName="utility:new" size="medium" /></span> <span></span> <span class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
-					iconName="utility:delete" size="medium" />
+					iconName="utility:new" size="small" /></span> <span></span> <span class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
+					iconName="utility:delete" size="small" />
 			</span> <br/>
 
             <!-- use aura:if for show/hide buttons -->
@@ -38,6 +38,7 @@
     </div>
     <!-- end header page content search bar and action button -->
     <div class="slds-m-around_large">
+    <aura:if isTrue="{!not(empty(v.assumptionRiskList))}">
         <!--Data Table-->
         <table class="slds-table slds-table_bordered slds-table_cell-buffer">
             <thead>
@@ -73,7 +74,12 @@
                 </aura:iteration>
             </tbody>
         </table>
-
+		<aura:set attribute="else">
+			    <div class="messageIsEmpty" style="padding-top:20px">
+		 	{!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_phase +'   ' + $Label.c.orm_is_empty}
+		        </div>
+			 </aura:set>
+           </aura:if>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAssumption}">
         <!--###### MODAL BOX Start From Here ######-->

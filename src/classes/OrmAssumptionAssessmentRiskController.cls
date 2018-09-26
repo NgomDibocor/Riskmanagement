@@ -1,5 +1,4 @@
 public with sharing class OrmAssumptionAssessmentRiskController {
-    
     /**
  * @author: David 
  * @date: Creation: 30/08/2018
@@ -19,7 +18,6 @@ public with sharing class OrmAssumptionAssessmentRiskController {
 	public static List<Macro> findAssumptionByAssessmentRisk(String asssessmentRiskId){
 		return [SELECT Id, Name,orm_assessmentRisk__c FROM Macro WHERE orm_assessmentRisk__c=: asssessmentRiskId AND 
 					RecordTypeId =:OrmAssumptionAssessmentRiskController.getAssumptionRecordTypeId()];
-	
 	}
 /**
  * @author: SDavid diop
@@ -39,31 +37,25 @@ public with sharing class OrmAssumptionAssessmentRiskController {
  * @history 
  * 2018-08-30 :David - Implementation
  */ 
-     
     @AuraEnabled
     public static List <Macro> save(List<Macro> listAssumption) {
         update listAssumption;
         return listAssumption;
     }
-    
-     	 /**
- * remove activities selected
- 
- *
- * @author Salimata NGOM
+ /**
+ * remove assumption selected
+ * @author David diop
  * @version 1.0
  * @description  method for remove all assumptions checked
  * @history 
- * 2018-09-05 : Salimata NGOM - Implementation
+ * 2018-09-05 : David diop - Implementation
  */
- 
    @AuraEnabled
  public static List < String > deleteRecordAssumption(List < String > lstRecordId) {
 	  // for store Error Messages  
 	  List < String > oErrorMsg = new List < String > ();
 	  // Query Records for delete where id in lstRecordId [which is pass from client side controller] 
 	  List <Macro> lstDeleteRec = [select Id from Macro where id IN: lstRecordId and RecordTypeId=:OrmAssumptionAssessmentRiskController.getAssumptionRecordTypeId()];
-	  
 	  // delte contact list with Database.DeleteResult[] database class.
 	  // It deletes some queried contacts using <samp class="codeph apex_code">Database.<span class="statement">delete</span></samp> 
 	  // with a false second parameter to allow partial processing of records on failure.
@@ -86,6 +78,5 @@ public with sharing class OrmAssumptionAssessmentRiskController {
 	   }
 	  }
 	  return oErrorMsg;
-	 
  }
 }

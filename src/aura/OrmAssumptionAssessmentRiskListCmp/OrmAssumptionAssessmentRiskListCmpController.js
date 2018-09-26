@@ -14,7 +14,6 @@
         });
         evt.fire();
     },
-
     updateAssumpt: function(component, event, helper) {
         // Check required fields(Name) first in helper method which is return
         // true/false
@@ -49,12 +48,10 @@
             $A.enqueueAction(action);
         }
     },
-
     cancel: function(component, event, helper) {
         alert("cancel");
     },
     /**
-     * 
      * @author David diop
      * @version 1.0
      * @description method for show modal confirm delete assumption
@@ -75,7 +72,6 @@
         }
     },
     /**
-     * 
      * @author David
      * @version 1.0
      * @description method for remove assumption selected
@@ -87,7 +83,6 @@
         evt.fire();
     },
     /**
-     * 
      * @author David
      * @version 1.0
      * @description cancel action and refresh the view
@@ -98,33 +93,31 @@
         component.set("v.showConfirmRemoveAssumption", false);
     },
     /**
-	 * 
-	 * @author David
-	 * @version 1.0
-	 * @description search filter
-	 * @history 2018-08-30 : David  - Implementation
-	 */
-	filter : function (component, event, helper){
-		var ListAssumption = component.get('v.storeAssumptionList');
-		var data = ListAssumption;
-		var key = component.get('v.key');
-		var regex;    	
+     * 
+     * @author David
+     * @version 1.0
+     * @description search filter
+     * @history 2018-08-30 : David  - Implementation
+     */
+    filter: function(component, event, helper) {
+        var ListAssumption = component.get('v.storeAssumptionList');
+        var data = ListAssumption;
+        var key = component.get('v.key');
+        var regex;
 
-		if ($A.util.isEmpty(key)) {    	
-			helper.refreshList(component, event);    		      
-		} else {
-			key = "^" + key;
-			try {
-				regex = new RegExp(key, "i");
-
-				// filter checks each row, constructs new array where
-				// function returns true
-				data=ListAssumption.filter(row => regex.test(row.Name));
-			} catch (e) {
-				alert(e)
-			}
-
-			component.set("v.assumptionRiskList", data);
-		}        	
-	},
+        if ($A.util.isEmpty(key)) {
+            helper.refreshList(component, event);
+        } else {
+            key = "^" + key;
+            try {
+                regex = new RegExp(key, "i");
+                // filter checks each row, constructs new array where
+                // function returns true
+                data = ListAssumption.filter(row => regex.test(row.Name));
+            } catch (e) {
+                alert(e)
+            }
+            component.set("v.assumptionRiskList", data);
+        }
+    },
 })

@@ -84,21 +84,17 @@
 	 * @history 2018-08-13 : Salimata NGOM - Implementation
 	 */
 	getRowActions : function(cmp, row, doneCallback) {
-		if (row.association) {
+		if (row.orm_notification__c) {
 			var actions = [ {
 				'label' : 'Dissociation',
 				'iconName' : 'utility:delete',
 				'name' : 'dissociate_contact'
-			}, {
+			}];
+		} else {
+			var actions = [{
 				'label' : 'Send Mail',
 				'iconName' : 'utility:email',
 				'name' : 'send_email'
-			} ];
-		} else {
-			var actions = [ {
-				'label' : 'Association',
-				'iconName' : 'utility:zoomin',
-				'name' : 'association_contact'
 			} ];
 		}
 		// simulate a trip to the server
@@ -107,55 +103,6 @@
 		}), 200);
 	},
 
-	/**
-	 * 
-	 * @author Salimata NGOM
-	 * @version 1.0
-	 * @description add one row Contact in ContactWorkshop
-	 * @history 2018-08-14 : Salimata NGOM - Implementation
-	 */
-	addContactWorkshop : function(component, row) {
-		var newcontactworkshop = {};
-		newcontactworkshop.sobjectType = 'orm_ContactWorkshop__c';
-		newcontactworkshop.orm_contact__c = row.Id;
-		newcontactworkshop.orm_notification__c = false;
-		newcontactworkshop.orm_Workshop__c = component.get("v.workshop").Id;
-		component.set("v.ContactWorkshopList", newcontactworkshop);
-		var action = component.get('c.addWorkShopContact');
-		action.setParams({
-			"items" : component.get("v.ContactWorkshopList")
-		});
-
-		action.setCallback(this, function(response) {
-			var state = response.getState();
-			console.log(state);
-			if (state == "SUCCESS") {
-				// fire toast event
-
-				this.refreshContactWorkshop(component);
-				var toastEvent = $A.get('e.force:showToast');
-				toastEvent.setParams({
-					'message' : $A.get("$Label.c.orm_toast_success"),
-					'type' : 'success',
-					'mode' : 'dismissible'
-				});
-
-				toastEvent.fire();
-			} else if (state === "ERROR") {
-				let
-				errors = response.getError();
-				let
-				message = 'Unknown error'; // Default error message
-				// Retrieve the error message sent by the server
-				if (errors && Array.isArray(errors) && errors.length > 0) {
-					message = errors[0].message;
-				}
-				// Display the message
-				console.error(message);
-			}
-		});
-		$A.enqueueAction(action);
-	},
 	/**
 	 * 
 	 * @author Salimata NGOM
@@ -225,8 +172,7 @@
 																										contactworkshop) {
 
 																									if (contactworkshop.orm_contact__c == contact.Id) {
-																										contact.association = $A
-																												.get("$Label.c.orm_associatedContactWorkshop");
+																										
 																										if (contactworkshop.orm_notification__c == true) {
 																											contact.orm_notification__c = $A
 																													.get("$Label.c.orm_notification_c");
@@ -251,31 +197,5 @@
 						});
 		$A.enqueueAction(action);
 	},
-	/**
-	 * 
-	 * @author Salimata NGOM
-	 * @version 1.0
-	 * @description check if contact exist in contactworkshop
-	 * @history 2018-09-25 : Salimata NGOM - Implementation
-	 */
-	checkContactWorkshop:function(component,event,contact,workshop){
-	var action=component.get('c.getContactWorkshop');
-			action.setParams({
-				'item':'8001H000000xCHGQA2',
-				'contact':'0031H00001tbem0QAA'
-			}
-			);
-			alert('workshop'+workshop+'contact'+contact);
-			action.setCallback(this,function(response) {
-				var state = response.getState();
-				console.log('resultat'+state);
-				if (state == "SUCCESS") {
-					var contactworkshopItem = response.getReturnValue();
-									return contactworkshopItem;
-					
-				}
-			});
-			$A.enqueueAction(action);
-	}
-
+	
 })

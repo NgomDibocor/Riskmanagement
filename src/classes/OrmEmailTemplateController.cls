@@ -82,11 +82,16 @@ public with sharing class OrmEmailTemplateController {
       Integer i=0;
     for(Messaging.SendEmailResult result:sendEmailResults){
         
-        //update notification contact workshop if result issuccess
+        //create  contact workshop if result issuccess
         if(result.isSuccess() == true){
-			orm_ContactWorkshop__c contactwroshop = OrmContactController.getContactWorkshop(workshop,mails.get(i).getTargetObjectId());
+        	
+        orm_ContactWorkshop__c contactworkshop =new orm_ContactWorkshop__c();
+        	contactworkshop.orm_contact__c=mails.get(i).getTargetObjectId();
+        	contactworkshop.orm_Workshop__c=workshop;
+        	contactworkshop.orm_notification__c=true;
+			orm_ContactWorkshop__c contactwshop = OrmContactController.addOneContactWorkShop(contactworkshop);
         	System.debug('Email result ' +mails.get(i).getTargetObjectId());
-        	listcontact.add(contactwroshop);
+        	listcontact.add(contactwshop);
         }else{
         	System.debug('Email not success  ' +result.isSuccess());
         	listcontact=null;

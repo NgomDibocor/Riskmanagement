@@ -90,6 +90,23 @@ public with sharing class OrmContactController {
 		       
 		
 	}
+	/**
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method to associate single contact to workshop
+ * @history 
+ * 2018-09-26: Salimata NGOM - Implementation
+ */
+    @AuraEnabled
+	public static orm_ContactWorkshop__c addOneContactWorkShop(orm_ContactWorkshop__c item){ 
+		orm_ContactWorkshop__c contactworkshop  = new orm_ContactWorkshop__c();
+			item.RecordTypeId = OrmContactController.getContactWorkshopRecordTypeId();
+			item.orm_dateAjout__c=Date.today();
+			insert item;
+		return item;
+		       
+		
+	}
 	
 /**
  * @author Salimata NGOM

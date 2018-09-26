@@ -17,10 +17,6 @@
 			label : 'Email',
 			fieldName : 'Email',
 			type : 'email'
-		}, {
-			label : 'Association',
-			fieldName : 'association',
-			type : 'text'
 		}, 
 		{
 			label : 'Invitation',
@@ -85,58 +81,7 @@
 		component.set("v.ContactWorkshopList", contactsWorkshop);
 		component.set("v.contactListSelected", selectedRows);
 	},
-	/**
-	 * 
-	 * @author Salimata NGOM
-	 * @version 1.0
-	 * @description method createContactWorkshop
-	 * @history 2018-08-13 : Salimata NGOM - Implementation
-	 */
-	createContactWorkshop : function(component, event, helper) {
-		// check if contact selected
-		if($A.util.isEmpty(component.get("v.ContactWorkshopList")))
-		{
-			var toast = $A.get('e.force:showToast');
-			toast.setParams({
-				'message' : $A.get("$Label.c.orm_warning_checked_checkbox"),
-				'type' : 'warning',
-				'mode' : 'dismissible'
-			});
-			toast.fire();
-		} else{
 
-			var relatedcontactworkshop = component.get("v.ContactWorkshopList");
-			var action = component.get('c.addWorkShopContact');
-			action.setParams({
-				"items" : relatedcontactworkshop
-			});
-
-			action.setCallback(this, function(response) {
-				var state = response.getState();
-				console.log(state);
-				if (state == "SUCCESS") {
-					var toast = $A.get('e.force:showToast');
-					toast.setParams({
-						'message' : $A.get("$Label.c.orm_success_associated"),
-						'type' : 'success',
-						'mode' : 'dismissible'
-					});      
-					toast.fire();
-					helper.refreshContactWorkshop(component);
-				} else {
-					var toast = $A.get('e.force:showToast');
-					toast.setParams({
-						'message' : $A.get("$Label.c.orm_failed_association"),
-						'type' : 'error',
-						'mode' : 'dismissible'
-					});      
-					toast.fire();
-				}
-			});
-			$A.enqueueAction(action);
-			// component.set("v.isOpenModalContactWorkshop", false);
-		}
-	},
 	/**
 	 * 
 	 * @author Salimata NGOM
@@ -150,9 +95,6 @@
 		switch (action.name) {
 		case 'dissociate_contact':
 			helper.deleteContactWorkshop(component, row);
-			break;
-		case 'association_contact':
-			helper.addContactWorkshop(component, row);
 			break;
 		case 'send_email':
 
@@ -177,20 +119,8 @@
 	 * @history 2018-09-11 : Salimata NGOM - Implementation
 	 */
 	openMailTemplate : function(component,row,helper) {
-		// check if contact selected
-		// and contact associated
-		var listcontacts=component.get("v.contactListSelected");
-		var listassociated={};
-	for(var i = 0; i < listcontacts.length; i++){
 	
-		listassociated=	helper.checkContactWorkshop(component, event, listcontacts[i].Id, component.get('v.workshop').Id);
-		}
-		if(!$A.util.isEmpty(listassociated)){
-		alert('test'+JSON.stringify(listassociated));
-		}
-		//alert('listassociated'+listassociated);
-		//alert('test'+JSON.stringify(component.get('v.contactnotassociated')));
-		if(($A.util.isEmpty(component.get("v.contactListSelected")))||(!$A.util.isEmpty(component.get("v.contactnotassociated"))))
+		if(($A.util.isEmpty(component.get("v.contactListSelected"))))
 		{
 			var toast = $A.get('e.force:showToast');
 			toast.setParams({
@@ -201,7 +131,9 @@
 			toast.fire();
 		}         
 		else{
-			component.set("v.emailTemplate",true);
+			
+				component.set("v.emailTemplate",true);
+			
 		}
 	},
 	/**

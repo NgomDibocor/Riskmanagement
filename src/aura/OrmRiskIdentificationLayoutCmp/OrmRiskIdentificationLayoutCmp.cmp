@@ -18,7 +18,7 @@
                                                       		 'orm_assessment__c': '',
                                                              'orm_categorieRisk__c' : ''
                                                          }" />
-    <aura:attribute name="categorieRisk" type="String"  />
+    <aura:attribute name="categorieRisk" type="String" default="Budget Risk" />
     <aura:attribute name="testBoolean" type="Boolean" default="true" />
     <aura:attribute name="filter" type="String" />
     <aura:attribute name="columns" type="List" />

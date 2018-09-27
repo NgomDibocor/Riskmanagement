@@ -187,9 +187,14 @@
     },
     relatedRiskfunction: function(component, event, helper) {
         var relatedassesmentRisk = component.get("v.relatedRisk");
-        var  categorieRisk = component.find("categorieRiskList");
-        	component.set("v.categorieRisk",categorieRisk.get("v.value"));
-        	component.find("categorieRisk").set("v.value", categorieRisk.get("v.value"));
+        var riskCategory = component.get("v.categorieRisk");
+        var  categorieRisk = component.find("categorieRiskList").get("v.value");
+        	 if ($A.util.isEmpty(categorieRisk)) {
+                component.find("categorieRisk").set("v.value",riskCategory);
+            } else {
+                component.set("v.categorieRisk", categorieRisk);
+               component.find("categorieRisk").set("v.value",categorieRisk);
+            }
         var action = component.get('c.addAssessmentRisks');
         action.setParams({
             "items": relatedassesmentRisk

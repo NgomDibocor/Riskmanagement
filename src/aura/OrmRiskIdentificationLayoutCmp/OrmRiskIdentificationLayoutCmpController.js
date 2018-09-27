@@ -51,25 +51,6 @@
                 title:  $A.get("$Label.c.orm_edit_button_title") 
             },
         }]);
-         var action = component.get('c.getSelectOptions');
-        action.setParams({
-            'objObject': component.get("v.risk"),
-            'fld': 'orm_categorieRisk__c'
-        });
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === 'SUCCESS' && component.isValid()) {
-                component.set('v.allCategorieRisk', response.getReturnValue());
-                console.log(JSON.stringify(response.getReturnValue()));
-                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-                evtSpinner.fire();
-                }else {
-
-                alert($A.get('$Label.c.orm_not_found'));
-            }
-        });
-
-        $A.enqueueAction(action);
         helper.fetchPicklist(component, event);
     },
     /*    
@@ -187,9 +168,14 @@
     },
     relatedRiskfunction: function(component, event, helper) {
         var relatedassesmentRisk = component.get("v.relatedRisk");
-        var  categorieRisk = component.find("categorieRiskList");
-        	component.set("v.categorieRisk",categorieRisk.get("v.value"));
-        	component.find("categorieRisk").set("v.value", categorieRisk.get("v.value"));
+        var riskCategory = component.get("v.categorieRisk");
+        var  categorieRisk = component.find("categorieRiskList").get("v.value");
+        	 if ($A.util.isEmpty(categorieRisk)) {
+                component.find("categorieRisk").set("v.value",riskCategory);
+            } else {
+                component.set("v.categorieRisk", categorieRisk);
+               component.find("categorieRisk").set("v.value",categorieRisk);
+            }
         var action = component.get('c.addAssessmentRisks');
         action.setParams({
             "items": relatedassesmentRisk

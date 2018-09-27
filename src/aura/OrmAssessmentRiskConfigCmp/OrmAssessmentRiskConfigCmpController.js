@@ -4,6 +4,10 @@
      *
      */
     InstantantiateRisk: function(component, event, helper) {
+        console.log('*****View Object*********');  
+        var data = component.get("v.data");
+        data.orm_probability__c = 'Low';
+        console.log(JSON.stringify(data));      
         var riskAssessmentId = event.getParam('riskAssessmentId');
 	    component.set("v.assessmentRiskId" ,riskAssessmentId);
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
@@ -167,19 +171,39 @@
         component.set("v.sliderValue",component.find("slider1").get("v.value")) 
 	    var sliderValue = component.find("slider1").get("v.value");
 	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
-		    component.set("v.choiceProbability", component.get("v.RareData.orm_probability__c"));
+		    
+		    var data = component.get("v.data");
+		    data.orm_probability__c = component.get("v.RareData.orm_probability__c");
+		    component.set("v.data", data);
+		    console.log(JSON.stringify(data))
+		    
 		    document.getElementById("divColor").style.backgroundColor = "green";
 		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
 	    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
-		    component.set("v.choiceProbability", component.get("v.unlikelyData.orm_probability__c"));
+		    
+		    var data = component.get("v.data");
+		    data.orm_probability__c = component.get("v.unlikelyData.orm_probability__c");
+		    component.set("v.data", data);
+		    console.log(JSON.stringify(data))
+		    
 		    document.getElementById("divColor").style.backgroundColor = "yellow";
 		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
 	    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
-		    component.set("v.choiceProbability", component.get("v.possibleData.orm_probability__c"));
+		    
+		    var data = component.get("v.data");
+		    data.orm_probability__c = component.get("v.possibleData.orm_probability__c");
+		    component.set("v.data", data);
+		    console.log(JSON.stringify(data))
+		    
 		    document.getElementById("divColor").style.backgroundColor = "orange";
 		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
 	    }else{
-	        component.set("v.choiceProbability", component.get("v.probableData.orm_probability__c"));
+	        
+	        var data = component.get("v.data");
+		    data.orm_probability__c = component.get("v.probableData.orm_probability__c");
+		    component.set("v.data", data);
+		    console.log(JSON.stringify(data))
+		    
 		    document.getElementById("divColor").style.backgroundColor = "red";
 		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
 	    }
@@ -305,6 +329,12 @@
 			 document.getElementById("healthAndSafety").innerHTML= 'very high';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
+			 
+			 var data = component.get("v.data");
+		     data.orm_healthAndSafety__c = 'VeryHigh';
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -317,6 +347,12 @@
 			 document.getElementById("healthAndSafety").innerHTML= 'high';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
+			 
+			 var data = component.get("v.data");
+		     data.orm_healthAndSafety__c = 'High';
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -329,6 +365,12 @@
 			 document.getElementById("healthAndSafety").innerHTML= 'Medium';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
+			 
+			 var data = component.get("v.data");
+		     data.orm_healthAndSafety__c = 'Medium';
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -341,6 +383,12 @@
 		  document.getElementById("healthAndSafety").innerHTML= 'Low';
 		  var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.healthAndSafety" ,healthAndSafety);
+		  
+		  var data = component.get("v.data");
+	      data.orm_healthAndSafety__c = 'Low';
+	      component.set("v.data", data);
+	      console.log(JSON.stringify(data))
+		  
 		  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	      evt.setParams({
 	           "nomField": $A.get("$Label.c.search_title_label"),
@@ -353,6 +401,12 @@
 			 document.getElementById("security").innerHTML= 'very high';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
+			 
+			 var data = component.get("v.data");
+		     data.orm_security__c = 'VeryHigh'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -365,6 +419,12 @@
 			 document.getElementById("security").innerHTML= 'high';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
+			 
+			 var data = component.get("v.data");
+		     data.orm_security__c = 'High'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -377,6 +437,12 @@
 			 document.getElementById("security").innerHTML= 'Medium';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
+			 
+			 var data = component.get("v.data");
+		     data.orm_security__c = 'Medium'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -389,6 +455,12 @@
 			  document.getElementById("security").innerHTML= 'Low';
 			  var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			  component.set("v.security" ,security);
+			  
+			  var data = component.get("v.data");
+		      data.orm_security__c = 'Low'
+		      component.set("v.data", data);
+		      console.log(JSON.stringify(data))
+			  
 			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 		      evt.setParams({
 		            "nomField": $A.get("$Label.c.search_title_label"),
@@ -401,6 +473,12 @@
 			 document.getElementById("environment").innerHTML= 'very high';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
+			 
+			 var data = component.get("v.data");
+		     data.orm_environment__c = 'VeryHigh'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -413,6 +491,12 @@
 			 document.getElementById("environment").innerHTML= 'high';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
+			 
+			 var data = component.get("v.data");
+		     data.orm_environment__c = 'High'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -425,6 +509,12 @@
 			 document.getElementById("environment").innerHTML= 'Medium';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
+			 
+			 var data = component.get("v.data");
+		     data.orm_environment__c = 'Medium'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
+			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -437,6 +527,12 @@
 		  document.getElementById("environment").innerHTML= 'Low';
 		  var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.environmentAndCommunity" ,environment);
+		  
+		  var data = component.get("v.data");
+		  data.orm_environment__c = 'Low'
+		  component.set("v.data", data);
+		  console.log(JSON.stringify(data))
+		  
 		   var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -450,8 +546,7 @@
 	    var evtShowMatrice = $A.get("e.c:OrmShowMatriceAssessmentRiskEvt");
 	    evtShowMatrice.setParams({
 	            "assessmentRisk": component.get("v.assessmentRiskData"),
-	            "choiceProbability": component.get("v.choiceProbability"),
-                "choiceHsseImpact": component.get("v.choiceHsseImpact")  
+	            "data": component.get("v.data")
 	    });
         evtShowMatrice.fire();
        

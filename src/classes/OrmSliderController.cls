@@ -103,17 +103,18 @@ public with sharing class OrmSliderController {
                           RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];                               
     }
     
+    
+    
     @AuraEnabled 
-    public static void deleteBI(String assessment)
+    public static List<Macro> findListBusinessImpacts2ByAssessment(String assessment)
     {
-         List<Macro> listBI = [SELECT Id
-			                  From Macro 
-			                  WHERE   orm_assessment__c =:assessment 
-			                       and 
-			                          RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];     
-                  System.debug('size before delete: '+listBI.size());
-                  
-                  delete listBI;                         
+         return  [SELECT Id, orm_rating__c, orm_costProjectBudgetMin__c, orm_costProjectBudgetMax__c, 
+                         orm_scheduleProjectBaselineMin__c, orm_scheduleProjectBaselineMax__c, 
+                         orm_productionLossMin__c, orm_productionLossMax__c, orm_reputation__c
+                  From Macro 
+                  WHERE   (orm_assessment__c =:assessment and orm_productionLossMin__c != null) 
+                       and 
+                          RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];                               
     }
     
 }

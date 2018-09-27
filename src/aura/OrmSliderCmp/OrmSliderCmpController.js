@@ -102,8 +102,8 @@
 			                         component.set("v.costProjectHighMax", component.get("v.businessImpHighData").orm_costProjectBudgetMax__c );
 			                         component.set("v.scheduleProjectHighMin", component.get("v.businessImpHighData").orm_scheduleProjectBaselineMin__c );
 			                         component.set("v.scheduleProjectHighMax", component.get("v.businessImpHighData").orm_scheduleProjectBaselineMax__c );
-			                         component.set("v.ProductionLossHighMin", component.get("v.businessImpHighData").orm_productionLossMin__c );
-			                         component.set("v.ProductionLossHighMax", component.get("v.businessImpHighData").orm_productionLossMax__c );
+			                         /*component.set("v.ProductionLossHighMin", component.get("v.businessImpHighData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossHighMax", component.get("v.businessImpHighData").orm_productionLossMax__c );*/
 			                      }
 			                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Medium' ){
 			                         component.set("v.businessImpMediumData", component.get("v.businessImpacts")[i]);
@@ -112,8 +112,8 @@
 			                         component.set("v.costProjectMediumMax", component.get("v.businessImpMediumData").orm_costProjectBudgetMax__c );
 			                         component.set("v.scheduleProjectMediumMin", component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMin__c );
 			                         component.set("v.scheduleProjectMediumMax", component.get("v.businessImpMediumData").orm_scheduleProjectBaselineMax__c );
-			                         component.set("v.ProductionLossMediumMin", component.get("v.businessImpMediumData").orm_productionLossMin__c );
-			                         component.set("v.ProductionLossMediumMax", component.get("v.businessImpMediumData").orm_productionLossMax__c );
+			                         /*component.set("v.ProductionLossMediumMin", component.get("v.businessImpMediumData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossMediumMax", component.get("v.businessImpMediumData").orm_productionLossMax__c );*/
 			                      }
 			                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Low' ){
 			                         component.set("v.businessImpLowData", component.get("v.businessImpacts")[i]);
@@ -122,8 +122,8 @@
 			                         component.set("v.costProjectLowMax", component.get("v.businessImpLowData").orm_costProjectBudgetMax__c );
 			                         component.set("v.scheduleProjectLowMin", component.get("v.businessImpLowData").orm_scheduleProjectBaselineMin__c );
 			                         component.set("v.scheduleProjectLowMax", component.get("v.businessImpLowData").orm_scheduleProjectBaselineMax__c );
-			                         component.set("v.ProductionLossLowMin", component.get("v.businessImpLowData").orm_productionLossMin__c );
-			                         component.set("v.ProductionLossLowMax", component.get("v.businessImpLowData").orm_productionLossMax__c );
+			                         /*component.set("v.ProductionLossLowMin", component.get("v.businessImpLowData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossLowMax", component.get("v.businessImpLowData").orm_productionLossMax__c );*/
 			                      }
 		                        }
 					        }else{
@@ -151,19 +151,57 @@
            document.getElementById("bir2").style.display = "block";
            document.getElementById("bir").style.display = "none";
            
-           if(component.get("v.businessImpacts").length > 0){
-                for (var i = 0; i < component.get("v.businessImpacts").length; i++) {
+           if(!document.getElementById("sliderProductionHigh").classList.contains("noUi-target")){
+               var actionGetBusinessImpacts2 = component.get('c.findListBusinessImpacts2ByAssessment');
+	            actionGetBusinessImpacts2.setParams({ "assessment": component.get("v.idAssessment") });
+	            actionGetBusinessImpacts2.setCallback(this, function(response) {
+				        if(response.getState() == 'SUCCESS'){
+				        
+				        	component.set("v.businessImpacts2", response.getReturnValue());
+				        	console.log('*******Size business impact2********')
+				        	console.log(component.get("v.businessImpacts2").length);
+				        	console.log(JSON.stringify(component.get("v.businessImpacts2")));
+				        	if(component.get("v.businessImpacts2").length > 0){
+				        	
+			        	       for (var i = 0; i < component.get("v.businessImpacts2").length; i++) {
 			        	       
-                  if(component.get("v.businessImpacts")[i].orm_rating__c == 'High' ){
-                     component.set("v.businessImpHighData", component.get("v.businessImpacts")[i]);
-	                     if(component.get("v.businessImpHighData").orm_productionLossMin__c == null && component.get("v.businessImpHighData").orm_productionLossMax__c == null){
-	                        component.set("v.haveToSaveBusinessImpacts2", true);
-	                     }
-                     
-                  }
-                  
-                }
+			                      if(component.get("v.businessImpacts2")[i].orm_rating__c == 'VeryHigh' ){
+			                         component.set("v.businessImpVeryHighData", component.get("v.businessImpacts2")[i]);
+			                      }
+			                      if(component.get("v.businessImpacts2")[i].orm_rating__c == 'High' ){
+			                         component.set("v.businessImpHighData", component.get("v.businessImpacts2")[i]);
+			                         
+			                         component.set("v.ProductionLossHighMin", component.get("v.businessImpHighData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossHighMax", component.get("v.businessImpHighData").orm_productionLossMax__c );
+			                      }
+			                      if(component.get("v.businessImpacts2")[i].orm_rating__c == 'Medium' ){
+			                         component.set("v.businessImpMediumData", component.get("v.businessImpacts2")[i]);
+			                         
+			                         component.set("v.ProductionLossMediumMin", component.get("v.businessImpMediumData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossMediumMax", component.get("v.businessImpMediumData").orm_productionLossMax__c );
+			                      }
+			                      if(component.get("v.businessImpacts2")[i].orm_rating__c == 'Low' ){
+			                         component.set("v.businessImpLowData", component.get("v.businessImpacts2")[i]);
+			                         
+			                         component.set("v.ProductionLossLowMin", component.get("v.businessImpLowData").orm_productionLossMin__c );
+			                         component.set("v.ProductionLossLowMax", component.get("v.businessImpLowData").orm_productionLossMax__c );
+			                      }
+		                        }
+					        }else{
+					        
+				        	   component.set("v.showBtnSave", true);
+				        	}	
+				        	
+				        	helper.jsLoaded3(component, event, helper);
+				        	
+				        } else {
+				        	alert("ERROR")	
+				        }
+	               });
+	               $A.enqueueAction(actionGetBusinessImpacts2);
+               
            }
+           
        }
        
        if(showBusinessImpactsRanking2 == true){
@@ -559,24 +597,24 @@
 	        if(response.getState() == 'SUCCESS'){
 	            component.set("v.showBtnUpdate", false);
 	            //component.set("v.alreadySaveBusinessImpacts2", true);
-	        	component.set("v.businessImpacts", response.getReturnValue());
+	        	component.set("v.businessImpacts2", response.getReturnValue());
 	        	console.log('******after create business impact2********')
-	        	console.log(JSON.stringify(component.get("v.businessImpacts")))
-	        	if(component.get("v.businessImpacts").length > 0){
+	        	console.log(JSON.stringify(component.get("v.businessImpacts2")))
+	        	if(component.get("v.businessImpacts2").length > 0){
 		        	
-	        	         for (var i = 0; i < component.get("v.businessImpacts").length; i++) {
+	        	         for (var i = 0; i < component.get("v.businessImpacts2").length; i++) {
 	        	       
-		                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'VeryHigh' ){
-		                         component.set("v.businessImpVeryHighData", component.get("v.businessImpacts")[i]);
+		                      if(component.get("v.businessImpacts2")[i].orm_rating__c == 'VeryHigh' ){
+		                         component.set("v.businessImpVeryHighData", component.get("v.businessImpacts2")[i]);
 		                      }
-		                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'High' ){
-		                         component.set("v.businessImpHighData", component.get("v.businessImpacts")[i]);
+		                      if(component.get("v.businessImpacts2")[i].orm_rating__c == 'High' ){
+		                         component.set("v.businessImpHighData", component.get("v.businessImpacts2")[i]);
 		                      }
-		                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Medium' ){
-		                         component.set("v.businessImpMediumData", component.get("v.businessImpacts")[i]);
+		                      if(component.get("v.businessImpacts2")[i].orm_rating__c == 'Medium' ){
+		                         component.set("v.businessImpMediumData", component.get("v.businessImpacts2")[i]);
 		                      }
-		                      if(component.get("v.businessImpacts")[i].orm_rating__c == 'Low' ){
-		                         component.set("v.businessImpLowData", component.get("v.businessImpacts")[i]);
+		                      if(component.get("v.businessImpacts2")[i].orm_rating__c == 'Low' ){
+		                         component.set("v.businessImpLowData", component.get("v.businessImpacts2")[i]);
 		                      }
                          }
 			     }

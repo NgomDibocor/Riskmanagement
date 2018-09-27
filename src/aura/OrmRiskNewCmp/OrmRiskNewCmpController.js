@@ -72,6 +72,9 @@
 		                $A.enqueueAction(actionRisk);
                     // publier evenement creation
                     var evt = $A.get("e.c:OrmRiskCreatedEvt");
+                    	evt.setParams({
+						       "riskCategoriy" :categorieRisk.get("v.value")
+						     });
 				   	evt.fire();   
                     helper.closeModal(component);
                     component.set('v.risk', {'sobjectType' : 'Macro',

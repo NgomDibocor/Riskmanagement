@@ -4,6 +4,7 @@
         component.set("v.idAssessment", event.getParam('idAssessment'));
     },
     ormRiskCreatedEvent: function(component, event, helper) {
+    	component.set("v.categorieRisk", event.getParam('riskCategoriy'));
         helper.fetchPicklist(component, event);
     },
 
@@ -186,6 +187,9 @@
     },
     relatedRiskfunction: function(component, event, helper) {
         var relatedassesmentRisk = component.get("v.relatedRisk");
+        var  categorieRisk = component.find("categorieRiskList");
+        	component.set("v.categorieRisk",categorieRisk.get("v.value"));
+        	component.find("categorieRisk").set("v.value", categorieRisk.get("v.value"));
         var action = component.get('c.addAssessmentRisks');
         action.setParams({
             "items": relatedassesmentRisk

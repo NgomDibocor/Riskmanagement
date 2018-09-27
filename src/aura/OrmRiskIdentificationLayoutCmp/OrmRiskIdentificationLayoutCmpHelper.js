@@ -1,6 +1,7 @@
 ({
     fetchPicklist: function(component, event) {
                 var categoryRisk = component.get("v.categorieRisk");
+                component.find("categorieRisk").set("v.value",categoryRisk);
                 var nameCategorieRisk = component.find("categorieRisk");
                 var item = nameCategorieRisk.get("v.value");
                 console.log(nameCategorieRisk.get("v.value"));

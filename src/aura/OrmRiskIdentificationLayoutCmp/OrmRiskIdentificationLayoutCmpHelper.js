@@ -1,21 +1,9 @@
 ({
     fetchPicklist: function(component, event) {
-        var action = component.get('c.getSelectOptions');
-        action.setParams({
-            'objObject': component.get("v.risk"),
-            'fld': 'orm_categorieRisk__c'
-        });
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === 'SUCCESS' && component.isValid()) {
-                component.set('v.allCategorieRisk', response.getReturnValue());
-                console.log(JSON.stringify(response.getReturnValue()));
-                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-                evtSpinner.fire();
                 var categoryRisk = component.get("v.categorieRisk");
                 var nameCategorieRisk = component.find("categorieRisk");
                 var item = nameCategorieRisk.get("v.value");
-                console.log(categoryRisk);
+                console.log(nameCategorieRisk.get("v.value"));
                 var assessment = component.get("v.idAssessment");
                 var actionOrgs = component.get("c.findAllAssessmentRisk");
                 actionOrgs.setParams({
@@ -58,13 +46,7 @@
                     }
                 });
                 $A.enqueueAction(actionOrgs);
-            } else {
-
-                alert($A.get('$Label.c.orm_not_found'));
-            }
-        });
-
-        $A.enqueueAction(action);
+           
     },
 
     fetchlistRiskModal: function(component, event) {

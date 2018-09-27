@@ -50,6 +50,25 @@
                 title:  $A.get("$Label.c.orm_edit_button_title") 
             },
         }]);
+         var action = component.get('c.getSelectOptions');
+        action.setParams({
+            'objObject': component.get("v.risk"),
+            'fld': 'orm_categorieRisk__c'
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === 'SUCCESS' && component.isValid()) {
+                component.set('v.allCategorieRisk', response.getReturnValue());
+                console.log(JSON.stringify(response.getReturnValue()));
+                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtSpinner.fire();
+                }else {
+
+                alert($A.get('$Label.c.orm_not_found'));
+            }
+        });
+
+        $A.enqueueAction(action);
         helper.fetchPicklist(component, event);
     },
     /*    

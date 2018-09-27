@@ -138,7 +138,7 @@
     <aura:attribute name="showHsseImpactsRanking" type="boolean" default="false"/>
     <aura:attribute name="showBusinessImpactsRanking" type="boolean" default="false"/>
     <aura:attribute name="showBusinessImpactsRanking2" type="boolean" default="false"/>
-    <aura:attribute name="alreadySaveBusinessImpacts2" type="boolean" default="false"/>
+    <aura:attribute name="haveToSaveBusinessImpacts2" type="boolean" default="false"/>
     <aura:attribute name="showRiskOccurrence" type="boolean" default="false"/>
     
     <aura:attribute name="showBtnSave" type="boolean" default="false"/>
@@ -332,7 +332,7 @@
 					         </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
-					         <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					         <aura:if isTrue="{!v.haveToSaveBusinessImpacts2 }">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
 					                      <lightning:buttonGroup class="slds-m-around_medium">
 						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateBusinessImpact}"/>

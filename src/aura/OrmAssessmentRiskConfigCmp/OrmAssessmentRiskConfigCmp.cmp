@@ -155,7 +155,8 @@
 																  'orm_reputation__c' : 'Short Term Damage' 
 																}"/>
 		
-	<aura:attribute name="businessImpacts" type="Macro[]" />	
+	<aura:attribute name="businessImpacts" type="Macro[]" />
+	<aura:attribute name="businessImpacts2" type="Macro[]" />	
 	
 	<aura:attribute name="choiceProbability" type="String" />
 	<aura:attribute name="choiceHsseImpact" type="String" />

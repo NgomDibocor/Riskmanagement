@@ -20,8 +20,8 @@
 	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
 	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
 		
-    <div style="margin-bottom:20px;margin-top: 40px">
-		 <h1 class="titleCause">{!$Label.c.orm_label_causes}</h1>
+    <div style="margin-bottom:20px;">
+		 <h1 class="titleCause"><span class="dot">{!$Label.c.orm_label_causes}</span></h1>
 	</div>
 	<div class="slds-m-around_large">                                        
 	    <div class="cause">

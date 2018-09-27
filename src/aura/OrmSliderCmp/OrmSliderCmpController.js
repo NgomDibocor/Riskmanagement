@@ -150,6 +150,20 @@
            
            document.getElementById("bir2").style.display = "block";
            document.getElementById("bir").style.display = "none";
+           
+           if(component.get("v.businessImpacts").length > 0){
+                for (var i = 0; i < component.get("v.businessImpacts").length; i++) {
+			        	       
+                  if(component.get("v.businessImpacts")[i].orm_rating__c == 'High' ){
+                     component.set("v.businessImpHighData", component.get("v.businessImpacts")[i]);
+	                     if(component.get("v.businessImpHighData").orm_productionLossMin__c == null && component.get("v.businessImpHighData").orm_productionLossMax__c == null){
+	                        component.set("v.haveToSaveBusinessImpacts2", true);
+	                     }
+                     
+                  }
+                  
+                }
+           }
        }
        
        if(showBusinessImpactsRanking2 == true){

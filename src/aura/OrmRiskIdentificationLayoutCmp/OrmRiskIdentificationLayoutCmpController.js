@@ -4,6 +4,7 @@
         component.set("v.idAssessment", event.getParam('idAssessment'));
     },
     ormRiskCreatedEvent: function(component, event, helper) {
+    	component.set("v.categorieRisk", event.getParam('riskCategoriy'));
         helper.fetchPicklist(component, event);
     },
 
@@ -50,7 +51,7 @@
                 title:  $A.get("$Label.c.orm_edit_button_title") 
             },
         }]);
-         var action = component.get('c.getSelectOptions');
+        var action = component.get('c.getSelectOptions');
         action.setParams({
             'objObject': component.get("v.risk"),
             'fld': 'orm_categorieRisk__c'
@@ -59,10 +60,12 @@
             var state = response.getState();
             if (state === 'SUCCESS' && component.isValid()) {
                 component.set('v.allCategorieRisk', response.getReturnValue());
-                console.log(JSON.stringify(response.getReturnValue()));
+                console.log(response.getReturnValue()[0]);
+                component.set('v.categorieRisk', response.getReturnValue()[0]);
                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
                 evtSpinner.fire();
-                }else {
+                
+            } else {
 
                 alert($A.get('$Label.c.orm_not_found'));
             }
@@ -186,6 +189,14 @@
     },
     relatedRiskfunction: function(component, event, helper) {
         var relatedassesmentRisk = component.get("v.relatedRisk");
+        var riskCategory = component.get("v.categorieRisk");
+        var  categorieRisk = component.find("categorieRiskList").get("v.value");
+        	 if ($A.util.isEmpty(categorieRisk)) {
+                component.find("categorieRisk").set("v.value",riskCategory);
+            } else {
+                component.set("v.categorieRisk", categorieRisk);
+               component.find("categorieRisk").set("v.value",categorieRisk);
+            }
         var action = component.get('c.addAssessmentRisks');
         action.setParams({
             "items": relatedassesmentRisk

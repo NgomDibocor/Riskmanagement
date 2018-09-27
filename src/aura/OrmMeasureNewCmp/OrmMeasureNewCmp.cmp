@@ -1,6 +1,7 @@
 <aura:component extends="c:OrmAbstractNewCmp" controller="OrmMeasureController">
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="measureCategorie" type="String[]" />
+	<aura:attribute name="categorieMeasure" type="String" default="Corrective" />
 	<aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
 	<aura:attribute name="measure" type="Assessment__c" default="{'sobjectType' : 'Assessment__c',
                                                                'Name' : '',
@@ -49,21 +50,21 @@
 									<div class="slds-form-element ">
 				                    <div class="slds-form-element__control">
 				                    
-				                        <ui:inputSelect aura:id="measureCategorie" 
-                                              change="{!c.measureCategorieChange}" class="slds-select"
-                                              labelClass="slds-form-element__label" >
-                                            <aura:iteration items="{!v.measureCategorie}" var="measureCategorie" >
-                                                <ui:inputSelectOption  text="{!measureCategorie}"
-                                                                       label="{!measureCategorie}"/>
-                                            </aura:iteration>
-                                        </ui:inputSelect>
+<!-- 				                        <ui:inputSelect aura:id="measureCategorie"  -->
+<!--                                               change="{!c.measureCategorieChange}" class="slds-select" label="measure Category" -->
+<!--                                               labelClass="slds-form-element__label" > -->
+<!--                                             <aura:iteration items="{!v.measureCategorie}" var="measureCategorie" > -->
+<!--                                                 <ui:inputSelectOption  text="{!measureCategorie}" -->
+<!--                                                                        label="{!measureCategorie}"/> -->
+<!--                                             </aura:iteration> -->
+<!--                                         </ui:inputSelect> -->
                                               
                                               
-				                        <!--<lightning:select aura:id="measureCategorie" name="{!$Label.c.orm_category_measure_label}" label="{!$Label.c.orm_category_measure_label}"   class="select-auto-width"  onchange="{!c.measureCategorieChange}">
+				                        <lightning:select aura:id="measureCategorie" name="{!$Label.c.orm_category_measure_label}" label="{!$Label.c.orm_category_measure_label}"   class="select-auto-width"  onchange="{!c.measureCategorieChange}">
 				                            <aura:iteration items="{!v.measureCategorie}" var="measureCategorie">
 				                                <option text="{!measureCategorie}"></option>
 				                            </aura:iteration>
-				                        </lightning:select>  -->
+				                        </lightning:select>  
 				                    </div>
 				                </div>                        
 								</div>								

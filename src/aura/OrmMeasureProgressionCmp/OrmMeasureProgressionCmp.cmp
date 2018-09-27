@@ -19,7 +19,7 @@
 	 
 	 
 	 <div style="margin-bottom:20px;margin-top: 40px;">
-		 <h1 class="titleprogesMeasure">{!$Label.c.orm_progressmeasure_label}</h1>
+		 <h1 class="titleprogesMeasure"><span class="dot">{!$Label.c.orm_progressmeasure_label}</span></h1>
 	</div>
  	<div class="slds-m-around_large">
 		<div class="measureProgression">

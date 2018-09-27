@@ -16,7 +16,7 @@
 		
 		
 		<div style="margin-bottom:20px;margin-top: 40px">
-			 <h1 class="titleImpact">{!$Label.c.orm_impact}</h1>
+			 <h1 class="titleImpact"><span class="dot">{!$Label.c.orm_impact}</span></h1>
 		</div>
 		<div class="slds-m-around_large">  
 			<div class="impact">

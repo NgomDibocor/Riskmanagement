@@ -7,9 +7,6 @@
 	createItem : function(component, event, helper) {
 	   var name = component.find('name').get('v.value');
        var description = component.find('description').get('v.value');
-       var measureCategorie  = component.find('measureCategorie');
-       console.log('**********ds create measure*******')
-       console.log(measureCategorie)
        
        /* we test the validity of data */
         var isItemsValid = true;
@@ -21,9 +18,11 @@
         	var newMeasure = component.get('v.measure');
         	newMeasure.Name = name;
         	newMeasure.orm_description__c = description;
+        	var measureCategorie  = component.find('measureCategorie');
+        	console.log('**********ds create measure*******')
+            console.log(measureCategorie.get('v.value'))
         	newMeasure.orm_measureCategorie__c = measureCategorie.get('v.value');
         	newMeasure.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
-        	console.log(measureCategorie.get('v.value'))
         	
         	var action = component.get('c.add');
             action.setParams({

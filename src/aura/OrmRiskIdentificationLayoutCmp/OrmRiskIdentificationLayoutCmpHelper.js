@@ -1,6 +1,6 @@
 ({
     fetchPicklist: function(component, event) {
-    			    var action = component.get('c.getSelectOptions');
+        var action = component.get('c.getSelectOptions');
         action.setParams({
             'objObject': component.get("v.risk"),
             'fld': 'orm_categorieRisk__c'
@@ -13,62 +13,62 @@
                 component.set('v.categorieRisk', response.getReturnValue()[0]);
                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
                 evtSpinner.fire();
-                }else {
+            } else {
 
                 alert($A.get('$Label.c.orm_not_found'));
             }
         });
 
         $A.enqueueAction(action);
-                var categoryRisk = component.get("v.categorieRisk");
-                console.log("categoryRisk"+categoryRisk);
-                component.find("categorieRisk").set("v.value",categoryRisk);
-                var nameCategorieRisk = component.find("categorieRisk");
-                var item = nameCategorieRisk.get("v.value");
-                console.log(nameCategorieRisk.get("v.value"));
-                var assessment = component.get("v.idAssessment");
-                var actionOrgs = component.get("c.findAllAssessmentRisk");
-                actionOrgs.setParams({
-                    "item": categoryRisk,
-                    "assessment": assessment
-                });
-                actionOrgs.setCallback(this, function(response) {
-                    var state = response.getState();
-                    if (state === 'SUCCESS') {
-                        var rows = response.getReturnValue();
-                        for (var i = 0; i < rows.length; i++) {
-                            var row = rows[i];
-                            if (row.orm_Risk__c) {
-                                row.RiskName = row.orm_Risk__r.Name;
-                                row.RiskDescription = row.orm_Risk__r.Description;
-                                row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
-                            }
-                        }
-                        component.set('v.allRisk', rows);
-                        component.set('v.allRiskTemp', rows);
-
-                        var risk = component.get('v.allRisk');
-                        if (risk == null) {
-                            var toast = $A.get('e.force:showToast');
-                            toast.setParams({
-                                'message': 'Check if you Have Created the Assessment',
-                                'type': 'warning',
-                                'mode': 'dismissible'
-                            });
-                            toast.fire();
-                        }
-                        var action = component.get('c.getSelectOptions');
-                        action.setParams({
-                            'objObject': component.get("v.risk"),
-                            'fld': 'orm_categorieRisk__c'
-                        });
-
-                    } else {
-                        alert($A.get('$Label.c.orm_not_found'));
+        var categoryRisk = component.get("v.categorieRisk");
+        console.log("categoryRisk" + categoryRisk);
+        component.find("categorieRisk").set("v.value", categoryRisk);
+        var nameCategorieRisk = component.find("categorieRisk");
+        var item = nameCategorieRisk.get("v.value");
+        console.log(nameCategorieRisk.get("v.value"));
+        var assessment = component.get("v.idAssessment");
+        var actionOrgs = component.get("c.findAllAssessmentRisk");
+        actionOrgs.setParams({
+            "item": categoryRisk,
+            "assessment": assessment
+        });
+        actionOrgs.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === 'SUCCESS') {
+                var rows = response.getReturnValue();
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    if (row.orm_Risk__c) {
+                        row.RiskName = row.orm_Risk__r.Name;
+                        row.RiskDescription = row.orm_Risk__r.Description;
+                        row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
                     }
+                }
+                component.set('v.allRisk', rows);
+                component.set('v.allRiskTemp', rows);
+
+                var risk = component.get('v.allRisk');
+                if (risk == null) {
+                    var toast = $A.get('e.force:showToast');
+                    toast.setParams({
+                        'message': 'Check if you Have Created the Assessment',
+                        'type': 'warning',
+                        'mode': 'dismissible'
+                    });
+                    toast.fire();
+                }
+                var action = component.get('c.getSelectOptions');
+                action.setParams({
+                    'objObject': component.get("v.risk"),
+                    'fld': 'orm_categorieRisk__c'
                 });
-                $A.enqueueAction(actionOrgs);
-           
+
+            } else {
+                alert($A.get('$Label.c.orm_not_found'));
+            }
+        });
+        $A.enqueueAction(actionOrgs);
+
     },
 
     fetchlistRiskModal: function(component, event) {

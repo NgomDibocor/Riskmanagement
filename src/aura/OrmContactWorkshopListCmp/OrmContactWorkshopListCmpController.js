@@ -39,7 +39,8 @@
 	 */
 	openModalContacts : function(component, event, helper) {
 
-		component.set('v.ContactList', event.getParam('contactList'));
+		component.set('v.contactList', event.getParam('contactList'));
+		component.set('v.contactsSearch', event.getParam('contactList'));
 		component.set('v.workshop', event.getParam('workshop'));
 		component.set("v.isOpenModalContactWorkshop", true);
 	},
@@ -62,6 +63,7 @@
 	 */
 	getselectedRows : function(component, event, helper) {
 		var selectedRows = event.getParam('selectedRows');
+		
 		var contactsWorkshop = [];
 		selectedRows
 		.forEach(function(selectedRow) {
@@ -74,11 +76,11 @@
 			.get("v.workshop").Id;
 
 			contactsWorkshop.push(newcontactworkshop);
-			console.log('v.ContactWorkshopList  nbre'
-					+ component.get("v.ContactWorkshopList").length);
+			console.log('v.contactWorkshopList  nbre'
+					+ component.get("v.contactWorkshopList").length);
 		});
 
-		component.set("v.ContactWorkshopList", contactsWorkshop);
+		component.set("v.contactWorkshopList", contactsWorkshop);
 		component.set("v.contactListSelected", selectedRows);
 	},
 
@@ -170,6 +172,53 @@
 	 */
 	refreshContact:function(component, event, helper){
 		helper.refreshContactWorkshop(component);
-	}
+	},
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description search filter list contact
+ * @history 
+ * 2018-09-27 : Salimata NGOM - Implementation
+ */
+    filter : function (component, event, helper){
+    	var Listcontact = component.get('v.contactList');
+    	var data = Listcontact;
+    	var key = component.get('v.key');
+    	var regex;    	
+    	
+    	if ($A.util.isEmpty(key)) {    	
+    		helper.refreshContactWorkshop(component);  
+    		 var form = component.find('lookupForm');
+                $A.util.removeClass(form, 'slds-is-open'); 		      
+         } else {
+        	key = "^" + key;
+        	try {
+        	 		regex = new RegExp(key, "i");
+        	 	
+        	 		// filter checks each row, constructs new array where function returns true
+        	 		data=Listcontact.filter(row => regex.test(row.Name) || regex.test(row.Email)
+        	 		);
+		        } catch (e) {
+		    	 console.log(e);
+		        }
+		        
+		   component.set("v.contactsSearch", data);
+		   var form = component.find('lookupForm');
+                $A.util.addClass(form, 'slds-is-open');
+         }        	
+    },
+
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get contact selected
+ * @history 
+ * 2018-09-27 : Salimata NGOM - Implementation
+ */
+    onContactSelected : function(cmp, event, helper) {
+        helper.contactSelected(cmp, event);        
+    },
 
 })

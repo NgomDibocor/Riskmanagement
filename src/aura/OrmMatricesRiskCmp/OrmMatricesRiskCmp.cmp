@@ -1,5 +1,7 @@
 <aura:component access="global" controller="OrmRiskController">
 	
+	<aura:attribute name="infosProbability" type="String[]" />
+	<aura:attribute name="infoHsseImpacts" type="String[]" />
 	<aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{
 																						'sobjectType' : 'orm_assessmentRisk__c',
 																                         'orm_assessment__c': '',  
@@ -22,7 +24,9 @@
 																                         'orm_production_Loss_Risk__c':''
 																					}" />
 	  
-		     
+	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+	<aura:attribute name="choiceProbability" type="String" />
+    <aura:attribute name="choiceHsseImpact" type="String" />   
 		    
 		    
 		     <div style="display: inline-block;width:80%;height:450px;">
@@ -87,7 +91,7 @@
 			           </td>
 			      </tr>
 			      <tr height="100">
-			           <td style="background-color: yellow;" class="tdRanking" >MAJOR</td>
+			           <td style="background-color: yellow;" class="tdRanking" >MODERATE</td>
 			           <td class="tdDefinition">
 			                Risk that has a moderate negative effect on objectives that can be managed. 
 			                Management attention should be applied to reduce the probability and impact. 
@@ -97,7 +101,7 @@
 			           </td>
 			      </tr>
 			      <tr height="100">
-			           <td style="background-color: green;" class="tdRanking">MAJOR</td>
+			           <td style="background-color: green;" class="tdRanking">MINOR</td>
 			           <td class="tdDefinition">
 			                Risk that has a minor negative effect on objectives. Risks with a "Low Impact", 
 			                "Possible Probability" rating may require some mitigation to reduce probability, 

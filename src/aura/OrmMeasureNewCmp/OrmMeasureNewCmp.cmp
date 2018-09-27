@@ -32,7 +32,6 @@
 					<!--###### MODAL BOX BODY Part Start From Here ######-->
 					<div class="slds-modal__content slds-p-around--medium">
 						<!-- CREATE NEW Activity FORM -->
-						<form class="slds-form--stacked">
 							<div class="slds-grid slds-gutters">
 								<div class="slds-col">
 									<div class="slds-form-element">
@@ -49,16 +48,26 @@
 									</div>  
 									<div class="slds-form-element ">
 				                    <div class="slds-form-element__control">
-				                        <lightning:select aura:id="measureCategorie" name="{!$Label.c.orm_category_measure_label}" label="{!$Label.c.orm_category_measure_label}"   class="select-auto-width"  onchange="{!c.measureCategorieChange}">
+				                    
+				                        <ui:inputSelect aura:id="measureCategorie" 
+                                              change="{!c.measureCategorieChange}" class="slds-select"
+                                              labelClass="slds-form-element__label" >
+                                            <aura:iteration items="{!v.measureCategorie}" var="measureCategorie" >
+                                                <ui:inputSelectOption  text="{!measureCategorie}"
+                                                                       label="{!measureCategorie}"/>
+                                            </aura:iteration>
+                                        </ui:inputSelect>
+                                              
+                                              
+				                        <!--<lightning:select aura:id="measureCategorie" name="{!$Label.c.orm_category_measure_label}" label="{!$Label.c.orm_category_measure_label}"   class="select-auto-width"  onchange="{!c.measureCategorieChange}">
 				                            <aura:iteration items="{!v.measureCategorie}" var="measureCategorie">
 				                                <option text="{!measureCategorie}"></option>
 				                            </aura:iteration>
-				                        </lightning:select>
+				                        </lightning:select>  -->
 				                    </div>
 				                </div>                        
 								</div>								
 							</div>
-						</form>
 						<!-- / CREATE NEW Item FORM -->
 
 					</div>

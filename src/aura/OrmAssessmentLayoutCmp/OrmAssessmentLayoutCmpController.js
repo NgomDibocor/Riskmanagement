@@ -520,6 +520,9 @@
    },
    
    showMatriceAssessmentRiskAction : function(component, event, helper){
+      component.set("v.assessmentRiskData", event.getParam("assessmentRisk"));
+      component.set("v.choiceProbability", event.getParam("choiceProbability"));
+      component.set("v.choiceHsseImpact", event.getParam("choiceHsseImpact"));
       helper.activeMatriceAssessmentRisk(component, event, helper);
    },
 })

@@ -1,2 +1,17 @@
 .THIS {
 }
+.THIS .titleActionPlan {
+  font-weight: 600;
+  font-size: 2em;
+ /* letter-spacing: -.07em; */
+  text-align: center;
+  white-space: normal;
+}
+.THIS .dot {
+    height: 55px;
+    line-height: 55px;
+    width: 300px;
+    border-radius:0;
+    background-color: #5B86BE;
+    display: inline-block;
+}

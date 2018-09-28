@@ -1,5 +1,5 @@
 ({
-	myAction : function(component, event, helper) {
-		
-	}
+        doInit: function(component, event, helper) { 
+        	alert(component.get("v.idAssessment"));
+        }
 })

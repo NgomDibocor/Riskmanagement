@@ -2,11 +2,13 @@
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!--declare aura attributes-->
+		<aura:attribute name="contact" type="Contact"
+		description="store single contact" />
 	<aura:attribute name="contactList" type="Contact[]"
 		description="store contact records list" />
 	<aura:attribute name="contactListSelected" type="Contact[]"
 		description="store contact records list selected" />
-		<aura:attribute name="contactChecked" type="Contact[]"
+		<aura:attribute name="contactChecked" type="Contact"
 		description="store contact records list selected" />
 		<aura:attribute name="contactSelected" type="Contact[]"
 		description="store contact records list selected" />
@@ -29,7 +31,7 @@
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactCreatedEvt" action="{!c.refreshContact}" />
 	<aura:handler event="c:OrmRefreshContactWorkshopEvt" action="{!c.refreshContact}" />
-	<aura:handler event="c:OrmcontactWorkshopListEvt"
+	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 	<!--  start modal participants-->
 	<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
@@ -99,7 +101,7 @@
 									<lightning:datatable aura:id="idworkshopcontact"
 										data="{!v.contactList}" class="slds-m-top_medium"
 										columns="{!v.columns}" keyField="id"
-										resizeColumnDisabled="false" selectedRows="{!v.Contact}"
+										resizeColumnDisabled="false" selectedRows="{!v.contact}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
 										showRowNumberColumn="false" />

@@ -9,8 +9,7 @@
    <aura:registerEvent name="SendIdAssessmentRiskToCauseAndImpact" type="c:OrmSendIdAssessmentRiskToCauseEvt" />
    <aura:registerEvent name="OrmInstanceRiskTreatmentEvt" type="c:OrmInstanceRiskTreatmentEvt" />  
    
-   <aura:attribute name="choiceProbability" type="String" />
-   <aura:attribute name="choiceHsseImpact" type="String" />
+   <aura:attribute name="data" type="Idea" />
    <aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{'sobjectType' : 'orm_assessmentRisk__c',
 																                    'orm_assessment__c': '',  
 																                    'orm_Risk__c':''

@@ -83,7 +83,8 @@
 																	  'orm_reputation__c' : 'Short Term Damage'
 																}"/>
 		
-	<aura:attribute name="businessImpacts" type="Macro[]" />														
+	<aura:attribute name="businessImpacts" type="Macro[]" />	
+	<aura:attribute name="businessImpacts2" type="Macro[]" />													
 																						
     <!-- end Objects Business Impacts -->
 
@@ -213,14 +214,14 @@
      <div>scheduleProjectMediumMin: {!v.scheduleProjectMediumMin}</div>
      <div>scheduleProjectMediumMax: {!v.scheduleProjectMediumMax}</div>
      <div>scheduleProjectLowMin: {!v.scheduleProjectLowMin}</div>
-     <div>scheduleProjectLowMax: {!v.scheduleProjectLowMax}</div>
+     <div>scheduleProjectLowMax: {!v.scheduleProjectLowMax}</div> 
      
      <div>ProductionLossHighMin: {!v.ProductionLossHighMin}</div>
      <div>ProductionLossHighMax: {!v.ProductionLossHighMax}</div>
      <div>ProductionLossMediumMin: {!v.ProductionLossMediumMin}</div>
      <div>ProductionLossMediumMax: {!v.ProductionLossMediumMax}</div>
      <div>ProductionLossLowMin: {!v.ProductionLossLowMin}</div>
-     <div>ProductionLossLowMax: {!v.ProductionLossLowMax}</div>   -->
+     <div>ProductionLossLowMax: {!v.ProductionLossLowMax}</div>    -->
      
         <div class="slds-col" style="margin-bottom: 20px">
 		        <span class="spaceSlider"></span>									
@@ -233,7 +234,7 @@
 			            </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
-					    <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					    <aura:if isTrue="{!not(empty(v.businessImpacts2))}">
 					       <aura:if isTrue="{!v.showBtnUpdate == false}">
 				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
 			               </aura:if>
@@ -267,7 +268,7 @@
 					   </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
-					  <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					  <aura:if isTrue="{!not(empty(v.businessImpacts2))}">
 		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
 					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
 					       </aura:if>
@@ -332,7 +333,7 @@
 					         </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
-					         <aura:if isTrue="{!v.haveToSaveBusinessImpacts2 }">
+					         <aura:if isTrue="{!not(empty(v.businessImpacts2))}">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
 					                      <lightning:buttonGroup class="slds-m-around_medium">
 						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateBusinessImpact}"/>
@@ -380,16 +381,7 @@
 					       </aura:if>
 					</aura:if>
 				</span>
-				<span class="spaceSliderEnd">
-				   <!--<aura:if isTrue="{!v.showHsseImpactsRanking}">
-					    <aura:if isTrue="{!v.showBtnUpdate == false}">
-					          already saved
-					        <aura:set attribute="else">
-					          not yet saved
-					        </aura:set>
-				        </aura:if>
-				   </aura:if>  -->
-				</span>	
+				<span class="spaceSliderEnd"></span>	
 		</div>
          
          <div id="probility">
@@ -452,18 +444,16 @@
              <div style="margin-bottom:30px;">
                 <h1 class="titleslider">Business Impacts Ranking 1/2</h1>
              </div>
-		       <table wtdth="100%">
-		          <thead>
-			         <tr>
+		         <table wtdth="100%">
+			          <tr class="borderTopOnTable">
 					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Rating</th>
-					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Cost as % of budget</th>
+					    <th class="borderRightOnTable" style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Cost as % of budget</th>
 					    <th style="text-align: center;font-weight: 600;font-size: 1.5em;" height="100">Schedule as % of baseline</th>
 					  </tr>
-				  </thead>
-				      <tr><td height="5"></td><td height="5"></td><td height="5"></td></tr>
+				      <tr><td height="5"></td><td class="borderRightOnTable" height="5"></td><td height="5"></td></tr>
 			          <tr>
 				            <td class="tdcouleurSlider2" height="100" style="background-color: red;text-align: center;">Very High</td>
-					        <td  class="tdBusinessImpact" height="100" >
+					        <td  class="tdBusinessImpact borderRightOnTable" height="100" >
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="sliderCostProjectVeryHigh" id="sliderCostProjectVeryHigh" />
@@ -478,7 +468,7 @@
 			           </tr>
 			           <tr>
 				             <td class="tdcouleurSlider2" height="100" style="Background-Color: #FF8C00;text-align: center;">High</td>
-					         <td  class="tdBusinessImpact" >
+					         <td  class="tdBusinessImpact borderRightOnTable" >
 					                <div>
 								        <div class="">{!v.label2}</div>
 									    <div aura:id="sliderCostProjectHigh" />
@@ -493,7 +483,7 @@
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #FFFF00;text-align: center;">Medium</td>
-					        <td  class="tdBusinessImpact" height="100" >
+					        <td  class="tdBusinessImpact borderRightOnTable" height="100" >
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="sliderCostProjectMedium" />
@@ -508,7 +498,7 @@
 			          </tr>
 			          <tr>
 				        <td class="tdcouleurSlider2" height="100" style="Background-Color: #32CD32;text-align: center;">Low</td>
-					        <td  class="tdBusinessImpact" height="100" >
+					        <td  class="tdBusinessImpact borderRightOnTable" height="100" >
 					                <div>
 								        <div class="label">{!v.label}</div>
 									    <div aura:id="sliderCostProjectLow" />
@@ -695,7 +685,7 @@
 			            </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
-					    <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					    <aura:if isTrue="{!not(empty(v.businessImpacts2))}">
 					       <aura:if isTrue="{!v.showBtnUpdate == false}">
 				              <lightning:button label="Prev" disabled="{!v.showProbilityRanking == true}" variant="brand" iconName='utility:back' />
 			               </aura:if>
@@ -729,7 +719,7 @@
 					   </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
-					  <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					  <aura:if isTrue="{!not(empty(v.businessImpacts2))}">
 		        	       <aura:if isTrue="{!v.showBtnUpdate == false}">
 					          <lightning:button label="Next" disabled="{!v.showRiskOccurrence == true}" variant="brand" iconName='utility:forward' iconPosition='right'/>
 					       </aura:if>
@@ -794,14 +784,14 @@
 					         </aura:if>
 					</aura:if>
 					<aura:if isTrue="{!v.showBusinessImpactsRanking2}">
-					         <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+					         <aura:if isTrue="{!not(empty(v.businessImpacts2))}">
 					                  <aura:if isTrue="{!v.showBtnUpdate}">
 					                      <lightning:buttonGroup class="slds-m-around_medium">
 						                      <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancelUpdateBusinessImpact}"/>
 						                      <lightning:button label="update"
 						                                       variant="neutral"
 						                                       class="slds-button slds-button_brand"
-						                                       onclick="{!c.createBusinessImpactsRanking}"/>
+						                                       onclick="{!c.createBusinessImpactsRanking2}"/>
 					                      </lightning:buttonGroup>
 					                   </aura:if>
 					              <aura:set attribute="else">
@@ -811,7 +801,7 @@
 							                      <lightning:button label="{!$Label.c.orm_save_button}"
 							                                       variant="neutral"
 							                                       class="slds-button slds-button_success"
-							                                       onclick="{!c.createBusinessImpactsRanking}"/>
+							                                       onclick="{!c.createBusinessImpactsRanking2}"/>
 						                  </lightning:buttonGroup>
 						               </aura:if>
 					            </aura:set>
@@ -842,16 +832,7 @@
 					       </aura:if>
 					</aura:if>
 				</span>
-				<span class="spaceSliderEnd">
-				   <!--<aura:if isTrue="{!v.showHsseImpactsRanking}">
-					    <aura:if isTrue="{!v.showBtnUpdate == false}">
-					          already saved
-					        <aura:set attribute="else">
-					          not yet saved
-					        </aura:set>
-				        </aura:if>
-				   </aura:if>  -->
-				</span>	
+				<span class="spaceSliderEnd"></span>	
 		</div>
 		
 </aura:component>

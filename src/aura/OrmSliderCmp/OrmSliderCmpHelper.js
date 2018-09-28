@@ -240,21 +240,6 @@
 	        component.set("v.scheduleProjectMediumMax", component.get("v.scheduleProjectHighMin"))
         }));
         
-        var sliderProductionHigh = component.find('sliderProductionHigh').getElement();
-        if(component.get("v.businessImpacts").length == 0){
-            sliderProductionHigh = this.createSliderProduction(component, event, helper, sliderProductionHigh, 12, 26);  
-        }else{
-            sliderProductionHigh = this.createSliderProduction(component, event, helper, sliderProductionHigh, parseInt(component.get("v.businessImpHighData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpHighData").orm_productionLossMax__c, 10) );
-          
-        }
-        
-        sliderProductionHigh.noUiSlider.on('change', $A.getCallback(function(range) {
-            component.set("v.showBtnUpdate", true);
-		    component.set("v.ProductionLossHighMin", parseInt(range[0].replace('weeks', ''), 10))
-		    component.set("v.ProductionLossHighMax", parseInt(range[1].replace('weeks', ''), 10))
-		    component.set("v.ProductionLossMediumMax", parseInt(range[0].replace('weeks', ''), 10))
-        }));
-        
         var sliderCostProjectMedium = component.find('sliderCostProjectMedium').getElement();
         if(component.get("v.businessImpacts").length == 0){
             sliderCostProjectMedium = this.createSlider(component, event, helper, sliderCostProjectMedium, 5, 15);
@@ -289,23 +274,6 @@
 	        component.set("v.scheduleProjectLowMax", component.get("v.scheduleProjectMediumMin"));
         }));
         
-        var sliderProductionMedium = component.find('sliderProductionMedium').getElement();
-        if(component.get("v.businessImpacts").length == 0){
-            sliderProductionMedium = this.createSliderProduction(component, event, helper, sliderProductionMedium, 4, 12);  
-        }else{
-            sliderProductionMedium = this.createSliderProduction(component, event, helper, sliderProductionMedium, parseInt(component.get("v.businessImpMediumData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpMediumData").orm_productionLossMax__c, 10) );
-          
-        }
-          
-        sliderProductionMedium.noUiSlider.on('change', $A.getCallback(function(range) {
-            component.set("v.showBtnUpdate", true);
-            document.documentElement.scrollTop = 0; 
-		    component.set("v.ProductionLossMediumMin", parseInt(range[0].replace('weeks', ''), 10)) 
-	        component.set("v.ProductionLossMediumMax", parseInt(range[1].replace('weeks', ''), 10))
-	        component.set("v.ProductionLossHighMin", component.get("v.ProductionLossMediumMax"))
-	        component.set("v.ProductionLossLowMax", component.get("v.ProductionLossMediumMin"))
-        }));
-        
         var sliderCostProjectLow = component.find('sliderCostProjectLow').getElement();
         if(component.get("v.businessImpacts").length == 0){
             sliderCostProjectLow = this.createSlider(component, event, helper, sliderCostProjectLow, 0, 5);  
@@ -336,22 +304,6 @@
 		    component.set("v.scheduleProjectLowMin", parseInt(range[0].replace('%', ''), 10)) 
 	        component.set("v.scheduleProjectLowMax", parseInt(range[1].replace('%', ''), 10))
 	        component.set("v.scheduleProjectMediumMin", component.get("v.scheduleProjectLowMax"));
-        }));
-        
-        var sliderProductionLow = component.find('sliderProductionLow').getElement();
-        if(component.get("v.businessImpacts").length == 0){
-            sliderProductionLow = this.createSliderProduction(component, event, helper, sliderProductionLow, 0, 4);
-        }else{
-            sliderProductionLow = this.createSliderProduction(component, event, helper, sliderProductionLow, parseInt(component.get("v.businessImpLowData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpLowData").orm_productionLossMax__c, 10) );
-          
-        }
-          
-        sliderProductionLow.noUiSlider.on('change', $A.getCallback(function(range) {
-            component.set("v.showBtnUpdate", true);
-            document.documentElement.scrollTop = 0; 
-		    component.set("v.ProductionLossLowMin", parseInt(range[0].replace('weeks', ''), 10)) 
-	        component.set("v.ProductionLossLowMax", parseInt(range[1].replace('weeks', ''), 10))
-	        component.set("v.ProductionLossMediumMin", component.get("v.ProductionLossLowMax"));
         }));
         
         //----cost----------------------
@@ -454,6 +406,62 @@
 		})); 
 		//----------------end schedule--------------------
 		
+        //Hide the Spinner
+        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+        evtHideSpinner.fire();
+    },
+    
+    jsLoaded3 : function(component, event, helper) {
+	    
+        var sliderProductionHigh = component.find('sliderProductionHigh').getElement();
+        if(component.get("v.businessImpacts2").length == 0){
+            sliderProductionHigh = this.createSliderProduction(component, event, helper, sliderProductionHigh, 12, 26);  
+        }else{
+            sliderProductionHigh = this.createSliderProduction(component, event, helper, sliderProductionHigh, parseInt(component.get("v.businessImpHighData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpHighData").orm_productionLossMax__c, 10) );
+          
+        }
+        
+        sliderProductionHigh.noUiSlider.on('change', $A.getCallback(function(range) {
+            component.set("v.showBtnUpdate", true);
+		    component.set("v.ProductionLossHighMin", parseInt(range[0].replace('weeks', ''), 10))
+		    component.set("v.ProductionLossHighMax", parseInt(range[1].replace('weeks', ''), 10))
+		    component.set("v.ProductionLossMediumMax", parseInt(range[0].replace('weeks', ''), 10))
+        }));
+       
+        var sliderProductionMedium = component.find('sliderProductionMedium').getElement();
+        if(component.get("v.businessImpacts2").length == 0){
+            sliderProductionMedium = this.createSliderProduction(component, event, helper, sliderProductionMedium, 4, 12);  
+        }else{
+            sliderProductionMedium = this.createSliderProduction(component, event, helper, sliderProductionMedium, parseInt(component.get("v.businessImpMediumData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpMediumData").orm_productionLossMax__c, 10) );
+          
+        }
+          
+        sliderProductionMedium.noUiSlider.on('change', $A.getCallback(function(range) {
+            component.set("v.showBtnUpdate", true);
+            document.documentElement.scrollTop = 0; 
+		    component.set("v.ProductionLossMediumMin", parseInt(range[0].replace('weeks', ''), 10)) 
+	        component.set("v.ProductionLossMediumMax", parseInt(range[1].replace('weeks', ''), 10))
+	        component.set("v.ProductionLossHighMin", component.get("v.ProductionLossMediumMax"))
+	        component.set("v.ProductionLossLowMax", component.get("v.ProductionLossMediumMin"))
+        }));
+        
+        var sliderProductionLow = component.find('sliderProductionLow').getElement();
+        if(component.get("v.businessImpacts2").length == 0){
+            sliderProductionLow = this.createSliderProduction(component, event, helper, sliderProductionLow, 0, 4);
+        }else{
+            sliderProductionLow = this.createSliderProduction(component, event, helper, sliderProductionLow, parseInt(component.get("v.businessImpLowData").orm_productionLossMin__c, 10), parseInt(component.get("v.businessImpLowData").orm_productionLossMax__c, 10) );
+          
+        }
+          
+        sliderProductionLow.noUiSlider.on('change', $A.getCallback(function(range) {
+            component.set("v.showBtnUpdate", true);
+            document.documentElement.scrollTop = 0; 
+		    component.set("v.ProductionLossLowMin", parseInt(range[0].replace('weeks', ''), 10)) 
+	        component.set("v.ProductionLossLowMax", parseInt(range[1].replace('weeks', ''), 10))
+	        component.set("v.ProductionLossMediumMin", component.get("v.ProductionLossLowMax"));
+        }));
+        
+        
 		//----------------Production--------------------
 		
 		sliderProductionHigh.noUiSlider.on('slide', $A.getCallback(function(range){

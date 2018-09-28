@@ -44,7 +44,7 @@
                                                     if (state === 'SUCCESS') {
                                                         component.set('v.vulnerability', response.getReturnValue());
                                                        var actionUser = component.get("c.getUsers");
-													        actionUser.setCallback(this, function(response){
+													   actionUser.setCallback(this, function(response){
 													            var state = response.getState();
 													            if(state === 'SUCCESS'){
 													                component.set('v.allUser', response.getReturnValue());
@@ -66,28 +66,51 @@
                                                                 component.find("riskManager").set("v.value", component.get('v.assessmentRiskData').orm_riskManager__c);
                                                                 var sliderValue = component.get("v.assessmentRiskData").orm_probability__c;
                                                                
-                                                                if(sliderValue==null)
-                                                                {
+                                                                if(sliderValue==null){
                                                                 	
-                                                                }
-                                                                else
-                                                                {
-                                                                if (sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")) {
-                                                                    document.getElementById("divColor").style.backgroundColor = "green";
-                                                                    document.getElementById("divColor").innerHTML = component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
-                                                                } else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")) {
-                                                                    document.getElementById("divColor").style.backgroundColor = "yellow";
-                                                                    document.getElementById("divColor").innerHTML = component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
-                                                                } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue <= component.get("v.possibleData.orm_pourcentageMax__c")) {
-                                                                    document.getElementById("divColor").style.backgroundColor = "orange";
-                                                                    document.getElementById("divColor").innerHTML = component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
-                                                                } else {
-                                                                    document.getElementById("divColor").style.backgroundColor = "red";
-                                                                    document.getElementById("divColor").innerHTML = component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
-                                                                }}
+                                                                }else{
+	                                                                if (sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")) {
+	                                                                    document.getElementById("divColor").style.backgroundColor = "green";
+	                                                                    document.getElementById("divColor").innerHTML = component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
+	                                                                
+	                                                                    var data = component.get("v.data");
+																	    data.orm_probability__c = component.get("v.RareData.orm_probability__c");
+																	    component.set("v.data", data);
+																	    console.log(JSON.stringify(data))
+	                                                                
+	                                                                } else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")) {
+	                                                                    document.getElementById("divColor").style.backgroundColor = "yellow";
+	                                                                    document.getElementById("divColor").innerHTML = component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
+	                                                                
+	                                                                    var data = component.get("v.data");
+																	    data.orm_probability__c = component.get("v.unlikelyData.orm_probability__c");
+																	    component.set("v.data", data);
+																	    console.log(JSON.stringify(data))
+	                                                                
+	                                                                } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue <= component.get("v.possibleData.orm_pourcentageMax__c")) {
+	                                                                    document.getElementById("divColor").style.backgroundColor = "orange";
+	                                                                    document.getElementById("divColor").innerHTML = component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
+	                                                                
+	                                                                    var data = component.get("v.data");
+																	    data.orm_probability__c = component.get("v.possibleData.orm_probability__c");
+																	    component.set("v.data", data);
+																	    console.log(JSON.stringify(data))
+	                                                                
+	                                                                } else {
+	                                                                    document.getElementById("divColor").style.backgroundColor = "red";
+	                                                                    document.getElementById("divColor").innerHTML = component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
+	                                                                
+	                                                                    var data = component.get("v.data");
+																	    data.orm_probability__c = component.get("v.probableData.orm_probability__c");
+																	    component.set("v.data", data);
+																	    console.log(JSON.stringify(data)) 
+	                                                                
+	                                                                }
+                                                                
+                                                             }
 
-                                                                	this.getSliderDefault(component, event);
-                                                                	this. getSliderBusinessDefault(component,event);
+                                                                this.getSliderDefault(component, event);
+                                                                this. getSliderBusinessDefault(component,event);
                                                                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
                                                                 evtSpinner.fire();
                                                             } else {
@@ -249,56 +272,118 @@
         if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r0) {
             document.getElementById('healthAndSafety').style.backgroundColor = "red";
             document.getElementById('healthAndSafety').innerHTML = 'very high'; 
+            
+            var data = component.get("v.data");
+		    data.orm_healthAndSafety__c = 'VeryHigh';
+		    component.set("v.data", data);
+		    console.log(JSON.stringify(data))
+            
         }
         if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r1) {
             document.getElementById('healthAndSafety').style.backgroundColor = "orange";
             document.getElementById("healthAndSafety").innerHTML = 'high';
+            
+            var data = component.get("v.data");
+		    data.orm_healthAndSafety__c = 'High';
+		    component.set("v.data", data);
+		    console.log(JSON.stringify(data))
+            
         }
         if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r2) {
             document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
             document.getElementById("healthAndSafety").innerHTML = 'Medium';
+            
+            var data = component.get("v.data");
+		    data.orm_healthAndSafety__c = 'Medium';
+		    component.set("v.data", data);
+		    console.log(JSON.stringify(data))
         }
         if (component.get('v.assessmentRiskData').orm_healthAndSafety__c == r3) {
             document.getElementById('healthAndSafety').style.backgroundColor = "green";
             document.getElementById("healthAndSafety").innerHTML = 'Low';
+            
+            var data = component.get("v.data");
+		    data.orm_healthAndSafety__c = 'Low';
+		    component.set("v.data", data);
+		    console.log(JSON.stringify(data))
         }
          if(component.get('v.assessmentRiskData').orm_security__c  == rr0){
 			 document.getElementById('security').style.backgroundColor = "red";
 			 document.getElementById("security").innerHTML= 'very high';
+			 
+			 var data = component.get("v.data");
+		     data.orm_security__c = 'VeryHigh'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
 		 } 
 		 
 		 if (component.get('v.assessmentRiskData').orm_security__c == rr1){
 			 document.getElementById('security').style.backgroundColor = "orange";
 			 document.getElementById("security").innerHTML= 'high';
+			 
+			 var data = component.get("v.data");
+		     data.orm_security__c = 'High'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
 		 }
 		 
 		  if (component.get('v.assessmentRiskData').orm_security__c == rr2 ){
 			  document.getElementById('security').style.backgroundColor = "yellow";
 			  document.getElementById("security").innerHTML= 'Medium';
+			  
+			  var data = component.get("v.data");
+		      data.orm_security__c = 'Medium'
+		      component.set("v.data", data);
+		      console.log(JSON.stringify(data))
 		 }
 		 
 		 if(component.get('v.assessmentRiskData').orm_security__c == rr3 ){
 			  document.getElementById('security').style.backgroundColor = "green";
 			  document.getElementById("security").innerHTML= 'Low';
+			  
+			  var data = component.get("v.data");
+		      data.orm_security__c = 'Low'
+		      component.set("v.data", data);
+		      console.log(JSON.stringify(data))
 		 }
 		 
 		 if(component.get('v.assessmentRiskData').orm_environmentAndCommunity__c  == rrr0){
 			 document.getElementById('environment').style.backgroundColor = "red";
 			 document.getElementById("environment").innerHTML= 'very high';
+			 
+			 var data = component.get("v.data");
+		     data.orm_environment__c = 'VeryHigh'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
 		 } 
 		 
 		 if (component.get('v.assessmentRiskData').orm_environmentAndCommunity__c == rrr1 ){
 			 document.getElementById('environment').style.backgroundColor = "orange";
 			 document.getElementById("environment").innerHTML= 'high';
+			 
+			 var data = component.get("v.data");
+		     data.orm_environment__c = 'High'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
 		 }
 		 
 		 if (component.get('v.assessmentRiskData').orm_environmentAndCommunity__c == rrr2){
 			 document.getElementById('environment').style.backgroundColor = "yellow";
 			 document.getElementById("environment").innerHTML= 'Medium';
+			 
+			 var data = component.get("v.data");
+		     data.orm_environment__c = 'Medium'
+		     component.set("v.data", data);
+		     console.log(JSON.stringify(data))
 		 }
 		 if(component.get('v.assessmentRiskData').orm_environmentAndCommunity__c == rrr3){
 			  document.getElementById('environment').style.backgroundColor = "green";
 			  document.getElementById("environment").innerHTML= 'Low';
+			  
+			  var data = component.get("v.data");
+		      data.orm_environment__c = 'Low'
+		      component.set("v.data", data);
+		      console.log(JSON.stringify(data))
 		 }
 		 }
     },

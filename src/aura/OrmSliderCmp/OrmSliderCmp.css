@@ -127,3 +127,9 @@
 	display: inline-block;
     width:25%;
 }
+.THIS .borderRightOnTable {
+	border-right: 2px solid black;
+}
+.THIS .borderTopOnTable {
+	border-top: 2px solid black;
+}

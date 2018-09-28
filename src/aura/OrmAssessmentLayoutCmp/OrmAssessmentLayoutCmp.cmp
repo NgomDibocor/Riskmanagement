@@ -1444,7 +1444,7 @@
                 <aura:if isTrue="{!v.showActionPlan}">
                       <tr>
                         <td >
-                            <c:OrmActionPlanLayoutCmp />
+                            <c:OrmActionPlanLayoutCmp idAssessment="{!v.assessmentData.Id}" />
                         </td>
                     </tr>
                 </aura:if>

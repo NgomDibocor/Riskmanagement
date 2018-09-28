@@ -25,45 +25,87 @@
 																					}" />
 	  
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
-	<aura:attribute name="data" type="Idea" />  
+	<aura:attribute name="data" type="Idea" default="{
+														 'sobjectType' : 'Idea',
+								                         'orm_healthAndSafety__c': '',  
+								                         'orm_security__c':'',
+								                         'orm_environment__c' :''
+													}" />  
 		    
-		    
-		     <div style="display: inline-block;width:80%;height:450px;">
-			   <span class="monTexte" id="impact">Health And Safety</span>
-			   <span id="idTable">
-				   <table width="100%">    
-				      <tr><td rowspan="5" width="100" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
-				      <tr>
-				        <td class="yellowColor" width="150" height="80" id="11"></td>
-				        <td class="orangeColor" width="150" height="80" id="12"></td>
-				        <td class="redColor" width="150" height="80" id="13"></td>
-				        <td class="redColor" width="150" height="80" id="14"></td>
-				      </tr>
-				      <tr>
-				        <td class="greenColor" width="150" height="80" id="21"></td>
-				        <td class="yellowColor" width="150" height="80" id="22"></td>
-				        <td class="orangeColor" width="150" height="80" id="23"></td>
-				        <td class="redColor" width="150" height="80" id="24"></td>
-				      </tr>
-				      <tr>
-				        <td class="greenColor" width="150" height="80" id="31"></td>
-				        <td class="yellowColor" width="150" height="80" id="32"></td>
-				        <td class="yellowColor" width="150" height="80" id="33"></td>
-				        <td class="orangeColor" width="150" height="80" id="34"></td>
-				      </tr>
-				      <tr>
-				        <td class="greenColor" width="150" height="80" id="41"></td>
-				        <td class="greenColor" width="150" height="80" id="42"></td>
-				        <td class="greenColor" width="150" height="80" id="43"></td>
-				        <td class="yellowColor" width="150" height="80" id="44"></td>
-				      </tr>
-				      <tr>
-				          <td class="removeAllBorder" height="80"></td>
-				          <td colspan="4" class="removeBorderLastRow" height="80">Severity</td>
-				       </tr>
-				    </table>  
-				  </span>
-			</div>
+		     <div style="width:85%;height:450px;overflow-x:scroll"> 
+			     <div style="display: inline-block;width:80%;height:450px;">
+				   <span class="monTexte" id="healthAndSafety">Health And Safety</span>
+				   <span id="idTable">
+					   <table width="100%">    
+					      <tr><td rowspan="5" width="100" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					      <tr>
+					        <td class="yellowColor" width="150" height="80" id="11"></td>
+					        <td class="orangeColor" width="150" height="80" id="12"></td>
+					        <td class="redColor" width="150" height="80" id="13"></td>
+					        <td class="redColor" width="150" height="80" id="14"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="150" height="80" id="21"></td>
+					        <td class="yellowColor" width="150" height="80" id="22"></td>
+					        <td class="orangeColor" width="150" height="80" id="23"></td>
+					        <td class="redColor" width="150" height="80" id="24"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="150" height="80" id="31"></td>
+					        <td class="yellowColor" width="150" height="80" id="32"></td>
+					        <td class="yellowColor" width="150" height="80" id="33"></td>
+					        <td class="orangeColor" width="150" height="80" id="34"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="150" height="80" id="41"></td>
+					        <td class="greenColor" width="150" height="80" id="42"></td>
+					        <td class="greenColor" width="150" height="80" id="43"></td>
+					        <td class="yellowColor" width="150" height="80" id="44"></td>
+					      </tr>
+					      <tr>
+					          <td class="removeAllBorder" height="80"></td>
+					          <td colspan="4" class="removeBorderLastRow" height="80">Severity</td>
+					       </tr>
+					    </table>  
+					  </span>
+				</div>
+				<div style="display: inline-block;width:80%;height:450px;">
+				   <span class="monTexte" id="security">Security</span>
+				   <span id="idTableSecurity">
+					   <table width="100%">    
+					      <tr><td rowspan="5" width="100" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					      <tr>
+					        <td class="yellowColor" width="150" height="80" id="sec11"></td>
+					        <td class="orangeColor" width="150" height="80" id="sec12"></td>
+					        <td class="redColor" width="150" height="80" id="sec13"></td>
+					        <td class="redColor" width="150" height="80" id="sec14"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="150" height="80" id="sec21"></td>
+					        <td class="yellowColor" width="150" height="80" id="sec22"></td>
+					        <td class="orangeColor" width="150" height="80" id="sec23"></td>
+					        <td class="redColor" width="150" height="80" id="sec24"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="150" height="80" id="sec31"></td>
+					        <td class="yellowColor" width="150" height="80" id="sec32"></td>
+					        <td class="yellowColor" width="150" height="80" id="sec33"></td>
+					        <td class="orangeColor" width="150" height="80" id="sec34"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="150" height="80" id="sec41"></td>
+					        <td class="greenColor" width="150" height="80" id="sec42"></td>
+					        <td class="greenColor" width="150" height="80" id="sec43"></td>
+					        <td class="yellowColor" width="150" height="80" id="sec44"></td>
+					      </tr>
+					      <tr>
+					          <td class="removeAllBorder" height="80"></td>
+					          <td colspan="4" class="removeBorderLastRow" height="80">Severity</td>
+					       </tr>
+					    </table>  
+					  </span>
+				</div>
+		    </div>
 	
 			<div style="width:90%;margin:auto;margin-top:20px;margin-bottom:30px">
 			     <table>

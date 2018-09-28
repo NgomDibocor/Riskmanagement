@@ -102,7 +102,6 @@
            </aura:if>
         </div>
     </div><br/>
-
     <aura:if isTrue="{!v.isOpen}">
         <!--###### MODAL BOX Start From Here ######-->
         <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open slds-modal_medium">

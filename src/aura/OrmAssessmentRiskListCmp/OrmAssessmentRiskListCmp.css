@@ -17,7 +17,7 @@
 } 
 .THIS .styleTitre{
     font-weight: 600;
-    font-size: 1.2em; 
+    font-size: 1.1em; 
 }
 .THIS .styleText{
     font-weight: 300;
@@ -33,6 +33,6 @@
     background-color: #5B86BE;
     border-radius: 50%;
     display: inline-block;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1em;
 }

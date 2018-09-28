@@ -90,8 +90,7 @@
 		</div>
         	
 	</div>
-	
-	<!-- openModalConfirmDeletion  -->
+		<!-- openModalConfirmDeletion  -->
 	    <aura:if isTrue="{!v.openModalConfirmDeletion}">    
 	    	<div class="demo-only" style="height: 640px;">
 			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 

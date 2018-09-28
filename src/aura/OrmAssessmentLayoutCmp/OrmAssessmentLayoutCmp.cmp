@@ -1442,8 +1442,11 @@
                     </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.showActionPlan}">
-                    
-                     
+                      <tr>
+                        <td >
+                            <c:OrmActionPlanLayoutCmp />
+                        </td>
+                    </tr>
                 </aura:if>
                 <aura:if isTrue="{!v.displaySaveCancelBtn}"> 
                       <tr>

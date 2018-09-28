@@ -200,17 +200,17 @@
 
     contactSelected : function(cmp, event) {
         var contacts = cmp.get('v.contactsSearch');
-        //var contact = cmp.get('v.contactSelected');
-        var input = cmp.find('inputSearch');
-        input.set('v.value', contacts[event.target.id].Name);
-        cmp.set('v.contactSelected', contacts[event.target.id]);
-        this.enableInputs(cmp);
-    },
-	 enableInputs: function(cmp) {
-        var button = cmp.find('btnLog');
-        button.set('v.disabled', false);     
-        cmp.set('v.contactsSearch', null);
+        var contact = cmp.get('v.contactListSelected');
+       // var input = cmp.find('inputSearch');
+        //input.set('v.value', contacts[event.target.id].Name);
+        contact.push(contacts[event.target.id]);
+        cmp.set('v.contactListSelected',contact);
         var form = cmp.find('lookupForm');
-        $A.util.removeClass(form, 'slds-is-open');
+                $A.util.removeClass(form, 'slds-is-open');
+                cmp.set('v.key','');
+       // ,contacts[event.target.id]);
+        //this.enableInputs(cmp);
+        //alert(JSON.stringify(contact));
     }
+	
 })

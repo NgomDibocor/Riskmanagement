@@ -4,6 +4,7 @@
 	<aura:attribute name="idMeasure" type="string" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
 	<aura:attribute name="allUser" type="User[]" />
+	<aura:attribute name="allUnit" type="Account[]" />
 	<aura:attribute name="measureData" type="Assessment__c" default="{'sobjectType' : 'Assessment__c','Name': ''}" />
 	<aura:attribute name="displayContentMeasure" type="boolean" default="false"/>
 	<aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
@@ -153,7 +154,25 @@
 			                    </a>
 			                </div>
 		           	</td>
-		           	<td></td>
+		           	<td>
+		           		<div class="topSpacing">
+				               <b><label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label></b>
+				             </div>
+				            <div class="slds-form-element ">
+		                        <div class="slds-form-element__control">
+			                       <ui:inputSelect aura:id="unit"   
+			                               change="{!c.onChangeUnit}" class="slds-select"
+			                               labelClass="slds-form-element__label" >
+			                               <ui:inputSelectOption  text="{!v.measureData.orm_organisation__c}"
+			                                                   label="{!v.measureData.orm_organisation__r.Name}"/>
+			                           <aura:iteration items="{!v.allUnit}" var="rm">
+			                               <ui:inputSelectOption text = "{!rm.Id}"
+			                                                     label= "{!rm.Name}" />
+			                           </aura:iteration>
+			                        </ui:inputSelect>
+		                         </div>
+		                    </div>
+		           	</td>
 		           </tr>
 		   </table>
 </aura:component>

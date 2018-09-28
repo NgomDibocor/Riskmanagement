@@ -63,7 +63,7 @@
 	 */
 	getselectedRows : function(component, event, helper) {
 		var selectedRows = event.getParam('selectedRows');
-		
+		var contacts = component.get('v.contactListSelected');
 		var contactsWorkshop = [];
 		selectedRows
 		.forEach(function(selectedRow) {
@@ -78,10 +78,13 @@
 			contactsWorkshop.push(newcontactworkshop);
 			console.log('v.contactWorkshopList  nbre'
 					+ component.get("v.contactWorkshopList").length);
+					
+		contacts.push(selectedRow);
 		});
 
 		component.set("v.contactWorkshopList", contactsWorkshop);
-		component.set("v.contactListSelected", selectedRows);
+		
+		component.set("v.contactListSelected", contacts);
 	},
 
 	/**
@@ -219,6 +222,22 @@
  */
     onContactSelected : function(cmp, event, helper) {
         helper.contactSelected(cmp, event);        
+    },
+     // function for clear the Record Selection 
+    clear :function(component,event,heplper){
+        var selectedPillId = event.getSource().get("v.name");
+        var AllPillsList = component.get("v.contactListSelected"); 
+        for(var i = 0; i < AllPillsList.length; i++){
+            if(AllPillsList[i].Id == selectedPillId){
+                AllPillsList.splice(i, 1);
+                component.set("v.contactListSelected", AllPillsList);
+            }  
+        }
+        //component.set("v.SearchKeyWord",null);
+        //component.set("v.listOfSearchRecords", null );      
+    },
+      sendEmailAction : function(component, event, helper) {
+        helper.sendEmails(component, event);
     },
 
 })

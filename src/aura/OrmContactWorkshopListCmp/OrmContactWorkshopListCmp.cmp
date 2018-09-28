@@ -6,6 +6,8 @@
 		description="store contact records list" />
 	<aura:attribute name="contactListSelected" type="Contact[]"
 		description="store contact records list selected" />
+		<aura:attribute name="contactChecked" type="Contact[]"
+		description="store contact records list selected" />
 		<aura:attribute name="contactSelected" type="Contact[]"
 		description="store contact records list selected" />
 	<aura:attribute name="contactListTemp" type="Contact[]"
@@ -51,6 +53,17 @@
 <!--         		start search filter -->
 <div aura:id="lookupForm"  class="slds-form-element slds-lookup"  data-select="single">
           <lightning:input type="search"  name="inputSearch" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  />
+          <div class="slds-form-element__control">
+									<div class="slds-input-has-icon slds-input-has-icon--right">
+									 <aura:iteration items="{!v.contactListSelected}" var="contact">
+                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" onremove="{!c.clear }" title="{!contact.Email}"  >
+                            <aura:set attribute="media">
+                                <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
+                            </aura:set>
+                        </lightning:pill>
+                    </aura:iteration>
+									</div>
+								</div>
 <!--             Building the lookup list for the search parameters in the inputSearch field -->
         <div class="slds-lookup__menu">
             <ul class="slds-lookup__list" role="listbox">

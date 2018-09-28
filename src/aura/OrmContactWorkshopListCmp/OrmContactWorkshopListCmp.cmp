@@ -2,30 +2,34 @@
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!--declare aura attributes-->
-	<aura:attribute name="ContactList" type="Contact[]"
+	<aura:attribute name="contactList" type="Contact[]"
 		description="store contact records list" />
 	<aura:attribute name="contactListSelected" type="Contact[]"
 		description="store contact records list selected" />
-			<aura:attribute name="contactnotassociated" type="Contact"
-		description="store contact selected not associated" />
-	<aura:attribute name="ContactListTemp" type="Contact[]"
+		<aura:attribute name="contactChecked" type="Contact[]"
+		description="store contact records list selected" />
+		<aura:attribute name="contactSelected" type="Contact[]"
+		description="store contact records list selected" />
+	<aura:attribute name="contactListTemp" type="Contact[]"
 		description="store contact records list temporarily" />
-	<aura:attribute name="ContactWorkshopList"
+		<aura:attribute name="contactsSearch" type="Contact[]"
+		description="store contact records for search list" />
+	<aura:attribute name="contactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
 		description="store contact workshop records list" />
 	<aura:attribute name="workshop" type="Contract" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
 	<aura:attribute name="columns" type="List" />
-	<aura:attribute name="mailStatus" type="boolean" default="false" />
 	<aura:attribute name="email" type="string" />
 	<aura:attribute name="emailTemplate" type="boolean" default="false" />
   <aura:attribute name="isOpen" type="boolean" default="false"/>
+     <aura:attribute name="key" type="string" />
 	<!-- handlers-->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactCreatedEvt" action="{!c.refreshContact}" />
 	<aura:handler event="c:OrmRefreshContactWorkshopEvt" action="{!c.refreshContact}" />
-	<aura:handler event="c:OrmContactWorkshopListEvt"
+	<aura:handler event="c:OrmcontactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 	<!--  start modal participants-->
 	<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
@@ -45,15 +49,55 @@
 				</div>
 				<!--###### MODAL BOX BODY Part Start From Here ######-->
 				<div class="slds-modal__content slds-p-around--medium">
+				<div class="slds-p-horizontal--small">
+<!--         		start search filter -->
+<div aura:id="lookupForm"  class="slds-form-element slds-lookup"  data-select="single">
+          <lightning:input type="search"  name="inputSearch" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  />
+          <div class="slds-form-element__control">
+									<div class="slds-input-has-icon slds-input-has-icon--right">
+									 <aura:iteration items="{!v.contactListSelected}" var="contact">
+                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" onremove="{!c.clear }" title="{!contact.Email}"  >
+                            <aura:set attribute="media">
+                                <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
+                            </aura:set>
+                        </lightning:pill>
+                    </aura:iteration>
+									</div>
+								</div>
+<!--             Building the lookup list for the search parameters in the inputSearch field -->
+        <div class="slds-lookup__menu">
+            <ul class="slds-lookup__list" role="listbox">
+                <aura:iteration items="{!v.contactsSearch}"
+                                var="contact"
+                                indexVar="contactIndex">
+                    <li role="presentation">
+                        <span class="slds-lookup__item-action slds-media slds-media--left" role="option">
+                            <lightning:icon iconName="standard:contact"
+                                            size="small"
+                                            class="slds-icon slds-icon-standard-contact slds-icon--small slds-media__figure"/>
+                            <div class="slds-media__body">
+                                <div class="slds-lookup__result-text"
+                                title="{!contact.Email}"
+                                     onclick="{!c.onContactSelected}" 
+                                     id="{!contactIndex}">{!contact.Name}</div>
+                            </div>
+                        </span>
+                    </li>
+                </aura:iteration>
+            </ul>
+        </div>
+          </div>
+<!--          		end search filter -->
+        </div>
 					<div class="slds-grid slds-gutters ">
 						<div class="slds-col">
-
 							<div class="slds-form-element">
 								<div class=" slds-size--1-of-6   slds-p-horizontal--small">
+							   
 								</div>
 								<div class=" slds-size--5-of-6" style="height: 300px">
 									<lightning:datatable aura:id="idworkshopcontact"
-										data="{!v.ContactList}" class="slds-m-top_medium"
+										data="{!v.contactList}" class="slds-m-top_medium"
 										columns="{!v.columns}" keyField="id"
 										resizeColumnDisabled="false" selectedRows="{!v.Contact}"
 										onrowselection="{!c.getselectedRows}"
@@ -91,33 +135,8 @@
 		<div class="slds-backdrop slds-backdrop--open"></div>
 		<!--###### MODAL BOX Part END Here ######-->
 	</aura:if>
-	<!-- Mail status -->
 
-	<aura:if isTrue="{!v.mailStatus}">
-		<div role="alertdialog" tabindex="-1"
-			aria-labelledby="prompt-heading-id"
-			aria-describedby="prompt-message-wrapper"
-			class="slds-modal slds-fade-in-open slds-modal--prompt">
-			<div class="slds-modal__container">
-				<div
-					class="slds-modal__header slds-theme--success slds-theme--alert-texture">
-					<h2 class="slds-text-heading--medium" id="prompt-heading-id">Mail
-						Status</h2>
-				</div>
-				<div class="slds-modal__content slds-p-around--medium">
-					<div>
-						<p>Email Sent successfully to {!v.email}</p>
-					</div>
-				</div>
-				<div class="slds-modal__footer slds-theme--default">
-					<button class="slds-button slds-button--brand"
-						onclick="{!c.closeMessage}">Close</button>
-				</div>
-			</div>
-		</div>
-		<div class="slds-backdrop slds-backdrop--open"></div>
-	</aura:if>
-	<!-- end Mail status -->
+
 	<!--  end  participants-->
 	<!-- 	start email template -->
 	<aura:if isTrue="{!v.emailTemplate}">

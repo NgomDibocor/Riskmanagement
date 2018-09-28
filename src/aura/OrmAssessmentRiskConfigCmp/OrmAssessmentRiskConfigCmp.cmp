@@ -160,6 +160,11 @@
 	
 	<aura:attribute name="choiceProbability" type="String" />
 	<aura:attribute name="choiceHsseImpact" type="String" />
+	<aura:attribute name="data" type="Idea" default="{ 
+													    'orm_probability__c' : '',
+													    'orm_security__c' : '',
+													    'orm_environment__c' : ''
+													 }"/>
 	
 	
 	<aura:registerEvent name="ShowMatriceAssessmentRiskt" type="c:OrmShowMatriceAssessmentRiskEvt" />													
@@ -286,7 +291,9 @@
 	                    <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.onProbabilityChange }"  disabled="{!v.disabledSlider}"/>
 	                </div><br/>
 	                <center>
-	                    <div style="width:120px; height:50px;line-height: 50px;" id="divColor" class="divColor"></div>
+	                    <div style="width:120px; height:50px;line-height: 50px;" id="divColor" class="divColor">
+	                        <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c == null }">You didn't choose yet a probability</aura:if>
+	                    </div>
 	                </center>
 	           </tr>
 	    </table>

@@ -124,9 +124,9 @@
 
 								// set ContactListTemp list with return value
 								// from server.
-								component.set("v.ContactListTemp",
+								component.set("v.contactListTemp",
 										storeResponse);
-								if (component.get("v.ContactListTemp").length > 0) {
+								if (component.get("v.contactListTemp").length > 0) {
 
 									// call the apex class method and fetch
 									// contact list workshop
@@ -146,7 +146,7 @@
 																	.getReturnValue();
 															component
 																	.set(
-																			"v.ContactWorkshopList",
+																			"v.contactWorkshopList",
 																			storeResponseWorkshopcontact);
 
 															// iterate and check
@@ -160,13 +160,13 @@
 															// contactListOld);
 															component
 																	.get(
-																			"v.ContactListTemp")
+																			"v.contactListTemp")
 																	.forEach(
 																			function(
 																					contact) {
 																				component
 																						.get(
-																								"v.ContactWorkshopList")
+																								"v.contactWorkshopList")
 																						.forEach(
 																								function(
 																										contactworkshop) {
@@ -184,9 +184,9 @@
 
 															component
 																	.set(
-																			"v.ContactList",
+																			"v.contactList",
 																			component
-																					.get("v.ContactListTemp"));
+																					.get("v.contactListTemp"));
 														}
 													});
 									$A.enqueueAction(action1);
@@ -197,5 +197,20 @@
 						});
 		$A.enqueueAction(action);
 	},
+
+    contactSelected : function(cmp, event) {
+        var contacts = cmp.get('v.contactsSearch');
+        var contact = cmp.get('v.contactListSelected');
+       // var input = cmp.find('inputSearch');
+        //input.set('v.value', contacts[event.target.id].Name);
+        contact.push(contacts[event.target.id]);
+        cmp.set('v.contactListSelected',contact);
+        var form = cmp.find('lookupForm');
+                $A.util.removeClass(form, 'slds-is-open');
+                cmp.set('v.key','');
+       // ,contacts[event.target.id]);
+        //this.enableInputs(cmp);
+        //alert(JSON.stringify(contact));
+    }
 	
 })

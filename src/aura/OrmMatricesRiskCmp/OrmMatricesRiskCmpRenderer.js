@@ -1,9 +1,11 @@
 ({
 	afterRender: function (component, helper) {
       this.superAfterRender();
-      
+       
 		var data = component.get("v.data");
-		if(data.orm_probability__c == 'Probable'){
+		console.log(JSON.stringify(data))
+		if(data != undefined){
+		    if(data.orm_probability__c == 'Probable'){
 		   if(data.orm_healthAndSafety__c == 'Low'){
 		      document.getElementById("11").innerHTML= 'Moderate';
 		   }
@@ -59,6 +61,8 @@
 		      document.getElementById("44").innerHTML= 'Moderate';
 		   }
 		}
+	  }
+		
     }
 	
 })

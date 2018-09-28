@@ -543,6 +543,8 @@
 	},
 	
 	goToRiskPucture : function(component, event, helper) {
+	    console.log('*****in RA before send******')
+        console.log(JSON.stringify(component.get("v.data")))
 	    var evtShowMatrice = $A.get("e.c:OrmShowMatriceAssessmentRiskEvt");
 	    evtShowMatrice.setParams({
 	            "assessmentRisk": component.get("v.assessmentRiskData"),

@@ -36,9 +36,12 @@
         var measureResponsable = component.find("measureResponsable");
         measureData.orm_measureResponsable__c = measureResponsable.get("v.value");
         
-        var cost = component.find("cost");
-        measureData.orm_measure_Cost__c = cost.get("v.value");
+        var cost = component.find("costEffect");
+        measureData.orm_Cost_Effect__c = cost.get("v.value");
 
+        var justification = component.find("justification");
+        measureData.orm_justification_Cost_Effect__c = justification.get("v.value");
+        
         var description = component.find("description");
         measureData.orm_description__c = description.get("v.value");
 
@@ -144,7 +147,8 @@
  * @history 
  * 2018-08-27 : David diop - Implementation
  */
-    onCost: function(component, event, helper) {
+    onChangecost: function(component, event, helper) {
+      component.find("costEffect").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.search_title_label"),

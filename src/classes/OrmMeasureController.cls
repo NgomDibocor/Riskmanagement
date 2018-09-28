@@ -141,7 +141,7 @@ public with sharing class OrmMeasureController {
     public static Assessment__c getMeasure(String idMeasure){
      return 	[SELECT Id, Name, orm_description__c,orm_assessmentRisk__c,
      			        orm_AssessmentRisk__r.orm_assessment__c,orm_endDate__c,orm_startDate__c,
-     			        orm_measure_Status__c,orm_measure_Cost__c,orm_measureCategorie__c,
+     			        orm_measure_Status__c,orm_Cost_Effect__c,orm_measureCategorie__c,orm_justification_Cost_Effect__c,
      			        orm_measureResponsable__c, orm_measureResponsable__r.Name
 		        FROM Assessment__c 
 		        WHERE RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() And Id =:idMeasure];

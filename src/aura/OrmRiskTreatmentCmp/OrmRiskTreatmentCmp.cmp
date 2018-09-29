@@ -145,7 +145,7 @@
 		           <tr>
 		           	<td>
 		           		 <div class="topSpacing">
-			                    <b><label class="slds-form-element__label">{!$Label.c.orm_measure_description}</label></b>
+			                    <b><label class="slds-form-element__label">Justification Cost/Effect</label></b>
 			                </div>
 			                <div class="width">
 			                    <a href="javascript:void(0);">
@@ -156,7 +156,7 @@
 		           	</td>
 		           	<td>
 		           		<div class="topSpacing">
-				               <b><label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label></b>
+				               <b><label class="slds-form-element__label ">Unit</label></b>
 				             </div>
 				            <div class="slds-form-element ">
 		                        <div class="slds-form-element__control">

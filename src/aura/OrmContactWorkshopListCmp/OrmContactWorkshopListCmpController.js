@@ -43,6 +43,8 @@
 		component.set('v.contactsSearch', event.getParam('contactList'));
 		component.set('v.workshop', event.getParam('workshop'));
 		component.set("v.isOpenModalContactWorkshop", true);
+		component.set("v.contactListSelected",[]);
+		component.set("v.contactChecked",[]);
 	},
 	/**
 	 * 
@@ -62,8 +64,9 @@
 	 * @history 2018-08-13 : Salimata NGOM - Implementation
 	 */
 	getselectedRows : function(component, event, helper) {
+	component.set("v.contactListSelected",[]);
 		var selectedRows = event.getParam('selectedRows');
-		var contacts = component.get('v.contactListSelected');
+		var contact = component.get('v.contactChecked');
 		var contactsWorkshop = [];
 		selectedRows
 		.forEach(function(selectedRow) {
@@ -75,16 +78,21 @@
 			newcontactworkshop.orm_Workshop__c = component
 			.get("v.workshop").Id;
 
+	
+	
 			contactsWorkshop.push(newcontactworkshop);
 			console.log('v.contactWorkshopList  nbre'
 					+ component.get("v.contactWorkshopList").length);
-					
-		contacts.push(selectedRow);
+		
 		});
 
 		component.set("v.contactWorkshopList", contactsWorkshop);
+		if(!$A.util.isEmpty(contact)){
+		selectedRows.push(contact);
 		
-		component.set("v.contactListSelected", contacts);
+		}
+		component.set("v.contactListSelected", selectedRows);
+		  
 	},
 
 	/**
@@ -225,10 +233,14 @@
     },
      // function for clear the Record Selection 
     clear :function(component,event,heplper){
+    var contact=component.get('v.contactChecked');
         var selectedPillId = event.getSource().get("v.name");
         var AllPillsList = component.get("v.contactListSelected"); 
         for(var i = 0; i < AllPillsList.length; i++){
             if(AllPillsList[i].Id == selectedPillId){
+            if(contact.Id==selectedPillId){
+            component.set('v.contactChecked',[]);
+            }
                 AllPillsList.splice(i, 1);
                 component.set("v.contactListSelected", AllPillsList);
             }  

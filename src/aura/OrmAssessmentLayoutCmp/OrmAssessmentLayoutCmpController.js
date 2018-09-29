@@ -521,6 +521,8 @@
    
    showMatriceAssessmentRiskAction : function(component, event, helper){
       component.set("v.assessmentRiskData", event.getParam("assessmentRisk"));
+      console.log('*****dans AssessmentLayout******')
+      console.log(JSON.stringify(event.getParam("data")))
       component.set("v.data", event.getParam("data"));
       helper.activeMatriceAssessmentRisk(component, event, helper);
    },

@@ -98,7 +98,6 @@
                                                       aura:id="idDescription"
                                                       blur="{!c.closeDescriptionBox}"
                                                       change="{!c.onDescriptionChange}"
-                                                      required="true"
                                                       label="{!$Label.c.orm_description}"
                                                       value="{!v.measure.orm_description__c}" />
                                     </div>

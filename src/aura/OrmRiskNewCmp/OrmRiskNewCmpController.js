@@ -9,7 +9,7 @@
             } else {
                   var toast = $A.get('e.force:showToast');
                     	toast.setParams({
-			           'message' : 'the element was not found',
+			           'message' : $A.get('$Label.c.orm_not_found'),
 			           'type' : 'warning',
 			           'mode' : 'dismissible'
                     	});	

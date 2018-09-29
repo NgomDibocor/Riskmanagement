@@ -31,7 +31,7 @@
                             </div>
                             <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
                                <h2 class="styleText">
-                                  <i class="styleTitre">Assessment: </i><i class="styleText"><ui:outputText value="{!item[3]}" /></i> 
+                                  <i class="styleTitre">{!$Label.c.orm_assessment}: </i><i class="styleText"><ui:outputText value="{!item[3]}" /></i> 
                               </h2>
                             </div>
                             <div class="slds-no-flex" style="margin-left:5px">
@@ -47,18 +47,18 @@
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
                         <h2 class="styleText">
-                           <i class="styleTitre">Risk: </i><i class="styleText"><ui:outputText value="{!item[1]}" /></i>
+                           <i class="styleTitre">{!$Label.c.orm_risk}: </i><i class="styleText"><ui:outputText value="{!item[1]}" /></i>
                         </h2>
                     </div>
                     <div class="styleText slds-card__body slds-card__body_inner slds-truncate">
-                        <i class="styleTitre">Description: </i><i class="styleText"><ui:outputText value="{!item[2]}" /></i> 
+                        <i class="styleTitre">{!$Label.c.orm_description}:<lightning:helptext content="{!item[2]}"/></i><i class="styleText"><ui:outputText value="{!item[2]}" /></i> 
                     </div>
                     <div class=" slds-card__body slds-card__body_inner">
 	                    <table style="width:100%">
 	                      <tr>
-	                        <td width="40%"><i class="styleTitre">Number of Measures: </i><i class="cercle"><ui:outputText value="{!item[4]}" /></i></td>
+	                        <td width="40%"><i class="styleTitre">{!$Label.c.orm_numberOfMeasures}: </i><i class="cercle"><ui:outputText value="{!item[4]}" /></i></td>
 	                        <td width="3%"></td>
-	                        <td width="40%"><i class="styleTitre">Number of Causes:  </i><i class="cercle"><ui:outputText value="{!item[5]}" /></i></td>
+	                        <td width="40%"><i class="styleTitre">{!$Label.c.orm_numberOfCauses}:  </i><i class="cercle"><ui:outputText value="{!item[5]}" /></i></td>
 	                        <td width="17%"></td>
 	                      </tr>
 	                    </table>

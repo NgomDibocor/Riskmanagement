@@ -179,7 +179,7 @@
                     </p>
                 </lightning:card>
             </td>
-            <td class="tdWidth">
+            <td class="tdWidth1">
                 <aura:if isTrue="{!v.displaySaveCancelBtn}">
                     <div style="margin-bottom:20px;">
                         <lightning:buttonGroup class="slds-m-around_medium">
@@ -187,6 +187,16 @@
                             <lightning:button label="Save" variant="brand" class="slds-button" onclick="{!c.updateAssessmentRisk}" />
                         </lightning:buttonGroup>
                     </div>
+                </aura:if>
+            </td>
+            <td class="tdWidth2">
+                <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
+                   <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
+                        <lightning:button label="View Risk Picture"
+                                            variant="neutral"
+                                            class="slds-button  slds-button_brand widthBtn"
+                                            onclick="{!c.goToRiskPucture}"/>
+                   </aura:if>
                 </aura:if>
             </td>
         </tr>
@@ -272,14 +282,7 @@
                 
             </td>
             <td class="tdWidth" style="padding-top:30px;">
-                <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
-                   <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
-                        <lightning:button label="View Risk Picture"
-                                            variant="neutral"
-                                            class="slds-button slds-button--neutral widthBtn"
-                                            onclick="{!c.goToRiskPucture}"/>
-                   </aura:if>
-                </aura:if> 
+                 
             </td>
         </tr>
     </table>

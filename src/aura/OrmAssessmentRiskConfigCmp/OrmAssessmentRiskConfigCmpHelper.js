@@ -57,6 +57,7 @@
                                                         actionOrgs.setCallback(this, function(response) {
                                                             var state = response.getState();
                                                             if (state === 'SUCCESS') {
+                                                                component.set("v.showBtnMatricePicture", true);
                                                                 component.set('v.assessmentRiskData', response.getReturnValue());
                                                                 component.find("manageAbility").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
                                                                 component.find("frequency").set("v.value", component.get('v.assessmentRiskData').orm_frequency__c);

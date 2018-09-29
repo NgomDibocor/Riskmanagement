@@ -158,8 +158,7 @@
 	<aura:attribute name="businessImpacts" type="Macro[]" />
 	<aura:attribute name="businessImpacts2" type="Macro[]" />	
 	
-	<aura:attribute name="choiceProbability" type="String" />
-	<aura:attribute name="choiceHsseImpact" type="String" />
+	<aura:attribute name="showBtnMatricePicture" type="boolean" default="false" />
 	<aura:attribute name="data" type="Idea" default="{ 
 													    'orm_probability__c' : '',
 													    'orm_security__c' : '',
@@ -190,14 +189,16 @@
                 </aura:if>
             </td>
             <td class="tdWidth2">
-                <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
-                   <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
-                        <lightning:button label="View Risk Picture"
-                                            variant="neutral"
-                                            class="slds-button  slds-button_brand widthBtn"
-                                            onclick="{!c.goToRiskPucture}"/>
-                   </aura:if>
-                </aura:if>
+                <aura:if isTrue="{!v.showBtnMatricePicture}">
+                   <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
+	                   <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
+	                        <lightning:button label="View Risk Picture"
+	                                            variant="neutral"
+	                                            class="slds-button  slds-button_brand widthBtn"
+	                                            onclick="{!c.goToRiskPucture}"/>
+	                    </aura:if>
+                    </aura:if>
+                 </aura:if>
             </td>
         </tr>
         </table>

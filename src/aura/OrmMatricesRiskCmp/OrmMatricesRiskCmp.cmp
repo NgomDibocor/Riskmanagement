@@ -31,36 +31,38 @@
 								                         'orm_security__c':'',
 								                         'orm_environment__c' :''
 													}" />  
-		    
-		     <div style="width:70%;height:350px;overflow-x:scroll;overflow-y: hidden;margin-bottom:20px"> 
-			     <div style="display: inline-block;width:40%;height:350px;">
+		     
+		     
+		  <div style="width:100%;display: flex;">
+		     <div style="width:50%;height:600px;overflow-y:scroll;overflow-x: hidden;"> 
+			     <div style="width:70%;height:300px;">
 				   <span class="monTexte" id="healthAndSafety">Health And Safety</span>
 				   <span id="idTable">
-					   <table width="200px">    
-					      <tr><td rowspan="5" width="100px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					   <table>    
+					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="60px" height="50" id="hs11"></td>
-					        <td class="orangeColor" width="60px" height="50" id="hs12"></td>
-					        <td class="redColor" width="60px" height="50" id="hs13"></td>
-					        <td class="redColor" width="60px" height="50" id="hs14"></td>
+					        <td class="yellowColor" width="50px" height="50" id="hs11"></td>
+					        <td class="orangeColor" width="50px" height="50" id="hs12"></td>
+					        <td class="redColor" width="50px" height="50" id="hs13"></td>
+					        <td class="redColor" width="50px" height="50" id="hs14"></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="hs21"></td>
-					        <td class="yellowColor" width="60px" height="50" id="hs22"></td>
-					        <td class="orangeColor" width="60px" height="50" id="hs23"></td>
-					        <td class="redColor" width="60px" height="50" id="hs24"></td>
+					        <td class="greenColor" width="50px" height="50" id="hs21"></td>
+					        <td class="yellowColor" width="50px" height="50" id="hs22"></td>
+					        <td class="orangeColor" width="50px" height="50" id="hs23"></td>
+					        <td class="redColor" width="50px" height="50" id="hs24"></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="hs31"></td>
-					        <td class="yellowColor" width="60px" height="50" id="hs32"></td>
-					        <td class="yellowColor" width="60px" height="50" id="hs33"></td>
-					        <td class="orangeColor" width="60px" height="50" id="hs34"></td>
+					        <td class="greenColor" width="50px" height="50" id="hs31"></td>
+					        <td class="yellowColor" width="50px" height="50" id="hs32"></td>
+					        <td class="yellowColor" width="50px" height="50" id="hs33"></td>
+					        <td class="orangeColor" width="50px" height="50" id="hs34"></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="hs41"></td>
-					        <td class="greenColor" width="60px" height="50" id="hs42"></td>
-					        <td class="greenColor" width="60px" height="50" id="hs43"></td>
-					        <td class="yellowColor" width="60px" height="50" id="hs44"></td>
+					        <td class="greenColor" width="50px" height="50" id="hs41"></td>
+					        <td class="greenColor" width="50px" height="50" id="hs42"></td>
+					        <td class="greenColor" width="50px" height="50" id="hs43"></td>
+					        <td class="yellowColor" width="50px" height="50" id="hs44"></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -69,34 +71,34 @@
 					    </table>  
 					  </span>
 				</div>
-				<div style="display: inline-block;width:40%;height:350px;">
+				<div style="width:70%;height:300px;">
 				   <span class="monTexte" id="security">Security</span>
 				   <span id="idTableSecurity">
-					   <table width="200px">    
-					      <tr><td rowspan="5" width="100px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					   <table>    
+					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="60px" height="50" id="sec11"></td>
-					        <td class="orangeColor" width="60px" height="50" id="sec12"></td>
-					        <td class="redColor" width="60px" height="50" id="sec13"></td>
-					        <td class="redColor" width="60px" height="50" id="sec14"></td>
+					        <td class="yellowColor" width="50px" height="50" id="sec11"></td>
+					        <td class="orangeColor" width="50px" height="50" id="sec12"></td>
+					        <td class="redColor" width="50px" height="50" id="sec13"></td>
+					        <td class="redColor" width="50px" height="50" id="sec14"></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="sec21"></td>
-					        <td class="yellowColor" width="60px" height="50" id="sec22"></td>
-					        <td class="orangeColor" width="60px" height="50" id="sec23"></td>
-					        <td class="redColor" width="60px" height="50" id="sec24"></td>
+					        <td class="greenColor" width="50px" height="50" id="sec21"></td>
+					        <td class="yellowColor" width="50px" height="50" id="sec22"></td>
+					        <td class="orangeColor" width="50px" height="50" id="sec23"></td>
+					        <td class="redColor" width="50px" height="50" id="sec24"></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="sec31"></td>
-					        <td class="yellowColor" width="60px" height="50" id="sec32"></td>
-					        <td class="yellowColor" width="60px" height="50" id="sec33"></td>
-					        <td class="orangeColor" width="60px" height="50" id="sec34"></td>
+					        <td class="greenColor" width="50px" height="50" id="sec31"></td>
+					        <td class="yellowColor" width="50px" height="50" id="sec32"></td>
+					        <td class="yellowColor" width="50px" height="50" id="sec33"></td>
+					        <td class="orangeColor" width="50px" height="50" id="sec34"></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="sec41"></td>
-					        <td class="greenColor" width="60px" height="50" id="sec42"></td>
-					        <td class="greenColor" width="60px" height="50" id="sec43"></td>
-					        <td class="yellowColor" width="60px" height="50" id="sec44"></td>
+					        <td class="greenColor" width="50px" height="50" id="sec41"></td>
+					        <td class="greenColor" width="50px" height="50" id="sec42"></td>
+					        <td class="greenColor" width="50px" height="50" id="sec43"></td>
+					        <td class="yellowColor" width="50px" height="50" id="sec44"></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -105,34 +107,34 @@
 					    </table>  
 					  </span>
 				</div>
-				<div style="display: inline-block;width:40%;height:350px;margin-right:10px">
+				<div style="width:70%;height:300px;">
 				   <span class="monTexte" id="environment">Environment </span>
 				   <span id="idTableEnvironment">
-					   <table width="200px">    
-					      <tr><td rowspan="5" width="100px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					   <table>    
+					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="60px" height="50" id="env11"></td>
-					        <td class="orangeColor" width="60px" height="50" id="env12"></td>
-					        <td class="redColor" width="60px" height="50" id="env13"></td>
-					        <td class="redColor" width="60px" height="50" id="env14"></td>
+					        <td class="yellowColor" width="50px" height="50" id="env11"></td>
+					        <td class="orangeColor" width="50px" height="50" id="env12"></td>
+					        <td class="redColor" width="50px" height="50" id="env13"></td>
+					        <td class="redColor" width="50px" height="50" id="env14"></td>
+					      </tr>  
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="env21"></td>
+					        <td class="yellowColor" width="50px" height="50" id="env22"></td>
+					        <td class="orangeColor" width="50px" height="50" id="env23"></td>
+					        <td class="redColor" width="50px" height="50" id="env24"></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="env21"></td>
-					        <td class="yellowColor" width="60px" height="50" id="env22"></td>
-					        <td class="orangeColor" width="60px" height="50" id="env23"></td>
-					        <td class="redColor" width="60px" height="50" id="env24"></td>
+					        <td class="greenColor" width="50px" height="50" id="env31"></td>
+					        <td class="yellowColor" width="50px" height="50" id="env32"></td>
+					        <td class="yellowColor" width="50px" height="50" id="env33"></td>
+					        <td class="orangeColor" width="50px" height="50" id="env34"></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="env31"></td>
-					        <td class="yellowColor" width="60px" height="50" id="env32"></td>
-					        <td class="yellowColor" width="60px" height="50" id="env33"></td>
-					        <td class="orangeColor" width="60px" height="50" id="env34"></td>
-					      </tr>
-					      <tr>
-					        <td class="greenColor" width="60px" height="50" id="env41"></td>
-					        <td class="greenColor" width="60px" height="50" id="env42"></td>
-					        <td class="greenColor" width="60px" height="50" id="env43"></td>
-					        <td class="yellowColor" width="60px" height="50" id="env44"></td>
+					        <td class="greenColor" width="50px" height="50" id="env41"></td>
+					        <td class="greenColor" width="50px" height="50" id="env42"></td>
+					        <td class="greenColor" width="50px" height="50" id="env43"></td>
+					        <td class="yellowColor" width="50px" height="50" id="env44"></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -142,16 +144,17 @@
 					  </span>
 				</div>
 		    </div>
+		    
 	
-			<div style="width:90%;margin:auto;margin-top:20px;margin-bottom:30px">
+			<div style="width:50%;height:auto">
 			     <table>
 			     <thead>
-				      <tr height="50">
+				      <tr>
 				        <th class="textCenter">RANKING</th>
 				        <th class="textCenter">DEFINITION</th>	        
 				      </tr>
 			      </thead>
-			      <tr height="100">
+			      <tr>
 				        <td style="background-color: red;" class="tdRanking">SEVERE</td>
 				        <td class="tdDefinition">
 				             Risk that has a severe negative effect on objectives that cannot be endured. 
@@ -159,7 +162,7 @@
 				             If the risk cannot be mitigated then it may invalidate the relevant objective or venture. 
 				        </td>
 			      </tr>
-			      <tr height="100">
+			      <tr>
 			           <td style="background-color: #FF8C00;" class="tdRanking" >MAJOR</td>
 			           <td class="tdDefinition">
 			                Risk that has major negative effect on objectives. 
@@ -167,7 +170,7 @@
 			                If the risk cannot be mitigated then it may have serious implications in relation to the objectives.
 			           </td>
 			      </tr>
-			      <tr height="100">
+			      <tr>
 			           <td style="background-color: yellow;" class="tdRanking" >MODERATE</td>
 			           <td class="tdDefinition">
 			                Risk that has a moderate negative effect on objectives that can be managed. 
@@ -177,7 +180,7 @@
 			                to detect any increase in likelihood so that appropriate management action can be taken.
 			           </td>
 			      </tr>
-			      <tr height="100">
+			      <tr>
 			           <td style="background-color: green;" class="tdRanking">MINOR</td>
 			           <td class="tdDefinition">
 			                Risk that has a minor negative effect on objectives. Risks with a "Low Impact", 
@@ -190,5 +193,6 @@
 			      </tr>	  	      
 			    </table>  
 			</div>
+	   </div>
 	
 </aura:component>

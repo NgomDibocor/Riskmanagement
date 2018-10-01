@@ -11,11 +11,13 @@
                          'FirstName':'',
                         'LastName':''
 					}" />
-	<aura:attribute name="assessmentData" type="Assessment__c"/>
-		 
-  <aura:attribute name="isOpen" type="boolean" default="false"/>
-<!-- aura register event -->
-<aura:registerEvent name="OrmContactCreatedEvt" type="c:OrmContactCreatedEvt" description="" />
+	<aura:attribute name="assessmentData" type="Assessment__c" />
+	<aura:attribute name="isOpen" type="boolean" default="false" />
+	<!-- aura register event -->
+	<aura:registerEvent name="OrmContactCreatedEvt"
+		type="c:OrmContactCreatedEvt" description="" />
+	<aura:registerEvent name="OrmCloseContactWrokshopEvnt"
+		type="c:OrmCloseContactWrokshopEvnt" />
 	<!--  handler event fired-->
 	<aura:handler event="c:OrmNewContactEvt" action="{!c.openModalContact}" />
 	<!--  start form contact-->
@@ -28,7 +30,7 @@
 				<div class="slds-modal__header">
 					<button
 						class="slds-button slds-modal__close slds-button--icon-inverse"
-						title="Close" onclick="{!c.closeModal}">	
+						title="Close" onclick="{!c.closeModal}">
 						X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 					</button>
 					<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label
@@ -41,24 +43,24 @@
 
 						<div class="slds-grid slds-gutters ">
 							<div class="slds-col">
-							
+
 								<div class="slds-form-element slds-is-required">
 									<div class="slds-form-element__control">
 										<lightning:input type="text" aura:id="idname"
-											label="{!$Label.c.orm_name_contact}" value="{!v.item.FirstName}"
-											required="true" />
+											label="{!$Label.c.orm_name_contact}"
+											value="{!v.item.FirstName}" required="true" />
 									</div>
 								</div>
 								<div class="slds-form-element slds-is-required">
 									<div class="slds-form-element__control">
 										<lightning:input type="text" aura:id="idlastname"
-											label="{!$Label.c.orm_last_name_contact}" value="{!v.item.LastName}"
-											required="true" />
-									</div> 
-								</div> 
+											label="{!$Label.c.orm_last_name_contact}"
+											value="{!v.item.LastName}" required="true" />
+									</div>
+								</div>
 								<div class="slds-form-element slds-is-required">
 									<div class="slds-form-element__control">
-										<lightning:input type="email" aura:id="idemail"  
+										<lightning:input type="email" aura:id="idemail"
 											label="{!$Label.c.orm_email_contact}" value="{!v.item.Email}"
 											required="true" />
 									</div>

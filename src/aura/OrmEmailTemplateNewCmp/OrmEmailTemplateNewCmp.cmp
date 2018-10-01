@@ -1,25 +1,7 @@
 <aura:component controller="OrmEmailTemplateController" access="global"
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable,force:lightningQuickActionWithoutHeader">
-
-	<aura:attribute name="emailTemplate" type="boolean" />
-	<aura:attribute name="disableTemplate" type="boolean" default="false"
-		description="" />
-	<aura:attribute name="templates" type="EmailTemplate[]" default="[]" description="list mail template" />
-	<aura:attribute name="templDetail" type="EmailTemplate" default="{}" />
-	<aura:attribute name="selTempl" type="String" description="Id template selected" />
-	<aura:attribute name="subjTxt" type="String" default="" description="" />
-	<aura:attribute name="contactListSelected" type="Contact[]"
-		description="store contact records list" />
-	<aura:attribute name="IconName" type="string" />
-	<aura:attribute name="oRecord" type="sObject" />
-<aura:attribute name="email" type="string" />
-	<aura:attribute name="workshop" type="Contract" />
-	<aura:attribute name="mailStatus" type="boolean" default="false" />
-
-	<aura:handler name="init" value="{!this}" action="{!c.loadComponent}" />
-		 <aura:registerEvent name="OrmRefreshContactWorkshopEvt"  type="c:OrmRefreshContactWorkshopEvt"/>
-		 <aura:registerEvent name="OrmCloseContactWrokshopEvnt"  type="c:OrmCloseContactWrokshopEvnt"/>
+		<aura:attribute name="emailTemplate" type="boolean" />
 	
 	 <aura:if isTrue="{!v.emailTemplate}">
 	<div role="dialog" tabindex="-1" aria-labelledby="prompt-heading-id"
@@ -33,8 +15,8 @@
 					title="Close" onclick="{!c.closeMailTemplate}">
 					X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 				</button>
-				<h1 id="header99" class="slds-text-heading--medium">Send Email
-					Template</h1>
+				<h1 id="header99" class="slds-text-heading--medium">!$Label.c.orm_add_button_title+
+						' '} {!$Label.c.orm_email_template}</h1>
 
 			</div>
 			<div class="slds-modal__content slds-p-around--medium">
@@ -85,12 +67,11 @@
 							<div class="slds-form-element slds-is-required">
 								<div class="slds-form-element__control">
 
-									<aura:if isTrue="{!!empty(v.selTempl)}">
+									
 										<lightning:textarea name="myTextArea"
 											value="{!v.templDetail.Body}" label="Content" maxlength="700"
 											class="txtAreaCls" disabled="true" />
 
-									</aura:if> 
 								</div>
 							</div>
 						</div>
@@ -103,7 +84,7 @@
 				<button class="slds-button slds-button--neutral"
 					onclick="{!c.closeMailTemplate}">{!$Label.c.orm_cancel_button_title}</button>
 				<button class="slds-button slds-button--neutral"
-					onclick="{!c.sendEmailAction}">{!$Label.c.orm_sendmail_button_title}</button>
+					onclick="{!c.sendEmailAction}">{!$Label.c.orm_save_button_title}</button>
 
 			</div>
 		</div>

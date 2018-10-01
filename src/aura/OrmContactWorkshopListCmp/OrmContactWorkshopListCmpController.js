@@ -6,7 +6,7 @@
 	 * @description method doInit
 	 * @history 2018-08-13 : Salimata NGOM - Implementation
 	 */
-	doInit : function(component, event, helper) { 
+	doInit : function(component, event, helper) {  
 		// call the apex class method and fetch contact list
 		var rowActions = helper.getRowActions.bind(this, component);
 		component.set('v.columns', [ {
@@ -146,7 +146,8 @@
 		else{
 			
 				component.set("v.emailTemplate",true);
-			
+				 var form = component.find('modalcontacts');
+                $A.util.removeClass(form, 'slds-fade-in-open'); 
 		}
 	},
 	/**
@@ -173,6 +174,8 @@
 				"Assessmentdata" : component.get("v.workshop").orm_Assessment__c
 			});
 			evt.fire();
+		 var form = component.find('modalcontacts');
+                $A.util.removeClass(form, 'slds-fade-in-open');
 		}
 	},
 	/**
@@ -251,5 +254,11 @@
       sendEmailAction : function(component, event, helper) {
         helper.sendEmails(component, event);
     },
+    
+    showModalContacts:function(component, event, helper){
+    	//open modal contactworkshop
+ var form = component.find('modalcontacts');
+                $A.util.addClass(form, 'slds-fade-in-open'); 
+    }
 
 })

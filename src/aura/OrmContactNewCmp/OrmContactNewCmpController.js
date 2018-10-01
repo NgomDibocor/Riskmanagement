@@ -94,4 +94,9 @@
 		        component.set("v.isOpenModalContactWorkshop",false);
 		component.set('v.assessmentData', event.getParam('Assessmentdata'));
 	},
+	closeModal:function(component,event){
+		var evt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
+			evt.fire();
+			  component.set("v.isOpen", false);
+	}
 })

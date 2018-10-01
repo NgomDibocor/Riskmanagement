@@ -60,7 +60,8 @@
 			   "Assessmentdata" : component.get('v.assessmentData').orm_organisation__c
 			});
 			evt.fire();          
-          	
+          	var evnt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
+			evnt.fire();
 				} else {
 					let
 					errors = response.getError();

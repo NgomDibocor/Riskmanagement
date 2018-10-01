@@ -133,6 +133,8 @@
                 'mode' : 'dismissible'
             });      
             toast.fire();
+            var evt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
+			evt.fire();
               component.set("v.emailTemplate", false);
 																					//fire event for refresh list contact
 																					var evt = $A.get("e.c:OrmRefreshContactWorkshopEvt");

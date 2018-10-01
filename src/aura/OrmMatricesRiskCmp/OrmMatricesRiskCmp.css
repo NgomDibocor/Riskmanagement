@@ -7,21 +7,23 @@
 
 .THIS th {
 	background-clip: padding-box;
-    border: 3px solid black;
+    border: 2px solid black;
+    white-space: nowrap important;
 }
 
 .THIS td {
 	background-clip: padding-box;
-    border: 3px solid black;
+    border: 2px solid black;
+    white-space: nowrap important;
 }
 .THIS .tdRanking{
-	width: 15%;
+	width: 8%;
 	font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1em;
 	text-align: center;
 }
 .THIS .tdDefinition{
-	width: 85%;
+	width: 92%;
 	font-weight: 600;
     font-size: 1em;
 	white-space: normal !important;
@@ -30,7 +32,7 @@
 }
 .THIS .textCenter{
 	font-weight: 600;
-    font-size: 1.5em;
+    font-size: 1.2em;
 	text-align: center;
 }
 .THIS .monTexte {
@@ -38,7 +40,6 @@
       font-size: 1.5em;
       display:flex;
       writing-mode: vertical-lr;
-      min-height: 10em;
       vertical-align: middle;
       line-height: 2em;
       justify-content:center;
@@ -97,44 +98,47 @@
     display: inline-block;
     width: 15%;
     text-align: center;
-    padding-left: 100px;
-    margin-bottom: 300px;
+    padding-right: 40px;
+    margin-bottom: 350px;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #5B86BE;
 }
 .THIS #security {
     display: inline-block;
     width: 15%;
     text-align: center;
-    padding-left: 100px;
-    margin-bottom: 300px;
+    padding-right: 40px;
+    margin-bottom: 350px;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #5B86BE;
 }   
 .THIS #environment {
     display: inline-block;
     width: 15%;
     text-align: center;
-    padding-left: 100px;
-    margin-bottom: 300px;
+    padding-right: 40px;
+    margin-bottom: 350px;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #5B86BE;
 }  
 .THIS #idTable {
     display: inline-block;
-    width: 300px;
+  /*  width: 400px; */
     margin-top:50px;
     margin-bottom:20px;
-    margin-left:1%;
-    padding-left:100px;
 }  
 .THIS #idTableSecurity {
     display: inline-block;
-    width: 300px;
+    /*  width: 400px; */
     margin-top:50px;
     margin-bottom:20px;
-    margin-left:1%;
-    padding-left:100px;  
 } 
 .THIS #idTableEnvironment {
     display: inline-block;
-    width: 300px;
+    /*  width: 400px; */
     margin-top:50px;
     margin-bottom:20px;
-    margin-left:1%;
-    padding-left:100px;  
 }

@@ -1357,7 +1357,7 @@
                   </aura:if>
                   <aura:if isTrue="{!v.showMatriceAssessmentRisk}">
 	                    <tr>
-	                       <td>
+	                       <td class="textInDivMatriceCmp">
 	                           <c:OrmMatricesRiskCmp assessmentRiskData="{!v.assessmentRiskData}" data="{!v.data}"  />
 	                       </td>
 	                    </tr>

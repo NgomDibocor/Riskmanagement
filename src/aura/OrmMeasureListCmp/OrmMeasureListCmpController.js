@@ -46,7 +46,8 @@
 	
 	filterMeasure : function (component, event, helper){
     	
-    	var measures = component.get('v.measuresTemp');
+    	//var measures = component.get('v.measuresTemp');
+    	var measures = component.get('v.initialData');
     	var key = component.get('v.key');
     	var regex;    	
     	
@@ -61,7 +62,10 @@
 		        } catch (e) {
 		    	   
 		        }
-		   component.set("v.measures", measures);
+		   //component.set("v.measures", measures);
+		   component.set("v.filterPagination", measures);
+		   component.set("v.items", component.get("v.filterPagination"));
+		   helper.paginationFilter(component, event);
          }        	
     },
     

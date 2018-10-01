@@ -1,5 +1,5 @@
 ({
         doInit: function(component, event, helper) { 
-        	alert(component.get("v.idAssessment"));
+        	 helper.refreshList(component, event );
         }
 })

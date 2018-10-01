@@ -51,7 +51,7 @@
 	        	</div>
 	        </aura:if>
 	        	<br/>
-	        <aura:if isTrue="{!not(empty(v.measureProgression))}">
+	        <aura:if isTrue="{!not(empty(v.PaginationList))}">
 			    <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" >
 	            <thead>
 	                <tr>
@@ -67,9 +67,9 @@
 	            
 	            <tbody>
 	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-	               <aura:iteration items="{!v.measureProgression}" var="measureProgression" indexVar="sNo">
+	               <aura:iteration items="{!v.PaginationList}" var="item" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
-	                    <c:OrmMeasureProgressionEditRowCmp measureProgression="{!measureProgression}"
+	                    <c:OrmMeasureProgressionEditRowCmp measureProgression="{!item}"
 	                    				 selectedRowsCount="{!v.selectedRowsCount}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />                       
@@ -118,6 +118,19 @@
 	   
 		</div>
 	</div>
-	
+	<center>
+	<div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previous}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
+	                            onclick="{!c.next}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
+	</div>
+	</center>
 	<c:OrmMeasureProgressionNewCmp/>
 </aura:component>

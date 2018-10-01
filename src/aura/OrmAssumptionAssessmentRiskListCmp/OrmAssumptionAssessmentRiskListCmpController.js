@@ -100,7 +100,8 @@
      * @history 2018-08-30 : David  - Implementation
      */
     filter: function(component, event, helper) {
-        var ListAssumption = component.get('v.storeAssumptionList');
+        //var ListAssumption = component.get('v.storeAssumptionList');
+         var ListAssumption = component.get('v.initialData');
         var data = ListAssumption;
         var key = component.get('v.key');
         var regex;
@@ -117,7 +118,10 @@
             } catch (e) {
                 alert(e)
             }
-            component.set("v.assumptionRiskList", data);
+           // component.set("v.assumptionRiskList", data);
+            component.set("v.filterPagination", data);
+		   component.set("v.items", component.get("v.filterPagination"));
+		   helper.paginationFilter(component, event);
         }
     },
 })

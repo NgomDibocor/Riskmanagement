@@ -24,9 +24,6 @@
         var measureData = component.get("v.measureData");
         measureData.orm_assessmentRisk__c = idAssessmentRisk;
 
-        var dateMeasure = component.find("dateMeasure");
-        measureData.orm_startDate__c = dateMeasure.get("v.value");
-
         var endDateMeasure = component.find("endDateMeasure");
         measureData.orm_endDate__c = endDateMeasure.get("v.value");
 
@@ -70,23 +67,6 @@
             }
         });
         $A.enqueueAction(action);
-    },
-    /**
-     *
-     * @author David diop
-     * @version 1.0
-     * @description method description fields startDate
-     * @history 
-     * 2018-08-27 : David diop - Implementation
-     */
-    onStartDate: function(component, event, helper) {
-        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
-        evt.setParams({
-            "nomField": $A.get("$Label.c.search_title_label"),
-            "descriptionField": $A.get("$Label.c.search_description_title")
-        });
-        evt.fire();
-        component.set("v.displaySaveCancelBtn", true);
     },
     /**
      *

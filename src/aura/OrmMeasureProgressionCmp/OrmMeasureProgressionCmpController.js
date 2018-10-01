@@ -93,7 +93,8 @@
 	 * 2018-08-31 : David diop - Implementation
      */
     filter: function(component, event, helper) {
-        var dataMeasureProgress = component.get('v.measureProgressionTemp');
+        //var dataMeasureProgress = component.get('v.measureProgressionTemp');
+        var dataMeasureProgress = component.get('v.initialData');
         var term = component.get('v.filter');
         var regex;
         if ($A.util.isEmpty(term)) {
@@ -108,9 +109,13 @@
         } catch (e) {
             alert(e);
         }
-        component.set("v.measureProgression",dataMeasureProgress);
+       // component.set("v.measureProgression",dataMeasureProgress);
+         component.set("v.filterPagination", dataMeasureProgress);
+		   component.set("v.items", component.get("v.filterPagination"));
+		   helper.paginationFilter(component, event);
         }
     },
+   
     /**
      * CreatedBy @David Diop
      * @version 1.0

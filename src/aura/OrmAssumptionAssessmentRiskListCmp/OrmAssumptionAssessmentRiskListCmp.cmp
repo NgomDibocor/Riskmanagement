@@ -38,7 +38,7 @@
     </div>
     <!-- end header page content search bar and action button -->
     <div class="slds-m-around_large">
-        <aura:if isTrue="{!not(empty(v.assumptionRiskList))}">
+        <aura:if isTrue="{!not(empty(v.PaginationList))}">
             <!--Data Table-->
             <table class="slds-table slds-table_bordered slds-table_cell-buffer">
                 <thead>
@@ -61,9 +61,10 @@
 
                 <tbody>
                     <!--### display all records of workshop attribute one by one by aura:iteration ###-->
-                    <aura:iteration items="{!v.assumptionRiskList}" var="assumption" indexVar="sNo">
+<!--                     items="{!v.assumptionRiskList}" var="assumption"  -->
+                    <aura:iteration   items="{!v.PaginationList}" var="item"  indexVar="sNo">
                         <!-- start iteration -->
-                        <c:OrmAssumptionAssessmentRiskEditRow assumption="{!assumption}" selectedRowsCount="{!v.selectedRowsCount}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
+                        <c:OrmAssumptionAssessmentRiskEditRow assumption="{!item}" selectedRowsCount="{!v.selectedRowsCount}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
                     </aura:iteration>
                 </tbody>
             </table>
@@ -98,5 +99,19 @@
         </div>
         <!--###### MODAL BOX End  Here ######-->
     </aura:if>
+    <center>
+	<div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previous}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
+	                            onclick="{!c.next}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
+	</div>
+	</center>
     <c:OrmAssumptionAssessmentRiskNewCmp />
 </aura:component>

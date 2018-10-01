@@ -38,14 +38,14 @@
 		      var riskManager = component.find("riskManager");
               assessmentRisk.orm_riskManager__c = riskManager.get("v.value");
 		       assessmentRisk.orm_environmentAndCommunity__c =environmentAndCommunity;
-		       var frequency = component.find("frequency");
-		       assessmentRisk.orm_frequency__c =frequency.get("v.value");
+		      // var frequency = component.find("frequency");
+		       //assessmentRisk.orm_frequency__c =frequency.get("v.value");
 		       var manageAbility = component.find("manageAbility");
 		       assessmentRisk.orm_manageability__c =manageAbility.get("v.value");
 		       var status = component.find("status");
 		       assessmentRisk.orm_status__c =status.get("v.value");
-		       var vulnerability = component.find("vulnerability");
-		       assessmentRisk.orm_vulnerability__c =vulnerability.get("v.value");
+		       var uncertainty = component.find("uncertainty");
+		       assessmentRisk.orm_uncertainty__c =uncertainty.get("v.value");
 		      //var security = component.find("security");
 		       assessmentRisk.orm_security__c =security;
 		       //var reputation = component.find("reputation");
@@ -119,16 +119,16 @@
         component.set("v.displaySaveCancelBtn",true);
 	},
 	
-    onVulnerability: function(component, event, helper)
+    onChangeUncertainty: function(component, event, helper)
     {
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
+	            "nomField": $A.get("$Label.c.orm_uncertainty_assessmentRisk"),
+	            "descriptionField": 'description Uncertainty'
 	        });
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-    	component.find("vulnerability").set("v.value", event.getSource().get("v.value"));
+    	component.find("uncertainty").set("v.value", event.getSource().get("v.value"));
 	},
     onStatus : function(component, event, helper)
     {
@@ -141,7 +141,7 @@
         component.set("v.displaySaveCancelBtn",true);
     	component.find("status").set("v.value", event.getSource().get("v.value"));
 	},
-    onManageAbility : function(component, event, helper)
+    onChangeManageAbility : function(component, event, helper)
     {
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
@@ -152,6 +152,20 @@
         component.set("v.displaySaveCancelBtn",true);
     	component.find("manageAbility").set("v.value", event.getSource().get("v.value"));
 	},
+	
+	onChangeJustificationUncertainty : function(component, event, helper){
+	   component.set("v.displaySaveCancelBtn",true);
+	},
+	
+	sendJustificationUncertaintyToFD : function(component, event, helper){
+	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.orm_justificationUncertainty_label"),
+            "descriptionField": 'Description Justification'
+        });
+       evt.fire();
+	},
+	
 	cancel : function(component, event, helper)
     {
         component.set("v.displaySaveCancelBtn",false);

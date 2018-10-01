@@ -9,14 +9,13 @@
     <aura:attribute name="productionLoss" type="String[]" />
 <!--     <aura:attribute name="schedule" type="String[]" /> -->
     <aura:attribute name="status" type="String[]" />
-    <aura:attribute name="vulnerability" type="String[]" />
+    <aura:attribute name="uncertainties" type="String[]" />
     <aura:attribute name="allUser" type="User[]" />
     <aura:attribute name="objInfo" type="orm_assessmentRisk__c" default="{sobjectType : 'orm_assessmentRisk__c'}" />
     <aura:attribute name="assessmentRiskData" type="orm_assessmentRisk__c" default="{
 																						'sobjectType' : 'orm_assessmentRisk__c',
 																                         'orm_assessment__c': '',  
 																                         'orm_Risk__c':'',
-																                         'orm_frequency__c' :'',
 																                         'orm_cost__c':'',
 																                         'orm_date__c':'',
 																                         'orm_environmentAndCommunity__c':'',
@@ -26,7 +25,7 @@
 																                         'orm_reputation__c':'',
 																                         'orm_security__c':'',
 																                         'orm_status__c':'',
-																                         'orm_vulnerability__c':'',
+																                         'orm_uncertainty__c':'',
 																                         'orm_probability__c':'',
 																                         'orm_riskManager__c':'',
 																                         'orm_ScheduleRisk__c':'',
@@ -208,20 +207,19 @@
             <td class="tdWidth">
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <b><lightning:select aura:id="frequency" name="frequency" label="{!$Label.c.orm_frequency_assessmentRisk}" class="select-auto-width" onchange="{!c.onFrequency}">
+                        <!--<lightning:select aura:id="frequency" name="frequency" label="{!$Label.c.orm_frequency_assessmentRisk}" class="select-auto-width" onchange="{!c.onFrequency}">
 	                             <option text="{!v.assessmentRiskData.orm_frequency__c}" ></option>
 	                            <aura:iteration items="{!v.frequency}" var="frequence">
 	                                <option text="{!frequence}"></option>
 	                            </aura:iteration>
-	                        </lightning:select>
-	                        </b>
+	                        </lightning:select> -->
                     </div>
                 </div>
             </td>
             <td class="tdWidth">
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <b> <lightning:select aura:id="manageAbility" name="manage Ability" label="{!$Label.c.orm_manageAbility_assessmentRisk}" class="select-auto-width" onchange="{!c.onManageAbility}">
+                        <b> <lightning:select aura:id="manageAbility" name="manage Ability" label="{!$Label.c.orm_manageAbility_assessmentRisk}" class="select-auto-width" onchange="{!c.onChangeManageAbility}">
 	                             <option text="{!v.assessmentRiskData.orm_manageability__c}" ></option>
 	                            <aura:iteration items="{!v.manageAbility}" var="manageAbility">
 	                                <option text="{!manageAbility}"></option>
@@ -249,10 +247,10 @@
             <td class="tdWidth">
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
-                        <b><lightning:select aura:id="vulnerability" name="vulnerability" label="{!$Label.c.orm_vulnerability_assessmentRisk}" class="select-auto-width" onchange="{!c.onVulnerability}">
-	                            <option text="{!v.assessmentRiskData.orm_vulnerability__c}"></option>
-	                            <aura:iteration items="{!v.vulnerability}" var="vulnerability">
-	                                <option text="{!vulnerability}"></option>
+                        <b><lightning:select aura:id="uncertainty" name="uncertainties" label="{!$Label.c.orm_uncertainty_assessmentRisk}" class="select-auto-width" onchange="{!c.onChangeUncertainty}">
+	                            <option text="{!v.assessmentRiskData.orm_uncertainty__c}"></option>
+	                            <aura:iteration items="{!v.uncertainties}" var="uncertainty">
+	                                <option text="{!uncertainty}"></option>
 	                            </aura:iteration>
 	                        </lightning:select>
 	                        </b>
@@ -282,8 +280,16 @@
                       </div>
                 
             </td>
-            <td class="tdWidth" style="padding-top:30px;">
-                 
+            <td class="tdWidth">
+                 <div class="topSpacing">
+                                      <label class="slds-form-element__label">{!$Label.c.orm_justificationUncertainty_label}</label>
+                                  </div>
+                                  <div class="width"> 
+                                        <ui:inputText class="slds-input" aura:id="justification" 
+                                                 value="{!v.assessmentRiskData.orm_justificationUncertainty__c}" 
+                                                 keyup="{!c.onChangeJustificationUncertainty}" focus="{!c.sendJustificationUncertaintyToFD}">
+                                       </ui:inputText>
+                                  </div>
             </td>
         </tr>
     </table>

@@ -1437,7 +1437,7 @@
                 <aura:if isTrue="{!v.showRiskPicture}">
                      <tr>
                         <td >
-                            <c:OrmMatricesRiskCmp />
+                            <!--<c:OrmMatricesRiskCmp />  -->
                         </td>
                     </tr>
                 </aura:if>

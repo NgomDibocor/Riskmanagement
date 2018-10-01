@@ -30,24 +30,14 @@ public with sharing class OrmActionPlanController {
 	 * 2018-07-20 : David Diop - Implementation
 	 */
     @AuraEnabled 
-    public static List<List<String>> getAllMeasure( String idAssessment)
+    public static List<orm_assessmentRisk__c> getAllMeasure( String idAssessment)
     {
-       List<orm_assessmentRisk__c> assRiskList = [Select id,orm_assessment__r.Id,orm_Risk__r.Name,
-                       (SELECT id,Name, orm_description__c,orm_AssessmentRisk__r.orm_assessment__c,orm_endDate__c,
+      return [Select id,orm_assessment__r.Id,orm_Risk__r.Name,
+                       (SELECT id,Name, orm_AssessmentRisk__r.orm_assessment__c,orm_endDate__c,
      			        orm_measure_Status__c,orm_Cost_Effect__c,orm_measureCategorie__c,orm_justification_Cost_Effect__c,
      			        orm_measureResponsable__c, orm_measureResponsable__r.Name,orm_organisation__r.Name 
                         FROM Assessments__r 
                         WHERE RecordTypeId =: OrmActionPlanController.getMeasureRecordTypeId())
                         FROM orm_assessmentRisk__c  WHERE orm_assessment__r.Id =:idAssessment];
-                        
-            List<List<String>> assessmentList = new List<List<String>>();
-         for (orm_assessmentRisk__c assRisk: assRiskList){
-            List<String> info = new List<String>();
-               info.add(assRisk.id);
-               info.add(assRisk.orm_Risk__r.Name);
-               assessmentList.add(info);
-            }
-                        
-      return assessmentList;
     }
 }

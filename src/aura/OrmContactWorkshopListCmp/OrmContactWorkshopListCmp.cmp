@@ -31,12 +31,13 @@
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactCreatedEvt" action="{!c.refreshContact}" />
 	<aura:handler event="c:OrmRefreshContactWorkshopEvt" action="{!c.refreshContact}" />
+	<aura:handler event="c:OrmCloseContactWrokshopEvnt" action="{!c.showModalContacts}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 	<!--  start modal participants-->
 	<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
 		<!--###### MODAL BOX Start From Here ######-->
-		<div role="dialog" tabindex="-1" aria-labelledby="header99"
+		<div role="dialog" tabindex="-1" aria-labelledby="header99" aura:id="modalcontacts"
 			class="slds-modal slds-fade-in-open slds-modal_medium">
 			<div class="slds-modal__container form-style-6">
 				<!-- ###### MODAL BOX HEADER Part Start From Here ######-->

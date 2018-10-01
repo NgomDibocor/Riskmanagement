@@ -9,7 +9,8 @@
  * 2018-09-11 : Salimata NGOM - Implementation
  */
 	closeMailTemplate : function(component, event, helper) {
-                         
+		var evt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
+			evt.fire();
 		component.set("v.emailTemplate",false);
 	},
   /**
@@ -49,8 +50,6 @@
                 component.set("v.contactListSelected", AllPillsList);
             }  
         }
-        //component.set("v.SearchKeyWord",null);
-        //component.set("v.listOfSearchRecords", null );      
     },
       sendEmailAction : function(component, event, helper) {
 

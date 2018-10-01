@@ -1,9 +1,18 @@
 <aura:component controller="OrmEmailTemplateController" access="global"
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable,force:lightningQuickActionWithoutHeader">
-		<aura:attribute name="emailTemplate" type="boolean" />
-	
-	 <aura:if isTrue="{!v.emailTemplate}">
+		
+	<aura:attribute name="emailTemplate" type="EmailTemplate"  default="{ 'sobjectType' : 'EmailTemplate',
+														  'DeveloperName' : '',
+														  'Name':'',
+														  'FolderId':'',
+														  'TemplateType' : '',
+														  'Subject':'',
+														  'Description':'',
+														  'HtmlValue':'',
+														  
+														}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<div role="dialog" tabindex="-1" aria-labelledby="prompt-heading-id"
 		aria-describedby="prompt-message-wrapper"
 		class="slds-modal slds-fade-in-open slds-modal--prompt">
@@ -15,7 +24,7 @@
 					title="Close" onclick="{!c.closeMailTemplate}">
 					X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 				</button>
-				<h1 id="header99" class="slds-text-heading--medium">!$Label.c.orm_add_button_title+
+				<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.orm_add_button_title+
 						' '} {!$Label.c.orm_email_template}</h1>
 
 			</div>
@@ -24,53 +33,63 @@
 
 					<div class="slds-grid slds-gutters ">
 						<div class="slds-col">
-							<div class="slds-form-element slds-is-required">
+									<div class="slds-form-element slds-is-required">
 								<div class="slds-form-element__control">
-									<div class="slds-input-has-icon slds-input-has-icon--right">
-									 <aura:iteration items="{!v.contactListSelected}" var="contact">
-                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" onremove="{!c.clear }" title="{!contact.Email}"  >
-                            <aura:set attribute="media">
-                                <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
-                            </aura:set>
-                        </lightning:pill>
-                    </aura:iteration>
-									</div>
-								</div>
-							</div>
-							<div class="slds-form-element slds-is-required">
-								<div class="slds-form-element__control">
-									<lightning:select disabled="{!v.disableTemplate}"
-										onchange="{!c.loadTemplate}" name="SelectDivision"
-										label="Select a Template:" aura:id="templateId"
-										value="{!v.selTempl}">
+									<lightning:select
+										onchange="{!c.loadTemplate}" name="templateType"
+										label="Type Email Template" aura:id="templateType"
+										value="{!v.emailTemplate.TemplateType}">
 										<option text="None" value="" />
 
-										<aura:iteration items="{!v.templates}" var="item">
+										<aura:iteration items="{!v.templateType}" var="item">
 											<option text="{!item.Name}" value="{!item.Id}" />
 										</aura:iteration>
 									</lightning:select>
 								</div>
 							</div>
+								<div class="slds-form-element slds-is-required">
+								<div class="slds-form-element__control">
+										<lightning:input type="text" aura:id="Email Template Name"
+										label="Name" value="{!v.emailTemplate.Name}" />
+								</div>
+								</div>
+								<div class="slds-form-element slds-is-required">
+								<div class="slds-form-element__control slds-horz">
+											<lightning:layout horizontalAlign="right">
+    <lightning:layoutItem size="12">
+  	<lightning:input type="text" aura:id="UniqName"
+										label="Template Unique Name" value="{!v.emailTemplate.DeveloperName}" />
+    </lightning:layoutItem>
+    <lightning:layoutItem size="1">
+     <lightning:helptext content="The unique name used by the API "/>
+    </lightning:layoutItem>
+    </lightning:layout>
+									
+									
+								</div>
+								</div>
 							<div class="slds-form-element slds-is-required">
 								<div class="slds-form-element__control">
-									<lightning:input type="text" aura:id="subjMatter"
-										label="Subject" value="{!v.subjTxt}" />
-
-								</div>
-							</div>
-							<div class="slds-form-element" aura:id="emailBodyDiv">
-								<div class="slds-form-element__control">
-								<lightning:inputrichtext label="Content" />
+								  <lightning:input type="text" aura:id="Subject"
+										label="Subject" value="{!v.emailTemplate.Subject}" />
+						
+										
 								</div>
 								</div>
-					
+								<div class="slds-form-element slds-is-required">
+							<div class="slds-form-element__control">
+										<lightning:input type="text" aura:id="description"
+										label="Description" value="{!v.emailTemplate.Description}" />
+								</div>
+								</div>
+						
 							<div class="slds-form-element slds-is-required">
 								<div class="slds-form-element__control">
 
 									
-										<lightning:textarea name="myTextArea"
-											value="{!v.templDetail.Body}" label="Content" maxlength="700"
-											class="txtAreaCls" disabled="true" />
+										<lightning:textarea name="htmlValue"
+											value="{!v.emailTemplate.HtmlValue}" label="Email Body" maxlength="700"
+											class="txtAreaCls" />
 
 								</div>
 							</div>
@@ -82,13 +101,13 @@
 			<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 			<div class="slds-modal__footer">
 				<button class="slds-button slds-button--neutral"
-					onclick="{!c.closeMailTemplate}">{!$Label.c.orm_cancel_button_title}</button>
+					onclick="{!c.cancelModal}">{!$Label.c.orm_cancel_button_title}</button>
 				<button class="slds-button slds-button--neutral"
-					onclick="{!c.sendEmailAction}">{!$Label.c.orm_save_button_title}</button>
+					onclick="{!c.addEmailTemplate}">{!$Label.c.orm_save_button_title}</button>
 
 			</div>
 		</div>
 	</div>
 	<div class="slds-backdrop slds-backdrop--open"></div>
-	</aura:if>
+
 </aura:component>

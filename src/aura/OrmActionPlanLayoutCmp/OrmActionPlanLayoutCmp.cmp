@@ -1,11 +1,11 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmActionPlanController">
-<aura:attribute name="idAssessment" type="String" />
-<aura:attribute name="assessmentRisks" type="List" />
+    <aura:attribute name="idAssessment" type="String" />
+    <aura:attribute name="assessmentRisks" type="List" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
     <div style="margin-bottom:20px;margin-top: 40px;">
         <h1 class="titleActionPlan"><span class="dot">Action Plan</span></h1>
     </div>
-    <table class="slds-table">
+    <table class="slds-table" border="1">
         <tr style="border:1px solid;">
             <th>Measure</th>
             <th>Risk</th>
@@ -17,5 +17,17 @@
             <th>Due date</th>
             <th>Score</th>
         </tr>
+        <aura:iteration items="{!v.assessmentRisks}" var="item" indexVar="i">
+            <tr>
+                <td>{!item.Assessments__r[0].Name}</td>
+                 <td>{!item.orm_Risk__r.Name}</td>
+                 <td>{!item.Assessments__r[0].orm_measureResponsable__r.Name}</td>
+                 <td>{!item.Assessments__r[0].orm_measureCategorie__c}</td>
+                 <td>{!item.Assessments__r[0].orm_Cost_Effect__c}</td>
+                 <td>{!item.Assessments__r[0].orm_organisation__r.Name}</td>
+                 <td>{!item.Assessments__r[0].orm_measure_Status__c}</td>
+                 <td>{!item.Assessments__r[0].orm_endDate__c}</td>
+            </tr>
+        </aura:iteration>
     </table>
 </aura:component>

@@ -24,7 +24,7 @@
             // fields update
             var action = component.get("c.save");
             action.setParams({
-                'listAssumption': component.get("v.assumptionRiskList")
+                'listAssumption': component.get("v.PaginationList")
             });
             action.setCallback(this, function(response) {
                 var state = response.getState();

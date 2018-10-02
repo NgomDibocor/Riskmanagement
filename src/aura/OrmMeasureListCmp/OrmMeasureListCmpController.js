@@ -14,7 +14,7 @@
         if (helper.requiredValidation(component, event)){
                var action = component.get("c.updateMeasures");
                action.setParams({
-            	   'measures': component.get("v.measures")
+            	   'measures': component.get("v.PaginationList")
                });
                   
 	           action.setCallback(this, function(response) {

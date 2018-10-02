@@ -48,7 +48,7 @@
 		            </lightning:buttonGroup>
 	        	</div>
 	        </aura:if> 
-        <aura:if isTrue="{!not(empty(v.causes))}"> 
+        <aura:if isTrue="{!not(empty(v.PaginationList))}"> 
 	        <!--Data Table-->     
 	        <table class="slds-table slds-table_bordered slds-table_cell-buffer" style=" width:90%;">
 	            <thead>
@@ -70,10 +70,11 @@
 	                </tr>
 	            </thead>
 	            
-	            <tbody>	             
-	                <aura:iteration items="{!v.causes}" var="cause" indexVar="sNo">
+	            <tbody>	      
+<!-- 	            	items="{!v.causes}" var="cause"        -->
+	                <aura:iteration  items="{!v.PaginationList}" var="item" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
-	                    <c:OrmCauseEditRowCmp cause="{!cause}"
+	                    <c:OrmCauseEditRowCmp cause="{!item}"
 	                    				 selectedRowsCount="{!v.selectedRowsCount}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />                       
@@ -116,6 +117,19 @@
 			</div>	    
 	    </aura:if>
 	<!-- /openModalConfirmDeletion -->
-		
+		<center>
+	<div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previous}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
+	                            onclick="{!c.next}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
+	</div>
+	</center>
 	<c:OrmCauseNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

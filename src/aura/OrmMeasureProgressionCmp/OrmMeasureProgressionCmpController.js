@@ -62,7 +62,7 @@
               // call the saveAccount apex method for update inline edit fields update 
                var action = component.get("c.updateMeasureProgressions");
                action.setParams({
-            	   'measureProgression': component.get("v.measureProgression")
+            	   'measureProgression': component.get("v.PaginationList")
                });
                   
 	           action.setCallback(this, function(response) {

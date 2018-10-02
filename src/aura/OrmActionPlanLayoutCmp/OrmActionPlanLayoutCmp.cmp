@@ -5,32 +5,32 @@
     <div style="margin-bottom:20px;margin-top: 40px;">
         <h1 class="titleActionPlan"><span class="dot">Action Plan</span></h1>
     </div>
-    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:50%;" >
         <thead>
             <tr class="slds-line-height_reset">
                 <th class="slds-text-title_caps" scope="col">
-                    <div class="slds-truncate" title="{!$Label.c.orm_measure_label}">{!$Label.c.orm_measure_label}</div>
+                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_label}" >{!$Label.c.orm_measure_label}</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
-                    <div class="slds-truncate" title="Account Name">Risk</div>
+                    <div  id="tabtitle" class="slds-truncate" title="Account Name">Risk</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
-                    <div class="slds-truncate" title="{!$Label.c.orm_Measure_Responsable}">{!$Label.c.orm_Measure_Responsable}</div>
+                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_Measure_Responsable}">{!$Label.c.orm_Measure_Responsable}</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
-                    <div class="slds-truncate" title="{!$Label.c.orm_category_measure_label}">{!$Label.c.orm_category_measure_label}</div>
+                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_category_measure_label}">{!$Label.c.orm_category_measure_label}</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
-                    <div class="slds-truncate" title="{!$Label.c.orm_costEffect_label}">{!$Label.c.orm_costEffect_label}</div>
+                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_costEffect_label}">{!$Label.c.orm_costEffect_label}</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
-                    <div class="slds-truncate" title="{!$Label.c.orm_organisationUnit_label}">{!$Label.c.orm_organisationUnit_label}</div>
+                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_organisationUnit_label}">{!$Label.c.orm_organisationUnit_label}</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
-                    <div class="slds-truncate" title="{!$Label.c.orm_measure_status}">{!$Label.c.orm_measure_status}</div>
+                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_status}">{!$Label.c.orm_measure_status}</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
-                    <div class="slds-truncate" title="{!$Label.c.orm_measure_dueDate}">{!$Label.c.orm_measure_dueDate}</div>
+                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_dueDate}">{!$Label.c.orm_measure_dueDate}</div>
                 </th>
             </tr>
         </thead>

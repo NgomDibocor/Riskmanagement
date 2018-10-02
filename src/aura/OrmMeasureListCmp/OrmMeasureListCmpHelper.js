@@ -26,7 +26,7 @@
             	component.set('v.initialData', response.getReturnValue());
                 component.set('v.items', response.getReturnValue());
                    // start pagination
-                    var pageSize = component.get("v.pageSize");
+                    var pageSize = component.get("v.pageSizeBis");
 	                // get size of all the records and then hold into an attribute "totalRecords"
 	                component.set("v.totalRecords", component.get("v.items").length);
 	                // set star as 0

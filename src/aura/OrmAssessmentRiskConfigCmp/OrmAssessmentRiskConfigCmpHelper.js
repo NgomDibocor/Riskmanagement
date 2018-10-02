@@ -3,15 +3,15 @@
         this.getHsseImpacts(component, event);
         this.getBusinessImpacts(component, event);
         console.log(component.get("v.assessmentData").Id);
-        var actionFrequency = component.get("c.getSelectOptions");
-        actionFrequency.setParams({
+        var actionWorkingEnvironment = component.get("c.getSelectOptions");
+        actionWorkingEnvironment.setParams({
             "objObject": component.get("v.objInfo"),
-            "fld": 'orm_frequency__c'
+            "fld": 'orm_workingEnvironment__c'
         });
-        actionFrequency.setCallback(this, function(response) {
+        actionWorkingEnvironment.setCallback(this, function(response) {
             var state = response.getState();
             if (state === 'SUCCESS') {
-                component.set('v.frequency', response.getReturnValue());
+                component.set('v.workingEnvironments', response.getReturnValue());
                 //manageAbility
                 var actionManageability = component.get("c.getSelectOptions");
                 actionManageability.setParams({
@@ -60,7 +60,7 @@
 			                                                                component.set("v.showBtnMatricePicture", true);
 			                                                                component.set('v.assessmentRiskData', response.getReturnValue());
 			                                                                component.find("manageAbility").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
-			                                                                //component.find("frequency").set("v.value", component.get('v.assessmentRiskData').orm_frequency__c);
+			                                                                component.find("workingEnvironment").set("v.value", component.get('v.assessmentRiskData').orm_workingEnvironment__c);
 			                                                                component.find("slider1").set("v.value", component.get('v.assessmentRiskData').orm_probability__c);
 			                                                                component.find("status").set("v.value", component.get('v.assessmentRiskData').orm_status__c);
 			                                                                component.find("uncertainty").set("v.value", component.get('v.assessmentRiskData').orm_uncertainty__c);
@@ -148,7 +148,7 @@
                 alert($A.get("$Label.c.orm_not_found"));
             }
         });
-        $A.enqueueAction(actionFrequency);
+        $A.enqueueAction(actionWorkingEnvironment);
     },
 
     getProbality: function(component, event) {

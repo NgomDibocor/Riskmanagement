@@ -38,8 +38,8 @@
 		      var riskManager = component.find("riskManager");
               assessmentRisk.orm_riskManager__c = riskManager.get("v.value");
 		       assessmentRisk.orm_environmentAndCommunity__c =environmentAndCommunity;
-		      // var frequency = component.find("frequency");
-		       //assessmentRisk.orm_frequency__c =frequency.get("v.value");
+		       var workingEnvironment = component.find("workingEnvironment");
+		       assessmentRisk.orm_workingEnvironment__c = workingEnvironment.get("v.value");
 		       var manageAbility = component.find("manageAbility");
 		       assessmentRisk.orm_manageability__c =manageAbility.get("v.value");
 		       var status = component.find("status");
@@ -97,17 +97,31 @@
      
         component.set("v.displaySaveCancelBtn", true);
     },
-	 onFrequency : function(component, event, helper)
-    {
+    
+	onChangeWorkingEnvironment : function(component, event, helper){
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
+	            "nomField": $A.get("$Label.c.orm_workingEnvironment_label"),
+	            "descriptionField": 'Description working environment'
 	        });
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
-    	component.find("frequency").set("v.value", event.getSource().get("v.value"));
+    	component.find("workingEnvironment").set("v.value", event.getSource().get("v.value"));
 	},
+	
+	onChangeVulnerability : function(component, event, helper){
+	    component.set("v.displaySaveCancelBtn",true);
+	},
+	
+	sendVulnerabilityToFD : function(component, event, helper){
+	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.orm_vulnerability_label"),
+	            "descriptionField": 'Description vulnerability'
+	        });
+           evt.fire();
+	},
+	
 	 onDate : function(component, event, helper)
     {
 		  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
@@ -166,6 +180,19 @@
        evt.fire();
 	},
 	
+	onChangeJustificationConsequence : function(component, event, helper){
+	    component.set("v.displaySaveCancelBtn",true);
+	},
+	
+	sendJustificationConsequenceToFD : function(component, event, helper){
+	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get("$Label.c.orm_justificationConsequence_label"),
+            "descriptionField": $A.get("$Label.c.orm_descriptionJustificationConsequence_label")
+        });
+       evt.fire();
+	},
+	
 	cancel : function(component, event, helper)
     {
         component.set("v.displaySaveCancelBtn",false);
@@ -189,7 +216,6 @@
 		    var data = component.get("v.data");
 		    data.orm_probability__c = component.get("v.RareData.orm_probability__c");
 		    component.set("v.data", data);
-		    console.log(JSON.stringify(data))
 		    
 		    document.getElementById("divColor").style.backgroundColor = "green";
 		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
@@ -198,7 +224,6 @@
 		    var data = component.get("v.data");
 		    data.orm_probability__c = component.get("v.unlikelyData.orm_probability__c");
 		    component.set("v.data", data);
-		    console.log(JSON.stringify(data))
 		    
 		    document.getElementById("divColor").style.backgroundColor = "yellow";
 		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
@@ -207,7 +232,6 @@
 		    var data = component.get("v.data");
 		    data.orm_probability__c = component.get("v.possibleData.orm_probability__c");
 		    component.set("v.data", data);
-		    console.log(JSON.stringify(data))
 		    
 		    document.getElementById("divColor").style.backgroundColor = "orange";
 		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
@@ -216,7 +240,6 @@
 	        var data = component.get("v.data");
 		    data.orm_probability__c = component.get("v.probableData.orm_probability__c");
 		    component.set("v.data", data);
-		    console.log(JSON.stringify(data))
 		    
 		    document.getElementById("divColor").style.backgroundColor = "red";
 		    document.getElementById("divColor").innerHTML= component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';

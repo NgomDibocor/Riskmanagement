@@ -1,49 +1,46 @@
 .THIS #healthAndSafety{
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	letter-spacing: -.003em;
 	text-align: center;
-	font-weight: 600;
-    font-size: 1.5em;
-    border-radius:1em;
 }
 .THIS #security{
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	letter-spacing: -.003em;
 	text-align: center;
-	font-weight: 600;
-    font-size: 1.5em;
-    border-left: 5px solid white;
-    border-radius:1em;
 }
 .THIS #environment{
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	letter-spacing: -.003em;
 	text-align: center;
-	font-weight: 600;
-    font-size: 1.5em;
-    border-left: 5px solid white;
-    border-radius:1em;
 }
 .THIS #cost{
 	text-align: center;
 	font-weight: 600;
     font-size: 1.5em;
-    border-radius:1em;
 }
 .THIS #production{
 	text-align: center;
 	font-weight: 600;
     font-size: 1.5em;
     border-left: 5px solid #ffffff;
-    border-radius:1em;
 }
 .THIS #schedule{
 	text-align: center;
 	font-weight: 600;
     font-size: 1.5em;
     border-left: 5px solid #ffffff;
-    border-radius:1em;
 }
 .THIS #reputation{
 	text-align: center;
 	font-weight: 600;
     font-size: 1.5em;
     border-left: 5px solid #ffffff;
-    border-radius:1em;
 }
 .THIS span{
 	
@@ -58,28 +55,31 @@
 	width: 20%;
 	white-space: normal !important;
 	text-align: justify;
-    text-justify: inter-word;
+    text-justify: inter-character;
 }
 .THIS .tdWidth2{
 	width: 25%;
 	white-space: normal !important;
 	text-align: justify;
-    text-justify: inter-word;
+    text-justify: inter-character;
 }
 .THIS .thTable {
- font-weight: 800;
- font-size: 1.5em;
- text-align:center;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 20px;
+	letter-spacing: -.003em;
+	text-align:center;
 }
 .THIS .thTableBI {
- font-weight: 800;
- font-size: 1.5em;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 20px;
+	letter-spacing: -.003em;
 }
 .THIS .divColor {
- font-weight: 800;
- font-size: 1.2em;
- text-align:center;
- border-radius:1em;
+	 font-weight: 800;
+	 font-size: 1.2em;
+	 text-align:center;
 }
 .THIS .messageIsEmpty {
   text-align: center;
@@ -91,4 +91,14 @@
 .THIS .widthBtn {
   width: 150px;
   margin-bottom:20px;
+}
+.THIS .styleAllText{
+    text-align: justify;
+    text-justify: inter-character;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+	white-space: normal !important;
 }

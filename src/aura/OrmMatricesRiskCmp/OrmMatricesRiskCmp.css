@@ -17,18 +17,28 @@
     white-space: nowrap important;
 }
 .THIS .tdRanking{
-	width: 8%;
+/*	width: 8%;
 	font-weight: 600;
-    font-size: 1em;
+    font-size: 1em; */
 	text-align: center;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
 }
 .THIS .tdDefinition{
-	width: 92%;
+/*	width: 92%;
 	font-weight: 600;
     font-size: 1em;
-	white-space: normal !important;
 	text-align: justify;
-    text-justify: inter-word;
+    text-justify: inter-word; */
+    white-space: normal !important;
+    text-align: justify;
+    text-justify: inter-character;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
 }
 .THIS .textCenter{
 	font-weight: 600;

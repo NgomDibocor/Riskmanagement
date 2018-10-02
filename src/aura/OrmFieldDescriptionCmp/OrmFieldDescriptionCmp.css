@@ -1,22 +1,20 @@
 .THIS {
-    /*  */
-    background-color: #0077AB;
-    height:400px;
-    line-height: 1.5;
-    font-size: 1.05em;
-    color: white;
-    letter-spacing: -.02em;
+    background-color: #0077AB;   
     text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    padding-bottom: 30px;
 }
 .THIS .titleFD{
-    font-size: 1.7em;
-    font-weight: 600
+    font-size: 1.8em;
+    font-weight: 400
 }
 .THIS .descriptionFD{
-    font-size: 1.1em;
-    font-weight: 600;
     text-align: justify;
-    text-justify: inter-word;
+    text-justify: inter-character;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
 }
 .THIS .ico svg{
     position: absolute;

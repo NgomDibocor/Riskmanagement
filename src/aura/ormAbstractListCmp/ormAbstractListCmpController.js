@@ -62,6 +62,12 @@
     previous : function (component, event, helper) {
       helper.previous(component, event);
     },
+     nextBis : function (component, event, helper) {
+      helper.nextBis(component, event);
+    },
+    previousBis : function (component, event, helper) {
+      helper.previousBis(component, event);
+    },
     
     
  

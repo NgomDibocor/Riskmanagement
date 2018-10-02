@@ -60,7 +60,7 @@
 	            
 	            <tbody>
 	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-	               <aura:iteration items="{!v.activityProof}" var="activityProof" indexVar="sNo">
+	               <aura:iteration items="{!v.activityProof}" var="activityProof"  indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
 	                    <c:OrmActivityProofEditRowCmp activityProof="{!activityProof}"
 	                    				selectedRowsCount="{!v.selectedRowsCount}"
@@ -111,5 +111,6 @@
 		</div>
 		<!--###### MODAL BOX End  Here ######-->
 	</aura:if>
+	
 	   <c:OrmActiviteProofNewCmp/>
 </aura:component>

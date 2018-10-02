@@ -75,7 +75,7 @@
         //component.set("v.impacts",dataRisk);
            component.set("v.filterPagination", dataRisk);
 		   component.set("v.items", component.get("v.filterPagination"));
-		   helper.paginationFilter(component, event);
+		   helper.paginationFilterBis(component, event);
         }
     },
      selectAll : function (component, event, helper) {

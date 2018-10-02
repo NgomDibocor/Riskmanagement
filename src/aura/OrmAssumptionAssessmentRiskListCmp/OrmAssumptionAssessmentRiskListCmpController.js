@@ -121,7 +121,7 @@
            // component.set("v.assumptionRiskList", data);
             component.set("v.filterPagination", data);
 		   component.set("v.items", component.get("v.filterPagination"));
-		   helper.paginationFilter(component, event);
+		   helper.paginationFilterBis(component, event);
         }
     },
 })

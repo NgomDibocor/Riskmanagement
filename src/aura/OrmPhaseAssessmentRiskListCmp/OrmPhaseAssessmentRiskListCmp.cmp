@@ -45,7 +45,7 @@
 	            	</lightning:buttonGroup>
 	        	</div>
 	        </aura:if> 
-             <aura:if isTrue="{!not(empty(v.phasesList))}">
+             <aura:if isTrue="{!not(empty(v.PaginationList))}">
 	        <table class="slds-table">	        
 	            <thead>
 	                <tr class="slds-text-title--caps">
@@ -61,8 +61,9 @@
 	            </thead>
 	            <tbody>
 	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-	                <aura:iteration items="{!v.phasesList}" var="phase" indexVar="sNo">
-	                    <c:OrmPhaseAssessmentRiskEditRow phaseAss="{!phase}" 
+<!-- 	             items="{!v.phasesList}" var="phase" -->
+	                <aura:iteration  items="{!v.PaginationList}" var="item" indexVar="sNo">
+	                    <c:OrmPhaseAssessmentRiskEditRow phaseAss="{!item}" 
 	                    	selectedRowsCount="{!v.selectedRowsCount}"
 	                    	 showSaveCancelBtn="{!v.showSaveCancelBtn}"  sNo="{!sNo + 1}" />
 	                </aura:iteration>

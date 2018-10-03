@@ -170,10 +170,13 @@
     var evt = $A.get("e.c:OrmMeasureProgressionFilesEvent");
 		evt.setParam('mesurePregression',idMeasurePro);
 		evt.fire();
+
     },
     cancelMeasureProgress: function(component, event, helper) {
         component.set("v.openfilesList", false);
+
     },
+ 
 
     /**
      * 

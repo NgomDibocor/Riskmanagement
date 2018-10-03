@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event template">
+<aura:attribute name="mesurePregression" type="string" description="id mesure progression" />
+</aura:event>

@@ -211,7 +211,7 @@
     <div class="{!(v.closeFieldDescription==true ? (v.showChevronleft == false ? (v.showChevronright== true ? 'slds-size--7-of-8' : 'slds-size--8-of-8'):(v.showChevronright== true ? 'slds-size--6-of-8': 'slds-size--7-of-8')) : (v.showChevronleft == true ? (v.showChevronright== true ? 'slds-size--4-of-8' : 'slds-size--5-of-8') : (v.showChevronright== true ? 'slds-size--5-of-8' : 'slds-size--6-of-8')))}"  style="margin-top:20px;margin-bottom:30px">
         <table class="slds-table">
               <aura:if isTrue="{!v.showContext}">
-                <aura:if isTrue="{!v.assessmentData.Id == null}">
+                <aura:if isTrue="{!v.createAssessmentButtonClicked == true }">
                     <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;">
@@ -224,7 +224,7 @@
 	                     </td>
 	                </tr>
                 </aura:if>
-                <aura:if isTrue="{!v.assessmentData.Id != null}">
+                <aura:if isTrue="{!v.showAssessmentButtonClicked == true }">
                     <tr>
 	                     <td >
 	                           <div style="margin-bottom:20px;">

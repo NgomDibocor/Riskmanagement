@@ -45,7 +45,7 @@
             //component.set("v.phases", phases);
             component.set("v.filterPagination", phases);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilter(component, event);
+            helper.paginationFilterBis(component, event);
         }
     },
     save: function(component, event, helper) {

@@ -87,7 +87,7 @@
             //component.set("v.causes", causesTemp);
             component.set("v.filterPagination", causesTemp);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilter(component, event);
+            helper.paginationFilterBis(component, event);
         }
     },
     /**

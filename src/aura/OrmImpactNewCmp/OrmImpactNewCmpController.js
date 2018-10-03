@@ -36,6 +36,7 @@
 		var name = component.find('name').get('v.value');
         var description = component.find('description').get('v.value');
         var categorieImpact = component.find('categorieImpact').get('v.value');
+        var categoryImpact = component.get("v.categorieImpact");
         /* we test the validity of data */
         var isItemsValid = true;
         if($A.util.isEmpty(description)){
@@ -48,6 +49,13 @@
         	newImpact.Description = description;
         	newImpact.orm_categorie_impact__c = categorieImpact;
         	newImpact.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
+        	
+        	if ($A.util.isEmpty(categorieImpact)) {
+                newImpact.orm_categorie_impact__c = categoryImpact;
+            } else {
+                component.set("v.categorieImpact", categorieImpact);
+                newImpact.orm_categorie_impact__c = component.get("v.categorieImpact");
+            }
         	
         	var action = component.get('c.add');
             action.setParams({

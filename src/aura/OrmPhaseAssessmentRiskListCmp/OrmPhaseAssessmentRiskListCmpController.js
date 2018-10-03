@@ -70,7 +70,8 @@
         component.set('v.openModalConfirmDeletion', false);
     },
     filter: function(component, event, helper) {
-        var phases = component.get('v.phasesTemp');
+        // var phases = component.get('v.phasesTemp');
+        var phases = component.get('v.initialData');
         var key = component.get('v.key');
         var regex;
 
@@ -83,7 +84,10 @@
                 // filter checks each row, constructs new array where function returns true
                 phases = phases.filter(row => regex.test(row.Description));
             } catch (e) {}
-            component.set("v.phasesList", phases);
+            //component.set("v.phasesList", phases);
+            omponent.set("v.filterPagination", phases);
+            component.set("v.items", component.get("v.filterPagination"));
+            helper.paginationFilterBis(component, event);
         }
     },
 })

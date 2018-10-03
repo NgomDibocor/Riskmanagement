@@ -89,6 +89,7 @@
             alert(e);
         }
         component.set("v.activityProof",dataActivityProof);
+        
         }
     },
     

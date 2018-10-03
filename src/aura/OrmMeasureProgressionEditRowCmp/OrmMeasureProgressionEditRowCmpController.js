@@ -166,8 +166,10 @@
     },
 
     openfilesList: function(component, event, helper) {
-        var idMeasurePro = component.get('v.measureProgression.Id');
-        component.set("v.openfilesList", true);
+      var idMeasurePro = component.get('v.measureProgression.Id');
+    var evt = $A.get("e.c:OrmMeasureProgressionFilesEvent");
+		evt.setParam('mesurePregression',idMeasurePro);
+		evt.fire();
     },
     cancelMeasureProgress: function(component, event, helper) {
         component.set("v.openfilesList", false);

@@ -136,7 +136,8 @@
 	 * @history 2018-08-20 : Salimata NGOM - Implementation
 	 */
 	filter : function (component, event, helper){
-		var ListActivity = component.get('v.storeListActivity');
+//		var ListActivity = component.get('v.storeListActivity');
+		var ListActivity = component.get('v.initialData');
 		var data = ListActivity;
 		var key = component.get('v.key');
 		var regex;    	
@@ -157,7 +158,10 @@
 				alert(e)
 			}
 
-			component.set("v.ActivityList", data);
+//			component.set("v.ActivityList", data);
+			component.set("v.filterPagination", data);
+            component.set("v.items", component.get("v.filterPagination"));
+            helper.paginationFilterBis(component, event);
 		}        	
 	},
 	sendDescriptionFieldCause : function(component, event, helper) {

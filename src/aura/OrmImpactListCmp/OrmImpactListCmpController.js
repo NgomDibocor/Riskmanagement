@@ -26,7 +26,7 @@
               // call the saveAccount apex method for update inline edit fields update 
                var action = component.get("c.updateImpacts");
                action.setParams({
-            	   'impacts': component.get("v.impacts")
+            	   'impacts': component.get("v.PaginationList")
                });
                   
 	           action.setCallback(this, function(response) {
@@ -56,7 +56,8 @@
      *
      */
     filter: function(component, event, helper) {
-        var dataRisk = component.get('v.impactsTemp');
+       // var dataRisk = component.get('v.impactsTemp');
+        var dataRisk = component.get('v.initialData');
         var term = component.get('v.filter');
         var regex;
         if ($A.util.isEmpty(term)) {
@@ -71,7 +72,10 @@
         } catch (e) {
             alert(e);
         }
-        component.set("v.impacts",dataRisk);
+        //component.set("v.impacts",dataRisk);
+           component.set("v.filterPagination", dataRisk);
+		   component.set("v.items", component.get("v.filterPagination"));
+		   helper.paginationFilterBis(component, event);
         }
     },
      selectAll : function (component, event, helper) {

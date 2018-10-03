@@ -34,7 +34,7 @@
 		     
 		     
 		  <div style="width:100%;display: flex;">
-		     <div style="width:50%;height:600px;overflow-y:scroll;overflow-x: hidden;"> 
+		     <div style="width:35%;height:600px;overflow-y:scroll;overflow-x: hidden;"> 
 			     <div style="width:70%;height:300px;">
 				   <span class="monTexte" id="healthAndSafety">Health And Safety</span>
 				   <span id="idTable">
@@ -145,8 +145,7 @@
 				</div>
 		    </div>
 		    
-	
-			<div style="width:50%;height:auto">
+			<div style="width:65%;height:auto">
 			     <table>
 			     <thead>
 				      <tr>

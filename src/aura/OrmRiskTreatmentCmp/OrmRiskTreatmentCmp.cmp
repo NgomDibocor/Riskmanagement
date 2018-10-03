@@ -94,7 +94,20 @@
         </tr>
         <tr>
             <td>
-                <div class="topSpacing">
+            <div class="topSpacing">
+                    <b><label class="slds-form-element__label">{!$Label.c.orm_justification_cost_effect_label} </label></b>
+                </div>
+                <div class="width">
+                    <a href="javascript:void(0);">
+                        <ui:inputText aura:id="justification" class="slds-input" value="{!v.measureData.orm_justification_Cost_Effect__c}" change="{!c.onDescription}">
+                        </ui:inputText>
+                    </a>
+                </div>
+            
+                
+            </td>
+            <td>
+               <div class="topSpacing">
                     <b><label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label></b>
                 </div>
                 <div class="slds-form-element ">
@@ -106,17 +119,6 @@
                             </aura:iteration>
                         </ui:inputSelect>
                     </div>
-                </div>
-            </td>
-            <td>
-                <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_justification_cost_effect_label} </label></b>
-                </div>
-                <div class="width">
-                    <a href="javascript:void(0);">
-                        <ui:inputText aura:id="justification" class="slds-input" value="{!v.measureData.orm_justification_Cost_Effect__c}" change="{!c.onDescription}">
-                        </ui:inputText>
-                    </a>
                 </div>
             </td>
         </tr>

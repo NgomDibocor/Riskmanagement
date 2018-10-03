@@ -112,7 +112,7 @@
        // component.set("v.measureProgression",dataMeasureProgress);
          component.set("v.filterPagination", dataMeasureProgress);
 		   component.set("v.items", component.get("v.filterPagination"));
-		   helper.paginationFilter(component, event);
+		   helper.paginationFilterBis(component, event);
         }
     },
    

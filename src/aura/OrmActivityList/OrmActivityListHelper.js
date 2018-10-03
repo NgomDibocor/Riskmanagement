@@ -33,8 +33,8 @@
 		action.setParam("assessment", component.get("v.assessmentData").Id);
 		action.setCallback(this, function(response) {
 			if (response.getState() == 'SUCCESS') {
-				component.set('v.ActivityList', response.getReturnValue());
-
+				//component.set('v.ActivityList', response.getReturnValue());
+				
 			} else {
 				alert($A.get("$Label.c.loaded_message"));
 			}
@@ -50,8 +50,34 @@
 			if (state === "SUCCESS") {
 				var storeResponse = response.getReturnValue();
 				// set ActivityList list with return value from server.
-				component.set("v.ActivityList", storeResponse);
-				component.set("v.storeListActivity", storeResponse);
+				//component.set("v.ActivityList", storeResponse);
+				//component.set("v.storeListActivity", storeResponse);
+				
+				component.set('v.initialData', response.getReturnValue());
+                component.set('v.items', response.getReturnValue());
+                   // start pagination
+                    var pageSize = component.get("v.pageSizeBis");
+	                // get size of all the records and then hold into an attribute "totalRecords"
+	                component.set("v.totalRecords", component.get("v.items").length);
+	                // set star as 0
+	                component.set("v.startPage",0);
+	                var totalRecords = component.get("v.items").length;
+				    //var div = Math.trunc(totalRecords / pageSize);
+	                if(totalRecords === pageSize){
+	                  component.set("v.hideNext", true);
+	                  component.set("v.endPage", pageSize - 1);
+	                }else{
+	                  component.set("v.hideNext", false);
+	                  component.set("v.endPage", pageSize - 1);
+	                }
+	                var PaginationList = [];
+	                for(var i=0; i< pageSize; i++){
+	                    if(component.get("v.items").length> i)
+	                        PaginationList.push(component.get("v.items")[i]);    
+	                }
+	                component.set('v.PaginationList', PaginationList);
+                //end pagination
+				
 
 			}
 		});

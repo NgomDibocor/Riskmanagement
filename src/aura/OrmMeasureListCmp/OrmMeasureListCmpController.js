@@ -65,7 +65,7 @@
 		   //component.set("v.measures", measures);
 		   component.set("v.filterPagination", measures);
 		   component.set("v.items", component.get("v.filterPagination"));
-		   helper.paginationFilter(component, event);
+		   helper.paginationFilterBis(component, event);
          }        	
     },
     

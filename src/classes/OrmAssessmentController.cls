@@ -61,7 +61,7 @@ public class OrmAssessmentController {
         if( item.orm_typeAssessment__c == 'Organisation'){
             item.RecordTypeId=OrmAssessmentController.getOrganisationRecordTypeId();
         }
-        if( item.orm_typeAssessment__c == 'Projet'){
+        if( item.orm_typeAssessment__c == 'Project'){
             item.RecordTypeId=OrmAssessmentController.getProjetRecordTypeId();
         }
         if( item.orm_typeAssessment__c == 'Processus'){

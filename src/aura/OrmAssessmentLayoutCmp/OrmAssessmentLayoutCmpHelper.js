@@ -52,7 +52,7 @@
         // I test if I've clicked on createAssessment
         if(component.get("v.createAssessmentButtonClicked")== true){
             component.set("v.isEmptyListAssessmentRisk", true);
-            console.log('createbutton')
+            component.set("v.isEmptyListMeasure", true);
         }
         // I test if I've clicked on showAssessmentRisk
         if(component.get("v.showAssessmentRisk")== true){
@@ -274,7 +274,7 @@
       component.set("v.typeProcessus", true);
       component.set("v.typeProjet", false);
     }
-    if(typeAssessment == 'Projet'){
+    if(typeAssessment == 'Project'){
       component.set("v.typeOrganisation", false);
       component.set("v.typeProcessus", false);
       component.set("v.typeProjet", true);

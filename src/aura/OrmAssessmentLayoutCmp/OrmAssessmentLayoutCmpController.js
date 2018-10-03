@@ -11,7 +11,7 @@
         var newItem = component.get("v.assessmentData");
         newItem.orm_typeAssessment__c = ta.get("v.value");
         
-        if(ta.get("v.value")== 'Projet'){
+        if(ta.get("v.value")== 'Project'){
           var statusProjet = component.find("statusProjet");
           newItem.orm_statusAssessment__c = statusProjet.get("v.value");
           var typeProjet = component.find("typeProjet");
@@ -60,30 +60,49 @@
         action.setParams({
             "item": newItem
         });
-        action
-        .setCallback(
-            this,
-            function(response) {
+        action.setCallback(this,function(response){
                 var state = response.getState();
                 if (state == "SUCCESS") {
-                component.set("v.displaySaveCancelBtn", false);
-                component.set("v.assessmentData",response.getReturnValue());
-                    var toastEvent = $A.get('e.force:showToast');
-				    if(newItem.Id == null){
-				      toastEvent.setParams({
-                         'message' : newItem.orm_typeAssessment__c+' '+$A.get("$Label.c.orm_success_created"),
-                         'type' : 'success',
-                         'mode' : 'dismissible'
-                       });
-				    }else{
-				      toastEvent.setParams({
-                         'message' : newItem.orm_typeAssessment__c+' '+$A.get("$Label.c.orm_success_updated"),
-                         'type' : 'success',
-                         'mode' : 'dismissible'
-                       });
-				    }
-                   toastEvent.fire();  
-                    
+		                component.set("v.displaySaveCancelBtn", false);
+		                var actionGetAssessmentInfos = component.get('c.getAssessment');
+						actionGetAssessmentInfos.setParams({ 'idAss' : response.getReturnValue().Id });
+						actionGetAssessmentInfos.setCallback(this, function(response){
+						        var state = response.getState();
+						        if(state === 'SUCCESS'){
+						             if(newItem.Id != null){
+						                component.set("v.assessmentData",response.getReturnValue());
+						             }else{
+						                var evtNewAssessmentCreate = $A.get("e.c:OrmNewAssessmentEvt");
+									    evtNewAssessmentCreate.setParams({
+									       "assessmentObject" : response.getReturnValue(),
+									       "numberOfRisk" : 0
+									    });
+									    evtNewAssessmentCreate.fire(); 
+						             }						                
+									    
+						                var toastEvent = $A.get('e.force:showToast');
+									    if(newItem.Id == null){
+									      toastEvent.setParams({
+						                     'message' : newItem.orm_typeAssessment__c+' '+$A.get("$Label.c.orm_success_created"),
+						                     'type' : 'success',
+						                     'mode' : 'dismissible'
+						                   });
+									    }else{
+									      toastEvent.setParams({
+						                     'message' : newItem.orm_typeAssessment__c+' '+$A.get("$Label.c.orm_success_updated"),
+						                     'type' : 'success',
+						                     'mode' : 'dismissible'
+						                   });
+									    }
+						               toastEvent.fire();
+						               
+						               component.set("v.createAssessmentButtonClicked", true);
+						               
+						        } else {
+						            alert($A.get("$Label.c.orm_error"));
+						        }
+						});
+						$A.enqueueAction(actionGetAssessmentInfos);
                 }else{
                    alert($A.get("$Label.c.orm_error"));
                 }
@@ -194,8 +213,13 @@
 	},
 	onChangeRegion : function(component, event, helper)
     {
+        console.log('***********typeAssessment*********');
+        console.log(component.get("v.typeOrganisation"))
         component.set("v.displaySaveCancelBtn", true);
-    	component.find("region").set("v.value", event.getSource().get("v.value"));
+    	var region = component.find("region");
+    	console.log('******Region debug*********+');
+    	console.log(region.get("v.value"))
+    	region.set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_region_label");
         var description = $A.get("$Label.c.orm_region_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
@@ -341,9 +365,7 @@
         }
     },
     onObjectifProjectChange : function(component,event,helper){ 
-        if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
-        }
     },
     sendProjectNameToFD  : function(component,event,helper){ 
         var field = $A.get("$Label.c.orm_projectName_label");
@@ -358,14 +380,10 @@
     },
     
     onChangeNameOrganisation : function(component,event,helper){ 
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.set("v.displaySaveCancelBtn",true);
-        }
+        component.set("v.displaySaveCancelBtn",true);
     },
     onChangeDescriptionProject : function(component,event,helper){ 
-        if(event.getSource().get("v.value").trim() != ''){ 
-            component.set("v.displaySaveCancelBtn",true);
-        }
+       component.set("v.displaySaveCancelBtn",true);
     },
     
     onchangeDescriptionOrganisation : function(component,event,helper){ 

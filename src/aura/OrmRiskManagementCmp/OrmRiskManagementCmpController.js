@@ -60,12 +60,28 @@
             }
         );
     },
-	 showInfoAssessment : function(component,event,helper){ 
+	 
+	showInfoAssessment : function(component,event,helper){ 
 	   $A.createComponent(
 	            "c:OrmAssessmentLayoutCmp", {
 	                "assessmentData": event.getParam("assessmentObject"),
 	                "showAssessmentButtonClicked" : true,
 	                "nbreRisk" : event.getParam("numberOfRisk")   
+	            },
+	            function(newCmp) {
+	                if (component.isValid()) {
+	                    component.set("v.body", newCmp);
+	                }
+	            }
+	        );  
+	 },
+	 
+	 showInfoAssessmentAfterCreate : function(component,event,helper){ 
+	   $A.createComponent(
+	            "c:OrmAssessmentLayoutCmp", {
+	                "assessmentData": event.getParam("assessmentObject"),
+	                "createAssessmentButtonClicked" : true,
+	                "nbreRisk" : event.getParam("numberOfRisk") 
 	            },
 	            function(newCmp) {
 	                if (component.isValid()) {

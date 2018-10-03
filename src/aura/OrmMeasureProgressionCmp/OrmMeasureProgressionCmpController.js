@@ -224,4 +224,13 @@
 		var evt = $A.get("e.c:OrmEvtDeleteMeasureProgress");
 		evt.fire();
     },
+     openfilesList: function(component, event, helper) {
+    
+        idMeasurePro =  event.getParam('mesurePregression');
+        component.set('v.measureProgressionId',idMeasurePro);
+        component.set("v.openfilesList", true);
+    },
+       cancelMeasureProgress: function(component, event, helper) {
+        component.set("v.openfilesList", false);
+    }
 })

@@ -57,7 +57,12 @@
 
                 // filter checks each row, constructs new array where
                 // function returns true
-                data = ListAttachment.filter(row => regex.test(row.orm_title_document__c));
+                data = ListAttachment.filter(row => regex.test(row.ContentVersions[0].orm_title_document__c)
+                || regex.test(row.ContentVersions[0].orm_auteur__c) 
+                || regex.test(row.ContentVersions[0].orm_auteur__c) 
+                || regex.test(row.ContentVersions[0].orm_numeroDeReference__c)
+                || regex.test(row.Title)  );
+               
             } catch (e) {
                 alert(e)
             }

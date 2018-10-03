@@ -85,7 +85,7 @@
                 phases = phases.filter(row => regex.test(row.Description));
             } catch (e) {}
             //component.set("v.phasesList", phases);
-            omponent.set("v.filterPagination", phases);
+            component.set("v.filterPagination", phases);
             component.set("v.items", component.get("v.filterPagination"));
             helper.paginationFilterBis(component, event);
         }

@@ -32,7 +32,15 @@
                     'type': 'success',
                     'mode': 'dismissible'
                 });
+                
                 toastEvent.fire();
+                
+                 component.set('v.activityProof', {
+                        'sobjectType': 'Product2',
+                        'Name' : '',
+                       'Description' : '',
+                       'orm_Activite__c':'',
+                    });
                  var evt = $A.get("e.c:OrmActivityProofCreatedEvt");
                  var idActivity = component.get('v.idActivity');
                  evt.setParams({

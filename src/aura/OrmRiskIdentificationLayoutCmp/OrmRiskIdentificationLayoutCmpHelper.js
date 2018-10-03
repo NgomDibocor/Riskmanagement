@@ -24,12 +24,10 @@
                         row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
                     }
                 }
-                //component.set('v.allRisk', rows);
+               // component.set('v.allRisk', rows);
                 //component.set('v.allRiskTemp', rows);
-                
-                
-            	component.set('v.initialData',rows);
-                component.set('v.items', rows);
+                component.set('v.initialData', response.getReturnValue());
+                component.set('v.items', response.getReturnValue());
                    // start pagination
                     var pageSize = component.get("v.pageSizeBis");
 	                // get size of all the records and then hold into an attribute "totalRecords"
@@ -53,7 +51,7 @@
 	                component.set('v.PaginationList', PaginationList);
                 //end pagination
 
-                var risk = component.get('v.allRisk');
+                var risk = component.get('v.PaginationList');
                 if (risk == null) {
                     var toast = $A.get('e.force:showToast');
                     toast.setParams({

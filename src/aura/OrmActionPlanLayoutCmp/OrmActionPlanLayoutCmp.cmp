@@ -1,18 +1,18 @@
-	<aura:component extends="c:ormAbstractListCmp" controller="OrmActionPlanController">
+<aura:component extends="c:ormAbstractListCmp" controller="OrmActionPlanController">
     <aura:attribute name="idAssessment" type="String" />
     <aura:attribute name="assessmentRisks" type="List" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
     <div style="margin-bottom:20px;margin-top: 40px;">
         <h1 class="titleActionPlan"><span class="dot">Action Plan</span></h1>
     </div>
-    <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:50%;" >
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:50%;">
         <thead>
             <tr class="slds-line-height_reset">
                 <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_label}" >{!$Label.c.orm_measure_label}</div>
+                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_label}">{!$Label.c.orm_measure_label}</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
-                    <div  id="tabtitle" class="slds-truncate" title="Account Name">Risk</div>
+                    <div id="tabtitle" class="slds-truncate" title="Account Name">Risk</div>
                 </th>
                 <th class="slds-text-title_caps" scope="col">
                     <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_Measure_Responsable}">{!$Label.c.orm_Measure_Responsable}</div>
@@ -67,4 +67,12 @@
             </aura:iteration>
         </tbody>
     </table>
+    <center>
+        <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+            <lightning:buttonGroup>
+                <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
+            </lightning:buttonGroup>
+        </div>
+    </center>
 </aura:component>

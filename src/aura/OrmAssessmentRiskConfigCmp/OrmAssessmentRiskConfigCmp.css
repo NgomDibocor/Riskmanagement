@@ -3,7 +3,6 @@
 	font-style: normal;
 	font-size: 18px;
 	letter-spacing: -.003em;
-	text-align: center;
 }
 .THIS #security{
 	font-weight: 400;
@@ -93,11 +92,11 @@
   margin-bottom:20px;
 }
 .THIS .styleAllText{
-    text-align: justify;
+  /*  text-align: justify; */
     text-justify: inter-character;
     font-weight: 400;
 	font-style: normal;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 1.58;
 	letter-spacing: -.003em;
 	white-space: normal !important;

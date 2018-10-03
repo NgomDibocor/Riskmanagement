@@ -3,9 +3,7 @@
     doInit: function(component, event, helper) {
         helper.refreshList(component, event);
     },
-
     openNewAssumption: function(component, event, helper) {
-
         var idAssessment = component.get("v.assessmentData").Id;
         //alert('idAssessment='+idAssessment);
         if (idAssessment == null) {
@@ -94,7 +92,7 @@
                 alert(e)
             }
             //component.set("v.assumptionList", data);
-            omponent.set("v.filterPagination", ListAssumption);
+            component.set("v.filterPagination", data);
             component.set("v.items", component.get("v.filterPagination"));
             helper.paginationFilterBis(component, event);
         }

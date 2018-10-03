@@ -67,8 +67,5 @@
     },
     previousBis : function (component, event, helper) {
       helper.previousBis(component, event);
-    },
-    
-    
- 
+    }
 })

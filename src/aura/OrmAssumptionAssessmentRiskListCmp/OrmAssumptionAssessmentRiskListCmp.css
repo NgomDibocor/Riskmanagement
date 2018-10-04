@@ -23,3 +23,11 @@
     white-space: normal;
     color: green;
 }
+.THIS .btnDeleteActivity {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+.THIS .btnNewAssumption{
+    cursor: pointer;
+}

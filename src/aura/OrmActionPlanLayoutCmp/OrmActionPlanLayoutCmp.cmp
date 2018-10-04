@@ -5,6 +5,7 @@
     <div style="margin-bottom:20px;margin-top: 40px;">
         <h1 class="titleActionPlan"><span class="dot">Action Plan</span></h1>
     </div>
+     <aura:if isTrue="{!not(empty(v.PaginationList))}">
     <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:50%;">
         <thead>
             <tr class="slds-line-height_reset">
@@ -35,7 +36,7 @@
             </tr>
         </thead>
         <tbody>
-            <aura:iteration items="{!v.assessmentRisks}" var="item" indexVar="i">
+            <aura:iteration items="{!v.PaginationList}" var="item" indexVar="i">
                 <aura:iteration items="{!item.Assessments__r}" var="measureName">
                     <tr class="slds-hint-parent">
                         <th data-label="Opportunity Name" scope="row">
@@ -57,7 +58,7 @@
                             <div class="slds-truncate" title="{!measureName.orm_organisation__r.Name}">{!measureName.orm_organisation__r.Name}</div>
                         </td>
                         <td data-label="Contact">
-                            <div class="slds-truncate" title="{!measureName.orm_measure_Status__c}">{!measureName.orm_measure_Status__c}</div>
+                            <div  class="{!measureName.orm_measure_Status__c == 'close' ? 'redColor' : (measureName.orm_measure_Status__c== 'open' ? 'greenColor' : (measureName.orm_measure_Status__c == 'draft' ? 'yellowColor' : ''))  }" title="{!measureName.orm_measure_Status__c}">{!measureName.orm_measure_Status__c}</div>
                         </td>
                         <td data-label="Contact">
                             <div class="slds-truncate" title="{!measureName.orm_endDate__c}">{!measureName.orm_endDate__c}</div>
@@ -68,11 +69,17 @@
         </tbody>
     </table>
     <center>
-        <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-            <lightning:buttonGroup>
-                <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
-            </lightning:buttonGroup>
-        </div>
+    <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+        <lightning:buttonGroup>
+            <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBisTwo}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+            <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBisTwo}" variant="brand" iconName='utility:forward' iconPosition='right' />
+        </lightning:buttonGroup>
+    </div>
     </center>
+    <aura:set attribute="else">
+			    <div class="messageIsEmpty" style="padding-top:20px">
+		 	{!$Label.c.orm_list_title_label +'   '+ 'measure' +'   ' + $Label.c.orm_is_empty}
+		        </div>
+			 </aura:set>
+           </aura:if> 
 </aura:component>

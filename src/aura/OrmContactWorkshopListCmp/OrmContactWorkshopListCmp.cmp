@@ -117,7 +117,21 @@
 						</div>
 
 					</div>
-
+					
+		 <center>
+	<div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previousBis}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
+	                            onclick="{!c.nextBis}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
+	</div>
+	</center>
 				</div>
 				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 				<div class="slds-modal__footer">
@@ -147,5 +161,8 @@
 			contactListSelected="{!v.contactListSelected}" workshop="{!v.workshop}"/>
 	</aura:if>
 	<!-- end email template -->
+	
+	
 <c:OrmContactNewCmp/>
+
 </aura:component>

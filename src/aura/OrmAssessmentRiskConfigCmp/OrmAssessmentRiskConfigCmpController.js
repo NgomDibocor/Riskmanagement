@@ -4,7 +4,6 @@
      *
      */
     InstantantiateRisk: function(component, event, helper) {
-        console.log('*****View Object*********');  
         var data = component.get("v.data");
         data.orm_probability__c = 'Low';
         console.log(JSON.stringify(data));      
@@ -13,11 +12,7 @@
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
         helper.fetchPicklist(component, event, idAsssessmentRisk);
         helper.getProbality(component, event); 
-        //helper.getBusinessImpacts(component, event);
-       //helper.getSliderDefault(component, event);
-       console.log(JSON.stringify(component.get("v.assessmentRiskData")))
       },
-      
       updateAssessmentRisk : function(component, event, helper) {
 	       var assessmentRisk = component.get("v.assessmentRiskData");
 	       var assessment= component.get("v.assessmentRiskData.orm_assessment__c");
@@ -31,7 +26,6 @@
 	       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
 	       assessmentRisk.orm_assessment__c = assessment;
 	       assessmentRisk.orm_Risk__c = risk;
-	       
 		      // var dateRisk=component.find("dateRisk");
 		      // assessmentRisk.orm_date__c =dateRisk.get("v.value");
 		      // var environmentAndCommunity =  component.find("environmentAndCommunity");
@@ -84,7 +78,7 @@
 	        });
 	        $A.enqueueAction(action);
     },
-       /**
+ /**
  *
  * @author David diop
  * @version 1.0
@@ -97,7 +91,6 @@
      
         component.set("v.displaySaveCancelBtn", true);
     },
-    
 	onChangeWorkingEnvironment : function(component, event, helper){
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
@@ -108,11 +101,9 @@
         component.set("v.displaySaveCancelBtn",true);
     	component.find("workingEnvironment").set("v.value", event.getSource().get("v.value"));
 	},
-	
 	onChangeVulnerability : function(component, event, helper){
 	    component.set("v.displaySaveCancelBtn",true);
 	},
-	
 	sendVulnerabilityToFD : function(component, event, helper){
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
@@ -121,9 +112,7 @@
 	        });
            evt.fire();
 	},
-	
-	 onDate : function(component, event, helper)
-    {
+	onDate : function(component, event, helper){
 		  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -132,9 +121,7 @@
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
 	},
-	
-    onChangeUncertainty: function(component, event, helper)
-    {
+    onChangeUncertainty: function(component, event, helper){
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
 	            "nomField": $A.get("$Label.c.orm_uncertainty_assessmentRisk"),
@@ -144,8 +131,7 @@
         component.set("v.displaySaveCancelBtn",true);
     	component.find("uncertainty").set("v.value", event.getSource().get("v.value"));
 	},
-    onStatus : function(component, event, helper)
-    {
+    onChangeStatus : function(component, event, helper){
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -155,8 +141,7 @@
         component.set("v.displaySaveCancelBtn",true);
     	component.find("status").set("v.value", event.getSource().get("v.value"));
 	},
-    onChangeManageAbility : function(component, event, helper)
-    {
+    onChangeManageAbility : function(component, event, helper){
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -166,11 +151,9 @@
         component.set("v.displaySaveCancelBtn",true);
     	component.find("manageAbility").set("v.value", event.getSource().get("v.value"));
 	},
-	
 	onChangeJustificationUncertainty : function(component, event, helper){
 	   component.set("v.displaySaveCancelBtn",true);
 	},
-	
 	sendJustificationUncertaintyToFD : function(component, event, helper){
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -179,11 +162,9 @@
         });
        evt.fire();
 	},
-	
 	onChangeJustificationConsequence : function(component, event, helper){
 	    component.set("v.displaySaveCancelBtn",true);
 	},
-	
 	sendJustificationConsequenceToFD : function(component, event, helper){
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -192,9 +173,7 @@
         });
        evt.fire();
 	},
-	
-	cancel : function(component, event, helper)
-    {
+	cancel : function(component, event, helper){
         component.set("v.displaySaveCancelBtn",false);
     },
      sendDescriptionSearchToFD: function(component, event, helper) {
@@ -205,34 +184,26 @@
         });
         evt.fire();
     },
-    
     onProbabilityChange : function(component, event, helper) { 
-        
         component.set("v.displaySaveCancelBtn",true);
         component.set("v.sliderValue",component.find("slider1").get("v.value")) 
 	    var sliderValue = component.find("slider1").get("v.value");
 	    if(sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")){
-		    
 		    var data = component.get("v.data");
 		    data.orm_probability__c = component.get("v.RareData.orm_probability__c");
 		    component.set("v.data", data);
-		    
 		    document.getElementById("divColor").style.backgroundColor = "green";
 		    document.getElementById("divColor").innerHTML= component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
 	    }else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")){
-		    
 		    var data = component.get("v.data");
 		    data.orm_probability__c = component.get("v.unlikelyData.orm_probability__c");
 		    component.set("v.data", data);
-		    
 		    document.getElementById("divColor").style.backgroundColor = "yellow";
 		    document.getElementById("divColor").innerHTML= component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
 	    } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue<= component.get("v.possibleData.orm_pourcentageMax__c")){
-		    
 		    var data = component.get("v.data");
 		    data.orm_probability__c = component.get("v.possibleData.orm_probability__c");
 		    component.set("v.data", data);
-		    
 		    document.getElementById("divColor").style.backgroundColor = "orange";
 		    document.getElementById("divColor").innerHTML= component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
 	    }else{
@@ -250,20 +221,24 @@
 	    var sliderValue = component.find("cost1").get("v.value");
 	    if(sliderValue >= component.get("v.businessImpHighData.orm_costProjectBudgetMin__c") && sliderValue <= component.get("v.businessImpHighData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "orange";
-		    document.getElementById("cost").innerHTML= 'high';
+		    document.getElementById('cost').style.border = "2px solid #5B86BE";
+		    document.getElementById("cost").innerHTML= 'High';
 		    component.set("v.cost" ,sliderValue);
 	    }if (sliderValue >= component.get("v.businessImpMediumData.orm_costProjectBudgetMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "yellow";
+		    document.getElementById('cost').style.border = "2px solid #5B86BE";
 		    document.getElementById("cost").innerHTML= 'Medium';
 		    component.set("v.cost" ,sliderValue);
 	    } if (sliderValue >= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c") && sliderValue<= component.get("v.businessImpLowData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "green";
-		    document.getElementById("cost").innerHTML='low' ;
+		    document.getElementById('cost').style.border = "2px solid #5B86BE";
+		    document.getElementById("cost").innerHTML='Low' ;
 		    component.set("v.cost" ,sliderValue);
 	    } 
 	    if (sliderValue >= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c") && sliderValue<= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMax__c")){
 		    document.getElementById("cost").style.backgroundColor = "red";
-		    document.getElementById("cost").innerHTML='veryHigh' ;
+		    document.getElementById('cost').style.border = "2px solid #5B86BE";
+		    document.getElementById("cost").innerHTML='Very High' ;
 		    component.set("v.cost" ,sliderValue);
 	    }
         
@@ -275,20 +250,24 @@
 	    var sliderValue = component.find("schedule1").get("v.value");
 	    if(sliderValue >= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMin__c") && sliderValue <= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMax__c")){
 		    document.getElementById("schedule").style.backgroundColor = "orange";
-		    document.getElementById("schedule").innerHTML= 'high';
+		    document.getElementById('schedule').style.border = "2px solid #5B86BE";
+		    document.getElementById("schedule").innerHTML= 'High';
 		    component.set("v.schedule" ,sliderValue);
 	    }if (sliderValue >= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMax__c")){
 		    document.getElementById("schedule").style.backgroundColor = "yellow";
+		    document.getElementById('schedule').style.border = "2px solid #5B86BE";
 		    document.getElementById("schedule").innerHTML= 'Medium';
 		    component.set("v.schedule" ,sliderValue);
 	    } if (sliderValue >= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMin__c") && sliderValue<= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMax__c")){
 		    document.getElementById("schedule").style.backgroundColor = "green";
-		    document.getElementById("schedule").innerHTML='low' ;
+		    document.getElementById('schedule').style.border = "2px solid #5B86BE";
+		    document.getElementById("schedule").innerHTML='Low' ;
 		    component.set("v.schedule" ,sliderValue);
 	    } 
 	    if (sliderValue >= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMin__c") && sliderValue<= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMax__c")){
 		    document.getElementById("schedule").style.backgroundColor = "red";
-		    document.getElementById("schedule").innerHTML='veryHigh' ;
+		    document.getElementById('schedule').style.border = "2px solid #5B86BE";
+		    document.getElementById("schedule").innerHTML='Very High' ;
 		    component.set("v.schedule" ,sliderValue);
 	    } 
     },
@@ -297,19 +276,25 @@
 	    var sliderValue = component.find("production").get("v.value");
 	    if(sliderValue >= component.get("v.businessImpLowData.orm_productionLossMin__c") && sliderValue <= component.get("v.businessImpLowData.orm_productionLossMax__c")){
 		    document.getElementById("production").style.backgroundColor = "green";
-		    document.getElementById("production").innerHTML= 'low';
+		    document.getElementById('production').style.border = "2px solid #5B86BE";
+		    document.getElementById("production").innerHTML= 'Low';
 		    component.set("v.production" ,sliderValue);
+	        
 	    }else if (sliderValue > component.get("v.businessImpMediumData.orm_productionLossMin__c") && sliderValue <= component.get("v.businessImpMediumData.orm_productionLossMax__c")){
 		    document.getElementById("production").style.backgroundColor = "yellow";
+		    document.getElementById('production').style.border = "2px solid #5B86BE";
 		    document.getElementById("production").innerHTML= 'Medium';
 		    component.set("v.production" ,sliderValue);
+		    
 	    } else if (sliderValue > component.get("v.businessImpHighData.orm_productionLossMin__c") && sliderValue<= component.get("v.businessImpHighData.orm_productionLossMax__c")){
 		    document.getElementById("production").style.backgroundColor = "orange";
+		    document.getElementById('production').style.border = "2px solid #5B86BE";
 		    document.getElementById("production").innerHTML= 'High';
 		    component.set("v.production" ,sliderValue);
 	    }else{
 		    document.getElementById("production").style.backgroundColor = "red";
-		    document.getElementById("production").innerHTML= 'VeryHigh';
+		    document.getElementById('production').style.border = "2px solid #5B86BE";
+		    document.getElementById("production").innerHTML= 'Very High';
 		    component.set("v.production" ,sliderValue);
 	    }
     },
@@ -319,34 +304,48 @@
 		  
 		  if(component.get("v.selectedReputation")=='reputation1'){	 
 			 document.getElementById('reputation').style.backgroundColor = "red";
-			 document.getElementById("reputation").innerHTML= 'very high';
+			 document.getElementById('reputation').style.border = "2px solid #5B86BE"; 
+			 document.getElementById("reputation").innerHTML= 'Very High';
 			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
 			 component.set("v.reputation" ,reputation);
+		     var data = component.get("v.data");
+	         data.orm_reputation__c = 'VeryHigh'
+	         component.set("v.data", data);
 	       
 		 } if (component.get("v.selectedReputation")=='reputation2'){
 			 document.getElementById('reputation').style.backgroundColor = "orange";
-			 document.getElementById("reputation").innerHTML= 'high';
+			 document.getElementById('reputation').style.border = "2px solid #5B86BE"; 
+			 document.getElementById("reputation").innerHTML= 'High';
 			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
-			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         component.set("v.reputation" ,reputation);
+		     var data = component.get("v.data");
+	         data.orm_reputation__c = 'High'
+	         component.set("v.data", data);
 		 }
 		  if (component.get("v.selectedReputation")=='reputation3'){
 			 document.getElementById('reputation').style.backgroundColor = "yellow";
+			 document.getElementById('reputation').style.border = "2px solid #5B86BE"; 
 			 document.getElementById("reputation").innerHTML= 'Medium';
 			 var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         component.set("v.reputation" ,reputation);
+		     var data = component.get("v.data");
+	         data.orm_reputation__c = 'Medium'
+	         component.set("v.data", data);
 		 }
-		 if(component.get("v.selectedReputation")=='reputation4')
-		 {
-		  document.getElementById('reputation').style.backgroundColor = "green";
-		  document.getElementById("reputation").innerHTML= 'Low';
-		  var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
-		  component.set("v.reputation" ,reputation);
+		 if(component.get("v.selectedReputation")=='reputation4'){
+			  document.getElementById('reputation').style.backgroundColor = "green";
+			  document.getElementById('reputation').style.border = "2px solid #5B86BE"; 
+			  document.getElementById("reputation").innerHTML= 'Low';
+			  var  reputation =document.getElementById(component.get("v.selectedReputation")).innerHTML;
+			  component.set("v.reputation" ,reputation);
+			  
+			  var data = component.get("v.data");
+		      data.orm_reputation__c = 'Low'
+		      component.set("v.data", data);
 		
 		 }
-		 
-    
     },
      
     /**
@@ -363,14 +362,13 @@
 		 
 		 if(component.get("v.selected")=='r0'){	 
 			 document.getElementById('healthAndSafety').style.backgroundColor = "red";
-			 document.getElementById("healthAndSafety").innerHTML= 'very high';
+			 document.getElementById('healthAndSafety').style.border = "2px solid #5B86BE";
+			 document.getElementById("healthAndSafety").innerHTML= 'Very High';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
-			 
 			 var data = component.get("v.data");
 		     data.orm_healthAndSafety__c = 'VeryHigh';
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
 			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
@@ -381,14 +379,13 @@
 		 } 
 		 if (component.get("v.selected")=='r1'){
 			 document.getElementById('healthAndSafety').style.backgroundColor = "orange";
-			 document.getElementById("healthAndSafety").innerHTML= 'high';
+			 document.getElementById('healthAndSafety').style.border = "2px solid #5B86BE";
+			 document.getElementById("healthAndSafety").innerHTML= 'High';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
-			 
 			 var data = component.get("v.data");
 		     data.orm_healthAndSafety__c = 'High';
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
 			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
@@ -399,14 +396,13 @@
 		 }
 		 if (component.get("v.selected")=='r2'){
 			 document.getElementById('healthAndSafety').style.backgroundColor = "yellow";
+			 document.getElementById('healthAndSafety').style.border = "2px solid #5B86BE";
 			 document.getElementById("healthAndSafety").innerHTML= 'Medium';
 			 var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.healthAndSafety" ,healthAndSafety);
-			 
 			 var data = component.get("v.data");
 		     data.orm_healthAndSafety__c = 'Medium';
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
 			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
@@ -417,14 +413,13 @@
 		 }
 		 if(component.get("v.selected")=='r3'){
 		  document.getElementById('healthAndSafety').style.backgroundColor = "green";
+		  document.getElementById('healthAndSafety').style.border = "2px solid #5B86BE";
 		  document.getElementById("healthAndSafety").innerHTML= 'Low';
 		  var  healthAndSafety =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.healthAndSafety" ,healthAndSafety);
-		  
 		  var data = component.get("v.data");
 	      data.orm_healthAndSafety__c = 'Low';
 	      component.set("v.data", data);
-	      console.log(JSON.stringify(data))
 		  
 		  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	      evt.setParams({
@@ -435,14 +430,13 @@
 		 }
 		 if(component.get("v.selected")=='rr0'){
 			 document.getElementById('security').style.backgroundColor = "red";
-			 document.getElementById("security").innerHTML= 'very high';
+			 document.getElementById('security').style.border = "2px solid #5B86BE";
+			 document.getElementById("security").innerHTML= 'Very High';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
-			 
 			 var data = component.get("v.data");
 		     data.orm_security__c = 'VeryHigh'
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
 			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
@@ -453,14 +447,13 @@
 		 } 
 		 if (component.get("v.selected")=='rr1'){
 			 document.getElementById('security').style.backgroundColor = "orange";
-			 document.getElementById("security").innerHTML= 'high';
+			 document.getElementById('security').style.border = "2px solid #5B86BE";
+			 document.getElementById("security").innerHTML= 'High';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
-			 
 			 var data = component.get("v.data");
 		     data.orm_security__c = 'High'
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
 			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
@@ -471,14 +464,13 @@
 		 }
 		 if (component.get("v.selected")=='rr2'){
 			 document.getElementById('security').style.backgroundColor = "yellow";
+			 document.getElementById('security').style.border = "2px solid #5B86BE";
 			 document.getElementById("security").innerHTML= 'Medium';
 			 var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.security" ,security);
-			 
 			 var data = component.get("v.data");
 		     data.orm_security__c = 'Medium'
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
 			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
@@ -489,14 +481,13 @@
 		 }
 		 if(component.get("v.selected")=='rr3'){
 			  document.getElementById('security').style.backgroundColor = "green";
+			  document.getElementById('security').style.border = "2px solid #5B86BE";
 			  document.getElementById("security").innerHTML= 'Low';
 			  var  security =document.getElementById(component.get("v.selected")).innerHTML;
 			  component.set("v.security" ,security);
-			  
 			  var data = component.get("v.data");
 		      data.orm_security__c = 'Low'
 		      component.set("v.data", data);
-		      console.log(JSON.stringify(data))
 			  
 			  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 		      evt.setParams({
@@ -507,14 +498,13 @@
 		 }
 		 if(component.get("v.selected")=='rrr0'){
 			 document.getElementById('environment').style.backgroundColor = "red";
-			 document.getElementById("environment").innerHTML= 'very high';
+			 document.getElementById('environment').style.border = "2px solid #5B86BE";
+			 document.getElementById("environment").innerHTML= 'Very High';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
-			 
 			 var data = component.get("v.data");
 		     data.orm_environment__c = 'VeryHigh'
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
 			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
@@ -525,15 +515,14 @@
 		 } 
 		 if (component.get("v.selected")=='rrr1'){
 			 document.getElementById('environment').style.backgroundColor = "orange";
-			 document.getElementById("environment").innerHTML= 'high';
+			 document.getElementById('environment').style.border = "2px solid #5B86BE";
+			 document.getElementById("environment").innerHTML= 'High';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
-			 
 			 var data = component.get("v.data");
 		     data.orm_environment__c = 'High'
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
-			 
+		     
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
 	            "nomField": $A.get("$Label.c.search_title_label"),
@@ -543,14 +532,13 @@
 		 }
 		 if (component.get("v.selected")=='rrr2'){
 			 document.getElementById('environment').style.backgroundColor = "yellow";
+			 document.getElementById('environment').style.border = "2px solid #5B86BE";
 			 document.getElementById("environment").innerHTML= 'Medium';
 			 var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 			 component.set("v.environmentAndCommunity" ,environment);
-			 
 			 var data = component.get("v.data");
 		     data.orm_environment__c = 'Medium'
 		     component.set("v.data", data);
-		     console.log(JSON.stringify(data))
 			 
 			 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	         evt.setParams({
@@ -561,14 +549,13 @@
 		 }
 		 if(component.get("v.selected")=='rrr3'){
 		  document.getElementById('environment').style.backgroundColor = "green";
+		  document.getElementById('environment').style.border = "2px solid #5B86BE";
 		  document.getElementById("environment").innerHTML= 'Low';
 		  var  environment =document.getElementById(component.get("v.selected")).innerHTML;
 		  component.set("v.environmentAndCommunity" ,environment);
-		  
 		  var data = component.get("v.data");
 		  data.orm_environment__c = 'Low'
 		  component.set("v.data", data);
-		  console.log(JSON.stringify(data))
 		  
 		   var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({

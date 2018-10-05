@@ -39,19 +39,12 @@ public with sharing class OrmEmailTemplateController {
  * 2018-09-11: Salimata NGOM - Implementation
  */
      @AuraEnabled 
-<<<<<<< HEAD
     public static  Map<String, Object> sendMailMethod(List<Contact> mailcontacts ,String mSubject ,String templateId,String workshop){
-=======
-    public static List<sObject> sendMailMethod(List<Contact> mailcontacts ,String mSubject ,String templateId,String workshop){
->>>>>>> 539858c945dbae07c1cc0b4c7840480213b2104a
     	//get template details
      List<Messaging.SingleEmailMessage> mails =  new List<Messaging.SingleEmailMessage>();     
      List<orm_ContactWorkshop__c> listcontact=new List<orm_ContactWorkshop__c>();
       List<Contact> listcontactfail=new List<Contact>();
-<<<<<<< HEAD
    //   List<List<Object>> resultList=new list<List<Object>>();
-=======
->>>>>>> 539858c945dbae07c1cc0b4c7840480213b2104a
        for(Contact contactId : mailcontacts){
        	//  Create a new Email
        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();

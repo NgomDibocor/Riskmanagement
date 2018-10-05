@@ -1,175 +1,164 @@
-<aura:component controller="OrmAttachmentController" access="global"
-	extends="c:ormAbstractListCmp"
-	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
-	<!-- aura attribute-->
-	<aura:attribute name="parentId" type="Id" description="Attribute for store the Id for Parent Record where we are attach our file" />
-	<aura:attribute name="isOpenfileUploadNewCmp" default="false" type="Boolean" description="check if form upload file is visible" />
-	<aura:attribute name="items" type="ContentDocument[]"/>
-	<aura:attribute name="itemsTemp" type="ContentDocument[]" description="List attachment" />
-	 <aura:attribute name="selectedCount" type="integer" default="0" />
-	<aura:attribute name="key" type="string" />
-	<aura:attribute name="showConfirmRemoveAttachment" type="boolean"
-		default="false" description="is true show popup  message confirmation" />
-	<!-- 	aura register event -->
-	<aura:registerEvent name="OrmOpenAttachmentNewEvent" type="c:OrmOpenAttachmentNewEvent" />
-	<aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
-	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
-	<aura:handler event="c:OrmNewFileUploadCreatedEvent" action="{!c.doInit}" />
-	
-	
-	
-	
-	<div style="margin-bottom:20px;margin-top: 50px">
-		 <h1 class="titleAattachment"><span class="dot">{!$Label.c.orm_attachment_menu}</span></h1>
-	</div>
-	<div class="slds-grid slds-gutters">
-		<div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>
-		<div class=" slds-size--6-of-12   slds-p-horizontal--small">
-			<a href="javascript:void(0);"
-				onclick="{!c.sendDescriptionSearchToFD}"> <lightning:input
-					type="search" onchange="{!c.filter}" value="{!v.key}"
-					label="{!$Label.c.search_title_label}" />
-			</a>
-		</div>
-		<div class=" slds-size--4-of-12   slds-p-horizontal--small">
-			<br /> <span class="btnNewAttachment"
-				onclick="{!c.showformfileUploadNew}"> <lightning:icon
-					iconName="utility:new" size="medium" />
+<aura:component controller="OrmAttachmentController" access="global" extends="c:ormAbstractListCmp" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
+    <!-- aura attribute-->
+    <aura:attribute name="parentId" type="Id" description="Attribute for store the Id for Parent Record where we are attach our file" />
+    <aura:attribute name="isOpenfileUploadNewCmp" default="false" type="Boolean" description="check if form upload file is visible" />
+    <aura:attribute name="items" type="ContentDocument[]" />
+    <aura:attribute name="itemsTemp" type="ContentDocument[]" description="List attachment" />
+    <aura:attribute name="selectedCount" type="integer" default="0" />
+    <aura:attribute name="key" type="string" />
+    <aura:attribute name="showConfirmRemoveAttachment" type="boolean" default="false" description="is true show popup  message confirmation" />
+    <!-- 	aura register event -->
+    <aura:registerEvent name="OrmOpenAttachmentNewEvent" type="c:OrmOpenAttachmentNewEvent" />
+    <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
+    <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+    <aura:handler event="c:OrmNewFileUploadCreatedEvent" action="{!c.doInit}" />
+
+
+
+
+    <div style="margin-bottom:20px;margin-top: 50px">
+        <h1 class="titleAattachment"><span class="dot">{!$Label.c.orm_attachment_menu}</span></h1>
+    </div>
+    <div class="slds-grid slds-gutters">
+        <div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>
+        <div class=" slds-size--6-of-12   slds-p-horizontal--small">
+            <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
+                <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
+            </a>
+        </div>
+        <div class=" slds-size--4-of-12   slds-p-horizontal--small">
+            <br /> <span class="btnNewAttachment" onclick="{!c.showformfileUploadNew}"> <lightning:icon
+					iconName="utility:new" size="small" />
 			</span>
-			<span
-				class="btnDeleteAttachment" onclick="{!c.removeAttachment}"> <lightning:icon
-					iconName="utility:delete" size="medium" />
+            <span class="btnDeleteAttachment" onclick="{!c.removeAttachment}"> <lightning:icon
+					iconName="utility:delete" size="small" />
 			</span>
-		</div>
-	</div>
-	<!-- end header page content search bar and action button -->
-	<div class="slds-m-around_large">
-		<!--Data Table-->
-	<aura:if isTrue="{!not(empty(v.PaginationList))}">
-		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
-			<thead>
-				<tr class="slds-text-title--caps">
-				 <th style="width:3.25rem;" class="slds-text-align--right">
-               <div class="slds-form-element">
-                  <div class="slds-form-element__control">
-                     <label class="slds-checkbox">
+        </div>
+    </div>
+    <!-- end header page content search bar and action button -->
+    <div class="slds-m-around_large">
+        <!--Data Table-->
+        <aura:if isTrue="{!not(empty(v.PaginationList))}">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title--caps">
+                        <th style="width:3.25rem;" class="slds-text-align--right">
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <label class="slds-checkbox">
                         <!--header checkbox for select all-->
                         <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
                         <span class="slds-checkbox--faux"></span>
                         <span class="slds-form-element__label text"></span>
                      </label>
-                  </div>
-               </div>
-            </th>
-					<th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
-					<th scope="col"><div class="slds-truncate thTable"
-							title="{!$Label.c.orm_title_file}">{!$Label.c.orm_title_file}</div></th>
-					<th scope="col"><div class="slds-truncate thTable"
-							title="{!$Label.c.orm_author_file}">{!$Label.c.orm_author_file}</div></th>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate thTable" title="">N°</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate thTable" title="{!$Label.c.orm_title_file}">{!$Label.c.orm_title_file}</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate thTable" title="{!$Label.c.orm_author_file}">{!$Label.c.orm_author_file}</div>
+                        </th>
 
-					<th scope="col"><div class="slds-truncate thTable"
-							title="{!$Label.c.orm_reference_number}">{!$Label.c.orm_reference_number}</div></th>
+                        <th scope="col">
+                            <div class="slds-truncate thTable" title="{!$Label.c.orm_reference_number}">{!$Label.c.orm_reference_number}</div>
+                        </th>
 
-					<th scope="col"><div class="slds-truncate"
-							title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div></th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div>
+                        </th>
 
-				</tr>
+                    </tr>
 
-			</thead>
+                </thead>
 
-			<tbody>
-				<!--### display all records of attachment  one by one by aura:iteration ###-->
-<!-- 				items="{!v.items}" var="item" -->
-				<aura:iteration  items="{!v.PaginationList}" var="item" indexVar="i">
-					<tr class="slds-hint-parent">
-					 <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
-                  <div class="slds-form-element">
-                     <div class="slds-form-element__control">
-                        <label class="slds-checkbox">
+                <tbody>
+                    <!--### display all records of attachment  one by one by aura:iteration ###-->
+                    <!-- 				items="{!v.items}" var="item" -->
+                    <aura:iteration items="{!v.PaginationList}" var="item" indexVar="i">
+                        <tr class="slds-hint-parent">
+                            <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <label class="slds-checkbox">
                            <ui:inputCheckbox text="{!item.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
                            <span class="slds-checkbox--faux"></span>
                            <span class="slds-form-element__label text"></span>
                         </label>
-                     </div>
-                  </div>
-               </td>
-						<td>{!i+1}</td>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{!i+1}</td>
 
-						<td><span class="slds-grid slds-grid_align-spread"> <span
+                            <td><span class="slds-grid slds-grid_align-spread"> <span
 								class="slds-truncate" title="{!item.orm_title_document__c}">
 									{!item.ContentVersions[0].orm_title_document__c} </span>
-						</span></td>
-						<td><span class="slds-grid slds-grid_align-spread"> <span
+                                </span>
+                            </td>
+                            <td><span class="slds-grid slds-grid_align-spread"> <span
 								class="slds-truncate" title="{!item.orm_auteur__c}">
 									{!item.ContentVersions[0].orm_auteur__c} </span>
-						</span></td>
-						<td><span class="slds-grid slds-grid_align-spread"> <span
+                                </span>
+                            </td>
+                            <td><span class="slds-grid slds-grid_align-spread"> <span
 								class="slds-truncate" title="{!item.orm_numeroDeReference__c}">
 									{!item.ContentVersions[0].orm_numeroDeReference__c} </span>
-						</span></td>
-						<td><span class="slds-grid slds-grid_align-spread"> <span
+                                </span>
+                            </td>
+                            <td><span class="slds-grid slds-grid_align-spread"> <span
 								class="slds-truncate" title="{!item.Title}"> <a
 									data-index="{!i}" onclick="{!c.openSingleFile}">{!item.Title}</a></span>
-						</span></td>
+                                </span>
+                            </td>
 
-					</tr>
+                        </tr>
 
-				</aura:iteration>
-			</tbody>
-		</table>
-		<aura:set attribute="else">
-			   <div class="messageIsEmpty">
-		 		   List of attachments is empty
-		        </div>
-			 </aura:set>
-           </aura:if>
-	</div>
-		<aura:if isTrue="{!v.showConfirmRemoveAttachment}">
-		<!--###### MODAL BOX Start From Here ######-->
-		<div class="demo-only" style="height: 640px;">
-			<section role="dialog" tabindex="-1"
-				aria-labelledby="modal-heading-01" aria-modal="true"
-				aria-describedby="modal-content-id-1"
-				class="slds-modal slds-fade-in-open">
-				<div class="slds-modal__container">
-					<header class="slds-modal__header slds-theme--error">
-						<button
-							class="slds-button slds-modal__close slds-button--icon-inverse"
-							onclick="{!c.closeModalRemove}" title="Close">
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <center>
+                <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+                    <lightning:buttonGroup>
+                        <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                        <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                    </lightning:buttonGroup>
+                </div>
+            </center>
+            <aura:set attribute="else">
+                <div class="messageIsEmpty">
+                    {!$Label.c.orm_list_title_label +'  attachments  ' + $Label.c.orm_is_empty}
+                </div>
+            </aura:set>
+        </aura:if>
+    </div>
+    <aura:if isTrue="{!v.showConfirmRemoveAttachment}">
+        <!--###### MODAL BOX Start From Here ######-->
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-theme--error">
+                        <button class="slds-button slds-modal__close slds-button--icon-inverse" onclick="{!c.closeModalRemove}" title="Close">
 							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
-						<h3 id="modal-heading-01"
-							class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
-					</header>
-					<div class="slds-modal__content slds-p-around_medium"
-						id="modal-content-id-1">
-						<p>{!$Label.c.orm_deletion_message}</p>
-					</div>
-					<footer class="slds-modal__footer">
-						<button class="slds-button slds-button_neutral"
-							onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
-						<button class="slds-button slds-button_brand"
-							onclick="{!c.removeAttachmentSelected}">{!$Label.c.orm_delete_button_title}</button>
-					</footer>
-				</div>
-			</section>
-			<div class="slds-backdrop slds-backdrop_open"></div>
-		</div>
-		<!--###### MODAL BOX End  Here ######-->
-	</aura:if>
-	<center>
-	<div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-	    <lightning:buttonGroup >
-	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
-	                            onclick="{!c.previousBis}" variant="brand"
-	                            iconName='utility:back'/>
-	          &nbsp; &nbsp; &nbsp;
-	          <lightning:button label="Next" 
-	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
-	                            onclick="{!c.nextBis}" variant="brand"
-	                            iconName='utility:forward' iconPosition='right'/>
-	      </lightning:buttonGroup>
-	</div>
-	</center>
-	<c:OrmAttachmentNewCmp />
+                        <h3 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>{!$Label.c.orm_deletion_message}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
+                        <button class="slds-button slds-button_brand" onclick="{!c.removeAttachmentSelected}">{!$Label.c.orm_delete_button_title}</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        <!--###### MODAL BOX End  Here ######-->
+    </aura:if>
+
+    <c:OrmAttachmentNewCmp />
 </aura:component>

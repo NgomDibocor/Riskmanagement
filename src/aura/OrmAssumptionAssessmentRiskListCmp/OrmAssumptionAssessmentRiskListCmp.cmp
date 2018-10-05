@@ -61,13 +61,21 @@
 
                 <tbody>
                     <!--### display all records of workshop attribute one by one by aura:iteration ###-->
-<!--                     items="{!v.assumptionRiskList}" var="assumption"  -->
-                    <aura:iteration   items="{!v.PaginationList}" var="item"  indexVar="sNo">
+                    <!--                     items="{!v.assumptionRiskList}" var="assumption"  -->
+                    <aura:iteration items="{!v.PaginationList}" var="item" indexVar="sNo">
                         <!-- start iteration -->
                         <c:OrmAssumptionAssessmentRiskEditRow assumption="{!item}" selectedRowsCount="{!v.selectedRowsCount}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
                     </aura:iteration>
                 </tbody>
             </table>
+            <center>
+                <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+                    <lightning:buttonGroup>
+                        <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                        <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                    </lightning:buttonGroup>
+                </div>
+            </center>
             <aura:set attribute="else">
                 <div class="messageIsEmpty" style="padding-top:20px">
                     {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
@@ -99,19 +107,6 @@
         </div>
         <!--###### MODAL BOX End  Here ######-->
     </aura:if>
-    <center>
-	<div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-	    <lightning:buttonGroup >
-	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
-	                            onclick="{!c.previousBis}" variant="brand"
-	                            iconName='utility:back'/>
-	          &nbsp; &nbsp; &nbsp;
-	          <lightning:button label="Next" 
-	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
-	                            onclick="{!c.nextBis}" variant="brand"
-	                            iconName='utility:forward' iconPosition='right'/>
-	      </lightning:buttonGroup>
-	</div>
-	</center>
+
     <c:OrmAssumptionAssessmentRiskNewCmp />
 </aura:component>

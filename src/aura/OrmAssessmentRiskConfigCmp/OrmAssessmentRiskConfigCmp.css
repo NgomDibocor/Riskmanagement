@@ -1,8 +1,20 @@
+.THIS .borderColapse{
+	border-collapse: initial;
+}
+.THIS .borderBox{
+	border: none !important;
+	padding:auto;
+}
 .THIS #healthAndSafety{
 	font-weight: 400;
 	font-style: normal;
 	font-size: 18px;
 	letter-spacing: -.003em;
+	padding-left: 20px;
+    padding-top: 20px;
+}
+.THIS .paddingLeft{
+	padding-left: 20px;
 }
 .THIS #security{
 	font-weight: 400;
@@ -27,19 +39,16 @@
 	text-align: center;
 	font-weight: 600;
     font-size: 1.5em;
-    border-left: 5px solid #ffffff;
 }
 .THIS #schedule{
 	text-align: center;
 	font-weight: 600;
     font-size: 1.5em;
-    border-left: 5px solid #ffffff;
 }
 .THIS #reputation{
 	text-align: center;
 	font-weight: 600;
     font-size: 1.5em;
-    border-left: 5px solid #ffffff;
 }
 .THIS span{
 	
@@ -50,30 +59,37 @@
 	text-align: justify;
     text-justify: inter-word;
 }
-.THIS .tdWidth1{
-	width: 20%;
-	white-space: normal !important;
-	text-align: justify;
-    text-justify: inter-character;
-}
-.THIS .tdWidth2{
-	width: 25%;
-	white-space: normal !important;
-	text-align: justify;
-    text-justify: inter-character;
-}
 .THIS .thTable {
     font-weight: 400;
 	font-style: normal;
 	font-size: 20px;
 	letter-spacing: -.003em;
 	text-align:center;
+	padding-left: 20px;
+    padding-top: 20px;
 }
 .THIS .thTableBI {
     font-weight: 400;
 	font-style: normal;
 	font-size: 20px;
 	letter-spacing: -.003em;
+	padding-left: 20px;
+    padding-top: 20px;
+}
+.THIS .thTablehithoutPadding {
+    font-weight: 400;
+	font-style: normal;
+	font-size: 20px;
+	letter-spacing: -.003em;
+    padding-top: 20px;
+}
+.THIS .thTableSec {
+    font-weight: 400;
+	font-style: normal;
+	font-size: 20px;
+	letter-spacing: -.003em;
+	padding-left: 100px;
+    padding-top: 20px;
 }
 .THIS .divColor {
 	 font-weight: 800;
@@ -89,10 +105,20 @@
 }
 .THIS .widthBtn {
   width: 150px;
-  margin-bottom:20px;
+} 
+.THIS .widthCard {
+  width: 100%;
+}
+.THIS .centerBtnGroup {
+  margin-left: 20px;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+.THIS .centerBtnGroupMatice {
+  margin-top:auto;
+  margin-bottom:auto;
 }
 .THIS .styleAllText{
-  /*  text-align: justify; */
     text-justify: inter-character;
     font-weight: 400;
 	font-style: normal;
@@ -100,4 +126,14 @@
 	line-height: 1.58;
 	letter-spacing: -.003em;
 	white-space: normal !important;
+}
+.THIS .borderRight{
+	border-right: 2px solid #5B86BE ;
+}
+.THIS .borderLeft{
+	border-left: 2px solid #5B86BE ;
+}
+.THIS .borderRightAndLeft{
+	border-left: 2px solid #5B86BE ;
+	border-right: 2px solid #5B86BE ;
 }

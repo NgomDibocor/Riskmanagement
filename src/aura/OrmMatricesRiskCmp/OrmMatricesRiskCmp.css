@@ -134,21 +134,33 @@
     font-size: 1.7em;
     color: #5B86BE;
 }  
+.THIS #reputation {
+    display: inline-block;
+    width: 15%;
+    text-align: center;
+    padding-right: 40px;
+    margin-bottom: 350px;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #5B86BE;
+} 
 .THIS #idTable {
     display: inline-block;
-  /*  width: 400px; */
     margin-top:50px;
     margin-bottom:20px;
 }  
 .THIS #idTableSecurity {
     display: inline-block;
-    /*  width: 400px; */
     margin-top:50px;
     margin-bottom:20px;
 } 
 .THIS #idTableEnvironment {
     display: inline-block;
-    /*  width: 400px; */
+    margin-top:50px;
+    margin-bottom:20px;
+}  
+.THIS #idTableReputation {
+    display: inline-block;
     margin-top:50px;
     margin-bottom:20px;
 }

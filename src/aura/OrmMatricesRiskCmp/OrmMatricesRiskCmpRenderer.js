@@ -50,6 +50,21 @@
 			      document.getElementById("env14").innerHTML= 'X';
 			   }
 			   //Environment and Com
+			   
+			   //Reputation
+			   if(data.orm_reputation__c == 'Low'){
+			      document.getElementById("rep11").innerHTML= 'X';
+			   }
+			   if(data.orm_reputation__c == 'Medium'){
+			      document.getElementById("rep12").innerHTML= 'X';
+			   }
+			   if(data.orm_reputation__c == 'High'){
+			      document.getElementById("rep13").innerHTML= 'X';
+			   }
+			   if(data.orm_reputation__c == 'VeryHigh'){
+			      document.getElementById("rep14").innerHTML= 'X';
+			   }
+			   //end Reputation
 			}
 		if(data.orm_probability__c == 'Possible'){
 		  //health and safety
@@ -96,6 +111,21 @@
 		      document.getElementById("env24").innerHTML= 'X';
 		   }
 		   //End Environment and Com
+		   
+		   //Reputation
+		   if(data.orm_reputation__c == 'Low'){
+		      document.getElementById("rep21").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'Medium'){
+		      document.getElementById("rep22").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'High'){
+		      document.getElementById("rep23").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'VeryHigh'){
+		      document.getElementById("rep24").innerHTML= 'X';
+		   }
+		   //End Reputation
 		}
 		if(data.orm_probability__c == 'Unlikely'){
 		//health and safety
@@ -142,6 +172,21 @@
 		      document.getElementById("env34").innerHTML= 'X';
 		   }
 		   //End Environment and Com
+		   
+		   //Repuatation
+		   if(data.orm_reputation__c == 'Low'){
+		      document.getElementById("rep31").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'Medium'){
+		      document.getElementById("rep32").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'High'){
+		      document.getElementById("rep33").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'VeryHigh'){
+		      document.getElementById("rep34").innerHTML= 'X';
+		   }
+		   //End Repuatation
 		}
 		if(data.orm_probability__c == 'Rare'){
 		// health and safety
@@ -188,6 +233,21 @@
 		      document.getElementById("env44").innerHTML= 'X';
 		   }
 		   //End Environment and Com
+		   
+		   //Reputation
+		   if(data.orm_reputation__c == 'Low'){
+		      document.getElementById("rep41").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'Medium'){
+		      document.getElementById("rep42").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'High'){
+		      document.getElementById("rep43").innerHTML= 'X';
+		   }
+		   if(data.orm_reputation__c == 'VeryHigh'){
+		      document.getElementById("rep44").innerHTML= 'X';
+		   }
+		   //End Reputation
 		}
 	  }
 		

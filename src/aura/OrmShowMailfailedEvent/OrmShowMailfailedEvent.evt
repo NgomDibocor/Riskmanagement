@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event template">
+<aura:attribute name="mailsfailed" type="Contact[]" description="list of contacts failed" />
+</aura:event>

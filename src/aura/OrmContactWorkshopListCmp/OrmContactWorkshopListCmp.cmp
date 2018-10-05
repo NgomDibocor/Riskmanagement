@@ -22,6 +22,8 @@
 	<aura:attribute name="workshop" type="Contract" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
+<aura:attribute name="mailfailed" type="boolean" default="false" />
+<aura:attribute name="emailfailed" type="Contact[]"/>
 	<aura:attribute name="columns" type="List" />
 	<aura:attribute name="email" type="string" />
 	<aura:attribute name="emailTemplate" type="boolean" default="false" />
@@ -32,6 +34,7 @@
 	<aura:handler event="c:OrmContactCreatedEvt" action="{!c.refreshContact}" />
 	<aura:handler event="c:OrmRefreshContactWorkshopEvt" action="{!c.refreshContact}" />
 	<aura:handler event="c:OrmCloseContactWrokshopEvnt" action="{!c.showModalContacts}" />
+	<aura:handler event="c:OrmShowMailfailedEvent" action="{!c.showModalContactsFailed}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 	<!--  start modal participants-->
@@ -159,6 +162,44 @@
 	<aura:if isTrue="{!v.emailTemplate}">
 		<c:OrmEmailTemplate emailTemplate="{!v.emailTemplate}"
 			contactListSelected="{!v.contactListSelected}" workshop="{!v.workshop}"/>
+	</aura:if>
+		<aura:if isTrue="{!v.mailfailed}">
+	<div role="dialog" tabindex="-1" aria-labelledby="prompt-heading-id"
+		aria-describedby="prompt-message-wrapper"
+		class="slds-modal slds-fade-in-open slds-modal--prompt">
+		<div class="slds-modal__container">
+			<div
+				class="slds-modal__header slds-theme--warning slds-theme--alert-texture">
+				<button
+					class="slds-button slds-modal__close slds-button--icon-inverse"
+					title="Close" onclick="{!c.closeEmailFailed}">
+					X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+				</button>
+				<h1 id="header99" class="slds-text-heading--medium">Emails Incorrect</h1>
+
+			</div>
+			<div class="slds-modal__content slds-p-around--medium">
+		
+			<div class="slds-input-has-icon slds-input-has-icon--right">
+									 <aura:iteration items="{!v.emailfailed}" var="contact">
+                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" title="{!contact.Email}"  >
+                            <aura:set attribute="media">
+                                <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
+                            </aura:set>
+                        </lightning:pill>
+                    </aura:iteration>
+									</div>
+									 
+			</div>
+			<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+			<div class="slds-modal__footer">
+				<button class="slds-button slds-button--neutral"
+					onclick="{!c.closeEmailFailed}">{!$Label.c.orm_cancel_button_title}</button>
+				
+
+			</div>
+		</div>
+	</div>
 	</aura:if>
 	<!-- end email template -->
 	

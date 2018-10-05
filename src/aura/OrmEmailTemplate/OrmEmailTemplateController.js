@@ -13,6 +13,7 @@
 			evt.fire();
 		component.set("v.emailTemplate",false);
 	},
+
   /**
  *
  * @author Salimata NGOM

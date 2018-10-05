@@ -113,6 +113,8 @@
 
 			component.set("v.contactListSelected",row);
 			component.set("v.emailTemplate",true);
+			 var form = component.find('modalcontacts');
+                $A.util.removeClass(form, 'slds-fade-in-open');
 			break;
 		default:
 			break;
@@ -186,6 +188,8 @@
 	 */
 	refreshContact:function(component, event, helper){
 		helper.refreshContactWorkshop(component);
+		 var form = component.find('modalcontacts');
+                $A.util.addClass(form, 'slds-fade-in-open');
 	},
  /**
  *
@@ -259,6 +263,37 @@
     	//open modal contactworkshop
  var form = component.find('modalcontacts');
                 $A.util.addClass(form, 'slds-fade-in-open'); 
-    }
-
+    },
+ /**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method close modal email failed
+ * @history 
+ * 2018-10-05 : Salimata NGOM - Implementation
+ */
+	closeEmailFailed : function(component, event, helper) {
+		var evt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
+			evt.fire();
+		component.set("v.mailfailed",false);
+		 var form = component.find('modalcontacts');
+                $A.util.addClass(form, 'slds-fade-in-open');
+	},
+/**
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description method open modal email failed
+ * @history 
+ * 2018-10-05 : Salimata NGOM - Implementation
+ */
+    showModalContactsFailed:function(component, event, helper){
+    console.log('showmodal');
+    	//open modal contactfailed
+    	component.set('v.emailfailed',event.getParam('mailsfailed'));
+    	component.set('v.mailfailed',true);
+    	 var form = component.find('modalcontacts');
+                $A.util.removeClass(form, 'slds-fade-in-open');
+ 
+    },
 })

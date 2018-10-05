@@ -14,12 +14,12 @@
 	<aura:attribute name="IconName" type="string" />
 	<aura:attribute name="oRecord" type="sObject" />
 <aura:attribute name="email" type="string" />
-	<aura:attribute name="workshop" type="Contract" />
-	<aura:attribute name="mailStatus" type="boolean" default="false" />
-
+<aura:attribute name="emailfailed" type="Contact[]"/>
+	<aura:attribute name="workshop" type="Contract" />	
 	<aura:handler name="init" value="{!this}" action="{!c.loadComponent}" />
 		 <aura:registerEvent name="OrmRefreshContactWorkshopEvt"  type="c:OrmRefreshContactWorkshopEvt"/>
 		 <aura:registerEvent name="OrmCloseContactWrokshopEvnt"  type="c:OrmCloseContactWrokshopEvnt"/>
+		 <aura:registerEvent name="OrmShowMailfailedEvent"  type="c:OrmShowMailfailedEvent"/>
 	
 	 <aura:if isTrue="{!v.emailTemplate}">
 	<div role="dialog" tabindex="-1" aria-labelledby="prompt-heading-id"

@@ -57,6 +57,25 @@ public with sharing class OrmContactController {
         return allContact;
     }  
     
+/**
+ * find one contact 
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get one contact 
+ * @history 
+ * 2018-10-05 : Salimata NGOM - Implementation
+ */
+   
+ @AuraEnabled 
+  public static Contact findOneContact(string idcontact){
+        Contact oneContact = new Contact();
+        oneContact = [Select Id, Name,FirstName,LastName,Email,Phone, orm_organisation__c
+                    From Contact where RecordTypeId=:OrmContactController.getContactRecordTypeId() and Id=:idcontact];
+                   
+        return oneContact;
+    }
+    
  /**
  * @author Salimata NGOM
  * @version 1.0

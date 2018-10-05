@@ -612,7 +612,7 @@
                               </td>    
                           </tr>
                           <tr>
-                            <td>
+                            <td class="tdClass">
                                 <div class="topSpacing"> 
                                     <label class="slds-form-element__label styleLabel">{!$Label.c.orm_description_object_assessment}</label>
                                 </div>
@@ -620,6 +620,17 @@
 	                                    <ui:inputTextArea class="slds-input styleLabel" 
 	                                             value="{!v.assessmentData.orm_description__c}" 
 	                                             keyup="{!c.onChangeDescriptionProject}" focus="{!c.sendDesciptionToFD}">
+	                                    </ui:inputTextArea>
+	                                </div>
+                            </td>
+                            <td class="tdClass">
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label styleLabel">Scope</label>
+                                </div>
+	                                <div class="width">
+	                                    <ui:inputTextArea class="slds-input styleLabel" 
+	                                             value="{!v.assessmentData.orm_scope__c}" 
+	                                             keyup="{!c.onChangeScopeProject}" focus="{!c.sendDesciptionScopeToFD}">
 	                                    </ui:inputTextArea>
 	                                </div>
                             </td>
@@ -1122,7 +1133,17 @@
                                     </ui:inputTextArea>
                                 </div>
                             </td> 
-                            <td class="tdClass"></td>
+                            <td class="tdClass">
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label styleLabel">Scope</label>
+                                </div>
+	                                <div class="width">
+	                                    <ui:inputTextArea class="slds-input styleLabel" 
+	                                             value="{!v.assessmentData.orm_scope__c}" 
+	                                             keyup="{!c.onChangeScopeOrganisation}" focus="{!c.sendDesciptionScopeToFD}">
+	                                    </ui:inputTextArea>
+	                                </div>
+                            </td>
                         </tr>
             </aura:if>
               <tr>
@@ -1203,14 +1224,14 @@
 	                        </td>
 	                  </tr>
 	                  <tr>
-	                     <td class="textInDiv">
+	                     <td>
 	                           <div style="margin-bottom:20px;">
 									 <h1 class="titleOrganisationUnit"><span class="organisationUnit">Organisation unit</span></h1>
 								</div>
 	                        </td>
 	                  </tr>
 	                  <tr>
-                          <td class="textInDivCmp">
+                          <td>
                              <div class="slds-col">
                                     <span class="startSpaceOrg"></span>                                  
 							        <div class="orgSelect">
@@ -1356,7 +1377,7 @@
                        </td>
 		            </tr>
                     <tr>
-                      <td>
+                      <td class="textInDivCmp">
                           <c:OrmAssessmentRiskConfigCmp assessmentData="{!v.assessmentData}"  />
                       </td>
                     </tr>

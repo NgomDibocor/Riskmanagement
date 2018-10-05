@@ -224,20 +224,30 @@
         var description = $A.get("$Label.c.orm_region_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangePlannedSD : function(component, event, helper)
-    {
+	onChangeScopeProject : function(component, event, helper){
        component.set("v.displaySaveCancelBtn", true);
     },
-    onChangePlannedED : function(component, event, helper)
-    {
+    
+    onChangeScopeOrganisation : function(component, event, helper){
        component.set("v.displaySaveCancelBtn", true);
     },
-    onChangeApplicationDate : function(component, event, helper)
-    {
+    
+    sendDesciptionScopeToFD : function(component, event, helper){
+       var field = "Scope";
+       var description = "Description scope";
+       helper.sendValuesToFieldDescription(component, event, helper, field, description);
+    },
+    
+	onChangePlannedSD : function(component, event, helper){
        component.set("v.displaySaveCancelBtn", true);
     },
-    sendApplicationDateToFD : function(component, event, helper)
-    {
+    onChangePlannedED : function(component, event, helper){
+       component.set("v.displaySaveCancelBtn", true);
+    },
+    onChangeApplicationDate : function(component, event, helper){
+       component.set("v.displaySaveCancelBtn", true);
+    },
+    sendApplicationDateToFD : function(component, event, helper){
        var field = $A.get("$Label.c.orm_applicationDate_label");
        var description = $A.get("$Label.c.orm_applicationDate_description");
        helper.sendValuesToFieldDescription(component, event, helper, field, description);

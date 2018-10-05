@@ -1,5 +1,5 @@
-.THIS {
-	
+.THIS{
+  
 }
 .THIS a{
     text-decoration: none;
@@ -135,6 +135,7 @@
     line-height: 55px;
     background-color: #5B86BE;
     display: inline-block;
+    color: white;
 }
 .THIS .titleOrganisationUnit {
   font-weight: 600;

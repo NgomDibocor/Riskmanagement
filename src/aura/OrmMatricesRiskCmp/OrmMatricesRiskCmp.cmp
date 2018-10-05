@@ -143,6 +143,42 @@
 					    </table>  
 					  </span>
 				</div>
+				<div style="width:70%;height:300px;">
+				   <span class="monTexte" id="reputation">Reputation </span>
+				   <span id="idTableReputation">
+					   <table>    
+					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					      <tr>
+					        <td class="yellowColor" width="50px" height="50" id="rep11"></td>
+					        <td class="orangeColor" width="50px" height="50" id="rep12"></td>
+					        <td class="redColor" width="50px" height="50" id="rep13"></td>
+					        <td class="redColor" width="50px" height="50" id="rep14"></td>
+					      </tr>  
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="rep21"></td>
+					        <td class="yellowColor" width="50px" height="50" id="rep22"></td>
+					        <td class="orangeColor" width="50px" height="50" id="rep23"></td>
+					        <td class="redColor" width="50px" height="50" id="rep24"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="rep31"></td>
+					        <td class="yellowColor" width="50px" height="50" id="rep32"></td>
+					        <td class="yellowColor" width="50px" height="50" id="rep33"></td>
+					        <td class="orangeColor" width="50px" height="50" id="rep34"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="rep41"></td>
+					        <td class="greenColor" width="50px" height="50" id="rep42"></td>
+					        <td class="greenColor" width="50px" height="50" id="rep43"></td>
+					        <td class="yellowColor" width="50px" height="50" id="rep44"></td>
+					      </tr>
+					      <tr>
+					          <td class="removeAllBorder" height="50"></td>
+					          <td colspan="4" class="removeBorderLastRow" height="50">Severity</td>
+					       </tr>
+					    </table>  
+					  </span>
+				</div>
 		    </div>
 		    
 			<div style="width:65%;height:auto">

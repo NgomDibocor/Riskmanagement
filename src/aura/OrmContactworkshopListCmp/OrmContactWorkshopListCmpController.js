@@ -276,6 +276,7 @@
 		var evt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
 			evt.fire();
 		component.set("v.mailfailed",false);
+		helper.refreshContactWorkshop(component);
 		 var form = component.find('modalcontacts');
                 $A.util.addClass(form, 'slds-fade-in-open');
 	},

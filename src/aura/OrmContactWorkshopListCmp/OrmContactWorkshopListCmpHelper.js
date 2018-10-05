@@ -205,10 +205,7 @@
         //input.set('v.value', contacts[event.target.id].Name);
    
 		 contact.push(contacts[event.target.id]);
-	
-		
-       
-        cmp.set('v.contactListSelected',contact);
+	 cmp.set('v.contactListSelected',contact);
          cmp.set('v.contactChecked',contacts[event.target.id]);
         var form = cmp.find('lookupForm');
                 $A.util.removeClass(form, 'slds-is-open');

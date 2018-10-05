@@ -199,22 +199,11 @@
 								// close modal
 								// fire toast
 								component.set("v.emailTemplate", false);
-								var evt = $A
-								.get("e.c:OrmCloseContactWrokshopEvnt");
-								evt.fire();
 								var evnt = $A
 								.get("e.c:OrmShowMailfailedEvent");
 								evnt.setParam('mailsfailed',
 										contactfail);
 								evnt.fire();
-								var evt = $A
-								.get("e.c:OrmRefreshContactWorkshopEvt");
-								evt.setParams({
-									"Workshop" : component
-									.get("v.workshop")
-								});
-								evt.fire();
-
 							}
 						} else if (state == "ERROR") {
 

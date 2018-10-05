@@ -5,81 +5,81 @@
     <div style="margin-bottom:20px;margin-top: 40px;">
         <h1 class="titleActionPlan"><span class="dot">Action Plan</span></h1>
     </div>
-     <aura:if isTrue="{!not(empty(v.PaginationList))}">
-    <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:50%;">
-        <thead>
-            <tr class="slds-line-height_reset">
-                <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_label}">{!$Label.c.orm_measure_label}</div>
-                </th>
-                <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="Account Name">Risk</div>
-                </th>
-                <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_Measure_Responsable}">{!$Label.c.orm_Measure_Responsable}</div>
-                </th>
-                <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_category_measure_label}">{!$Label.c.orm_category_measure_label}</div>
-                </th>
-                <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_costEffect_label}">{!$Label.c.orm_costEffect_label}</div>
-                </th>
-                <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_organisationUnit_label}">{!$Label.c.orm_organisationUnit_label}</div>
-                </th>
-                <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_status}">{!$Label.c.orm_measure_status}</div>
-                </th>
-                <th class="slds-text-title_caps" scope="col">
-                    <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_dueDate}">{!$Label.c.orm_measure_dueDate}</div>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <aura:iteration items="{!v.PaginationList}" var="item" indexVar="i">
-                <aura:iteration items="{!item.Assessments__r}" var="measureName">
-                    <tr class="slds-hint-parent">
-                        <th data-label="Opportunity Name" scope="row">
-                            <div class="slds-truncate" title="{!measureName.Name}">{!measureName.Name}</div>
-                        </th>
-                        <td data-label="Account Name">
-                            <div class="slds-truncate" title="{!item.orm_Risk__r.Name}">{!item.orm_Risk__r.Name}</div>
-                        </td>
-                        <td data-label="Close Date">
-                            <div class="slds-truncate" title="{!measureName.orm_measureResponsable__r.Name}">{!measureName.orm_measureResponsable__r.Name}</div>
-                        </td>
-                        <td data-label="Prospecting">
-                            <div class="slds-truncate" title="{!measureName.orm_measureCategorie__c}">{!measureName.orm_measureCategorie__c}</div>
-                        </td>
-                        <td data-label="Confidence">
-                            <div class="slds-truncate" title="{!measureName.orm_Cost_Effect__c}">{!measureName.orm_Cost_Effect__c}</div>
-                        </td>
-                        <td data-label="Amount">
-                            <div class="slds-truncate" title="{!measureName.orm_organisation__r.Name}">{!measureName.orm_organisation__r.Name}</div>
-                        </td>
-                        <td data-label="Contact">
-                            <div  class="{!measureName.orm_measure_Status__c == 'close' ? 'redColor' : (measureName.orm_measure_Status__c== 'open' ? 'greenColor' : (measureName.orm_measure_Status__c == 'draft' ? 'yellowColor' : ''))  }" title="{!measureName.orm_measure_Status__c}">{!measureName.orm_measure_Status__c}</div>
-                        </td>
-                        <td data-label="Contact">
-                            <div class="slds-truncate" title="{!measureName.orm_endDate__c}">{!measureName.orm_endDate__c}</div>
-                        </td>
-                    </tr>
+    <aura:if isTrue="{!not(empty(v.PaginationList))}">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:30%;">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-text-title_caps" scope="col">
+                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_label}">{!$Label.c.orm_measure_label}</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div id="tabtitle" class="slds-truncate" title="Account Name">{!$Label.c.orm_risk}</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_Measure_Responsable}">{!$Label.c.orm_Measure_Responsable}</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_category_measure_label}">{!$Label.c.orm_category_measure_label}</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_costEffect_label}">{!$Label.c.orm_costEffect_label}</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_organisationUnit_label}">{!$Label.c.orm_organisationUnit_label}</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_status}">{!$Label.c.orm_measure_status}</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_dueDate}">{!$Label.c.orm_measure_dueDate}</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.PaginationList}" var="item" indexVar="i">
+                    <aura:iteration items="{!item.Assessments__r}" var="measureName">
+                        <tr class="slds-hint-parent">
+                            <th data-label="Opportunity Name" scope="row">
+                                <div class="slds-truncate" title="{!measureName.Name}">{!measureName.Name}</div>
+                            </th>
+                            <td data-label="Account Name" class="slds-truncate">
+                                <div class="slds-truncate" title="{!item.orm_Risk__r.Name}">{!item.orm_Risk__r.Name}</div>
+                            </td>
+                            <td data-label="Close Date">
+                                <div class="slds-truncate" title="{!measureName.orm_measureResponsable__r.Name}">{!measureName.orm_measureResponsable__r.Name}</div>
+                            </td>
+                            <td data-label="Prospecting">
+                                <div class="slds-truncate" title="{!measureName.orm_measureCategorie__c}">{!measureName.orm_measureCategorie__c}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="{!measureName.orm_Cost_Effect__c}">{!measureName.orm_Cost_Effect__c}</div>
+                            </td>
+                            <td data-label="Amount">
+                                <div class="slds-truncate" title="{!measureName.orm_organisation__r.Name}">{!measureName.orm_organisation__r.Name}</div>
+                            </td>
+                            <td data-label="Contact">
+                                <div class="{!measureName.orm_measure_Status__c == 'close' ? 'redColor' : (measureName.orm_measure_Status__c== 'open' ? 'greenColor' : (measureName.orm_measure_Status__c == 'draft' ? 'yellowColor' : ''))  }" title="{!measureName.orm_measure_Status__c}"><center>{!measureName.orm_measure_Status__c}</center></div>
+                            </td>
+                            <td data-label="Contact">
+                                <div class="slds-truncate" title="{!measureName.orm_endDate__c}">{!measureName.orm_endDate__c}</div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
                 </aura:iteration>
-            </aura:iteration>
-        </tbody>
-    </table>
-    <center>
-    <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-        <lightning:buttonGroup>
-            <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBisTwo}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-            <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBisTwo}" variant="brand" iconName='utility:forward' iconPosition='right' />
-        </lightning:buttonGroup>
-    </div>
-    </center>
-    <aura:set attribute="else">
-			    <div class="messageIsEmpty" style="padding-top:20px">
-		 	{!$Label.c.orm_list_title_label +'   '+ 'measure' +'   ' + $Label.c.orm_is_empty}
-		        </div>
-			 </aura:set>
-           </aura:if> 
+            </tbody>
+        </table>
+        <center>
+            <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+                <lightning:buttonGroup>
+                    <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBisTwo}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                    <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBisTwo}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                </lightning:buttonGroup>
+            </div>
+        </center>
+        <aura:set attribute="else">
+            <div id="message" style="padding-top:20px;text-align: center; font-weight: 600;font-size: 1.2em;white-space: normal;color: green;">
+                {!$Label.c.orm_list_title_label +' '+$Label.c.orm_progressmeasure_label +' ' + $Label.c.orm_is_empty}
+            </div>
+        </aura:set>
+    </aura:if>
 </aura:component>

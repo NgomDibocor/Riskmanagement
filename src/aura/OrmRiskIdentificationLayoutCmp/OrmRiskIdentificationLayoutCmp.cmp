@@ -101,7 +101,7 @@
                     <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.c.orm_close_button_title}" onclick="{!c.closeModal}">
 							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
-                    <h1 id="header99" class="slds-text-heading--medium" style="color: white;">Association </h1>
+                    <h1 id="header99" class="slds-text-heading--medium" style="color: white;">{!$Label.c.orm_association} </h1>
                 </header>
 
                 <!--###### MODAL BOX BODY Part Start From Here ######-->

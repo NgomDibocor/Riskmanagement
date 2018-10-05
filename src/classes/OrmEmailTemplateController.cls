@@ -39,10 +39,11 @@ public with sharing class OrmEmailTemplateController {
  * 2018-09-11: Salimata NGOM - Implementation
  */
      @AuraEnabled 
-    public static List<orm_ContactWorkshop__c> sendMailMethod(List<Contact> mailcontacts ,String mSubject ,String templateId,String workshop){
+    public static List<sObject> sendMailMethod(List<Contact> mailcontacts ,String mSubject ,String templateId,String workshop){
     	//get template details
      List<Messaging.SingleEmailMessage> mails =  new List<Messaging.SingleEmailMessage>();     
      List<orm_ContactWorkshop__c> listcontact=new List<orm_ContactWorkshop__c>();
+      List<Contact> listcontactfail=new List<Contact>();
        for(Contact contactId : mailcontacts){
        	//  Create a new Email
        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
@@ -92,9 +93,14 @@ public with sharing class OrmEmailTemplateController {
 			orm_ContactWorkshop__c contactwshop = OrmContactController.addOneContactWorkShop(contactworkshop);
         	System.debug('Email result ' +mails.get(i).getTargetObjectId());
         	listcontact.add(contactwshop);
-        }else{
+        }else if(result.isSuccess() == false)
+        {
+        	//find contact 
+        	Contact onecontact=OrmContactController.findOneContact(mails.get(i).getTargetObjectId());
+        		listcontactfail.add(onecontact);
+        	 	System.debug('email incorrect');
         	System.debug('Email not success  ' +result.isSuccess());
-        	listcontact=null;
+        	
         }
 	i=i+1;
    }

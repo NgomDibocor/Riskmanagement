@@ -1,83 +1,92 @@
 <aura:component controller="OrmPhaseAssessmentRiskController" extends="c:ormAbstractListCmp" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
-	<!-- methodes -->
-	<aura:handler event="c:OrmSendIdAssessmentRiskToCauseEvt" action="{!c.getAssessmentRiskId}" />
-	<aura:registerEvent name="OrmEventNewPhaseAssessmentRiskClicked" type="c:OrmEventNewPhaseAssessmentRiskClicked" description="" />
-	<aura:handler event="c:OrmEventNewPhaseAssessmentRiskCreated" action="{!c.refreshList}" />
-	<aura:registerEvent name="OrmEvtDeletePhasesAssRisk" type="c:OrmEvtDeletePhasesAssRisk" description="" />
-	<!-- attributes -->
-	<aura:attribute name="idAssessmentRisk" type="string" />
-	<aura:attribute name="phasesList" type="Macro[]" description=""  />
-	<aura:attribute name="phasesTemp" type="Macro[]" description=""  />
-	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
-	<aura:attribute name="key" type="string" description="" />
-	<aura:attribute name="selectedCount" type="integer" default="0"/>
-	<aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
-	 <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
-	<!-- attributes for add -->
-	<aura:attribute name="newPhase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
+    <!-- methodes -->
+    <aura:handler event="c:OrmSendIdAssessmentRiskToCauseEvt" action="{!c.getAssessmentRiskId}" />
+    <aura:registerEvent name="OrmEventNewPhaseAssessmentRiskClicked" type="c:OrmEventNewPhaseAssessmentRiskClicked" description="" />
+    <aura:handler event="c:OrmEventNewPhaseAssessmentRiskCreated" action="{!c.refreshList}" />
+    <aura:registerEvent name="OrmEvtDeletePhasesAssRisk" type="c:OrmEvtDeletePhasesAssRisk" description="" />
+    <!-- attributes -->
+    <aura:attribute name="idAssessmentRisk" type="string" />
+    <aura:attribute name="phasesList" type="Macro[]" description="" />
+    <aura:attribute name="phasesTemp" type="Macro[]" description="" />
+    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+    <aura:attribute name="key" type="string" description="" />
+    <aura:attribute name="selectedCount" type="integer" default="0" />
+    <aura:attribute name="openModalConfirmDeletion" type="Boolean" default="false" />
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
+    <!-- attributes for add -->
+    <aura:attribute name="newPhase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
 																			'Description' : '',
 																			'orm_phase__c': '',
 																			'orm_assessmentRisk__c': ''
 																		}" />
-	<div style="margin-bottom:20px;margin-top: 40px;">
-		 <h1 class="titlePhase"><span class="dot">{!$Label.c.orm_phase}</span></h1>
-	</div>
-    <div class="slds-m-around_large" >
-	    <div class="phase">
-				<div class="iphase">
-					<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
-					    <lightning:input  type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search phase" />
-					</a>	
-				</div>								
-				<span class="btnNewPhase" onclick="{!c.openPopupNewPhase}">
+    <div style="margin-bottom:20px;margin-top: 40px;">
+        <h1 class="titlePhase"><span class="dot">{!$Label.c.orm_phase}</span></h1>
+    </div>
+    <div class="slds-m-around_large">
+        <div class="phase">
+            <div class="iphase">
+                <a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
+                    <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search phase" />
+                </a>
+            </div>
+            <span class="btnNewPhase" onclick="{!c.openPopupNewPhase}">
 		        	<lightning:icon iconName="utility:new" size="small" />
-		        </span>						        
-		        <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
+		        </span>
+            <span class="deletePhase" onclick="{!c.openModalDeletePhase}">
 					<lightning:icon iconName="utility:delete" size="small" />
-				</span>		
-			<!-- use aura:if for show/hide buttons --> 
-	        <aura:if isTrue="{!v.showSaveCancelBtn}">
-	        	<div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
-	        		<!--button for save and cancel Record after Inline Edit-->
-	            	<lightning:buttonGroup class="slds-m-around_medium">
-	                	<lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}"/>
-	                	<lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.save}" variant="success"/>
-	            	</lightning:buttonGroup>
-	        	</div>
-	        </aura:if> 
-             <aura:if isTrue="{!not(empty(v.PaginationList))}">
-	        <table class="slds-table">	        
-	            <thead>
-	                <tr class="slds-text-title--caps">
-	                 <th  class="slds-text-align--right">
-		              	
-		              </th>
-	                  <th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
-	                  <th scope="col">
-	                  	 <div class="slds-truncate thTable" title="{!$Label.c.orm_phase}">Phase</div><!-- {!$Label.c.orm_phase} -->
-	                  </th>
-	                  
-	                </tr>
-	            </thead>
-	            <tbody>
-	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-<!-- 	             items="{!v.phasesList}" var="phase" -->
-	                <aura:iteration  items="{!v.PaginationList}" var="item" indexVar="sNo">
-	                    <c:OrmPhaseAssessmentRiskEditRow phaseAss="{!item}" 
-	                    	selectedRowsCount="{!v.selectedRowsCount}"
-	                    	 showSaveCancelBtn="{!v.showSaveCancelBtn}"  sNo="{!sNo + 1}" />
-	                </aura:iteration>
-	            </tbody>
-	        </table>
-		    <aura:set attribute="else">
-			    <div class="messageIsEmpty" style="padding-top:20px">
-		 	{!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_phase +'   ' + $Label.c.orm_is_empty}
-		        </div>
-			 </aura:set>
-           </aura:if> 	
-		</div>
-       </div>
-        <aura:if isTrue="{!v.openModalConfirmDeletion}">
+				</span>
+            <!-- use aura:if for show/hide buttons -->
+            <aura:if isTrue="{!v.showSaveCancelBtn}">
+                <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
+                    <!--button for save and cancel Record after Inline Edit-->
+                    <lightning:buttonGroup class="slds-m-around_medium">
+                        <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}" />
+                        <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.save}" variant="success" />
+                    </lightning:buttonGroup>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!not(empty(v.PaginationList))}">
+                <table class="slds-table">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th class="slds-text-align--right">
+
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate thTable" title="">N°</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate thTable" title="{!$Label.c.orm_phase}">{!$Label.c.orm_phase}</div>
+                                <!-- {!$Label.c.orm_phase} -->
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--### display all records of causes attribute one by one by aura:iteration ###-->
+                        <!-- 	             items="{!v.phasesList}" var="phase" -->
+                        <aura:iteration items="{!v.PaginationList}" var="item" indexVar="sNo">
+                            <c:OrmPhaseAssessmentRiskEditRow phaseAss="{!item}" selectedRowsCount="{!v.selectedRowsCount}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                <center>
+                    <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+                        <lightning:buttonGroup>
+                            <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                            <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                        </lightning:buttonGroup>
+                    </div>
+                </center>
+                <aura:set attribute="else">
+                    <div class="messageIsEmpty" style="padding-top:20px">
+                        {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                    </div>
+                </aura:set>
+            </aura:if>
+        </div>
+    </div>
+    <aura:if isTrue="{!v.openModalConfirmDeletion}">
         <!--###### MODAL BOX Start From Here ######-->
         <div class="demo-only" style="height: 640px;">
             <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
@@ -101,19 +110,6 @@
         </div>
         <!--###### MODAL BOX End  Here ######-->
     </aura:if>
-    <center>
-	<div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-	    <lightning:buttonGroup >
-	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
-	                            onclick="{!c.previousBis}" variant="brand"
-	                            iconName='utility:back'/>
-	          &nbsp; &nbsp; &nbsp;
-	          <lightning:button label="Next" 
-	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
-	                            onclick="{!c.nextBis}" variant="brand"
-	                            iconName='utility:forward' iconPosition='right'/>
-	      </lightning:buttonGroup>
-	</div>
-	</center>
-	<c:OrmPhaseAssessmentRiskNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
+
+    <c:OrmPhaseAssessmentRiskNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

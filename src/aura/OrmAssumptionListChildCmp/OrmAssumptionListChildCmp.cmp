@@ -17,7 +17,18 @@
 
 	<!--Table Row Start-->
 	<tr>
-
+<td scope="row" class="slds-text-align--right" style="width: 3.25rem;">
+			<div class="slds-form-element">
+				<div class="slds-form-element__control">
+					<label class="slds-checkbox"> <ui:inputCheckbox
+							text="{!v.assumption.Id}" aura:id="boxAssumption"
+							change="{!c.checkboxSelect}" value="" /> <span
+						class="slds-checkbox--faux"></span> <span
+						class="slds-form-element__label text"></span>
+					</label>
+				</div>
+			</div>
+		</td>
 		<td><div class="slds-truncate">{!v.sNo}</div></td>
 
 		<td ondblclick="{!c.inlineEditName}"
@@ -53,18 +64,7 @@
 				</aura:if>
 		</span>
 		</td>
-		<td scope="row" class="slds-text-align--right" style="width: 3.25rem;">
-			<div class="slds-form-element">
-				<div class="slds-form-element__control">
-					<label class="slds-checkbox"> <ui:inputCheckbox
-							text="{!v.assumption.Id}" aura:id="boxAssumption"
-							change="{!c.checkboxSelect}" value="" /> <span
-						class="slds-checkbox--faux"></span> <span
-						class="slds-form-element__label text"></span>
-					</label>
-				</div>
-			</div>
-		</td>
+		
 
 	</tr>
 </aura:component>

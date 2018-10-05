@@ -1,5 +1,12 @@
 ({
-
+ /**
+     *
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description method to init records 
+     * @history 
+     * 2018-08-24 : Salimata NGOM - Implementation
+     */
     initRecords: function(component, event, helper) {
         // call the apex class method and fetch activity list  
         var action = component.get("c.findWorkshopByAssessment");
@@ -44,6 +51,14 @@
         });
         $A.enqueueAction(action);
     },
+     /**
+     *
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description method to save workshop 
+     * @history 
+     * 2018-08-24 : Salimata NGOM - Implementation
+     */
     Save: function(component, event, helper) {
         // Check required fields(Name) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)) {
@@ -78,7 +93,14 @@
         // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
         $A.get('e.force:refreshView').fire();
     },
-
+ /**
+     *
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description method to open modal add new workshop
+     * @history 
+     * 2018-08-24 : Salimata NGOM - Implementation
+     */
     openNewWorkshop: function(component, event, helper) {
 
         var idAssessment = component.get("v.assessmentData").Id;
@@ -100,7 +122,14 @@
             evt.fire();
         }
     },
-
+ /**
+     *
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description add new contact in contact list
+     * @history 
+     * 2018-08-24 : Salimata NGOM - Implementation
+     */
     openNewContact: function(component, event, helper) {
 
         var idAssessment = component.get("v.assessmentData").Id;
@@ -162,5 +191,44 @@
             helper.paginationFilterBis(component, event);
         }
     },
+    /**
+     * 
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description method for show modal confirm delete workshop
+     * @history 2018-10-04 : Salimata NGOM - Implementation
+     */
+    removeWorkshop: function(component, event, helper) {
+        // is checked delete workshop show popup message confirmation
+        // get all checkboxes 
+        //if not checked show toast warning
+        var getSelectedNumber = component.get("v.selectedRowsCount");
+        if (getSelectedNumber == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire();
+        } else {
+            component.set("v.showConfirmRemoveWorkshop", true);
+        }
 
+
+    },
+    /**
+     * 
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description method for remove workshop selected
+     * @history 2018-10-04 : Salimata NGOM - Implementation
+     */
+    removeWorkshopSelected: function(component, event, helper) {
+        component.set("v.showConfirmRemoveWorkshop", false);
+        //fire event to childWorkshopList for delete workshop selected
+        var evt = $A.get("e.c:OrmRemoveRecordWorkshopEvnt");
+        evt.fire();
+    },
+    
 })

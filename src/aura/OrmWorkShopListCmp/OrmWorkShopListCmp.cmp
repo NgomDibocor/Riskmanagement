@@ -22,8 +22,11 @@
 																		}" />
     <aura:attribute name="key" type="string" />
     <aura:attribute name="storeListWorkshop" type="List" />
-
+    	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
+		<aura:attribute name="showConfirmRemoveWorkshopn" type="boolean"
+		default="false" description="is true show popup  message confirmation" />
     <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
+    <aura:handler event="c:OrmRefreshWorkshopEvnt" action="{!c.initRecords}" />
     <aura:registerEvent name="OrmNewWorkShopEvt" type="c:OrmNewWorkShopEvt" />
     <aura:registerEvent type="c:OrmNewContactEvt" name="OrmNewContactEvt" />
     <!-- start header page content search bar and action button -->
@@ -45,11 +48,13 @@
             <br/>
             <span class="btnNewWorkshop" onclick="{!c.openNewWorkshop}">
            <lightning:icon class="curseur" iconName="utility:new" size="medium" /></span>
+           
+           <span class="btnDeleteActivity" onclick="{!c.removeWorkshop}">
+            <lightning:icon	 class="curseur" iconName="utility:delete" size="medium" />
+			</span> 
             <span>
        	      <lightning:icon class="curseur" onclick="{!c.openNewContact}" iconName="action:add_contact" size="small" />
-       	</span>
-            <span class="btnDeleteActivity" onclick="{!c.removeWorkshop}">
-         </span>
+       	   </span>  
             <!--<button class="slds-button slds-button_brand" onclick="{!c.openNewContact}">{!$Label.c.new_title_label+'  '+ $Label.c.orm_contact_menu}</button>  -->
             <!-- use aura:if for show/hide buttons -->
             <aura:if isTrue="{!v.showSaveCancelBtn}">
@@ -67,6 +72,17 @@
             <table class="slds-table slds-table_bordered slds-table_cell-buffer">
                 <thead>
                     <tr class="slds-text-title--caps">
+                    <th style="width: 3.25rem;" class="slds-text-align--right">
+						<div class="slds-form-element">
+							<div class="slds-form-element__control">
+								<label class="slds-checkbox"> 
+									<ui:inputCheckbox aura:id="boxAll" change="{!c.selectAll}" />
+									<span class="slds-checkbox--faux"></span> <span
+									class="slds-form-element__label text"></span>
+								</label>
+							</div>
+						</div>
+					</th>
                         <th scope="col">
                             <div class="slds-truncate" title="">N°</div>
                         </th>
@@ -118,5 +134,38 @@
             </lightning:buttonGroup>
         </div>
     </center>
+    <aura:if isTrue="{!v.showConfirmRemoveWorkshop}">
+		<!--###### MODAL BOX Start From Here ######-->
+		<div class="demo-only" style="height: 640px;">
+			<section role="dialog" tabindex="-1"
+				aria-labelledby="modal-heading-01" aria-modal="true"
+				aria-describedby="modal-content-id-1"
+				class="slds-modal slds-fade-in-open">
+				<div class="slds-modal__container">
+					<header class="slds-modal__header slds-theme--error">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							onclick="{!c.closeModalRemove}" title="Close">
+							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+						</button>
+						<h3 id="modal-heading-01"
+							class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
+					</header>
+					<div class="slds-modal__content slds-p-around_medium"
+						id="modal-content-id-1">
+						<p>{!$Label.c.orm_deletion_message}</p>
+					</div>
+					<footer class="slds-modal__footer">
+						<button class="slds-button slds-button_neutral"
+							onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
+						<button class="slds-button slds-button_brand"
+							onclick="{!c.removeWorkshopSelected}">{!$Label.c.orm_delete_button_title}</button>
+					</footer>
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</div>
+		<!--###### MODAL BOX End  Here ######-->
+	</aura:if>
     <c:OrmContactWorkshopListCmp />
 </aura:component>

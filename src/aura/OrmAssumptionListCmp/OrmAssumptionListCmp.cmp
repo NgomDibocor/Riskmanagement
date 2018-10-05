@@ -3,8 +3,6 @@
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!-- 	declare aura attribute -->
 	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
-	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-	<aura:handler event="c:OrmAssumptionCreatedEvt" action="{!c.doInit}" />
 	<aura:attribute name="assumptionList" type="Macro[]" />
 	<aura:attribute name="storeAssumptionList" type="Macro[]" />
 	<aura:attribute name="assessmentData" type="Assessment__c" />
@@ -19,6 +17,8 @@
 		type="c:OrmRemoveRecordAssumptEvnt" />
     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
 	<!-- 		declare aura:handler -->
+		<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler event="c:OrmAssumptionCreatedEvt" action="{!c.doInit}" />
 	<aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
 	<!-- start header page content search bar and action button -->
 
@@ -63,10 +63,6 @@
 		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 			<thead>
 				<tr class="slds-text-title--caps">
-					<th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
-					<th scope="col"><div class="slds-truncate thTable"
-							title="{!$Label.c.orm_name_assumption}">{!$Label.c.orm_name_assumption}</div></th>
-
 					<th style="width: 3.25rem;" class="slds-text-align--right">
 						<div class="slds-form-element">
 							<div class="slds-form-element__control">
@@ -78,11 +74,11 @@
 							</div>
 						</div>
 					</th>
-
+					<th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
+					<th scope="col"><div class="slds-truncate thTable"
+							title="{!$Label.c.orm_name_assumption}">{!$Label.c.orm_name_assumption}</div></th>
 				</tr>
-
 			</thead>
-
 			<tbody>
 				<!--### display all records of workshop attribute one by one by aura:iteration ###-->
 <!-- 				items="{!v.assumptionList}" var="assumption" -->

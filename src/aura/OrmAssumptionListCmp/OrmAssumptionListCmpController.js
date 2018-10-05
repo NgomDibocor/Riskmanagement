@@ -144,7 +144,7 @@
      */
     removeAssumptSelected: function(component, event, helper) {
         component.set("v.showConfirmRemoveAssumption", false);
-        //fire event to childActivityList for delete activity selected
+        //fire event to childAssumptionList for delete assumption selected
         var evt = $A.get("e.c:OrmRemoveRecordAssumptEvnt");
         evt.fire();
     },

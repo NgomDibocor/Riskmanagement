@@ -62,6 +62,11 @@
 			                                                                component.set('v.assessmentRiskData', response.getReturnValue());
 			                                                                component.find("manageAbility").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
 			                                                                component.find("workingEnvironment").set("v.value", component.get('v.assessmentRiskData').orm_workingEnvironment__c);
+			                                                                if(component.get("v.assessmentRiskData").orm_workingEnvironment__c != undefined){
+			                                                                    var data = component.get("v.data");
+																			    data.orm_workingEnvironment__c = component.get("v.assessmentRiskData").orm_workingEnvironment__c ;
+																			    component.set("v.data", data);
+			                                                                }
 			                                                                component.find("slider1").set("v.value", component.get('v.assessmentRiskData').orm_probability__c);
 			                                                                component.find("status").set("v.value", component.get('v.assessmentRiskData').orm_status__c);
 			                                                                component.find("uncertainty").set("v.value", component.get('v.assessmentRiskData').orm_uncertainty__c);

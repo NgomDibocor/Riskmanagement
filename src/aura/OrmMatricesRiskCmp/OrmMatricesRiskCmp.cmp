@@ -179,6 +179,42 @@
 					    </table>  
 					  </span>
 				</div>
+				<div style="width:70%;height:300px;">
+				   <span class="monTexte" id="reputation">working environment </span>
+				   <span id="idTableReputation">
+					   <table>    
+					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					      <tr>
+					        <td class="yellowColor" width="50px" height="50" id="we11"></td>
+					        <td class="orangeColor" width="50px" height="50" id="we12"></td>
+					        <td class="redColor" width="50px" height="50" id="we13"></td>
+					        <td class="redColor" width="50px" height="50" id="we14"></td>
+					      </tr>  
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="we21"></td>
+					        <td class="yellowColor" width="50px" height="50" id="we22"></td>
+					        <td class="orangeColor" width="50px" height="50" id="we23"></td>
+					        <td class="redColor" width="50px" height="50" id="we24"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="we31"></td>
+					        <td class="yellowColor" width="50px" height="50" id="we32"></td>
+					        <td class="yellowColor" width="50px" height="50" id="we33"></td>
+					        <td class="orangeColor" width="50px" height="50" id="we34"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="we41"></td>
+					        <td class="greenColor" width="50px" height="50" id="we42"></td>
+					        <td class="greenColor" width="50px" height="50" id="we43"></td>
+					        <td class="yellowColor" width="50px" height="50" id="we44"></td>
+					      </tr>
+					      <tr>
+					          <td class="removeAllBorder" height="50"></td>
+					          <td colspan="4" class="removeBorderLastRow" height="50">Severity</td>
+					       </tr>
+					    </table>  
+					  </span>
+				</div>
 		    </div>
 		    
 			<div style="width:65%;height:auto">

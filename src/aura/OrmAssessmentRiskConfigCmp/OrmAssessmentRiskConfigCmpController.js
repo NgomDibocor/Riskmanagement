@@ -64,12 +64,16 @@
                 if (state == "SUCCESS") {
 	                component.set("v.displaySaveCancelBtn", false);
 	                component.set("v.assessmentRiskData",response.getReturnValue());
+	                var data = component.get("v.data");
+				    data.orm_workingEnvironment__c = component.get("v.assessmentRiskData").orm_workingEnvironment__c ;
+				    component.set("v.data", data);
+				    
                     var toastEvent = $A.get('e.force:showToast');
                     toastEvent.setParams({
                         'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
                         'type' : 'success',
                         'mode' : 'dismissible'
-                    });
+                    });  
 	                toastEvent.fire();
 	                var idAsssessmentRisk = component.get("v.assessmentRiskId");
 	                helper.fetchPicklist(component, event, idAsssessmentRisk);

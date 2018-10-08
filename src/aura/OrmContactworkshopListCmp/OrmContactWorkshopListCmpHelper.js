@@ -127,7 +127,7 @@
 								component.set("v.contactListTemp",
 										storeResponse);
 								if (component.get("v.contactListTemp").length > 0) {
-
+									
 									// call the apex class method and fetch
 									// contact list workshop
 									var action1 = component
@@ -142,6 +142,7 @@
 														var stateworkshop = response
 																.getState();
 														if (stateworkshop == "SUCCESS") {
+														console.log('storeResponseWorkshopcontact');
 															var storeResponseWorkshopcontact = response
 																	.getReturnValue();
 															component
@@ -175,6 +176,7 @@
 																										
 																										if (contactworkshop.orm_notification__c == true) {
 																											contact.orm_notification__c = $A
+																											
 																													.get("$Label.c.orm_notification_c");
 																										}
 																									}

@@ -65,6 +65,21 @@
 			      document.getElementById("rep14").innerHTML= 'X';
 			   }
 			   //end Reputation
+			   
+			   //working env
+			   if(data.orm_workingEnvironment__c == 'One employee considers resigning'){
+			      document.getElementById("we11").innerHTML= 'X';
+			   }
+			   if(data.orm_workingEnvironment__c == 'Several employees consider resigning'){
+			      document.getElementById("we12").innerHTML= 'X';
+			   }
+			   if(data.orm_workingEnvironment__c == 'One employee resigns'){
+			      document.getElementById("we13").innerHTML= 'X';
+			   }
+			   if(data.orm_workingEnvironment__c == 'Several employees resign'){
+			      document.getElementById("we14").innerHTML= 'X';
+			   }
+			   //end working env
 			}
 		if(data.orm_probability__c == 'Possible'){
 		  //health and safety
@@ -126,6 +141,21 @@
 		      document.getElementById("rep24").innerHTML= 'X';
 		   }
 		   //End Reputation
+		   
+		   //Working Env
+		   if(data.orm_workingEnvironment__c == 'One employee considers resigning'){
+		      document.getElementById("we21").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'Several employees consider resigning'){
+		      document.getElementById("we22").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'One employee resigns'){
+		      document.getElementById("we23").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'Several employees resign'){
+		      document.getElementById("we24").innerHTML= 'X';
+		   }
+		   //Working Env
 		}
 		if(data.orm_probability__c == 'Unlikely'){
 		//health and safety
@@ -187,6 +217,21 @@
 		      document.getElementById("rep34").innerHTML= 'X';
 		   }
 		   //End Repuatation
+		   
+		   //Working Env
+		   if(data.orm_workingEnvironment__c == 'One employee considers resigning'){
+		      document.getElementById("we31").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'Several employees consider resigning'){
+		      document.getElementById("we32").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'One employee resigns'){
+		      document.getElementById("we33").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'Several employees resign'){
+		      document.getElementById("we34").innerHTML= 'X';
+		   }
+		   //End Working Env
 		}
 		if(data.orm_probability__c == 'Rare'){
 		// health and safety
@@ -248,6 +293,21 @@
 		      document.getElementById("rep44").innerHTML= 'X';
 		   }
 		   //End Reputation
+		   
+		   //Working env
+		   if(data.orm_workingEnvironment__c == 'One employee considers resigning'){
+		      document.getElementById("we41").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'Several employees consider resigning'){
+		      document.getElementById("we42").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'One employee resigns'){
+		      document.getElementById("we43").innerHTML= 'X';
+		   }
+		   if(data.orm_workingEnvironment__c == 'Several employees resign'){
+		      document.getElementById("we44").innerHTML= 'X';
+		   }
+		   //End Working env
 		}
 	  }
 		

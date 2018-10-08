@@ -203,6 +203,7 @@
         // get all checkboxes 
         //if not checked show toast warning
         var getSelectedNumber = component.get("v.selectedRowsCount");
+        console.log('getSelectedNumber'+getSelectedNumber);
         if (getSelectedNumber == 0) {
             var toast = $A.get('e.force:showToast');
             toast.setParams({
@@ -230,5 +231,16 @@
         var evt = $A.get("e.c:OrmRemoveRecordWorkshopEvnt");
         evt.fire();
     },
-    
+   
+     /**
+     * 
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description cancel action and refresh the view
+     * @history 2018-10-08 : Salimata NGOM - Implementation
+     */
+    closeModalRemove: function(component, event, helper) {
+        // on cancel close modal
+        component.set("v.showConfirmRemoveWorkshop", false);
+    },
 })

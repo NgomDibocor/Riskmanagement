@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <aura:component controller="OrmAssumptionController" access="global"
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
@@ -22,7 +21,6 @@
 	<aura:handler event="c:OrmAssumptionCreatedEvt" action="{!c.doInit}" />
 	<aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
 	<!-- start header page content search bar and action button -->
-=======
 <aura:component controller="OrmAssumptionController" access="global" extends="c:ormAbstractListCmp" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
     <!-- 	declare aura attribute -->
     <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
@@ -42,10 +40,6 @@
     <aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
     <!-- start header page content search bar and action button -->
 
->>>>>>> 539858c945dbae07c1cc0b4c7840480213b2104a
-
-
-
     <div style="margin-bottom:20px;">
         <h1 class="titleAssumtion"><span class="dot">Assumptions</span></h1>
     </div>
@@ -62,7 +56,6 @@
 					iconName="utility:delete" size="small" />
 			</span> <br/>
 
-<<<<<<< HEAD
 			<!-- use aura:if for show/hide buttons -->
 			<aura:if isTrue="{!v.showSaveCancelBtn}">
 				<!--button for save and cancel Record after Inline Edit-->
@@ -86,7 +79,6 @@
 						<div class="slds-form-element">
 							<div class="slds-form-element__control">
 								<label class="slds-checkbox"> <!--header checkbox for select all activity-->
-=======
             <!-- use aura:if for show/hide buttons -->
             <aura:if isTrue="{!v.showSaveCancelBtn}">
                 <!--button for save and cancel Record after Inline Edit-->
@@ -115,12 +107,10 @@
                             <div class="slds-form-element">
                                 <div class="slds-form-element__control">
                                     <label class="slds-checkbox"> <!--header checkbox for select all activity-->
->>>>>>> 539858c945dbae07c1cc0b4c7840480213b2104a
 									<ui:inputCheckbox aura:id="boxAll" change="{!c.selectAll}" />
 									<span class="slds-checkbox--faux"></span> <span
 									class="slds-form-element__label text"></span>
 								</label>
-<<<<<<< HEAD
 							</div>
 						</div>
 					</th>
@@ -146,7 +136,6 @@
 		 		List of assumptions is empty
 		     </div>
 	    </aura:set>
-=======
                                 </div>
                             </div>
                         </th>
@@ -177,7 +166,6 @@
                     {!$Label.c.orm_list_title_label +'  assumptions  ' + $Label.c.orm_is_empty}
                 </div>
             </aura:set>
->>>>>>> 539858c945dbae07c1cc0b4c7840480213b2104a
         </aura:if>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAssumption}">

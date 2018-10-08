@@ -5,6 +5,7 @@
     <aura:attribute name="WorkshopList" type="contract[]" description="store workshop records list" />
     <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" description="flag for rendered save and cancel buttons in aura:if " />
     <aura:attribute name="sNo" type="string" />
+    <aura:attribute name="selectedCount" type="integer" default="0" />
     <aura:attribute name="singleRec" type="sobject" default="{
 						'sobjectType' : 'Contract',
                         'Name': '',
@@ -22,8 +23,8 @@
 																		}" />
     <aura:attribute name="key" type="string" />
     <aura:attribute name="storeListWorkshop" type="List" />
-    	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
-		<aura:attribute name="showConfirmRemoveWorkshopn" type="boolean"
+    	<aura:attribute name="selectedRowsCount" type="integer" default="0"/>
+		<aura:attribute name="showConfirmRemoveWorkshop" type="boolean"
 		default="false" description="is true show popup  message confirmation" />
     <aura:handler event="c:OrmNewWorkShopEvt" action="{!c.initRecords}" />
     <aura:handler event="c:OrmRefreshWorkshopEvnt" action="{!c.initRecords}" />
@@ -48,12 +49,11 @@
             <br/>
             <span class="btnNewWorkshop" onclick="{!c.openNewWorkshop}">
            <lightning:icon class="curseur" iconName="utility:new" size="medium" /></span>
-           
-           <span class="btnDeleteActivity" onclick="{!c.removeWorkshop}">
-            <lightning:icon	 class="curseur" iconName="utility:delete" size="medium" />
+          <span class="btnDeleteActivity" onclick="{!c.removeWorkshop}">
+           <lightning:icon	 class="curseur" iconName="utility:delete" size="medium" />
 			</span> 
             <span>
-       	      <lightning:icon class="curseur" onclick="{!c.openNewContact}" iconName="action:add_contact" size="small" />
+       	    <lightning:icon class="curseur" onclick="{!c.openNewContact}" iconName="action:add_contact" size="small" />
        	   </span>  
             <!--<button class="slds-button slds-button_brand" onclick="{!c.openNewContact}">{!$Label.c.new_title_label+'  '+ $Label.c.orm_contact_menu}</button>  -->
             <!-- use aura:if for show/hide buttons -->
@@ -72,17 +72,6 @@
             <table class="slds-table slds-table_bordered slds-table_cell-buffer">
                 <thead>
                     <tr class="slds-text-title--caps">
-                    <th style="width: 3.25rem;" class="slds-text-align--right">
-						<div class="slds-form-element">
-							<div class="slds-form-element__control">
-								<label class="slds-checkbox"> 
-									<ui:inputCheckbox aura:id="boxAll" change="{!c.selectAll}" />
-									<span class="slds-checkbox--faux"></span> <span
-									class="slds-form-element__label text"></span>
-								</label>
-							</div>
-						</div>
-					</th>
                         <th scope="col">
                             <div class="slds-truncate" title="">N°</div>
                         </th>
@@ -114,7 +103,7 @@
 <!--                     items="{!v.WorkshopList}" var="workshop"  -->
                     <aura:iteration  items="{!v.PaginationList}" var="item" indexVar="sNo">
                         <!-- start iteration -->
-                        <c:OrmWorkShopListChildCmp singleRec="{!item}" assessmentData="{!v.assessmentData}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
+                        <c:OrmWorkShopListChildCmp singleRec="{!item}" assessmentData="{!v.assessmentData}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" selectedRowsCount="{!v.selectedRowsCount}" />
                     </aura:iteration>
                 </tbody>
             </table>

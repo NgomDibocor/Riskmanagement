@@ -65,13 +65,11 @@
 	 */
 	getselectedRows : function(component, event, helper) {
 	component.set("v.contactListSelected",[]);
-		console.log('getselectedRows!!');
 		var selectedRows = event.getParam('selectedRows');
 		var contact = component.get('v.contactChecked');
 		var contactsWorkshop = [];
 		selectedRows
 		.forEach(function(selectedRow) {
-			console.log('id=' + selectedRow.Id);
 			var newcontactworkshop = {};
 			newcontactworkshop.sobjectType = 'orm_ContactWorkshop__c';
 			newcontactworkshop.orm_contact__c = selectedRow.Id;
@@ -190,8 +188,8 @@
 	refreshContact:function(component, event, helper){
 	console.log('refreshcontact');
 		helper.refreshContactWorkshop(component);
-		 var form = component.find('modalcontacts');
-                $A.util.addClass(form, 'slds-fade-in-open');
+		// var form = component.find('modalcontacts');
+             //   $A.util.addClass(form, 'slds-fade-in-open');
 	},
  /**
  *

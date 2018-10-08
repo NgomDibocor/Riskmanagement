@@ -86,12 +86,8 @@
 	sendEmails : function(component, event) {
 
 		var templateId = component.get("v.selTempl");
-		console.log('sel template ', templateId);
 		var subjMatter = component.find('subjMatter').get('v.value');
-		console.log('subjMatter ', subjMatter);
 		var contactIds = component.get("v.contactListSelected");
-		console.log('workshop' + component.get('v.workshop').Id);
-
 		if (!$A.util.isEmpty(subjMatter) || !$A.util.isEmpty(contactIds)) {
 			var action = component.get("c.sendMailMethod");
 			// set the 3 params to sendMailMethod method
@@ -145,12 +141,18 @@
 													});
 													toast
 													.fire();
-													var evt = $A
-													.get("e.c:OrmCloseContactWrokshopEvnt");
-													evt
+													var evnt = $A
+													.get("e.c:OrmRefreshContactWorkshopEvt");
+													evnt
+													.setParams({
+														"Workshop" : component
+														.get("v.workshop")
+													});
+													evnt
 													.fire();
-													component
-													.set(
+													var evt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
+													evt.fire();
+													component.set(
 															"v.emailTemplate",
 															false);
 													// fire
@@ -159,15 +161,7 @@
 													// refresh
 													// list
 													// contact
-													var evt = $A
-													.get("e.c:OrmRefreshContactWorkshopEvt");
-													evt
-													.setParams({
-														"Workshop" : component
-														.get("v.workshop")
-													});
-													evt
-													.fire();
+													
 												} else if (state === "ERROR") {
 													console
 													.log('error update');

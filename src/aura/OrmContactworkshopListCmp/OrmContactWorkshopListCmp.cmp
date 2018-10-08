@@ -29,6 +29,7 @@
 	<aura:attribute name="emailTemplate" type="boolean" default="false" />
   <aura:attribute name="isOpen" type="boolean" default="false"/>
      <aura:attribute name="key" type="string" />
+     <aura:attribute name="selectedRows" type="Contact[]" />
 	<!-- handlers-->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactCreatedEvt" action="{!c.refreshContact}" />
@@ -105,7 +106,7 @@
 									<lightning:datatable aura:id="idworkshopcontact"
 										data="{!v.contactList}" class="slds-m-top_medium"
 										columns="{!v.columns}" keyField="id"
-										resizeColumnDisabled="false" selectedRows="{!v.contact}"
+										resizeColumnDisabled="false" selectedRows="{!v.selectedRows}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
 										showRowNumberColumn="false" />

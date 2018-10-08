@@ -181,8 +181,8 @@
 					}
 				});
 		$A.enqueueAction(action);
-			console.log('enqueuAction');
 		component.set("v.contactListSelected",[]);
+		component.set("v.selectedRows",[]);
 	},
 
 	contactSelected : function(cmp, event) {

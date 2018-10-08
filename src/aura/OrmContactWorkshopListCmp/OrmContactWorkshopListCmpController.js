@@ -65,6 +65,7 @@
 	 */
 	getselectedRows : function(component, event, helper) {
 	component.set("v.contactListSelected",[]);
+		console.log('getselectedRows!!');
 		var selectedRows = event.getParam('selectedRows');
 		var contact = component.get('v.contactChecked');
 		var contactsWorkshop = [];
@@ -187,6 +188,7 @@
 	 * @history 2018-09-17 : Salimata NGOM - Implementation
 	 */
 	refreshContact:function(component, event, helper){
+	console.log('refreshcontact');
 		helper.refreshContactWorkshop(component);
 		 var form = component.find('modalcontacts');
                 $A.util.addClass(form, 'slds-fade-in-open');

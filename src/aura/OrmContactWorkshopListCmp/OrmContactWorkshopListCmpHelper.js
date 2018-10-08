@@ -1,4 +1,5 @@
-({	/**
+({
+	/**
 	 * 
 	 * @author Salimata NGOM
 	 * @version 1.0
@@ -89,9 +90,9 @@
 				'label' : 'Dissociation',
 				'iconName' : 'utility:delete',
 				'name' : 'dissociate_contact'
-			}];
+			} ];
 		} else {
-			var actions = [{
+			var actions = [ {
 				'label' : 'Send Mail',
 				'iconName' : 'utility:email',
 				'name' : 'send_email'
@@ -115,104 +116,88 @@
 		// method and fetch contact list in v.ContactList
 		var action = component.get("c.findAllContact");
 		action
-				.setCallback(
-						this,
-						function(response) {
-							var state = response.getState();
-							if (state === "SUCCESS") {
-								var storeResponse = response.getReturnValue();
+		.setCallback(
+				this,
+				function(response) {
+					var state = response.getState();
+					if (state === "SUCCESS") {
+						var storeResponse = response.getReturnValue();
+						// set ContactListTemp list with return value
+						// from server.
+						component.set("v.contactListTemp",
+								storeResponse);
+						if (component.get("v.contactListTemp").length > 0) {
+							// call the apex class method and fetch
+							// contact list workshop
+							var action1 = component
+							.get("c.findAllContactWorkshop");
+							action1.setParams({
+								'item' : component.get('v.workshop').Id
+							});
+							action1
+							.setCallback(
+									this,
+									function(response) {
+										var stateworkshop = response
+										.getState();
+										if (stateworkshop == "SUCCESS") {
+											var storeResponseWorkshopcontact = response
+											.getReturnValue();
+											component
+											.set(
+													"v.contactWorkshopList",
+													storeResponseWorkshopcontact);
+											// iterate and check
+											// if contact is
+											// associated to
+											// workshop
+											// alert('contactList
+											// au
+											// refresh'+contactListOld);
+											// component.set("v.ContactListTemp",
+											// contactListOld);
+											component
+											.get(
+											"v.contactListTemp")
+											.forEach(function(contact) {
+														component.get("v.contactWorkshopList").forEach(
+																		function(contactworkshop) {
+																			if (contactworkshop.orm_contact__c == contact.Id) {
+																				if (contactworkshop.orm_notification__c == true) {
+																					contact.orm_notification__c = $A
+																					.get("$Label.c.orm_notification_c");
+																				}
+																			}
+																		});
 
-								// set ContactListTemp list with return value
-								// from server.
-								component.set("v.contactListTemp",
-										storeResponse);
-								if (component.get("v.contactListTemp").length > 0) {
-									
-									// call the apex class method and fetch
-									// contact list workshop
-									var action1 = component
-											.get("c.findAllContactWorkshop");
-									action1.setParams({
-										'item' : component.get('v.workshop').Id
-									});
-									action1
-											.setCallback(
-													this,
-													function(response) {
-														var stateworkshop = response
-																.getState();
-														if (stateworkshop == "SUCCESS") {
-														console.log('storeResponseWorkshopcontact');
-															var storeResponseWorkshopcontact = response
-																	.getReturnValue();
-															component
-																	.set(
-																			"v.contactWorkshopList",
-																			storeResponseWorkshopcontact);
-
-															// iterate and check
-															// if contact is
-															// associated to
-															// workshop
-															// alert('contactList
-															// au
-															// refresh'+contactListOld);
-															// component.set("v.ContactListTemp",
-															// contactListOld);
-															component
-																	.get(
-																			"v.contactListTemp")
-																	.forEach(
-																			function(
-																					contact) {
-																				component
-																						.get(
-																								"v.contactWorkshopList")
-																						.forEach(
-																								function(
-																										contactworkshop) {
-
-																									if (contactworkshop.orm_contact__c == contact.Id) {
-																										
-																										if (contactworkshop.orm_notification__c == true) {
-																											contact.orm_notification__c = $A
-																											
-																													.get("$Label.c.orm_notification_c");
-																										}
-																									}
-																								});
-
-																			});
-
-															component
-																	.set(
-																			"v.contactList",
-																			component
-																					.get("v.contactListTemp"));
-														}
 													});
-									$A.enqueueAction(action1);
-
-								}
-
-							}
-						});
+											component.set("v.contactList",component.get("v.contactListTemp"));
+										}
+									});
+							$A.enqueueAction(action1);
+					
+							
+						}
+					}
+				});
 		$A.enqueueAction(action);
+			console.log('enqueuAction');
+		component.set("v.contactListSelected",[]);
 	},
 
-    contactSelected : function(cmp, event) {
-        var contacts = cmp.get('v.contactsSearch');
-        var contact = cmp.get('v.contactListSelected');
-       // var input = cmp.find('inputSearch');
-        //input.set('v.value', contacts[event.target.id].Name);
-   
-		 contact.push(contacts[event.target.id]);
-	 cmp.set('v.contactListSelected',contact);
-         cmp.set('v.contactChecked',contacts[event.target.id]);
-        var form = cmp.find('lookupForm');
-                $A.util.removeClass(form, 'slds-is-open');
-                cmp.set('v.key','');
-   
-    }
-	
+	contactSelected : function(cmp, event) {
+		var contacts = cmp.get('v.contactsSearch');
+		var contact = cmp.get('v.contactListSelected');
+		// var input = cmp.find('inputSearch');
+		//input.set('v.value', contacts[event.target.id].Name);
+
+		contact.push(contacts[event.target.id]);
+		cmp.set('v.contactListSelected', contact);
+		cmp.set('v.contactChecked', contacts[event.target.id]);
+		var form = cmp.find('lookupForm');
+		$A.util.removeClass(form, 'slds-is-open');
+		cmp.set('v.key', '');
+
+	}
+
 })

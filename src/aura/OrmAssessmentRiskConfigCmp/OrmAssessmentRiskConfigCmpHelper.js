@@ -390,7 +390,7 @@
         	 if(sliderCost >= component.get("v.businessImpHighData.orm_costProjectBudgetMin__c") && sliderCost <= component.get("v.businessImpHighData.orm_costProjectBudgetMax__c")){
 			    document.getElementById("cost").style.backgroundColor = "orange";
 			    document.getElementById('cost').style.border = "2px solid #5B86BE";
-			    document.getElementById("cost").innerHTML= 'high';
+			    document.getElementById("cost").innerHTML= 'High';
         	 }
         	 if (sliderCost >= component.get("v.businessImpMediumData.orm_costProjectBudgetMin__c") && sliderCost <= component.get("v.businessImpMediumData.orm_costProjectBudgetMax__c")){
 			    document.getElementById("cost").style.backgroundColor = "yellow";
@@ -400,12 +400,12 @@
         	 if (sliderCost >= component.get("v.businessImpLowData.orm_costProjectBudgetMin__c") && sliderCost<= component.get("v.businessImpLowData.orm_costProjectBudgetMax__c")){
 			    document.getElementById("cost").style.backgroundColor = "green";
 			    document.getElementById('cost').style.border = "2px solid #5B86BE";
-			    document.getElementById("cost").innerHTML='low' ;
+			    document.getElementById("cost").innerHTML='Low' ;
 	         } 
         	 if (sliderCost >= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMin__c") && sliderCost<= component.get("v.businessImpVeryHighData.orm_costProjectBudgetMax__c")){
 			    document.getElementById("cost").style.backgroundColor = "red";
 			    document.getElementById('cost').style.border = "2px solid #5B86BE";
-			    document.getElementById("cost").innerHTML='veryHigh' ;
+			    document.getElementById("cost").innerHTML='Very High' ;
         	 }
             }
          
@@ -416,7 +416,7 @@
 		    if(sliderSchedule >= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMin__c") && sliderSchedule <= component.get("v.businessImpHighData.orm_scheduleProjectBaselineMax__c")){
 			    document.getElementById("schedule").style.backgroundColor = "orange";
 			    document.getElementById('schedule').style.border = "2px solid #5B86BE";
-			    document.getElementById("schedule").innerHTML= 'high';
+			    document.getElementById("schedule").innerHTML= 'High';
 		    }
 		    if (sliderSchedule >= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMin__c") && sliderSchedule <= component.get("v.businessImpMediumData.orm_scheduleProjectBaselineMax__c")){
 			    document.getElementById("schedule").style.backgroundColor = "yellow";
@@ -425,12 +425,12 @@
 		    } if (sliderSchedule >= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMin__c") && sliderSchedule<= component.get("v.businessImpLowData.orm_scheduleProjectBaselineMax__c")){
 			    document.getElementById("schedule").style.backgroundColor = "green";
 			    document.getElementById('schedule').style.border = "2px solid #5B86BE";
-			    document.getElementById("schedule").innerHTML='low' ;
+			    document.getElementById("schedule").innerHTML='Low' ;
 		    } 
 		    if (sliderSchedule >= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMin__c") && sliderSchedule<= component.get("v.businessImpVeryHighData.orm_scheduleProjectBaselineMax__c")){
 			    document.getElementById("schedule").style.backgroundColor = "red";
 			    document.getElementById('schedule').style.border = "2px solid #5B86BE";
-			    document.getElementById("schedule").innerHTML='veryHigh' ;
+			    document.getElementById("schedule").innerHTML='Very High' ;
 		    } 
          }
          if(sliderProduction == null){
@@ -440,7 +440,7 @@
         	if(sliderProduction >= component.get("v.businessImpLowData.orm_productionLossMin__c") && sliderProduction <= component.get("v.businessImpLowData.orm_productionLossMax__c")){
 			    document.getElementById("production").style.backgroundColor = "green";
 			    document.getElementById('production').style.border = "2px solid #5B86BE";
-			    document.getElementById("production").innerHTML= 'low';
+			    document.getElementById("production").innerHTML= 'Low';
 		    }
 		    else if (sliderProduction > component.get("v.businessImpMediumData.orm_productionLossMin__c") && sliderProduction <= component.get("v.businessImpMediumData.orm_productionLossMax__c")){
 			    document.getElementById("production").style.backgroundColor = "yellow";
@@ -453,7 +453,7 @@
 		    }else{
 			    document.getElementById("production").style.backgroundColor = "red";
 			    document.getElementById('production').style.border = "2px solid #5B86BE";
-			    document.getElementById("production").innerHTML= 'VeryHigh';
+			    document.getElementById("production").innerHTML= 'Very High';
 		    } 
          }
          if(reputation== null){
@@ -468,7 +468,7 @@
 	     if(component.get('v.assessmentRiskData').orm_reputation__c ==  reputation1){	 
 			 document.getElementById('reputation').style.backgroundColor = "red";
 			 document.getElementById('reputation').style.border = "2px solid #5B86BE";
-			 document.getElementById("reputation").innerHTML= 'very high';
+			 document.getElementById("reputation").innerHTML= 'Very High';
 			 var data = component.get("v.data");
 	         data.orm_reputation__c = 'VeryHigh'
 	         component.set("v.data", data);
@@ -476,7 +476,7 @@
 		 if(component.get('v.assessmentRiskData').orm_reputation__c ==reputation2){
 			 document.getElementById('reputation').style.backgroundColor = "orange";
 			 document.getElementById('reputation').style.border = "2px solid #5B86BE";
-			 document.getElementById("reputation").innerHTML= 'high';
+			 document.getElementById("reputation").innerHTML= 'High';
 			 var data = component.get("v.data");
 	         data.orm_reputation__c = 'High'
 	         component.set("v.data", data);

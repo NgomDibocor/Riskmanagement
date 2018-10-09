@@ -66,8 +66,9 @@ public with sharing class OrmRiskController {
     public static List<orm_assessmentRisk__c> findAllResearchPicklist(String Research,String assessment)
     {
          return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
-                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description From orm_assessmentRisk__c 
-               where orm_Risk__r.orm_categorieRisk__c=:Research and orm_assessment__r.Id =:assessment];                               
+                         orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
+                  From orm_assessmentRisk__c 
+                  where orm_Risk__r.orm_categorieRisk__c=:Research and orm_assessment__r.Id =:assessment];                               
     }
     /*
     *David mignane diop
@@ -201,7 +202,8 @@ public with sharing class OrmRiskController {
         return [Select Id, Name From User ];
          
     }
-      @AuraEnabled 
+    
+    @AuraEnabled 
     public static List<Macro> findBusinessImpactsByAssessment(String assessment)
     {
          return  [SELECT Id, orm_rating__c, orm_costProjectBudgetMin__c, orm_costProjectBudgetMax__c, 
@@ -213,7 +215,14 @@ public with sharing class OrmRiskController {
                           RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];                               
     }
     
-   
+    /*@AuraEnabled 
+    public static List<orm_assessmentRisk__c> getInfosAssessmentRiskForMatriceTable(String assessment)
+    {
+           return  [SELECT Id, orm_assessment__r.name, orm_assessment__r.Id,orm_Risk__r.Name,
+                           orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
+                    From orm_assessmentRisk__c 
+                    WHERE   orm_assessment__c =:assessment ];                          
+    }*/
    
     
 }

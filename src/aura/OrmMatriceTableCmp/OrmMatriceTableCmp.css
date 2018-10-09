@@ -1,2 +1,166 @@
 .THIS {
+	
+}
+.THIS table {
+    border-collapse: collapse;
+}
+
+.THIS th {
+	background-clip: padding-box;
+    border: 2px solid black;
+    white-space: nowrap important;
+}
+
+.THIS td {
+	background-clip: padding-box;
+    border: 2px solid black;
+    white-space: nowrap important;
+}
+.THIS .tdRanking{
+/*	width: 8%;
+	font-weight: 600;
+    font-size: 1em; */
+	text-align: center;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+}
+.THIS .tdDefinition{
+/*	width: 92%;
+	font-weight: 600;
+    font-size: 1em;
+	text-align: justify;
+    text-justify: inter-word; */
+    white-space: normal !important;
+    text-align: justify;
+    text-justify: inter-character;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+}
+.THIS .textCenter{
+	font-weight: 600;
+    font-size: 1.2em;
+	text-align: center;
+}
+.THIS .monTexte {
+	  font-weight: 600;
+      font-size: 1.5em;
+      display:flex;
+      writing-mode: vertical-lr;
+      vertical-align: middle;
+      line-height: 2em;
+      justify-content:center;
+}
+.THIS .removeBorderFirstColumn {
+     border-left: none !important ; 
+     border-top: none !important ; 
+     border-bottom: none !important ;
+}
+.THIS .removeBorderLastRow {
+	 font-weight: 600;
+     font-size: 1.5em;
+     text-align: center;
+     border-left: none !important ; 
+     border-right: none !important ; 
+     border-bottom: none !important ; 
+}
+.THIS .removeAllBorder {
+	 font-weight: 600;
+     font-size: 1.6em;
+     text-align: center;
+     border-left: none !important ; 
+     border-right: none !important ;
+     border-top: none !important ;  
+     border-bottom: none !important ; 
+}
+.THIS .yellowColor{
+	background-color: yellow;
+	text-align:center;
+	color: #071345;
+	font-weight: 600;
+    font-size: 1.5em;
+}
+.THIS .orangeColor{
+	background-color: #FF8C00;
+	text-align:center;
+	color: #071345;
+	font-weight: 600;
+    font-size: 1.5em;
+}
+.THIS .redColor{
+	background-color: red;
+	text-align:center;
+	color: #071345;
+	font-weight: 600;
+    font-size: 1.5em;
+}
+.THIS .greenColor{
+	background-color: green;
+	text-align:center;
+	color: #071345;
+	font-weight: 600;
+    font-size: 1.5em;
+}
+.THIS #healthAndSafety {
+    display: inline-block;
+    width: 15%;
+    text-align: center;
+    padding-right: 40px;
+    margin-bottom: 350px;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #5B86BE;
+}
+.THIS #security {
+    display: inline-block;
+    width: 15%;
+    text-align: center;
+    padding-right: 40px;
+    margin-bottom: 350px;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #5B86BE;
+}   
+.THIS #environment {
+    display: inline-block;
+    width: 15%;
+    text-align: center;
+    padding-right: 40px;
+    margin-bottom: 350px;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #5B86BE;
+}  
+.THIS #reputation {
+    display: inline-block;
+    width: 15%;
+    text-align: center;
+    padding-right: 40px;
+    margin-bottom: 350px;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #5B86BE;
+} 
+.THIS #idTable {
+    display: inline-block;
+    margin-top:50px;
+    margin-bottom:20px;
+}  
+.THIS #idTableSecurity {
+    display: inline-block;
+    margin-top:50px;
+    margin-bottom:20px;
+} 
+.THIS #idTableEnvironment {
+    display: inline-block;
+    margin-top:50px;
+    margin-bottom:20px;
+}  
+.THIS #idTableReputation {
+    display: inline-block;
+    margin-top:50px;
+    margin-bottom:20px;
 }

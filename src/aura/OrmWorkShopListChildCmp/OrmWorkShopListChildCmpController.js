@@ -125,6 +125,7 @@
 
 	},
 	openModalContactWorkshop : function(component, event, helper) {
+		console.log('assessment data '+component.get('v.assessmentData').Id);
 		var action = component.get("c.findAllContact");
 		action
 				.setCallback(

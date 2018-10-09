@@ -36,7 +36,7 @@
 					iconName="utility:new" size="small" /></span>
 					<span class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
 					iconName="utility:delete" size="small" />
-			</span> <br/>
+			</span> <br/><br/>
 
             <!-- use aura:if for show/hide buttons -->
             <aura:if isTrue="{!v.showSaveCancelBtn}">

@@ -55,7 +55,7 @@
                         <tr>
                             <th style="width:3.25rem;" class="slds-text-align--right">
                             </th>
-                            <th scope="col">
+                            <th scope="col" style="width:3.25rem;">
                                 <div class="slds-truncate" title="">N°</div>
                             </th>
                             <th scope="col">

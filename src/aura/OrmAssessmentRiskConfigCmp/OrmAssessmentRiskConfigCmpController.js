@@ -63,7 +63,7 @@
                 var state = response.getState();
                 if (state == "SUCCESS") {
 	                component.set("v.displaySaveCancelBtn", false);
-	                component.set("v.assessmentRiskData",response.getReturnValue());
+	                component.set("v.assessmentRiskData", response.getReturnValue());
 	                var data = component.get("v.data");
 				    data.orm_workingEnvironment__c = component.get("v.assessmentRiskData").orm_workingEnvironment__c ;
 				    component.set("v.data", data);

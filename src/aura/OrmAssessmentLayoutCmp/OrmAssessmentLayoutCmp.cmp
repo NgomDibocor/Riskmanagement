@@ -1187,14 +1187,14 @@
                   </tr>
                    <tr>
                        <td class="textInDivCmp">
-                         <div class="slds-box widthBox">
+                         <div class="slds-box widthBox slds-theme_alert-texture">
                               <c:OrmAssumptionListCmp assessmentData="{!v.assessmentData}"/>
                          </div>
                        </td>
                    </tr>
                    <tr>
                        <td class="textInDivCmp">
-                           <div class="slds-box widthBox">
+                           <div class="slds-box widthBox slds-theme_alert-texture">
                               <c:OrmAttachmentListCmp parentId="{!v.assessmentData.Id}" />
                            </div>
                        </td>
@@ -1229,7 +1229,7 @@
 	                  </tr>
 	                  <tr>
                           <td>
-                             <div class="slds-box widthBox">
+                             <div class="slds-box widthBox slds-theme_alert-texture">
 	                             <div style="margin-bottom:20px;">
 									 <h1 class="titleOrganisationUnit"><span class="organisationUnit">Organisation unit</span></h1>
 								 </div>
@@ -1277,15 +1277,15 @@
                       </tr>
                       <tr>
                            <td class="textInDivCmp" >
-                              <div class="slds-box widthBox">
+                              <div class="slds-box widthBox slds-theme_alert-texture">
                                   <c:OrmPhasesListCmp idAssessment="{!v.assessmentData.Id }"/>
                               </div>
 	                       </td>
                       </tr>
                       <tr>
                           <td class="textInDivCmp">
-                              <div class="slds-box widthBox">
-                                 <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
+                              <div class="slds-box widthBox slds-theme_alert-texture">
+                                  <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
                               </div>
                           </td>
                       </tr>
@@ -1305,7 +1305,7 @@
 	                 </tr>
                      <tr>
                          <td class="textInDivCmp">
-                             <div class="slds-box widthBox">
+                             <div class="slds-box widthBox slds-theme_alert-texture">
                                 <c:OrmActivityProofListCmp /> 
                              </div> 
                          </td>
@@ -1328,7 +1328,7 @@
 	                  </tr>
                      <tr>
                           <td class="textInDivCmp">
-                            <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
+                              <c:OrmWorkShopListCmp assessmentData="{!v.assessmentData}"/>
                           </td>
                      </tr>
                   </aura:if>  
@@ -1407,28 +1407,28 @@
                   </tr>
                     <tr>
                       <td class="textInDivCmp">
-                         <div class="slds-box widthBox">
-                            <c:OrmCauseListCmp />
+                         <div class="slds-box widthBox slds-theme_alert-texture">
+                             <c:OrmCauseListCmp />
                          </div>
                       </td>
                     </tr> 
                     <tr>
                        <td class="textInDivCmp">
-                          <div class="slds-box widthBox">
+                          <div class="slds-box widthBox slds-theme_alert-texture">
                              <c:OrmImpactListCmp />
                           </div>
                        </td>
                     </tr>
                     <tr>
                        <td class="textInDivCmp">
-                          <div class="slds-box widthBox">
+                          <div class="slds-box widthBox slds-theme_alert-texture">
                              <c:OrmPhaseAssessmentRiskListCmp />
                           </div>
                        </td>
                     </tr>
                     <tr>
                        <td class="textInDivCmp">
-                          <div class="slds-box widthBox">
+                          <div class="slds-box widthBox slds-theme_alert-texture">
                              <c:OrmAssumptionAssessmentRiskListCmp /> 
                           </div>
                        </td>

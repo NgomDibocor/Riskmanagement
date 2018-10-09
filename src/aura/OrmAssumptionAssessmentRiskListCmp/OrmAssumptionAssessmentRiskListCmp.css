@@ -29,5 +29,16 @@
     cursor: pointer;
 }
 .THIS .btnNewAssumption{
+   display: inline-block;
     cursor: pointer;
+    width: 5%;
+}
+.THIS div.phase {
+    display: inline-block;
+    width: 100%;
+}
+.THIS .iphase {
+    display: inline-block;
+    width: 80%;
+    margin-right: 15px;
 }

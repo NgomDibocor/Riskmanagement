@@ -1,2 +1,17 @@
 .THIS {
 }
+.THIS .styleAllText{
+    text-justify: inter-character;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+	white-space: normal !important;
+}
+.THIS .tdWidth{
+	width: 45%;
+	white-space: normal !important;
+	text-align: justify;
+    text-justify: inter-word;
+}

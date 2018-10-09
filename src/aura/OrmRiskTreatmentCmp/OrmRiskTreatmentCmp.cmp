@@ -40,7 +40,7 @@
         <tr>
             <td>
                 <div class="topSpacing">
-                    <b> <label class="slds-form-element__label">{!$Label.c.orm_measure_dueDate}<span class="cmn_mandatory_indicator">*</span></label></b>
+                    <b> <label class="slds-form-element__label styleAllText">{!$Label.c.orm_measure_dueDate}<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
                 <div class="width">
                     <a href="javascript:void(0);">
@@ -50,7 +50,7 @@
             </td>
             <td>
                 <div class="topSpacing">
-                    <b> <label class="slds-form-element__label">{!$Label.c.orm_measure_status}<span class="cmn_mandatory_indicator">*</span></label></b>
+                    <b> <label class="slds-form-element__label styleAllText">{!$Label.c.orm_measure_status}<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
@@ -67,7 +67,7 @@
         <tr>
             <td>
                 <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_costEffect_label}</label></b>
+                    <b><label class="slds-form-element__label styleAllText">{!$Label.c.orm_costEffect_label}</label></b>
                 </div>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
@@ -82,7 +82,7 @@
             </td>
             <td>
                 <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_measure_description}</label></b>
+                    <b><label class="slds-form-element__label styleAllText">{!$Label.c.orm_measure_description}</label></b>
                 </div>
                 <div class="width">
                     <a href="javascript:void(0);">
@@ -95,7 +95,7 @@
         <tr>
             <td>
             <div class="topSpacing">
-                    <b><label class="slds-form-element__label">{!$Label.c.orm_justification_cost_effect_label} </label></b>
+                    <b><label class="slds-form-element__label styleAllText">{!$Label.c.orm_justification_cost_effect_label} </label></b>
                 </div>
                 <div class="width">
                     <a href="javascript:void(0);">
@@ -108,7 +108,7 @@
             </td>
             <td>
                <div class="topSpacing">
-                    <b><label class="slds-form-element__label ">{!$Label.c.orm_Measure_Responsable}</label></b>
+                    <b><label class="slds-form-element__label styleAllText ">{!$Label.c.orm_Measure_Responsable}</label></b>
                 </div>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">
@@ -125,7 +125,7 @@
         <tr>
             <td>
                 <div class="topSpacing">
-                    <b><label class="slds-form-element__label ">{!$Label.c.orm_organisationUnit_label}</label></b>
+                    <b><label class="slds-form-element__label styleAllText ">{!$Label.c.orm_organisationUnit_label}</label></b>
                 </div>
                 <div class="slds-form-element ">
                     <div class="slds-form-element__control">

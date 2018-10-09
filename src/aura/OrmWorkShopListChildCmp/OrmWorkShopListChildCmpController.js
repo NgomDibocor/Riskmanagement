@@ -263,7 +263,7 @@
 		// set the actual value on selectedCount attribute to show on header
 		// part.
 		console.log('selectedRowsCount'+getSelectedNumber);
-		component.set("v.selectedRowsCount", getSelectedNumber);
+		component.set('v.selectedRowsCount', getSelectedNumber);
 	},
 	/**
 	 * 

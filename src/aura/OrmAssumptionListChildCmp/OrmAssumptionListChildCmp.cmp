@@ -8,9 +8,10 @@
 	<aura:attribute name="showSaveCancelBtn" type="boolean" />
 	<aura:attribute name="nameEditMode" type="boolean" default="false" />
 	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
+	<aura:attribute name="selectedCount" type="integer" default="0" />
 	<!-- 	declare aura:handler -->
-	<aura:handler event="c:OrmRemoveRecordAssumptEvnt"
-		action="{!c.deleteSelected}" />
+	<aura:handler event="c:OrmRemoveRecordAssumptEvnt" action="{!c.deleteSelected}" />
+	<aura:handler event="c:OrmSelectAllAssumptEvnt" action="{!c.selectAll}" />
 	<!-- 		declare aura:register -->
 	<aura:registerEvent name="OrmRefreshAssumptionEvnt"
 		type="c:OrmRefreshAssumptionEvnt" />

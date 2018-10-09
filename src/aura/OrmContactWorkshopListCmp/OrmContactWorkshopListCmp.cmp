@@ -2,19 +2,19 @@
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!--declare aura attributes-->
-		<aura:attribute name="contact" type="Contact"
+	<aura:attribute name="contact" type="Contact"
 		description="store single contact" />
 	<aura:attribute name="contactList" type="Contact[]"
 		description="store contact records list" />
 	<aura:attribute name="contactListSelected" type="Contact[]"
 		description="store contact records list selected" />
-		<aura:attribute name="contactChecked" type="Contact"
+	<aura:attribute name="contactChecked" type="Contact"
 		description="store contact records list selected" />
-		<aura:attribute name="contactSelected" type="Contact[]"
+	<aura:attribute name="contactSelected" type="Contact[]"
 		description="store contact records list selected" />
 	<aura:attribute name="contactListTemp" type="Contact[]"
 		description="store contact records list temporarily" />
-		<aura:attribute name="contactsSearch" type="Contact[]"
+	<aura:attribute name="contactsSearch" type="Contact[]"
 		description="store contact records for search list" />
 	<aura:attribute name="contactWorkshopList"
 		type="orm_ContactWorkshop__c[]"
@@ -22,26 +22,37 @@
 	<aura:attribute name="workshop" type="Contract" />
 	<aura:attribute name="isOpenModalContactWorkshop" type="boolean"
 		default="false" />
-<aura:attribute name="mailfailed" type="boolean" default="false" />
-<aura:attribute name="emailfailed" type="Contact[]"/>
+	<aura:attribute name="mailfailed" type="boolean" default="false" />
+	<aura:attribute name="emailfailed" type="Contact[]" />
 	<aura:attribute name="columns" type="List" />
 	<aura:attribute name="email" type="string" />
 	<aura:attribute name="emailTemplate" type="boolean" default="false" />
-  <aura:attribute name="isOpen" type="boolean" default="false"/>
-     <aura:attribute name="key" type="string" />
-     <aura:attribute name="selectedRows" type="Contact[]" />
+	<aura:attribute name="isOpen" type="boolean" default="false" />
+	<aura:attribute name="key" type="string" />
+	<aura:attribute name="selectedRows" type="Contact[]" />
+	<aura:attribute name="startPage" type="Integer" />
+	<aura:attribute name="endPage" type="Integer" />
+	<aura:attribute name="pageSize" type="Integer" default="6" />
+	<aura:attribute name="hideNext" type="Boolean" default="true" />
+    <aura:attribute name="totalRecords" type="Integer"/>
+    <aura:attribute name="items" type="Contact[]" description="" /> 
 	<!-- handlers-->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-	<aura:handler event="c:OrmContactCreatedEvt" action="{!c.refreshContact}" />
-	<aura:handler event="c:OrmRefreshContactWorkshopEvt" action="{!c.refreshContact}" />
-	<aura:handler event="c:OrmCloseContactWrokshopEvnt" action="{!c.showModalContacts}" />
-	<aura:handler event="c:OrmShowMailfailedEvent" action="{!c.showModalContactsFailed}" />
+	<aura:handler event="c:OrmContactCreatedEvt"
+		action="{!c.refreshContact}" />
+	<aura:handler event="c:OrmRefreshContactWorkshopEvt"
+		action="{!c.refreshContact}" />
+	<aura:handler event="c:OrmCloseContactWrokshopEvnt"
+		action="{!c.showModalContacts}" />
+	<aura:handler event="c:OrmShowMailfailedEvent"
+		action="{!c.showModalContactsFailed}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
 	<!--  start modal participants-->
 	<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
 		<!--###### MODAL BOX Start From Here ######-->
-		<div role="dialog" tabindex="-1" aria-labelledby="header99" aura:id="modalcontacts"
+		<div role="dialog" tabindex="-1" aria-labelledby="header99"
+			aura:id="modalcontacts"
 			class="slds-modal slds-fade-in-open slds-modal_medium">
 			<div class="slds-modal__container form-style-6">
 				<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
@@ -56,53 +67,56 @@
 				</div>
 				<!--###### MODAL BOX BODY Part Start From Here ######-->
 				<div class="slds-modal__content slds-p-around--medium">
-				<div class="slds-p-horizontal--small">
-<!--         		start search filter -->
-<div aura:id="lookupForm"  class="slds-form-element slds-lookup"  data-select="single">
-          <lightning:input type="search"  name="inputSearch" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  />
-          <div class="slds-form-element__control">
-									<div class="slds-input-has-icon slds-input-has-icon--right">
-									 <aura:iteration items="{!v.contactListSelected}" var="contact">
-                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" onremove="{!c.clear }" title="{!contact.Email}"  >
-                            <aura:set attribute="media">
-                                <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
-                            </aura:set>
-                        </lightning:pill>
-                    </aura:iteration>
-									</div>
+					<div class="slds-p-horizontal--small">
+						<!--         		start search filter -->
+						<div aura:id="lookupForm" class="slds-form-element slds-lookup"
+							data-select="single">
+							<lightning:input type="search" name="inputSearch"
+								onchange="{!c.filter}" value="{!v.key}"
+								label="{!$Label.c.search_title_label}" />
+							<div class="slds-form-element__control">
+								<div class="slds-input-has-icon slds-input-has-icon--right">
+									<aura:iteration items="{!v.contactListSelected}" var="contact">
+										<lightning:pill class="slds-m-around_xx-small"
+											label="{!contact.Name}" name="{!contact.Id}"
+											onremove="{!c.clear }" title="{!contact.Email}">
+											<aura:set attribute="media">
+												<lightning:icon iconName="standard:contact" size="x-small"
+													alternativeText="icon" />
+											</aura:set>
+										</lightning:pill>
+									</aura:iteration>
 								</div>
-<!--             Building the lookup list for the search parameters in the inputSearch field -->
-        <div class="slds-lookup__menu">
-            <ul class="slds-lookup__list" role="listbox">
-                <aura:iteration items="{!v.contactsSearch}"
-                                var="contact"
-                                indexVar="contactIndex">
-                    <li role="presentation">
-                        <span class="slds-lookup__item-action slds-media slds-media--left" role="option">
-                            <lightning:icon iconName="standard:contact"
-                                            size="small"
-                                            class="slds-icon slds-icon-standard-contact slds-icon--small slds-media__figure"/>
-                            <div class="slds-media__body">
-                                <div class="slds-lookup__result-text"
-                                title="{!contact.Email}"
-                                     onclick="{!c.onContactSelected}" 
-                                     id="{!contactIndex}">{!contact.Name}</div>
-                            </div>
-                        </span>
-                    </li>
-                </aura:iteration>
-            </ul>
-        </div>
-          </div>
-<!--          		end search filter -->
-        </div>
+							</div>
+							<!--             Building the lookup list for the search parameters in the inputSearch field -->
+							<div class="slds-lookup__menu">
+								<ul class="slds-lookup__list" role="listbox">
+									<aura:iteration items="{!v.contactsSearch}" var="contact"
+										indexVar="contactIndex">
+										<li role="presentation"><span
+											class="slds-lookup__item-action slds-media slds-media--left"
+											role="option"> <lightning:icon
+													iconName="standard:contact" size="small"
+													class="slds-icon slds-icon-standard-contact slds-icon--small slds-media__figure" />
+												<div class="slds-media__body">
+													<div class="slds-lookup__result-text"
+														title="{!contact.Email}" onclick="{!c.onContactSelected}"
+														id="{!contactIndex}">{!contact.Name}</div>
+												</div>
+										</span></li>
+									</aura:iteration>
+								</ul>
+							</div>
+						</div>
+						<!--          		end search filter -->
+					</div>
 					<div class="slds-grid slds-gutters ">
 						<div class="slds-col">
 							<div class="slds-form-element">
 								<div class=" slds-size--1-of-6   slds-p-horizontal--small">
-							   
+
 								</div>
-								<div class=" slds-size--5-of-6" style="height:300px;">
+								<div class=" slds-size--5-of-6">
 									<lightning:datatable aura:id="idworkshopcontact"
 										data="{!v.contactList}" class="slds-m-top_medium"
 										columns="{!v.columns}" keyField="id"
@@ -110,6 +124,21 @@
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
 										showRowNumberColumn="false" />
+									<center>
+										<div
+											style="margin-top: 20px; padding-bottom: 10px; margin-left: auto; margin-right: auto">
+											<lightning:buttonGroup>
+												<lightning:button label="Prev"
+													disabled="{!v.startPage == 0}" onclick="{!c.previous}"
+													variant="brand" iconName='utility:back' />
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next"
+													disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}"
+													onclick="{!c.next}" variant="brand"
+													iconName='utility:forward' iconPosition='right' />
+											</lightning:buttonGroup>
+										</div>
+									</center>
 								</div>
 
 
@@ -121,18 +150,18 @@
 						</div>
 
 					</div>
-					
+
 
 				</div>
 				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
 				<div class="slds-modal__footer">
-				 
-					
+
+
 					<button class="slds-button slds-button--neutral"
 						onclick="{!c.closeModalWorkshopContact}">{!$Label.c.orm_cancel_button_title}</button>
 					<button class="slds-button slds-button--neutral"
 						onclick="{!c.openMailTemplate}">{!$Label.c.orm_sendmail_button_title}</button>
-					<button class="slds-button slds-button--brand " 
+					<button class="slds-button slds-button--brand "
 						onclick="{!c.openNewContact}">
 						<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.new_title_label
 						+ ' ' +$Label.c.orm_contact_menu}
@@ -149,46 +178,51 @@
 	<!-- 	start email template -->
 	<aura:if isTrue="{!v.emailTemplate}">
 		<c:OrmEmailTemplate emailTemplate="{!v.emailTemplate}"
-			contactListSelected="{!v.contactListSelected}" workshop="{!v.workshop}"/>
+			contactListSelected="{!v.contactListSelected}"
+			workshop="{!v.workshop}" />
 	</aura:if>
-		<aura:if isTrue="{!v.mailfailed}">
-	<div role="dialog" tabindex="-1" aria-labelledby="prompt-heading-id"
-		aria-describedby="prompt-message-wrapper"
-		class="slds-modal slds-fade-in-open slds-modal--prompt">
-		<div class="slds-modal__container">
-			<div
-				class="slds-modal__header slds-theme--warning slds-theme--alert-texture">
-				<button
-					class="slds-button slds-modal__close slds-button--icon-inverse"
-					title="Close" onclick="{!c.closeEmailFailed}">
-					X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
-				</button>
-				<h1 id="header99" class="slds-text-heading--medium">Emails Incorrect</h1>
+	<aura:if isTrue="{!v.mailfailed}">
+		<div role="dialog" tabindex="-1" aria-labelledby="prompt-heading-id"
+			aria-describedby="prompt-message-wrapper"
+			class="slds-modal slds-fade-in-open slds-modal--prompt">
+			<div class="slds-modal__container">
+				<div
+					class="slds-modal__header slds-theme--warning slds-theme--alert-texture">
+					<button
+						class="slds-button slds-modal__close slds-button--icon-inverse"
+						title="Close" onclick="{!c.closeEmailFailed}">
+						X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+					</button>
+					<h1 id="header99" class="slds-text-heading--medium">Emails
+						Incorrect</h1>
 
-			</div>
-			<div class="slds-modal__content slds-p-around--medium">
-		
-			<div class="slds-input-has-icon slds-input-has-icon--right">
-									 <aura:iteration items="{!v.emailfailed}" var="contact">
-                        <lightning:pill class="slds-m-around_xx-small" label="{!contact.Name}" name="{!contact.Id}" title="{!contact.Email}"  >
-                            <aura:set attribute="media">
-                                <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
-                            </aura:set>
-                        </lightning:pill>
-                    </aura:iteration>
-									</div>
-									 
-			</div>
-			<!--###### MODAL BOX FOOTER Part Start From Here ######-->
-			<div class="slds-modal__footer">
-				<button class="slds-button slds-button--neutral"
-					onclick="{!c.closeEmailFailed}">{!$Label.c.orm_cancel_button_title}</button>
-				
+				</div>
+				<div class="slds-modal__content slds-p-around--medium">
 
+					<div class="slds-input-has-icon slds-input-has-icon--right">
+						<aura:iteration items="{!v.emailfailed}" var="contact">
+							<lightning:pill class="slds-m-around_xx-small"
+								label="{!contact.Name}" name="{!contact.Id}"
+								title="{!contact.Email}">
+								<aura:set attribute="media">
+									<lightning:icon iconName="standard:contact" size="x-small"
+										alternativeText="icon" />
+								</aura:set>
+							</lightning:pill>
+						</aura:iteration>
+					</div>
+
+				</div>
+				<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+				<div class="slds-modal__footer">
+					<button class="slds-button slds-button--neutral"
+						onclick="{!c.closeEmailFailed}">{!$Label.c.orm_cancel_button_title}</button>
+
+
+				</div>
 			</div>
 		</div>
-	</div>
 	</aura:if>
 	<!-- end email template -->
-<c:OrmContactNewCmp/>
+	<c:OrmContactNewCmp />
 </aura:component>

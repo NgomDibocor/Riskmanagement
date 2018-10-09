@@ -10,15 +10,15 @@
         // call the apex class method and fetch contact list
         var rowActions = helper.getRowActions.bind(this, component);
         component.set('v.columns', [{
-            label: 'Name',
+            label: $A.get("$Label.c.orm_name_label"),
             fieldName: 'Name',
             type: 'text'
         }, {
-            label: 'Email',
+            label: $A.get("$Label.c.orm_email_contact"),
             fieldName: 'Email',
             type: 'email'
         }, {
-            label: 'Invitation',
+            label:  $A.get("$Label.c.orm_invitation_contact_workshop"),
             fieldName: 'orm_notification__c',
             type: 'text'
         }, {

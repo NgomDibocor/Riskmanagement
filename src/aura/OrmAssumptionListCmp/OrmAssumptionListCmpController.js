@@ -144,7 +144,7 @@
      */
     removeAssumptSelected: function(component, event, helper) {
         component.set("v.showConfirmRemoveAssumption", false);
-        //fire event to childAssumptionList for delete assumption selected
+        //fire event to childActivityList for delete activity selected
         var evt = $A.get("e.c:OrmRemoveRecordAssumptEvnt");
         evt.fire();
     },
@@ -155,6 +155,20 @@
             "nomField": "Assumption",
             "descriptionField": "Description"
         });
+        evt.fire();
+    },
+    /**
+     * 
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description method for fire event selectAll checkbox header
+     * @history 2018-10-09 : Salimata NGOM - Implementation
+     */
+    fireSelectAll: function(component, event, helper) {
+        //fire event selectAll checkbox header
+        var evt = $A.get("e.c:OrmSelectAllAssumptEvnt");
+        var selectedHeader = event.getSource().get("v.value");
+        evt.setParam('selectedHeaderCheck',selectedHeader);
         evt.fire();
     },
 })

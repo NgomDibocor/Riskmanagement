@@ -86,5 +86,47 @@
 		// set the actual value on selectedCount attribute to show on header
 		// part.
 		component.set("v.selectedRowsCount", getSelectedNumber);
-	}
+	},
+	
+    /**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for select all checkboxes
+	 * @history 2018-10-09 : Salimata NGOM - Implementation
+	 */
+	 selectAll: function(component, event, helper) {
+        //get the header checkbox value  
+        var selectedHeaderCheck = event.getParam('selectedHeaderCheck');
+        // get all checkbox on table with "boxAssumption" aura id (all iterate value have same Id)
+        // return the List of all checkboxs element 
+        var getAllId = component.find("boxAssumption");
+        // If the local ID is unique[in single record case], find() returns the component. not array   
+        if (!Array.isArray(getAllId)) {
+            if (selectedHeaderCheck == true) {
+                component.find("boxAssumption").set("v.value", true);
+                component.set("v.selectedCount", 1);
+            } else {
+                component.find("boxAssumption").set("v.value", false);
+                component.set("v.selectedCount", 0);
+            }
+        } else {
+            // check if select all (header checkbox) is true then true all checkboxes on table in a for loop  
+            // and set the all selected checkbox length in selectedCount attribute.
+            // if value is false then make all checkboxes false in else part with play for loop 
+            // and select count as 0 
+            if (selectedHeaderCheck == true) {
+                for (var i = 0; i < getAllId.length; i++) {
+                    component.find("boxAssumption")[i].set("v.value", true);
+                    component.set("v.selectedCount", getAllId.length);
+                }
+            } else {
+                for (var i = 0; i < getAllId.length; i++) {
+                    component.find("boxAssumption")[i].set("v.value", false);
+                    component.set("v.selectedCount", 0);
+                }
+            }
+        }
+
+    }
 })

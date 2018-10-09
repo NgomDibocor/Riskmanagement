@@ -1,26 +1,3 @@
-<aura:component controller="OrmAssumptionController" access="global"
-	extends="c:ormAbstractListCmp"
-	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
-	<!-- 	declare aura attribute -->
-	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
-	<aura:attribute name="assumptionList" type="Macro[]" />
-	<aura:attribute name="storeAssumptionList" type="Macro[]" />
-	<aura:attribute name="assessmentData" type="Assessment__c" />
-	<aura:attribute name="key" type="string" />
-	<aura:attribute name="showConfirmRemoveAssumption" type="boolean"
-		default="false" description="is true show popup  message confirmation" />
-	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
-	<!-- 	aura registerEvent -->
-	<aura:registerEvent name="OrmNewAssumptionClickedEvt"
-		type="c:OrmNewAssumptionClickedEvt" />
-	<aura:registerEvent name="OrmRemoveRecordAssumptEvnt"
-		type="c:OrmRemoveRecordAssumptEvnt" />
-    <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
-	<!-- 		declare aura:handler -->
-		<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-	<aura:handler event="c:OrmAssumptionCreatedEvt" action="{!c.doInit}" />
-	<aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
-	<!-- start header page content search bar and action button -->
 <aura:component controller="OrmAssumptionController" access="global" extends="c:ormAbstractListCmp" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
     <!-- 	declare aura attribute -->
     <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
@@ -36,9 +13,13 @@
     <aura:registerEvent name="OrmNewAssumptionClickedEvt" type="c:OrmNewAssumptionClickedEvt" />
     <aura:registerEvent name="OrmRemoveRecordAssumptEvnt" type="c:OrmRemoveRecordAssumptEvnt" />
     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
+    <aura:registerEvent name="OrmSelectAllAssumptEvnt" type="c:OrmSelectAllAssumptEvnt" />
     <!-- 		declare aura:handler -->
     <aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
     <!-- start header page content search bar and action button -->
+
+
+
 
     <div style="margin-bottom:20px;">
         <h1 class="titleAssumtion"><span class="dot">Assumptions</span></h1>
@@ -56,29 +37,6 @@
 					iconName="utility:delete" size="small" />
 			</span> <br/>
 
-			<!-- use aura:if for show/hide buttons -->
-			<aura:if isTrue="{!v.showSaveCancelBtn}">
-				<!--button for save and cancel Record after Inline Edit-->
-				<lightning:buttonGroup class="slds-m-around_medium">
-					<lightning:button label="{!$Label.c.orm_cancel_button_title}"
-						onclick="{!c.cancel}" />
-					<lightning:button label="{!$Label.c.orm_save_button_title}"
-						onclick="{!c.Save}" variant="success" />
-				</lightning:buttonGroup>
-			</aura:if>
-		</div>
-	</div>
-	<!-- end header page content search bar and action button -->
-	<div class="slds-m-around_large">
-		<!--Data Table-->
-	<aura:if isTrue="{!not(empty(v.PaginationList))}">
-		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
-			<thead>
-				<tr class="slds-text-title--caps">
-					<th style="width: 3.25rem;" class="slds-text-align--right">
-						<div class="slds-form-element">
-							<div class="slds-form-element__control">
-								<label class="slds-checkbox"> <!--header checkbox for select all activity-->
             <!-- use aura:if for show/hide buttons -->
             <aura:if isTrue="{!v.showSaveCancelBtn}">
                 <!--button for save and cancel Record after Inline Edit-->
@@ -96,50 +54,23 @@
             <table class="slds-table slds-table_bordered slds-table_cell-buffer">
                 <thead>
                     <tr class="slds-text-title--caps">
+                        <th style="width: 3.25rem;" class="slds-text-align--right">
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <label class="slds-checkbox"> <!--header checkbox for select all activity-->
+									<ui:inputCheckbox aura:id="boxAll" change="{!c.fireSelectAll}" />
+									<span class="slds-checkbox--faux"></span> <span
+									class="slds-form-element__label text"></span>
+								</label>
+                                </div>
+                            </div>
+                        </th>
                         <th scope="col">
                             <div class="slds-truncate thTable" title="">N°</div>
                         </th>
                         <th scope="col">
                             <div class="slds-truncate thTable" title="{!$Label.c.orm_name_assumption}">{!$Label.c.orm_name_assumption}</div>
                         </th>
-
-                        <th style="width: 3.25rem;" class="slds-text-align--right">
-                            <div class="slds-form-element">
-                                <div class="slds-form-element__control">
-                                    <label class="slds-checkbox"> <!--header checkbox for select all activity-->
-									<ui:inputCheckbox aura:id="boxAll" change="{!c.selectAll}" />
-									<span class="slds-checkbox--faux"></span> <span
-									class="slds-form-element__label text"></span>
-								</label>
-							</div>
-						</div>
-					</th>
-					<th scope="col"><div class="slds-truncate thTable" title="">N°</div></th>
-					<th scope="col"><div class="slds-truncate thTable"
-							title="{!$Label.c.orm_name_assumption}">{!$Label.c.orm_name_assumption}</div></th>
-				</tr>
-			</thead>
-			<tbody>
-				<!--### display all records of workshop attribute one by one by aura:iteration ###-->
-<!-- 				items="{!v.assumptionList}" var="assumption" -->
-				<aura:iteration  items="{!v.PaginationList}" var="item" indexVar="sNo">
-					<!-- start iteration -->
-					<c:OrmAssumptionListChildCmp assumption="{!item}"
-						assessmentData="{!v.assessmentData}"
-						selectedRowsCount="{!v.selectedRowsCount}"
-						showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
-				</aura:iteration>
-			</tbody>
-		</table>
-		<aura:set attribute="else">
-			 <div class="messageIsEmpty">
-		 		List of assumptions is empty
-		     </div>
-	    </aura:set>
-                                </div>
-                            </div>
-                        </th>
-
                     </tr>
 
                 </thead>

@@ -1,6 +1,5 @@
 <aura:component access="global" controller="OrmRiskController">
-
-	  
+  
 	<aura:attribute name="data" type="Idea" default="{
 														 'sobjectType' : 'Idea',
 								                         'orm_healthAndSafety__c': '',  
@@ -111,6 +110,78 @@
 					        <td class="greenColor" width="50px" height="50" id="env42"></td>
 					        <td class="greenColor" width="50px" height="50" id="env43"></td>
 					        <td class="yellowColor" width="50px" height="50" id="env44"></td>
+					      </tr>
+					      <tr>
+					          <td class="removeAllBorder" height="50"></td>
+					          <td colspan="4" class="removeBorderLastRow" height="50">Severity</td>
+					       </tr>
+					    </table>  
+					  </span>
+				</div>
+				<div style="width:70%;height:300px;">
+				   <span class="monTexte" id="reputation">Reputation </span>
+				   <span id="idTableReputation">
+					   <table>    
+					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					      <tr>
+					        <td class="yellowColor" width="50px" height="50" id="rep11"></td>
+					        <td class="orangeColor" width="50px" height="50" id="rep12"></td>
+					        <td class="redColor" width="50px" height="50" id="rep13"></td>
+					        <td class="redColor" width="50px" height="50" id="rep14"></td>
+					      </tr>  
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="rep21"></td>
+					        <td class="yellowColor" width="50px" height="50" id="rep22"></td>
+					        <td class="orangeColor" width="50px" height="50" id="rep23"></td>
+					        <td class="redColor" width="50px" height="50" id="rep24"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="rep31"></td>
+					        <td class="yellowColor" width="50px" height="50" id="rep32"></td>
+					        <td class="yellowColor" width="50px" height="50" id="rep33"></td>
+					        <td class="orangeColor" width="50px" height="50" id="rep34"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="rep41"></td>
+					        <td class="greenColor" width="50px" height="50" id="rep42"></td>
+					        <td class="greenColor" width="50px" height="50" id="rep43"></td>
+					        <td class="yellowColor" width="50px" height="50" id="rep44"></td>
+					      </tr>
+					      <tr>
+					          <td class="removeAllBorder" height="50"></td>
+					          <td colspan="4" class="removeBorderLastRow" height="50">Severity</td>
+					       </tr>
+					    </table>  
+					  </span>
+				</div>
+				<div style="width:70%;height:300px;">
+				   <span class="monTexte" id="reputation">working environment </span>
+				   <span id="idTableReputation">
+					   <table>    
+					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
+					      <tr>
+					        <td class="yellowColor" width="50px" height="50" id="we11"></td>
+					        <td class="orangeColor" width="50px" height="50" id="we12"></td>
+					        <td class="redColor" width="50px" height="50" id="we13"></td>
+					        <td class="redColor" width="50px" height="50" id="we14"></td>
+					      </tr>  
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="we21"></td>
+					        <td class="yellowColor" width="50px" height="50" id="we22"></td>
+					        <td class="orangeColor" width="50px" height="50" id="we23"></td>
+					        <td class="redColor" width="50px" height="50" id="we24"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="we31"></td>
+					        <td class="yellowColor" width="50px" height="50" id="we32"></td>
+					        <td class="yellowColor" width="50px" height="50" id="we33"></td>
+					        <td class="orangeColor" width="50px" height="50" id="we34"></td>
+					      </tr>
+					      <tr>
+					        <td class="greenColor" width="50px" height="50" id="we41"></td>
+					        <td class="greenColor" width="50px" height="50" id="we42"></td>
+					        <td class="greenColor" width="50px" height="50" id="we43"></td>
+					        <td class="yellowColor" width="50px" height="50" id="we44"></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>

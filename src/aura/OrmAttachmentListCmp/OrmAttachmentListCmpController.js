@@ -104,6 +104,7 @@
     selectAll: function(component, event, helper) {
         //get the header checkbox value  
         var selectedHeaderCheck = event.getSource().get("v.value");
+          console.log('selectedHeaderCheck'+selectedHeaderCheck);
         // get all checkbox on table with "boxPack" aura id (all iterate value have same Id)
         // return the List of all checkboxs element 
         var getAllId = component.find("boxPack");

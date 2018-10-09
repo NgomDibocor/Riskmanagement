@@ -27,3 +27,25 @@
   font-weight: 600;
   font-size: 1.2em;
 }
+.THIS div.assumption {
+    display: inline-block;
+    width: 100%;
+}
+
+.THIS span.btnNewAttachment {
+    display: inline-block;
+    cursor: pointer;
+    width: 5%;
+}
+
+.THIS .btnDeleteAttachment {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+
+.THIS .iAssumption {
+    display: inline-block;
+    width: 80%;
+    margin-right: 15px;
+}

@@ -24,31 +24,34 @@
     <div style="margin-bottom:20px;">
         <h1 class="titleAssumtion"><span class="dot">Assumptions</span></h1>
     </div>
-    <div class="slds-grid slds-gutters">
-        <div class=" slds-size--2-of-12   slds-p-horizontal--small"></div>
-        <div class=" slds-size--6-of-12   slds-p-horizontal--small">
+     <div class="slds-m-around_large">
+    	<div class="assumption">
+           <div class="iAssumption">
             <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
                 <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search assumption" />
             </a>
-        </div>
-        <div class=" slds-size--4-of-12   slds-p-horizontal--small">
-            <br /> <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> <lightning:icon
-					iconName="utility:new" size="small" /></span> <span></span> <span class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
+            </div>
+       
+         <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> <lightning:icon
+					iconName="utility:new" size="small" /></span>
+					<span class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
 					iconName="utility:delete" size="small" />
-			</span> <br/>
+			</span> <br/><br/>
 
             <!-- use aura:if for show/hide buttons -->
             <aura:if isTrue="{!v.showSaveCancelBtn}">
+            <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
                 <!--button for save and cancel Record after Inline Edit-->
                 <lightning:buttonGroup class="slds-m-around_medium">
                     <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}" />
                     <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.Save}" variant="success" />
                 </lightning:buttonGroup>
+                </div>
             </aura:if>
-        </div>
-    </div>
+        
+    
     <!-- end header page content search bar and action button -->
-    <div class="slds-m-around_large">
+   
         <!--Data Table-->
         <aura:if isTrue="{!not(empty(v.PaginationList))}">
             <table class="slds-table slds-table_bordered slds-table_cell-buffer">
@@ -98,6 +101,7 @@
                 </div>
             </aura:set>
         </aura:if>
+    </div>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAssumption}">
         <!--###### MODAL BOX Start From Here ######-->

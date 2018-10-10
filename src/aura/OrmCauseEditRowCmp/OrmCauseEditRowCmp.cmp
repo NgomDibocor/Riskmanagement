@@ -18,7 +18,7 @@
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <!--Table Row Start-->  
-    <tr>
+    <tr class="slds-hint-parent">
     	
     	<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
 			<div class="slds-form-element">
@@ -39,6 +39,7 @@
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.descriptionEditMode == false}">
                     <span class="slds-truncate" title="{!$Label.c.orm_description}">{!v.cause.Description}</span>
+                    <lightning:helptext content="{!v.cause.Description}"/>
                     <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_description}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>

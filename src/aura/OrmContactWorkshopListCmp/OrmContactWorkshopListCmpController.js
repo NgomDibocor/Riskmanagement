@@ -10,15 +10,15 @@
         // call the apex class method and fetch contact list
         var rowActions = helper.getRowActions.bind(this, component);
         component.set('v.columns', [{
-            label: 'Name',
+            label: $A.get("$Label.c.orm_name_label"),
             fieldName: 'Name',
             type: 'text'
         }, {
-            label: 'Email',
+            label: $A.get("$Label.c.orm_email_contact"),
             fieldName: 'Email',
             type: 'email'
         }, {
-            label: 'Invitation',
+            label:  $A.get("$Label.c.orm_invitation_contact_workshop"),
             fieldName: 'orm_notification__c',
             type: 'text'
         }, {
@@ -37,33 +37,31 @@
      * @history 2018-08-13 : Salimata NGOM - Implementation
      */
     openModalContacts: function(component, event, helper) {
-
-        component.set('v.contactList', event.getParam('contactList'));
-
-        component.set('v.initialData', event.getParam('contactList'));
-        component.set('v.items',event.getParam('contactList'));
-        // start pagination
-        var pageSize = component.get("v.pageSize");
-        // get size of all the records and then hold into an attribute "totalRecords"
-        component.set("v.totalRecords", component.get("v.items").length);
-        // set star as 0
-        component.set("v.startPage", 0);
-        var totalRecords = component.get("v.items").length;
-        //var div = Math.trunc(totalRecords / pageSize);
-        if (totalRecords === pageSize) {
-            component.set("v.hideNext", true);
-            component.set("v.endPage", pageSize - 1);
-        } else {
-            component.set("v.hideNext", false);
-            component.set("v.endPage", pageSize - 1);
-        }
-        var PaginationList = [];
-        for (var i = 0; i < pageSize; i++) {
-            if (component.get("v.items").length > i)
-                PaginationList.push(component.get("v.items")[i]);
-        }
-        component.set('v.PaginationList', PaginationList);
-        //end pagination
+      //  component.set('v.contactList', event.getParam('contactList'));
+// start pagination
+    				 component.set('v.items',event.getParam('contactList'));
+                    var pageSize = component.get("v.pageSize");
+	                // get size of all the records and then hold into an attribute "totalRecords"
+	                component.set("v.totalRecords", component.get("v.items").length);
+	                // set star as 0
+	                component.set("v.startPage",0);
+	                var totalRecords = component.get("v.items").length;
+				    //var div = Math.trunc(totalRecords / pageSize);
+	                if(totalRecords === pageSize){
+	                  component.set("v.hideNext", true);
+	                  component.set("v.endPage", pageSize - 1);
+	                }else{
+	                  component.set("v.hideNext", false);
+	                  component.set("v.endPage", pageSize - 1);
+	                }
+	                var PaginationList = [];
+	                for(var i=0; i< pageSize; i++){
+	                    if(component.get("v.items").length> i)
+	                        PaginationList.push(component.get("v.items")[i]);    
+	                }
+	                component.set('v.contactList', PaginationList);
+                //end pagination
+    
         component.set('v.contactsSearch', event.getParam('contactList'));
         component.set('v.workshop', event.getParam('workshop'));
         component.set("v.isOpenModalContactWorkshop", true);
@@ -210,8 +208,6 @@
     refreshContact: function(component, event, helper) {
         console.log('refreshcontact');
         helper.refreshContactWorkshop(component);
-        // var form = component.find('modalcontacts');
-        //   $A.util.addClass(form, 'slds-fade-in-open');
     },
     /**
      *
@@ -222,7 +218,7 @@
      * 2018-09-27 : Salimata NGOM - Implementation
      */
     filter: function(component, event, helper) {
-        var Listcontact = component.get('v.contactList');
+        var Listcontact = component.get('v.items');
         var data = Listcontact;
         var key = component.get('v.key');
         var regex;
@@ -261,6 +257,7 @@
     },
     // function for clear the Record Selection 
     clear: function(component, event, heplper) {
+    component.get("v.selectedRows");
         var contact = component.get('v.contactChecked');
         var selectedPillId = event.getSource().get("v.name");
         var AllPillsList = component.get("v.contactListSelected");
@@ -318,4 +315,11 @@
         $A.util.removeClass(form, 'slds-fade-in-open');
 
     },
+        next : function (component, event, helper) {
+      helper.next(component, event);
+    },
+    previous : function (component, event, helper) {
+      helper.previous(component, event);
+    },
+   
 })

@@ -145,6 +145,7 @@
 																
 	<aura:attribute name="businessImpLowData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
+																  'CommunityId' : '000000123',
 																  'orm_rating__c' : 'Low',
 																  'orm_costProjectBudgetMin__c' : '',
 																  'orm_costProjectBudgetMax__c' : '',
@@ -159,15 +160,18 @@
 	<aura:attribute name="businessImpacts2" type="Macro[]" />	
 	
 	<aura:attribute name="showBtnMatricePicture" type="boolean" default="false" />
-	<aura:attribute name="data" type="Idea" default="{ 
-													    'orm_probability__c' : '',
-													    'orm_security__c' : '',
-													    'orm_environment__c' : ''
-													 }"/>
+	<aura:attribute name="data" type="Pricebook2" default="{  
+		                                                    'sobjectType' : 'Pricebook2',
+		                                                    'Name' : 'XXXX',
+		                                                    'orm_assessmentRisk__c' : '',
+														    'orm_probability__c' : '',
+														    'orm_security__c' : '',
+														    'orm_environment__c' : ''
+													 }"/> 
 	
 	
 	<aura:registerEvent name="ShowMatriceAssessmentRiskt" type="c:OrmShowMatriceAssessmentRiskEvt" />													
-	
+	  
   <div style="width:100%">
    <table class="slds-table" style="margin-bottom:30px">
         <tr>

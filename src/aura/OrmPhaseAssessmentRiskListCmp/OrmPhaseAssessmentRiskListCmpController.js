@@ -61,6 +61,10 @@
             component.set("v.openModalConfirmDeletion", true);
         }
     },
+       cancel: function(component, event, helper) {
+       component.set("v.showSaveCancelBtn", false);
+       helper.refresh(component, event);
+    },
     cancelDeletePhases: function(component, event, helper) {
         component.set('v.openModalConfirmDeletion', false);
     },

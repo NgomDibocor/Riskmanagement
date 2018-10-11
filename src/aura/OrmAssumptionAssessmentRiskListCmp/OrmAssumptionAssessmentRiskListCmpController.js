@@ -49,7 +49,8 @@
         }
     },
     cancel: function(component, event, helper) {
-        alert("cancel");
+    component.set("v.showSaveCancelBtn", false);
+     helper.refreshList(component, event);
     },
     /**
      * @author David diop

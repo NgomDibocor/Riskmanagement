@@ -20,6 +20,7 @@
     cancel : function(component,event,helper) {
        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
      component.set("v.showSaveCancelBtn",false); 
+     helper.refresh(component, component.get("v.idAssessmentRisk"));
     },
 	save: function(component, event, helper) {
 		if (helper.requiredValidation(component, event)){

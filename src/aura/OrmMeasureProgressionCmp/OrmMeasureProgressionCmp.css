@@ -44,4 +44,13 @@
     background-color: #5B86BE;
     display: inline-block;
 }
+.THIS .styleAllText{
+    text-justify: inter-character;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 17px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+	white-space: normal !important;
+}
 

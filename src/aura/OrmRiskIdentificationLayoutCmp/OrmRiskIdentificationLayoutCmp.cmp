@@ -42,7 +42,7 @@
     <!-- fin partie datatable 2 -->
     <aura:registerEvent name="OrmListAssessmentRiskIsNotEmpty" type="c:OrmListAssessmentRiskIsNotEmpty" />
     <aura:registerEvent name="NotifyAfterdeletingAssessmentRisk" type="c:OrmNotifyAfterdeletingAssessmentRiskEvt" />
-
+	<center>
     <div class="slds-grid slds-gutters">
         <div class=" slds-size--3-of-12   slds-p-horizontal--small slds-float—left">
             <div class="slds-form-element__control">
@@ -72,7 +72,7 @@
 
         </div>
     </div> <br/><br/>
-
+	</center>
     <div class="slds-grid slds-gutters">
         <div class="slds-col slds-size--10-of-12">
             <aura:if isTrue="{!v.isOpenButton}">
@@ -145,7 +145,7 @@
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
                             {!$Label.c.orm_RiskEmpty_message}
-                            </div>
+                             </div>
                         </aura:set>
                     </aura:if>
                     <!-- / CREATE NEW Item FORM -->

@@ -50,7 +50,7 @@
                                                       blur="{!c.closeDescriptionBox}"
                                                       change="{!c.onDescriptionChange}"
                                                       required="true"
-                                                      label="{!$Label.c.orm_description}"
+                                                      label="{!$Label.c.orm_phase}"
                                                       value="{!v.phase.Description}" />
                                     </div> 
                                 </div>

@@ -4,3 +4,11 @@
 .THIS .inputFieldWidth {
     width:85%;
 }
+.THIS .yellowColor{
+	color:black;
+	background:yellow
+}
+.THIS .greenColor{
+	color:white;
+	background:green;
+}

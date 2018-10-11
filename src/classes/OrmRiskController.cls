@@ -225,10 +225,16 @@ public with sharing class OrmRiskController {
     @AuraEnabled 
     public static Pricebook2 getInfosAssessmentRiskForMatriceTable(String assessmentRisk)
     {
-         return  [SELECT Id, orm_healthAndSafety__c, orm_probability__c, orm_security__c, orm_environment__c,
+         List<Pricebook2> infos =  [SELECT Id, orm_healthAndSafety__c, orm_probability__c, orm_security__c, orm_environment__c,
                          orm_reputation__c, orm_workingEnvironment__c, orm_assessmentRisk__c
                   From Pricebook2 
                   WHERE   orm_assessmentRisk__c =:assessmentRisk ];                         
+        if(infos.size() > 0){
+           return infos.get(0);
+        }else{
+           return null;
+        }
+    
     }
    
     

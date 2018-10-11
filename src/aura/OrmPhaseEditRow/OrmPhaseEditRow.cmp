@@ -23,7 +23,7 @@
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
     
     <!--Table Row Start-->  
-    <tr>
+    <tr class="slds-hint-parent">
     	
         <td><div class="slds-truncate">{!v.sNo}</div></td>
         

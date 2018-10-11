@@ -55,7 +55,7 @@
                 </div>
             </aura:if>
             <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" >
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:70%; margin-left:15%;margin-right:15%;" >
                     <thead>
                         <tr class="slds-text-title--caps">
                             <th scope="col">

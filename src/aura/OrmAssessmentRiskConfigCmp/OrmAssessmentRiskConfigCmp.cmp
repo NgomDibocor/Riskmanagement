@@ -197,7 +197,7 @@
 		                   <div style="width:60%;">
 		                        <aura:if isTrue="{!v.showBtnMatricePicture}">
 					                   <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
-						                    <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null)}">
+						                    <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null || v.assessmentRiskData.orm_reputation__c != null || v.assessmentRiskData.orm_workingEnvironment__c != null)}">
 						                           <lightning:buttonGroup class="slds-m-around_medium centerBtnGroupMatice">
 							                           <lightning:button label="View Risk Picture"
 							                                            variant="neutral"

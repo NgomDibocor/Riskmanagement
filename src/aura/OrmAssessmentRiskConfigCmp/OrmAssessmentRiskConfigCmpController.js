@@ -4,8 +4,6 @@
      *
      */
     InstantantiateRisk: function(component, event, helper) {
-        var data = component.get("v.data");
-        data.orm_probability__c = 'Low';
         var riskAssessmentId = event.getParam('riskAssessmentId');
 	    component.set("v.assessmentRiskId" ,riskAssessmentId);
         var idAsssessmentRisk = component.get("v.assessmentRiskId");

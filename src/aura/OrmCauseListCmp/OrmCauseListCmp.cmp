@@ -50,9 +50,12 @@
 	        </aura:if> 
         <aura:if isTrue="{!not(empty(v.PaginationList))}"> 
 	        <!--Data Table-->     
-	        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:70%; margin-left:15%;margin-right:15%;">
+	        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:70%; margin-left:5%;margin-right:25%;">
 	            <thead>
 	                <tr class="slds-text-title--caps">
+	                  
+	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th>
+	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_description}">{!$Label.c.orm_description}</div></th>
 	                  <th style="width:3.25rem;" class="slds-text-align--right">
 		              	<div class="slds-form-element">
 		                	<div class="slds-form-element__control">
@@ -65,8 +68,6 @@
 		                    </div>
 		                </div>
 		              </th> 
-	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th>
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_description}">{!$Label.c.orm_description}</div></th>
 	                </tr>
 	            </thead>
 	            

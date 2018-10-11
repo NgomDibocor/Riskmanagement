@@ -62,7 +62,7 @@
 			evt.fire();          
           	var evnt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
 			evnt.fire();
-				} else {
+				} else if(state == 'ERROR') {
 					let
 					errors = response.getError();
 					let
@@ -73,6 +73,17 @@
 					}
 					// Display the message
 					console.error(message);
+					    var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+            title : 'Error Message',
+            message:message,
+            messageTemplate: 'Mode is pester ,duration is 5sec and Message is overrriden',
+            duration:' 5000',
+            key: 'info_alt',
+            type: 'error',
+            mode: 'pester'
+        });
+        toastEvent.fire();
 				}
 			});
 			$A.enqueueAction(action);
@@ -87,6 +98,7 @@
 				'mode' : 'dismissible'
 			});
 			toast.fire();
+			   component.set("v.isOpen", false);
 		}
 
 	},

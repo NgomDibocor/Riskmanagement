@@ -84,10 +84,16 @@ public with sharing class OrmContactController {
  * 2018-08-06: Salimata NGOM - Implementation
  */
     @AuraEnabled
-	public static Contact add(Contact item){        
-        item.RecordTypeId = OrmContactController.getContactRecordTypeId();
+	public static Contact add(Contact item){ 
+		try{
+       item.RecordTypeId = OrmContactController.getContactRecordTypeId();
 		upsert item;
 		return item;
+		}catch(Exception e){
+       throw new AuraHandledException(e.getMessage());
+       return null;
+}       
+        
 	}
 /**
  * @author Salimata NGOM

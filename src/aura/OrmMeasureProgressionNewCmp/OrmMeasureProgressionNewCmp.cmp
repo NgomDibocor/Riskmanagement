@@ -27,19 +27,19 @@
 					<!--###### MODAL BOX BODY Part Start From Here ######-->
 					<div class="slds-modal__content slds-p-around--medium">
 						<!-- CREATE NEW Activity FORM -->
-						<form class="slds-form--stacked">
+						<form class="slds-form--stacked styleAllText">
 							<div class="slds-grid slds-gutters">
 								<div class="slds-col">
-								    <div class="slds-form-element slds-is-required">
-										<div class="slds-form-element__control">
+								    <div class="slds-form-element slds-is-required ">
+										<div class="slds-form-element__control ">
                                             <lightning:input aura:id="dateProgression" type="date" label="{!$Label.c.orm_DateProgression_label}" 
-                                     			value="{!v.measureProgression.orm_dateProgression__c}" />
+                                     			 value="{!v.measureProgression.orm_dateProgression__c}" />
 										</div>
 									</div>   
 									
 									<div class="slds-form-element slds-is-required">
 										<div class="slds-form-element__control">
-                                            <lightning:input aura:id="poucentageProgression" type="number" label="{!$Label.c.orm_PourcentageProgression_label}" 
+                                            <lightning:input aura:id="poucentageProgression" type="number" labelClass="styleAllText" label="{!$Label.c.orm_PourcentageProgression_label}" 
                                      			value="{!v.measureProgression.orm_poucentageProgression__c}" />
 										</div>
 									</div> 

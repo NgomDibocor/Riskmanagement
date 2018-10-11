@@ -56,19 +56,19 @@
                             <th style="width:3.25rem;" class="slds-text-align--right">
                             </th>
                             <th scope="col" style="width:3.25rem;">
-                                <div class="slds-truncate" title="">N°</div>
+                                <div class="slds-truncate styleAllText" title="">N°</div>
                             </th>
                             <th scope="col">
-                                <div class="slds-truncate" title="{!$Label.c.orm_DateProgression_label}">{!$Label.c.orm_DateProgression_label}</div>
+                                <div class="slds-truncate styleAllText" title="{!$Label.c.orm_DateProgression_label}">{!$Label.c.orm_DateProgression_label}</div>
                             </th>
                             <th scope="col">
-                                <div class="slds-truncate" title="{!$Label.c.orm_PourcentageProgression_label}">{!$Label.c.orm_PourcentageProgression_label}</div>
+                                <div class="slds-truncate styleAllText" title="{!$Label.c.orm_PourcentageProgression_label}">{!$Label.c.orm_PourcentageProgression_label}</div>
                             </th>
                             <th scope="col">
-                                <div class="slds-truncate" title="{!$Label.c.orm_ProductDescription_label}">{!$Label.c.orm_ProductDescription_label}</div>
+                                <div class="slds-truncate styleAllText" title="{!$Label.c.orm_ProductDescription_label}">{!$Label.c.orm_ProductDescription_label}</div>
                             </th>
                             <th scope="col">
-                                <div class="slds-truncate" title="{!$Label.c.orm_statusProgress_label}">{!$Label.c.orm_statusProgress_label}</div>
+                                <div class="slds-truncate styleAllText" title="{!$Label.c.orm_statusProgress_label}">{!$Label.c.orm_statusProgress_label}</div>
                             </th>
                         </tr>
                     </thead>

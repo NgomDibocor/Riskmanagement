@@ -39,3 +39,23 @@
 	color:white;
 	background:green;
 }
+.THIS .styleAllText{
+    text-justify: inter-character;
+    text-align:center;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+	white-space: normal !important;
+}
+.THIS #styleAllText{
+    text-justify: inter-character;
+    text-align:center;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+	white-space: normal !important;
+}

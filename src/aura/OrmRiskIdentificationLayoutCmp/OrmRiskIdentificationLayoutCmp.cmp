@@ -145,7 +145,7 @@
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
                             {!$Label.c.orm_RiskEmpty_message}
-                            </div>
+                             </div>
                         </aura:set>
                     </aura:if>
                     <!-- / CREATE NEW Item FORM -->

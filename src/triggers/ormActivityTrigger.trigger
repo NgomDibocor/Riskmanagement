@@ -1,10 +1,4 @@
 trigger ormActivityTrigger on Assessment__c (before delete) {
-     public static Id getActivityProofRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Product2.getRecordTypeInfosByName()
-                  .get('RT ActivityProof').getRecordTypeId();
-        return RecordTypeId;
-     }
-        
          if(Trigger.isBefore)
      {
 		if(Trigger.isDelete)

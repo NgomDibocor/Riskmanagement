@@ -3,14 +3,15 @@
     <aura:attribute name="assessmentRisks" type="List" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
     <div style="margin-bottom:20px;margin-top: 40px;">
-        <h1 class="titleActionPlan"><span class="dot">Action Plan</span></h1>
+        <h1 class="titleActionPlan"><span class="dot">{!$Label.c.orm_action_plan_menu}</span></h1>
     </div>
     <aura:if isTrue="{!not(empty(v.PaginationList))}">
-        <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:30%;">
+    <center>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:80%;">
             <thead>
                 <tr class="slds-line-height_reset">
                     <th class="slds-text-title_caps" scope="col">
-                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_label}">{!$Label.c.orm_measure_label}</div>
+                        <div id="tabtitle" class="slds-truncate styleAllText" title="{!$Label.c.orm_measure_label}">{!$Label.c.orm_measure_label}</div>
                     </th>
                     <th class="slds-text-title_caps" scope="col">
                         <div id="tabtitle" class="slds-truncate" title="Account Name">{!$Label.c.orm_risk}</div>
@@ -40,34 +41,35 @@
                     <aura:iteration items="{!item.Assessments__r}" var="measureName">
                         <tr class="slds-hint-parent">
                             <th data-label="Opportunity Name" scope="row">
-                                <div class="slds-truncate" title="{!measureName.Name}">{!measureName.Name}</div>
+                                <div class="slds-truncate styleAllText" title="{!measureName.Name}">{!measureName.Name}</div>
                             </th>
                             <td data-label="Account Name" class="slds-truncate">
-                                <div class="slds-truncate" title="{!item.orm_Risk__r.Name}">{!item.orm_Risk__r.Name}</div>
+                                <div class="slds-truncate styleAllText" title="{!item.orm_Risk__r.Name}">{!item.orm_Risk__r.Name}</div>
                             </td>
                             <td data-label="Close Date">
-                                <div class="slds-truncate" title="{!measureName.orm_measureResponsable__r.Name}">{!measureName.orm_measureResponsable__r.Name}</div>
+                                <div class="slds-truncate styleAllText" title="{!measureName.orm_measureResponsable__r.Name}">{!measureName.orm_measureResponsable__r.Name}</div>
                             </td>
                             <td data-label="Prospecting">
-                                <div class="slds-truncate" title="{!measureName.orm_measureCategorie__c}">{!measureName.orm_measureCategorie__c}</div>
+                                <div class="slds-truncate styleAllText" title="{!measureName.orm_measureCategorie__c}">{!measureName.orm_measureCategorie__c}</div>
                             </td>
                             <td data-label="Confidence">
-                                <div class="slds-truncate" title="{!measureName.orm_Cost_Effect__c}">{!measureName.orm_Cost_Effect__c}</div>
+                                <div class="slds-truncate styleAllText" title="{!measureName.orm_Cost_Effect__c}">{!measureName.orm_Cost_Effect__c}</div>
                             </td>
                             <td data-label="Amount">
-                                <div class="slds-truncate" title="{!measureName.orm_organisation__r.Name}">{!measureName.orm_organisation__r.Name}</div>
+                                <div class="slds-truncate styleAllText" title="{!measureName.orm_organisation__r.Name}">{!measureName.orm_organisation__r.Name}</div>
                             </td>
                             <td data-label="Contact">
-                                <div class="{!measureName.orm_measure_Status__c == 'close' ? 'redColor' : (measureName.orm_measure_Status__c== 'open' ? 'greenColor' : (measureName.orm_measure_Status__c == 'draft' ? 'yellowColor' : ''))  }" title="{!measureName.orm_measure_Status__c}"><center>{!measureName.orm_measure_Status__c}</center></div>
+                                <div id="styleAllText" class="{!measureName.orm_measure_Status__c == 'close' ? 'redColor' : (measureName.orm_measure_Status__c== 'open' ? 'greenColor' : (measureName.orm_measure_Status__c == 'draft' ? 'yellowColor' : ''))  }" title="{!measureName.orm_measure_Status__c}"><center>{!measureName.orm_measure_Status__c}</center></div>
                             </td>
                             <td data-label="Contact">
-                                <div class="slds-truncate" title="{!measureName.orm_endDate__c}">{!measureName.orm_endDate__c}</div>
+                                <div class="slds-truncate styleAllText" title="{!measureName.orm_endDate__c}">{!measureName.orm_endDate__c}</div>
                             </td>
                         </tr>
                     </aura:iteration>
                 </aura:iteration>
             </tbody>
         </table>
+        </center>
         <center>
             <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
                 <lightning:buttonGroup>

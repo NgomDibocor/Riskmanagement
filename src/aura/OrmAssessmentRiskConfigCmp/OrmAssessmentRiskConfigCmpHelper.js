@@ -110,19 +110,21 @@
 			
 			                                                                this.getSliderDefault(component, event);
 			                                                                this.getSliderBusinessDefault(component,event);
-			                                                                
+			                                                                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+			                                                                evtSpinner.fire();
 			                                                                var actionMT = component.get('c.getInfosAssessmentRiskForMatriceTable');
-																			actionMT.setParams({"assessmentRisk": assessmentRisk });
+																			actionMT.setParams({"assessmentRisk": component.get("v.assessmentRiskData").Id });
 																			actionMT.setCallback(this,function(response) {
 																			      var state = response.getState();
+																			      console.log(state)
+																			      console.log(component.get("v.assessmentRiskData").Id )
 																			      if (state == "SUCCESS") {
 																			         //component.set("v.data", response.getReturnValue());
 																			         //component.get("v.data")
 																			         console.log('*****Show data Object in actionMT******');
 																			         console.log(JSON.stringify(response.getReturnValue()));
 																			         console.log('*****After******');
-																			         var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-			                                                                         evtSpinner.fire();
+																			         
 																			      }
 																			});
 																			$A.enqueueAction(actionMT);

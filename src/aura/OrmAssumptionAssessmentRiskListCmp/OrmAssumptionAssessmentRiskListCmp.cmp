@@ -24,7 +24,7 @@
 					iconName="utility:new" size="small" /></span> 
 					 <span class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
 					iconName="utility:delete" size="small" />
-			 </span> 
+			 </span> <br/><br/>
 
             <!-- use aura:if for show/hide buttons -->
             <aura:if isTrue="{!v.showSaveCancelBtn}">
@@ -41,19 +41,19 @@
     
         <aura:if isTrue="{!not(empty(v.PaginationList))}">
             <!--Data Table-->
-            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:70%; margin-left:5%;margin-right:25%;">
                 <thead>
                     <tr class="slds-text-title--caps">
-                        <th style="width: 3.25rem;" class="slds-text-align--right">
-
-                        </th>
+                      
                         <th scope="col">
                             <div class="slds-truncate thTable" title="">N°</div>
                         </th>
                         <th scope="col">
                             <div class="slds-truncate thTable" title="{!$Label.c.orm_name_assumption}">{!$Label.c.orm_name_assumption}</div>
                         </th>
+						<th style="width: 3.25rem;" class="slds-text-align--right">
 
+                        </th>
 
 
                     </tr>

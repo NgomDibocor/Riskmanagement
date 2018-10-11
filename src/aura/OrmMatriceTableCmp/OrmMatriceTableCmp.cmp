@@ -1,7 +1,7 @@
 <aura:component access="global" controller="OrmRiskController">
   
-	<aura:attribute name="data" type="Idea" default="{
-														 'sobjectType' : 'Idea',
+	<aura:attribute name="data" type="Pricebook2" default="{
+														 'sobjectType' : 'Pricebook2',
 								                         'orm_healthAndSafety__c': '',  
 								                         'orm_security__c':'',
 								                         'orm_environment__c' :''

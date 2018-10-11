@@ -25,8 +25,8 @@
 																					}" />
 	  
 	<aura:handler action="{!c.doInit}" name="init" value="{!this}" />
-	<aura:attribute name="data" type="Idea" default="{
-														 'sobjectType' : 'Idea',
+	<aura:attribute name="data" type="Pricebook2" default="{
+														 'sobjectType' : 'Pricebook2',
 								                         'orm_healthAndSafety__c': '',  
 								                         'orm_security__c':'',
 								                         'orm_environment__c' :''
@@ -34,35 +34,35 @@
 		     
 		     
 		  <div style="width:100%;display: flex;">
-		     <div style="width:35%;height:600px;overflow-y:scroll;overflow-x: hidden;"> 
+		     <div style="width:50%;height:600px;overflow-y:scroll;overflow-x: hidden;"> 
 			     <div style="width:70%;height:300px;">
 				   <span class="monTexte" id="healthAndSafety">Health And Safety</span>
 				   <span id="idTable">
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50" id="hs11"></td>
-					        <td class="orangeColor" width="50px" height="50" id="hs12"></td>
-					        <td class="redColor" width="50px" height="50" id="hs13"></td>
-					        <td class="redColor" width="50px" height="50" id="hs14"></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="hs12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="hs13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="hs14" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="hs21"></td>
-					        <td class="yellowColor" width="50px" height="50" id="hs22"></td>
-					        <td class="orangeColor" width="50px" height="50" id="hs23"></td>
-					        <td class="redColor" width="50px" height="50" id="hs24"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="hs23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="hs24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="hs31"></td>
-					        <td class="yellowColor" width="50px" height="50" id="hs32"></td>
-					        <td class="yellowColor" width="50px" height="50" id="hs33"></td>
-					        <td class="orangeColor" width="50px" height="50" id="hs34"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="hs34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="hs41"></td>
-					        <td class="greenColor" width="50px" height="50" id="hs42"></td>
-					        <td class="greenColor" width="50px" height="50" id="hs43"></td>
-					        <td class="yellowColor" width="50px" height="50" id="hs44"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -77,28 +77,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50" id="sec11"></td>
-					        <td class="orangeColor" width="50px" height="50" id="sec12"></td>
-					        <td class="redColor" width="50px" height="50" id="sec13"></td>
-					        <td class="redColor" width="50px" height="50" id="sec14"></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="sec12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="sec13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="sec14" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="sec21"></td>
-					        <td class="yellowColor" width="50px" height="50" id="sec22"></td>
-					        <td class="orangeColor" width="50px" height="50" id="sec23"></td>
-					        <td class="redColor" width="50px" height="50" id="sec24"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="sec23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="sec24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="sec31"></td>
-					        <td class="yellowColor" width="50px" height="50" id="sec32"></td>
-					        <td class="yellowColor" width="50px" height="50" id="sec33"></td>
-					        <td class="orangeColor" width="50px" height="50" id="sec34"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="sec34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="sec41"></td>
-					        <td class="greenColor" width="50px" height="50" id="sec42"></td>
-					        <td class="greenColor" width="50px" height="50" id="sec43"></td>
-					        <td class="yellowColor" width="50px" height="50" id="sec44"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -113,28 +113,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50" id="env11"></td>
-					        <td class="orangeColor" width="50px" height="50" id="env12"></td>
-					        <td class="redColor" width="50px" height="50" id="env13"></td>
-					        <td class="redColor" width="50px" height="50" id="env14"></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="env12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="env13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="env14" class=""></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="env21"></td>
-					        <td class="yellowColor" width="50px" height="50" id="env22"></td>
-					        <td class="orangeColor" width="50px" height="50" id="env23"></td>
-					        <td class="redColor" width="50px" height="50" id="env24"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="env23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="env24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="env31"></td>
-					        <td class="yellowColor" width="50px" height="50" id="env32"></td>
-					        <td class="yellowColor" width="50px" height="50" id="env33"></td>
-					        <td class="orangeColor" width="50px" height="50" id="env34"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="env34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="env41"></td>
-					        <td class="greenColor" width="50px" height="50" id="env42"></td>
-					        <td class="greenColor" width="50px" height="50" id="env43"></td>
-					        <td class="yellowColor" width="50px" height="50" id="env44"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -149,28 +149,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50" id="rep11"></td>
-					        <td class="orangeColor" width="50px" height="50" id="rep12"></td>
-					        <td class="redColor" width="50px" height="50" id="rep13"></td>
-					        <td class="redColor" width="50px" height="50" id="rep14"></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="rep12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="rep13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="rep14" class=""></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="rep21"></td>
-					        <td class="yellowColor" width="50px" height="50" id="rep22"></td>
-					        <td class="orangeColor" width="50px" height="50" id="rep23"></td>
-					        <td class="redColor" width="50px" height="50" id="rep24"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="rep23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="rep24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="rep31"></td>
-					        <td class="yellowColor" width="50px" height="50" id="rep32"></td>
-					        <td class="yellowColor" width="50px" height="50" id="rep33"></td>
-					        <td class="orangeColor" width="50px" height="50" id="rep34"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="rep34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="rep41"></td>
-					        <td class="greenColor" width="50px" height="50" id="rep42"></td>
-					        <td class="greenColor" width="50px" height="50" id="rep43"></td>
-					        <td class="yellowColor" width="50px" height="50" id="rep44"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -185,28 +185,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50" id="we11"></td>
-					        <td class="orangeColor" width="50px" height="50" id="we12"></td>
-					        <td class="redColor" width="50px" height="50" id="we13"></td>
-					        <td class="redColor" width="50px" height="50" id="we14"></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="we12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="we13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="we14" class=""></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="we21"></td>
-					        <td class="yellowColor" width="50px" height="50" id="we22"></td>
-					        <td class="orangeColor" width="50px" height="50" id="we23"></td>
-					        <td class="redColor" width="50px" height="50" id="we24"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="we23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="we24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="we31"></td>
-					        <td class="yellowColor" width="50px" height="50" id="we32"></td>
-					        <td class="yellowColor" width="50px" height="50" id="we33"></td>
-					        <td class="orangeColor" width="50px" height="50" id="we34"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="we34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50" id="we41"></td>
-					        <td class="greenColor" width="50px" height="50" id="we42"></td>
-					        <td class="greenColor" width="50px" height="50" id="we43"></td>
-					        <td class="yellowColor" width="50px" height="50" id="we44"></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -217,7 +217,7 @@
 				</div>
 		    </div>
 		    
-			<div style="width:65%;height:auto">
+			<div style="width:50%;height:auto">
 			     <table>
 			     <thead>
 				      <tr>

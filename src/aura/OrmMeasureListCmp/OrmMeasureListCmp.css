@@ -33,3 +33,12 @@
   white-space: normal;
   color: green;
 }
+.THIS .styleAllText{
+    text-justify: inter-character;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 15px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+	white-space: normal !important;
+}

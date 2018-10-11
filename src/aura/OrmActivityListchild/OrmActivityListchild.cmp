@@ -52,7 +52,8 @@
 			class="{! v.showErrorClass == true ? 'slds-cell-edit slds-has-error' : 'slds-cell-edit'}">
 			<span class="slds-grid slds-grid_align-spread"> <!-- show input and output section based on boolean flag -->
 				<aura:if isTrue="{!v.nameEditMode == false}">
-					<span class="slds-truncate" title="{!$Label.c.orm_name_activity}">{!v.singleRec.Name}</span>
+					<span class="slds-truncate">{!v.singleRec.Name}</span>
+					   <lightning:helptext content="{!v.singleRec.Name}"/>
 					<button onclick="{!c.inlineEditName}"
 						class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
 						tabindex="0" title="{!$Label.c.orm_edit_button_title}">

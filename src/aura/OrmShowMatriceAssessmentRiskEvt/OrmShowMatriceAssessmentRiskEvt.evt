@@ -1,4 +1,4 @@
 <aura:event type="APPLICATION" description="Event template" >
    <aura:attribute name="assessmentRisk" type="orm_assessmentRisk__c" description="" />
-   <aura:attribute name="data" type="Idea" />
+   <aura:attribute name="data" type="Pricebook2" />
 </aura:event>

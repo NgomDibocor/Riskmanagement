@@ -215,14 +215,27 @@ public with sharing class OrmRiskController {
                           RecordTypeId=: OrmSliderController.getBusinessImpactRecordTypeId()];                               
     }
     
-    /*@AuraEnabled 
-    public static List<orm_assessmentRisk__c> getInfosAssessmentRiskForMatriceTable(String assessment)
+    @AuraEnabled 
+    public static Pricebook2 addInfosAssessmentRiskForMatriceTable(Pricebook2 item)
     {
-           return  [SELECT Id, orm_assessment__r.name, orm_assessment__r.Id,orm_Risk__r.Name,
-                           orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
-                    From orm_assessmentRisk__c 
-                    WHERE   orm_assessment__c =:assessment ];                          
-    }*/
+         upsert item;
+         return item;                         
+    }
+    
+    @AuraEnabled 
+    public static Pricebook2 getInfosAssessmentRiskForMatriceTable(String assessmentRisk)
+    {
+         List<Pricebook2> infos =  [SELECT Id, orm_healthAndSafety__c, orm_probability__c, orm_security__c, orm_environment__c,
+                         orm_reputation__c, orm_workingEnvironment__c, orm_assessmentRisk__c
+                  From Pricebook2 
+                  WHERE   orm_assessmentRisk__c =:assessmentRisk ];                         
+        if(infos.size() > 0){
+           return infos.get(0);
+        }else{
+           return null;
+        }
+    
+    }
    
     
 }

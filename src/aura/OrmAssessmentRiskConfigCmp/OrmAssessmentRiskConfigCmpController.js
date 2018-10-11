@@ -4,33 +4,28 @@
      *
      */
     InstantantiateRisk: function(component, event, helper) {
-        var data = component.get("v.data");
-        data.orm_probability__c = 'Low';
-        console.log(JSON.stringify(data));      
         var riskAssessmentId = event.getParam('riskAssessmentId');
 	    component.set("v.assessmentRiskId" ,riskAssessmentId);
         var idAsssessmentRisk = component.get("v.assessmentRiskId");
         helper.fetchPicklist(component, event, idAsssessmentRisk);
         helper.getProbality(component, event); 
       },
+      
       updateAssessmentRisk : function(component, event, helper) {
-	       var assessmentRisk = component.get("v.assessmentRiskData");
-	       var assessment= component.get("v.assessmentRiskData.orm_assessment__c");
-	       var healthAndSafety =component.get("v.healthAndSafety");
-	       var reputation = component.get("v.reputation");
-	       var security =component.get("v.security");
-	       var cost =component.get("v.cost");
-	       var schedule =component.get("v.schedule");
-	       var production =component.get("v.production");
-	       var environmentAndCommunity =component.get("v.environmentAndCommunity");
-	       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
-	       assessmentRisk.orm_assessment__c = assessment;
-	       assessmentRisk.orm_Risk__c = risk;
-		      // var dateRisk=component.find("dateRisk");
-		      // assessmentRisk.orm_date__c =dateRisk.get("v.value");
-		      // var environmentAndCommunity =  component.find("environmentAndCommunity");
-		      var riskManager = component.find("riskManager");
-              assessmentRisk.orm_riskManager__c = riskManager.get("v.value");
+		       var assessmentRisk = component.get("v.assessmentRiskData");
+		       var assessment= component.get("v.assessmentRiskData.orm_assessment__c");
+		       var healthAndSafety =component.get("v.healthAndSafety");
+		       var reputation = component.get("v.reputation");
+		       var security =component.get("v.security");
+		       var cost =component.get("v.cost");
+		       var schedule =component.get("v.schedule");
+		       var production =component.get("v.production");
+		       var environmentAndCommunity =component.get("v.environmentAndCommunity");
+		       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
+		       assessmentRisk.orm_assessment__c = assessment;
+		       assessmentRisk.orm_Risk__c = risk;
+		       var riskManager = component.find("riskManager");
+               assessmentRisk.orm_riskManager__c = riskManager.get("v.value");
 		       assessmentRisk.orm_environmentAndCommunity__c =environmentAndCommunity;
 		       var workingEnvironment = component.find("workingEnvironment");
 		       assessmentRisk.orm_workingEnvironment__c = workingEnvironment.get("v.value");
@@ -40,47 +35,54 @@
 		       assessmentRisk.orm_status__c =status.get("v.value");
 		       var uncertainty = component.find("uncertainty");
 		       assessmentRisk.orm_uncertainty__c =uncertainty.get("v.value");
-		      //var security = component.find("security");
 		       assessmentRisk.orm_security__c =security;
-		       //var reputation = component.find("reputation");
 		       assessmentRisk.orm_reputation__c =reputation;
-		       //var cost = component.find("cost1");
 		       assessmentRisk.orm_cost__c =cost;	
-		       //var healthAndSafety = component.find("healthAndSafety");
 		       assessmentRisk.orm_healthAndSafety__c =healthAndSafety;
 		       var probability = component.find("slider1");
 		       assessmentRisk.orm_probability__c = probability.get("v.value");
-		       //var scheduleRisk = component.find("schedule1");
 		       assessmentRisk.orm_ScheduleRisk__c = schedule;
-		      // var productionRisk = component.find("production");
 		       assessmentRisk.orm_production_Loss_Risk__c = production;
-	       
-	       var action = component.get('c.addAssessmentRisk');
-	        action.setParams({
-	            "item": assessmentRisk
-	        });
-	        action.setCallback(this,function(response) {
-                var state = response.getState();
-                if (state == "SUCCESS") {
-	                component.set("v.displaySaveCancelBtn", false);
-	                component.set("v.assessmentRiskData", response.getReturnValue());
-	                var data = component.get("v.data");
-				    data.orm_workingEnvironment__c = component.get("v.assessmentRiskData").orm_workingEnvironment__c ;
-				    component.set("v.data", data);
-				    
-                    var toastEvent = $A.get('e.force:showToast');
-                    toastEvent.setParams({
-                        'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
-                        'type' : 'success',
-                        'mode' : 'dismissible'
-                    });  
-	                toastEvent.fire();
-	                var idAsssessmentRisk = component.get("v.assessmentRiskId");
-	                helper.fetchPicklist(component, event, idAsssessmentRisk);
-
-                }
-	        });
-	        $A.enqueueAction(action);
+		       
+		       var action = component.get('c.addAssessmentRisk');
+		       action.setParams({"item": assessmentRisk });
+		       action.setCallback(this,function(response) {
+	                var state = response.getState();
+	                if (state == "SUCCESS") {
+		                component.set("v.displaySaveCancelBtn", false);
+		                component.set("v.assessmentRiskData", response.getReturnValue());
+		                var data = component.get("v.data");
+					    data.orm_workingEnvironment__c = component.get("v.assessmentRiskData").orm_workingEnvironment__c ;
+					    component.set("v.data", data);
+					    
+	                    var toastEvent = $A.get('e.force:showToast');
+	                    toastEvent.setParams({
+	                        'message' :assessmentRisk.orm_Risk__r.Name+' '+$A.get("$Label.c.orm_success_updated"),
+	                        'type' : 'success',
+	                        'mode' : 'dismissible'
+	                    });  
+		                toastEvent.fire();
+		                var idAsssessmentRisk = component.get("v.assessmentRiskId");
+		                helper.fetchPicklist(component, event, idAsssessmentRisk);
+	                    
+	                    var newItem = component.get("v.data");
+	                    newItem.orm_assessmentRisk__c = component.get("v.assessmentRiskData").Id ;
+	                    var actionInfosAssessmentRiskForMatriceTable = component.get('c.addInfosAssessmentRiskForMatriceTable');
+				        actionInfosAssessmentRiskForMatriceTable.setParams({"item": newItem });
+				        actionInfosAssessmentRiskForMatriceTable.setCallback(this, function(response) {
+			                var state = response.getState();
+			                console.log('****display state****')
+			                console.log(state)
+			                if (state == "SUCCESS") {
+				               component.set("v.data", response.getReturnValue());
+				               console.log('****displaying of object data****');
+				               console.log(JSON.stringify(component.get("v.data")));
+			                }
+				        });
+				        $A.enqueueAction(actionInfosAssessmentRiskForMatriceTable);
+	                }
+		        });
+		        $A.enqueueAction(action);
     },
  /**
  *

@@ -58,10 +58,8 @@
         }
     },
     cancel: function(component, event, helper) {
-        // on cancel refresh the view (This event is handled by the one.app
-        // container. It’s supported in Lightning Experience, the Salesforce
-        // app, and Lightning communities. )
-        $A.get('e.force:refreshView').fire();
+    	 component.set("v.showSaveCancelBtn", false);
+    	  helper.refreshList(component, event);
     },
 
     /**

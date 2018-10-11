@@ -61,11 +61,11 @@
 		                    </div>
 		                </div>
 		              </th> 
-	                  <th scope="col"><div class="slds-truncate" title="">N°</div></th> 
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_label_cause}">{!$Label.c.orm_measure_label}</div></th>
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_description}">{!$Label.c.orm_measure_description}</div></th>
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_category_measure_label}">{!$Label.c.orm_category_measure_label}</div></th>
-	                  <th scope="col"><div class="slds-truncate" title="{!$Label.c.orm_table_action_label}">{!$Label.c.orm_table_action_label}</div></th>
+	                  <th scope="col" style="width:3.25rem;"><div class="slds-truncate" title="">N°</div></th> 
+	                  <th scope="col"><div class="slds-truncate styleAllText" title="{!$Label.c.orm_label_cause}">{!$Label.c.orm_measure_label}</div></th>
+	                  <th scope="col"><div class="slds-truncate styleAllText" title="{!$Label.c.orm_description}">{!$Label.c.orm_measure_description}</div></th>
+	                  <th scope="col"><div class="slds-truncate styleAllText" title="{!$Label.c.orm_category_measure_label}">{!$Label.c.orm_category_measure_label}</div></th>
+	                  <th scope="col"><div class="slds-truncate styleAllText" title="{!$Label.c.orm_table_action_label}">{!$Label.c.orm_table_action_label}</div></th>
 	                </tr>
 	            </thead>
 	            
@@ -74,7 +74,7 @@
 <!-- 	             	 items="{!v.measures}" var="measure"  -->
 	                <aura:iteration items="{!v.PaginationList}" var="item" indexVar="sNo">
 	                   <!-- Child Lightning Component --> 
-	                    <c:OrmMeasureEditRowCmp measure="{!item}"
+	                    <c:OrmMeasureEditRowCmp measure="{!item}" 
 	                    			     selectedRowsCount="{!v.selectedRowsCount}"
 	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
 	                                     sNo="{!sNo + 1}" />                       

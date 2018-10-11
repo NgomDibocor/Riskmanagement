@@ -75,8 +75,8 @@
 	 * @history 2018-08-20 : Salimata NGOM - Implementation
 	 */  
 	cancel : function(component,event,helper){
-		// on cancel refresh the view
-		$A.get('e.force:refreshView').fire(); 
+	    component.set("v.showSaveCancelBtn",false);
+		helper.refresh(component, event);	
 	},
 	/**
 	 * 

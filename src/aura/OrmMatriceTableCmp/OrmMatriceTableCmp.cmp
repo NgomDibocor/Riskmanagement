@@ -1,12 +1,8 @@
 <aura:component access="global" controller="OrmRiskController">
   
-	<aura:attribute name="data" type="Pricebook2" default="{
-														 'sobjectType' : 'Pricebook2',
-								                         'orm_healthAndSafety__c': '',  
-								                         'orm_security__c':'',
-								                         'orm_environment__c' :''
-													}" />  
-		     
+	<aura:attribute name="dataList" type="Pricebook2[]" />  
+													
+	<aura:attribute name="idAssessment" type="string" />
 	<aura:handler name="init" value="{! this }" action="{! c.doInit }" />   
 	
 		  <div style="width:100%;display: flex;">

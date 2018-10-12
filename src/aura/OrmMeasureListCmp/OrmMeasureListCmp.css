@@ -2,12 +2,12 @@
 }
 .THIS div.measure {
     display: inline-block;
-    width:95%;
+    width:80%;
 }
 .THIS .measureSearch {
 	display: inline-block;
-    width:90%;
-    margin-right: 15px;
+    width:80%;
+    margin-left: 10%;
 }
 .THIS span.btnNewMeasure {
     display: inline-block;

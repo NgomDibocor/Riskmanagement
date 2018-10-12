@@ -40,7 +40,8 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.nameEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_impact_libelle}">{!v.impact.Name}</span>
+                    <p class="slds-truncate">{!v.impact.Name}</p>
+					   <lightning:helptext content="{!v.impact.Name}"/>
                     <button onclick="{!c.inlineEditName}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     	tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_impact_libelle}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>

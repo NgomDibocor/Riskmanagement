@@ -55,12 +55,10 @@
     },
     openfilesList : function(component, event, helper)
     {
-    	var idMeasurePro = component.get('v.activityProof.Id');
-    	component.set("v.openfilesList",true);
-    },
-    cancelActivityProof : function(component, event, helper)
-    {
-    	component.set("v.openfilesList",false);
+    	var idActivityProof = component.get('v.activityProof.Id');
+        var evt = $A.get("e.c:OrmActivityProofFilesEvent");
+		evt.setParam('activityProof',idActivityProof);
+		evt.fire();
     },
     
    

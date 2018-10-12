@@ -4,16 +4,18 @@
     <aura:attribute name="activityProofTemp" type="Product2[]" />
     <aura:attribute name="idActivity" type="string" />
     <aura:attribute name="filter" type="String" />
+    <aura:attribute name="activityProofId" type="string" description="id activity proof" />
     <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="showConfirmRemoveAssumption" type="boolean" default="false" description="is true show popup  message confirmation" />
-
+	<aura:attribute name="openfilesList" type="Boolean"  default="false"/>
     <aura:handler action="{!c.doInit}" event="c:OrmSendIdActivityEvt" />
     <aura:handler action="{!c.doInit}" event="c:OrmActivityProofCreatedEvt" />
     <aura:registerEvent name="OrmNewActivityProofClickedEvt" type="c:OrmNewActivityProofClickedEvt" />
     <aura:registerEvent name="OrmRemoveRecordActivityProofEvnt" type="c:OrmRemoveRecordActivityProofEvnt" />
     <aura:registerEvent name="OrmEvtSelectAllActivityProof" type="c:OrmEvtSelectAllActivityProof" />
     <aura:handler event="c:OrmRefreshActivityProofEvnt" action="{!c.refreshList}" />
+     <aura:handler action="{!c.openfilesList}" event="c:OrmActivityProofFilesEvent" />
 
 
 
@@ -49,7 +51,7 @@
                             <th style="width:3.25rem;" class="slds-text-align--right">
 
                             </th>
-                            <th scope="col">
+                            <th scope="col" style="width:3.25rem;">
                                 <div class="slds-truncate thTable" title="">N°</div>
                             </th>
                             <th scope="col">
@@ -114,5 +116,28 @@
             </lightning:buttonGroup>
         </div>
     </center>
+     <aura:if isTrue="{!v.openfilesList}">    
+	    	<div class="demo-only" style="height: 640px;">
+			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
+			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			    <div class="slds-modal__container">
+			      <header class="slds-modal__header header" style="background:#6692BF;font-size: 2em;; font-weight: 500;">
+			      	<span style="color: white;">{!$Label.c.orm_files_lists_label}</span>
+			        <button  style="color: white;" onclick="{!c.cancelActivityProof}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+			        	title="{!$Label.c.orm_close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+			        </button>
+			      </header>
+			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+			      <c:OrmAttachmentListCmp parentId="{!v.activityProofId}"/>
+			      </div>
+			      <footer class="slds-modal__footer" >			        
+					<button class="slds-button slds-button_neutral" onclick="{!c.cancelActivityProof}">{!$Label.c.orm_close_button_title}</button>				
+			      </footer>
+			    </div>
+			  </section>
+			  <div class="slds-backdrop slds-backdrop_open"></div>
+			</div>	    
+	    </aura:if>
     <c:OrmActiviteProofNewCmp/>
 </aura:component>

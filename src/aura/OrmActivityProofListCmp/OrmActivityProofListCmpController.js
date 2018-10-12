@@ -146,4 +146,15 @@
         // on cancel close modal
         component.set("v.showConfirmRemoveAssumption", false);
     },
+    openfilesList: function(component, event, helper) {
+    
+        idMeasurePro =  event.getParam('activityProof');
+        component.set('v.activityProofId',idMeasurePro);
+        component.set("v.openfilesList", true);
+    },
+    cancelActivityProof : function(component, event, helper)
+    {
+    	component.set("v.openfilesList",false);
+    },
+    
 })

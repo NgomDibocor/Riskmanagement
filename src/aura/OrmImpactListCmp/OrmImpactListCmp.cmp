@@ -55,10 +55,10 @@
 		                    </div>
 		                </div>
 		              </th> 
-	                  <th scope="col" ><div class="slds-truncate" title="">N°</div></th>
-	                   <th scope="col" ><div class="slds-truncate" title="">{!$Label.c.orm_impact_libelle}</div></th>
-	                  <th scope="col" ><div class="slds-truncate" title="" >{!$Label.c.orm_description}</div></th>
-	                  <th scope="col" ><div class="slds-truncate" title="">{!$Label.c.orm_categorieImpact}</div></th>
+	                  <th scope="col" ><div class="slds-truncate thTable" title="">N°</div></th>
+	                   <th scope="col" ><div class="slds-truncate thTable" title="">{!$Label.c.orm_impact_libelle}</div></th>
+	                  <th scope="col" ><div class="slds-truncate thTable " title="" >{!$Label.c.orm_description}</div></th>
+	                  <th scope="col" ><div class="slds-truncate thTable " title="">{!$Label.c.orm_categorieImpact}</div></th>
 	                </tr>
 	            </thead>
 	            

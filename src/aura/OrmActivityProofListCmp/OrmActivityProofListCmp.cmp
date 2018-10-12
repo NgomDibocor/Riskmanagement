@@ -43,23 +43,23 @@
             </aura:if>
             <br/>
             <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
                     <thead>
                         <tr class="slds-text-title--caps">
                             <th style="width:3.25rem;" class="slds-text-align--right">
 
                             </th>
                             <th scope="col">
-                                <div class="slds-truncate" title="">N°</div>
+                                <div class="slds-truncate thTable" title="">N°</div>
                             </th>
                             <th scope="col">
-                                <div class="slds-truncate" title="{$Label.c.orm_name_activityProof}">{!$Label.c.orm_name_activityProof}</div>
+                                <div class="slds-truncate thTable" title="{$Label.c.orm_name_activityProof}">{!$Label.c.orm_name_activityProof}</div>
                             </th>
                             <th scope="col">
-                                <div class="slds-truncate" title="{!!$Label.c.orm_description_ActivityProof}">{!$Label.c.orm_description_ActivityProof}</div>
+                                <div class="slds-truncate thTable" title="{!!$Label.c.orm_description_ActivityProof}">{!$Label.c.orm_description_ActivityProof}</div>
                             </th>
                             <th scope="col">
-                                <div class="slds-truncate" title="{!$Label.c.orm_table_action_label}">{!$Label.c.orm_table_action_label}</div>
+                                <div class="slds-truncate thTable" title="{!$Label.c.orm_table_action_label}">{!$Label.c.orm_table_action_label}</div>
                             </th>
                         </tr>
                     </thead>

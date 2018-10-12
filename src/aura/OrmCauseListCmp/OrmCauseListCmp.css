@@ -28,6 +28,10 @@
 .THIS table {
     margin-top: 20px;
 }
+.THIS .thTable {
+  font-weight: 600;
+  font-size: 1.2em;
+}
 
 .THIS .header {
     background-color: rgba(27, 82, 151, 1.0);

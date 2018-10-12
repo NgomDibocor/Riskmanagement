@@ -270,7 +270,7 @@
 	 * 
 	 * @author Salimata NGOM
 	 * @version 1.0
-	 * @description method for delete selected records assumption
+	 * @description method for delete selected records workshop
 	 * @history 2018-09-05 : Salimata NGOM - Implementation
 	 */
 	deleteSelected : function(component, event, helper) {
@@ -300,4 +300,44 @@
 		helper.deleteSelectedHelper(component, event, delId);
 
 	},
+	/**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description method for  selected all checkbox workshop list
+	 * @history 2018-09-05 : Salimata NGOM - Implementation
+	 */
+	 selectAll : function(component, event, helper) {
+    	
+    	var selectedHeaderCheck = event.getParam("selectAllCheckbox");
+    	// get all checkbox on table with "boxworkshop" aura id (all iterate value have same Id)
+    	// return the List of all checkboxs element 
+    	var getAllId = component.find("boxworkshop");
+    	// If the local ID is unique[in single record case], find() returns the component. not array   
+    	if(! Array.isArray(getAllId)){
+    		if(selectedHeaderCheck == true){ 
+    			component.find("boxworkshop").set("v.value", true);
+    			component.set("v.selectedRowsCount", 1);
+    		} else {
+    			component.find("boxworkshop").set("v.value", false);
+    			component.set("v.selectedRowsCount", 0);
+    		}
+    	} else {
+    		// check if select all (header checkbox) is true then true all checkboxes on table in a for loop  
+    		// and set the all selected checkbox length in selectedCount attribute.
+    		// if value is false then make all checkboxes false in else part with play for loop 
+    		// and select count as 0 
+    		if (selectedHeaderCheck == true) {
+    			 for (var i = 0; i < getAllId.length; i++) {
+    				component.find("boxworkshop")[i].set("v.value", true);
+    				component.set("v.selectedRowsCount", getAllId.length);
+    			 }
+    		} else {
+    			for (var i = 0; i < getAllId.length; i++) {
+    				component.find("boxworkshop")[i].set("v.value", false);
+    				component.set("v.selectedRowsCount", 0);
+    			}
+    		} 
+    	 }
+    },
 })

@@ -1,7 +1,11 @@
 ({
 	afterRender: function (component, helper) {
       this.superAfterRender();
-       
+        document.getElementById("MODERATE").style.display = "none";
+        document.getElementById("SEVERE").style.display = "none";
+        document.getElementById("MINOR").style.display = "none";
+        document.getElementById("MAJOR").style.display = "none";
+        
 		var data = component.get("v.data");
 		if(data != null){
 		    if(data.orm_probability__c == 'Probable'){

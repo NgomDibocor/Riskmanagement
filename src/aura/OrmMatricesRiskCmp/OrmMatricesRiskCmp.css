@@ -178,3 +178,18 @@
     font-weight: 600;
   /*change this for font-size and font-family*/
 }
+.THIS .description{
+	width:80%;
+	height:auto;
+	padding: 5%;
+	margin:auto;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	letter-spacing: -.003em;
+	white-space: normal;
+	text-align: justify;
+    text-justify: inter-character;
+	color: white;
+	background-color: #0077AB;
+}

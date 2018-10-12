@@ -10,17 +10,18 @@
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
     <!--Table Row Start-->
-    <tr>
+    <tr class="slds-hint-parent">
     	
         <td>
-            <div class="slds-truncate">{!v.sNo}</div>
+            <div class="slds-truncate" style="width:3.25rem;">{!v.sNo}</div>
         </td>
         <td ondblclick="{!c.inlineEditDescription}" class="slds-cell-edit">
-            <span class="">
+            <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                  <aura:if isTrue="{!v.descriptionEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_description}">{!v.phaseAss.Description}</span>
-            <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_description}">
+                    <p class="slds-truncate">{!v.phaseAss.Description}</p>
+                    <lightning:helptext content="{!v.phaseAss.Description}"/>
+                   <button onclick="{!c.inlineEditDescription}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_description}">
                         <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
                     </button>
 

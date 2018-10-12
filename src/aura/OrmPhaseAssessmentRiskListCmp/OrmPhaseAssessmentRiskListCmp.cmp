@@ -46,7 +46,7 @@
                 </div>
             </aura:if>
             <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:70%; margin-left:5%;margin-right:25%;">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
                     <thead>
                         <tr class="slds-text-title--caps">
                            
@@ -57,7 +57,7 @@
                                 <div class="slds-truncate thTable" title="{!$Label.c.orm_phase}">{!$Label.c.orm_phase}</div>
                                 <!-- {!$Label.c.orm_phase} -->
                             </th>
-							 <th class="slds-text-align--right">
+							 <th style="width: 3.25rem;" class="slds-text-align--right">
 
                             </th>
                         </tr>

@@ -46,7 +46,7 @@
 	        </aura:if> 
         <aura:if isTrue="{!not(empty(v.PaginationList))}">
 	        <!--Data Table-->     
-	        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols">
+	        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%;  margin-left:10%;margin-right:0%;">
 	            <thead>
 	                <tr class="slds-text-title--caps">
 	                  <th style="width:3.25rem;" class="slds-text-align--right">
@@ -54,7 +54,7 @@
 		                	<div class="slds-form-element__control">
 		                    	<label class="slds-checkbox">
 		                        	<!--header checkbox for select all-->
-		                        	<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
+		                        	<ui:inputCheckbox aura:id="box3" />
 		                        	<span class="slds-checkbox--faux"></span>
 		                        	<span class="slds-form-element__label text"></span>
 		                     	</label>

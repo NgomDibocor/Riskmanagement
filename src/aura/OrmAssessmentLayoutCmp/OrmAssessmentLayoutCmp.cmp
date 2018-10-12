@@ -1415,13 +1415,6 @@
                     <tr>
                        <td class="textInDivCmp">
                           <div class="slds-box widthBox slds-theme_alert-texture">
-                             <c:OrmImpactListCmp />
-                          </div>
-                       </td>
-                    </tr>
-                    <tr>
-                       <td class="textInDivCmp">
-                          <div class="slds-box widthBox slds-theme_alert-texture">
                              <c:OrmPhaseAssessmentRiskListCmp />
                           </div>
                        </td>
@@ -1430,6 +1423,13 @@
                        <td class="textInDivCmp">
                           <div class="slds-box widthBox slds-theme_alert-texture">
                              <c:OrmAssumptionAssessmentRiskListCmp /> 
+                          </div>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td class="textInDivCmp">
+                          <div class="slds-box widthBox slds-theme_alert-texture">
+                             <c:OrmImpactListCmp />
                           </div>
                        </td>
                     </tr>
@@ -1480,7 +1480,7 @@
                 <aura:if isTrue="{!v.showRiskPicture}">
                      <tr>
                         <td >
-                            <c:OrmMatriceTableCmp /> 
+                            <c:OrmMatriceTableCmp idAssessment="{!v.assessmentData.Id }" /> 
                         </td>
                     </tr>
                 </aura:if>

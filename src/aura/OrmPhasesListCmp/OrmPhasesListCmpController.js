@@ -54,7 +54,7 @@
             // call the saveAccount apex method for update inline edit fields update 
             var action = component.get("c.updatePhases");
             action.setParams({
-                'phases': component.get("v.phases")
+                'phases': component.get("v.PaginationList")
             });
 
             action.setCallback(this, function(response) {

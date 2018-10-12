@@ -39,8 +39,7 @@
 							      document.getElementById('hs11').style.backgroundColor = "#414449";
 							      numHS11++;
 							      var n = numHS11.toString();
-							      document.getElementById("hs11").innerHTML= n;
-							      
+							      document.getElementById("hs11").innerHTML= n;  
 							   }
 							   if(dataList[i].orm_healthAndSafety__c == 'Medium'){
 							      document.getElementById('hs12').classList.add("circle-text");

@@ -28,7 +28,7 @@
 				       var num4SEC41 = 0;var num4SEC42 = 0;var num4SEC43 = 0;var num4SEC44 = 0; 
 				       var num4ENV41 = 0;var num4ENV42 = 0;var num4ENV43 = 0;var num4ENV44 = 0;  
 				       var num4REP41 = 0;var num4REP42 = 0;var num4REP43 = 0;var num4REP44 = 0;   
-				       var num4WE41 = 0;var num4WE42 = 0;var num4WE43 = 0;
+				       var num4WE41 = 0;var num4WE42 = 0;var num4WE43 = 0;num4WE44 = 0;
 				       
 				       for (var i = 0; i < dataList.length; i++){
 						    if(dataList[i].orm_probability__c == 'Probable'){

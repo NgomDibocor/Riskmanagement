@@ -1,8 +1,88 @@
 <aura:component access="global" controller="OrmRiskController">
-  
 	<aura:attribute name="dataList" type="Pricebook2[]" />  
-													
 	<aura:attribute name="idAssessment" type="string" />
+	<aura:attribute name="numHS11" type="string[]" />
+	<aura:attribute name="numHS12" type="string[]" />
+	<aura:attribute name="numHS13" type="string[]" />
+	<aura:attribute name="numHS14" type="string[]" />
+	<aura:attribute name="numSEC11" type="string[]" />
+	<aura:attribute name="numSEC12" type="string[]" />
+	<aura:attribute name="numSEC13" type="string[]" />
+	<aura:attribute name="numSEC14" type="string[]" />
+	<aura:attribute name="numENV11" type="string[]" />
+	<aura:attribute name="numENV12" type="string[]" />
+	<aura:attribute name="numENV13" type="string[]" />
+	<aura:attribute name="numENV14" type="string[]" />
+	<aura:attribute name="numREP11" type="string[]" />
+	<aura:attribute name="numREP12" type="string[]" />
+	<aura:attribute name="numREP13" type="string[]" />
+	<aura:attribute name="numREP14" type="string[]" />
+	<aura:attribute name="numWE11" type="string[]" />
+	<aura:attribute name="numWE12" type="string[]" />
+	<aura:attribute name="numWE13" type="string[]" />
+	<aura:attribute name="numWE14" type="string[]" />
+	<aura:attribute name="num2HS21" type="string[]" />
+	<aura:attribute name="num2HS22" type="string[]" />
+	<aura:attribute name="num2HS23" type="string[]" />
+	<aura:attribute name="num2HS24" type="string[]" />
+	<aura:attribute name="num2SEC21" type="string[]" />
+	<aura:attribute name="num2SEC22" type="string[]" />
+	<aura:attribute name="num2SEC23" type="string[]" />
+	<aura:attribute name="num2SEC24" type="string[]" />
+	<aura:attribute name="num2ENV21" type="string[]" />
+	<aura:attribute name="num2ENV22" type="string[]" />
+	<aura:attribute name="num2ENV23" type="string[]" />
+	<aura:attribute name="num2ENV24" type="string[]" />
+	<aura:attribute name="num2REP21" type="string[]" />
+	<aura:attribute name="num2REP22" type="string[]" />
+	<aura:attribute name="num2REP23" type="string[]" />
+	<aura:attribute name="num2REP24" type="string[]" />
+	<aura:attribute name="num2WE21" type="string[]" />
+	<aura:attribute name="num2WE22" type="string[]" />
+	<aura:attribute name="num2WE23" type="string[]" />
+	<aura:attribute name="num2WE24" type="string[]" />
+	<aura:attribute name="num3HS31" type="string[]" />
+	<aura:attribute name="num3HS32" type="string[]" />
+	<aura:attribute name="num3HS33" type="string[]" />
+	<aura:attribute name="num3HS34" type="string[]" />
+	<aura:attribute name="num3SEC31" type="string[]" />
+	<aura:attribute name="num3SEC32" type="string[]" />
+	<aura:attribute name="num3SEC33" type="string[]" />
+	<aura:attribute name="num3SEC34" type="string[]" />
+	<aura:attribute name="num3ENV31" type="string[]" />
+	<aura:attribute name="num3ENV32" type="string[]" />
+	<aura:attribute name="num3ENV33" type="string[]" />
+	<aura:attribute name="num3ENV34" type="string[]" />
+	<aura:attribute name="num3REP31" type="string[]" />
+	<aura:attribute name="num3REP32" type="string[]" />
+	<aura:attribute name="num3REP33" type="string[]" />
+	<aura:attribute name="num3REP34" type="string[]" />
+	<aura:attribute name="num3WE31" type="string[]" />
+	<aura:attribute name="num3WE32" type="string[]" />
+	<aura:attribute name="num3WE33" type="string[]" />
+	<aura:attribute name="num3WE34" type="string[]" />
+	<aura:attribute name="num4HS41" type="string[]" />
+	<aura:attribute name="num4HS42" type="string[]" />
+	<aura:attribute name="num4HS43" type="string[]" />
+	<aura:attribute name="num4HS44" type="string[]" />
+	<aura:attribute name="num4SEC41" type="string[]" />
+	<aura:attribute name="num4SEC42" type="string[]" />
+	<aura:attribute name="num4SEC43" type="string[]" />
+	<aura:attribute name="num4SEC44" type="string[]" />
+	<aura:attribute name="num4ENV41" type="string[]" />
+	<aura:attribute name="num4ENV42" type="string[]" />
+	<aura:attribute name="num4ENV43" type="string[]" />
+	<aura:attribute name="num4ENV44" type="string[]" />
+	<aura:attribute name="num4REP41" type="string[]" />
+	<aura:attribute name="num4REP42" type="string[]" />
+	<aura:attribute name="num4REP43" type="string[]" />
+	<aura:attribute name="num4REP44" type="string[]" />
+	<aura:attribute name="num4WE41" type="string[]" />
+	<aura:attribute name="num4WE42" type="string[]" />
+	<aura:attribute name="num4WE43" type="string[]" />
+	<aura:attribute name="num4WE44" type="string[]" />
+	
+	
 	<aura:handler name="init" value="{! this }" action="{! c.doInit }" />   
 	
 		  <div style="width:100%;display: flex;">

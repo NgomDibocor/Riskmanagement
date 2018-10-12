@@ -44,7 +44,7 @@
 			// update
 			var action = component.get("c.saveActivity");
 			action.setParams({
-				'lstActivity': component.get("v.ActivityList")
+				'lstActivity': component.get("v.PaginationList")
 			});
 			action.setCallback(this, function(response) {
 				var state = response.getState();

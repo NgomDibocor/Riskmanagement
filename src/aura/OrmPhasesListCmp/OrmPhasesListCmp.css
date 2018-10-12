@@ -3,7 +3,9 @@
 }
 .THIS div.phase {
     display: inline-block;
-    width: 100%;
+    idth: 70%;
+    margin-left:20%;
+    margin-right:10%;
 }
 .THIS span.btnNewPhase {
     display: inline-block;

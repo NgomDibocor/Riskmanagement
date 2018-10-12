@@ -58,7 +58,7 @@
                 <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;" >
                     <thead>
                         <tr class="slds-text-title--caps">
-                            <th scope="col">
+                            <th scope="col" style="width:13.25rem;">
                                 <div class="slds-truncate thTable" title="">N°</div>
                             </th>
 
@@ -91,14 +91,12 @@
                         </aura:iteration>
                     </tbody>
                 </table>
-                <center>
-                    <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+                    <div style="margin-top:20px; padding-bottom:10px;margin-left :30%;margin-right:auto">
                         <lightning:buttonGroup>
                             <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
                             <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
                         </lightning:buttonGroup>
                     </div>
-                </center>
                 <aura:set attribute="else">
                     <div class="messageIsEmpty" style="padding-top:20px">
                         {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}

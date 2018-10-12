@@ -41,7 +41,7 @@
             // call the saveAccount apex method for update inline edit fields update 
             var action = component.get("c.updateActiviteProof");
             action.setParams({
-                'activityProof': component.get("v.activityProof")
+                'activityProof': component.get("v.PaginationList")
             });
 
             action.setCallback(this, function(response) {

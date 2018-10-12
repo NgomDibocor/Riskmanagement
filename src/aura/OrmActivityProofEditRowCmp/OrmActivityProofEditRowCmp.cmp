@@ -16,7 +16,7 @@
     <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllActivityProof"/>
     <aura:handler event="c:OrmRemoveRecordActivityProofEvnt" action="{!c.deleteSelected}" />
     <aura:registerEvent name="OrmRefreshActivityProofEvnt" type="c:OrmRefreshActivityProofEvnt" />
-    <tr>
+    <tr class="slds-hint-parent">
     	<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
 			<div class="slds-form-element">
 		      <div class="slds-form-element__control">
@@ -33,7 +33,8 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.NameEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_name_activityProof}">{!v.activityProof.Name}</span>
+                    <p class="slds-truncate">{!v.activityProof.Name}</p>
+                    <lightning:helptext content="{!v.activityProof.Name}"/>
                     <button onclick="{!c.inlineEditName}" 
                     	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     		tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_name_activityProof}">
@@ -70,7 +71,8 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.DescriptionEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_ProductDescription_label}">{!v.activityProof.Description}</span>
+                    <p class="slds-truncate">{!v.activityProof.Description}</p>
+                    <lightning:helptext content="{!v.activityProof.Description}"/>
                     <button onclick="{!c.inlineEditDescription}" 
                     	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     		tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_ProductDescription_label}">

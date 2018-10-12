@@ -6,6 +6,10 @@
     margin-left:20%;
     margin-right:10%;
 }
+.THIS .thTable {
+  font-weight: 600;
+  font-size: 1.2em;
+}
 
 .THIS span.btnNewPhase {
     display: inline-block;

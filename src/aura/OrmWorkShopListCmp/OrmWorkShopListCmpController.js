@@ -244,4 +244,15 @@
         // on cancel close modal
         component.set("v.showConfirmRemoveWorkshop", false);
     },
+        // For select all Checkboxes 
+    selectAll: function(component, event, helper) {
+        //get the header checkbox value  
+        var selectedHeaderCheck = event.getSource().get("v.value");
+
+        var evt = $A.get('e.c:OrmEvtSelectAllWorkshop');
+        evt.setParams({
+            "selectAllCheckbox": selectedHeaderCheck
+        });
+        evt.fire();
+    },
 })

@@ -27,8 +27,9 @@
 	<aura:attribute name="selectedRowsCount" type="Integer" default="0" />
 	  <aura:registerEvent name="OrmContactWorkshopListEvt"  type="c:OrmContactWorkshopListEvt"/>
   <aura:registerEvent name="OrmRefreshWorkshopEvnt"  type="c:OrmRefreshWorkshopEvnt"/>
-  	<aura:handler event="c:OrmRemoveRecordWorkshopEvnt"
-		action="{!c.deleteSelected}" />
+  	<aura:handler event="c:OrmRemoveRecordWorkshopEvnt"	action="{!c.deleteSelected}" />
+ <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllWorkshop"/>
+		
 	<!--Table Row Start-->
 	<tr>
 	
@@ -182,7 +183,7 @@
 			</div>
 		</td>
 		
-		<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+		<td scope="row" class="slds-text-align--right" >
                   <div class="slds-form-element">
                      <div class="slds-form-element__control">
                         <span class="btnContactworkshop" title="{!v.singleRec.Name}" onclick="{!c.openModalContactWorkshop}">

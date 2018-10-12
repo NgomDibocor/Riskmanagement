@@ -9,7 +9,7 @@
     <center>
         <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:80%;">
             <thead>
-                <tr class="slds-line-height_reset">
+                <tr class="slds-line-height_reset" style="border:2px solid;">
                     <th class="slds-text-title_caps" scope="col">
                         <div id="tabtitle" class="slds-truncate styleAllText" title="{!$Label.c.orm_measure_label}">{!$Label.c.orm_measure_label}</div>
                     </th>

@@ -236,6 +236,19 @@ public with sharing class OrmRiskController {
         }
     
     }
+    
+    @AuraEnabled 
+    public static List<Pricebook2> allInfosAssessmentRiskForMatriceTable(String idAssessment)
+    {
+         return  [SELECT Id, orm_healthAndSafety__c, orm_probability__c, orm_security__c, orm_environment__c,
+                         orm_reputation__c, orm_workingEnvironment__c, orm_assessmentRisk__c
+                  From Pricebook2 
+                  WHERE   orm_assessmentRisk__c IN (SELECT Id 
+                                                    From orm_assessmentRisk__c 
+                                                    Where orm_assessment__c =: idAssessment)
+                 ];                         
+    
+    }
    
     
 }

@@ -3,8 +3,6 @@
       this.superAfterRender();
        
 		var data = component.get("v.data");
-		console.log('***dans Matrice Risk****')
-		console.log(JSON.stringify(data))
 		if(data != null){
 		    if(data.orm_probability__c == 'Probable'){
 		    // health and safety

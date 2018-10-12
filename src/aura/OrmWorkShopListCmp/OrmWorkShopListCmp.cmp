@@ -115,7 +115,8 @@
             </table>
             <aura:set attribute="else">
                 <div class="messageIsEmpty">
-                    List of workshops is empty
+                          {!$Label.c.orm_WorkshopEmpty_message}
+                   
                 </div>
             </aura:set>
         </aura:if>

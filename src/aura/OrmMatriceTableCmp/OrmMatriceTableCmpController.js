@@ -2057,5 +2057,7 @@
 		});
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
-	
+	closeFD : function(component, event, helper) {
+	    document.getElementById("infoMatrice").style.display = "none";
+	},
 })

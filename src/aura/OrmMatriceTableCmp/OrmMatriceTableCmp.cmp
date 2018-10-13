@@ -301,6 +301,7 @@
 		   </div>
 		   <div style="width:30%;">
 			   <div id="infoMatrice" class="descriptionRisk">
+			      <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
 			      <aura:iteration items="{!v.assessmentRisks}" var="item">
 					    <div class="slds-size_1-of-1">
 				            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;">

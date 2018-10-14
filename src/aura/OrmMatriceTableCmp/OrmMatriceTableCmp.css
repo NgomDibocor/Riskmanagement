@@ -199,6 +199,9 @@
 	padding: 3%;
 	margin:auto;
 	color: black;
+	margin-top: 20px;
+}
+.THIS .backgroundDiv{
 	background-color: #0077AB;
 }
 .THIS .styleTitre{

@@ -300,24 +300,26 @@
 		    </div>
 		   </div>
 		   <div style="width:30%;">
-			   <div id="infoMatrice" class="descriptionRisk">
-			      <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
-			      <aura:iteration items="{!v.assessmentRisks}" var="item">
-					    <div class="slds-size_1-of-1">
-				            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;">
-				                <article class="slds-card" style="height:200px;margin-bottom: 20px">
-				                    <div class="slds-card__header slds-grid">
-				                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
-				                            <div class="slds-media__body" style="cursor: pointer;">
-				                                <span class="styleTitre"><ui:outputText value="{!item.orm_Risk__r.Name}" /></span> 
-				                                <span class="styleText"><ui:outputText value="{!item.orm_Risk__r.Description}" /></span>
-				                            </div>
-				                        </header>
-				                    </div>
-				                </article>
-				            </div>
-				        </div>
-			       </aura:iteration>
+			   <div id="infoMatrice" class="backgroundDiv">
+			     <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
+				    <div id="infoMatrice" class="descriptionRisk">  
+				      <aura:iteration items="{!v.assessmentRisks}" var="item">
+						    <div class="slds-size_1-of-1">
+					            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;">
+					                <article class="slds-card" style="height:200px;margin-bottom: 20px">
+					                    <div class="slds-card__header slds-grid">
+					                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+					                            <div class="slds-media__body" style="cursor: pointer;">
+					                                <span class="styleTitre"><ui:outputText value="{!item.orm_Risk__r.Name}" /></span> 
+					                                <span class="styleText"><ui:outputText value="{!item.orm_Risk__r.Description}" /></span>
+					                            </div>
+					                        </header>
+					                    </div>
+					                </article>
+					            </div>
+					        </div>
+				       </aura:iteration>
+				   </div>
 			   </div>
 			</div>
 	   </div>

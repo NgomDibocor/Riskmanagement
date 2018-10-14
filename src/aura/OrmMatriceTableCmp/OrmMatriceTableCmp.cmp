@@ -306,7 +306,7 @@
 				      <aura:iteration items="{!v.assessmentRisks}" var="item">
 						    <div class="slds-size_1-of-1">
 					            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;">
-					                <article class="slds-card" style="height:300px;margin-bottom: 20px;padding-left: 8px;">
+					                <article class="slds-card" style="height:310px;margin-bottom: 20px;padding-left: 8px;">
 					                    <div class="slds-card__header slds-grid">
 					                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
 					                            <div class="slds-media__body" style="cursor: pointer;">
@@ -319,7 +319,43 @@
 			                                <span class="styleText">Probability: <ui:outputText value="{!item.Price_Books__r[0].orm_probability__c}" /></span>
 			                                <span class="styleText">Manageability: <ui:outputText value="{!item.orm_manageability__c}" /></span>
 			                                <span class="styleText">Uncertainty: <ui:outputText value="{!item.orm_uncertainty__c}" /></span>
+			                                <div style="margin-top:20px;width:100%;">
+			                                    <div style="width:95%;margin-left:auto;margin-right:auto;white-space: normal;margin-bottom:5px">
+			                                       <span style="display: inline-block;width:40%;">
+			                                          <span style="display:block;">Working Environ...</span>
+			                                          <span class="we"></span>
+			                                       </span>
+			                                       <span class="space"></span>
+			                                       <span style="display: inline-block;width:40%;">
+			                                          <span style="display:block;">Environment</span>
+			                                          <span class="env"></span>
+			                                       </span>
+			                                    </div>
+			                                    <div style="width:95%;margin-left:auto;margin-right:auto;white-space: normal;margin-bottom:5px">
+			                                       <span style="display: inline-block;width:40%;">
+			                                          <span style="display:block;">safety</span>
+			                                          <span class="hs"></span>
+			                                       </span>
+			                                       <span class="space"></span>
+			                                       <span style="display: inline-block;width:40%;">
+			                                          <span style="display:block;">Security</span>
+			                                          <span class="sec"></span>
+			                                       </span>
+			                                    </div>
+			                                    <div style="width:95%;margin-left:auto;margin-right:auto;white-space: normal;margin-bottom:5px">
+			                                       <span style="display: inline-block;width:40%;">
+			                                          <span style="display:block;">Reputation</span>
+			                                          <span class="rep"></span>
+			                                       </span>
+			                                       <span class="space"></span>
+			                                       <span style="display: inline-block;width:40%;">
+			                                          <span style="display:block;"></span>
+			                                          <span class=""></span>
+			                                       </span>
+			                                    </div>
+			                                  </div>
 			                            </div>
+			                            
 					                </article>
 					            </div>
 					        </div>

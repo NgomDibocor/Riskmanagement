@@ -938,13 +938,20 @@
 	},
 	
 	showRiskHS11 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	    evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDHS11") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        //Hide the Spinner
+                var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+	            evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
+		        console.log('****lets look*****');
+		        console.log(JSON.stringify(component.get("v.assessmentRisks")))
 		    } else {
 		        alert($A.get("$Label.c.orm_not_found"));
 		    }
@@ -952,11 +959,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS12 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDHS12") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -966,11 +977,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS13 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDHS13") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -980,11 +995,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS14 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDHS14") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -994,11 +1013,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS21 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2HS21") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1008,11 +1031,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS22 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2HS22") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1022,11 +1049,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS23 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2HS23") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1036,11 +1067,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS24 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2HS24") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1050,11 +1085,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS31 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3HS31") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1064,11 +1103,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS32 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3HS32") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1078,11 +1121,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS33 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3HS33") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1092,11 +1139,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS34 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3HS34") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1106,11 +1157,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS41 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4HS41") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1120,11 +1175,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS42 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4HS42") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1134,11 +1193,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS43 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4HS43") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1148,11 +1211,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskHS44 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4HS44") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1162,11 +1229,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC11 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDSEC11") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1176,11 +1247,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC12 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDSEC12") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1190,11 +1265,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC13 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDSEC13") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1204,11 +1283,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC14 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDSEC14") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1218,11 +1301,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC21 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2SEC21") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1232,11 +1319,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC22 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2SEC22") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1246,11 +1337,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC23 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2SEC23") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1260,11 +1355,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC24 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2SEC24") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1274,11 +1373,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC31 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3SEC31") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1288,11 +1391,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC32 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3SEC32") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1302,11 +1409,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC33 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3SEC33") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1316,11 +1427,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC34 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3SEC34") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1330,11 +1445,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC41 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4SEC41") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1344,11 +1463,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC42 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4SEC42") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1358,11 +1481,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC43 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4SEC43") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1372,11 +1499,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskSEC44 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4SEC44") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1386,11 +1517,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV11 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDENV11") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1400,11 +1535,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV12 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDENV12") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1414,11 +1553,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV13 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDENV13") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1428,11 +1571,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV14 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDENV14") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1442,11 +1589,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV21 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2ENV21") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1456,11 +1607,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV22 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2ENV22") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1470,11 +1625,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV23 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2ENV23") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1484,11 +1643,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV24 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2ENV24") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1498,11 +1661,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV31 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3ENV31") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1512,11 +1679,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV32 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3ENV32") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1526,11 +1697,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV33 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3ENV33") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1540,11 +1715,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV34 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3ENV34") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1554,11 +1733,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV41 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4ENV41") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1568,11 +1751,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV42 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4ENV42") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1582,11 +1769,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV43 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4ENV43") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1596,11 +1787,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	showRiskENV44 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4ENV44") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1610,11 +1805,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP11 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDREP11") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1624,11 +1823,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP12 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDREP12") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1638,11 +1841,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP13 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDREP13") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1652,11 +1859,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP14 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDREP14") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1666,11 +1877,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP21 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2REP21") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1680,11 +1895,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP22 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2REP22") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1694,11 +1913,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP23 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2REP23") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1708,11 +1931,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP24 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2REP24") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1722,11 +1949,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP31 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3REP31") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1736,11 +1967,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP32 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3REP32") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1750,11 +1985,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP33 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3REP33") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1764,11 +2003,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP34 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3REP34") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1778,11 +2021,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP41 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4REP41") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1792,11 +2039,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP42 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4REP42") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1806,11 +2057,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP43 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4REP43") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1820,11 +2075,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDREP44 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4REP44") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1834,11 +2093,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE11 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDWE11") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1848,11 +2111,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE12 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDWE12") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1862,11 +2129,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE13 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDWE13") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1876,11 +2147,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE14 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listIDWE14") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1890,11 +2165,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE21 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2WE21") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1904,11 +2183,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE22 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2WE22") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1918,11 +2201,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE23 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2WE23") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1932,11 +2219,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE24 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID2WE24") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1946,11 +2237,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE31 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3WE31") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1960,11 +2255,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE32 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3WE32") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1974,11 +2273,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE33 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3WE33") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -1988,11 +2291,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE34 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID3WE34") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -2002,11 +2309,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE41 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4WE41") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -2016,11 +2327,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE42 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4WE42") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -2030,11 +2345,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE43 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4WE43") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {
@@ -2044,11 +2363,15 @@
 		$A.enqueueAction(actionGetAssessmentRisks); 
 	},
 	listIDWE44 : function(component, event, helper) {
+	    var evtShowSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+        evtShowSpinner.fire();
 	    var actionGetAssessmentRisks = component.get("c.getAssessmentRisks");
 		actionGetAssessmentRisks.setParams({"idAssRisk": component.get("v.listID4WE44") });
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
 		    } else {

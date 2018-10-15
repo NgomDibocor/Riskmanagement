@@ -35,7 +35,7 @@
     <!-- end header page content search bar and action button -->
         <!--Data Table-->
         <aura:if isTrue="{!not(empty(v.PaginationList))}">
-            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
                 <thead>
                     <tr class="slds-text-title--caps">
                         <th style="width:3.25rem;" class="slds-text-align--right">
@@ -65,7 +65,7 @@
                         </th>
 
                         <th scope="col">
-                            <div class="slds-truncate" title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div>
+                            <div class="slds-truncate thTable" title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div>
                         </th>
 
                     </tr>

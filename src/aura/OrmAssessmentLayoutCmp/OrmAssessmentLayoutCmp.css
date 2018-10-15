@@ -77,8 +77,9 @@
 }
 .THIS .orgSelect {
     display: inline-block;
-    width:77%;
+    width:50%;
     margin-right: 15px;
+    margin-left:25%;
 }
 .THIS span.btnNewOrganisation {
     display: inline-block;

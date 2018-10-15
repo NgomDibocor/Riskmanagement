@@ -44,7 +44,12 @@
        <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
 	            <thead>
 	                <tr>
-	                  <th style="width:3.25rem;" class="slds-text-align--right" ><!-- 3.25rem; -->
+	                  
+	                  <th scope="col"  style="width:5.25rem;" ><div class="slds-truncate thTable" title="">N°</div></th>
+	                   <th scope="col" ><div class="slds-truncate thTable" title="">{!$Label.c.orm_impact_libelle}</div></th>
+	                  <th scope="col" ><div class="slds-truncate thTable " title="" >{!$Label.c.orm_description}</div></th>
+	                  <th scope="col" ><div class="slds-truncate thTable " title="">{!$Label.c.orm_categorieImpact}</div></th>
+	               	  <th style="width:3.25rem;" class="slds-text-align--right" ><!-- 3.25rem; -->
 		              	<div class="slds-form-element">
 		                	<div class="slds-form-element__control">
 		                    	<label class="slds-checkbox">
@@ -55,10 +60,6 @@
 		                    </div>
 		                </div>
 		              </th> 
-	                  <th scope="col" ><div class="slds-truncate thTable" title="">N°</div></th>
-	                   <th scope="col" ><div class="slds-truncate thTable" title="">{!$Label.c.orm_impact_libelle}</div></th>
-	                  <th scope="col" ><div class="slds-truncate thTable " title="" >{!$Label.c.orm_description}</div></th>
-	                  <th scope="col" ><div class="slds-truncate thTable " title="">{!$Label.c.orm_categorieImpact}</div></th>
 	                </tr>
 	            </thead>
 	            

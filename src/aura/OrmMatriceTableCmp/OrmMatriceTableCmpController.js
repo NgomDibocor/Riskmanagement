@@ -110,6 +110,87 @@
 					    var  listID4WE42 = [];
 					    var  listID4WE43 = [];
 					    var  listID4WE44 = [];
+					    
+					    var  colorHS11 = new Object();
+					    var  colorHS12 = new Object();
+					    var  colorHS13 = new Object();
+					    var  colorHS14 = new Object();
+					    var  colorSEC11 = new Object();
+					    var  colorSEC12 = new Object();
+					    var  colorSEC13 = new Object();
+					    var  colorSEC14 = new Object();
+					    var  colorENV11 = new Object();
+					    var  colorENV12 = new Object();
+					    var  colorENV13 = new Object();
+					    var  colorENV14 = new Object();
+					    var  colorREP11 = new Object();
+					    var  colorREP12 = new Object();
+					    var  colorREP13 = new Object();
+					    var  colorREP14 = new Object();
+					    var  colorWE11 = new Object();
+					    var  colorWE12 = new Object();
+					    var  colorWE13 = new Object();
+					    var  colorWE14 = new Object();
+					    var  color2HS21 = new Object();
+					    var  color2HS22 = new Object();
+					    var  color2HS23 = new Object();
+					    var  color2HS24 = new Object();
+					    var  color2SEC21 = new Object();
+					    var  color2SEC22 = new Object();
+					    var  color2SEC23 = new Object();
+					    var  color2SEC24 = new Object();
+					    var  color2ENV21 = new Object();
+					    var  color2ENV22 = new Object();
+					    var  color2ENV23 = new Object();
+					    var  color2ENV24 = new Object();
+					    var  color2REP21 = new Object();
+					    var  color2REP22 = new Object();
+					    var  color2REP23 = new Object();
+					    var  color2REP24 = new Object();
+					    var  color2WE21 = new Object();
+					    var  color2WE22 = new Object();
+					    var  color2WE23 = new Object();
+					    var  color2WE24 = new Object();
+					    var  color3HS31 = new Object();
+					    var  color3HS32 = new Object();
+					    var  color3HS33 = new Object();
+					    var  color3HS34 = new Object();
+					    var  color3SEC31 = new Object();
+					    var  color3SEC32 = new Object();
+					    var  color3SEC33 = new Object();
+					    var  color3SEC34 = new Object();
+					    var  color3ENV31 = new Object();
+					    var  color3ENV32 = new Object();
+					    var  color3ENV33 = new Object();
+					    var  color3ENV34 = new Object();
+					    var  color3REP31 = new Object();
+					    var  color3REP32 = new Object();
+					    var  color3REP33 = new Object();
+					    var  color3REP34 = new Object();
+					    var  color3WE31 = new Object();
+					    var  color3WE32 = new Object();
+					    var  color3WE33 = new Object();
+					    var  color3WE34 = new Object();
+					    var  color4HS41 = new Object();
+					    var  color4HS42 = new Object();
+					    var  color4HS43 = new Object();
+					    var  color4HS44 = new Object();
+					    var  color4SEC41 = new Object();
+					    var  color4SEC42 = new Object();
+					    var  color4SEC43 = new Object();
+					    var  color4SEC44 = new Object();
+					    var  color4ENV41 = new Object();
+					    var  color4ENV42 = new Object();
+					    var  color4ENV43 = new Object();
+					    var  color4ENV44 = new Object();
+					    var  color4REP41 = new Object();
+					    var  color4REP42 = new Object();
+					    var  color4REP43 = new Object();
+					    var  color4REP44 = new Object();
+					    var  color4WE41 = new Object();
+					    var  color4WE42 = new Object();
+					    var  color4WE43 = new Object();
+					    var  color4WE44 = new Object();
 				       
 				       for (var i = 0; i < dataList.length; i++){
 						    if(dataList[i].orm_probability__c == 'Probable'){
@@ -122,6 +203,12 @@
 							      var n = numHS11.toString();
 							      document.getElementById("hs11").innerHTML= n;  
 							      listIDHS11.push(dataList[i].orm_assessmentRisk__c);
+							      colorHS11[dataList[i].orm_assessmentRisk__c] = "yellow";
+							      console.log('***test array associativw***')
+							      console.log(colorHS11[dataList[i].orm_assessmentRisk__c])
+							      //console.log(Object.keys(colorHS11).length)
+							      //console.log(JSON.stringify(Object.values(colorHS11)))
+							      console.log(JSON.stringify(Object(colorHS11)))
 							   }
 							   if(dataList[i].orm_healthAndSafety__c == 'Medium'){
 							      document.getElementById('hs12').classList.add("circle-text");
@@ -130,7 +217,7 @@
 							      var n = numHS12.toString();
 							      document.getElementById("hs12").innerHTML= n;
 							      listIDHS12.push(dataList[i].orm_assessmentRisk__c);
-							      
+							      colorHS12[dataList[i].orm_assessmentRisk__c] = "#FF8C00";
 							   }
 							   if(dataList[i].orm_healthAndSafety__c == 'High'){
 							      document.getElementById('hs13').classList.add("circle-text");
@@ -139,6 +226,7 @@
 							      var n = numHS13.toString();
 							      document.getElementById("hs13").innerHTML= n;
 							      listIDHS13.push(dataList[i].orm_assessmentRisk__c);
+							      colorHS13[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   if(dataList[i].orm_healthAndSafety__c == 'VeryHigh'){
 							      document.getElementById('hs14').classList.add("circle-text");
@@ -147,6 +235,7 @@
 							      var n = numHS14.toString();
 							      document.getElementById("hs14").innerHTML= n;
 							      listIDHS14.push(dataList[i].orm_assessmentRisk__c);
+							      colorHS14[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   //end health and safety
 							   
@@ -158,6 +247,7 @@
 							      var n = numSEC11.toString();
 							      document.getElementById("sec11").innerHTML= n;
 							      listIDSEC11.push(dataList[i].orm_assessmentRisk__c);
+							      colorSEC11[dataList[i].orm_assessmentRisk__c] = "yellow";
 							   }
 							   if(dataList[i].orm_security__c == 'Medium'){
 							      document.getElementById('sec12').classList.add("circle-text");
@@ -166,6 +256,7 @@
 							      var n = numSEC12.toString();
 							      document.getElementById("sec12").innerHTML= n;
 							      listIDSEC12.push(dataList[i].orm_assessmentRisk__c);
+							      colorSEC12[dataList[i].orm_assessmentRisk__c] = "#FF8C00";
 							   }
 							   if(dataList[i].orm_security__c == 'High'){
 							      document.getElementById('sec13').classList.add("circle-text");
@@ -174,6 +265,7 @@
 							      var n = numSEC13.toString();
 							      document.getElementById("sec13").innerHTML= n;
 							      listIDSEC13.push(dataList[i].orm_assessmentRisk__c);
+							      colorSEC13[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   if(dataList[i].orm_security__c == 'VeryHigh'){
 							      document.getElementById('sec14').classList.add("circle-text");
@@ -182,6 +274,7 @@
 							      var n = numSEC14.toString();
 							      document.getElementById("sec14").innerHTML= n;
 							      listIDSEC14.push(dataList[i].orm_assessmentRisk__c);
+							      colorSEC14[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   //end security
 							   
@@ -193,6 +286,7 @@
 							      var n = numENV11.toString();
 							      document.getElementById("env11").innerHTML= n; 
 							      listIDENV11.push(dataList[i].orm_assessmentRisk__c);
+							      colorENV11[dataList[i].orm_assessmentRisk__c] = "yellow";
 							   }
 							   if(dataList[i].orm_environment__c == 'Medium'){
 							      document.getElementById('env12').classList.add("circle-text");
@@ -201,6 +295,7 @@
 							      var n = numENV12.toString();
 							      document.getElementById("env12").innerHTML= n;
 							      listIDENV12.push(dataList[i].orm_assessmentRisk__c);
+							      colorENV12[dataList[i].orm_assessmentRisk__c] = "#FF8C00";
 							   }
 							   if(dataList[i].orm_environment__c == 'High'){
 							      document.getElementById('env13').classList.add("circle-text");
@@ -209,6 +304,7 @@
 							      var n = numENV13.toString();
 							      document.getElementById("env13").innerHTML= n;
 							      listIDENV13.push(dataList[i].orm_assessmentRisk__c);
+							      colorENV13[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   if(dataList[i].orm_environment__c == 'VeryHigh'){
 							      document.getElementById('env14').classList.add("circle-text");
@@ -217,6 +313,7 @@
 							      var n = numENV14.toString();
 							      document.getElementById("env14").innerHTML= n;
 							      listIDENV14.push(dataList[i].orm_assessmentRisk__c);
+							      colorENV14[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   //Environment and Com
 							   
@@ -228,6 +325,7 @@
 							      var n = numREP11.toString();
 							      document.getElementById("rep11").innerHTML= n;
 							      listIDREP11.push(dataList[i].orm_assessmentRisk__c);
+							      colorREP11[dataList[i].orm_assessmentRisk__c] = "yellow";
 							   }
 							   if(dataList[i].orm_reputation__c == 'Medium'){
 							      document.getElementById('rep12').classList.add("circle-text");
@@ -236,6 +334,7 @@
 							      var n = numREP12.toString();
 							      document.getElementById("rep12").innerHTML= n;
 							      listIDREP12.push(dataList[i].orm_assessmentRisk__c);
+							      colorREP12[dataList[i].orm_assessmentRisk__c] = "#FF8C00";
 							   }
 							   if(dataList[i].orm_reputation__c == 'High'){
 							      document.getElementById('rep13').classList.add("circle-text");
@@ -244,6 +343,7 @@
 							      var n = numREP13.toString();
 							      document.getElementById("rep13").innerHTML= n;
 							      listIDREP13.push(dataList[i].orm_assessmentRisk__c);
+							      colorREP13[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   if(dataList[i].orm_reputation__c == 'VeryHigh'){
 							      document.getElementById('rep14').classList.add("circle-text");
@@ -252,6 +352,7 @@
 							      var n = numREP14.toString();
 							      document.getElementById("rep14").innerHTML= n;
 							      listIDREP14.push(dataList[i].orm_assessmentRisk__c);
+							      colorREP14[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   //end Reputation
 							   
@@ -263,6 +364,7 @@
 							      var n = numWE11.toString();
 							      document.getElementById("we11").innerHTML= n;
 							      listIDWE11.push(dataList[i].orm_assessmentRisk__c);
+							      colorWE11[dataList[i].orm_assessmentRisk__c] = "yellow";
 							   }
 							   if(dataList[i].orm_workingEnvironment__c == 'Several employees consider resigning'){
 							      document.getElementById('we12').classList.add("circle-text");
@@ -271,6 +373,7 @@
 							      var n = numWE12.toString();
 							      document.getElementById("we12").innerHTML= n;
 							      listIDWE12.push(dataList[i].orm_assessmentRisk__c);
+							      colorWE12[dataList[i].orm_assessmentRisk__c] = "#FF8C00";
 							   }
 							   if(dataList[i].orm_workingEnvironment__c == 'One employee resigns'){
 							      document.getElementById('we13').classList.add("circle-text");
@@ -279,6 +382,7 @@
 							      var n = numWE13.toString();
 							      document.getElementById("we13").innerHTML= n;
 							      listIDWE13.push(dataList[i].orm_assessmentRisk__c);
+							      colorWE13[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   if(dataList[i].orm_workingEnvironment__c == 'Several employees resign'){
 							      document.getElementById('we14').classList.add("circle-text");
@@ -287,6 +391,7 @@
 							      var n = numWE14.toString();
 							      document.getElementById("we14").innerHTML= n;
 							      listIDWE14.push(dataList[i].orm_assessmentRisk__c);
+							      colorWE14[dataList[i].orm_assessmentRisk__c] = "red";
 							   }
 							   //end working env
 						}
@@ -899,6 +1004,87 @@
 				  component.set("v.listID4WE42",  listID4WE42);
 				  component.set("v.listID4WE43",  listID4WE43);
 				  component.set("v.listID4WE44",  listID4WE44);
+				  
+				  component.set("v.colorHS11",  colorHS11);
+				  component.set("v.colorHS12",  colorHS12);
+				  component.set("v.colorHS13",  colorHS13);
+				  component.set("v.colorHS14",  colorHS14);
+				  component.set("v.colorSEC11", colorSEC11);
+				  component.set("v.colorSEC12", colorSEC12);
+				  component.set("v.colorSEC13", colorSEC13);
+				  component.set("v.colorSEC14", colorSEC14);
+				  component.set("v.colorENV11", colorENV11);
+				  component.set("v.colorENV12", colorENV12);
+				  component.set("v.colorENV13", colorENV13);
+				  component.set("v.colorENV14", colorENV14);
+				  component.set("v.colorREP11", colorREP11);
+				  component.set("v.colorREP12", colorREP12);
+				  component.set("v.colorREP13", colorREP13);
+				  component.set("v.colorREP14", colorREP14);
+				  component.set("v.colorWE11",  colorWE11);
+				  component.set("v.colorWE12",  colorWE12);
+				  component.set("v.colorWE13",  colorWE13);
+				  component.set("v.colorWE14",  colorWE14);
+				  component.set("v.color2HS21", color2HS21);
+				  component.set("v.color2HS22", color2HS22);
+				  component.set("v.color2HS23", color2HS23);
+				  component.set("v.color2HS24", color2HS24);
+				  component.set("v.color2SEC21", color2SEC21);
+				  component.set("v.color2SEC22", color2SEC22);
+				  component.set("v.color2SEC23", color2SEC23);
+				  component.set("v.color2SEC24", color2SEC24);
+				  component.set("v.color2ENV21", color2ENV21);
+				  component.set("v.color2ENV22", color2ENV22);
+				  component.set("v.color2ENV23", color2ENV23);
+				  component.set("v.color2ENV24", color2ENV24);
+				  component.set("v.color2REP21", color2REP21);
+				  component.set("v.color2REP22", color2REP22);
+				  component.set("v.color2REP23", color2REP23);
+				  component.set("v.color2REP24", color2REP24);
+				  component.set("v.color2WE21",  color2WE21);
+				  component.set("v.color2WE22",  color2WE22);
+				  component.set("v.color2WE23",  color2WE23);
+				  component.set("v.color2WE24",  color2WE24);
+				  component.set("v.color3HS31",  color3HS31);
+				  component.set("v.color3HS32",  color3HS32);
+				  component.set("v.color3HS33",  color3HS33);
+				  component.set("v.color3HS34",  color3HS34);
+				  component.set("v.color3SEC31", color3SEC31);
+				  component.set("v.color3SEC32", color3SEC32);
+				  component.set("v.color3SEC33", color3SEC33);
+				  component.set("v.color3SEC34", color3SEC34);
+				  component.set("v.color3ENV31", color3ENV31);
+				  component.set("v.color3ENV32", color3ENV32);
+				  component.set("v.color3ENV33", color3ENV33);
+				  component.set("v.color3ENV34", color3ENV34);
+				  component.set("v.color3REP31", color3REP31);
+				  component.set("v.color3REP32", color3REP32);
+				  component.set("v.color3REP33", color3REP33);
+				  component.set("v.color3REP34", color3REP34);
+				  component.set("v.color3WE31",  color3WE31);
+				  component.set("v.color3WE32",  color3WE32);
+				  component.set("v.color3WE33",  color3WE33);
+				  component.set("v.color3WE34",  color3WE34);
+				  component.set("v.color4HS41",  color4HS41);
+				  component.set("v.color4HS42",  color4HS42);
+				  component.set("v.color4HS43",  color4HS43);
+				  component.set("v.color4HS44",  color4HS44);
+				  component.set("v.color4SEC41", color4SEC41);
+				  component.set("v.color4SEC42", color4SEC42);
+				  component.set("v.color4SEC43", color4SEC43);
+				  component.set("v.color4SEC44", color4SEC44);
+				  component.set("v.color4ENV41", color4ENV41);
+				  component.set("v.color4ENV42", color4ENV42);
+				  component.set("v.color4ENV43", color4ENV43);
+				  component.set("v.color4ENV44", color4ENV44);
+				  component.set("v.color4REP41", color4REP41);
+				  component.set("v.color4REP42", color4REP42);
+				  component.set("v.color4REP43", color4REP43);
+				  component.set("v.color4REP44", color4REP44);
+				  component.set("v.color4WE41",  color4WE41);
+				  component.set("v.color4WE42",  color4WE42);
+				  component.set("v.color4WE43",  color4WE43);
+				  component.set("v.color4WE44",  color4WE44);
 			    }
 		     }
 		});
@@ -950,8 +1136,17 @@
 	            evtHideSpinner.fire();
 		        document.getElementById("infoMatrice").style.display = "block";
 		        component.set('v.assessmentRisks', response.getReturnValue());
-		        console.log('****lets look*****');
-		        console.log(JSON.stringify(component.get("v.assessmentRisks")))
+		        console.log('****lets look the object*****');
+		        console.log(JSON.stringify(component.get("v.colorHS11")[0]))
+		        console.log(JSON.stringify(component.get("v.listIDHS11")))
+		       // for (var i = 0; i < component.get("v.listIDHS11").length; i++) {
+                    //var idHS = component.get("v.listIDHS11")[i]+'HS';
+                    console.log('oh id');
+                    //var result = (typeof idHS === 'string');
+                    console.log(document.getElementById('a001H00000l28M2QAIHS'));
+                    //document.getElementById(idHS).style.backgroundColor = component.get("v.colorHS11")[0].component.get("v.listIDHS11")[i];
+              //  }
+                
 		    } else {
 		        alert($A.get("$Label.c.orm_not_found"));
 		    }

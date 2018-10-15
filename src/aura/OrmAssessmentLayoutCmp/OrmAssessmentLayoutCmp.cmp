@@ -1135,7 +1135,7 @@
                             </td> 
                             <td class="tdClass">
                                 <div class="topSpacing"> 
-                                    <label class="slds-form-element__label styleLabel">Scope</label>
+                                    <label class="slds-form-element__label styleLabel">{!$Label.c.orm_Scope}</label>
                                 </div>
 	                                <div class="width">
 	                                    <ui:inputTextArea class="slds-input styleLabel" 
@@ -1299,7 +1299,7 @@
                      <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;">
-	                               <h1 class="intro-title">List of Proofs of Activity </h1>
+	                               <h1 class="intro-title"> {!$Label.c.orm_proofs_of_activity} </h1>
 	                           </div>
 	                     </td>
 	                 </tr>

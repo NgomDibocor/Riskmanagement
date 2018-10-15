@@ -82,6 +82,87 @@
 	<aura:attribute name="listID4WE43" type="string[]" />
 	<aura:attribute name="listID4WE44" type="string[]" />
 	
+	<aura:attribute name="colorHS11" type="List" />
+	<aura:attribute name="colorHS12" type="List" />
+	<aura:attribute name="colorHS13" type="List" />
+	<aura:attribute name="colorHS14" type="List" />
+	<aura:attribute name="colorSEC11" type="List" />
+	<aura:attribute name="colorSEC12" type="List" />
+	<aura:attribute name="colorSEC13" type="List" />
+	<aura:attribute name="colorSEC14" type="List" />
+	<aura:attribute name="colorENV11" type="List" />
+	<aura:attribute name="colorENV12" type="List" />
+	<aura:attribute name="colorENV13" type="List" />
+	<aura:attribute name="colorENV14" type="List" />
+	<aura:attribute name="colorREP11" type="List" />
+	<aura:attribute name="colorREP12" type="List" />
+	<aura:attribute name="colorREP13" type="List" />
+	<aura:attribute name="colorREP14" type="List" />
+	<aura:attribute name="colorWE11" type="List" />
+	<aura:attribute name="colorWE12" type="List" />
+	<aura:attribute name="colorWE13" type="List" />
+	<aura:attribute name="colorWE14" type="List" />
+	<aura:attribute name="color2HS21" type="List" />
+	<aura:attribute name="color2HS22" type="List" />
+	<aura:attribute name="color2HS23" type="List" />
+	<aura:attribute name="color2HS24" type="List" />
+	<aura:attribute name="color2SEC21" type="List" />
+	<aura:attribute name="color2SEC22" type="List" />
+	<aura:attribute name="color2SEC23" type="List" />
+	<aura:attribute name="color2SEC24" type="List" />
+	<aura:attribute name="color2ENV21" type="List" />
+	<aura:attribute name="color2ENV22" type="List" />
+	<aura:attribute name="color2ENV23" type="List" />
+	<aura:attribute name="color2ENV24" type="List" />
+	<aura:attribute name="color2REP21" type="List" />
+	<aura:attribute name="color2REP22" type="List" />
+	<aura:attribute name="color2REP23" type="List" />
+	<aura:attribute name="color2REP24" type="List" />
+	<aura:attribute name="color2WE21" type="List" />
+	<aura:attribute name="color2WE22" type="List" />
+	<aura:attribute name="color2WE23" type="List" />
+	<aura:attribute name="color2WE24" type="List" />
+	<aura:attribute name="color3HS31" type="List" />
+	<aura:attribute name="color3HS32" type="List" />
+	<aura:attribute name="color3HS33" type="List" />
+	<aura:attribute name="color3HS34" type="List" />
+	<aura:attribute name="color3SEC31" type="List" />
+	<aura:attribute name="color3SEC32" type="List" />
+	<aura:attribute name="color3SEC33" type="List" />
+	<aura:attribute name="color3SEC34" type="List" />
+	<aura:attribute name="color3ENV31" type="List" />
+	<aura:attribute name="color3ENV32" type="List" />
+	<aura:attribute name="color3ENV33" type="List" />
+	<aura:attribute name="color3ENV34" type="List" />
+	<aura:attribute name="color3REP31" type="List" />
+	<aura:attribute name="color3REP32" type="List" />
+	<aura:attribute name="color3REP33" type="List" />
+	<aura:attribute name="color3REP34" type="List" />
+	<aura:attribute name="color3WE31" type="List" />
+	<aura:attribute name="color3WE32" type="List" />
+	<aura:attribute name="color3WE33" type="List" />
+	<aura:attribute name="color3WE34" type="List" />
+	<aura:attribute name="color4HS41" type="List" />
+	<aura:attribute name="color4HS42" type="List" />
+	<aura:attribute name="color4HS43" type="List" />
+	<aura:attribute name="color4HS44" type="List" />
+	<aura:attribute name="color4SEC41" type="List" />
+	<aura:attribute name="color4SEC42" type="List" />
+	<aura:attribute name="color4SEC43" type="List" />
+	<aura:attribute name="color4SEC44" type="List" />
+	<aura:attribute name="color4ENV41" type="List" />
+	<aura:attribute name="color4ENV42" type="List" />
+	<aura:attribute name="color4ENV43" type="List" />
+	<aura:attribute name="color4ENV44" type="List" />
+	<aura:attribute name="color4REP41" type="List" />
+	<aura:attribute name="color4REP42" type="List" />
+	<aura:attribute name="color4REP43" type="List" />
+	<aura:attribute name="color4REP44" type="List" />
+	<aura:attribute name="color4WE41" type="List" />
+	<aura:attribute name="color4WE42" type="List" />
+	<aura:attribute name="color4WE43" type="List" />
+	<aura:attribute name="color4WE44" type="List" />
+	
 	<aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c[]" />
 	
 	
@@ -303,10 +384,10 @@
 			   <div id="infoMatrice" class="backgroundDiv">
 			     <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
 				    <div id="infoMatrice" class="descriptionRisk">  
-				      <aura:iteration items="{!v.assessmentRisks}" var="item">
+				      <aura:iteration items="{!v.assessmentRisks}" var="item" indexVar="i">
 						    <div class="slds-size_1-of-1">
 					            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;">
-					                <article class="slds-card" style="height:310px;margin-bottom: 20px;padding-left: 8px;">
+					                <article class="slds-card" style="height:330px;margin-bottom: 20px;padding-left: 8px;">
 					                    <div class="slds-card__header slds-grid">
 					                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
 					                            <div class="slds-media__body" style="cursor: pointer;">
@@ -320,32 +401,32 @@
 			                                <span class="styleText">Manageability: <ui:outputText value="{!item.orm_manageability__c}" /></span>
 			                                <span class="styleText">Uncertainty: <ui:outputText value="{!item.orm_uncertainty__c}" /></span>
 			                                <div style="margin-top:20px;width:100%;">
-			                                    <div style="width:95%;margin-left:auto;margin-right:auto;white-space: normal;margin-bottom:5px">
+			                                    <div class="rowDiv">
 			                                       <span style="display: inline-block;width:40%;">
 			                                          <span style="display:block;">Working Environ...</span>
-			                                          <span class="we"></span>
+			                                          <span id="{!item.Id+'we'}" class="we"></span>
 			                                       </span>
 			                                       <span class="space"></span>
 			                                       <span style="display: inline-block;width:40%;">
 			                                          <span style="display:block;">Environment</span>
-			                                          <span class="env"></span>
+			                                          <span id="{!item.Id+'env'}" class="env"></span>
 			                                       </span>
 			                                    </div>
-			                                    <div style="width:95%;margin-left:auto;margin-right:auto;white-space: normal;margin-bottom:5px">
+			                                    <div class="rowDiv">
 			                                       <span style="display: inline-block;width:40%;">
-			                                          <span style="display:block;">safety</span>
-			                                          <span class="hs"></span>
+			                                          <span style="display:block;">Health &amp; Safety</span>
+			                                          <span id="{!item.Id+'HS'}" class="hs"></span>
 			                                       </span>
 			                                       <span class="space"></span>
 			                                       <span style="display: inline-block;width:40%;">
 			                                          <span style="display:block;">Security</span>
-			                                          <span class="sec"></span>
+			                                          <span id="{!item.Id+'sec'}" class="sec"></span>
 			                                       </span>
 			                                    </div>
-			                                    <div style="width:95%;margin-left:auto;margin-right:auto;white-space: normal;margin-bottom:5px">
+			                                    <div class="rowDiv">
 			                                       <span style="display: inline-block;width:40%;">
 			                                          <span style="display:block;">Reputation</span>
-			                                          <span class="rep"></span>
+			                                          <span id="{!item.Id+'rep'}" class="rep"></span>
 			                                       </span>
 			                                       <span class="space"></span>
 			                                       <span style="display: inline-block;width:40%;">
@@ -355,7 +436,6 @@
 			                                    </div>
 			                                  </div>
 			                            </div>
-			                            
 					                </article>
 					            </div>
 					        </div>

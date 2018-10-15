@@ -170,7 +170,7 @@
 				</aura:if>
 		</span></td>
 		
-		<td scope="row" class="slds-text-align--right" style="width: 3.25rem;">
+		<td scope="row" class="slds-text-align--right">
 			<div class="slds-form-element">
 				<div class="slds-form-element__control">
 					<label class="slds-checkbox"> <ui:inputCheckbox

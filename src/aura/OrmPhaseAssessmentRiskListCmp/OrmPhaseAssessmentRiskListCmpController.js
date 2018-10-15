@@ -10,6 +10,15 @@
     refreshList: function(component, event, helper) {
         helper.refresh(component, event);
     },
+    
+    sendDescriptionFieldCause: function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get('$Label.c.orm_phase'),
+            "descriptionField": $A.get('$Label.c.orm_phase_description')
+        });
+        evt.fire();
+    },
     save: function(component, event, helper) {
         // Check required fields(Name) first in helper method which is return true/false
         if (helper.requiredValidation(component, event)) {

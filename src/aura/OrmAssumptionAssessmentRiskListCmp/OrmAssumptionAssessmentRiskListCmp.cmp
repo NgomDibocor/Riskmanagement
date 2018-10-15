@@ -16,7 +16,7 @@
     	<div class="slds-m-around_large">
    		<div class="phase">
          <div class="iphase">
-            <a href="javascript:void(0);" >
+            <a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}" >
                 <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search assumption" />
             </a>
           </div>

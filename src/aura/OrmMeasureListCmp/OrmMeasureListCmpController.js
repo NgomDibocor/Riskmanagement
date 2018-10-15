@@ -75,7 +75,12 @@
     },
     
     sendDescriptionFieldMeasure : function (component, event, helper){
-    
+    		var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get('$Label.c.orm_measures_label'),
+            "descriptionField": $A.get('$Label.c.orm_measures_description')
+        });
+        evt.fire();
     },
     
     openModalDeleteMeasure : function (component, event, helper){

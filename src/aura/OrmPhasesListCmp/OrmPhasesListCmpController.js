@@ -79,10 +79,10 @@
     },
 
     sendDescriptionFieldCause: function(component, event, helper) {
-        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+       var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": "Phase",
-            "descriptionField": "Description"
+            "nomField": $A.get('$Label.c.orm_phase'),
+            "descriptionField": $A.get('$Label.c.orm_phase_description')
         });
         evt.fire();
     },

@@ -26,6 +26,14 @@
         });
 		evt.fire();
     },
+      sendDescriptionFieldMeasure : function (component, event, helper){
+    		var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get('$Label.c.orm_label_cause'),
+            "descriptionField": $A.get('$Label.c.orm_describe_cause')
+        });
+        evt.fire();
+    },
     /**
      * CreatedBy @David Diop
      * @version 1.0

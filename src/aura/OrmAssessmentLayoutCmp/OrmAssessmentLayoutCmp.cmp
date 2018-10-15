@@ -1174,7 +1174,7 @@
                   <tr>
                      <td class="textInDiv">
                           <div style="margin-bottom:20px;">
-                               <h1 class="intro-title">Assumptions and Attachments of assessment</h1>
+                               <h1 class="intro-title">{!$Label.c.orm_assumptionAndAttachments} </h1>
                            </div>
                      </td>
                   </tr>
@@ -1216,7 +1216,7 @@
                       <tr>
 	                     <td class="textInDiv">
 	                          <div style="margin-bottom:20px;">
-	                               <h1 class="intro-title">Phases And Activities</h1>
+	                               <h1 class="intro-title">{!$Label.c.orm_phase_activites} </h1>
 	                           </div>
 	                     </td>
 	                  </tr>
@@ -1231,7 +1231,7 @@
                           <td>
                              <div class="slds-box widthBox slds-theme_alert-texture">
 	                             <div style="margin-bottom:20px;">
-									 <h1 class="titleOrganisationUnit"><span class="organisationUnit">Organisation unit</span></h1>
+									 <h1 class="titleOrganisationUnit"><span class="organisationUnit">{!$Label.c.orm_organisation_unit} </span></h1>
 								 </div>
 	                             <div class="slds-col" style="margin-bottom:50px;">
 	                                    <span class="startSpaceOrg"></span>                                  
@@ -1315,7 +1315,7 @@
                      <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;">
-	                               <h1 class="intro-title">Workshops</h1>
+	                               <h1 class="intro-title">{!$Label.c.orm_Workshops} </h1>
 	                           </div>
 	                     </td>
 	                 </tr>
@@ -1336,7 +1336,7 @@
                       <tr>
 	                     <td >
 	                          <div style="margin-bottom:40px;">
-	                               <h1 class="intro-title">Risk Configuration </h1>
+	                               <h1 class="intro-title">{!$Label.c.orm_risk_configuration} </h1>
 	                           </div>
 	                     </td> 
 	                 </tr>
@@ -1350,7 +1350,7 @@
                        <tr>
 	                       <td >
 	                          <div style="margin-bottom:20px;margin-top: 10px">
-	                               <h1 class="intro-title">Creation And Association of Risks</h1>
+	                               <h1 class="intro-title">{!$Label.c.orm_creation_and_associationRisk}</h1>
 	                           </div>
 	                       </td>
 		               </tr>
@@ -1380,7 +1380,7 @@
 	                <tr>
                        <td >
                           <div style="margin-bottom:20px;margin-top: 10px">
-                               <h1 class="intro-title">Details of Risk</h1>
+                               <h1 class="intro-title"> {!$Label.c.orm_details_risk} </h1>
                            </div>
                        </td>
 		            </tr>
@@ -1462,7 +1462,7 @@
                     <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;">
-	                               <h1 class="intro-title">Details of Measure </h1>
+	                               <h1 class="intro-title">{!$Label.c.orm_detail_of_measures}	</h1>
 	                           </div>
 	                     </td>
 	                </tr>  

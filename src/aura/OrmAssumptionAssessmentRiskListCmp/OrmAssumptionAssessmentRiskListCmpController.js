@@ -14,6 +14,14 @@
         });
         evt.fire();
     },
+     sendDescriptionFieldCause: function(component, event, helper) {
+        var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+        evt.setParams({
+            "nomField": $A.get('$Label.c.orm_label_cause'),
+            "descriptionField": $A.get('$Label.c.orm_describe_cause')
+        });
+        evt.fire();
+    },
     updateAssumpt: function(component, event, helper) {
         // Check required fields(Name) first in helper method which is return
         // true/false

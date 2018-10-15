@@ -85,8 +85,10 @@ public with sharing class OrmContactController {
  */
     @AuraEnabled
 	public static Contact add(Contact item){ 
+		
 		try{
        item.RecordTypeId = OrmContactController.getContactRecordTypeId();
+      
 		upsert item;
 		return item;
 		}catch(Exception e){

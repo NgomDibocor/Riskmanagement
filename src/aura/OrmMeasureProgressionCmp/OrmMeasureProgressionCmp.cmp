@@ -26,7 +26,7 @@
     <div class="slds-m-around_large">
         <div class="measureProgression">
             <div class="measureSearch">
-                <a href="javascript:void(0);">
+                <a href="javascript:void(0); " onclick="{!c.sendDescriptionFieldMeasure}">
                     <lightning:input type="search" onchange="{!c.filter}" value="{!v.filter}" label="{!$Label.c.search_title_label}" placeholder="{!$Label.c.orm_filter_measureProgression_placeholder}" />
                 </a>
             </div>

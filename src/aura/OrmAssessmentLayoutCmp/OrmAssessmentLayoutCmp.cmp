@@ -1439,7 +1439,7 @@
                     <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;margin-top:10px">
-	                               <h1 class="intro-title">List of measures</h1>
+	                               <h1 class="intro-title">{!$Label.c.orm_list_of_measures} </h1>
 	                           </div>
 	                     </td>
 	                </tr>                 

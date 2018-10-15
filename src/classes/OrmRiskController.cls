@@ -249,6 +249,17 @@ public with sharing class OrmRiskController {
                  ];                         
     
     }
+    
+    @AuraEnabled 
+    public static List<orm_assessmentRisk__c> getAssessmentRisks(List<String> idAssRisk)
+    {
+       return  [Select Id,orm_Risk__r.Name,orm_Risk__r.Description,orm_manageAbility__c,orm_uncertainty__c,
+                       (SELECT id,orm_probability__c
+                        FROM Price_Books__r 
+                        WHERE orm_assessmentRisk__c =: idAssRisk)
+               From orm_assessmentRisk__c 
+               where Id IN :idAssRisk];
+    }
    
     
 }

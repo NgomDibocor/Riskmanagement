@@ -164,3 +164,99 @@
     margin-top:50px;
     margin-bottom:20px;
 }
+.THIS .circle-text {
+    display: table-cell;
+    height:35px;
+    width: 40px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+  /*make it pretty*/
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+.THIS .description{
+	width:98%;
+	height:auto;
+	padding: 4%;
+	margin:auto;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	letter-spacing: -.003em;
+	white-space: normal;
+	text-align: justify;
+    text-justify: inter-character;
+	color: white;
+	background-color: #0077AB;
+}
+.THIS .descriptionRisk{
+	height:600px;
+	overflow-y:scroll;
+	overflow-x: hidden;
+	padding: 3%;
+	margin:auto;
+	color: black;
+	margin-top: 20px;
+}
+.THIS .backgroundDiv{
+	background-color: #0077AB;
+}
+.THIS .styleTitre{
+    font-weight: 600;
+	font-style: normal;
+	font-size: 20px;
+	letter-spacing: -.003em;
+	white-space: normal;
+	display: block;
+}
+.THIS .styleText{
+    font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	letter-spacing: -.003em;
+	white-space: normal;
+	display: block;
+}
+.THIS .ico svg{
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill:white;
+}
+.THIS .we{
+    display: block;
+    height:15px;
+    margin:auto;
+    background-color: green;
+}
+.THIS .space{
+    display: inline-block;
+    width:3%;
+}
+.THIS .env{
+    display: block;
+    height:15px;
+    margin:auto;
+    background-color: red;
+}
+.THIS .hs{
+    display: block;
+    height:15px;
+    margin:auto;
+    background-color: green;
+}
+.THIS .sec{
+    display: block;
+    height:15px;
+    margin:auto;
+    background-color: red;
+}
+.THIS .rep{
+    display: block;
+    height:15px;
+    margin:auto;
+    background-color: red;
+}

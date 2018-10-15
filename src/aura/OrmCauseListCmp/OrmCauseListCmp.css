@@ -28,6 +28,10 @@
 .THIS table {
     margin-top: 20px;
 }
+.THIS .thTable {
+  font-weight: 600;
+  font-size: 1.2em;
+}
 
 .THIS .header {
     background-color: rgba(27, 82, 151, 1.0);
@@ -52,7 +56,7 @@
 .THIS .dot {
     height: 55px;
     line-height: 55px;
-    width: 300px;
+    width: 15%;
     border-radius: 0;
     background-color: #5B86BE;
     display: inline-block;

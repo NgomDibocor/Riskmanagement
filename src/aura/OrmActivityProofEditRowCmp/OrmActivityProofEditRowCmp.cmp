@@ -10,13 +10,14 @@
     <aura:attribute name="showSaveCancelBtn" type="boolean"/>
     <aura:attribute name="sNo" type="string" />
     <aura:attribute name="showErrorClass" type="boolean" default="false"/>
-    <aura:attribute name="openfilesList" type="Boolean"  default="false"/>
+   
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     
     <aura:handler action="{!c.selectAll}"  event="c:OrmEvtSelectAllActivityProof"/>
     <aura:handler event="c:OrmRemoveRecordActivityProofEvnt" action="{!c.deleteSelected}" />
     <aura:registerEvent name="OrmRefreshActivityProofEvnt" type="c:OrmRefreshActivityProofEvnt" />
-    <tr>
+    <aura:registerEvent name="OrmActivityProofFilesEvent" type="c:OrmActivityProofFilesEvent" />
+    <tr class="slds-hint-parent">
     	<td scope="row" class="slds-text-align--right" style="width:3.25rem;">
 			<div class="slds-form-element">
 		      <div class="slds-form-element__control">
@@ -33,7 +34,8 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.NameEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_name_activityProof}">{!v.activityProof.Name}</span>
+                    <p class="slds-truncate">{!v.activityProof.Name}</p>
+                    <lightning:helptext content="{!v.activityProof.Name}"/>
                     <button onclick="{!c.inlineEditName}" 
                     	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     		tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_name_activityProof}">
@@ -70,7 +72,8 @@
             <span class="slds-grid slds-grid_align-spread">
                 <!-- show input and output section based on boolean flag --> 
                 <aura:if isTrue="{!v.DescriptionEditMode == false}">
-                    <span class="slds-truncate" title="{!$Label.c.orm_ProductDescription_label}">{!v.activityProof.Description}</span>
+                    <p class="slds-truncate">{!v.activityProof.Description}</p>
+                    <lightning:helptext content="{!v.activityProof.Description}"/>
                     <button onclick="{!c.inlineEditDescription}" 
                     	class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" 
                     		tabindex="0" title="{!$Label.c.orm_edit_button_title + ' ' + $Label.c.orm_ProductDescription_label}">
@@ -104,27 +107,5 @@
         <a onclick="{!c.openfilesList}"> <b>{!$Label.c.orm_files_label} </b></a>
         </td>
 	</tr>
-	 <aura:if isTrue="{!v.openfilesList}">    
-	    	<div class="demo-only" style="height: 640px;">
-			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
-			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-			    <div class="slds-modal__container">
-			      <header class="slds-modal__header header" style="background:#6692BF;font-size: 2em;; font-weight: 500;">
-			      	<span style="color: white;">{!$Label.c.orm_files_lists_label}</span>
-			        <button  style="color: white;" onclick="{!c.cancelActivityProof}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.orm_close_button_title}">		          
-			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
-			        </button>
-			      </header>
-			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			      <c:OrmAttachmentListCmp parentId="{!v.activityProof.Id}"/>
-			      </div>
-			      <footer class="slds-modal__footer" >			        
-					<button class="slds-button slds-button_neutral" onclick="{!c.cancelActivityProof}">{!$Label.c.orm_close_button_title}</button>				
-			      </footer>
-			    </div>
-			  </section>
-			  <div class="slds-backdrop slds-backdrop_open"></div>
-			</div>	    
-	    </aura:if>
+	
 </aura:component>

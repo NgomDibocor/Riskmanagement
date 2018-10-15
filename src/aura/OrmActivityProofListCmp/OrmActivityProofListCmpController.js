@@ -41,7 +41,7 @@
             // call the saveAccount apex method for update inline edit fields update 
             var action = component.get("c.updateActiviteProof");
             action.setParams({
-                'activityProof': component.get("v.activityProof")
+                'activityProof': component.get("v.PaginationList")
             });
 
             action.setCallback(this, function(response) {
@@ -146,4 +146,15 @@
         // on cancel close modal
         component.set("v.showConfirmRemoveAssumption", false);
     },
+    openfilesList: function(component, event, helper) {
+    
+        idMeasurePro =  event.getParam('activityProof');
+        component.set('v.activityProofId',idMeasurePro);
+        component.set("v.openfilesList", true);
+    },
+    cancelActivityProof : function(component, event, helper)
+    {
+    	component.set("v.openfilesList",false);
+    },
+    
 })

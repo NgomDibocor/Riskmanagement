@@ -1,10 +1,12 @@
 .THIS div.activityProof {
     display: inline-block;
-    width:95%;
+    width: 70%;
+    margin-left:20%;
+    margin-right:10%;
 }
 .THIS .activityProofSearch {
 	display: inline-block;
-    width:90%;
+    width:80%;
     margin-right: 15px;
 }
 .THIS .titleActivityProof {
@@ -19,4 +21,8 @@
   font-size: 1em;
   white-space: normal;
   color: green;
+}
+.THIS .thTable {
+  font-weight: 600;
+  font-size: 1.2em;
 }

@@ -10,7 +10,7 @@
 	},
 	 closeNameBox : function(component, event, helper){ 
     	// on focus out, close the input section by setting the 'nameEditMode' att. as false   
-        component.set("v.ameEditMode", false); 
+        component.set("v.NameEditMode", false); 
         // check if change/update Name field is blank, then add error class to column -
         // by setting the 'showErrorClass' att. as True , else remove error class by setting it False   
         if(event.getSource().get("v.value").trim() == ''){
@@ -55,12 +55,10 @@
     },
     openfilesList : function(component, event, helper)
     {
-    	var idMeasurePro = component.get('v.activityProof.Id');
-    	component.set("v.openfilesList",true);
-    },
-    cancelActivityProof : function(component, event, helper)
-    {
-    	component.set("v.openfilesList",false);
+    	var idActivityProof = component.get('v.activityProof.Id');
+        var evt = $A.get("e.c:OrmActivityProofFilesEvent");
+		evt.setParam('activityProof',idActivityProof);
+		evt.fire();
     },
     
    

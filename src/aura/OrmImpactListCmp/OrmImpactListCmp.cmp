@@ -41,7 +41,7 @@
 	        	</div>
 	        </aura:if>
 	  <aura:if isTrue="{!not(empty(v.PaginationList))}">
-       <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols">
+       <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
 	            <thead>
 	                <tr>
 	                  <th style="width:3.25rem;" class="slds-text-align--right" ><!-- 3.25rem; -->
@@ -55,10 +55,10 @@
 		                    </div>
 		                </div>
 		              </th> 
-	                  <th scope="col" ><div class="slds-truncate" title="">N°</div></th>
-	                   <th scope="col" ><div class="slds-truncate" title="">{!$Label.c.orm_impact_libelle}</div></th>
-	                  <th scope="col" ><div class="slds-truncate" title="" >{!$Label.c.orm_description}</div></th>
-	                  <th scope="col" ><div class="slds-truncate" title="">{!$Label.c.orm_categorieImpact}</div></th>
+	                  <th scope="col" ><div class="slds-truncate thTable" title="">N°</div></th>
+	                   <th scope="col" ><div class="slds-truncate thTable" title="">{!$Label.c.orm_impact_libelle}</div></th>
+	                  <th scope="col" ><div class="slds-truncate thTable " title="" >{!$Label.c.orm_description}</div></th>
+	                  <th scope="col" ><div class="slds-truncate thTable " title="">{!$Label.c.orm_categorieImpact}</div></th>
 	                </tr>
 	            </thead>
 	            
@@ -72,9 +72,8 @@
 	                                     sNo="{!sNo + 1}" />                       
 	                </aura:iteration>
 	            </tbody>
-	        </table> 
-	        <center>
-	<div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+	        </table>
+	<div style="margin-top:20px; padding-bottom:10px;margin-left :27%;margin-right:auto">
 	    <lightning:buttonGroup >
 	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
 	                            onclick="{!c.previousBis}" variant="brand"
@@ -86,7 +85,6 @@
 	                            iconName='utility:forward' iconPosition='right'/>
 	      </lightning:buttonGroup>
 	</div>
-	</center>
 	        <aura:set attribute="else">
 			    <div class="messageIsEmpty" style="padding-top: 20px">
 		 		    {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_impact +'   ' + $Label.c.orm_is_empty}

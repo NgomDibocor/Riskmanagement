@@ -6,6 +6,10 @@
     margin-left:20%;
     margin-right:10%;
 }
+.THIS .thTable {
+  font-weight: 600;
+  font-size: 1.2em;
+}
 
 .THIS span.btnNewPhase {
     display: inline-block;
@@ -49,7 +53,7 @@
 .THIS .dot {
     height: 55px;
     line-height: 55px;
-    width: 300px;
+    width: 15%;
     border-radius: 0;
     background-color: #5B86BE;
     display: inline-block;

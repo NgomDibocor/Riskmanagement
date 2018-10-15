@@ -4,7 +4,9 @@
 
 .THIS div.impact {
     display: inline-block;
-    width: 100%;
+    width: 80%;
+    margin-left:20%;
+    margin-right:10%;
 }
 
 .THIS .iimpact {
@@ -40,11 +42,15 @@
     white-space: normal;
     color: green;
 }
+.THIS .thTable {
+  font-weight: 600;
+  font-size: 1.2em;
+}
 
 .THIS .dot {
     height: 55px;
     line-height: 55px;
-    width: 300px;
+    width: 15%;
     border-radius: 0;
     background-color: #5B86BE;
     display: inline-block;

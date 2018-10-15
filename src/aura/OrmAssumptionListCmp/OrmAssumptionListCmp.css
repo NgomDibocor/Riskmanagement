@@ -30,7 +30,9 @@
 }
 .THIS div.assumption {
     display: inline-block;
-    width: 100%;
+     width: 70%;
+    margin-left:20%;
+    margin-right:10%;
 }
 
 .THIS span.btnNewAssumption {

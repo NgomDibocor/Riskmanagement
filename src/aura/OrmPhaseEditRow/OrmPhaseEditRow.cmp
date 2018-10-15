@@ -25,7 +25,7 @@
     <!--Table Row Start-->  
     <tr class="slds-hint-parent">
     	
-        <td><div class="slds-truncate">{!v.sNo}</div></td>
+        <td style="width:6.25rem;"><div class="slds-truncate">{!v.sNo}</div></td>
         
         <td ondblclick="{!c.inlineEditDescription}" class="slds-cell-edit">
             <span class="slds-grid slds-grid_align-spread">

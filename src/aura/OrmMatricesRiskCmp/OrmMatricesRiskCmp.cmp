@@ -35,34 +35,34 @@
 		     
 		  <div style="width:100%;display: flex;">
 		     <div style="width:50%;height:600px;overflow-y:scroll;overflow-x: hidden;"> 
-			     <div style="width:70%;height:300px;">
+			     <div style="width:70%;height:300px;margin-left: 100px;">
 				   <span class="monTexte" id="healthAndSafety">Health And Safety</span>
 				   <span id="idTable">
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs11" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="hs12" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="hs13" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="hs14" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="hs11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="hs12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="hs13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="hs14" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="hs21" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs22" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="hs23" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="hs24" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="hs21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="hs22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="hs23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="hs24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="hs31" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs32" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs33" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="hs34" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="hs31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="hs32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="hs33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="hs34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="hs41" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="hs42" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="hs43" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs44" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="hs41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="hs42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="hs43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="hs44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -71,34 +71,34 @@
 					    </table>  
 					  </span>
 				</div>
-				<div style="width:70%;height:300px;">
+				<div style="width:70%;height:300px;margin-left: 100px;">
 				   <span class="monTexte" id="security">Security</span>
 				   <span id="idTableSecurity">
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec11" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="sec12" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="sec13" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="sec14" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="sec11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="sec12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="sec13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="sec14" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="sec21" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec22" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="sec23" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="sec24" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="sec21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="sec22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="sec23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="sec24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="sec31" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec32" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec33" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="sec34" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="sec31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="sec32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="sec33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="sec34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="sec41" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="sec42" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="sec43" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec44" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="sec41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="sec42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="sec43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="sec44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -107,34 +107,34 @@
 					    </table>  
 					  </span>
 				</div>
-				<div style="width:70%;height:300px;">
+				<div style="width:70%;height:300px;margin-left: 100px;">
 				   <span class="monTexte" id="environment">Environment </span>
 				   <span id="idTableEnvironment">
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="env11" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="env12" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="env13" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="env14" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="env11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="env12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="env13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="env14" class=""></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="env21" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="env22" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="env23" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="env24" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="env21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="env22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="env23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="env24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="env31" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="env32" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="env33" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="env34" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="env31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="env32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="env33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="env34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="env41" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="env42" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="env43" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="env44" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="env41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="env42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="env43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="env44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -143,34 +143,34 @@
 					    </table>  
 					  </span>
 				</div>
-				<div style="width:70%;height:300px;">
+				<div style="width:70%;height:300px;margin-left: 100px;">
 				   <span class="monTexte" id="reputation">Reputation </span>
 				   <span id="idTableReputation">
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep11" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="rep12" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="rep13" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="rep14" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="rep11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="rep12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="rep13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="rep14" class=""></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="rep21" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep22" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="rep23" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="rep24" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="rep21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="rep22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="rep23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="rep24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="rep31" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep32" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep33" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="rep34" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="rep31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="rep32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="rep33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="rep34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="rep41" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="rep42" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="rep43" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep44" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="rep41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="rep42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="rep43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="rep44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -179,34 +179,34 @@
 					    </table>  
 					  </span>
 				</div>
-				<div style="width:70%;height:300px;">
+				<div style="width:70%;height:300px;margin-left: 100px;">
 				   <span class="monTexte" id="reputation">working environment </span>
 				   <span id="idTableReputation">
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="we11" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="we12" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="we13" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="we14" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="we11" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="we12" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="we13" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="we14" class=""></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="we21" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="we22" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="we23" class=""></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="we24" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="we21" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="we22" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="we23" class=""></span></td>
+					        <td class="redColor" width="50px" height="50" onmouseover="{!c.openSEVERE}" onmouseout="{!c.closeSEVERE}"><span id="we24" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="we31" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="we32" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="we33" class=""></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="we34" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="we31" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="we32" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="we33" class=""></span></td>
+					        <td class="orangeColor" width="50px" height="50" onmouseover="{!c.openMAJOR}" onmouseout="{!c.closeMAJOR}"><span id="we34" class=""></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="we41" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="we42" class=""></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="we43" class=""></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="we44" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="we41" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="we42" class=""></span></td>
+					        <td class="greenColor" width="50px" height="50" onmouseover="{!c.openMINOR}" onmouseout="{!c.closeMINOR}"><span id="we43" class=""></span></td>
+					        <td class="yellowColor" width="50px" height="50" onmouseover="{!c.openMODERATE}" onmouseout="{!c.closeMODERATE}"><span id="we44" class=""></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -217,52 +217,32 @@
 				</div>
 		    </div>
 		    
-			<div style="width:50%;height:auto">
-			     <table>
-			     <thead>
-				      <tr>
-				        <th class="textCenter">RANKING</th>
-				        <th class="textCenter">DEFINITION</th>	        
-				      </tr>
-			      </thead>
-			      <tr>
-				        <td style="background-color: red;" class="tdRanking">SEVERE</td>
-				        <td class="tdDefinition">
-				             Risk that has a severe negative effect on objectives that cannot be endured. 
-				             Urgent management attention required to reduce probability and impact. 
-				             If the risk cannot be mitigated then it may invalidate the relevant objective or venture. 
-				        </td>
-			      </tr>
-			      <tr>
-			           <td style="background-color: #FF8C00;" class="tdRanking" >MAJOR</td>
-			           <td class="tdDefinition">
-			                Risk that has major negative effect on objectives. 
-			                Management attention required to reduce probability and impact. 
-			                If the risk cannot be mitigated then it may have serious implications in relation to the objectives.
-			           </td>
-			      </tr>
-			      <tr>
-			           <td style="background-color: yellow;" class="tdRanking" >MODERATE</td>
-			           <td class="tdDefinition">
-			                Risk that has a moderate negative effect on objectives that can be managed. 
-			                Management attention should be applied to reduce the probability and impact. 
-			                However, for those risks with a "Very High Impact", "Rare Probability" rating, 
-			                a robust fall-back/contingency plan may suffice, plus early warning mechanisms 
-			                to detect any increase in likelihood so that appropriate management action can be taken.
-			           </td>
-			      </tr>
-			      <tr>
-			           <td style="background-color: green;" class="tdRanking">MINOR</td>
-			           <td class="tdDefinition">
-			                Risk that has a minor negative effect on objectives. Risks with a "Low Impact", 
-			                "Possible Probability" rating may require some mitigation to reduce probability, 
-			                if this can be done cost effectively, to minimise the chance of risk occurrence and, 
-			                hence, of any impact occurring. Likewise, risks with a “High Impact”, “Rare Probability” 
-			                rating may require some mitigation to reduce impact, but also only if this can be done 
-			                cost effectively.
-			           </td>
-			      </tr>	  	      
-			    </table>  
+			<div style="width:50%;height:auto;">
+			   <div id="MODERATE" class="description">
+				    Risk that has a moderate negative effect on objectives that can be managed. 
+	                Management attention should be applied to reduce the probability and impact. 
+	                However, for those risks with a "Very High Impact", "Rare Probability" rating, 
+	                a robust fall-back/contingency plan may suffice, plus early warning mechanisms 
+	                to detect any increase in likelihood so that appropriate management action can be taken.
+			   </div>
+			   <div id="SEVERE" class="description">
+				    Risk that has a severe negative effect on objectives that cannot be endured. 
+	                Urgent management attention required to reduce probability and impact. 
+	                If the risk cannot be mitigated then it may invalidate the relevant objective or venture. 
+			   </div>
+			   <div id="MINOR" class="description">
+				    Risk that has a minor negative effect on objectives. Risks with a "Low Impact", 
+	                "Possible Probability" rating may require some mitigation to reduce probability, 
+	                if this can be done cost effectively, to minimise the chance of risk occurrence and, 
+	                hence, of any impact occurring. Likewise, risks with a “High Impact”, “Rare Probability” 
+	                rating may require some mitigation to reduce impact, but also only if this can be done 
+	                cost effectively.
+			   </div>
+			   <div id="MAJOR" class="description">
+				    Risk that has major negative effect on objectives. 
+	                Management attention required to reduce probability and impact. 
+	                If the risk cannot be mitigated then it may have serious implications in relation to the objectives.
+			   </div>
 			</div>
 	   </div>
 	

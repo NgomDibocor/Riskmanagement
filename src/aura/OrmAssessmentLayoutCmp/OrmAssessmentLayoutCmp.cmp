@@ -124,7 +124,7 @@
             <span class="slds-tabs--path__stage">
               <lightning:icon iconName="utility:sprite" size="xx-small" />
             </span>
-            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;">Risk Table</span>
+            <span class="slds-tabs--path__title" style="font-weight: 600;font-size: 1.5em;"> {!$Label.c.orm_risk_table} </span>
           </a>
         </li>
         <li aura:id="actionPlanId" class="slds-tabs--path__item slds-is-active" role="presentation">
@@ -219,7 +219,7 @@
 							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
 							                              iconName='utility:back'/>
                                    </span>
-	                               <h1 class="intro-title">New Assessment</h1>
+	                               <h1 class="intro-title">{!$Label.c.orm_new_assessment}</h1>
 	                           </div>
 	                     </td>
 	                </tr>
@@ -232,7 +232,7 @@
 							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
 							                              iconName='utility:back'/>
                                    </span>
-                                   <h1 class="intro-title">Show Assessment</h1>
+                                   <h1 class="intro-title">{!$Label.c.orm_show_assessment}</h1>
 	                           </div>
 	                     </td>
 	                </tr>
@@ -625,7 +625,7 @@
                             </td>
                             <td class="tdClass">
                                 <div class="topSpacing"> 
-                                    <label class="slds-form-element__label styleLabel">Scope</label>
+                                    <label class="slds-form-element__label styleLabel">{!$Label.c.orm_Scope}</label>
                                 </div>
 	                                <div class="width">
 	                                    <ui:inputTextArea class="slds-input styleLabel" 

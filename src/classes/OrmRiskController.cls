@@ -253,12 +253,25 @@ public with sharing class OrmRiskController {
     @AuraEnabled 
     public static List<orm_assessmentRisk__c> getAssessmentRisks(List<String> idAssRisk)
     {
-       return  [Select Id,orm_Risk__r.Name,orm_Risk__r.Description,orm_manageAbility__c,orm_uncertainty__c,
+       return  [Select Id,orm_Risk__r.Name,orm_assessment__c, orm_Risk__r.Description,orm_manageAbility__c,orm_uncertainty__c,
                        (SELECT id,orm_probability__c
                         FROM Price_Books__r 
                         WHERE orm_assessmentRisk__c =: idAssRisk)
                From orm_assessmentRisk__c 
                where Id IN :idAssRisk];
+    }
+    
+    /**
+	 *
+	 * @author Dibocor NGOM
+	 * @version 1.0
+	 * @description  this method returns an assessment
+	 * @history 
+	 * 2018-10-15 : Dibocor NGOM - Implementation
+	 */
+    @AuraEnabled 
+    public static Assessment__c getAssessment(String idAss){
+        return OrmAssessmentController.getAssessment(idAss);
     }
    
     

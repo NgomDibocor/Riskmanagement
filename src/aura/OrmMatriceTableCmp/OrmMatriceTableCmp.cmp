@@ -163,6 +163,7 @@
 	<aura:attribute name="color4WE43" type="List" />
 	<aura:attribute name="color4WE44" type="List" />
 	
+	
 	<aura:attribute name="assessmentRisks" type="orm_assessmentRisk__c[]" />
 	
 	
@@ -390,12 +391,21 @@
 					                <article class="slds-card" style="height:330px;margin-bottom: 20px;padding-left: 8px;">
 					                    <div class="slds-card__header slds-grid">
 					                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
-					                            <div class="slds-media__body" style="cursor: pointer;">
-					                                <span class="styleTitre"><ui:outputText value="{!item.orm_Risk__r.Name}" /></span> 
-					                                <span class="styleText"><ui:outputText value="{!item.orm_Risk__r.Description}" /></span>
+					                            <div class="slds-media__body " style="heigth:150px">
+					                                <span class="styleTitre slds-truncate"><ui:outputText class="styleTitre" value="{!item.orm_Risk__r.Name}" /></span> 
+					                                <span class="styleText slds-truncate"><ui:outputText value="{!item.orm_Risk__r.Description}" /><lightning:helptext content="{!item.orm_Risk__r.Description}"/></span>
+					                            </div>
+					                            <div class="slds-no-flex" style="margin-left:5px">
+					                                <button id="{!item.Id}" 
+					                                        class="slds-button slds-button_neutral styleTitre"
+					                                        onclick="{!c.openAssessmentRisk}">
+					                                    {!$Label.c.orm_show_button_title}<span id="{!item.orm_assessment__c}"></span>
+					                                </button>
+					                                
 					                            </div>
 					                        </header>
 					                    </div>
+					                    
 					                    <div class="slds-media__body">
 			                                <span class="styleText">Probability: <ui:outputText value="{!item.Price_Books__r[0].orm_probability__c}" /></span>
 			                                <span class="styleText">Manageability: <ui:outputText value="{!item.orm_manageability__c}" /></span>
@@ -435,7 +445,7 @@
 			                                       </span>
 			                                    </div>
 			                                  </div>
-			                            </div>
+			                            </div>			                           
 					                </article>
 					            </div>
 					        </div>

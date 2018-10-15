@@ -1131,22 +1131,20 @@
 		actionGetAssessmentRisks.setCallback(this, function(response){
 		    var state = response.getState();
 		    if(state === 'SUCCESS'){
+		        component.set('v.assessmentRisks', response.getReturnValue());
+		        console.log(JSON.stringify(response.getReturnValue()))
+		        document.getElementById("infoMatrice").style.display = "block";
 		        //Hide the Spinner
                 var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
 	            evtHideSpinner.fire();
-		        document.getElementById("infoMatrice").style.display = "block";
-		        component.set('v.assessmentRisks', response.getReturnValue());
-		        console.log('****lets look the object*****');
-		        console.log(JSON.stringify(component.get("v.colorHS11")[0]))
-		        console.log(JSON.stringify(component.get("v.listIDHS11")))
-		       // for (var i = 0; i < component.get("v.listIDHS11").length; i++) {
-                    //var idHS = component.get("v.listIDHS11")[i]+'HS';
-                    console.log('oh id');
-                    //var result = (typeof idHS === 'string');
-                    console.log(document.getElementById('a001H00000l28M2QAIHS'));
-                    //document.getElementById(idHS).style.backgroundColor = component.get("v.colorHS11")[0].component.get("v.listIDHS11")[i];
-              //  }
-                
+	            
+	            for (var i = 0; i < component.get("v.listIDHS11").length; i++) {
+	                var idSafety = component.get("v.listIDHS11")[i]+'HS';
+	                console.log('****idSafety*** : '+idSafety);
+	                console.log(document.getElementById(idSafety));
+	                //document.getElementById(idHS).style.backgroundColor = component.get("v.colorHS11")[0].component.get("v.listIDHS11")[i];
+	            }
+		         
 		    } else {
 		        alert($A.get("$Label.c.orm_not_found"));
 		    }
@@ -2577,5 +2575,27 @@
 	},
 	closeFD : function(component, event, helper) {
 	    document.getElementById("infoMatrice").style.display = "none";
+	},
+	openAssessmentRisk : function(component, event, helper) {
+	     var evtSpinner = $A.get("e.c:OrmShowSpinnerEvt");
+	     evtSpinner.fire();
+	     var idAssessmentRisk = event.target.id;
+         var idAssessment = document.getElementById( idAssessmentRisk ).getElementsByTagName( 'span' ).item(0).id;
+	     var action = component.get('c.getAssessment');
+	     action.setParams({"idAss": idAssessment });
+	     action.setCallback(this, function(response){
+	          var state = response.getState();
+	          if(state === 'SUCCESS'){
+		         var evt = $A.get("e.c:OrmShowAssessmentRiskInfoEvt");
+			     evt.setParams({
+			       "assessmentObject" : response.getReturnValue(),
+			       "idAssessmentRisk" : idAssessmentRisk
+			     });
+			     evt.fire();        
+		     } else {
+		        alert("l'élément n'a pas été chargé");
+		     }
+	     });
+	     $A.enqueueAction(action);
 	},
 })

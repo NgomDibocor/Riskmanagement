@@ -93,6 +93,12 @@
  * 2018-08-27 : David diop - Implementation
  */
     onChangeRiskManager : function(component, event, helper) {
+    	  var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
+	        evt.setParams({
+	            "nomField": $A.get("$Label.c.orm_risk_manager_label"),
+	            "descriptionField": $A.get("$Label.c.orm_riskmanager_description") 
+	        });
+           evt.fire();
         component.find("riskManager").set("v.value", event.getSource().get("v.value"));
      
         component.set("v.displaySaveCancelBtn", true);
@@ -101,7 +107,7 @@
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
 	            "nomField": $A.get("$Label.c.orm_workingEnvironment_label"),
-	            "descriptionField": 'Description working environment'
+	            "descriptionField": $A.get("$Label.c.orm_workingEnvironment_description") 
 	        });
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
@@ -114,7 +120,7 @@
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
 	            "nomField": $A.get("$Label.c.orm_vulnerability_label"),
-	            "descriptionField": 'Description vulnerability'
+	            "descriptionField": $A.get("$Label.c.orm_manageability_description") 
 	        });
            evt.fire();
 	},
@@ -131,7 +137,7 @@
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
 	            "nomField": $A.get("$Label.c.orm_uncertainty_assessmentRisk"),
-	            "descriptionField": 'description Uncertainty'
+	            "descriptionField":$A.get("$Label.c.orm_uncertainty_description") 
 	        });
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
@@ -140,8 +146,8 @@
     onChangeStatus : function(component, event, helper){
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
+	            "nomField": $A.get("$Label.c.orm_status_assessmentRisk"),
+	            "descriptionField": $A.get("$Label.c.orm_statusAssessmentRisk_description")
 	        });
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
@@ -150,8 +156,8 @@
     onChangeManageAbility : function(component, event, helper){
     	 var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
 	        evt.setParams({
-	            "nomField": $A.get("$Label.c.search_title_label"),
-	            "descriptionField": $A.get("$Label.c.search_description_title")
+	            "nomField": $A.get("$Label.c.orm_manageAbility_assessmentRisk"),
+	            "descriptionField":  $A.get("$Label.c.orm_manageability_description")
 	        });
            evt.fire();
         component.set("v.displaySaveCancelBtn",true);
@@ -164,7 +170,7 @@
 	    var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": $A.get("$Label.c.orm_justificationUncertainty_label"),
-            "descriptionField": 'Description Justification'
+            "descriptionField": $A.get("$Label.c.orm_justificationUncertainty_description")
         });
        evt.fire();
 	},

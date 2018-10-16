@@ -84,19 +84,30 @@ public with sharing class OrmContactController {
  * 2018-08-06: Salimata NGOM - Implementation
  */
     @AuraEnabled
-	public static Contact add(Contact item){ 
-		
-		try{
-       item.RecordTypeId = OrmContactController.getContactRecordTypeId();
-      
-		upsert item;
-		return item;
-		}catch(Exception e){
+	public static Map<String, Object>  add(Contact item){ 
+		List<Contact> contactDB= new List<Contact>();
+		Contact newcontact=new Contact();
+		Integer contactfailed=0;
+		contactDB=[select id, Email from Contact where Email=:item.email and RecordTypeId=:OrmContactController.getContactRecordTypeId()];
+		if(contactDB.size()>0){
+			contactfailed=1;
+				
+		}else
+		{
+			contactfailed=null;
+			try{
+				upsert item;
+       			newcontact=item;
+			}catch(Exception e){
        throw new AuraHandledException(e.getMessage());
-       return null;
+		}
+		}
+		
+     return new Map<String, Object>{'contactAdded' => newcontact, 'contactfailed' => contactfailed};
+
 }       
-        
-	}
+       
+	
 /**
  * @author Salimata NGOM
  * @version 1.0
@@ -104,7 +115,7 @@ public with sharing class OrmContactController {
  * @history 
  * 2018-08-07: Salimata NGOM - Implementation
  */
-    @AuraEnabled
+  @AuraEnabled
 	public static List<orm_ContactWorkshop__c> addWorkShopContact(List<orm_ContactWorkshop__c> items){ 
 		List<orm_ContactWorkshop__c> listcontactworkshop  = new List<orm_ContactWorkshop__c>();
 		for (orm_ContactWorkshop__c contactworkshop:items){

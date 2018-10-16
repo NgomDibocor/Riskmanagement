@@ -11,7 +11,7 @@
     <aura:handler event="c:OrmAssumptionAssessmentRiskCreatedEvt" action="{!c.refresh}" />
     <aura:registerEvent name="OrmRemoveRecordAssumptAssRiskEvnt" type="c:OrmRemoveRecordAssumptAssRiskEvnt" />
     <div style="margin-bottom:20px;">
-        <h1 class="titleAssumtion"><span class="dot">Assumptions</span></h1>
+        <h1 class="titleAssumtion"><span class="dot">{!$Label.c.orm_name_assumptions} </span></h1>
     </div>
     	<div class="slds-m-around_large">
    		<div class="phase">

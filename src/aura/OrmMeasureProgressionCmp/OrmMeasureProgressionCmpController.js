@@ -29,8 +29,8 @@
       sendDescriptionFieldMeasure : function (component, event, helper){
     		var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": $A.get('$Label.c.orm_label_cause'),
-            "descriptionField": $A.get('$Label.c.orm_describe_cause')
+            "nomField": $A.get('$Label.c.orm_progressmeasure_label'),
+            "descriptionField": $A.get('$Label.c.orm_progressmeasure_description')
         });
         evt.fire();
     },

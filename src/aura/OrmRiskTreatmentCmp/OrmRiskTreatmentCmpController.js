@@ -116,8 +116,8 @@
         component.find("measureResponsable").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": $A.get("$Label.c.search_title_label"),
-            "descriptionField": $A.get("$Label.c.search_description_title")
+            "nomField": $A.get("$Label.c.orm_Measure_Responsable"),
+            "descriptionField": $A.get("$Label.c.orm_measureResponsable_description")
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
@@ -134,8 +134,8 @@
         component.find("unit").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": $A.get("$Label.c.search_title_label"),
-            "descriptionField": $A.get("$Label.c.search_description_title")
+            "nomField": $A.get("$Label.c.orm_organisationUnit_label"),
+            "descriptionField": $A.get("$Label.c.orm_orgUnitMeasure_description")
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
@@ -152,8 +152,8 @@
         component.find("costEffect").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": $A.get("$Label.c.search_title_label"),
-            "descriptionField": $A.get("$Label.c.search_description_title")
+            "nomField": $A.get("$Label.c.orm_costEffect_label"),
+            "descriptionField": $A.get("$Label.c.orm_costEffect_description")
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);
@@ -169,8 +169,8 @@
     onDescription: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": $A.get("$Label.c.search_title_label"),
-            "descriptionField": $A.get("$Label.c.search_description_title")
+            "nomField": $A.get("$Label.c.orm_measure_description"),
+            "descriptionField": $A.get("$Label.c.orm_descriptionMeasure_description")
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);

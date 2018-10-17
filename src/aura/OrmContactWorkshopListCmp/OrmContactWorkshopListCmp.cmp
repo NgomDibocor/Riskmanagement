@@ -2,6 +2,7 @@
 	extends="c:ormAbstractListCmp"
 	implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
 	<!--declare aura attributes-->
+     <aura:attribute name="assessmentData" type="Assessment__c" default="{'sobjectType' : 'Assessment__c','Description':''}" />
 	<aura:attribute name="contact" type="Contact"
 		description="store single contact" />
 	<aura:attribute name="contactList" type="Contact[]"
@@ -224,5 +225,5 @@
 		</div>
 	</aura:if>
 	<!-- end email template -->
-	<c:OrmContactNewCmp />
+	<c:OrmContactNewCmp assessmentData='{!v.assessmentData}' />
 </aura:component>

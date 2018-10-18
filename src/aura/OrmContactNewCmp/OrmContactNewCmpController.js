@@ -36,7 +36,43 @@
 			action.setCallback(this, function(response) {
 				var state = response.getState();
 				if (state == "SUCCESS") {
-				
+				var result=response.getReturnValue();
+				if(result['contactfailed']==1){
+				var toast = $A.get('e.force:showToast');
+			toast.setParams({
+				'message' : $A.get("$Label.c.orm_email_contact_unique"),
+				'type' : 'error',
+				'mode' : 'dismissible'
+			});
+			toast.fire();
+			 
+				}else{
+				component.set("v.item", {
+						'sobjectType' : 'Contact',
+						'FirstName': '',
+                        'LastName': '',
+						'Phone' : '',
+						'Email' : '',
+						'orm_organisation__c' : ''
+					});
+					var toast = $A.get('e.force:showToast');
+            toast.setParams({
+            	'message' : $A.get("$Label.c.orm_contact_menu")+" "+$A.get("$Label.c.orm_toast_success"),
+                'type' : 'success',
+                'mode' : 'dismissible'
+            });      
+              
+            toast.fire(); 
+            component.set("v.isOpen", false);
+            var evt = $A.get("e.c:OrmContactCreatedEvt");
+			evt.setParams({
+			   "Assessmentdata" : component.get('v.assessmentData').orm_organisation__c
+			});
+			evt.fire();       
+          	var evnt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
+			evnt.fire();
+				}
+				/*
 					component.set("v.item", {
 						'sobjectType' : 'Contact',
 						'FirstName': '',
@@ -62,6 +98,8 @@
 			evt.fire();          
           	var evnt = $A.get("e.c:OrmCloseContactWrokshopEvnt");
 			evnt.fire();
+			alert(JSON.stringify(response.getReturnValue()));
+			*/
 				} else if(state == 'ERROR') {
 					let
 					errors = response.getError();
@@ -91,7 +129,7 @@
 
 		} else {
 		
-						var toast = $A.get('e.force:showToast');
+			var toast = $A.get('e.force:showToast');
 			toast.setParams({
 				'message' : $A.get("$Label.c.orm_error_field_empty"),
 				'type' : 'error',

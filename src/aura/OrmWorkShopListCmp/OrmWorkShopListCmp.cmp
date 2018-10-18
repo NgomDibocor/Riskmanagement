@@ -163,5 +163,5 @@
 		</div>
 		<!--###### MODAL BOX End  Here ######-->
 	</aura:if>
-    <c:OrmContactWorkshopListCmp />
+    <c:OrmContactWorkshopListCmp assessmentData='{!v.assessmentData}' />
 </aura:component>

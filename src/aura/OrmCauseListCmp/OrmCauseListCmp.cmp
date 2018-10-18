@@ -97,7 +97,7 @@
 	</div>
 		    	<aura:set attribute="else">
 			        <div class="messageIsEmpty" style="padding-top: 20px"> 
-			 		   List of causes is empty
+			 		    {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_label_causes+' ' + $Label.c.orm_is_empty}
 			        </div>
 			 </aura:set>
            </aura:if>

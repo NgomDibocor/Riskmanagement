@@ -91,7 +91,7 @@
             helper.fetchPicklist(component, event);
         }
         if (isItemValid) {
-            var action = component.get('c.findAllAssessmentRisk');
+            var action = component.get('c.findAllAssessmentRiskCategory');
             action.setParams({
                 "item": categorieRiskValue,
                 "assessment": assessment

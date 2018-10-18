@@ -41,7 +41,8 @@
                     <aura:iteration items="{!item.Assessments__r}" var="measureName">
                         <tr class="slds-hint-parent">
                             <th data-label="Opportunity Name" scope="row">
-                                <div class="slds-truncate styleAllText" title="{!measureName.Name}">{!measureName.Name}</div>
+                               <a title="{!measureName.id}" href="javascript:void(0); " onclick="{!c.getIdMeasure}">
+                                <div class="slds-truncate styleAllText" title="{!measureName.Name}">{!measureName.Name}</div></a>
                             </th>
                             <td data-label="Account Name" class="slds-truncate">
                                 <div class="slds-truncate styleAllText" title="{!item.orm_Risk__r.Name}">{!item.orm_Risk__r.Name}</div>

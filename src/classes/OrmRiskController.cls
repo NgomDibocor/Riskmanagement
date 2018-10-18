@@ -48,12 +48,26 @@ public with sharing class OrmRiskController {
     *le 27/07/2018
     */
     @AuraEnabled 
-    public static List<orm_assessmentRisk__c> findAllAssessmentRisk(String item,String assessment)
+    public static List<orm_assessmentRisk__c> findAllAssessmentRisk(String assessment)
     {
        return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
                        orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
                 From orm_assessmentRisk__c 
-                where orm_Risk__r.orm_categorieRisk__c=:item and orm_assessment__r.Id =:assessment
+                where  orm_assessment__r.Id =:assessment
+                order by CreatedDate];
+    }
+     /*
+    *David mignane diop
+    *risk list function
+    *le 27/07/2018
+    */
+    @AuraEnabled 
+    public static List<orm_assessmentRisk__c> findAllAssessmentRiskCategory(String item,String assessment)
+    {
+       return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
+                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
+                From orm_assessmentRisk__c 
+                where  orm_assessment__r.Id =:assessment AND orm_Risk__r.orm_categorieRisk__c =: item
                 order by CreatedDate];
     }
    

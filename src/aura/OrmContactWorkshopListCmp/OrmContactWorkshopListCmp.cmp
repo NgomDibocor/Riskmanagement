@@ -37,6 +37,7 @@
 	<aura:attribute name="hideNext" type="Boolean" default="true" />
     <aura:attribute name="totalRecords" type="Integer"/>
     <aura:attribute name="items" type="Contact[]" description="" /> 
+    <aura:attribute name="indexchecked" type="Integer" description="" /> 
 	<!-- handlers-->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler event="c:OrmContactCreatedEvt"
@@ -115,7 +116,6 @@
 						<div class="slds-col">
 							<div class="slds-form-element">
 								<div class=" slds-size--1-of-6   slds-p-horizontal--small">
-
 								</div>
 								<div class=" slds-size--5-of-6">
 									<lightning:datatable aura:id="idworkshopcontact"
@@ -124,7 +124,7 @@
 										resizeColumnDisabled="false" selectedRows="{!v.selectedRows}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
-										showRowNumberColumn="false" />
+										showRowNumberColumn="true" />
 									<center>
 										<div
 											style="margin-top: 20px; padding-bottom: 10px; margin-left: auto; margin-right: auto">

@@ -88,6 +88,7 @@
     getselectedRows: function(component, event, helper) {
         component.set("v.contactListSelected", []);
         var selectedRows = event.getParam('selectedRows');
+        
         var contact = component.get('v.contactChecked');
         var contactsWorkshop = [];
         selectedRows
@@ -98,13 +99,9 @@
                 newcontactworkshop.orm_notification__c = false;
                 newcontactworkshop.orm_Workshop__c = component
                     .get("v.workshop").Id;
-
-
-
                 contactsWorkshop.push(newcontactworkshop);
                 console.log('v.contactWorkshopList  nbre' +
                     component.get("v.contactWorkshopList").length);
-
             });
 
         component.set("v.contactWorkshopList", contactsWorkshop);
@@ -113,7 +110,7 @@
 
         }
         component.set("v.contactListSelected", selectedRows);
-
+        
     },
 
     /**

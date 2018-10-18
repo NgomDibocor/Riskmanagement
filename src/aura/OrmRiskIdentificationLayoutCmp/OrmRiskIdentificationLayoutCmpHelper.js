@@ -9,9 +9,10 @@
         var assessment = component.get("v.idAssessment");
         var actionOrgs = component.get("c.findAllAssessmentRisk");
         actionOrgs.setParams({
-            "item": categoryRisk,
+            
             "assessment": assessment
         });
+//        "item": categoryRisk,
         actionOrgs.setCallback(this, function(response) {
             var state = response.getState();
             if (state === 'SUCCESS') {

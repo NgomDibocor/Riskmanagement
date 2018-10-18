@@ -120,9 +120,9 @@
 }
 .THIS .styleAllText{
     text-justify: inter-character;
-    font-weight: 400;
+    font-weight: 600;
 	font-style: normal;
-	font-size: 16px;
+	font-size: 1.2em;
 	line-height: 1.58;
 	letter-spacing: -.003em;
 	white-space: normal !important;

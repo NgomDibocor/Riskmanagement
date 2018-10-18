@@ -18,9 +18,10 @@
     <table class="slds-table">
         <tr>
             <td>
-                <lightning:card variant="Narrow" title="{!v.measureData.Name}" iconName="standard:account">
+                <lightning:card variant="Narrow" title="{!v.measureData.Name}" iconName="standard:account" class="slds-text-heading_small">
                     <p class="slds-p-horizontal_small">
-                        <b>{!$Label.c.orm_category_measure_label}: </b>{!v.measureData.orm_measureCategorie__c}
+                        <b>{!$Label.c.orm_category_measure_label}: </b>
+                        {!v.measureData.orm_measureCategorie__c}
                     </p>
                 </lightning:card>
             </td>

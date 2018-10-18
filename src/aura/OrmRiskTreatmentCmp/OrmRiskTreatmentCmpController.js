@@ -97,8 +97,8 @@
         component.find("statusMeasure").set("v.value", event.getSource().get("v.value"));
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": $A.get("$Label.c.search_title_label"),
-            "descriptionField": $A.get("$Label.c.search_description_title")
+            "nomField": $A.get("$Label.c.orm_measure_status"),
+            "descriptionField": $A.get("$Label.c.orm_statusMeasure_description")
         });
         evt.fire();
         component.set("v.displaySaveCancelBtn", true);

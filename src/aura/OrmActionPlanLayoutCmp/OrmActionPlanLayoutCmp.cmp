@@ -6,8 +6,7 @@
         <h1 class="titleActionPlan"><span class="dot">{!$Label.c.orm_action_plan_menu}</span></h1>
     </div>
     <aura:if isTrue="{!not(empty(v.PaginationList))}">
-    <center>
-        <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:80%;">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:100%;">
             <thead>
                 <tr class="slds-line-height_reset" style="border:2px solid;">
                     <th class="slds-text-title_caps" scope="col">
@@ -70,7 +69,6 @@
                 </aura:iteration>
             </tbody>
         </table>
-        </center>
         <center>
             <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
                 <lightning:buttonGroup>

@@ -842,7 +842,7 @@
         component.set("v.showRiskPicture", false);
         component.set("v.showActionPlan", true);
         component.set("v.showChevronleft", true);   
-        component.set("v.showChevronright", true);
+        component.set("v.showChevronright", false);
     },
       
 })

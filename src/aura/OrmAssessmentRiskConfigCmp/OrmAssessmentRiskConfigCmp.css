@@ -127,6 +127,24 @@
 	letter-spacing: -.003em;
 	white-space: normal !important;
 }
+.THIS .styleRisk{
+    text-justify: inter-character;
+    font-weight: 600;
+	font-style: normal;
+	font-size: 1.5em;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+	white-space: normal !important;
+}
+.THIS .styleDescription{
+    text-justify: inter-character;
+    font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+	white-space: normal !important;
+}
 .THIS .borderRight{
 	border-right: 2px solid #5B86BE ;
 }

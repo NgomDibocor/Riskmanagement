@@ -79,6 +79,7 @@
     			}
     		}
     	}   
+    	console.log(JSON.stringify(delId));
     	// call the helper function and pass all selected record id's.    
     	helper.deleteSelectedHelper(component, event, delId, idAssessmentRisk);
     	

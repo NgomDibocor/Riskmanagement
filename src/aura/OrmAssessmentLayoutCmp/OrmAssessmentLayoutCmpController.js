@@ -23,8 +23,8 @@
           var schedule = component.find("schedule");
           newItem.orm_schedule__c = schedule.get("v.value");
           
-          var riskManager = component.find("inProjetRM");
-          newItem.orm_riskManager__c = riskManager.get("v.value");
+          //var riskManager = component.find("inProjetRM");
+          //newItem.orm_riskManager__c = riskManager.get("v.value");
           var projectManager = component.find("projectManager");
           newItem.orm_projetManager__c = projectManager.get("v.value");
         }
@@ -39,8 +39,8 @@
         if(ta.get("v.value")== 'Organisation'){
           var statusOrganisation = component.find("statusOrganisation");
           newItem.orm_statusAssessment__c = statusOrganisation.get("v.value");
-          var riskManager = component.find("organisationRiskManager");
-          newItem.orm_riskManager__c = riskManager.get("v.value");
+          //var riskManager = component.find("organisationRiskManager");
+          //newItem.orm_riskManager__c = riskManager.get("v.value");
           var organisationManager = component.find("organisationManager");
           newItem.orm_organisationManager__c = organisationManager.get("v.value");
           var industrySectorOrganisation = component.find("industrySectorOrganisation");
@@ -96,8 +96,6 @@
 									    }
 						               toastEvent.fire();
 						               
-						               component.set("v.createAssessmentButtonClicked", true);
-						               
 						        } else {
 						            alert($A.get("$Label.c.orm_error"));
 						        }
@@ -109,110 +107,96 @@
             });
         $A.enqueueAction(action);
     },
-   
-	onChangeProjectManager : function(component, event, helper)
-    {
+    
+	onChangeProjectManager : function(component, event, helper){
 	    component.set("v.displaySaveCancelBtn",true);
 		component.find("projectManager").set("v.value", event.getSource().get("v.value"));
 		var field = $A.get("$Label.c.orm_projectManager_label");
         var description = $A.get("$Label.c.orm_projectManager_description");
 	    helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeRiskManagerTypeProjet : function(component, event, helper)
-    {
+	/*onChangeRiskManagerTypeProjet : function(component, event, helper){
         component.set("v.displaySaveCancelBtn",true);
     	component.find("inProjetRM").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_risk_manager_label");
         var description = $A.get("$Label.c.orm_riskManagerProject_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
-	},
-	onChangeOrganisationManager : function(component, event, helper)
-    {
+	},*/
+	onChangeOrganisationManager : function(component, event, helper){
         component.set("v.displaySaveCancelBtn",true);
     	component.find("organisationManager").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_organisatio_manager_label");
         var description = $A.get("$Label.c.orm_organisationManager_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeInOrganisationRiskManager : function(component, event, helper)
-    {
+	/*onChangeInOrganisationRiskManager : function(component, event, helper){
         component.set("v.displaySaveCancelBtn",true);
     	component.find("organisationRiskManager").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_risk_manager_label");
         var description = $A.get("$Label.c.orm_organisationRiskManager_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
-	},
-	onChangeIndSector : function(component, event, helper)
-    {
+	},*/
+	onChangeIndSector : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("industrySector").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_industry_sector_label");
         var description = $A.get("$Label.c.orm_industrySectorClient_description"); 
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeOrganisationIndSector : function(component, event, helper)
-    {
+	onChangeOrganisationIndSector : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("industrySectorOrganisation").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_industry_sector_label"); 
         var description = $A.get("$Label.c.orm_industrySectorOrg_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeCurrency : function(component, event, helper)
-    {
+	onChangeCurrency : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("currency").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_currency_label");
         var description = $A.get("$Label.c.orm_currency_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeCurrencyOrganisation : function(component, event, helper)
-    {
+	onChangeCurrencyOrganisation : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("currencyOrganisation").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_currency_label");
         var description = $A.get("$Label.c.orm_currencyOrg_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeSchedule : function(component, event, helper)
-    {
+	onChangeSchedule : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("schedule").set("v.value", event.getSource().get("v.value"));
 	},
-	onChangeStatusProjet : function(component, event, helper)
-    {
+	onChangeStatusProjet : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("statusProjet").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_status_label");
         var description = $A.get("$Label.c.orm_statusProject_description"); 
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeStatusProcessus : function(component, event, helper)
-    {
+	onChangeStatusProcessus : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("statusProcessus").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_status_label");
         var description = $A.get("$Label.c.orm_statusProcessus_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeStatusOrganisation : function(component, event, helper)
-    {
+	onChangeStatusOrganisation : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("statusOrganisation").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_status_label");
         var description = $A.get("$Label.c.orm_statusOrg_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeCountry : function(component, event, helper)
-    {
+	onChangeCountry : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("country").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_country_label");
         var description = $A.get("$Label.c.orm_country_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeRegion : function(component, event, helper)
-    {
+	onChangeRegion : function(component, event, helper){
         console.log('***********typeAssessment*********');
         console.log(component.get("v.typeOrganisation"))
         component.set("v.displaySaveCancelBtn", true);
@@ -237,7 +221,6 @@
        var description = "Description scope";
        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    
 	onChangePlannedSD : function(component, event, helper){
        component.set("v.displaySaveCancelBtn", true);
     },
@@ -252,42 +235,35 @@
        var description = $A.get("$Label.c.orm_applicationDate_description");
        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    sendPlannedEndDateToFD : function(component, event, helper)
-    {
+    sendPlannedEndDateToFD : function(component, event, helper){
        var field = $A.get("$Label.c.orm_plannedEndDate_label");
        var description = $A.get("$Label.c.orm_plannedEndDate_description");
        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    sendPlannedStartDateToFD : function(component, event, helper)
-    {
+    sendPlannedStartDateToFD : function(component, event, helper){
        var field = $A.get("$Label.c.orm_plannedStartDate_label");
        var description = $A.get("$Label.c.orm_plannedStartDate_description");
        helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-	onChangePilote : function(component, event, helper)
-    {
+	onChangePilote : function(component, event, helper){
        component.set("v.displaySaveCancelBtn", true);
        component.find("pilote").set("v.value", event.getSource().get("v.value"));
        var field = $A.get("$Label.c.orm_pilot_label");
        var description = $A.get("$Label.c.orm_pilot_description");
        helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	onChangeCopilote : function(component, event, helper)
-    {
+	onChangeCopilote : function(component, event, helper){
         component.set("v.displaySaveCancelBtn", true);
     	component.find("copilote").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_copilot_label");  
         var description = $A.get("$Label.c.orm_copilot_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
 	},
-	
     onChangeOrganisation : function(component, event, helper){
         var field = $A.get("$Label.c.orm_organisationUnit_label");
         var description = $A.get("$Label.c.orm_organisationUnit_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
-        
     	var newItem = component.get("v.assessmentData");
-    	
     	newItem.orm_organisation__c = component.find("organisation").get("v.value");
         var action = component.get('c.add');
         action.setParams({"item": newItem});
@@ -322,11 +298,9 @@
         });
         $A.enqueueAction(action);
 	},
-    
     closeFielDescript : function(component, event, helper) {
         component.set("v.closeFieldDescription", true);
     },
-
     openOrganisationNew : function(component, event, helper){
         var assessment = component.get('v.assessmentData');
 		var evt = $A.get("e.c:OrmOpenNewOrganisationEvt");
@@ -335,7 +309,6 @@
 		});
 		evt.fire();
     },
-    
     refreshListOrganisation : function(component, event, helper){
         var actionOrgs = component.get("c.getOrganisations");
         actionOrgs.setCallback(this, function(response){
@@ -358,7 +331,6 @@
         var description = $A.get("$Label.c.orm_description_type_assessment");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    
     onChangeTypeProjet : function(component,event,helper){ 
         component.set("v.displaySaveCancelBtn", true);
         if(event.getSource().get("v.value").trim() != ''){ 
@@ -368,7 +340,6 @@
         var description = $A.get("$Label.c.orm_projectTypeDescription");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    
     onNameProjectChange : function(component,event,helper){ 
         if(event.getSource().get("v.value").trim() != ''){ 
             component.set("v.displaySaveCancelBtn",true);
@@ -388,7 +359,6 @@
         var description = 'This field represents the name of this assessment';
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    
     onChangeNameOrganisation : function(component,event,helper){ 
         component.set("v.displaySaveCancelBtn",true);
     },
@@ -399,11 +369,9 @@
     onchangeDescriptionOrganisation : function(component,event,helper){ 
        component.set("v.displaySaveCancelBtn",true);
     },
-     
     onchangeObjectifOrganisation : function(component,event,helper){ 
        component.set("v.displaySaveCancelBtn",true);
     },
-     
     onChangeClientName : function(component,event,helper){ 
        component.set("v.displaySaveCancelBtn",true);
     },
@@ -411,44 +379,37 @@
     onChangeBudgetCommercial : function(component,event,helper){ 
        component.set("v.displaySaveCancelBtn",true);
     },
-    
     sendDesciptionBudgetCommercial  : function(component,event,helper){ 
         var field = 'Commercial Budget';
         var description = 'Description Commercial Budget';
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-     
     sendDesciptionClientName  : function(component,event,helper){ 
         var field = 'Client Name';
         var description = 'Description Client Name';
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-     
     sendTitleToFD : function(component,event,helper){ 
         var field = $A.get("$Label.c.orm_title_assessment");
         var description = $A.get("$Label.c.orm_description_assessment");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    
     sendObjectifToFD  : function(component,event,helper){ 
         var field = $A.get("$Label.c.orm_objectif_assessment");
         var description = $A.get("$Label.c.orm_description_objectif");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-   
     sendDesciptionToFD : function(component,event,helper){ 
         var field = $A.get("$Label.c.orm_description");
         var description = $A.get("$Label.c.orm_description_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    
     sendDescriptionSearchToFD : function(component,event,helper){ 
     	component.set("v.closeFieldDescription",false);
         var field =  event.getParam("nomField");
         var description = event.getParam("descriptionField");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    
     onChangeBudgetOrganisation : function(component,event,helper){ 
         component.set("v.displaySaveCancelBtn", true);
     	component.find("size").set("v.value", event.getSource().get("v.value"));
@@ -456,16 +417,13 @@
         var description = $A.get("$Label.c.orm_budget_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
     },
-    
     onChangeSize : function(component, event, helper) {
         component.set("v.displaySaveCancelBtn", true);
     	component.find("size").set("v.value", event.getSource().get("v.value"));
     	var field = $A.get("$Label.c.orm_size_label");
         var description = $A.get("$Label.c.orm_size_description");
         helper.sendValuesToFieldDescription(component, event, helper, field, description);
-        
     },
-    
     cancel : function(component, event, helper){
        component.set("v.displaySaveCancelBtn",false);
     },
@@ -475,7 +433,6 @@
    },
    
    afterAssociateAssessmentRisk : function(component, event, helper){
-   
         component.set("v.isEmptyListAssessmentRisk", false);
         var actionGetIdFirstAssessmentRisk = component.get("c.getIdFirstAssessmentRisk");
 	    actionGetIdFirstAssessmentRisk.setParams({"idAssessment": component.get("v.assessmentData").Id});

@@ -30,19 +30,19 @@
             label: $A.get("$Label.c.orm_name_risk"),
             fieldName: 'RiskName',
             type: 'text',
+            editable:'true',
             iconName: 'standard:orders'
         }, {
             label: $A.get("$Label.c.orm_description_risk"),
             fieldName: 'RiskDescription',
             type: 'text',
-            iconName: 'standard:orders',
-            cellAttributes: {
-                class: "descriptionToolTip"
-            }
+            editable:'true',
+            iconName: 'standard:orders'
         }, {
             label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'RiskcategorieRisk',
             type: 'text',
+            editable:'true',
             iconName: 'standard:orders'
         }, {
             label: $A.get("$Label.c.orm_table_action_label"),
@@ -311,17 +311,20 @@
         component.set('v.columns2', [{
             label: $A.get("$Label.c.orm_name_risk"),
             fieldName: 'Name',
+            editable:'true',
             type: 'text',
             iconName: 'standard:opportunity'
         }, {
             label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'orm_categorieRisk__c',
             type: 'text',
+            editable:'true',
             iconName: 'standard:opportunity'
         }, {
             label: $A.get("$Label.c.orm_description_risk"),
             fieldName: 'Description',
             type: 'text',
+            editable:'true',
             iconName: 'standard:opportunity'
         }]);
         helper.fetchlistRiskModal(component, event);

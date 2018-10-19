@@ -176,11 +176,16 @@
    <table class="slds-table" style="margin-bottom:30px">
         <tr>
             <td class="tdWidth">
-                <lightning:card variant="Narrow" title="{!v.assessmentRiskData.orm_Risk__r.Name}" iconName="standard:account">
-                    <span class="styleAllText" style="padding-left:10px">
+              <aura:if isTrue="{!v.showBtnMatricePicture}">
+                <lightning:card  title="" iconName="">
+                    <div class="styleRisk" style="padding-left:10px">
+                         {!v.assessmentRiskData.orm_Risk__r.Name}
+                    </div>
+                    <div class="styleDescription" style="padding-left:10px">
                          {!v.assessmentRiskData.orm_Risk__r.Description}
-                    </span>
+                    </div>
                 </lightning:card>
+              </aura:if>
             </td>
             <td class="tdWidth">
               <aura:if isTrue="{!v.showBtnMatricePicture}">

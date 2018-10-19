@@ -96,8 +96,6 @@
 									    }
 						               toastEvent.fire();
 						               
-						               //component.set("v.createAssessmentButtonClicked", true);
-						               
 						        } else {
 						            alert($A.get("$Label.c.orm_error"));
 						        }

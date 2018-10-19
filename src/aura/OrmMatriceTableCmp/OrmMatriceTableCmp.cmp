@@ -386,7 +386,7 @@
 			   <div id="infoMatrice" class="backgroundDiv">
 			     <span onclick="{!c.closeFD}"><lightning:icon  class="ico" iconName="utility:clear" size="medium" /></span>
 				    <div id="infoMatrice" class="descriptionRisk">  
-				      <aura:iteration items="{!v.assessmentRisks}" var="item">
+				      <aura:iteration items="{!v.assessmentRisks}" var="item" indexVar="index">
 						    <div class="slds-size_1-of-1">
 					            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;">
 					                <article class="slds-card" style="height:350px;margin-bottom: 20px;padding-left: 8px;">
@@ -451,6 +451,7 @@
 					                </article>
 					            </div>
 					        </div>
+					        <lightning:input aura:id="hiddenInput" value="{!index}" class="slds-hidden" />
 				       </aura:iteration>
 				   </div>
 			   </div>

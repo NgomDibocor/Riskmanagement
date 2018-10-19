@@ -43,7 +43,9 @@
                     var pageSize = component.get("v.pageSize");
 	                // get size of all the records and then hold into an attribute "totalRecords"
 	                component.set("v.totalRecords", component.get("v.items").length);
-	                // set star as 0
+	                //Set the current Page as 0
+                    component.set("v.currentPage",0);
+	                // set start as 0
 	                component.set("v.startPage",0);
 	                var totalRecords = component.get("v.items").length;
 				    //var div = Math.trunc(totalRecords / pageSize);
@@ -110,6 +112,7 @@
 
         }
         component.set("v.contactListSelected", selectedRows);
+        //component.set("v.selectedRows", component.get('v.contactListSelected'));
         
     },
 
@@ -312,6 +315,14 @@
         $A.util.removeClass(form, 'slds-fade-in-open');
 
     },
+     /**
+     *
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description Method to go to the next page
+     * @history 
+     * 2018-10-15 : Salimata NGOM - Implementation
+     */
         next : function (component, event, helper) {
       helper.next(component, event);
     },

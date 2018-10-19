@@ -33,6 +33,8 @@
             }
         });
         $A.enqueueAction(action);
+        
+                   
     },
     saveDataTable : function(component, event, helper) {
         var editedRecords =  component.find("accountTable").get("v.draftValues");
@@ -118,6 +120,7 @@
             dTable.set("v.selectedRows", selectedRowsIds); 
         }
     },
+    
     previoustt : function(component, event){   
         var current = component.get("v.currentPage");
         var dTable = component.find("accountTable");
@@ -143,8 +146,12 @@
                 start++;
             }
         }
-        start = start - counter;
-        end = end - counter;
+         start = start - counter;
+         end = end - counter;
+         var LastvalueOfEnd = end - counter;
+	        if( LastvalueOfEnd < sObjectList.length){
+	           component.set("v.hideNext", false);
+	        }
         component.set("v.startPage",start);
         component.set("v.endPage",end);
         component.set('v.PaginationList', Paginationlist);

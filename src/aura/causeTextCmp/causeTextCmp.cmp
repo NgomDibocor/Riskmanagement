@@ -15,17 +15,21 @@
     <aura:attribute name="totalRecords" type="Integer"/>
     <aura:attribute name="pageSize" type="Integer" default="2"/>
     <aura:attribute name="hideNext" type="Boolean" default="true" />
+    <aura:attribute name="selectCauses" type="Macro[]" />
     
     <!-- Attribute Declration For Pagination End-->
-	cause test datatable
-	<lightning:card title="Account Editable Datatable">
+	
+	<lightning:card title="Causes Editable Datatable">
+	 <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.deleteCausesfunction}" >
+				<lightning:icon iconName="utility:delete" size="small" />
+			</span><br/>
         <lightning:datatable
                              aura:id="accountTable"
                              columns="{! v.columns }"
                              data="{! v.PaginationList  }"
                              keyField="Id"
                              onsave ="{!c.onSave}"
-                             onrowselection="{!c.getSelectedName}"
+                             onrowselection="{!c.openModalDeleteCause}"
                              onrowaction="{! c.handleRowAction }" />
     </lightning:card>
      <lightning:buttonGroup >
@@ -33,7 +37,7 @@
                           onclick="{!c.previoustt}" variant="brand"
                           iconName='utility:back'/>
         &nbsp; &nbsp; &nbsp;
-        <lightning:button label="Next" disabled="{!v.endPage == v.totalRecords}" 
+        <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" 
                           onclick="{!c.nexttt}" variant="brand"
                           iconName='utility:forward' iconPosition='right'/>
     </lightning:buttonGroup>

@@ -233,10 +233,14 @@
              var selectedRows = dTable.getSelectedRows();
              var pgName = "page" + current;
         component.get("v.selectedContactMap")[pgName] = selectedRows;
+       
+      //  component.get("v.totalSelectedContact")= selectedRows;
         current = current +1;
         pgName = "page" + current;
         var selectedRows = component.get("v.selectedContactMap")[pgName];
+           
         component.set("v.currentPage",current);
+         console.log('selectionnes'+JSON.stringify(selectedRows));
         console.log("Next selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));   
 	        var sObjectList = component.get("v.items");
 	        var end = component.get("v.endPage");
@@ -247,7 +251,7 @@
 	        for(var i=end+1; i<end+pageSize+1; i++){
 	            if(sObjectList.length > i){
 	                Paginationlist.push(sObjectList[i]);
-	                console.log("sObjectList[i]"+sObjectList[i].Name)
+	             //  console.log("sObjectList[i]"+sObjectList[i].Name)
 	            }
 	            counter ++ ;
 	        }
@@ -266,8 +270,11 @@
                 selectedRowsIds.push(selectedRows[i].Id);  
             }         
             var dTable = component.find("idworkshopcontact");
-            dTable.set("v.selectedRows", selectedRowsIds); 
+            dTable.set("v.selectedRows", selectedRowsIds);   
+         
         }
+         
+        
 	    },
 	/**
      *

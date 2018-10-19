@@ -12,7 +12,7 @@
         component.set('v.columns', [{
             label: $A.get("$Label.c.orm_name_label"),
             fieldName: 'Name',
-            type: 'text'
+            type: 'text',editable:'true'
         }, {
             label: $A.get("$Label.c.orm_email_contact"),
             fieldName: 'Email',
@@ -111,6 +111,9 @@
             selectedRows.push(contact);
 
         }
+         var dTable = component.find("idworkshopcontact");
+            // var selectedRows = dTable.getSelectedRows();
+          //   console.log('row selectionné'+JSON.stringify(component.get("v.selectedContactMap")[1]));
         component.set("v.contactListSelected", selectedRows);
         //component.set("v.selectedRows", component.get('v.contactListSelected'));
         
@@ -165,7 +168,7 @@
             });
             toast.fire();
         } else {
-
+        	 console.log("contactListSelected "+JSON.stringify(component.get("v.selectedContactMap")[0]));   
             component.set("v.emailTemplate", true);
             var form = component.find('modalcontacts');
             $A.util.removeClass(form, 'slds-fade-in-open');

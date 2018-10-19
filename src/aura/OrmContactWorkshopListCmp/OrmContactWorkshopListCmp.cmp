@@ -33,6 +33,7 @@
 	<aura:attribute name="selectedRows" type="Contact[]" />
     <aura:attribute name="items" type="Contact[]" description="" /> 
      <aura:attribute name="selectedContactMap" type="Map" default="{}"/>
+     <aura:attribute name="totalSelectedContact" type="Contact[]"/>
      <!-- Attribute Declaration For Pagination -->
     <aura:attribute name="startPage" type="Integer" />
 	<aura:attribute name="endPage" type="Integer" />

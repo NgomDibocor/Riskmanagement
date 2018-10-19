@@ -1,0 +1,40 @@
+<aura:component  controller="OrmCauseController" implements="force:appHostable,flexipage:availableForAllPageTypes"
+                access="global">
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="idAssessmentRisk" type="string" />
+    <aura:handler event="c:OrmSendIdAssessmentRiskToCauseEvt" action="{!c.getAssessmentRiskId}" />
+    
+    <aura:attribute name="AccountData" type="Object"/>
+    <aura:attribute name="SelectedAccount" type="Map" default="{}"/>  
+    <!-- Attribute Declration For Pagination -->
+    <aura:attribute name="PaginationList" type="account"/>
+    <aura:attribute name="currentPage" type="Integer" />
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecords" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="2"/>
+    <aura:attribute name="hideNext" type="Boolean" default="true" />
+    
+    <!-- Attribute Declration For Pagination End-->
+	cause test datatable
+	<lightning:card title="Account Editable Datatable">
+        <lightning:datatable
+                             aura:id="accountTable"
+                             columns="{! v.columns }"
+                             data="{! v.PaginationList  }"
+                             keyField="Id"
+                             onsave ="{!c.onSave}"
+                             onrowselection="{!c.getSelectedName}"
+                             onrowaction="{! c.handleRowAction }" />
+    </lightning:card>
+     <lightning:buttonGroup >
+        <lightning:button label="Previous" disabled="{!v.startPage == 0}"  
+                          onclick="{!c.previoustt}" variant="brand"
+                          iconName='utility:back'/>
+        &nbsp; &nbsp; &nbsp;
+        <lightning:button label="Next" disabled="{!v.endPage == v.totalRecords}" 
+                          onclick="{!c.nexttt}" variant="brand"
+                          iconName='utility:forward' iconPosition='right'/>
+    </lightning:buttonGroup>
+</aura:component>

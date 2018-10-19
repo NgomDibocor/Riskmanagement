@@ -212,16 +212,12 @@
 	contactSelected : function(cmp, event) {
 		var contacts = cmp.get('v.contactsSearch');
 		var contact = cmp.get('v.contactListSelected');
-		// var input = cmp.find('inputSearch');
-		//input.set('v.value', contacts[event.target.id].Name);
-
 		contact.push(contacts[event.target.id]);
 		cmp.set('v.contactListSelected', contact);
 		cmp.set('v.contactChecked', contacts[event.target.id]);
 		var form = cmp.find('lookupForm');
 		$A.util.removeClass(form, 'slds-is-open');
 		cmp.set('v.key', '');
-
 	},
 	 next : function(component, event){
 	        var sObjectList = component.get("v.items");

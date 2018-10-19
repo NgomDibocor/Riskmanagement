@@ -17,6 +17,7 @@
     <aura:attribute name="nameEditMode" type="boolean" default="false" />
     <aura:attribute name="descriptionEditMode" type="boolean" default="false" />
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
+
     <!--Table Row Start-->  
     <tr class="slds-hint-parent">
     	

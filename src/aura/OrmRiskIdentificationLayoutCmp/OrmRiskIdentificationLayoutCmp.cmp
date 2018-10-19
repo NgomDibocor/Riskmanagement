@@ -81,8 +81,16 @@
 			</button>
             </aura:if>
             <aura:if isTrue="{!not(empty(v.PaginationList ))}">
-                <lightning:datatable aura:id="datatableRisk" data="{! v.PaginationList }" class="cols table" columns="{! v.columns }" keyField="id" resizeColumnDisabled="true" selectedRows="{! v.assessmentRisk}" showRowNumberColumn="true" onrowselection="{!c.openPopupDissociate}"
-                    onrowaction="{! c.handleRowAction }" />
+                <lightning:datatable aura:id="datatableRisk" 
+                data="{! v.PaginationList }" 
+                columns="{! v.columns }" 
+                keyField="Id" 
+                resizeColumnDisabled="true" 
+                selectedRows="{! v.assessmentRisk}" 
+                showRowNumberColumn="true" 
+                onrowselection="{!c.openPopupDissociate}"
+                onrowaction="{! c.handleRowAction }" 
+                />
                 <aura:set attribute="else">
                     <div class="messageIsEmpty" style="padding-top: 20px">
                         {!$Label.c.orm_assessmentRiskEmpty_message}

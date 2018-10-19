@@ -26,7 +26,7 @@
                         <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_costEffect_label}">{!$Label.c.orm_costEffect_label}</div>
                     </th>
                     <th class="slds-text-title_caps" scope="col">
-                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_organisationUnit_label}">{!$Label.c.orm_organisationUnit_label}</div>
+                        <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_organisationUnit_label}">{!$Label.c.orm_measureUnit_label}</div>
                     </th>
                     <th class="slds-text-title_caps" scope="col">
                         <div id="tabtitle" class="slds-truncate" title="{!$Label.c.orm_measure_status}">{!$Label.c.orm_measure_status}</div>

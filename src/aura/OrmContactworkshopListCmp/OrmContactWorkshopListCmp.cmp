@@ -31,17 +31,18 @@
 	<aura:attribute name="isOpen" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" />
 	<aura:attribute name="selectedRows" type="Contact[]" />
-	<aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="items" type="Contact[]" description="" /> 
+     <aura:attribute name="selectedContactMap" type="Map" default="{}"/>
+     <!-- Attribute Declaration For Pagination -->
+    <aura:attribute name="startPage" type="Integer" />
 	<aura:attribute name="endPage" type="Integer" />
 	<aura:attribute name="pageSize" type="Integer" default="6" />
 	<aura:attribute name="hideNext" type="Boolean" default="true" />
+	 <aura:attribute name="currentPage" type="Integer" />
     <aura:attribute name="totalRecords" type="Integer"/>
-    <aura:attribute name="items" type="Contact[]" description="" /> 
-    <aura:attribute name="indexchecked" type="Integer" description="" /> 
 	<!-- handlers-->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-	<aura:handler event="c:OrmContactCreatedEvt"
-		action="{!c.refreshContact}" />
+	<aura:handler event="c:OrmContactCreatedEvt" action="{!c.refreshContact}" />
 	<aura:handler event="c:OrmRefreshContactWorkshopEvt"
 		action="{!c.refreshContact}" />
 	<aura:handler event="c:OrmCloseContactWrokshopEvnt"
@@ -120,7 +121,7 @@
 								<div class=" slds-size--5-of-6">
 									<lightning:datatable aura:id="idworkshopcontact"
 										data="{!v.contactList}" class="slds-m-top_medium"
-										columns="{!v.columns}" keyField="id"
+										columns="{!v.columns}" keyField="Id"
 										resizeColumnDisabled="false" selectedRows="{!v.selectedRows}"
 										onrowselection="{!c.getselectedRows}"
 										onrowaction="{!c.handleRowAction }"
@@ -129,7 +130,7 @@
 										<div
 											style="margin-top: 20px; padding-bottom: 10px; margin-left: auto; margin-right: auto">
 											<lightning:buttonGroup>
-												<lightning:button label="Prev"
+												<lightning:button label="Previous"
 													disabled="{!v.startPage == 0}" onclick="{!c.previous}"
 													variant="brand" iconName='utility:back' />
 	          &nbsp; &nbsp; &nbsp;

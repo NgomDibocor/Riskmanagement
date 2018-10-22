@@ -21,6 +21,7 @@
 
     selectCauses: function(component, event, helper) {
         var selectedRows = event.getParam('selectedRows');
+        console.log("selectedRows: ", selectedRows)
         var causes = [];
         selectedRows.forEach(function(selectedRow) {
             var causesss = {};

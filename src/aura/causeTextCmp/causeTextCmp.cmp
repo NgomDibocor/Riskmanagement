@@ -15,7 +15,7 @@
     <aura:attribute name="totalRecords" type="Integer"/>
     <aura:attribute name="pageSize" type="Integer" default="2"/>
     <aura:attribute name="hideNext" type="Boolean" default="true" />
-    <aura:attribute name="causesSelected" type="Macro[]" />
+    <aura:attribute name="causesSelected" type="map" />
     
     <!-- Attribute Declration For Pagination End-->
 	

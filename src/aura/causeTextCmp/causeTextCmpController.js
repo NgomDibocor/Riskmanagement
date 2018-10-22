@@ -15,23 +15,9 @@
     previoustt: function (component, event, helper) {
         helper.previoustt(component, event);
     },
-    openModalDeleteCause: function(component, event, helper) {
-        var selectedRows = event.getParam('selectedRows');
-        var causes = [];
-        selectedRows.forEach(function(selectedRow) {
-            var newCause = {};
-            newCause.sobjectType = 'Macro';
-            newCause.Id = selectedRow.Id;
-            causes.push(newCause);
-        });
-        console.log(JSON.stringify(causes));
-        component.set("v.selectCauses", causes);
-
-    },
+       openModalDeleteCause: function(component, event, helper) {
+  },
      deleteCausesfunction: function(component, event, helper) {
-        var deleteCauses = component.get("v.selectCauses");
-         var dTable = component.find("accountTable");
-        var selectedRows = dTable.getSelectedRows();
-        console.log(JSON.stringify(selectedRows));
+    	  console.log("selectedAccount "+JSON.stringify(component.get("v.SelectedAccount")));
     },
 })

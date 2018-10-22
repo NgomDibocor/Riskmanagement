@@ -7,6 +7,7 @@
     
     <aura:attribute name="AccountData" type="Object"/>
     <aura:attribute name="SelectedAccount" type="Map" default="{}"/>  
+    <aura:attribute name="SelectedCauses" type="Map" default="{}"/>  
     <!-- Attribute Declration For Pagination -->
     <aura:attribute name="PaginationList" type="account"/>
     <aura:attribute name="currentPage" type="Integer" />
@@ -15,11 +16,12 @@
     <aura:attribute name="totalRecords" type="Integer"/>
     <aura:attribute name="pageSize" type="Integer" default="2"/>
     <aura:attribute name="hideNext" type="Boolean" default="true" />
-    <aura:attribute name="causesSelected" type="map" />
-    
+    <aura:attribute name="causesSelected" type="List"  />
+    <aura:attribute name="key" type="string" description="" />
     <!-- Attribute Declration For Pagination End-->
 	
 	<lightning:card title="Causes Editable Datatable">
+	<lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  placeholder="{!$Label.c.orm_filter_impact_placeholder}"/>
 	 <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.deleteCausesfunction}" >
 				<lightning:icon iconName="utility:delete" size="small" />
 			</span><br/>
@@ -30,7 +32,7 @@
                              keyField="Id"
                              onsave ="{!c.onSave}"
                              onrowselection="{!c.selectCauses}"
-                             onrowaction="{! c.handleRowAction }" />
+                            />
     </lightning:card>
      <lightning:buttonGroup >
         <lightning:button label="Previous" disabled="{!v.startPage == 0}"  

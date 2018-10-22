@@ -46,10 +46,21 @@
         action.setCallback(this,function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                //if update is successful
-               var idAssessmentRisk=  component.get("v.idAssessmentRisk");
-                this.getCauses(component, idAssessmentRisk);
-            }
+              //if update is successful
+                    helper.showToast({
+                        "title": "Record Update",
+                        "type": "success",
+                        "message": totalRecordEdited+" Account Records Updated"
+                    });
+                  //  helper.reloadDataTable();
+                } else{ //if update got failed
+                    helper.showToast({
+                        "title": "Error!!",
+                        "type": "error",
+                        "message": "Error in update"
+                    });
+                }
+           
         });
         $A.enqueueAction(action);
     },
@@ -137,6 +148,28 @@
             }         
             var dTable = component.find("accountTable");
             dTable.set("v.selectedRows", selectedRowsIds);
+        }
+    },
+    /*
+     * Show toast with provided params
+     * */
+    showToast : function(params){
+        var toastEvent = $A.get("e.force:showToast");
+        if(toastEvent){
+            toastEvent.setParams(params);
+            toastEvent.fire();
+        } else{
+            alert(params.message);
+        }
+    },
+
+    /*
+     * reload data table
+     * */
+    reloadDataTable : function(){
+    var refreshEvent = $A.get("e.force:refreshView");
+        if(refreshEvent){
+            refreshEvent.fire();
         }
     },
 })

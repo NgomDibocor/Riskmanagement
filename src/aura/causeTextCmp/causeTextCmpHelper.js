@@ -36,7 +36,7 @@
         
                    
     },
-    saveDataTable : function(component, event, helper) {
+    saveDataTable : function(component, event,helper) {
         var editedRecords =  component.find("accountTable").get("v.draftValues");
         var totalRecordEdited = editedRecords.length;
         var action = component.get("c.updateCauses");
@@ -47,38 +47,13 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 //if update is successful
-                if(response.getReturnValue() === true){
-                    helper.showToast({
-                        "title": "Record Update",
-                        "type": "success",
-                        "message": totalRecordEdited+" Account Records Updated"
-                    });
-                    helper.reloadDataTable();
-                } else{ //if update got failed
-                    helper.showToast({
-                        "title": "Error!!",
-                        "type": "error",
-                        "message": "Error in update"
-                    });
-                }
+               var idAssessmentRisk=  component.get("v.idAssessmentRisk");
+                this.getCauses(component, idAssessmentRisk);
             }
         });
+        $A.enqueueAction(action);
     },
-     showToast : function(params){
-        var toastEvent = $A.get("e.force:showToast");
-        if(toastEvent){
-            toastEvent.setParams(params);
-            toastEvent.fire();
-        } else{
-            alert(params.message);
-        }
-    },
-    reloadDataTable : function(){
-    var refreshEvent = $A.get("e.force:refreshView");
-        if(refreshEvent){
-            refreshEvent.fire();
-        }
-    },
+
      nexttt : function(component, event){
         var current = component.get("v.currentPage");    
         var dTable = component.find("accountTable");

@@ -178,18 +178,18 @@
             <td class="tdWidth">
               <aura:if isTrue="{!v.showBtnMatricePicture}">
                 <lightning:card  title="" iconName="">
-                    <div class="styleRisk" style="padding-left:10px">
-                         {!v.assessmentRiskData.orm_Risk__r.Name}
+                    <div class="styleText" style="padding-left:10px;padding-right: 6px;">
+                        <i class="styleTitle">Risk: </i> {!v.assessmentRiskData.orm_Risk__r.Name}
                     </div>
-                    <div class="styleDescription" style="padding-left:10px">
-                         {!v.assessmentRiskData.orm_Risk__r.Description}
+                    <div class="styleText" style="padding-left:10px;padding-right: 6px;">
+                        <i class="styleTitle">Desciption: </i> {!v.assessmentRiskData.orm_Risk__r.Description}
                     </div>
                 </lightning:card>
               </aura:if>
             </td>
             <td class="tdWidth">
               <aura:if isTrue="{!v.showBtnMatricePicture}">
-               <lightning:card variant="Narrow" title="" class="widthCard">
+               <!--<lightning:card  title="" class="widthCard">  -->
                   <div style="width:100%;height: 50px;display: flex;">
 		                   <div style="width:40%;">
 		                        <aura:if isTrue="{!v.displaySaveCancelBtn}">
@@ -214,7 +214,7 @@
 				                </aura:if>
 		                   </div>
                   </div>
-                </lightning:card>
+               <!-- </lightning:card>  -->
               </aura:if>
             </td>
         </tr>

@@ -23,9 +23,12 @@
     <aura:attribute name="key" type="string" description="" />
 	
 	<lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  placeholder="{!$Label.c.orm_filter_impact_placeholder}"/>
-	        <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.deleteCausesfunction}" >
-				<lightning:icon iconName="utility:delete"  class="deleteCause" size="small" />
-			</span><br/>
+	       
+		        <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.deleteCausesfunction}" >
+					<aura:if isTrue="{!not(empty(v.PaginationList))}">
+					   <lightning:icon iconName="utility:delete"  class="deleteCause" size="small" />
+				    </aura:if>
+				</span><br/>
 			<center><div style="width:50%;">
 	<aura:if isTrue="{!not(empty(v.PaginationList))}"> 
         <lightning:datatable

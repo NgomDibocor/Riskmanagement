@@ -18,13 +18,15 @@
     <aura:attribute name="hideNext" type="Boolean" default="true" />
     <aura:attribute name="causesSelected" type="List"  />
     <aura:attribute name="key" type="string" description="" />
+    <aura:attribute name="items" type="SObject[]" description="" /> 
+    <aura:attribute name="filterPagination" type="SObject[]" description="" />
     <!-- Attribute Declration For Pagination End-->
 	
-	<lightning:card title="Causes Editable Datatable">
 	<lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  placeholder="{!$Label.c.orm_filter_impact_placeholder}"/>
 	 <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.deleteCausesfunction}" >
 				<lightning:icon iconName="utility:delete" size="small" />
 			</span><br/>
+			<center><div style="width:50%;">
         <lightning:datatable
                              aura:id="accountTable"
                              columns="{! v.columns }"
@@ -32,9 +34,9 @@
                              keyField="Id"
                              onsave ="{!c.onSave}"
                              onrowselection="{!c.selectCauses}"
-                            style="height:30%;"
+                            
                             />
-    </lightning:card>
+    <div style="margin-top:20px; padding-bottom:10px;">
      <lightning:buttonGroup >
         <lightning:button label="Previous" disabled="{!v.startPage == 0}"  
                           onclick="{!c.previoustt}" variant="brand"
@@ -44,4 +46,7 @@
                           onclick="{!c.nexttt}" variant="brand"
                           iconName='utility:forward' iconPosition='right'/>
     </lightning:buttonGroup>
+    </div>
+    </div>
+    </center>
 </aura:component>

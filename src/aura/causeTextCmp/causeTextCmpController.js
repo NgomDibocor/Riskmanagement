@@ -67,5 +67,29 @@
 		$A.enqueueAction(action);
 		}
 	},
-	
+	filter: function(component, event, helper) {
+
+        //var causesTemp = component.get('v.causesTemp');
+        var causesTemp = component.get('v.AccountData');
+        //var data = causes;
+        var key = component.get('v.key');
+        var regex;
+
+        if ($A.util.isEmpty(key)) {
+            helper.getCauses(component, component.get("v.idAssessmentRisk"));
+        } else {
+            key = "^" + key;
+            try {
+                regex = new RegExp(key, "i");
+                // filter checks each row, constructs new array where function returns true
+                causesTemp = causesTemp.filter(cause => regex.test(cause.Description));
+            } catch (e) {
+
+            }
+            //component.set("v.causes", causesTemp);
+            component.set("v.filterPagination", causesTemp);
+            component.set("v.items", component.get("v.filterPagination"));
+            helper.paginationFilter(component, event);
+        }
+    },
 })

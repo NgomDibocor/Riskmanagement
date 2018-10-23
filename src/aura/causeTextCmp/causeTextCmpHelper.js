@@ -172,4 +172,29 @@
             refreshEvent.fire();
         }
     },
+     paginationFilter : function(component, event) {
+	    //alert(JSON.stringify(component.get("v.filterPagination")))
+       // start pagination
+            var pageSize = component.get("v.pageSize");
+            // get size of all the records and then hold into an attribute "totalRecords"
+            component.set("v.totalRecords", component.get("v.items").length);
+              component.set("v.currentPage",0);
+                // set star as 0
+                component.set("v.startPage",0);
+                var totalRecords = component.get("v.items").length;
+                if(totalRecords === pageSize){
+	                  component.set("v.hideNext", true);
+	                  component.set("v.endPage", pageSize - 1);
+	                }else{
+	                  component.set("v.hideNext", false);
+	                  component.set("v.endPage", pageSize - 1);
+	                }
+                var PaginationList = [];
+                for(var i=0; i< pageSize; i++){
+                    if(component.get("v.items").length> i){
+                         PaginationList.push(component.get("v.items")[i]); 
+                    }
+                }
+                component.set('v.PaginationList', PaginationList);
+	},
 })

@@ -30,7 +30,7 @@
 	<aura:attribute name="emailTemplate" type="boolean" default="false" />
 	<aura:attribute name="isOpen" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" />
-	<aura:attribute name="selectedRows" type="Contact[]" />
+    <aura:attribute name="selectedRows" type="Contact[]" /> 
     <aura:attribute name="items" type="Contact[]" description="" /> 
      <aura:attribute name="selectedContactMap" type="Map" default="{}"/>
      <aura:attribute name="totalSelectedContact" type="Contact[]"/>
@@ -52,6 +52,8 @@
 		action="{!c.showModalContactsFailed}" />
 	<aura:handler event="c:OrmContactWorkshopListEvt"
 		action="{!c.openModalContacts}" />
+		<aura:handler event="c:OrmRefreshContactSelectedEvnt" action="{!c.refreshcontactSelected}" />
+	<aura:registerEvent name="OrmRefreshContactSelectedEvnt" type="c:OrmRefreshContactSelectedEvnt" description="" />
 	<!--  start modal participants-->
 	<aura:if isTrue="{!v.isOpenModalContactWorkshop}">
 		<!--###### MODAL BOX Start From Here ######-->
@@ -79,8 +81,8 @@
 								onchange="{!c.filter}" value="{!v.key}"
 								label="{!$Label.c.search_title_label}" />
 							<div class="slds-form-element__control">
-								<div class="slds-input-has-icon slds-input-has-icon--right">
-									<aura:iteration items="{!v.contactListSelected}" var="contact">
+								<div class="slds-input-has-icon slds-input-has-icon--right" >
+									<aura:iteration items="{!v.contactListSelected}" var="contact" aura:id="contactList">
 										<lightning:pill class="slds-m-around_xx-small"
 											label="{!contact.Name}" name="{!contact.Id}"
 											onremove="{!c.clear }" title="{!contact.Email}">

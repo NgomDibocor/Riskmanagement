@@ -37,6 +37,8 @@
                    
     },
     saveDataTable : function(component, event,helper) {
+          
+          
         var editedRecords =  component.find("accountTable").get("v.draftValues");
         var totalRecordEdited = editedRecords.length;
         var action = component.get("c.updateCauses");
@@ -52,9 +54,8 @@
                         "type": "success",
                         "message": totalRecordEdited+" Account Records Updated"
                     });
-//                    $A.get('e.force:refreshView').fire();
-//                    helper.reloadDataTable(component);
-                    getElementsByClassName("slds-docked-form-footer").style.backgroundColor = "blue";
+                    component.find("accountTable").set("v.draftValues", null);
+                    //helper.reloadDataTable(component);
                 } else{ //if update got failed
                     helper.showToast({
                         "title": "Error!!",

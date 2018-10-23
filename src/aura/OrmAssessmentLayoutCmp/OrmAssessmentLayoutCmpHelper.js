@@ -266,17 +266,10 @@
     verifTypeAssessment  : function(component, event, helper, typeAssessment) {
     if(typeAssessment == 'Organisation'){
       component.set("v.typeOrganisation", true);
-      component.set("v.typeProcessus", false);
-      component.set("v.typeProjet", false);
-    }
-    if(typeAssessment == 'Processus'){
-      component.set("v.typeOrganisation", false);
-      component.set("v.typeProcessus", true);
       component.set("v.typeProjet", false);
     }
     if(typeAssessment == 'Project'){
       component.set("v.typeOrganisation", false);
-      component.set("v.typeProcessus", false);
       component.set("v.typeProjet", true);
     }
    },

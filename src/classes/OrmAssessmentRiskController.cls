@@ -73,7 +73,6 @@ public with sharing class OrmAssessmentRiskController {
                                                       From Assessment__c 
                                                       Where (RecordTypeId =: OrmAssessmentController.getOrganisationRecordTypeId()
                                                           or RecordTypeId =: OrmAssessmentController.getProjetRecordTypeId()
-                                                          or RecordTypeId =: OrmAssessmentController.getProcessusRecordTypeId()
                                                             ) 
                                                       And   (orm_assessment__r.orm_projetManager__c = :UserInfo.getUserId() 
 		                                                  or CreatedById = :UserInfo.getUserId()

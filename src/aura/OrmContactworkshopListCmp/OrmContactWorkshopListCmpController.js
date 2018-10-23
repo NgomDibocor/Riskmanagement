@@ -89,6 +89,7 @@
      */
     getselectedRows: function(component, event, helper) {
         component.set("v.contactListSelected", []);
+        component.set("v.totalSelectedContact", []);
         var selectedRows = event.getParam('selectedRows');
         
         var contact = component.get('v.contactChecked');
@@ -114,8 +115,12 @@
          var dTable = component.find("idworkshopcontact");
             // var selectedRows = dTable.getSelectedRows();
           //   console.log('row selectionné'+JSON.stringify(component.get("v.selectedContactMap")[1]));
+        
+        if(component.get('v.totalSelectedContact').length>0){
+        component.set("v.contactListSelected", component.get('v.totalSelectedContact'));
+        }else{
         component.set("v.contactListSelected", selectedRows);
-        //component.set("v.selectedRows", component.get('v.contactListSelected'));
+        }
         
     },
 
@@ -332,5 +337,9 @@
     previous : function (component, event, helper) {
       helper.previous(component, event);
     },
-   
+    
+   refreshcontactSelected:function(component,event,helper){
+    component.set('v.contactListSelected',event.getParam('contactSelected'));
+     console.log("event success "+JSON.stringify(component.get('v.contactListSelected')));
+   }
 })

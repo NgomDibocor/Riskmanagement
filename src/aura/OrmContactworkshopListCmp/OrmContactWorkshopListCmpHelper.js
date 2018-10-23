@@ -228,20 +228,44 @@
      * 2018-10-15 : Salimata NGOM - Implementation
      */
 	 next : function(component, event){
+	        // component.set("v.contactListSelected", tempselect);
 		 	 var current = component.get("v.currentPage");    
             var dTable = component.find("idworkshopcontact");
              var selectedRows = dTable.getSelectedRows();
+           var tempselect=[];
+            // tempselect= component.get("v.totalSelectedContact");
+            // tempselect.push(selectedRows);
+         //console.log("Next selectedContactMap "+JSON.stringify(tempselect));  
+        //   component.set("v.totalSelectedContact",tempselect);
              var pgName = "page" + current;
-        component.get("v.selectedContactMap")[pgName] = selectedRows;
-       
-      //  component.get("v.totalSelectedContact")= selectedRows;
+       component.get("v.selectedContactMap")[pgName] = selectedRows;
         current = current +1;
         pgName = "page" + current;
         var selectedRows = component.get("v.selectedContactMap")[pgName];
-           
         component.set("v.currentPage",current);
-         console.log('selectionnes'+JSON.stringify(selectedRows));
-        console.log("Next selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));   
+        //console.log('page'+current+' '+JSON.stringify(selectedRows));
+      // console.log("Next selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));
+       var myMap=component.get("v.selectedContactMap");
+       var lengthMap=Object.keys(myMap).length;  
+       for(var i=0;i<= lengthMap;i++){
+    var page = 'page'+i;
+    var contentMap=component.get("v.selectedContactMap")[page];
+               // console.log(page+' '+JSON.stringify(component.get("v.selectedContactMap")[page]));
+               if(typeof contentMap != 'undefined' && contentMap){
+                  for(var j=0;j<contentMap.length;j++){
+             tempselect.push(contentMap[j]);
+             }
+             }
+
+       }
+       console.log("Next selectedContactMap "+JSON.stringify(tempselect)); 
+       component.set("v.totalSelectedContact",tempselect);
+       //fire event for refresh contactListSelected
+       var evnt=$A.get("e.c:OrmRefreshContactSelectedEvnt");
+       evnt.setParams({"contactSelected":tempselect});
+       evnt.fire();
+       
+      // console.log("Next Tempselect "+JSON.stringify(tempselect));  
 	        var sObjectList = component.get("v.items");
 	        var end = component.get("v.endPage");
 	        var start = component.get("v.startPage");
@@ -271,10 +295,8 @@
             }         
             var dTable = component.find("idworkshopcontact");
             dTable.set("v.selectedRows", selectedRowsIds);   
-         
         }
-         
-        
+      
 	    },
 	/**
      *
@@ -292,9 +314,30 @@
         component.get("v.selectedContactMap")[pgName] = selectedRows;
         current = current - 1; 
         pgName = "page" + current;
+        var tempselect=[];
         var selectedRows = component.get("v.selectedContactMap")[pgName];
         component.set("v.currentPage",current);
-        console.log("Prev selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));  
+       // console.log("Prev selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));  
+        var myMap=component.get("v.selectedContactMap");
+       var lengthMap=Object.keys(myMap).length;  
+       for(var i=0;i<=lengthMap;i++){
+        var page = 'page'+i;
+              //  console.log(page+' '+JSON.stringify(component.get("v.selectedContactMap")[page]));
+            // tempselect.push(component.get("v.selectedContactMap")[page]);
+              var contentMap=component.get("v.selectedContactMap")[page];
+                   if(typeof contentMap != 'undefined' && contentMap){
+                   for(var j=0;j<contentMap.length;j++){
+             tempselect.push(contentMap[j]);
+             }
+             }
+
+       }
+        console.log("Previous selectedContactMap "+JSON.stringify(tempselect));
+        component.set("v.totalSelectedContact",tempselect);
+         //fire event for refresh contactListSelected
+       var evnt=$A.get("e.c:OrmRefreshContactSelectedEvnt");
+       evnt.setParams({"contactSelected":tempselect});
+       evnt.fire();
 	        var sObjectList = component.get("v.items");
 	        var end = component.get("v.endPage");
 	        var start = component.get("v.startPage");

@@ -4,6 +4,8 @@
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="idAssessmentRisk" type="string" />
     <aura:handler event="c:OrmSendIdAssessmentRiskToCauseEvt" action="{!c.getAssessmentRiskId}" />
+    <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshList}" />
+    <aura:registerEvent name="OrmCauseCreatedEvt" type="c:OrmCauseCreatedEvt" />
     
     <aura:attribute name="AccountData" type="Object"/>
     <aura:attribute name="SelectedAccount" type="Map" default="{}"/>  
@@ -13,32 +15,46 @@
     <aura:attribute name="startPage" type="Integer" />
     <aura:attribute name="endPage" type="Integer"/>
     <aura:attribute name="totalRecords" type="Integer"/>
-    <aura:attribute name="pageSize" type="Integer" default="2"/>
+    <aura:attribute name="pageSize" type="Integer" default="3"/>
     <aura:attribute name="hideNext" type="Boolean" default="true" />
-    <aura:attribute name="selectCauses" type="Macro[]" />
-    
+    <aura:attribute name="causesSelected" type="List"  />
+    <aura:attribute name="key" type="string" description="" />
+    <aura:attribute name="items" type="SObject[]" description="" /> 
+    <aura:attribute name="filterPagination" type="SObject[]" description="" />
     <!-- Attribute Declration For Pagination End-->
 	
-	<lightning:card title="Causes Editable Datatable">
+	<lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  placeholder="{!$Label.c.orm_filter_impact_placeholder}"/>
 	 <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.deleteCausesfunction}" >
 				<lightning:icon iconName="utility:delete" size="small" />
 			</span><br/>
+			<center><div style="width:50%;">
+	<aura:if isTrue="{!not(empty(v.PaginationList))}"> 
         <lightning:datatable
                              aura:id="accountTable"
                              columns="{! v.columns }"
                              data="{! v.PaginationList  }"
                              keyField="Id"
                              onsave ="{!c.onSave}"
-                             onrowselection="{!c.openModalDeleteCause}"
-                             onrowaction="{! c.handleRowAction }" />
-    </lightning:card>
+                             onrowselection="{!c.selectCauses}"
+                            
+                            />
+    <div style="margin-top:20px; padding-bottom:10px;">
      <lightning:buttonGroup >
         <lightning:button label="Previous" disabled="{!v.startPage == 0}"  
-                          onclick="{!c.previoustt}" variant="brand"
+                          onclick="{!c.previous}" variant="brand"
                           iconName='utility:back'/>
         &nbsp; &nbsp; &nbsp;
         <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" 
-                          onclick="{!c.nexttt}" variant="brand"
+                          onclick="{!c.next}" variant="brand"
                           iconName='utility:forward' iconPosition='right'/>
     </lightning:buttonGroup>
+    </div>
+    <aura:set attribute="else">
+			        <div class="messageIsEmpty" style="padding-top: 20px"> 
+			 		    {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_label_causes+' ' + $Label.c.orm_is_empty}
+			        </div>
+			 </aura:set>
+           </aura:if>
+    </div>
+    </center>
 </aura:component>

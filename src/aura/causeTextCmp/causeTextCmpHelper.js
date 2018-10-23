@@ -36,7 +36,9 @@
         
                    
     },
-    saveDataTable : function(component, event, helper) {
+    saveDataTable : function(component, event,helper) {
+          
+          
         var editedRecords =  component.find("accountTable").get("v.draftValues");
         var totalRecordEdited = editedRecords.length;
         var action = component.get("c.updateCauses");
@@ -46,14 +48,14 @@
         action.setCallback(this,function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                //if update is successful
-                if(response.getReturnValue() === true){
+              //if update is successful
                     helper.showToast({
                         "title": "Record Update",
                         "type": "success",
                         "message": totalRecordEdited+" Account Records Updated"
                     });
-                    helper.reloadDataTable();
+                    component.find("accountTable").set("v.draftValues", null);
+                    //helper.reloadDataTable(component);
                 } else{ //if update got failed
                     helper.showToast({
                         "title": "Error!!",
@@ -61,25 +63,12 @@
                         "message": "Error in update"
                     });
                 }
-            }
+           
         });
+        $A.enqueueAction(action);
     },
-     showToast : function(params){
-        var toastEvent = $A.get("e.force:showToast");
-        if(toastEvent){
-            toastEvent.setParams(params);
-            toastEvent.fire();
-        } else{
-            alert(params.message);
-        }
-    },
-    reloadDataTable : function(){
-    var refreshEvent = $A.get("e.force:refreshView");
-        if(refreshEvent){
-            refreshEvent.fire();
-        }
-    },
-     nexttt : function(component, event){
+
+     next : function(component, event){
         var current = component.get("v.currentPage");    
         var dTable = component.find("accountTable");
         var selectedRows = dTable.getSelectedRows();
@@ -121,7 +110,7 @@
         }
     },
     
-    previoustt : function(component, event){   
+    previous : function(component, event){   
         var current = component.get("v.currentPage");
         var dTable = component.find("accountTable");
         var selectedRows = dTable.getSelectedRows();
@@ -164,4 +153,51 @@
             dTable.set("v.selectedRows", selectedRowsIds);
         }
     },
+    /*
+     * Show toast with provided params
+     * */
+    showToast : function(params){
+        var toastEvent = $A.get("e.force:showToast");
+        if(toastEvent){
+            toastEvent.setParams(params);
+            toastEvent.fire();
+        } else{
+            alert(params.message);
+        }
+    },
+
+    /*
+     * reload data table
+     * */
+    reloadDataTable : function(component){
+    var refreshEvent = $A.get("e.force:refreshView");
+        if(refreshEvent){
+            refreshEvent.fire();
+        }
+    },
+     paginationFilter : function(component, event) {
+	    //alert(JSON.stringify(component.get("v.filterPagination")))
+       // start pagination
+            var pageSize = component.get("v.pageSize");
+            // get size of all the records and then hold into an attribute "totalRecords"
+            component.set("v.totalRecords", component.get("v.items").length);
+              component.set("v.currentPage",0);
+                // set star as 0
+                component.set("v.startPage",0);
+                var totalRecords = component.get("v.items").length;
+                if(totalRecords === pageSize){
+	                  component.set("v.hideNext", true);
+	                  component.set("v.endPage", pageSize - 1);
+	                }else{
+	                  component.set("v.hideNext", false);
+	                  component.set("v.endPage", pageSize - 1);
+	                }
+                var PaginationList = [];
+                for(var i=0; i< pageSize; i++){
+                    if(component.get("v.items").length> i){
+                         PaginationList.push(component.get("v.items")[i]); 
+                    }
+                }
+                component.set('v.PaginationList', PaginationList);
+	},
 })

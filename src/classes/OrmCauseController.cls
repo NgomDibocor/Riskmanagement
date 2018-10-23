@@ -105,14 +105,11 @@ public with sharing class OrmCauseController {
 	  	}
 	  	return oErrorMsg;  		
 	}
-	 @AuraEnabled
-    public static boolean updatecause(List<Macro> editedAccountList){
-        try{
-            update editedAccountList;
-            return true;
-        } catch(Exception e){
-            return false;
-        }
+
+     @AuraEnabled
+    public static List <Macro> updateCauseRecords(List<Macro> causes) {
+        update causes;
+        return causes;
     }
     
 }

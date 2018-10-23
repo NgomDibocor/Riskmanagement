@@ -32,6 +32,7 @@
                              keyField="Id"
                              onsave ="{!c.onSave}"
                              onrowselection="{!c.selectCauses}"
+                            style="height:30%;"
                             />
     </lightning:card>
      <lightning:buttonGroup >

@@ -16,10 +16,10 @@
         helper.saveDataTable(component, event, helper);
     },
     next: function(component, event, helper) {
-        helper.next(component, event);
+        helper.nextInlineEdit(component, event);
     },
     previous: function(component, event, helper) {
-        helper.previous(component, event);
+        helper.previousInlineEdit(component, event);
     },
 
     selectCauses: function(component, event, helper) {
@@ -36,6 +36,7 @@
         var lengthMap = Object.keys(myMap).length;
         	if(lengthMap == 0)
         	{
+        	
         		var toast = $A.get('e.force:showToast');
         		toast.setParams({
                 'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
@@ -63,6 +64,7 @@
 			//store state of response
 			var state = response.getState();
 			if (state === "SUCCESS") {
+				component.set("v.SelectedAccount",[]);
 				helper.getCauses(component, component.get("v.idAssessmentRisk"));
 			}
 		});

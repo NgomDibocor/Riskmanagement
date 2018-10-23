@@ -1,7 +1,4 @@
-.THIS {
-}
+
 .THIS .deleteCause {
-    display: inline-block;
-    width: 5%;
     cursor: pointer;
 }

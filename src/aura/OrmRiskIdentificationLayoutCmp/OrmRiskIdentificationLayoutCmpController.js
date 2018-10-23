@@ -41,7 +41,7 @@
         }, {
             label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'RiskcategorieRisk',
-            type: 'text',
+            type: 'picklist',
             editable:'true',
             iconName: 'standard:orders'
         }, {

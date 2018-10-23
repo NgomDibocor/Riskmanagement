@@ -52,7 +52,9 @@
                         "type": "success",
                         "message": totalRecordEdited+" Account Records Updated"
                     });
-                  //  helper.reloadDataTable();
+//                    $A.get('e.force:refreshView').fire();
+//                    helper.reloadDataTable(component);
+                    getElementsByClassName("slds-docked-form-footer").style.backgroundColor = "blue";
                 } else{ //if update got failed
                     helper.showToast({
                         "title": "Error!!",
@@ -65,7 +67,7 @@
         $A.enqueueAction(action);
     },
 
-     nexttt : function(component, event){
+     next : function(component, event){
         var current = component.get("v.currentPage");    
         var dTable = component.find("accountTable");
         var selectedRows = dTable.getSelectedRows();
@@ -107,7 +109,7 @@
         }
     },
     
-    previoustt : function(component, event){   
+    previous : function(component, event){   
         var current = component.get("v.currentPage");
         var dTable = component.find("accountTable");
         var selectedRows = dTable.getSelectedRows();
@@ -166,7 +168,7 @@
     /*
      * reload data table
      * */
-    reloadDataTable : function(){
+    reloadDataTable : function(component){
     var refreshEvent = $A.get("e.force:refreshView");
         if(refreshEvent){
             refreshEvent.fire();

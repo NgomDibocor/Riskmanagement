@@ -9,14 +9,17 @@
         component.set("v.idAssessmentRisk", event.getParam('idAssessmentRisk'));
         helper.getCauses(component, component.get("v.idAssessmentRisk"));
     },
+    refreshList: function(component, event, helper) {
+        helper.getCauses(component, component.get("v.idAssessmentRisk"));
+    },
     onSave: function(component, event, helper) {
         helper.saveDataTable(component, event, helper);
     },
-    nexttt: function(component, event, helper) {
-        helper.nexttt(component, event);
+    next: function(component, event, helper) {
+        helper.next(component, event);
     },
-    previoustt: function(component, event, helper) {
-        helper.previoustt(component, event);
+    previous: function(component, event, helper) {
+        helper.previous(component, event);
     },
 
     selectCauses: function(component, event, helper) {
@@ -31,7 +34,7 @@
        var myMap  = component.get("v.SelectedAccount");
         var idCauses = [];
         var lengthMap = Object.keys(myMap).length;
-        	if(lengthMap== 0)
+        	if(lengthMap == 0)
         	{
         		var toast = $A.get('e.force:showToast');
         		toast.setParams({
@@ -50,7 +53,7 @@
         }
        console.log("id Cause", idCauses);
        
-		//call apex class method
+//		call apex class method
 		var action = component.get('c.deleteCauses');
 		// pass the all selected record's Id's to apex method 
 		action.setParams({
@@ -60,7 +63,6 @@
 			//store state of response
 			var state = response.getState();
 			if (state === "SUCCESS") {
-				
 				helper.getCauses(component, component.get("v.idAssessmentRisk"));
 			}
 		});

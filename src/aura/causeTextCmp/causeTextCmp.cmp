@@ -1,4 +1,4 @@
-<aura:component   controller="OrmCauseController" implements="force:appHostable,flexipage:availableForAllPageTypes"
+<aura:component  extends="c:ormAbstractListCmp" controller="OrmCauseController" implements="force:appHostable,flexipage:availableForAllPageTypes"
                 access="global">
     <aura:attribute name="columns" type="List"/>
     <aura:attribute name="recordId" type="String"/>
@@ -7,24 +7,25 @@
     <aura:handler event="c:OrmCauseCreatedEvt" action="{!c.refreshList}" />
     <aura:registerEvent name="OrmCauseCreatedEvt" type="c:OrmCauseCreatedEvt" />
     <!--     Attribute Declration For Pagination -->
-    <aura:attribute name="AccountData" type="Object"/>
-    <aura:attribute name="SelectedAccount" type="Map" default="{}"/>  
-    <aura:attribute name="PaginationList" type="account"/>
-    <aura:attribute name="currentPage" type="Integer" />
-    <aura:attribute name="startPage" type="Integer" />
-    <aura:attribute name="endPage" type="Integer"/>
-    <aura:attribute name="totalRecords" type="Integer"/>
-    <aura:attribute name="pageSize" type="Integer" default="3"/>
-    <aura:attribute name="hideNext" type="Boolean" default="true" />
+<!--     <aura:attribute name="AccountData" type="Object"/> -->
+<!--     <aura:attribute name="SelectedAccount" type="Map" default="{}"/>   -->
+<!--     <aura:attribute name="PaginationList" type="account"/> -->
+<!--     <aura:attribute name="currentPage" type="Integer" /> -->
+<!--     <aura:attribute name="startPage" type="Integer" /> -->
+<!--     <aura:attribute name="endPage" type="Integer"/> -->
+<!--     <aura:attribute name="totalRecords" type="Integer"/> -->
+<!--     <aura:attribute name="pageSize" type="Integer" default="3"/> -->
+<!--     <aura:attribute name="hideNext" type="Boolean" default="true" /> -->
     
-    <aura:attribute name="items" type="SObject[]" description="" /> 
-    <aura:attribute name="filterPagination" type="SObject[]" description="" />
+<!--     <aura:attribute name="items" type="SObject[]" description="" />  -->
+<!--     <aura:attribute name="filterPagination" type="SObject[]" description="" /> -->
     <!-- Attribute Declration For Pagination End-->
     <aura:attribute name="key" type="string" description="" />
+    <aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
 	
 	<lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}"  placeholder="{!$Label.c.orm_filter_impact_placeholder}"/>
 	       
-		        <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.deleteCausesfunction}" >
+		        <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.openModalDeleteCause}" >
 					<aura:if isTrue="{!not(empty(v.PaginationList))}">
 					   <lightning:icon iconName="utility:delete"  class="deleteCause" size="small" />
 				    </aura:if>
@@ -32,7 +33,7 @@
 			<center><div style="width:50%;">
 	<aura:if isTrue="{!not(empty(v.PaginationList))}"> 
         <lightning:datatable
-                             aura:id="accountTable"
+                             aura:id="datatableList"
                              columns="{! v.columns }"
                              data="{! v.PaginationList  }"
                              keyField="Id"
@@ -43,11 +44,11 @@
     <div style="margin-top:20px; padding-bottom:10px;">
      <lightning:buttonGroup >
         <lightning:button label="Previous" disabled="{!v.startPage == 0}"  
-                          onclick="{!c.previous}" variant="brand"
+                          onclick="{!c.previousInlineEdit}" variant="brand"
                           iconName='utility:back'/>
         &nbsp; &nbsp; &nbsp;
         <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" 
-                          onclick="{!c.next}" variant="brand"
+                          onclick="{!c.nextInlineEdit}" variant="brand"
                           iconName='utility:forward' iconPosition='right'/>
     </lightning:buttonGroup>
     </div>
@@ -59,4 +60,28 @@
            </aura:if>
     </div>
     </center>
+    <aura:if isTrue="{!v.openModalConfirmDeletion}">    
+	    	<div class="demo-only" style="height: 640px;">
+			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
+			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			    <div class="slds-modal__container">
+			      <header class="slds-modal__header header">
+			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
+			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+			        	title="{!$Label.c.orm_close_button_title}">		          
+			          <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+			        </button>
+			      </header>
+			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+			        <p>{!$Label.c.deletion_message}</p>
+			      </div>
+			      <footer class="slds-modal__footer">			        
+					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteCause}">{!$Label.c.orm_cancel_button_title}</button>
+					<button class="slds-button slds-button_brand" onclick="{!c.deleteCausesfunction}">{!$Label.c.orm_confirm_button}</button>					
+			      </footer>
+			    </div>
+			  </section>
+			  <div class="slds-backdrop slds-backdrop_open"></div>
+			</div>	    
+	    </aura:if>
 </aura:component>

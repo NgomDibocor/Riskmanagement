@@ -74,5 +74,11 @@
     },
     previousBisTwo : function (component, event, helper) {
       helper.previousBisTwo(component, event);
+    },
+     nextInlineEdit: function(component, event, helper) {
+        helper.nextInlineEdit(component, event);
+    },
+    previousInlineEdit: function(component, event, helper) {
+        helper.previousInlineEdit(component, event);
     }
 })

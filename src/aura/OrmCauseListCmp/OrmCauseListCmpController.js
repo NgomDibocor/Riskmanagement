@@ -1,6 +1,11 @@
 ({
-
     getAssessmentRiskId: function(component, event, helper) {
+    	 component.set('v.columns', [{
+            label: 'Name',
+            fieldName: 'Description',
+            editable: 'true',
+            type: 'text'
+        }]);
         component.set("v.idAssessmentRisk", event.getParam('idAssessmentRisk'));
         helper.refresh(component, component.get("v.idAssessmentRisk"));
     },
@@ -29,47 +34,80 @@
         });
         evt.fire();
     },
-
-    save: function(component, event, helper) {
-        // Check required fields(Name) first in helper method which is return true/false
-        if (helper.requiredValidation(component, event)) {
-            // call the saveAccount apex method for update inline edit fields update 
-            var action = component.get("c.updateCauses");
-            action.setParams({
-                'causes': component.get("v.PaginationList")
+    openModalDeleteCause: function(component, event, helper) {
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selectedRows in delete", selectedRows);
+        if (selectedRows.length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
             });
+            toast.fire()
+        } else {
+            component.set("v.openModalConfirmDeletion", true);
+        }
+    },
+     cancelDeleteCause: function(component, event, helper) {
+        component.set('v.openModalConfirmDeletion', false);
+    },
+    selectCauses: function(component, event, helper) {
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        var pgName = "page" + current;
+        component.get("v.SelectedAccount")[pgName] = selectedRows;
+    },
+    deleteCausesfunction: function(component, event, helper) {
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selectedRows in delete", selectedRows);
+        if (selectedRows.length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        } else {
+            var myMap = component.get("v.SelectedAccount");
+            var idCauses = [];
+            var lengthMap = Object.keys(myMap).length;
 
+            for (var i = 0; i < lengthMap; i++) {
+                var page = 'page' + i;
+                for (var j = 0; j < myMap[page].length; j++) {
+                    idCauses.push(myMap[page][j].Id);
+                }
+            }
+            console.log("id Cause", idCauses);
+
+            //		call apex class method
+            var action = component.get('c.deleteCauses');
+            // pass the all selected record's Id's to apex method 
+            action.setParams({
+                "causeIds": idCauses
+            });
             action.setCallback(this, function(response) {
+                //store state of response
                 var state = response.getState();
                 if (state === "SUCCESS") {
-                    var causes = response.getReturnValue();
-                    // set cause list with return value from server.
-                    component.set("v.causes", causes);
-                    // Hide the save and cancel buttons by setting the 'showSaveCancelBtn' false 
-                    component.set("v.showSaveCancelBtn", false);
-                    var toast = $A.get('e.force:showToast');
-                    toast.setParams({
-                        'message': $A.get('$Label.c.orm_updated'),
-                        'type': 'success',
-                        'mode': 'dismissible'
-                    });
-                    toast.fire();
+                    //component.set("v.SelectedAccount", []);
+                    component.set('v.openModalConfirmDeletion', false);
+                    helper.refresh(component, component.get("v.idAssessmentRisk"));
                 }
             });
             $A.enqueueAction(action);
         }
-    },
 
-    cancel: function(component, event, helper) {
-        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
-        component.set("v.showSaveCancelBtn", false);
-        helper.refresh(component, component.get("v.idAssessmentRisk"));
     },
-
     filter: function(component, event, helper) {
 
         //var causesTemp = component.get('v.causesTemp');
-        var causesTemp = component.get('v.initialData');
+        var causesTemp = component.get('v.AccountData');
         //var data = causes;
         var key = component.get('v.key');
         var regex;
@@ -88,54 +126,10 @@
             //component.set("v.causes", causesTemp);
             component.set("v.filterPagination", causesTemp);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilterBis(component, event);
+            helper.paginationFilter(component, event);
         }
     },
-    /**
-     * 
-     * @authorDavid diop
-     * @version 1.0
-     * @description method for show modal confirm delete MeasureProgression
-     * @history 2018-09-05 : David diop - Implementation
-     */
-    openModalDeleteCause: function(component, event, helper) {
-        // is checked delete assumption show popup message confirmation
-        // get all checkboxes 
-        //if not checked show toast warning
-        var getSelectedNumber = component.get("v.selectedRowsCount");
-        if (getSelectedNumber == 0) {
-            var toast = $A.get('e.force:showToast');
-            toast.setParams({
-                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
-                'type': 'warning',
-                'mode': 'dismissible'
-            });
-            toast.fire();
-        } else {
-            component.set("v.openModalConfirmDeletion", true);
-        }
+     onSave: function(component, event, helper) {
+        helper.saveDataTable(component, event, helper);
     },
-    cancelDeleteCause: function(component, event, helper) {
-        component.set('v.openModalConfirmDeletion', false);
-    },
-
-    confirmDeleteCause: function(component, event, helper) {
-        var evt = $A.get('e.c:OrmEvtDeleteCauses');
-        evt.setParams({
-            'idAssessmentRisk': component.get('v.idAssessmentRisk')
-        });
-        evt.fire();
-        component.set('v.openModalConfirmDeletion', false);
-    },
-
-    selectAll: function(component, event, helper) {
-        //get the header checkbox value  
-        var selectedHeaderCheck = event.getSource().get("v.value");
-
-        var evt = $A.get('e.c:OrmEvtSelectAllCauses');
-        evt.setParams({
-            "selectAllCheckbox": selectedHeaderCheck
-        });
-        evt.fire();
-    }
 })

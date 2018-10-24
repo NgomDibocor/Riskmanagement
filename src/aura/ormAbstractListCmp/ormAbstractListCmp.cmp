@@ -13,11 +13,25 @@ implements="force:appHostable,flexipage:availableForAllPageTypes">
     <aura:attribute name="endPage" type="Integer"/>
     <aura:attribute name="totalRecords" type="Integer"/>
     <aura:attribute name="pageSize" type="Integer" default="6"/>
+    <aura:attribute name="pageSizeInlineEdit" type="Integer" default="3"/>
     <aura:attribute name="pageSizeBis" type="Integer" default="3"/>
     <aura:attribute name="pageSizeBisTwo" type="Integer" default="2"/>
     <aura:attribute name="hideNext" type="Boolean" default="true" />
     <!-- Attribute Declration For Pagination End-->	
 	
+	
+	<aura:attribute name="ListData" type="Object"/>
+    <aura:attribute name="SelectedAccount" type="Map" default="{}"/>  
+<!--     <aura:attribute name="PaginationList" type="account"/> -->
+    <aura:attribute name="currentPage" type="Integer" />
+<!--     <aura:attribute name="startPage" type="Integer" /> -->
+<!--     <aura:attribute name="endPage" type="Integer"/> -->
+<!--     <aura:attribute name="totalRecords" type="Integer"/> -->
+<!--     <aura:attribute name="pageSize" type="Integer" default="3"/> -->
+<!--     <aura:attribute name="hideNext" type="Boolean" default="true" /> -->
+    
+<!--     <aura:attribute name="items" type="SObject[]" description="" />  -->
+<!--     <aura:attribute name="filterPagination" type="SObject[]" description="" /> -->
     <!--     methods -->
 	<aura:method name="removeItem" description="" />
 	<aura:method name="getSelectedItem" description="" />

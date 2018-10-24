@@ -7,7 +7,7 @@
 		description="store single contact" />
 	<aura:attribute name="contactList" type="Contact[]"
 		description="store contact records list" />
-	<aura:attribute name="contactListSelected" type="Contact[]"
+	<aura:attribute name="contactListSelected" type="Contact[]" default="[]"
 		description="store contact records list selected" />
 	<aura:attribute name="contactChecked" type="Contact"
 		description="store contact records list selected" />

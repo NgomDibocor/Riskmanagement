@@ -88,10 +88,8 @@
      * @history 2018-08-13 : Salimata NGOM - Implementation
      */
     getselectedRows: function(component, event, helper) {
-        component.set("v.contactListSelected", []);
-        component.set("v.totalSelectedContact", []);
-        var selectedRows = event.getParam('selectedRows');
-        
+    var selectedRows = event.getParam('selectedRows');
+    	
         var contact = component.get('v.contactChecked');
         var contactsWorkshop = [];
         selectedRows
@@ -106,22 +104,42 @@
                 console.log('v.contactWorkshopList  nbre' +
                     component.get("v.contactWorkshopList").length);
             });
-
         component.set("v.contactWorkshopList", contactsWorkshop);
         if (!$A.util.isEmpty(contact)) {
             selectedRows.push(contact);
-
         }
-         var dTable = component.find("idworkshopcontact");
-            // var selectedRows = dTable.getSelectedRows();
-          //   console.log('row selectionné'+JSON.stringify(component.get("v.selectedContactMap")[1]));
-        
-        if(component.get('v.totalSelectedContact').length>0){
-        component.set("v.contactListSelected", component.get('v.totalSelectedContact'));
+       
+        var dTable = component.find("idworkshopcontact");
+         var listRowSelect =  dTable.getSelectedRows();
+       var totalselect=component.get('v.totalSelectedContact');
+             console.log('listtotal'+JSON.stringify(totalselect));
+          console.log('listchecked'+JSON.stringify(listRowSelect));
+        if(totalselect.length>0){
+        var tempSelect=[];
+        console.log('contact exist');
+       totalselect.forEach(function(oneselect){
+       if(listRowSelect.indexOf(oneselect)==-1){
+       //remove one select in total select
+       console.log('elemnt a retirer'+oneselect.Name);
+       }
+       });
+      totalselect.forEach(function(selectcontact) {
+             if(tempSelect.indexOf(selectcontact)== -1){
+            tempSelect.push(selectcontact);
+            }
+            });
+            if(selectedRows.length>0){
+            selectedRows.forEach(function(selectRow){
+            if(tempSelect.indexOf(selectRow)== -1){
+             tempSelect.push(selectRow);
+            }
+            });
+            }
+        component.set("v.contactListSelected",tempSelect);
         }else{
+        console.log('selectedRows');
         component.set("v.contactListSelected", selectedRows);
         }
-        
     },
 
     /**
@@ -340,6 +358,5 @@
     
    refreshcontactSelected:function(component,event,helper){
     component.set('v.contactListSelected',event.getParam('contactSelected'));
-     console.log("event success "+JSON.stringify(component.get('v.contactListSelected')));
    }
 })

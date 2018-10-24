@@ -6,14 +6,14 @@ refresh : function(component, idAssessmentRisk) {
             var state = response.getState();
             if (state === 'SUCCESS' && component.isValid()) {
                 var pageSize = component.get("v.pageSizeInlineEdit");
-                component.set('v.AccountData', response.getReturnValue());
+                component.set('v.ListData', response.getReturnValue());
                 // get size of all the records and then hold into an attribute "totalRecords"
-                component.set("v.totalRecords", component.get("v.AccountData").length);
+                component.set("v.totalRecords", component.get("v.ListData").length);
                 //Set the current Page as 0
                 component.set("v.currentPage", 0);
                 // set star as 0
                 component.set("v.startPage", 0);
-                var totalRecords = component.get("v.AccountData").length;
+                var totalRecords = component.get("v.ListData").length;
                 if (totalRecords === pageSize) {
                     component.set("v.hideNext", true);
                     component.set("v.endPage", pageSize - 1);
@@ -23,7 +23,7 @@ refresh : function(component, idAssessmentRisk) {
                 }
                 var PaginationList = [];
                 for (var i = 0; i < pageSize; i++) {
-                    if (component.get("v.AccountData").length > i) {
+                    if (component.get("v.ListData").length > i) {
                         PaginationList.push(response.getReturnValue()[i]);
                     }
                 }

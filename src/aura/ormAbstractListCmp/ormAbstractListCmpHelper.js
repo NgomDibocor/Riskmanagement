@@ -233,7 +233,7 @@
         var selectedRows = component.get("v.SelectedAccount")[pgName];
         component.set("v.currentPage", current);
         console.log("Next selectedAccount " + JSON.stringify(component.get("v.SelectedAccount")));
-        var sObjectList = component.get("v.AccountData");
+        var sObjectList = component.get("v.ListData");
         var end = component.get("v.endPage");
         var start = component.get("v.startPage");
         var pageSize = component.get("v.pageSizeInlineEdit");
@@ -275,7 +275,7 @@
         var selectedRows = component.get("v.SelectedAccount")[pgName];
         component.set("v.currentPage", current);
         console.log("Prev selectedAccount " + JSON.stringify(component.get("v.SelectedAccount")));
-        var sObjectList = component.get("v.AccountData");
+        var sObjectList = component.get("v.ListData");
         var end = component.get("v.endPage");
         var start = component.get("v.startPage");
         var pageSize = component.get("v.pageSizeInlineEdit");

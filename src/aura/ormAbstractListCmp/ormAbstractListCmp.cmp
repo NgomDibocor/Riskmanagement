@@ -20,7 +20,7 @@ implements="force:appHostable,flexipage:availableForAllPageTypes">
     <!-- Attribute Declration For Pagination End-->	
 	
 	
-	<aura:attribute name="AccountData" type="Object"/>
+	<aura:attribute name="ListData" type="Object"/>
     <aura:attribute name="SelectedAccount" type="Map" default="{}"/>  
 <!--     <aura:attribute name="PaginationList" type="account"/> -->
     <aura:attribute name="currentPage" type="Integer" />

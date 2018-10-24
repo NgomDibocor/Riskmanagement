@@ -107,7 +107,7 @@
     filter: function(component, event, helper) {
 
         //var causesTemp = component.get('v.causesTemp');
-        var causesTemp = component.get('v.AccountData');
+        var causesTemp = component.get('v.ListData');
         //var data = causes;
         var key = component.get('v.key');
         var regex;

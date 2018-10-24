@@ -4,6 +4,7 @@
     <aura:attribute name="assumptionRiskList" type="Macro[]" />
     <aura:attribute name="storeAssumptionList" type="Macro[]" />
     <aura:attribute name="key" type="string" />
+    <aura:attribute name="columns" type="List" />
     <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="showConfirmRemoveAssumption" type="boolean" default="false" />
@@ -13,75 +14,38 @@
     <div style="margin-bottom:20px;">
         <h1 class="titleAssumtion"><span class="dot">{!$Label.c.orm_name_assumptions} </span></h1>
     </div>
-    	<div class="slds-m-around_large">
-   		<div class="phase">
-         <div class="iphase">
-            <a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}" >
-                <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search assumption" />
-            </a>
-          </div>
-           <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> <lightning:icon
-					iconName="utility:new" size="small" /></span> 
-					 <span class="btnDeleteActivity" onclick="{!c.removeAssumption}"> <lightning:icon
+    <div class="slds-m-around_large">
+        <div class="phase">
+            <div class="iphase">
+                <a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldCause}">
+                    <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search assumption" />
+                </a>
+            </div>
+            <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> <lightning:icon
+					iconName="utility:new" size="small" /></span>
+            <span class="btnDeleteActivity" onclick="{!c.openModalDeletePhase}"> <lightning:icon
 					iconName="utility:delete" size="small" />
 			 </span> <br/><br/>
-
-            <!-- use aura:if for show/hide buttons -->
-            <aura:if isTrue="{!v.showSaveCancelBtn}">
-            <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
-                <!--button for save and cancel Record after Inline Edit-->
-                <lightning:buttonGroup class="slds-m-around_medium">
-                    <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}" />
-                    <lightning:button label="{!$Label.c.orm_save_button_title}" title="test" onclick="{!c.updateAssumpt}" variant="success" />
-                </lightning:buttonGroup>
+            <center>
+                <div style="width:50%;">
+                    <aura:if isTrue="{!not(empty(v.PaginationList))}">
+                        <lightning:datatable aura:id="datatableList" columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" onrowselection="{!c.selectCauses}" />
+                        <div style="margin-top:20px; padding-bottom:10px;">
+                            <lightning:buttonGroup>
+                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                            </lightning:buttonGroup>
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="messageIsEmpty" style="padding-top: 20px">
+                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                            </div>
+                        </aura:set>
+                    </aura:if>
                 </div>
-            </aura:if>
-       
-    <!-- end header page content search bar and action button -->
-    
-        <aura:if isTrue="{!not(empty(v.PaginationList))}">
-            <!--Data Table-->
-            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
-                <thead>
-                    <tr class="slds-text-title--caps">
-                      
-                        <th scope="col">
-                            <div class="slds-truncate thTable" title="">N°</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate thTable" title="{!$Label.c.orm_name_assumption}">{!$Label.c.orm_name_assumption}</div>
-                        </th>
-						<th style="width: 3.25rem;" class="slds-text-align--right">
+            </center>
 
-                        </th>
-
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                    <!--### display all records of workshop attribute one by one by aura:iteration ###-->
-                    <!--                     items="{!v.assumptionRiskList}" var="assumption"  -->
-                    <aura:iteration items="{!v.PaginationList}" var="item" indexVar="sNo">
-                        <!-- start iteration -->
-                        <c:OrmAssumptionAssessmentRiskEditRow assumption="{!item}" selectedRowsCount="{!v.selectedRowsCount}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
-                    </aura:iteration>
-                </tbody>
-            </table>
-                <div style="margin-top:20px; padding-bottom:10px;margin-left :30%;margin-right:auto">
-                    <lightning:buttonGroup>
-                        <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-                        <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
-                    </lightning:buttonGroup>
-                </div>
-            <aura:set attribute="else">
-                <div class="messageIsEmpty" style="padding-top:20px">
-                    {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
-                </div>
-            </aura:set>
-        </aura:if>
-    </div>
+        </div>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAssumption}">
         <!--###### MODAL BOX Start From Here ######-->

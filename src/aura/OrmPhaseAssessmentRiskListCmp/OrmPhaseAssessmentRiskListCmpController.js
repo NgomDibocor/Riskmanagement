@@ -1,6 +1,6 @@
 ({
     getAssessmentRiskId: function(component, event, helper) {
-    	 component.set('v.columns', [{
+        component.set('v.columns', [{
             label: 'Name',
             fieldName: 'Description',
             editable: 'true',
@@ -16,7 +16,7 @@
     refreshList: function(component, event, helper) {
         helper.refresh(component, event);
     },
-    
+
     sendDescriptionFieldCause: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -25,11 +25,12 @@
         });
         evt.fire();
     },
-   
+
     cancelDeletePhases: function(component, event, helper) {
         component.set('v.openModalConfirmDeletion', false);
+         component.set("v.SelectedAccount", []);
     },
-filter: function(component, event, helper) {
+    filter: function(component, event, helper) {
 
         //var causesTemp = component.get('v.causesTemp');
         var causesTemp = component.get('v.ListData');
@@ -55,22 +56,24 @@ filter: function(component, event, helper) {
         }
     },
     selectCauses: function(component, event, helper) {
-//        var current = component.get("v.currentPage");
-//        var dTable = component.find("datatableList");
-//        var selectedRows = dTable.getSelectedRows();
-//        var pgName = "page" + current;
-//        component.get("v.SelectedAccount")[pgName] = selectedRows;
+        //        var current = component.get("v.currentPage");
+        //        var dTable = component.find("datatableList");
+        //        var selectedRows = dTable.getSelectedRows();
+        //        var pgName = "page" + current;
+        //        component.get("v.SelectedAccount")[pgName] = selectedRows;
     },
     openModalDeletePhase: function(component, event, helper) {
         var current = component.get("v.currentPage");
         var dTable = component.find("datatableList");
         var selectedRows = dTable.getSelectedRows();
-        var pgName = "page" + current;
-        component.get("v.SelectedAccount")[pgName] = selectedRows;
-           
+        console.log("selected", selectedRows.length);
+        if (selectedRows.length != 0) {
+            var pgName = "page" + current;
+            component.get("v.SelectedAccount")[pgName] = selectedRows;
+        }
         var myMap = component.get("v.SelectedAccount");
-        console.log("selectedRows in delete", myMap);
-        if (myMap.length == 0) {
+        console.log("selectedRows in delete", Object.keys(myMap).length);
+        if (Object.keys(myMap).length == 0) {
             var toast = $A.get('e.force:showToast');
             toast.setParams({
                 'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
@@ -83,36 +86,36 @@ filter: function(component, event, helper) {
         }
     },
     deletePhasesfunction: function(component, event, helper) {
-            var myMap = component.get("v.SelectedAccount");
-            var idCauses = [];
-            var lengthMap = Object.keys(myMap).length;
+        var myMap = component.get("v.SelectedAccount");
+        var idCauses = [];
+        var lengthMap = Object.keys(myMap).length;
 
-            for (var i = 0; i < lengthMap; i++) {
-                var page = 'page' + i;
-                for (var j = 0; j < myMap[page].length; j++) {
-                    idCauses.push(myMap[page][j].Id);
-                }
+        for (var i = 0; i < lengthMap; i++) {
+            var page = 'page' + i;
+            for (var j = 0; j < myMap[page].length; j++) {
+                idCauses.push(myMap[page][j].Id);
             }
-            console.log("id Cause", idCauses);
+        }
+        console.log("id Cause", idCauses);
 
-            //		call apex class method
-            var action = component.get('c.deletePhases');
-            // pass the all selected record's Id's to apex method 
-            action.setParams({
-                "phaseIds": idCauses
-            });
-            action.setCallback(this, function(response) {
-                //store state of response
-                var state = response.getState();
-                if (state === "SUCCESS") {
-                    component.set("v.SelectedAccount", []);
-                    component.set('v.openModalConfirmDeletion', false);
-                    helper.refresh(component, event);
-                }
-            });
-            $A.enqueueAction(action);
+        //		call apex class method
+        var action = component.get('c.deletePhases');
+        // pass the all selected record's Id's to apex method 
+        action.setParams({
+            "phaseIds": idCauses
+        });
+        action.setCallback(this, function(response) {
+            //store state of response
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                component.set("v.SelectedAccount", []);
+                component.set('v.openModalConfirmDeletion', false);
+                helper.refresh(component, event);
+            }
+        });
+        $A.enqueueAction(action);
     },
-     onSave: function(component, event, helper) {
+    onSave: function(component, event, helper) {
         helper.saveDataTable(component, event, helper);
     },
 })

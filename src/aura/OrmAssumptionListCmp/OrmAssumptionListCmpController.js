@@ -58,7 +58,7 @@
             //component.set("v.assumptionList", data);
             component.set("v.filterPagination", data);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilterBis(component, event);
+            helper.paginationFilter(component, event);
         }
     },
     /**

@@ -1,5 +1,27 @@
 ({
     doInit: function(component, event, helper) {
+    	 component.set('v.columns', [{
+            label: 'Name',
+            fieldName: 'Name',
+            editable: 'true',
+            type: 'text'
+        },
+        {
+        	label: 'Description',
+            fieldName: 'Description',
+            editable: 'true',
+            type: 'text'
+        },
+        {
+            label: $A.get("$Label.c.orm_files_label"),
+            type: 'button',
+            typeAttributes: {
+                label: $A.get("$Label.c.orm_files_label"),
+                name: $A.get("$Label.c.orm_files_label"),
+                title: $A.get("$Label.c.orm_files_label")
+         }
+         }
+        ]);
         component.set("v.idActivity", event.getParam('idActivity'));
         var idActivity = component.get('v.idActivity');
         console.log(idActivity);
@@ -25,46 +47,7 @@
     refreshList: function(component, event, helper) {
         helper.getAllActivityProofByActivity(component, event);
     },
-    /**
-     * CreatedBy @David Diop
-     * @version 1.0
-     * @description method cancel save MeasureProgression
-     * @history 
-     * 2018-08-31 : David diop - Implementation
-     */
-    cancel: function(component, event, helper) {
-        // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
-        component.set("v.showSaveCancelBtn", false);
-    },
-    save: function(component, event, helper) {
-        if (helper.requiredValidation(component, event)) {
-            // call the saveAccount apex method for update inline edit fields update 
-            var action = component.get("c.updateActiviteProof");
-            action.setParams({
-                'activityProof': component.get("v.PaginationList")
-            });
-
-            action.setCallback(this, function(response) {
-                var state = response.getState();
-                if (state === "SUCCESS") {
-                    var measuresProgressions = response.getReturnValue();
-                    // set cause list with return value from server.
-                    component.set("v.activityProof", measuresProgressions);
-                    // Hide the save and cancel buttons by setting the 'showSaveCancelBtn' false 
-                    component.set("v.showSaveCancelBtn", false);
-                    var toast = $A.get('e.force:showToast');
-                    toast.setParams({
-                        'message': $A.get('$Label.c.orm_updated'),
-                        'type': 'success',
-                        'mode': 'dismissible'
-                    });
-                    toast.fire();
-                }
-            });
-            $A.enqueueAction(action);
-        }
-    },
-
+    
     /**
      * CreatedBy @David Diop
      * @version 1.0
@@ -74,7 +57,7 @@
      */
     filterActivityProof: function(component, event, helper) {
         // var dataActivityProof = component.get('v.activityProofTemp');
-        var dataActivityProof = component.get('v.initialData');
+        var dataActivityProof = component.get('v.ListData');
         var term = component.get('v.filter');
         var regex;
         if ($A.util.isEmpty(term)) {
@@ -92,49 +75,10 @@
             //component.set("v.activityProof",dataActivityProof);
             component.set("v.filterPagination", dataActivityProof);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilterBis(component, event);
+            helper.paginationFilter(component, event);
         }
     },
-
-    /**
-     * 
-     * @authorDavid diop
-     * @version 1.0
-     * @description method for show modal confirm delete Activity Proof
-     * @history 2018-09-05 : Salimata NGOM - Implementation
-     */
-    removeActivityProof: function(component, event, helper) {
-        // is checked delete assumption show popup message confirmation
-        // get all checkboxes 
-        //if not checked show toast warning
-        var getSelectedNumber = component.get("v.selectedRowsCount");
-        if (getSelectedNumber == 0) {
-            var toast = $A.get('e.force:showToast');
-            toast.setParams({
-                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
-                'type': 'warning',
-                'mode': 'dismissible'
-            });
-            toast.fire();
-        } else {
-            component.set("v.showConfirmRemoveAssumption", true);
-        }
-
-
-    },
-    /**
-     * 
-     * @author Dvaid diop
-     * @version 1.0
-     * @description method for remove Activity Proofselected
-     * @history 2018-09-05 : David diop- Implementation
-     */
-    removeActivityProofSelected: function(component, event, helper) {
-        component.set("v.showConfirmRemoveAssumption", false);
-        //fire event to childActivityList for delete activity selected
-        var evt = $A.get("e.c:OrmRemoveRecordActivityProofEvnt");
-        evt.fire();
-    },
+   
     /**
      * 
      * @author David Diop
@@ -157,4 +101,82 @@
     	component.set("v.openfilesList",false);
     },
     
+     selectCauses: function(component, event, helper) {
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        var pgName = "page" + current;
+        component.get("v.SelectedAccount")[pgName] = selectedRows;
+    },
+     removeActivityProof: function(component, event, helper) {
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selectedRows in delete", selectedRows);
+        if (selectedRows.length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        } else {
+            component.set("v.showConfirmRemoveAssumption", true);
+        }
+    },
+     removeActivityProofSelected: function(component, event, helper) {
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selectedRows in delete", selectedRows);
+        if (selectedRows.length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        } else {
+            var myMap = component.get("v.SelectedAccount");
+            var idCauses = [];
+            var lengthMap = Object.keys(myMap).length;
+
+            for (var i = 0; i < lengthMap; i++) {
+                var page = 'page' + i;
+                for (var j = 0; j < myMap[page].length; j++) {
+                    idCauses.push(myMap[page][j].Id);
+                }
+            }
+            console.log("id Cause", idCauses);
+
+            //		call apex class method
+            var action = component.get('c.deleteRecordActivityProof');
+            // pass the all selected record's Id's to apex method 
+            action.setParams({
+                "lstRecordId": idCauses
+            });
+            action.setCallback(this, function(response) {
+                //store state of response
+                var state = response.getState();
+                if (state === "SUCCESS") {
+                    component.set('v.showConfirmRemoveAssumption', false);
+                    helper.getAllActivityProofByActivity(component, event);
+                }
+            });
+            $A.enqueueAction(action);
+        }
+
+    },
+    
+     onSave: function(component, event, helper) {
+        helper.saveDataTable(component, event, helper);
+    },
+    selectActivity: function(component, event, helper) {
+        var row = event.getParam('row');
+        component.set('v.activityProofId', row.Id);
+        component.set("v.openfilesList", true);
+        
+        
+
+    }
 })

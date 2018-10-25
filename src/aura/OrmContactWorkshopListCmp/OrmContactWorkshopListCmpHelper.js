@@ -307,14 +307,19 @@
      * 2018-10-15 : Salimata NGOM - Implementation
      */
 	     previous : function(component, event){
+	     //page courante
 	    var current = component.get("v.currentPage");
+	    //recupere les rows selectionnés sur la page courante
         var dTable = component.find("idworkshopcontact");
         var selectedRows = dTable.getSelectedRows();
         var pgName = "page" + current;
+        //on stocke les rows de la page courante dans seletedContactMap
         component.get("v.selectedContactMap")[pgName] = selectedRows;
+        //on se mets à la page precedente
         current = current - 1; 
         pgName = "page" + current;
         var tempselect=[];
+        //on stocke les éléments de la page precedente dans selectedRows
         var selectedRows = component.get("v.selectedContactMap")[pgName];
         component.set("v.currentPage",current);
        // console.log("Prev selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));  
@@ -370,5 +375,35 @@
             dTable.set("v.selectedRows", selectedRowsIds);
         }
 	    },
+	    
+	    totalSelected : function(component,event){
+	    var current = component.get("v.currentPage");
+        var dTable = component.find("idworkshopcontact");
+        var selectedRows = dTable.getSelectedRows();
+        var pgName = "page" + current;
+        component.get("v.selectedContactMap")[pgName] = selectedRows;
+        current = current - 1; 
+        pgName = "page" + current;
+        var tempselect=[];
+        var selectedRows = component.get("v.selectedContactMap")[pgName];
+        component.set("v.currentPage",current);
+       // console.log("Prev selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));  
+        var myMap=component.get("v.selectedContactMap");
+       var lengthMap=Object.keys(myMap).length;  
+       for(var i=0;i<=lengthMap;i++){
+        var page = 'page'+i;
+              //  console.log(page+' '+JSON.stringify(component.get("v.selectedContactMap")[page]));
+            // tempselect.push(component.get("v.selectedContactMap")[page]);
+              var contentMap=component.get("v.selectedContactMap")[page];
+                   if(typeof contentMap != 'undefined' && contentMap){
+                   for(var j=0;j<contentMap.length;j++){
+             tempselect.push(contentMap[j]);
+             }
+             }
+
+       }
+       console.log('helper checked'+JSON.stringify(tempselect));
+       component.set("v.totalSelectedContactTemp",tempselect);
+	    }
 
 })

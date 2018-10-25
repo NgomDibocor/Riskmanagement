@@ -21,7 +21,8 @@
             label:  $A.get("$Label.c.orm_invitation_contact_workshop"),
             fieldName: 'orm_notification__c',
             type: 'text'
-        }, {
+        },
+         {
             type: 'action',
             typeAttributes: {
                 rowActions: rowActions
@@ -89,38 +90,41 @@
      */
     getselectedRows: function(component, event, helper) {
     var selectedRows = event.getParam('selectedRows');
-    	
+    	  console.log('selectedRows' +JSON.stringify(selectedRows));
+    	    component.set("v.contactListSelected", component.get('v.selectedRows'));
         var contact = component.get('v.contactChecked');
         var contactsWorkshop = [];
-        selectedRows
-            .forEach(function(selectedRow) {
+        selectedRows.forEach(function(selectedRow) {
                 var newcontactworkshop = {};
                 newcontactworkshop.sobjectType = 'orm_ContactWorkshop__c';
                 newcontactworkshop.orm_contact__c = selectedRow.Id;
                 newcontactworkshop.orm_notification__c = false;
-                newcontactworkshop.orm_Workshop__c = component
-                    .get("v.workshop").Id;
+                newcontactworkshop.orm_Workshop__c = component.get("v.workshop").Id;
                 contactsWorkshop.push(newcontactworkshop);
-                console.log('v.contactWorkshopList  nbre' +
-                    component.get("v.contactWorkshopList").length);
+               
             });
         component.set("v.contactWorkshopList", contactsWorkshop);
+       //  console.log('v.contactWorkshopList ' +
+                 //   JSON.stringify(component.get("v.contactWorkshopList")));
         if (!$A.util.isEmpty(contact)) {
             selectedRows.push(contact);
         }
-       
-        var dTable = component.find("idworkshopcontact");
-         var listRowSelect =  dTable.getSelectedRows();
-       var totalselect=component.get('v.totalSelectedContact');
-             console.log('listtotal'+JSON.stringify(totalselect));
-          console.log('listchecked'+JSON.stringify(listRowSelect));
+    
+         var listRowSelect =selectedRows;
+        // helper.totalSelected(component,event);
+       var totalselect= component.get('v.totalSelectedContact');
+           console.log('listtotal'+JSON.stringify(totalselect));  
+         console.log('listchecked'+JSON.stringify(component.get('v.selectedRows')));
+          
         if(totalselect.length>0){
         var tempSelect=[];
         console.log('contact exist');
+      
        totalselect.forEach(function(oneselect){
        if(listRowSelect.indexOf(oneselect)==-1){
        //remove one select in total select
-       console.log('elemnt a retirer'+oneselect.Name);
+      // console.log('elemnt a retirer'+oneselect.Name);
+       //totalselect.splice(oneselect);
        }
        });
       totalselect.forEach(function(selectcontact) {
@@ -135,11 +139,28 @@
             }
             });
             }
+           console.log('listtotalTemp'+JSON.stringify(component.get('v.selectedRows')));
         component.set("v.contactListSelected",tempSelect);
-        }else{
-        console.log('selectedRows');
+        }
+else{
+       // console.log('selectedRows');
         component.set("v.contactListSelected", selectedRows);
         }
+        
+        
+    },
+    getselectedRows2 : function(cmp, event, helper){
+    var selectedRows = event.getParam('selectedRows');
+     cmp.set("v.contactListSelected", selectedRows);
+        console.log('SelectedRows.. '+JSON.stringify(selectedRows));
+        var arr = cmp.get('v.contactListSelected');
+        for (var i = 0; i < selectedRows.length; i++){
+            console.log('You selected: ' + selectedRows[i].Name);
+            var indexOfStevie = arr.findIndex(j => j.id == selectedRows[i].id);
+            console.log('>>>Indexxx.. '+JSON.stringify(arr.splice(indexOfStevie,1)));
+            cmp.set('v.contactListSelected',selectedRows.splice(indexOfStevie,1));
+        }
+        
     },
 
     /**

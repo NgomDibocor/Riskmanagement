@@ -30,10 +30,11 @@
 	<aura:attribute name="emailTemplate" type="boolean" default="false" />
 	<aura:attribute name="isOpen" type="boolean" default="false" />
 	<aura:attribute name="key" type="string" />
-    <aura:attribute name="selectedRows" type="Contact[]" /> 
+    <aura:attribute name="selectedRows" type="Contact[]" default="[]"/> 
     <aura:attribute name="items" type="Contact[]" description="" /> 
      <aura:attribute name="selectedContactMap" type="Map" default="{}"/>
      <aura:attribute name="totalSelectedContact" type="Contact[]"/>
+     <aura:attribute name="totalSelectedContactTemp" type="Contact[]" default="[]"/>
      <!-- Attribute Declaration For Pagination -->
     <aura:attribute name="startPage" type="Integer" />
 	<aura:attribute name="endPage" type="Integer" />

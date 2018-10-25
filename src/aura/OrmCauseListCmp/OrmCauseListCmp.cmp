@@ -12,6 +12,7 @@
     <aura:attribute name="idAssessmentRisk" type="string" />
     <aura:attribute name="key" type="string" description="" />
     <aura:attribute name="openModalConfirmDeletion" type="Boolean" default="false" />
+    <aura:attribute name="isEmptyMap" type="boolean" default="false" />
     <aura:attribute name="columns" type="List" />
 
     <div style="margin-bottom:20px;">
@@ -31,16 +32,21 @@
             <span title="{!$Label.c.orm_delete_button_title}" class="deleteCause" onclick="{!c.openModalDeleteCause}">
 				<lightning:icon iconName="utility:delete" size="small" />
 			</span><br/>
-            <center>
-                <div style="width:50%;">
+                <div style="width:80%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                        <lightning:datatable aura:id="datatableList" columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" onrowselection="{!c.selectCauses}" />
-                        <div style="margin-top:20px; padding-bottom:10px;">
-                            <lightning:buttonGroup>
-                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
-                            </lightning:buttonGroup>
-                        </div>
+                        <lightning:datatable aura:id="datatableList" columns="{! v.columns }" 
+                                                                     data="{! v.PaginationList  }" 
+                                                                     keyField="Id" 
+                                                                     onsave="{!c.onSave}" 
+                                                                     onrowselection="{!c.selectCauses}" />
+                        <center>
+	                        <div style="margin-top:20px; padding-bottom:10px;">
+	                            <lightning:buttonGroup>
+	                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+	                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
+	                            </lightning:buttonGroup>
+	                        </div>
+                        </center> 
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
                                 {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_label_causes+' ' + $Label.c.orm_is_empty}
@@ -48,7 +54,6 @@
                         </aura:set>
                     </aura:if>
                 </div>
-            </center>
         </div>
 
     </div>

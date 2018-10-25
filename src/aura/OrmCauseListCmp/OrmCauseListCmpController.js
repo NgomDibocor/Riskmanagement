@@ -1,6 +1,6 @@
 ({
     getAssessmentRiskId: function(component, event, helper) {
-    	 component.set('v.columns', [{
+        component.set('v.columns', [{
             label: 'Name',
             fieldName: 'Description',
             editable: 'true',
@@ -34,16 +34,17 @@
         });
         evt.fire();
     },
-    openModalDeleteCause: function(component, event, helper) { 
+    openModalDeleteCause: function(component, event, helper) {
         var current = component.get("v.currentPage");
         var dTable = component.find("datatableList");
         var selectedRows = dTable.getSelectedRows();
-        var pgName = "page" + current;
-        component.get("v.SelectedAccount")[pgName] = selectedRows;
-           
+        if (selectedRows.length != 0) {
+            var pgName = "page" + current;
+            component.get("v.SelectedAccount")[pgName] = selectedRows;
+        }
         var myMap = component.get("v.SelectedAccount");
-        console.log("selectedRows in delete", myMap);
-        if (myMap.length == 0) {
+        
+        if (Object.keys(myMap).length == 0) {
             var toast = $A.get('e.force:showToast');
             toast.setParams({
                 'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
@@ -55,42 +56,50 @@
             component.set("v.openModalConfirmDeletion", true);
         }
     },
-     cancelDeleteCause: function(component, event, helper) {
+    cancelDeleteCause: function(component, event, helper) {
+        /*myMap = {};
+        component.set("v.SelectedAccount", myMap);
+        console.log("SelectedAccount after cancel ", Object(component.get("v.SelectedAccount")));*/
         component.set('v.openModalConfirmDeletion', false);
     },
     selectCauses: function(component, event, helper) {
-        console.log("empty ", Object.keys(component.get("v.SelectedAccount")));;
+        console.log("keys ", Object.keys(component.get("v.SelectedAccount")));
+        console.log("object ", Object(component.get("v.SelectedAccount")));
     },
     deleteCausesfunction: function(component, event, helper) {
-        
-            var myMap = component.get("v.SelectedAccount");
-            var idCauses = [];
-            var lengthMap = Object.keys(myMap).length;
 
-            for (var i = 0; i < lengthMap; i++) {
-                var page = 'page' + i;
-                for (var j = 0; j < myMap[page].length; j++) {
-                    idCauses.push(myMap[page][j].Id);
-                }
+        var myMap = component.get("v.SelectedAccount");
+        var idCauses = [];
+        var lengthMap = Object.keys(myMap).length;
+
+        for (var i = 0; i < lengthMap; i++) {
+            var page = 'page' + i;
+            for (var j = 0; j < myMap[page].length; j++) {
+                idCauses.push(myMap[page][j].Id);
             }
-            console.log("id Cause", idCauses);
+        }
+        console.log("id Cause", idCauses);
 
-            //		call apex class method
-            var action = component.get('c.deleteCauses');
-            // pass the all selected record's Id's to apex method 
-            action.setParams({
-                "causeIds": idCauses
-            });
-            action.setCallback(this, function(response) {
-                //store state of response
-                var state = response.getState();
-                if (state === "SUCCESS") {
-                    component.set("v.SelectedAccount", []);
-                    component.set('v.openModalConfirmDeletion', false);
-                    helper.refresh(component, component.get("v.idAssessmentRisk"));
-                }
-            });
-            $A.enqueueAction(action);
+        //		call apex class method
+        var action = component.get('c.deleteCauses');
+        // pass the all selected record's Id's to apex method 
+        action.setParams({
+            "causeIds": idCauses
+        });
+        action.setCallback(this, function(response) {
+            //store state of response
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                //component.set("v.SelectedAccount", []);
+                myMap = {};
+                component.set("v.SelectedAccount", myMap);
+                console.log("SelectedAccount after delete ", Object(component.get("v.SelectedAccount")));
+                console.log("SelectedAccount after delete ", Object(component.get("v.SelectedAccount")));
+                component.set('v.openModalConfirmDeletion', false);
+                helper.refresh(component, component.get("v.idAssessmentRisk"));
+            }
+        });
+        $A.enqueueAction(action);
 
     },
     filter: function(component, event, helper) {
@@ -118,7 +127,7 @@
             helper.paginationFilter(component, event);
         }
     },
-     onSave: function(component, event, helper) {
+    onSave: function(component, event, helper) {
         helper.saveDataTable(component, event, helper);
     },
 })

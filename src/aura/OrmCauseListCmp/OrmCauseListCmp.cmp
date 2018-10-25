@@ -76,6 +76,6 @@
         </div>
     </aura:if>
     <!-- /openModalConfirmDeletion -->
-    <!-- 			<c:causeTextCmp /> -->
+<!--     			<c:causeTextCmp />  -->
     <c:OrmCauseNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

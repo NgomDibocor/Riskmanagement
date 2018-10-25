@@ -45,7 +45,7 @@
             //component.set("v.phases", phases);
             component.set("v.filterPagination", phases);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilterBis(component, event);
+            helper.paginationFilter(component, event);
         }
     },
     sendDescriptionFieldCause: function(component, event, helper) {

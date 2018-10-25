@@ -1,7 +1,6 @@
 ({
-
     doInit: function(component, event, helper) {
-    	component.set('v.columns', [{
+        component.set('v.columns', [{
             label: 'Name',
             fieldName: 'Name',
             editable: 'true',
@@ -30,46 +29,7 @@
             evt.fire();
         }
     },
-    Save: function(component, event, helper) {
-        // Check required fields(Name) first in helper method which is return
-        // true/false
-        if (helper.requiredValidation(component, event)) {
-            // call the saveAssumption apex method for update inline edit
-            // fields update
-            var action = component.get("c.saveAssumption");
-            action.setParams({
-                'listAssumption': component.get("v.assumptionList")
-            });
-            action.setCallback(this, function(response) {
-                var state = response.getState();
-                if (state === "SUCCESS") {
-                    var storeResponse = response.getReturnValue();
-                    // set assumptionList list with return value from server.
-                    console.log(JSON.stringify(storeResponse));
-                    component.set("v.assumptionList", storeResponse);
-                    var toast = $A.get('e.force:showToast');
-                    toast.setParams({
-                        'message': $A.get("$Label.c.orm_updated"),
-                        'type': 'success',
-                        'mode': 'dismissible'
-                    });
-                    toast.fire();
-                    // Hide the save and cancel buttons by setting the
-                    // 'showSaveCancelBtn' false
-                    component.set("v.showSaveCancelBtn", false);
-
-                }
-            });
-            $A.enqueueAction(action);
-        }
-    },
-    cancel: function(component, event, helper) {
-    	 component.set("v.showSaveCancelBtn", false);
-    	  helper.refreshList(component, event);
-    },
-
     /**
-     * 
      * @author Salimata NGOM
      * @version 1.0
      * @description search filter
@@ -77,7 +37,7 @@
      */
     filter: function(component, event, helper) {
         //var ListAssumption = component.get('v.storeAssumptionList');
-        var ListAssumption = component.get('v.initialData');
+        var ListAssumption = component.get('v.ListData');
         var data = ListAssumption;
         var key = component.get('v.key');
         var regex;
@@ -102,7 +62,6 @@
         }
     },
     /**
-     * 
      * @author Salimata NGOM
      * @version 1.0
      * @description cancel action and refresh the view
@@ -114,33 +73,6 @@
     },
 
     /**
-     * 
-     * @author Salimata NGOM
-     * @version 1.0
-     * @description method for show modal confirm delete assumption
-     * @history 2018-09-05 : Salimata NGOM - Implementation
-     */
-    removeAssumption: function(component, event, helper) {
-        // is checked delete assumption show popup message confirmation
-        // get all checkboxes 
-        //if not checked show toast warning
-        var getSelectedNumber = component.get("v.selectedRowsCount");
-        if (getSelectedNumber == 0) {
-            var toast = $A.get('e.force:showToast');
-            toast.setParams({
-                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
-                'type': 'warning',
-                'mode': 'dismissible'
-            });
-            toast.fire();
-        } else {
-            component.set("v.showConfirmRemoveAssumption", true);
-        }
-
-
-    },
-    /**
-     * 
      * @author Salimata NGOM
      * @version 1.0
      * @description method for remove assumption selected
@@ -161,21 +93,7 @@
         });
         evt.fire();
     },
-    /**
-     * 
-     * @author Salimata NGOM
-     * @version 1.0
-     * @description method for fire event selectAll checkbox header
-     * @history 2018-10-09 : Salimata NGOM - Implementation
-     */
-//    fireSelectAll: function(component, event, helper) {
-//        //fire event selectAll checkbox header
-//        var evt = $A.get("e.c:OrmSelectAllAssumptEvnt");
-//        var selectedHeader = event.getSource().get("v.value");
-//        evt.setParam('selectedHeaderCheck',selectedHeader);
-//        evt.fire();
-//    },
-     selectCauses: function(component, event, helper) {
+    selectCauses: function(component, event, helper) {
         var current = component.get("v.currentPage");
         var dTable = component.find("datatableList");
         var selectedRows = dTable.getSelectedRows();

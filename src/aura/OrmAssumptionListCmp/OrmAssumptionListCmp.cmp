@@ -1,45 +1,35 @@
 <aura:component controller="OrmAssumptionController" access="global" extends="c:ormAbstractListCmp" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
     <!-- 	declare aura attribute -->
-    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:OrmAssumptionCreatedEvt" action="{!c.doInit}" />
-    <aura:attribute name="assumptionList" type="Macro[]" />
-    <aura:attribute name="storeAssumptionList" type="Macro[]" />
     <aura:attribute name="assessmentData" type="Assessment__c" />
     <aura:attribute name="key" type="string" />
-    <aura:attribute name="showConfirmRemoveAssumption" type="boolean" default="false" description="is true show popup  message confirmation" />
-    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="columns" type="List" />
+    <aura:attribute name="showConfirmRemoveAssumption" type="boolean" default="false" description="is true show popup  message confirmation" />
     <!-- 	aura registerEvent -->
     <aura:registerEvent name="OrmNewAssumptionClickedEvt" type="c:OrmNewAssumptionClickedEvt" />
-    <aura:registerEvent name="OrmRemoveRecordAssumptEvnt" type="c:OrmRemoveRecordAssumptEvnt" />
     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
-    <aura:registerEvent name="OrmSelectAllAssumptEvnt" type="c:OrmSelectAllAssumptEvnt" />
     <!-- 		declare aura:handler -->
     <aura:handler event="c:OrmRefreshAssumptionEvnt" action="{!c.doInit}" />
     <!-- start header page content search bar and action button -->
-
-
-
-
     <div style="margin-bottom:20px;">
         <h1 class="titleAssumtion"><span class="dot">Assumptions</span></h1>
     </div>
-     <div class="slds-m-around_large">
-    	<div class="assumption">
-           <div class="iAssumption">
-            <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
-                <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search assumption" />
-            </a>
+    <div class="slds-m-around_large">
+        <div class="assumption">
+            <div class="iAssumption">
+                <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
+                    <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search assumption" />
+                </a>
             </div>
-       
-         <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> <lightning:icon
+
+            <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> <lightning:icon
 					iconName="utility:new" size="small" /></span>
-					<span class="btnDeleteActivity" onclick="{!c.openModalDeleteAssumption}"> <lightning:icon
+            <span class="btnDeleteActivity" onclick="{!c.openModalDeleteAssumption}"> <lightning:icon
 					iconName="utility:delete" size="small" />
 			</span> <br/><br/>
 
-       			<center>
+            <center>
                 <div style="width:50%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
                         <lightning:datatable aura:id="datatableList" columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" onrowselection="{!c.selectCauses}" />
@@ -51,13 +41,13 @@
                         </div>
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
-                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                                {!$Label.c.orm_list_title_label +' assumptions ' + $Label.c.orm_is_empty}
                             </div>
                         </aura:set>
                     </aura:if>
                 </div>
             </center>
-    </div>
+        </div>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAssumption}">
         <!--###### MODAL BOX Start From Here ######-->

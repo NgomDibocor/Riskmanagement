@@ -1,6 +1,12 @@
 ({
 
     doInit: function(component, event, helper) {
+    	component.set('v.columns', [{
+            label: 'Name',
+            fieldName: 'Name',
+            editable: 'true',
+            type: 'text'
+        }]);
         helper.refreshList(component, event);
     },
     openNewAssumption: function(component, event, helper) {
@@ -162,11 +168,81 @@
      * @description method for fire event selectAll checkbox header
      * @history 2018-10-09 : Salimata NGOM - Implementation
      */
-    fireSelectAll: function(component, event, helper) {
-        //fire event selectAll checkbox header
-        var evt = $A.get("e.c:OrmSelectAllAssumptEvnt");
-        var selectedHeader = event.getSource().get("v.value");
-        evt.setParam('selectedHeaderCheck',selectedHeader);
-        evt.fire();
+//    fireSelectAll: function(component, event, helper) {
+//        //fire event selectAll checkbox header
+//        var evt = $A.get("e.c:OrmSelectAllAssumptEvnt");
+//        var selectedHeader = event.getSource().get("v.value");
+//        evt.setParam('selectedHeaderCheck',selectedHeader);
+//        evt.fire();
+//    },
+     selectCauses: function(component, event, helper) {
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        var pgName = "page" + current;
+        component.get("v.SelectedAccount")[pgName] = selectedRows;
+    },
+    openModalDeleteAssumption: function(component, event, helper) {
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selectedRows in delete", selectedRows);
+        if (selectedRows.length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        } else {
+            component.set("v.showConfirmRemoveAssumption", true);
+        }
+    },
+    removeAssumptSelected: function(component, event, helper) {
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selectedRows in delete", selectedRows);
+        if (selectedRows.length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        } else {
+            var myMap = component.get("v.SelectedAccount");
+            var idCauses = [];
+            var lengthMap = Object.keys(myMap).length;
+
+            for (var i = 0; i < lengthMap; i++) {
+                var page = 'page' + i;
+                for (var j = 0; j < myMap[page].length; j++) {
+                    idCauses.push(myMap[page][j].Id);
+                }
+            }
+            console.log("id Cause", idCauses);
+
+            //		call apex class method
+            var action = component.get('c.deleteRecordAssumption');
+            // pass the all selected record's Id's to apex method 
+            action.setParams({
+                "lstRecordId": idCauses
+            });
+            action.setCallback(this, function(response) {
+                //store state of response
+                var state = response.getState();
+                if (state === "SUCCESS") {
+                    //component.set("v.SelectedAccount", []);
+                    component.set('v.showConfirmRemoveAssumption', false);
+                    helper.refreshList(component, event);
+                }
+            });
+            $A.enqueueAction(action);
+        }
+
+    },
+    onSave: function(component, event, helper) {
+        helper.saveDataTable(component, event, helper);
     },
 })

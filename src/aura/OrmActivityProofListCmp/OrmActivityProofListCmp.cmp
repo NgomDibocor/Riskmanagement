@@ -1,5 +1,6 @@
 <aura:component controller="OrmActivityController" access="global" extends="c:ormAbstractListCmp">
     <!-- attributes -->
+    <aura:attribute name="columns" type="List" />
     <aura:attribute name="activityProof" type="Product2[]" />
     <aura:attribute name="activityProofTemp" type="Product2[]" />
     <aura:attribute name="idActivity" type="string" />
@@ -34,54 +35,28 @@
 					iconName="utility:delete" size="small" />
 			</span>
             <br/><br/>
-            <aura:if isTrue="{!v.showSaveCancelBtn}">
-                <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
-                    <!--button for save and cancel Record after Inline Edit-->
-                    <lightning:buttonGroup class="slds-m-around_medium">
-                        <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}" />
-                        <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.save}" variant="success" />
-                    </lightning:buttonGroup>
+            
+			<center>
+                <div style="width:50%;">
+                    <aura:if isTrue="{!not(empty(v.PaginationList))}">
+                        <lightning:datatable aura:id="datatableList" columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" 
+                        onrowaction="{! c.selectActivity }"
+                        onrowselection="{!c.selectCauses}" />
+                        <div style="margin-top:20px; padding-bottom:10px;">
+                            <lightning:buttonGroup>
+                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                            </lightning:buttonGroup>
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="messageIsEmpty" style="padding-top: 20px">
+                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                            </div>
+                        </aura:set>
+                    </aura:if>
                 </div>
-            </aura:if>
-            <br/>
-            <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
-                    <thead>
-                        <tr class="slds-text-title--caps">
-                            <th style="width:3.25rem;" class="slds-text-align--right">
-
-                            </th>
-                            <th scope="col" style="width:3.25rem;">
-                                <div class="slds-truncate thTable" title="">N°</div>
-                            </th>
-                            <th scope="col">
-                                <div class="slds-truncate thTable" title="{$Label.c.orm_name_activityProof}">{!$Label.c.orm_name_activityProof}</div>
-                            </th>
-                            <th scope="col">
-                                <div class="slds-truncate thTable" title="{!!$Label.c.orm_description_ActivityProof}">{!$Label.c.orm_description_ActivityProof}</div>
-                            </th>
-                            <th scope="col">
-                                <div class="slds-truncate thTable" title="{!$Label.c.orm_table_action_label}">{!$Label.c.orm_table_action_label}</div>
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <!--### display all records of causes attribute one by one by aura:iteration ###-->
-                        <!-- 	             items="{!v.activityProof}" var="activityProof" -->
-                        <aura:iteration items="{!v.PaginationList}" var="item" indexVar="sNo">
-                            <!-- Child Lightning Component -->
-                            <c:OrmActivityProofEditRowCmp activityProof="{!item}" selectedRowsCount="{!v.selectedRowsCount}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
-                        </aura:iteration>
-                    </tbody>
-                </table>
-                <aura:set attribute="else">
-                    <div class="messageIsEmpty" style="padding-top: 20px">
-                        {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_activityProof_label +' ' + $Label.c.orm_is_empty}
-                    </div>
-                </aura:set>
-            </aura:if>
-
+            </center>
+            
         </div>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAssumption}">
@@ -108,14 +83,7 @@
         </div>
         <!--###### MODAL BOX End  Here ######-->
     </aura:if>
-    <center>
-        <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-            <lightning:buttonGroup>
-                <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
-            </lightning:buttonGroup>
-        </div>
-    </center>
+   
      <aura:if isTrue="{!v.openfilesList}">    
 	    	<div class="demo-only" style="height: 640px;">
 			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 

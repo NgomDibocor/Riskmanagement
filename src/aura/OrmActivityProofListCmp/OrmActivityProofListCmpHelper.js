@@ -1,54 +1,72 @@
 ({
 	
 	getAllActivityProofByActivity : function(component, event) {	
-		
-        var action = component.get("c.getAllMeasuresProgressionByMeasure");
-        action.setParam('idActivity', component.get("v.idActivity"));
+         var action = component.get("c.getAllMeasuresProgressionByMeasure");
+		  action.setParam('idActivity', component.get("v.idActivity"));
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {
-            	//console.log('measure '+ JSON.stringify(response.getReturnValue()));
-            	//component.set("v.activityProof ", response.getReturnValue());
-            	//component.set("v.activityProofTemp ", response.getReturnValue());
-            	
-            	
-            	component.set('v.initialData', response.getReturnValue());
-                component.set('v.items', response.getReturnValue());
-                   // start pagination
-                    var pageSize = component.get("v.pageSizeBis");
-	                // get size of all the records and then hold into an attribute "totalRecords"
-	                component.set("v.totalRecords", component.get("v.items").length);
-	                // set star as 0
-	                component.set("v.startPage",0);
-	                var totalRecords = component.get("v.items").length;
-				    //var div = Math.trunc(totalRecords / pageSize);
-	                if(totalRecords === pageSize){
-	                  component.set("v.hideNext", true);
-	                  component.set("v.endPage", pageSize - 1);
-	                }else{
-	                  component.set("v.hideNext", false);
-	                  component.set("v.endPage", pageSize - 1);
-	                }
-	                var PaginationList = [];
-	                for(var i=0; i< pageSize; i++){
-	                    if(component.get("v.items").length> i)
-	                        PaginationList.push(component.get("v.items")[i]);    
-	                }
-	                component.set('v.PaginationList', PaginationList);
-                //end pagination
-            	
-            }else{
-            	alert($A.get('$Label.c.orm_not_found'));
+            if (state === 'SUCCESS' && component.isValid()) {
+                var pageSize = component.get("v.pageSizeInlineEdit");
+                component.set('v.ListData', response.getReturnValue());
+                // get size of all the records and then hold into an attribute "totalRecords"
+                component.set("v.totalRecords", component.get("v.ListData").length);
+                //Set the current Page as 0
+                component.set("v.currentPage", 0);
+                // set star as 0
+                component.set("v.startPage", 0);
+                var totalRecords = component.get("v.ListData").length;
+                if (totalRecords === pageSize) {
+                    component.set("v.hideNext", true);
+                    component.set("v.endPage", pageSize - 1);
+                } else {
+                    component.set("v.hideNext", false);
+                    component.set("v.endPage", pageSize - 1);
+                }
+                var PaginationList = [];
+                for (var i = 0; i < pageSize; i++) {
+                    if (component.get("v.ListData").length > i) {
+                        PaginationList.push(response.getReturnValue()[i]);
+                    }
+                }
+                component.set('v.PaginationList', PaginationList);
+            } else {
+                alert('ERROR');
             }
         });
         $A.enqueueAction(action);
 	},
-	requiredValidation : function(component,event) {
-        // get all causes.. 	
-        var allRecords = component.get("v.activityProof");
-        
-        var isValid = true;
-        
-        return isValid;
+	saveDataTable: function(component, event, helper) {
+        var editedRecords = component.find("datatableList").get("v.draftValues");
+        var totalRecordEdited = editedRecords.length;
+        var action = component.get("c.updateActiviteProof");
+        action.setParams({
+            'activityProof': editedRecords
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                //if update is successful
+                 var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message':  totalRecordEdited + " Causes Records Updated",
+                'type': 'success',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+            	this.getAllActivityProofByActivity(component, event)
+                component.find("datatableList").set("v.draftValues", null);
+                //helper.reloadDataTable(component);
+            } else { //if update got failed
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': "error in update",
+                'type': 'error',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+            }
+
+        });
+        $A.enqueueAction(action);
     },
 })

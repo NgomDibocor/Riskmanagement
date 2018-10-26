@@ -8,6 +8,7 @@
     <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
     <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
     <aura:attribute name="showConfirmRemoveAssumption" type="boolean" default="false" />
+    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
     <aura:registerEvent name="OrmNewAssumptionAssessmentRiskClickedEvt" type="c:OrmNewAssumptionAssessmentRiskClickedEvt" />
     <aura:handler event="c:OrmAssumptionAssessmentRiskCreatedEvt" action="{!c.refresh}" />
     <aura:registerEvent name="OrmRemoveRecordAssumptAssRiskEvnt" type="c:OrmRemoveRecordAssumptAssRiskEvnt" />

@@ -64,11 +64,21 @@ public with sharing class OrmRiskController {
     @AuraEnabled 
     public static List<orm_assessmentRisk__c> findAllAssessmentRiskCategory(String item,String assessment)
     {
-       return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
+    		if(item == 'All' )
+    		{
+    			return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
                        orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
                 From orm_assessmentRisk__c 
-                where  orm_assessment__r.Id =:assessment AND orm_Risk__r.orm_categorieRisk__c =: item
+                where  orm_assessment__r.Id =:assessment
                 order by CreatedDate];
+    		}
+    		else {
+		       return  [Select Id,orm_assessment__r.name,orm_assessment__r.Id,orm_Risk__r.Name,
+		                       orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
+		                From orm_assessmentRisk__c 
+		                where  orm_assessment__r.Id =:assessment AND orm_Risk__r.orm_categorieRisk__c =: item
+		                order by CreatedDate];
+    		}
     }
    
      /*

@@ -136,7 +136,15 @@
                 action.setCallback(this, function(response) {
                     var state = response.getState();
                     if (state === 'SUCCESS' && component.isValid()) {
-                        component.set('v.allCategorieRiskList', response.getReturnValue());
+                    	var categoryRisk = [] 
+                    	var result = response.getReturnValue();
+                    	 for( var i= 0 ; i < result.length ;i++){
+                    		 if(result[i] != "All" ){
+                    			 categoryRisk.push(result[i]);
+                    		 }
+                    	 }
+                    	 console.log(JSON.stringify(categoryRisk));
+                         component.set('v.allCategorieRiskList', categoryRisk);
                     } else {
                         alert($A.get('$Label.c.orm_not_found'));
                     }

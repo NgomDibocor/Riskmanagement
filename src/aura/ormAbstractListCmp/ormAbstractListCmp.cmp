@@ -21,7 +21,7 @@ implements="force:appHostable,flexipage:availableForAllPageTypes">
 	
 	
 	<aura:attribute name="ListData" type="Object"/>
-    <aura:attribute name="SelectedAccount" type="Map" default="{}"/> 
+    <aura:attribute name="SelectedItem" type="Map" default="{}"/> 
 <!--     <aura:attribute name="PaginationList" type="account"/> -->
     <aura:attribute name="currentPage" type="Integer" />
 <!--     <aura:attribute name="startPage" type="Integer" /> -->

@@ -88,6 +88,7 @@
      */
     closeModalRemove: function(component, event, helper) {
         // on cancel close modal
+        component.set("v.isEmptyMap", true);
         component.set("v.showConfirmRemoveAssumption", false);
     },
     openfilesList: function(component, event, helper) {
@@ -102,17 +103,33 @@
     },
     
      selectCauses: function(component, event, helper) {
+    },
+     removeActivityProof: function(component, event, helper) {
         var current = component.get("v.currentPage");
         var dTable = component.find("datatableList");
         var selectedRows = dTable.getSelectedRows();
-        var pgName = "page" + current;
-        component.get("v.SelectedAccount")[pgName] = selectedRows;
-    },
-     removeActivityProof: function(component, event, helper) {
-        var dTable = component.find("datatableList");
-        var selectedRows = dTable.getSelectedRows();
         console.log("selectedRows in delete", selectedRows);
-        if (selectedRows.length == 0) {
+       if (selectedRows.length != 0) {
+            var pgName = "page" + current;
+            component.get("v.SelectedItem")[pgName] = selectedRows;
+        }
+        else{
+           var pgName = "page" + current;
+           component.get("v.SelectedItem")[pgName] = selectedRows;
+           console.log("***View else lenght =0*** ", Object(component.get("v.SelectedItem")));
+        }
+        var myMap = component.get("v.SelectedItem");
+        console.log("selectedRows in delete", Object.keys(myMap).length);
+        helper.checkIfMapContentIsEmpty(component, event, myMap);
+        if (Object.keys(myMap).length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        }  else if(component.get("v.isEmptyMap")){
             var toast = $A.get('e.force:showToast');
             toast.setParams({
                 'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
@@ -125,19 +142,7 @@
         }
     },
      removeActivityProofSelected: function(component, event, helper) {
-        var dTable = component.find("datatableList");
-        var selectedRows = dTable.getSelectedRows();
-        console.log("selectedRows in delete", selectedRows);
-        if (selectedRows.length == 0) {
-            var toast = $A.get('e.force:showToast');
-            toast.setParams({
-                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
-                'type': 'warning',
-                'mode': 'dismissible'
-            });
-            toast.fire()
-        } else {
-            var myMap = component.get("v.SelectedAccount");
+            var myMap = component.get("v.SelectedItem");
             var idCauses = [];
             var lengthMap = Object.keys(myMap).length;
 
@@ -159,13 +164,14 @@
                 //store state of response
                 var state = response.getState();
                 if (state === "SUCCESS") {
+                	myMap = {};
+	                component.set("v.SelectedItem", myMap);
+	                component.set("v.isEmptyMap", true);
                     component.set('v.showConfirmRemoveAssumption', false);
                     helper.getAllActivityProofByActivity(component, event);
                 }
             });
             $A.enqueueAction(action);
-        }
-
     },
     
      onSave: function(component, event, helper) {

@@ -69,6 +69,16 @@
         });
         $A.enqueueAction(action);
     },
-
+     checkIfMapContentIsEmpty : function(component, event, myMap) {
+        console.log("checkIfMapContentIsEmpty start")
+        var lengthMap = Object.keys(myMap).length;
+        for (var i = 0; i < lengthMap; i++) {
+            var page = 'page' + i;
+            if(myMap[page].length != 0){
+              component.set("v.isEmptyMap", false);
+              console.log("isEmptyMap", component.get("v.isEmptyMap"));
+            }
+        }
+    },
 
 })

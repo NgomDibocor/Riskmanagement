@@ -226,12 +226,12 @@
         var dTable = component.find("datatableList");
         var selectedRows = dTable.getSelectedRows();
         var pgName = "page" + current;
-        component.get("v.SelectedAccount")[pgName] = selectedRows;
+        component.get("v.SelectedItem")[pgName] = selectedRows;
         current = current + 1;
         pgName = "page" + current;
-        var selectedRows = component.get("v.SelectedAccount")[pgName];
+        var selectedRows = component.get("v.SelectedItem")[pgName];
         component.set("v.currentPage", current);
-        console.log("Next selectedAccount " + JSON.stringify(component.get("v.SelectedAccount")));
+        console.log("Next SelectedItem " + JSON.stringify(component.get("v.SelectedItem")));
         var sObjectList = component.get("v.ListData");
         var end = component.get("v.endPage");
         var start = component.get("v.startPage");
@@ -268,13 +268,13 @@
         var dTable = component.find("datatableList");
         var selectedRows = dTable.getSelectedRows();
         var pgName = "page" + current;
-        component.get("v.SelectedAccount")[pgName] = selectedRows;
+        component.get("v.SelectedItem")[pgName] = selectedRows;
         current = current - 1;
         pgName = "page" + current;
-        var selectedRows = component.get("v.SelectedAccount")[pgName];
+        var selectedRows = component.get("v.SelectedItem")[pgName];
         console.log("selectedRows in prev", selectedRows)
         component.set("v.currentPage", current);
-        console.log("Prev selectedAccount " + JSON.stringify(component.get("v.SelectedAccount")));
+        console.log("Prev SelectedItem " + JSON.stringify(component.get("v.SelectedItem")));
         var sObjectList = component.get("v.ListData");
         var end = component.get("v.endPage");
         var start = component.get("v.startPage");

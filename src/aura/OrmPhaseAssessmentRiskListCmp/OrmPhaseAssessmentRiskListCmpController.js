@@ -27,7 +27,7 @@
     },
 
     cancelDeletePhases: function(component, event, helper) {
-    component.set("v.isEmptyMap", true);
+         component.set("v.isEmptyMap", true);
         component.set('v.openModalConfirmDeletion', false);
     },
     filter: function(component, event, helper) {
@@ -65,14 +65,14 @@
         console.log("selected", selectedRows.length);
         if (selectedRows.length != 0) {
             var pgName = "page" + current;
-            component.get("v.SelectedAccount")[pgName] = selectedRows;
+            component.get("v.SelectedItem")[pgName] = selectedRows;
         }
         else{
            var pgName = "page" + current;
-           component.get("v.SelectedAccount")[pgName] = selectedRows;
-           console.log("***View else lenght =0*** ", Object(component.get("v.SelectedAccount")));
+           component.get("v.SelectedItem")[pgName] = selectedRows;
+           console.log("***View else lenght =0*** ", Object(component.get("v.SelectedItem")));
         }
-        var myMap = component.get("v.SelectedAccount");
+        var myMap = component.get("v.SelectedItem");
         console.log("selectedRows in delete", Object.keys(myMap).length);
         helper.checkIfMapContentIsEmpty(component, event, myMap);
         if (Object.keys(myMap).length == 0) {
@@ -97,7 +97,7 @@
         }
     },
     deletePhasesfunction: function(component, event, helper) {
-        var myMap = component.get("v.SelectedAccount");
+        var myMap = component.get("v.SelectedItem");
         var idCauses = [];
         var lengthMap = Object.keys(myMap).length;
 
@@ -120,7 +120,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 myMap = {};
-                component.set("v.SelectedAccount", myMap);
+                component.set("v.SelectedItem", myMap);
                 component.set("v.isEmptyMap", true);
                 component.set('v.openModalConfirmDeletion', false);
                 helper.refresh(component, event);

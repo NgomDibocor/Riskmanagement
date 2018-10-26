@@ -5,6 +5,7 @@
     <aura:attribute name="assessmentData" type="Assessment__c" />
     <aura:attribute name="key" type="string" />
     <aura:attribute name="columns" type="List" />
+    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
     <aura:attribute name="showConfirmRemoveAssumption" type="boolean" default="false" description="is true show popup  message confirmation" />
     <!-- 	aura registerEvent -->
     <aura:registerEvent name="OrmNewAssumptionClickedEvt" type="c:OrmNewAssumptionClickedEvt" />

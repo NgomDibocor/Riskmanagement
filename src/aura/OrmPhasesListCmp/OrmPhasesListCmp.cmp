@@ -15,6 +15,7 @@
     <aura:attribute name="key" type="string" description="" />
     <aura:attribute name="selectedCount" type="integer" default="0" />
     <aura:attribute name="openModalConfirmDeletion" type="Boolean" default="false" />
+    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
     <!-- attributes for add -->
     <aura:attribute name="newPhase" type="Macro" description="" default="{	'sobjectType' : 'Macro',
 																			'Description' : '',

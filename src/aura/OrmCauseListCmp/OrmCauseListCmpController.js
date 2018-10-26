@@ -40,14 +40,14 @@
         var selectedRows = dTable.getSelectedRows();
         if (selectedRows.length != 0) {
             var pgName = "page" + current;
-            component.get("v.SelectedAccount")[pgName] = selectedRows;
-            console.log("***View*** ", Object(component.get("v.SelectedAccount")));
+            component.get("v.SelectedItem")[pgName] = selectedRows;
+            console.log("***View*** ", Object(component.get("v.SelectedItem")));
         }else{
            var pgName = "page" + current;
-           component.get("v.SelectedAccount")[pgName] = selectedRows;
-           console.log("***View else lenght =0*** ", Object(component.get("v.SelectedAccount")));
+           component.get("v.SelectedItem")[pgName] = selectedRows;
+           console.log("***View else lenght =0*** ", Object(component.get("v.SelectedItem")));
         }
-        var myMap = component.get("v.SelectedAccount");
+        var myMap = component.get("v.SelectedItem");
         helper.checkIfMapContentIsEmpty(component, event, myMap);
         if (Object.keys(myMap).length == 0) {
             var toast = $A.get('e.force:showToast');
@@ -78,12 +78,12 @@
         component.set('v.openModalConfirmDeletion', false);
     },
     selectCauses: function(component, event, helper) {
-        console.log("keys ", Object.keys(component.get("v.SelectedAccount")));
-        console.log("object ", Object(component.get("v.SelectedAccount")));
+        console.log("keys ", Object.keys(component.get("v.SelectedItem")));
+        console.log("object ", Object(component.get("v.SelectedItem")));
     },
     deleteCausesfunction: function(component, event, helper) {
 
-        var myMap = component.get("v.SelectedAccount");
+        var myMap = component.get("v.SelectedItem");
         var idCauses = [];
         var lengthMap = Object.keys(myMap).length;
 
@@ -106,10 +106,10 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 myMap = {};
-                component.set("v.SelectedAccount", myMap);
+                component.set("v.SelectedItem", myMap);
                 component.set("v.isEmptyMap", true);
-                console.log("SelectedAccount after delete ", Object(component.get("v.SelectedAccount")));
-                console.log("SelectedAccount after delete ", Object(component.get("v.SelectedAccount")));
+                console.log("SelectedItem after delete ", Object(component.get("v.SelectedItem")));
+                console.log("SelectedItem after delete ", Object(component.get("v.SelectedItem")));
                 component.set('v.openModalConfirmDeletion', false);
                 helper.refresh(component, component.get("v.idAssessmentRisk"));
             }

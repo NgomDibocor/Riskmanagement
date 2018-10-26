@@ -1,5 +1,6 @@
 <aura:component controller="OrmActivityController" access="global" extends="c:ormAbstractListCmp">
     <!-- attributes -->
+    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
     <aura:attribute name="columns" type="List" />
     <aura:attribute name="activityProof" type="Product2[]" />
     <aura:attribute name="activityProofTemp" type="Product2[]" />
@@ -37,7 +38,7 @@
             <br/><br/>
             
 			<center>
-                <div style="width:50%;">
+                <div style="width:80%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
                         <lightning:datatable aura:id="datatableList" columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" 
                         onrowaction="{! c.selectActivity }"

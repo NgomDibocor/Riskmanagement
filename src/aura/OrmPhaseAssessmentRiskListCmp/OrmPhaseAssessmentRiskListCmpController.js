@@ -28,6 +28,10 @@
 
     cancelDeletePhases: function(component, event, helper) {
         component.set('v.openModalConfirmDeletion', false);
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selected", selectedRows.length);
          component.set("v.SelectedAccount", []);
     },
     filter: function(component, event, helper) {
@@ -61,6 +65,25 @@
         //        var selectedRows = dTable.getSelectedRows();
         //        var pgName = "page" + current;
         //        component.get("v.SelectedAccount")[pgName] = selectedRows;
+         var selectedRows = event.getParam('selectedRows'); 
+         var current = component.get("v.currentPage");
+         var selectedRows = event.getParam('selectedRows');   
+         var setRows = [];
+        selectedRows.forEach(function(selectedRow){
+            setRows.push(selectedRow.Id);
+        })
+        console.log(JSON.stringify(component.get("v.ListData")));
+        console.log(setRows);
+        	var listDatas = component.get("v.ListData");
+        		for (var i = 0; i < listDatas.length; i++) {
+                    var row = listDatas[i].Id;
+                    console.log(JSON.stringify(row));
+                    var sels = setRows;
+                    sels.forEach(function(sel) {
+                   listDatas = listDatas.filter(row => row != sel);
+                });
+                }
+                console.log(JSON.stringify(listDatas));
     },
     openModalDeletePhase: function(component, event, helper) {
         var current = component.get("v.currentPage");

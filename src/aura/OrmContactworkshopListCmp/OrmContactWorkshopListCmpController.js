@@ -87,11 +87,12 @@
      * @version 1.0
      * @description method getselectedRows
      * @history 2018-08-13 : Salimata NGOM - Implementation
+     * @history 2018-10-26 : Salimata NGOM - add pagination list
      */
     getselectedRows: function(component, event, helper) {
     var selectedRows = event.getParam('selectedRows');
     	  console.log('selectedRows' +JSON.stringify(selectedRows));
-    	    component.set("v.contactListSelected", component.get('v.selectedRows'));
+    	    //component.set("v.contactListSelected", component.get('v.selectedRows'));
         var contact = component.get('v.contactChecked');
         var contactsWorkshop = [];
         selectedRows.forEach(function(selectedRow) {
@@ -104,65 +105,65 @@
                
             });
         component.set("v.contactWorkshopList", contactsWorkshop);
-       //  console.log('v.contactWorkshopList ' +
-                 //   JSON.stringify(component.get("v.contactWorkshopList")));
+ 
         if (!$A.util.isEmpty(contact)) {
             selectedRows.push(contact);
         }
-    
+     var tempselect=[];
          var listRowSelect =selectedRows;
-        // helper.totalSelected(component,event);
-       var totalselect= component.get('v.totalSelectedContact');
-           console.log('listtotal'+JSON.stringify(totalselect));  
-         console.log('listchecked'+JSON.stringify(component.get('v.selectedRows')));
-          
-        if(totalselect.length>0){
-        var tempSelect=[];
-        console.log('contact exist');
-      
-       totalselect.forEach(function(oneselect){
-       if(listRowSelect.indexOf(oneselect)==-1){
-       //remove one select in total select
-      // console.log('elemnt a retirer'+oneselect.Name);
-       //totalselect.splice(oneselect);
-       }
-       });
-      totalselect.forEach(function(selectcontact) {
-             if(tempSelect.indexOf(selectcontact)== -1){
-            tempSelect.push(selectcontact);
-            }
-            });
-            if(selectedRows.length>0){
-            selectedRows.forEach(function(selectRow){
-            if(tempSelect.indexOf(selectRow)== -1){
-             tempSelect.push(selectRow);
-            }
-            });
-            }
-           console.log('listtotalTemp'+JSON.stringify(component.get('v.selectedRows')));
-        component.set("v.contactListSelected",tempSelect);
-        }
-else{
-       // console.log('selectedRows');
-        component.set("v.contactListSelected", selectedRows);
-        }
-        
-        
-    },
-    getselectedRows2 : function(cmp, event, helper){
-    var selectedRows = event.getParam('selectedRows');
-     cmp.set("v.contactListSelected", selectedRows);
-        console.log('SelectedRows.. '+JSON.stringify(selectedRows));
-        var arr = cmp.get('v.contactListSelected');
-        for (var i = 0; i < selectedRows.length; i++){
-            console.log('You selected: ' + selectedRows[i].Name);
-            var indexOfStevie = arr.findIndex(j => j.id == selectedRows[i].id);
-            console.log('>>>Indexxx.. '+JSON.stringify(arr.splice(indexOfStevie,1)));
-            cmp.set('v.contactListSelected',selectedRows.splice(indexOfStevie,1));
-        }
-        
-    },
+           var myMap=component.get("v.selectedContactMap");
+             var lengthMap=Object.keys(myMap).length;  
+             if(lengthMap>0){
+              //page courante
+	    var current = component.get("v.currentPage");
+	      var pgName = "page" + current;
+	      console.log('page courante'+pgName);
+	      console.log('selectpagecourante'+JSON.stringify(selectedRows));
+           console.log('MapPagecourante'+JSON.stringify(myMap[pgName]));
+           if(selectedRows.length>0){
+           myMap[pgName]=selectedRows[0];
+           }
+            console.log('myMapFromPN'+JSON.stringify(myMap));
+       for(var i=0;i<=lengthMap;i++){
+        var page = 'page'+i;
+              var contentMap=component.get("v.selectedContactMap")[page];
+                   if(typeof contentMap != 'undefined' && contentMap){
+                   for(var j=0;j<contentMap.length;j++){
+             tempselect.push(contentMap[j]);
+             }
+             }
 
+       }
+        
+         console.log('elemntselectionné'+JSON.stringify(selectedRows));
+       
+         if(selectedRows.length>0 &&  tempselect != 'undefined'){
+         if(selectedRows.length==1){
+         console.log('1elment');
+         if(tempselect.indexOf(selectedRows[0])==-1){
+         console.log('ajouter elemnt');
+         tempselect.push(selectedRows[0]);
+         }
+         }else{
+          console.log('nelment');
+          selectedRows.forEach(function(selectRow){
+          if(tempselect.indexOf(selectRow)==-1){
+          tempselect.push(selectRow);
+          }
+          });
+         }
+         component.set("v.contactListSelected", tempselect);
+         }
+           if(selectedRows.length==0 && tempselect != 'undefined'){
+         component.set("v.contactListSelected", tempselect);
+         }
+            console.log('myMapfinal'+JSON.stringify(tempselect));
+            }
+            else{
+              component.set("v.contactListSelected", selectedRows);
+            }
+    },
+    
     /**
      * 
      * @author Salimata NGOM

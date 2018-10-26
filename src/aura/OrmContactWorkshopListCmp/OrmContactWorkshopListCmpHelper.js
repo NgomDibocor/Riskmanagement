@@ -246,11 +246,12 @@
         //console.log('page'+current+' '+JSON.stringify(selectedRows));
       // console.log("Next selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));
        var myMap=component.get("v.selectedContactMap");
+       console.log('myMap'+JSON.stringify(myMap));
        var lengthMap=Object.keys(myMap).length;  
        for(var i=0;i<= lengthMap;i++){
     var page = 'page'+i;
     var contentMap=component.get("v.selectedContactMap")[page];
-               // console.log(page+' '+JSON.stringify(component.get("v.selectedContactMap")[page]));
+             //  console.log(page+' '+JSON.stringify(component.get("v.selectedContactMap")[page]));
                if(typeof contentMap != 'undefined' && contentMap){
                   for(var j=0;j<contentMap.length;j++){
              tempselect.push(contentMap[j]);
@@ -258,7 +259,7 @@
              }
 
        }
-       console.log("Next selectedContactMap "+JSON.stringify(tempselect)); 
+       //console.log("Next selectedContactMap "+JSON.stringify(tempselect)); 
        component.set("v.totalSelectedContact",tempselect);
        //fire event for refresh contactListSelected
        var evnt=$A.get("e.c:OrmRefreshContactSelectedEvnt");
@@ -337,7 +338,7 @@
              }
 
        }
-        console.log("Previous selectedContactMap "+JSON.stringify(tempselect));
+      // console.log("Previous selectedContactMap "+JSON.stringify(tempselect));
         component.set("v.totalSelectedContact",tempselect);
          //fire event for refresh contactListSelected
        var evnt=$A.get("e.c:OrmRefreshContactSelectedEvnt");

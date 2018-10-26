@@ -226,9 +226,7 @@
         var dTable = component.find("datatableList");
         var selectedRows = dTable.getSelectedRows();
         var pgName = "page" + current;
-        if (selectedRows.length != 0) {
-            component.get("v.SelectedAccount")[pgName] = selectedRows;
-        }
+        component.get("v.SelectedAccount")[pgName] = selectedRows;
         current = current + 1;
         pgName = "page" + current;
         var selectedRows = component.get("v.SelectedAccount")[pgName];
@@ -270,9 +268,7 @@
         var dTable = component.find("datatableList");
         var selectedRows = dTable.getSelectedRows();
         var pgName = "page" + current;
-        if (selectedRows.length != 0) {
-            component.get("v.SelectedAccount")[pgName] = selectedRows;
-        }
+        component.get("v.SelectedAccount")[pgName] = selectedRows;
         current = current - 1;
         pgName = "page" + current;
         var selectedRows = component.get("v.SelectedAccount")[pgName];

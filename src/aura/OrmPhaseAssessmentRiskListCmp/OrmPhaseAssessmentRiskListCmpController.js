@@ -27,12 +27,8 @@
     },
 
     cancelDeletePhases: function(component, event, helper) {
+    component.set("v.isEmptyMap", true);
         component.set('v.openModalConfirmDeletion', false);
-        var current = component.get("v.currentPage");
-        var dTable = component.find("datatableList");
-        var selectedRows = dTable.getSelectedRows();
-        console.log("selected", selectedRows.length);
-         component.set("v.SelectedAccount", []);
     },
     filter: function(component, event, helper) {
 
@@ -60,30 +56,7 @@
         }
     },
     selectCauses: function(component, event, helper) {
-        //        var current = component.get("v.currentPage");
-        //        var dTable = component.find("datatableList");
-        //        var selectedRows = dTable.getSelectedRows();
-        //        var pgName = "page" + current;
-        //        component.get("v.SelectedAccount")[pgName] = selectedRows;
-         var selectedRows = event.getParam('selectedRows'); 
-         var current = component.get("v.currentPage");
-         var selectedRows = event.getParam('selectedRows');   
-         var setRows = [];
-        selectedRows.forEach(function(selectedRow){
-            setRows.push(selectedRow.Id);
-        })
-        console.log(JSON.stringify(component.get("v.ListData")));
-        console.log(setRows);
-        	var listDatas = component.get("v.ListData");
-        		for (var i = 0; i < listDatas.length; i++) {
-                    var row = listDatas[i].Id;
-                    console.log(JSON.stringify(row));
-                    var sels = setRows;
-                    sels.forEach(function(sel) {
-                   listDatas = listDatas.filter(row => row != sel);
-                });
-                }
-                console.log(JSON.stringify(listDatas));
+       
     },
     openModalDeletePhase: function(component, event, helper) {
         var current = component.get("v.currentPage");
@@ -94,8 +67,14 @@
             var pgName = "page" + current;
             component.get("v.SelectedAccount")[pgName] = selectedRows;
         }
+        else{
+           var pgName = "page" + current;
+           component.get("v.SelectedAccount")[pgName] = selectedRows;
+           console.log("***View else lenght =0*** ", Object(component.get("v.SelectedAccount")));
+        }
         var myMap = component.get("v.SelectedAccount");
         console.log("selectedRows in delete", Object.keys(myMap).length);
+        helper.checkIfMapContentIsEmpty(component, event, myMap);
         if (Object.keys(myMap).length == 0) {
             var toast = $A.get('e.force:showToast');
             toast.setParams({
@@ -104,7 +83,16 @@
                 'mode': 'dismissible'
             });
             toast.fire()
-        } else {
+        }  else if(component.get("v.isEmptyMap")){
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        }
+        else {
             component.set("v.openModalConfirmDeletion", true);
         }
     },
@@ -131,7 +119,9 @@
             //store state of response
             var state = response.getState();
             if (state === "SUCCESS") {
-                component.set("v.SelectedAccount", []);
+                myMap = {};
+                component.set("v.SelectedAccount", myMap);
+                component.set("v.isEmptyMap", true);
                 component.set('v.openModalConfirmDeletion', false);
                 helper.refresh(component, event);
             }

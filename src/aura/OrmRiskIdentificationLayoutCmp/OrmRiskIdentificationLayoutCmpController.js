@@ -62,8 +62,8 @@
             var state = response.getState();
             if (state === 'SUCCESS' && component.isValid()) {
                 component.set('v.allCategorieRisk', response.getReturnValue());
-                console.log(response.getReturnValue()[0]);
                 component.set('v.categorieRisk', response.getReturnValue()[0]);
+                component.set('v.categoriePopupOthersRisk', response.getReturnValue()[1]);
                 var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
                 evtSpinner.fire();
 
@@ -327,7 +327,7 @@
             editable:'true',
             iconName: 'standard:opportunity'
         }]);
-        helper.fetchlistRiskModal(component, event);
+        helper.fetchlistRisks(component, event);
     },
     /*    
      * CreatedBy @David Diop
@@ -339,7 +339,7 @@
         var isItemValid = true;
         if ($A.util.isEmpty(categorieRiskValue)) {
             isItemValid = false;
-            helper.fetchlistRiskModal(component, event);
+            helper.fetchlistRisks(component, event);
         }
         if (isItemValid) {
             var action = component.get('c.findAll');
@@ -349,7 +349,6 @@
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (state == "SUCCESS") {
-
                     var rows = response.getReturnValue();
                     for (var i = 0; i < rows.length; i++) {
                         var row = rows[i];
@@ -358,10 +357,8 @@
                     assessmentRisks.forEach(function(assessmentRisk) {
                         rows = rows.filter(row => row.Id !== assessmentRisk.orm_Risk__c);
                     });
-//                    component.set('v.allRiskList', rows);
-                    
                     component.set('v.initialData', rows);
-                component.set('v.items',rows);
+                    component.set('v.items',rows);
                    // start pagination
                     var pageSize = component.get("v.pageSizeBis");
 	                // get size of all the records and then hold into an attribute "totalRecords"
@@ -385,7 +382,6 @@
 	                component.set('v.PaginationList', PaginationList);
                 //end pagination
                     
-                    
                     if (rows.length == 0) {
                         var toast = $A.get('e.force:showToast');
                         toast.setParams({
@@ -397,7 +393,7 @@
                     }
                     component.find("categorieRiskList").set("v.value", event.getSource().get("v.value"));
                 } else {
-                    helper.fetchlistRiskModal(component, event);
+                    helper.fetchlistRisks(component, event);
                 }
             });
             $A.enqueueAction(action);
@@ -408,12 +404,11 @@
      *
      */
     filterByRisk: function(component, event, helper) {
-        //        var data = component.get("v.allRiskListTemp");
         var data = component.get('v.initialData');
         var term = component.get("v.filterRisk");
         var regex;
         if ($A.util.isEmpty(term)) {
-            helper.fetchlistRiskModal(component, event);
+            helper.fetchlistRisks(component, event);
 
         } else {
             term = "^" + term;
@@ -424,7 +419,6 @@
         } catch (e) {
             alert(e);
         }
-        //        component.set("v.allRiskList", data);
 
         component.set("v.filterPagination", data);
         component.set("v.items", component.get("v.filterPagination"));
@@ -433,7 +427,7 @@
     closeModal: function(component, event, helper) {
         // for Hide/Close Model,set the "isOpen" attribute to "False"
         component.set("v.isOpen", false);
-        helper.fetchPicklist(component, event);
+        helper.filterByCategorieRisk(component, event);
     },
     handleRowAction: function(component, event, helper) {
         var row = event.getParam('row');

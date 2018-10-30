@@ -276,8 +276,8 @@
 			} catch (e) {
 				console.log(e);
 			}
-
-			component.set("v.contactsSearch", data);
+			
+			component.set("v.contactsSearch",data);
 			var form = component.find('lookupForm');
 			$A.util.addClass(form, 'slds-is-open');
 		}

@@ -253,6 +253,9 @@
 
 	contactSelected : function(cmp, event) {
 		var contacts = cmp.get('v.contactsSearch');
+		contacts[event.target.id].search=true;
+		console.log('contacts'+JSON.stringify(contacts[event.target.id]));
+		
 		var contact = cmp.get('v.contactListSelected');
 		contact.push(contacts[event.target.id]);
 		cmp.set('v.contactListSelected', contact);

@@ -1,9 +1,5 @@
 ({
-    initialiseAssessment: function(component, event, helper) {
-        component.set("v.idAssessment", event.getParam('idAssessment'));
-        var evtHideSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-        evtHideSpinner.fire();
-    },
+    
     ormRiskCreatedEvent: function(component, event, helper) {
         component.set("v.categorieRisk", event.getParam('riskCategoriy'));
         helper.fetchPicklist(component, event);

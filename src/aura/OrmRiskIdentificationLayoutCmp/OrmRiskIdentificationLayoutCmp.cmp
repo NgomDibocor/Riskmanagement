@@ -2,7 +2,7 @@
     <aura:registerEvent name="OrmOpenNewRiskCmpEvt" type="c:OrmOpenNewRiskCmpEvt" description="" />
     <aura:registerEvent name="OrmActiveRiskAnalyeCmpEvt" type="c:OrmActiveRiskAnalyeCmpEvt" description="" />
     <aura:handler event="c:OrmRiskCreatedEvt" action="{!c.ormRiskCreatedEvent}" />
-    <aura:handler event="c:OrmRiskIdentificationClickedEvt" action="{!c.initialiseAssessment}" />
+    <!--<aura:handler event="c:OrmRiskIdentificationClickedEvt" action="{!c.initialiseAssessment}" />  -->
     <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
     <aura:attribute name="closeFieldDescription" type="boolean" default="true" />

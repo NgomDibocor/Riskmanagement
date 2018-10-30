@@ -26,7 +26,7 @@ public with sharing class OrmImpactController {
 	 * @description: find  impacts 
 	*/
 	@AuraEnabled
-	public static List<Macro> getImpact(String idImpact){
+	public static Macro getImpact(String idImpact){
 		return [SELECT Id, Name, Description,orm_categorie_impact__c FROM Macro WHERE Id =: idImpact AND 
 					RecordTypeId =: OrmImpactController.getImpactRecordTypeId()];
 	

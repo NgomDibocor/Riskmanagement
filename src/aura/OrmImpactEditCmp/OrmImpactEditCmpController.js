@@ -3,7 +3,7 @@
      *  @date: Creation: 28/08/2018
      *  @description: method for opening the component and initilizing its attributes */
     openOrmImpactEditCmp: function(component, event, helper) {
-        component.set("v.isOpen", true);
+        
         component.set('v.idImpact', event.getParam('idImpact'));
         var idImpact = component.get("v.idImpact");
         var action = component.get('c.getSelectOptions');
@@ -24,7 +24,8 @@
                     var state = response.getState();
                     if (state === 'SUCCESS') {
                         component.set('v.impactData', response.getReturnValue());
-                        console.log(JSON.stringify(component.get("v.impactData")));
+                        console.log("impactData",JSON.stringify(component.get("v.impactData")));
+                        component.set("v.isOpen", true);
                         
                     } else {
                         alert($A.get('$Label.c.orm_not_found'));

@@ -159,9 +159,15 @@
 											component
 											.get(
 											"v.contactListTemp")
-											.forEach(function(contact) {
-														component.get("v.contactWorkshopList").forEach(
-																		function(contactworkshop) {
+											.forEach(
+													function(
+															contact) {
+														component
+														.get(
+																"v.contactWorkshopList")
+																.forEach(
+																		function(
+																				contactworkshop) {
 																			if (contactworkshop.orm_contact__c == contact.Id) {
 																				if (contactworkshop.orm_notification__c == true) {
 																					contact.orm_notification__c = $A
@@ -171,42 +177,78 @@
 																		});
 
 													});
-											//component.set("v.contactList",component.get("v.contactListTemp"));
+											// component.set("v.contactList",component.get("v.contactListTemp"));
 											// start pagination
-    				 component.set('v.items',component.get("v.contactListTemp"));
-                    var pageSize = component.get("v.pageSize");
-	                // get size of all the records and then hold into an attribute "totalRecords"
-	                component.set("v.totalRecords", component.get("v.items").length);
-	                // set star as 0
-	                component.set("v.startPage",0);
-	                var totalRecords = component.get("v.items").length;
-				    //var div = Math.trunc(totalRecords / pageSize);
-	                if(totalRecords === pageSize){
-	                  component.set("v.hideNext", true);
-	                  component.set("v.endPage", pageSize - 1);
-	                }else{
-	                  component.set("v.hideNext", false);
-	                  component.set("v.endPage", pageSize - 1);
-	                }
-	                var PaginationList = [];
-	                for(var i=0; i< pageSize; i++){
-	                    if(component.get("v.items").length> i)
-	                        PaginationList.push(component.get("v.items")[i]);    
-	                }
-	                component.set('v.contactList', PaginationList);
-                //end pagination
-    
+											component
+											.set(
+													'v.items',
+													component
+													.get("v.contactListTemp"));
+											var pageSize = component
+											.get("v.pageSize");
+											// get size of all
+											// the records and
+											// then hold into an
+											// attribute
+											// "totalRecords"
+											component
+											.set(
+													"v.totalRecords",
+													component
+													.get("v.items").length);
+											// set star as 0
+											component
+											.set(
+													"v.startPage",
+													0);
+											var totalRecords = component
+											.get("v.items").length;
+											// var div =
+											// Math.trunc(totalRecords
+											// / pageSize);
+											if (totalRecords === pageSize) {
+												component
+												.set(
+														"v.hideNext",
+														true);
+												component
+												.set(
+														"v.endPage",
+														pageSize - 1);
+											} else {
+												component
+												.set(
+														"v.hideNext",
+														false);
+												component
+												.set(
+														"v.endPage",
+														pageSize - 1);
+											}
+											var PaginationList = [];
+											for (var i = 0; i < pageSize; i++) {
+												if (component
+														.get("v.items").length > i)
+													PaginationList
+													.push(component
+															.get("v.items")[i]);
+											}
+											component
+											.set(
+													'v.contactList',
+													PaginationList);
+											// end pagination
+
 										}
 									});
 							$A.enqueueAction(action1);
-					
-							
+
 						}
 					}
 				});
 		$A.enqueueAction(action);
-		component.set("v.contactListSelected",[]);
-		component.set("v.selectedRows",[]);
+		component.set("v.contactListSelected", []);
+		component.set("v.selectedRows", []);
 	},
 
 	contactSelected : function(cmp, event) {
@@ -219,192 +261,154 @@
 		$A.util.removeClass(form, 'slds-is-open');
 		cmp.set('v.key', '');
 	},
-	 /**
-     *
-     * @author Salimata NGOM
-     * @version 1.0
-     * @description Method to go to the next page
-     * @history 
-     * 2018-10-15 : Salimata NGOM - Implementation
-     */
-	 next : function(component, event){
-	        // component.set("v.contactListSelected", tempselect);
-		 	 var current = component.get("v.currentPage");    
-            var dTable = component.find("idworkshopcontact");
-             var selectedRows = dTable.getSelectedRows();
-           var tempselect=[];
-            // tempselect= component.get("v.totalSelectedContact");
-            // tempselect.push(selectedRows);
-         //console.log("Next selectedContactMap "+JSON.stringify(tempselect));  
-        //   component.set("v.totalSelectedContact",tempselect);
-             var pgName = "page" + current;
-       component.get("v.selectedContactMap")[pgName] = selectedRows;
-        current = current +1;
-        pgName = "page" + current;
-        var selectedRows = component.get("v.selectedContactMap")[pgName];
-        component.set("v.currentPage",current);
-        //console.log('page'+current+' '+JSON.stringify(selectedRows));
-      // console.log("Next selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));
-       var myMap=component.get("v.selectedContactMap");
-       console.log('myMap'+JSON.stringify(myMap));
-       var lengthMap=Object.keys(myMap).length;  
-       for(var i=0;i<= lengthMap;i++){
-    var page = 'page'+i;
-    var contentMap=component.get("v.selectedContactMap")[page];
-             //  console.log(page+' '+JSON.stringify(component.get("v.selectedContactMap")[page]));
-               if(typeof contentMap != 'undefined' && contentMap){
-                  for(var j=0;j<contentMap.length;j++){
-             tempselect.push(contentMap[j]);
-             }
-             }
-
-       }
-       //console.log("Next selectedContactMap "+JSON.stringify(tempselect)); 
-       component.set("v.totalSelectedContact",tempselect);
-       //fire event for refresh contactListSelected
-       var evnt=$A.get("e.c:OrmRefreshContactSelectedEvnt");
-       evnt.setParams({"contactSelected":tempselect});
-       evnt.fire();
-       
-      // console.log("Next Tempselect "+JSON.stringify(tempselect));  
-	        var sObjectList = component.get("v.items");
-	        var end = component.get("v.endPage");
-	        var start = component.get("v.startPage");
-	        var pageSize = component.get("v.pageSize");
-	        var Paginationlist = [];
-	        var counter = 0;
-	        for(var i=end+1; i<end+pageSize+1; i++){
-	            if(sObjectList.length > i){
-	                Paginationlist.push(sObjectList[i]);
-	             //  console.log("sObjectList[i]"+sObjectList[i].Name)
-	            }
-	            counter ++ ;
-	        }
-	        start = start + counter;
-	        end = end + counter;
-	        var valueOfEnd = end +1;
-	        if( valueOfEnd == sObjectList.length){
-	           component.set("v.hideNext", true);
-	        }
-	        component.set("v.startPage",start);
-	        component.set("v.endPage",end);
-	        component.set('v.contactList', Paginationlist);
-	        if (typeof selectedRows != 'undefined' && selectedRows) {
-            var selectedRowsIds = [];
-            for(var i=0;i<selectedRows.length;i++){
-                selectedRowsIds.push(selectedRows[i].Id);  
-            }         
-            var dTable = component.find("idworkshopcontact");
-            dTable.set("v.selectedRows", selectedRowsIds);   
-        }
-      
-	    },
 	/**
-     *
-     * @author Salimata NGOM
-     * @version 1.0
-     * @description Method to go to the previous page
-     * @history 
-     * 2018-10-15 : Salimata NGOM - Implementation
-     */
-	     previous : function(component, event){
-	     //page courante
-	    var current = component.get("v.currentPage");
-	    //recupere les rows selectionnés sur la page courante
-        var dTable = component.find("idworkshopcontact");
-        var selectedRows = dTable.getSelectedRows();
-        var pgName = "page" + current;
-        //on stocke les rows de la page courante dans seletedContactMap
-        component.get("v.selectedContactMap")[pgName] = selectedRows;
-        //on se mets à la page precedente
-        current = current - 1; 
-        pgName = "page" + current;
-        var tempselect=[];
-        //on stocke les éléments de la page precedente dans selectedRows
-        var selectedRows = component.get("v.selectedContactMap")[pgName];
-        component.set("v.currentPage",current);
-       // console.log("Prev selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));  
-        var myMap=component.get("v.selectedContactMap");
-       var lengthMap=Object.keys(myMap).length;  
-       for(var i=0;i<=lengthMap;i++){
-        var page = 'page'+i;
-              //  console.log(page+' '+JSON.stringify(component.get("v.selectedContactMap")[page]));
-            // tempselect.push(component.get("v.selectedContactMap")[page]);
-              var contentMap=component.get("v.selectedContactMap")[page];
-                   if(typeof contentMap != 'undefined' && contentMap){
-                   for(var j=0;j<contentMap.length;j++){
-             tempselect.push(contentMap[j]);
-             }
-             }
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description Method to go to the next page
+	 * @history 2018-10-15 : Salimata NGOM - Implementation
+	 */
+	next : function(component, event) {
+		var current = component.get("v.currentPage");
+		var dTable = component.find("idworkshopcontact");
+		var selectedRows = dTable.getSelectedRows();
+		var tempselect = [];
+		var pgName = "page" + current;
+		component.get("v.selectedContactMap")[pgName] = selectedRows;
+		current = current + 1;
+		pgName = "page" + current;
+		var selectedRows = component.get("v.selectedContactMap")[pgName];
+		component.set("v.currentPage", current);
+		var myMap = component.get("v.selectedContactMap");
+		console.log('myMapNext' + JSON.stringify(myMap));
+		var lengthMap = Object.keys(myMap).length;
+		for (var i = 0; i <= lengthMap; i++) {
+			var page = 'page' + i;
+			var contentMap = component.get("v.selectedContactMap")[page];
+			if (typeof contentMap != 'undefined' && contentMap) {
+				for (var j = 0; j < contentMap.length; j++) {
+					tempselect.push(contentMap[j]);
+				}
+			}
 
-       }
-      // console.log("Previous selectedContactMap "+JSON.stringify(tempselect));
-        component.set("v.totalSelectedContact",tempselect);
-         //fire event for refresh contactListSelected
-       var evnt=$A.get("e.c:OrmRefreshContactSelectedEvnt");
-       evnt.setParams({"contactSelected":tempselect});
-       evnt.fire();
-	        var sObjectList = component.get("v.items");
-	        var end = component.get("v.endPage");
-	        var start = component.get("v.startPage");
-	        var pageSize = component.get("v.pageSize");
-	        var Paginationlist = [];
-	        var counter = 0;
-	        for(var i= start-pageSize; i < start ; i++){
-	            if(i > -1){
-	                Paginationlist.push(sObjectList[i]);
-	                counter ++;
-	            }else{
-	                start++;
-	            }
-	        }
-	        start = start - counter;
-	        end = end - counter;
-	        var lastValueOfEnd = end - counter;
-	        if( lastValueOfEnd < sObjectList.length){
-	           component.set("v.hideNext", false);
-	        }
-	        component.set("v.startPage",start);
-	        component.set("v.endPage",end);
-	        component.set('v.contactList', Paginationlist);
-	         if (typeof selectedRows != 'undefined' && selectedRows) {
-            var selectedRowsIds = [];
-            for(var i=0;i<selectedRows.length;i++){
-                selectedRowsIds.push(selectedRows[i].Id);  
-            }         
-            var dTable = component.find("idworkshopcontact");
-            dTable.set("v.selectedRows", selectedRowsIds);
-        }
-	    },
-	    
-	    totalSelected : function(component,event){
-	    var current = component.get("v.currentPage");
-        var dTable = component.find("idworkshopcontact");
-        var selectedRows = dTable.getSelectedRows();
-        var pgName = "page" + current;
-        component.get("v.selectedContactMap")[pgName] = selectedRows;
-        current = current - 1; 
-        pgName = "page" + current;
-        var tempselect=[];
-        var selectedRows = component.get("v.selectedContactMap")[pgName];
-        component.set("v.currentPage",current);
-       // console.log("Prev selectedContactMap "+JSON.stringify(component.get("v.selectedContactMap")));  
-        var myMap=component.get("v.selectedContactMap");
-       var lengthMap=Object.keys(myMap).length;  
-       for(var i=0;i<=lengthMap;i++){
-        var page = 'page'+i;
-              //  console.log(page+' '+JSON.stringify(component.get("v.selectedContactMap")[page]));
-            // tempselect.push(component.get("v.selectedContactMap")[page]);
-              var contentMap=component.get("v.selectedContactMap")[page];
-                   if(typeof contentMap != 'undefined' && contentMap){
-                   for(var j=0;j<contentMap.length;j++){
-             tempselect.push(contentMap[j]);
-             }
-             }
+		}
+		// console.log("Next selectedContactMap "+JSON.stringify(tempselect));
+		component.set("v.totalSelectedContact", tempselect);
+		// fire event for refresh contactListSelected
+		var evnt = $A.get("e.c:OrmRefreshContactSelectedEvnt");
+		evnt.setParams({
+			"contactSelected" : tempselect
+		});
+		evnt.fire();
 
-       }
-       console.log('helper checked'+JSON.stringify(tempselect));
-       component.set("v.totalSelectedContactTemp",tempselect);
-	    }
+		// console.log("Next Tempselect "+JSON.stringify(tempselect));
+		var sObjectList = component.get("v.items");
+		var end = component.get("v.endPage");
+		var start = component.get("v.startPage");
+		var pageSize = component.get("v.pageSize");
+		var Paginationlist = [];
+		var counter = 0;
+		for (var i = end + 1; i < end + pageSize + 1; i++) {
+			if (sObjectList.length > i) {
+				Paginationlist.push(sObjectList[i]);
+			}
+			counter++;
+		}
+		start = start + counter;
+		end = end + counter;
+		var valueOfEnd = end + 1;
+		if (valueOfEnd == sObjectList.length) {
+			component.set("v.hideNext", true);
+		}
+		component.set("v.startPage", start);
+		component.set("v.endPage", end);
+		component.set('v.contactList', Paginationlist);
+		if (typeof selectedRows != 'undefined' && selectedRows) {
+			var selectedRowsIds = [];
+			for (var i = 0; i < selectedRows.length; i++) {
+				selectedRowsIds.push(selectedRows[i].Id);
+			}
+			var dTable = component.find("idworkshopcontact");
+			dTable.set("v.selectedRows", selectedRowsIds);
+		}
+		component.set("v.contactListSelected", tempselect);
+	},
+	/**
+	 * 
+	 * @author Salimata NGOM
+	 * @version 1.0
+	 * @description Method to go to the previous page
+	 * @history 2018-10-15 : Salimata NGOM - Implementation
+	 */
+	previous : function(component, event) {
+		var current = component.get("v.currentPage");
+		var dTable = component.find("idworkshopcontact");
+		var selectedRows = dTable.getSelectedRows();
+		console.log('previous selectedRows' + JSON.stringify(selectedRows));
+		var pgName = "page" + current;
+		component.get("v.selectedContactMap")[pgName] = selectedRows;
+		current = current - 1;
+		pgName = "page" + current;
+		var tempselect = [];
+		var selectedRows = component.get("v.selectedContactMap")[pgName];
+		component.set("v.currentPage", current);
+		console.log("Prev selectedContactMap "
+				+ JSON.stringify(component.get("v.selectedContactMap")));
+		var myMap = component.get("v.selectedContactMap");
+		console.log('MyMapPrevious' + myMap);
+		var lengthMap = Object.keys(myMap).length;
+		for (var i = 0; i <= lengthMap; i++) {
+			var page = 'page' + i;
+			var contentMap = myMap[page];
+			if (typeof contentMap != 'undefined' && contentMap) {
+				for (var j = 0; j < contentMap.length; j++) {
+					tempselect.push(contentMap[j]);
+				}
+			}
+
+		}
+		console
+		.log("Previous selectedContactMap "
+				+ JSON.stringify(tempselect));
+		component.set("v.totalSelectedContact", tempselect);
+		// fire event for refresh contactListSelected
+		var evnt = $A.get("e.c:OrmRefreshContactSelectedEvnt");
+		evnt.setParams({
+			"contactSelected" : tempselect
+		});
+		evnt.fire();
+		var sObjectList = component.get("v.items");
+		var end = component.get("v.endPage");
+		var start = component.get("v.startPage");
+		var pageSize = component.get("v.pageSize");
+		var Paginationlist = [];
+		var counter = 0;
+		for (var i = start - pageSize; i < start; i++) {
+			if (i > -1) {
+				Paginationlist.push(sObjectList[i]);
+				counter++;
+			} else {
+				start++;
+			}
+		}
+		start = start - counter;
+		end = end - counter;
+		var lastValueOfEnd = end - counter;
+		if (lastValueOfEnd < sObjectList.length) {
+			component.set("v.hideNext", false);
+		}
+		component.set("v.startPage", start);
+		component.set("v.endPage", end);
+		component.set('v.contactList', Paginationlist);
+		if (typeof selectedRows != 'undefined' && selectedRows) {
+			var selectedRowsIds = [];
+			for (var i = 0; i < selectedRows.length; i++) {
+				selectedRowsIds.push(selectedRows[i].Id);
+			}
+			var dTable = component.find("idworkshopcontact");
+			dTable.set("v.selectedRows", selectedRowsIds);
+		}
+		component.set("v.contactListSelected", tempselect);
+	}
 
 })

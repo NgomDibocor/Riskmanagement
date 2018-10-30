@@ -53,7 +53,7 @@ public with sharing class OrmImpactController {
 	*/
     @AuraEnabled
     public static Macro updateImpact( Macro impact) {
-        update impact;
+        upsert impact;
         return impact;
     }
 	/**
@@ -61,7 +61,7 @@ public with sharing class OrmImpactController {
 	 * @date: Creation: 28/08/2018
 	 * @description: method for update records after inline editing
 	*/
-    @AuraEnabled
+    /*@AuraEnabled
     public static List <Macro> updateImpacts(List<Macro> impacts) {
         update impacts;
         return impacts;

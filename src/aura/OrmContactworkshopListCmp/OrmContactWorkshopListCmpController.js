@@ -12,7 +12,7 @@
 		component.set('v.columns', [{
 			label: $A.get("$Label.c.orm_name_label"),
 			fieldName: 'Name',
-			type: 'text',editable:'true'
+			type: 'text'
 		}, {
 			label: $A.get("$Label.c.orm_email_contact"),
 			fieldName: 'Email',

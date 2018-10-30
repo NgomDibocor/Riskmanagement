@@ -4,6 +4,7 @@
      *
      */
     InstantantiateRisk: function(component, event, helper) {
+        component.set("v.showBtnMatricePicture", false);
         var riskAssessmentId = event.getParam('riskAssessmentId');
 	    component.set("v.assessmentRiskId" ,riskAssessmentId);
         var idAsssessmentRisk = component.get("v.assessmentRiskId");

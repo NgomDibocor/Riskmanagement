@@ -38,17 +38,19 @@
 	                        PaginationList.push(component.get("v.items")[i]);    
 	                }
 	                component.set('v.PaginationList', PaginationList);
-                //end pagination
-                var risk = component.get('v.PaginationList');
-                if (risk == null) {
-                    var toast = $A.get('e.force:showToast');
-                    toast.setParams({
-                        'message': 'Check if you Have Created the Assessment',
-                        'type': 'warning',
-                        'mode': 'dismissible'
-                    });
-                    toast.fire();
-                }
+                    //end pagination
+	                var risk = component.get('v.PaginationList');
+	                if(risk == null) {
+	                    var toast = $A.get('e.force:showToast');
+	                    toast.setParams({
+	                        'message': 'Check if you Have Created the Assessment',
+	                        'type': 'warning',
+	                        'mode': 'dismissible'
+	                    });
+	                    toast.fire();
+	                }
+	                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
+                    evtSpinner.fire();
                 
             } else {
                 alert($A.get('$Label.c.orm_not_found'));

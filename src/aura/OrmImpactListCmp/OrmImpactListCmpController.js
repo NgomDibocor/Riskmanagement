@@ -235,9 +235,11 @@
     },
      handleRowAction: function(component, event, helper) {
         var row = event.getParam('row');
+        var assessmentRiskId = component.get("v.idAssessmentRisk");
         var evt = $A.get("e.c:OrmEditImpactClickedEvt");
         evt.setParams({
-            "idImpact": row.Id
+            "idImpact": row.Id,
+            "assessmentRiskId":assessmentRiskId
         });
 		evt.fire();
 

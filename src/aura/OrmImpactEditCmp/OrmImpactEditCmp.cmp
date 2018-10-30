@@ -2,6 +2,7 @@
     <aura:handler action="{!c.openOrmImpactEditCmp}" event="c:OrmEditImpactClickedEvt" />
     <aura:registerEvent name="OrmImpactCreatedEvt" type="c:OrmImpactCreatedEvt" />
     <aura:attribute name="idImpact" type="string" />
+    <aura:attribute name="idAssessmentRisk" type="string" />
     <aura:attribute name="categorieImpact" type="String" default="valeur 1" />
     <aura:attribute name="allCategorieImpact" type="String[]" />
     <aura:attribute name="objInfo" type="Macro" default="{sobjectType : 'Macro'}" />
@@ -15,7 +16,7 @@
                     <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.c.orm_close_button_title}" onclick="{!c.closeModal}">
 							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
-                    <h1 id="header99" class="slds-text-heading--medium">{!$Label.c.new_title_label + ' ' + $Label.c.orm_impact}</h1>
+                    <h1 id="header99" class="slds-text-heading--medium">{!$Label.c.orm_edit_label + ' ' + $Label.c.orm_impact}</h1>
                 </div>
                 <!--###### MODAL BOX BODY Part Start From Here ######-->
                 <div class="slds-modal__content slds-p-around--medium">
@@ -53,8 +54,8 @@
                 <!--###### MODAL BOX FOOTER Part Start From Here ######-->
                 <div class="slds-modal__footer">
                     <button class="slds-button slds-button--neutral" onclick="{!c.closeModal}">{!$Label.c.orm_cancel_button_title}</button>
-                    <button class="slds-button slds-button--brand" onclick="{!c.createItem}">
-							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.orm_save_button_title}
+                    <button class="slds-button slds-button--brand" onclick="{!c.updateImpact}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.orm_update_button_title}
 						</button>
                 </div>
             </div>

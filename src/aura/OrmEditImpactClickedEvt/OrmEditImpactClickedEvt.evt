@@ -1,3 +1,4 @@
 <aura:event type="APPLICATION" description="Event template" >
 <aura:attribute name="idImpact" type="string" />
+<aura:attribute name="assessmentRiskId" type="string" />
 </aura:event>

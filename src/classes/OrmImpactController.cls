@@ -46,7 +46,16 @@ public with sharing class OrmImpactController {
         return item;
         
     }
-    
+    /**
+	 * @author: David
+	 * @date: Creation: 28/08/2018
+	 * @description: method for update records after inline editing
+	*/
+    @AuraEnabled
+    public static Macro updateImpact( Macro impact) {
+        update impact;
+        return impact;
+    }
 	/**
 	 * @author: David
 	 * @date: Creation: 28/08/2018

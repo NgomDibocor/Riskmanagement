@@ -14,7 +14,7 @@
 																			'orm_assessmentRisk__c': ''
 																		}" />
 	<aura:attribute name="columns" type="List" />
-	c
+	<aura:attribute name="isEmptyMap" type="boolean" default="true" />
     <div style="margin-bottom:20px;margin-top: 40px;">
         <h1 class="titlePhase"><span class="dot">{!$Label.c.orm_phase}</span></h1>
     </div>

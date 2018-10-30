@@ -145,7 +145,7 @@
         var isItemValid = true;
         if ($A.util.isEmpty(categorieRiskValue)) {
             isItemValid = false;
-            helper.fetchPicklist(component, event);
+            this.fetchPicklist(component, event);
         }
         if (isItemValid) {
             var action = component.get('c.findAllAssessmentRiskCategory');
@@ -191,7 +191,7 @@
                     component.set('v.PaginationList', PaginationList);
                     //end pagination
                 } else {
-                    helper.fetchPicklist(component, event);
+                    this.fetchPicklist(component, event);
                 }
             });
             $A.enqueueAction(action);

@@ -95,11 +95,6 @@
         evt.fire();
     },
     selectCauses: function(component, event, helper) {
-        var current = component.get("v.currentPage");
-        var dTable = component.find("datatableList");
-        var selectedRows = dTable.getSelectedRows();
-        var pgName = "page" + current;
-        component.get("v.SelectedItem")[pgName] = selectedRows;
     },
     openModalDeleteAssumption: function(component, event, helper) {
         var current = component.get("v.currentPage");

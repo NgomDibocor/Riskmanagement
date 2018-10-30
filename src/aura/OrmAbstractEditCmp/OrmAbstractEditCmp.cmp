@@ -4,5 +4,6 @@
     <aura:method name="openModel" description="" />
     <aura:method name="closeModel" description="" />
     
+        {!v.body}
 	
 </aura:component>

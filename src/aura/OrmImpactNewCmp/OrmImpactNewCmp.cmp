@@ -2,7 +2,7 @@
 	<aura:handler action="{!c.openOrmImpactNewCmp}" event="c:OrmNewImpactClickedEvt" />
 	<aura:registerEvent name="OrmImpactCreatedEvt" type="c:OrmImpactCreatedEvt" />
 	<aura:attribute name="idAssessmentRisk" type="string" />
-	<aura:attribute name="categorieImpact" type="String" default="valeur 1" />
+	<aura:attribute name="categorieImpact" type="String"  />
 	<aura:attribute name="allCategorieImpact" type="String[]" />
 	<aura:attribute name="impact" type="Macro" default="{ 'sobjectType' : 'Macro',
 														  'Description' : '',

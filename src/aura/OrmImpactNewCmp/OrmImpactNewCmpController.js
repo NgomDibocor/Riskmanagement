@@ -12,6 +12,7 @@
             var state = response.getState();
             if(state === 'SUCCESS' && component.isValid()){
                 component.set('v.allCategorieImpact', response.getReturnValue());
+                component.set('v.categorieImpact',response.getReturnValue()[0]);
             } else {
                   var toast = $A.get('e.force:showToast');
                     	toast.setParams({

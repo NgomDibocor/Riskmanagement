@@ -3,7 +3,7 @@
      *  @date: Creation: 28/08/2018
      *  @description: method for opening the component and initilizing its attributes */
     openOrmImpactEditCmp: function(component, event, helper) {
-
+        component.set("v.isOpen", true);
         component.set('v.idImpact', event.getParam('idImpact'));
         component.set('v.idAssessmentRisk', event.getParam('assessmentRiskId'));
         var idImpact = component.get("v.idImpact");
@@ -26,7 +26,6 @@
                     if (state === 'SUCCESS') {
                         component.set('v.impactData', response.getReturnValue());
                         console.log("impactData", JSON.stringify(component.get("v.impactData")));
-                        component.set("v.isOpen", true);
 
                     } else {
                         alert($A.get('$Label.c.orm_not_found'));
@@ -53,22 +52,21 @@
      *  @date: Creation: 28/08/2018
      *  @description: method for update Impact */
     updateImpact: function(component, event, helper) {
-        var name = component.find('name').get('v.value');
-        var description = component.find('description').get('v.value');
+    component.set("v.isOpen", false);
         var categorieImpact = component.find('categorieImpact').get('v.value');
-        
         var newImpact = component.get('v.impactData');
-        newImpact.Name = name;
-        newImpact.Description = description;
+        console.log("newImpact:", newImpact)
         newImpact.orm_categorie_impact__c = categorieImpact;
         newImpact.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
-        var action = component.get('c.updateImpact');
-        action.setParams({
+        var actionUpdateImpact = component.get('c.updateImpact');
+        actionUpdateImpact.setParams({
             "impact": newImpact
         });
-        action.setCallback(this, function(response) {
+        actionUpdateImpact.setCallback(this, function(response) {
             if (response.getState() == 'SUCCESS') {
-                var impactData = response.getReturnValue();
+                console.log("response.getReturnValue()", response.getReturnValue())
+                component.set("v.isOpen", false);
+                /*var impactData = response.getReturnValue();
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
                     'message': $A.get('$Label.c.new_title_labels') + ' ' +
@@ -79,8 +77,7 @@
                 });
                 toast.fire();
                 var evt = $A.get("e.c:OrmImpactCreatedEvt");
-                evt.fire();
-                component.set("v.isOpen", false);
+                evt.fire();*/
             } else {
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
@@ -91,6 +88,6 @@
                 toast.fire();
             }
         });
-        $A.enqueueAction(action);
+        $A.enqueueAction(actionUpdateImpact);
     }
 })

@@ -20,6 +20,17 @@ public with sharing class OrmImpactController {
 					RecordTypeId =: OrmImpactController.getImpactRecordTypeId()];
 	
 	}
+	/**
+	 * @author: david
+	 * @date: Creation: 28/08/2018
+	 * @description: find  impacts 
+	*/
+	@AuraEnabled
+	public static List<Macro> getImpact(String idImpact){
+		return [SELECT Id, Name, Description,orm_categorie_impact__c FROM Macro WHERE Id =: idImpact AND 
+					RecordTypeId =: OrmImpactController.getImpactRecordTypeId()];
+	
+	}
 	 /*
     *David mignane diop
     *function of adding a new impact

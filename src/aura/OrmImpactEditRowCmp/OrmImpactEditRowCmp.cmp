@@ -1,4 +1,4 @@
-<aura:component controller="OrmImpactController">
+<aura:component controller="OrmImpactController" extends="c:ormAbstractListCmp">
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:attribute name="sNo" type="string" />
     <aura:attribute name="impact" type="sobject" default="{'sobjectType' : 'Macro',

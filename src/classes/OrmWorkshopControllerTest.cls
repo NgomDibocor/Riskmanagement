@@ -5,5 +5,9 @@
  */
 @isTest
 private class OrmWorkshopControllerTest {
+@isTest
+	static void findWorkshopByAssessment_TEST() {
+		
+	}
     
 }

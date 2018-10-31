@@ -26,14 +26,16 @@
             fieldName: 'Family',
             type: 'text'
         }, {
-            type: 'button',
+            type: 'button', 
             typeAttributes: {
                 label: $A.get("$Label.c.orm_files_label"),
                 name: $A.get("$Label.c.orm_files_label"),
                 title: $A.get("$Label.c.orm_files_label")
             }
         }, {
+        	label:'Action',
             type: 'button',
+            cellAttributes: { alignment: 'center'},
             typeAttributes: {
                 label: $A.get("$Label.c.orm_edit_button_title"),
                 name: $A.get("$Label.c.orm_edit_button_title"),

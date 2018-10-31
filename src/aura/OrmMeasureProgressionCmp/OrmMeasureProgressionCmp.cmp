@@ -39,7 +39,7 @@
            <center>
                 <div style="width:80%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                        <lightning:datatable aura:id="datatableList" columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"  onrowselection="{!c.selectCauses}" onrowaction="{! c.selectMeasure }"/>
+                        <lightning:datatable aura:id="datatableList" columns="{! v.columns }" class="table-test" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"   onrowselection="{!c.selectCauses}" onrowaction="{! c.selectMeasure }"/>
                         <div style="margin-top:20px; padding-bottom:10px;">
                             <lightning:buttonGroup>
                                 <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;

@@ -1,3 +1,79 @@
-<aura:component>
-	
+<aura:component extends="c:OrmAbstractNewCmp" controller="OrmMeasureController">
+	<aura:handler action="{!c.openOrmMeasureProgressionEditCmp}" event="c:OrmEditMeasureProgressClickedEvt" />
+	<aura:registerEvent name="OrmMeasureProgressionCreatedEvt" type="c:OrmMeasureProgressionCreatedEvt" />
+	<aura:attribute name="idMeasure" type="string" />
+	<aura:attribute name="measureProgressionId" type="string" />
+	<aura:attribute name="allStatusMeasure" type="String[]" />
+	<aura:attribute name="objInfo" type="Product2" default="{sobjectType : 'Product2'}" />
+	<aura:attribute name="measureProgressionData" type="Product2" />
+	<aura:if isTrue="{!v.isOpen}">
+			<!--###### MODAL BOX Start From Here ######-->    		
+			<div role="dialog" tabindex="-1" aria-labelledby="header99"
+				class="slds-modal slds-fade-in-open slds-modal_medium">
+				<div class="slds-modal__container form-style-6">
+					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+					<div class="slds-modal__header">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							title="{!$Label.c.orm_close_button_title}" onclick="{!c.closeModal}">
+							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+						</button>
+						<h1 id="header99" class="slds-text-heading--medium">{!$Label.c.orm_edit_label+ ' ' + $Label.c.orm_progressmeasure_label}</h1>
+					</div>
+					<!--###### MODAL BOX BODY Part Start From Here ######-->
+					<div class="slds-modal__content slds-p-around--medium">
+						<!-- CREATE NEW Activity FORM -->
+						<form class="slds-form--stacked styleAllText">
+							<div class="slds-grid slds-gutters">
+								<div class="slds-col">
+								    <div class="slds-form-element slds-is-required ">
+										<div class="slds-form-element__control ">
+                                            <lightning:input aura:id="dateProgression" type="date" label="{!$Label.c.orm_DateProgression_label}" 
+                                     			 value="{!v.measureProgressionData.orm_dateProgression__c}" />
+										</div>
+									</div>   
+									
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+                                            <lightning:input aura:id="poucentageProgression" type="number" labelClass="styleAllText" label="{!$Label.c.orm_PourcentageProgression_label}" 
+                                     			value="{!v.measureProgressionData.orm_poucentageProgression__c}" />
+										</div>
+									</div> 
+									<div class="slds-form-element slds-is-required">
+										<div class="slds-form-element__control">
+                                            <lightning:input aura:id="Description" type="text" label="{!$Label.c.orm_ProductDescription_label}" 
+                                     			value="{!v.measureProgressionData.Description}" />
+										</div>
+									</div>
+									<div class="slds-form-element ">
+										<div class="slds-form-element__control">
+											<lightning:select aura:id="status"  name="{!$Label.c.orm_statusProgress_label}" 
+											 label="{!$Label.c.orm_statusProgress_label}" class="select-auto-width"  onchange="{!c.onChangeStatus}">
+											 <ui:inputSelectOption text="{!v.measureProgressionData.Family}" label="{!v.measureProgressionData.Family}" />
+                                                <aura:iteration items="{!v.allStatusMeasure}" var="allStatusMeasure" >
+                                                    <option  text="{!allStatusMeasure}"  ></option>
+                                                </aura:iteration>
+                                            </lightning:select>
+										</div>
+									</div>         
+								</div>								
+							</div>
+						</form>
+						<!-- / CREATE NEW Item FORM -->
+
+					</div>
+					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+					<div class="slds-modal__footer">
+						<button class="slds-button slds-button--neutral"
+							onclick="{!c.closeModal}">{!$Label.c.orm_cancel_button_title}</button>
+						<button class="slds-button slds-button--brand"
+							onclick="{!c.createMeasureProgression}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.orm_save_button_title}
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+			<!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
 </aura:component>

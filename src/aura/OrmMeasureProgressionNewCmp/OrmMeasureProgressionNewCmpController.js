@@ -29,6 +29,7 @@
 	 *  @date: Creation: 31/08/2018
 	 *  @description: method for creating a Measure Progression */
 	createMeasureProgression: function(component, event, helper){
+	        
 		var dateProgression = component.find('dateProgression').get('v.value');
         var poucentageProgression = component.find('poucentageProgression').get('v.value');
         var Description = component.find('Description').get('v.value');

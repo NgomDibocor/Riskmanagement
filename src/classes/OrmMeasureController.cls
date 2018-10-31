@@ -208,6 +208,20 @@ public with sharing class OrmMeasureController {
 	/**
 	 * @author: David diop
 	 * @date: Creation: 31/08/2018
+	 * @description: find  measureProgression 
+	*/
+	@AuraEnabled
+	public static  Product2  getMeasuresProgression( String measureProgressionId){
+		return [SELECT Id,Description,Family,
+		orm_poucentageProgression__c,orm_dateProgression__c,orm_measures__c
+		        FROM Product2 
+		        WHERE  Id =: measureProgressionId
+		        AND RecordTypeId =: OrmMeasureController.getMeasureProgressionRecordTypeId()];
+	
+	}
+	/**
+	 * @author: David diop
+	 * @date: Creation: 31/08/2018
 	 * @description: add Measure Progression 
 	*/
 	@AuraEnabled
@@ -221,12 +235,21 @@ public with sharing class OrmMeasureController {
 	 * @date: Creation: 28/08/2018
 	 * @description: method for update records after inline editing
 	*/
-    @AuraEnabled
+    /*@AuraEnabled
     public static List <Product2> updateMeasureProgressions(List<Product2> measureProgression) {
         update measureProgression;
         return measureProgression;
+    }*/
+	/**
+	 * @author: David
+	 * @date: Creation: 28/08/2018
+	 * @description: method for update 
+	*/
+    @AuraEnabled
+    public static Product2  updateMeasureProgression( Product2 measureProgression) {
+        update measureProgression;
+        return measureProgression;
     }
-	
 	/**
 	*
 	* @author Dibocor NGOM
@@ -294,6 +317,21 @@ public with sharing class OrmMeasureController {
                     From Account where RecordTypeId=: OrmMeasureController.getOrganisationRecordTypeId() 
                     order by Name desc  ];
         return accounts;
+    }
+    
+     /**
+	 *
+	 * @author Dibocor NGOM 
+	 * @version 1.0
+	 * @description  this method returns all the existing percents
+	 * @history 
+	 * 2018-07-24 : Dibocor - Implementation
+	 */
+    @AuraEnabled 
+    public static AggregateResult[] getPorgressPercentsOfMeasure(String idMeasure){
+        AggregateResult[] groupedResults = [Select SUM(orm_poucentageProgression__c) sumPercent 
+                    From Product2 where orm_measures__c =: idMeasure];
+        return groupedResults;
     }
     
 }

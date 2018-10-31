@@ -18,11 +18,13 @@
     <table class="slds-table">
         <tr>
             <td>
-                <lightning:card variant="Narrow" title="{!v.measureData.Name}" iconName="standard:account" class="slds-text-heading_small">
-                    <p class="slds-p-horizontal_small">
-                        <b>{!$Label.c.orm_category_measure_label}: </b>
-                        {!v.measureData.orm_measureCategorie__c}
-                    </p>
+                <lightning:card title="" iconName="">
+                    <div class="styleText" style="padding-left:10px;padding-right: 6px;">
+                        <i class="styleTitle">Name Measure: </i> {!v.measureData.Name}
+                    </div>
+                    <div class="styleText" style="padding-left:10px;padding-right: 6px;">
+                        <i class="styleTitle">Category: </i> {!v.measureData.orm_measureCategorie__c}
+                    </div>
                 </lightning:card>
             </td>
 

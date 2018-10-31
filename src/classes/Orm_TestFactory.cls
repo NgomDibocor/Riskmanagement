@@ -19,7 +19,19 @@ public with sharing class Orm_TestFactory {
         insert assessment;
         return assessment;
     }
+  /**
+   * @author : Salimata NGOM
+   * @date : 30/10/2018
+   * @description :generate list of workshop
+   */
+    public static List<Contract> generateWorkshop(){
+    	List<Contract> listWorkshop=new List<Contract> ();
+    	 for(Integer i=0;i<20; i++)
+        {
+        	listWorkshop.add (new Contract(Name='workshop'+i,RecordTypeId=OrmWorkshopController.getWorkshopRecordTypeId()));
+        }
+        insert listWorkshop;
+        return listWorkshop;
+        }
     
-    
-     
 }

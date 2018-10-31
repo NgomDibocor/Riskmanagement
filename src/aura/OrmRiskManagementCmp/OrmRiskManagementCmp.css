@@ -1,3 +1,7 @@
 .THIS {
 	background-color: #5B86BE;
 }
+.THIS .disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}

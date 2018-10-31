@@ -5,13 +5,11 @@
 		[{
             label: 'Name',
             fieldName: 'Name',
-            editable: 'true',
             type: 'text'
          },
          {
         	 label: 'Description',
             fieldName: 'Description',
-            editable: 'true',
             type: 'text'
          },
          {
@@ -45,48 +43,13 @@
         });
 		evt.fire();
     },
-    cancel : function(component,event,helper) {
-       // on cancel refresh the view (This event is handled by the one.app container. It’s supported in Lightning Experience, the Salesforce app, and Lightning communities. ) 
-     component.set("v.showSaveCancelBtn",false); 
-     helper.refresh(component, component.get("v.idAssessmentRisk"));
-    },
-	save: function(component, event, helper) {
-		if (helper.requiredValidation(component, event)){
-              // call the saveAccount apex method for update inline edit fields update 
-               var action = component.get("c.updateImpacts");
-               action.setParams({
-            	   'impacts': component.get("v.PaginationList")
-               });
-                  
-	           action.setCallback(this, function(response) {
-	               var state = response.getState();
-	               if (state === "SUCCESS") {
-	                    var impacts = response.getReturnValue();
-	                    // set cause list with return value from server.
-	                    component.set("v.impacts", impacts);
-	                    // Hide the save and cancel buttons by setting the 'showSaveCancelBtn' false 
-	                    component.set("v.showSaveCancelBtn", false);
-	                    var toast = $A.get('e.force:showToast');
-			            toast.setParams({
-			            	'message' : $A.get('$Label.c.orm_updated'),
-			                'type' : 'success',
-			                'mode' : 'dismissible'
-			            });	
-			            toast.fire();
-			       }
-	           });
-	           $A.enqueueAction(action);
-        } 
-        }, 
-		
-	
 	/*
      * CreatedBy @David Diop
      *
      */
     filter: function(component, event, helper) {
        // var dataRisk = component.get('v.impactsTemp');
-        var dataRisk = component.get('v.initialData');
+        var dataRisk = component.get('v.ListData');
         var term = component.get('v.filter');
         var regex;
         if ($A.util.isEmpty(term)) {
@@ -107,40 +70,7 @@
 		   helper.paginationFilterBis(component, event);
         }
     },
-     selectAll : function (component, event, helper) {
-    	//get the header checkbox value  
-    	var selectedHeaderCheck = event.getSource().get("v.value");
-    	
-    	var evt = $A.get('e.c:OrmEvtSelectAllImpact');
-    	evt.setParams({"selectAllCheckbox": selectedHeaderCheck});
-    	evt.fire();
-    },
-    /**
-	 * 
-	 * @authorDavid diop
-	 * @version 1.0
-	 * @description method for show modal confirm delete MeasureProgression
-	 * @history 2018-09-05 : David diop - Implementation
-	 */ 
-//	openModalDeleteCause:function(component,event,helper){
-//		// is checked delete assumption show popup message confirmation
-//		// get all checkboxes 
-//		//if not checked show toast warning
-//		var getSelectedNumber = component.get("v.selectedRowsCount");
-//		if(getSelectedNumber==0){
-//		var toast = $A.get('e.force:showToast');
-//					toast.setParams({
-//						'message' : $A.get("$Label.c.orm_warning_checked_checkbox"),
-//						'type' : 'warning',
-//						'mode' : 'dismissible'
-//					});      
-//					toast.fire(); 
-//		}else{
-//	component.set("v.openModalConfirmDeletion",true);
-//		}
-//
-//
-//	},
+   
 	openModalDeleteCause: function(component, event, helper) {
         var current = component.get("v.currentPage");
         var dTable = component.find("datatableList");

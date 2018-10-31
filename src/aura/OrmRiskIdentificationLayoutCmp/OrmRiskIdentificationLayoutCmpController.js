@@ -1,8 +1,5 @@
 ({
-    initialiseAssessment: function(component, event, helper) {
-        //alert('id Assessment ', event.getParam('idAssessment'));
-        component.set("v.idAssessment", event.getParam('idAssessment'));
-    },
+    
     ormRiskCreatedEvent: function(component, event, helper) {
         component.set("v.categorieRisk", event.getParam('riskCategoriy'));
         helper.fetchPicklist(component, event);
@@ -64,8 +61,6 @@
                 component.set('v.allCategorieRisk', response.getReturnValue());
                 component.set('v.categorieRisk', response.getReturnValue()[0]);
                 component.set('v.categoriePopupOthersRisk', response.getReturnValue()[1]);
-                var evtSpinner = $A.get("e.c:OrmHideSpinnerEvt");
-                evtSpinner.fire();
 
             } else {
 

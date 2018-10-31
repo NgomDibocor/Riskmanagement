@@ -53,7 +53,7 @@ public with sharing class OrmImpactController {
 	*/
     @AuraEnabled
     public static Macro updateImpact( Macro impact) {
-        upsert impact;
+        update impact;
         return impact;
     }
 	/**
@@ -65,7 +65,7 @@ public with sharing class OrmImpactController {
     public static List <Macro> updateImpacts(List<Macro> impacts) {
         update impacts;
         return impacts;
-    }
+    }*/
 	 /*
     *David mignane diop
     *  picklist recovery function

@@ -94,11 +94,36 @@
       showSpinner: function(component) {
         var spinner = component.find('spinner-div');
         $A.util.removeClass(spinner, "slds-hide");
+        var menu = document.getElementById("menuRM");
+        var arrowLeft = document.getElementById("arrowLeft");
+        var arrowRight = document.getElementById("arrowRight");
+        if(menu !== null){
+           $A.util.addClass(menu, 'disabledbutton');
+        }
+        if(arrowLeft !== null){
+           $A.util.addClass(arrowLeft, 'disabledbutton');
+        }
+        if(arrowRight !== null){
+           $A.util.addClass(arrowRight, 'disabledbutton');
+        }
+        
       },
 
       hideSpinner: function(component) {
         var spinner = component.find('spinner-div');
         $A.util.addClass(spinner, "slds-hide");
+        var menu = document.getElementById("menuRM");
+        var arrowLeft = document.getElementById("arrowLeft");
+        var arrowRight = document.getElementById("arrowRight");
+        if(menu !== null){
+           $A.util.removeClass(menu, 'disabledbutton');
+        }
+        if(arrowLeft !== null){
+           $A.util.removeClass(arrowLeft, 'disabledbutton');
+        }
+        if(arrowRight !== null){
+           $A.util.removeClass(arrowRight, 'disabledbutton');
+        }
 	  },
 	  
 	  showInfoAssessmentRisk : function(component,event,helper){ 

@@ -1,6 +1,6 @@
 ({
     /** @author: David
-     *  @date: Creation: 28/08/2018
+     *  @date: Creation: 30/10/2018
      *  @description: method for opening the component and initilizing its attributes */
     openOrmImpactEditCmp: function(component, event, helper) {
         component.set("v.isOpen", true);
@@ -16,7 +16,6 @@
             var state = response.getState();
             if (state === 'SUCCESS' && component.isValid()) {
                 component.set('v.allCategorieImpact', response.getReturnValue());
-
                 var actionImpact = component.get("c.getImpact");
                 actionImpact.setParams({
                     "idImpact": idImpact
@@ -49,35 +48,34 @@
         component.find("categorieImpact").set("v.value", event.getSource().get("v.value"));
     },
     /** @author: David
-     *  @date: Creation: 28/08/2018
+     *  @date: Creation: 30/10/2018
      *  @description: method for update Impact */
-    updateImpact: function(component, event, helper) {
-    component.set("v.isOpen", false);
+    saveImpact: function(component, event, helper) {
+        component.set("v.isOpen", false);
         var categorieImpact = component.find('categorieImpact').get('v.value');
+        var name = component.find('name').get('v.value');
+        var description = component.find('description').get('v.value');
+        var categoryImpact =  component.get('v.impactData').orm_categorie_impact__c;
         var newImpact = component.get('v.impactData');
-        console.log("newImpact:", newImpact)
-        newImpact.orm_categorie_impact__c = categorieImpact;
+        if ($A.util.isEmpty(categorieImpact)) {
+                newImpact.orm_categorie_impact__c = categoryImpact;
+            } else {
+                newImpact.orm_categorie_impact__c = categorieImpact;
+            }
+        newImpact.Name = name;
+        newImpact.Description = description;
         newImpact.orm_assessmentRisk__c = component.get("v.idAssessmentRisk");
         var actionUpdateImpact = component.get('c.updateImpact');
         actionUpdateImpact.setParams({
             "impact": newImpact
         });
         actionUpdateImpact.setCallback(this, function(response) {
-            if (response.getState() == 'SUCCESS') {
-                console.log("response.getReturnValue()", response.getReturnValue())
-                component.set("v.isOpen", false);
-                /*var impactData = response.getReturnValue();
-                var toast = $A.get('e.force:showToast');
-                toast.setParams({
-                    'message': $A.get('$Label.c.new_title_labels') + ' ' +
-                        $A.get('$Label.c.orm_label_cause') + ' ' +
-                        $A.get('$Label.c.orm_toast_success'),
-                    'type': 'success',
-                    'mode': 'dismissible'
-                });
-                toast.fire();
+            var state = response.getState();
+            if (state === 'SUCCESS') {
+                component.set("v.impactData",response.getReturnValue());
                 var evt = $A.get("e.c:OrmImpactCreatedEvt");
-                evt.fire();*/
+                evt.fire();
+
             } else {
                 var toast = $A.get('e.force:showToast');
                 toast.setParams({
@@ -89,5 +87,5 @@
             }
         });
         $A.enqueueAction(actionUpdateImpact);
-    }
+    },
 })

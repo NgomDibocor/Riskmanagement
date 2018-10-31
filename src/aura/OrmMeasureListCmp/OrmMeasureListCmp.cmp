@@ -10,10 +10,13 @@
   <aura:attribute name="showButtonDelete" type="Boolean" default="false" />
   <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
 	
+	<aura:attribute name="columns" type="List" />
+	<aura:attribute name="isEmptyMap" type="boolean" default="true" />	
+	
   <!-- events  -->
   <aura:registerEvent name="OrmNewMeasureClickedEvt"  type="c:OrmNewMeasureClickedEvt"/>
   <aura:registerEvent name="OrmDeleteMeasuresEvt" type="c:OrmDeleteMeasuresEvt" description="" />
-  
+  <aura:registerEvent name="OrmEditMeasureClickedEvt"  type="c:OrmEditMeasureClickedEvt"/>
   <aura:handler event="c:OrmMeasureCreatedEvt" action="{!c.refreshList}" />
   <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.getIdAssessmentRisk}" />
   <aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
@@ -31,78 +34,27 @@
 	        </span>
 	        	<span class="deleteMeasure" onclick="{!c.removeMeasure}">
 					<lightning:icon iconName="utility:delete" size="small" />
-				</span><br/>
+				</span><br/><br/>
 	        
-	
-			<!-- use aura:if for show/hide buttons --> 
-	        <aura:if isTrue="{!v.showSaveCancelBtn}">
-	            <div class="slds-grid slds-page-header__detail-row" style="padding: 0px !important">
-	        		<!--button for save and cancel Record after Inline Edit-->
-	        		<lightning:buttonGroup class="slds-m-around_medium">
-	                <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}"/>
-	                <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.save}" variant="success"/>
-	            </lightning:buttonGroup>
-	        	</div>
-	        </aura:if> 
-        <aura:if isTrue="{!not(empty(v.PaginationList))}">
-	        <!--Data Table-->     
-	        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%;  margin-left:10%;margin-right:0%;">
-	            <thead>
-	                <tr class="slds-text-title--caps">
-	                  
-	                  <th scope="col" style="width:3.25rem;"><div class="slds-truncate" title="">N°</div></th> 
-	                  <th scope="col"><div class="slds-truncate styleAllText" title="{!$Label.c.orm_label_cause}">{!$Label.c.orm_measure_label}</div></th>
-	                  <th scope="col"><div class="slds-truncate styleAllText" title="{!$Label.c.orm_description}">{!$Label.c.orm_measure_description}</div></th>
-	                  <th scope="col"><div class="slds-truncate styleAllText" title="{!$Label.c.orm_category_measure_label}">{!$Label.c.orm_category_measure_label}</div></th>
-	                  <th scope="col"><div class="slds-truncate styleAllText" title="{!$Label.c.orm_table_action_label}">{!$Label.c.orm_table_action_label}</div></th>
-	               	  <th style="width:3.25rem;" class="slds-text-align--right">
-		              	<div class="slds-form-element">
-		                	<div class="slds-form-element__control">
-		                    	<label class="slds-checkbox">
-		                        	<!--header checkbox for select all-->
-		                        	<ui:inputCheckbox aura:id="box3" />
-		                        	<span class="slds-checkbox--faux"></span>
-		                        	<span class="slds-form-element__label text"></span>
-		                     	</label>
-		                    </div>
-		                </div>
-		              </th> 
-	                </tr>
-	            </thead>
-	            
-	            <tbody>
-	             <!--### display all records of causes attribute one by one by aura:iteration ###-->
-<!-- 	             	 items="{!v.measures}" var="measure"  -->
-	                <aura:iteration items="{!v.PaginationList}" var="item" indexVar="sNo">
-	                   <!-- Child Lightning Component --> 
-	                    <c:OrmMeasureEditRowCmp measure="{!item}" 
-	                    			     selectedRowsCount="{!v.selectedRowsCount}"
-	                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
-	                                     sNo="{!sNo + 1}" />                       
-	                </aura:iteration>
-	            </tbody>
-	        </table>
-	        <center>
-	<div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-	    <lightning:buttonGroup >
-	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
-	                            onclick="{!c.previousBis}" variant="brand"
-	                            iconName='utility:back'/>
-	          &nbsp; &nbsp; &nbsp;
-	          <lightning:button label="Next" 
-	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
-	                            onclick="{!c.nextBis}" variant="brand"
-	                            iconName='utility:forward' iconPosition='right'/>
-	      </lightning:buttonGroup>
-	</div>
-	</center>
-	        <aura:set attribute="else">
-			    <div class="messageIsEmpty" style="padding-top: 20px">
-		 		   List of measures is empty
-		 		   {!$Label.c.orm_list_title_label +'   '+ $Label.c.orm_progressmeasure_label +'   ' + $Label.c.orm_is_empty}
-		        </div>
-			</aura:set>
-           </aura:if>
+	        		<center>
+                <div style="width:80%;">
+                    <aura:if isTrue="{!not(empty(v.PaginationList))}">
+                        <lightning:datatable aura:id="datatableList" columns="{! v.columns }" onrowaction="{! c.handleRowAction }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"  onrowselection="{!c.selectCauses}" />
+                        <div style="margin-top:20px; padding-bottom:10px;">
+                            <lightning:buttonGroup>
+                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                            </lightning:buttonGroup>
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="messageIsEmpty" style="padding-top: 20px">
+                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                            </div>
+                        </aura:set>
+                    </aura:if>
+                </div>
+            </center>
+	        
 		</div>
 	</div>
 	
@@ -133,4 +85,5 @@
 	    </aura:if>
 	<!-- /openModalConfirmDeletion -->
 	<c:OrmMeasureNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
+	<c:OrmMeasureEditCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

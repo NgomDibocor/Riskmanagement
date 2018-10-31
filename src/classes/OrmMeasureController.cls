@@ -50,6 +50,19 @@ public with sharing class OrmMeasureController {
 		        AND RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() order by CreatedDate];
 	
 	}
+	/**
+	 * @author: Dibocor NGOM
+	 * @date: Creation: 15/08/2018
+	 * @description: find measure related to the assessmentRisk
+	*/
+	@AuraEnabled
+	public static Assessment__c getMeasuresByAssessmentRisk(String idMeasure){
+		return [SELECT Id, Name, orm_description__c,orm_measureCategorie__c 
+		        FROM Assessment__c 
+		        WHERE  Id  =: idMeasure 
+		        AND RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() ];
+	
+	}
 	
 	/**
 	 * @author: Dibocor NGOM
@@ -66,12 +79,12 @@ public with sharing class OrmMeasureController {
 	/**
 	 * @author: Abdoulaye
 	 * @date: Creation: 17/08/2018
-	 * @description: update a list of Measure
+	 * @description: update  Measure
 	*/
 	@AuraEnabled
-	public static List <Assessment__c> updateMeasures(List<Assessment__c> measures) {
-        update measures;
-        return measures;
+	public static Assessment__c updateMeasure(Assessment__c measure) {
+        update measure;
+        return measure;
     }
     
     /**

@@ -29,7 +29,24 @@
 	 *  @date: Creation: 31/08/2018
 	 *  @description: method for creating a Measure Progression */
 	createMeasureProgression: function(component, event, helper){
-		var dateProgression = component.find('dateProgression').get('v.value');
+	        var newMeasureProgression = component.get('v.measureProgression');
+	        var actionGetPercents = component.get('c.getPorgressPercentsOfMeasure');
+            actionGetPercents.setParams({"idMeasure": component.get("v.idMeasure")});
+            actionGetPercents.setCallback(this, function(response) {
+            var state = response.getState();
+	            if (state === "SUCCESS") {
+	               console.log("poucentageProgression", newMeasureProgression.orm_poucentageProgression__c);
+	               if(response.getReturnValue().length == 0){
+	                  
+	               }
+	               console.log("all percent: ", response.getReturnValue()[0].sumPercent);
+	                
+	            } else {
+	                alert($A.get("$Label.c.orm_error"));
+	            }
+           });
+           $A.enqueueAction(actionGetPercents);
+		/*var dateProgression = component.find('dateProgression').get('v.value');
         var poucentageProgression = component.find('poucentageProgression').get('v.value');
         var Description = component.find('Description').get('v.value');
         var status = component.find('status').get('v.value');
@@ -73,6 +90,6 @@
                 alert($A.get("$Label.c.orm_error"));
             }
         });
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
 	},
 })

@@ -296,4 +296,19 @@ public with sharing class OrmMeasureController {
         return accounts;
     }
     
+     /**
+	 *
+	 * @author Dibocor NGOM 
+	 * @version 1.0
+	 * @description  this method returns all the existing percents
+	 * @history 
+	 * 2018-07-24 : Dibocor - Implementation
+	 */
+    @AuraEnabled 
+    public static AggregateResult[] getPorgressPercentsOfMeasure(String idMeasure){
+        AggregateResult[] groupedResults = [Select SUM(orm_poucentageProgression__c) sumPercent 
+                    From Product2 where orm_measures__c =: idMeasure];
+        return groupedResults;
+    }
+    
 }

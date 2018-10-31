@@ -328,10 +328,11 @@ public with sharing class OrmMeasureController {
 	 * 2018-07-24 : Dibocor - Implementation
 	 */
     @AuraEnabled 
-    public static AggregateResult[] getPorgressPercentsOfMeasure(String idMeasure){
-        AggregateResult[] groupedResults = [Select SUM(orm_poucentageProgression__c) sumPercent 
+    public static AggregateResult getPorgressPercentsOfMeasure(String idMeasure){
+        AggregateResult groupedResults = [Select SUM(orm_poucentageProgression__c) sumPercent 
                     From Product2 where orm_measures__c =: idMeasure];
         return groupedResults;
+        
     }
     
 }

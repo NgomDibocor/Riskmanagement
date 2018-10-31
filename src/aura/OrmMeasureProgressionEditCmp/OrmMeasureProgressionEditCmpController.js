@@ -46,13 +46,18 @@
         var poucentageProgression = component.find('poucentageProgression').get('v.value');
         var Description = component.find('Description').get('v.value');
         var status = component.find('status').get('v.value');
-        var dateProgress = new date();
+        var measureProgressStatus =  component.get('v.measureProgressionData').Family;
        
         	var measureProgressionData = component.get('v.measureProgressionData');
+        	
+        	if ($A.util.isEmpty(status)) {
+                measureProgressionData.Family = measureProgressStatus;
+            } else {
+                measureProgressionData.Family = status;
+            }
         	measureProgressionData.orm_dateProgression__c = dateProgression ;
         	measureProgressionData.orm_poucentageProgression__c = poucentageProgression ;
         	measureProgressionData.Description = Description ;
-        	measureProgressionData.Family = status ;
         	measureProgressionData.orm_measures__c = component.get("v.idMeasure");
         	measureProgressionData.Name ='xxxx';
         	

@@ -1,5 +1,33 @@
 ({
 	getIdAssessmentRisk : function(component, event, helper) {
+		
+		component.set('v.columns', [{
+            label: $A.get("$Label.c.orm_measure_label"),
+            fieldName: 'Name',
+            type: 'text'
+        }, {
+            label: $A.get("$Label.c.orm_measure_description"),
+            fieldName: 'orm_description__c',
+            type: 'text'
+        }, {
+            label: $A.get("$Label.c.orm_category_measure_label"),
+            fieldName: 'orm_measureCategorie__c',
+            type: 'text'
+        }, {
+            type: 'button',
+            typeAttributes: {
+                label: $A.get("$Label.c.orm_add_proof_title"),
+                name: $A.get("$Label.c.orm_add_proof_title"),
+                title: $A.get("$Label.c.orm_add_proof_title")
+            }
+        }, {
+            type: 'button',
+            typeAttributes: {
+                label: $A.get("$Label.c.orm_edit_button_title"),
+                name: $A.get("$Label.c.orm_edit_button_title"),
+                title: $A.get("$Label.c.orm_edit_button_title")
+            }
+        }]);
 		component.set("v.idAssessmentRisk", event.getParam('idAssessmentRisk'));
 		//console.log('idAssessmentRisk ', event.getParam('idAssessmentRisk'));
 		helper.getAllMeasuresByAssessmentRisk(component, event);
@@ -9,45 +37,10 @@
 		helper.getAllMeasuresByAssessmentRisk(component, event);
 	},
 	
-	save: function(component, event, helper) {
-		// Check required fields(Description) first in helper method which is return true/false
-        if (helper.requiredValidation(component, event)){
-               var action = component.get("c.updateMeasures");
-               action.setParams({
-            	   'measures': component.get("v.PaginationList")
-               });
-                  
-	           action.setCallback(this, function(response) {
-	               var state = response.getState();
-	               if (state === "SUCCESS") {
-	                    var measures = response.getReturnValue();
-	                    // set cause list with return value from server.
-	                    component.set("v.measures", measures);
-	                    // Hide the save and cancel buttons by setting the 'showSaveCancelBtn' false 
-	                    component.set("v.showSaveCancelBtn", false);
-	                    var toast = $A.get('e.force:showToast');
-			            toast.setParams({
-			            	'message' : $A.get('$Label.c.orm_updated'),
-			                'type' : 'success',
-			                'mode' : 'dismissible'
-			            });	
-			            toast.fire();
-			       }
-	           });
-	           $A.enqueueAction(action);
-        } 
-		
-	},
-	
-	cancel : function(component,event,helper) {
-		component.set("v.showSaveCancelBtn", false);
-		helper.getAllMeasuresByAssessmentRisk(component, event);
-    },
-	
 	filterMeasure : function (component, event, helper){
     	
     	//var measures = component.get('v.measuresTemp');
-    	var measures = component.get('v.initialData');
+    	var measures = component.get('v.ListData');
     	var key = component.get('v.key');
     	var regex;    	
     	
@@ -58,14 +51,14 @@
         	try {
         	 		regex = new RegExp(key, "i");
         	 		// filter checks each row, constructs new array where function returns true
-        	 		measures = measures.filter(row => regex.test(row.Name)|| regex.test(row.Description));
+        	 		measures = measures.filter(row => regex.test(row.Name)|| regex.test(row.orm_description__c));
 		        } catch (e) {
 		    	   
 		        }
 		   //component.set("v.measures", measures);
 		   component.set("v.filterPagination", measures);
 		   component.set("v.items", component.get("v.filterPagination"));
-		   helper.paginationFilterBis(component, event);
+		    helper.paginationFilter(component, event);
          }        	
     },
     
@@ -83,30 +76,11 @@
         evt.fire();
     },
     
-    openModalDeleteMeasure : function (component, event, helper){
-    	component.set('v.openModalConfirmDeletion', true);
-    },
-    
     cancelDeleteMeasure : function (component, event, helper){
+    	 component.set("v.isEmptyMap", true);
     	component.set('v.openModalConfirmDeletion', false);
     },
     
-    confirmDeleteMeasure : function (component, event, helper){
-    	var evt = $A.get('e.c:OrmDeleteMeasuresEvt');
-    	evt.setParams({'idAssessmentRisk': component.get('v.idAssessmentRisk')});
-    	evt.fire();
-    	component.set('v.openModalConfirmDeletion', false);
-    },
-    
-    showButtonDelete  : function (component, event, helper) {
-    	var showButtonDelete = event.getParam('showButtonDelete');
-    	console.log('capture event '+ showButtonDelete);
-    	if(showButtonDelete){
-    		component.set('v.showButtonDelete', true);
-    	} else {
-			component.set('v.showButtonDelete', false);
-		}
-    },
     /**
 	 * 
 	 * @authorDavid diop
@@ -114,24 +88,97 @@
 	 * @description method for show modal confirm delete MeasureProgression
 	 * @history 2018-09-05 : David diop - Implementation
 	 */ 
-	removeMeasure:function(component,event,helper){
-		// is checked delete assumption show popup message confirmation
-		// get all checkboxes 
-		//if not checked show toast warning
-		var getSelectedNumber = component.get("v.selectedRowsCount");
-		if(getSelectedNumber==0){
-		var toast = $A.get('e.force:showToast');
-					toast.setParams({
-						'message' : $A.get("$Label.c.orm_warning_checked_checkbox"),
-						'type' : 'warning',
-						'mode' : 'dismissible'
-					});      
-					toast.fire(); 
-		}else{
-	component.set("v.openModalConfirmDeletion",true);
-		}
+	
+	 removeMeasure: function(component, event, helper) {
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selected", selectedRows.length);
+        if (selectedRows.length != 0) {
+            var pgName = "page" + current;
+            component.get("v.SelectedItem")[pgName] = selectedRows;
+        }
+        else{
+           var pgName = "page" + current;
+           component.get("v.SelectedItem")[pgName] = selectedRows;
+           console.log("***View else lenght =0*** ", Object(component.get("v.SelectedItem")));
+        }
+        var myMap = component.get("v.SelectedItem");
+        console.log("selectedRows in delete", Object.keys(myMap).length);
+        helper.checkIfMapContentIsEmpty(component, event, myMap);
+        if (Object.keys(myMap).length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        }  else if(component.get("v.isEmptyMap")){
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        }
+        else {
+            component.set("v.openModalConfirmDeletion", true);
+        }
+    },
+    confirmDeleteMeasure: function(component, event, helper) {
+        var myMap = component.get("v.SelectedItem");
+        var idMeasures = [];
+        var lengthMap = Object.keys(myMap).length;
 
+        for (var i = 0; i < lengthMap; i++) {
+            var page = 'page' + i;
+            for (var j = 0; j < myMap[page].length; j++) {
+                idMeasures.push(myMap[page][j].Id);
+            }
+        }
 
-	},
+        //		call apex class method
+        var action = component.get('c.deleteMeasures');
+        // pass the all selected record's Id's to apex method 
+        action.setParams({
+            "measureIds": idMeasures
+        });
+        action.setCallback(this, function(response) {
+            //store state of response
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                myMap = {};
+                component.set("v.SelectedItem", myMap);
+                component.set("v.isEmptyMap", true);
+                component.set('v.openModalConfirmDeletion', false);
+                helper.getAllMeasuresByAssessmentRisk(component, event);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+     selectCauses: function(component, event, helper) {
+       
+    },
+    handleRowAction: function(component, event, helper) {
+        var row = event.getParam('row');
+       var actionName = event.getParam('action').name;
+        if (actionName == $A.get("$Label.c.orm_edit_button_title")) {
+        	var evt = $A.get("e.c:OrmEditMeasureClickedEvt");
+            evt.setParams({
+                "idMeasure" : row.Id
+            });
+            evt.fire();
+        }
+        if (actionName == $A.get("$Label.c.orm_add_proof_title")) {
+        var evt = $A.get("e.c:OrmActiveRiskTraitementCmpEvt");
+	        evt.setParams({
+	            "idMeasure": row.Id
+	        });
+        evt.fire();
+        }
+
+    }
     
 })

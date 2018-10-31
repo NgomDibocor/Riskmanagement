@@ -1,0 +1,73 @@
+<aura:component extends="c:OrmAbstractNewCmp" controller="OrmMeasureController">
+	<aura:attribute name="idAssessmentRisk" type="string" />
+	<aura:attribute name="idMeasure" type="string" />
+	<aura:attribute name="measureCategorie" type="String[]" />
+	<aura:attribute name="categorieMeasure" type="String" default="Corrective" />
+	<aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
+	<aura:attribute name="measureData" type="Assessment__c"/>
+	<aura:registerEvent name="MeasureCreated" type="c:OrmMeasureCreatedEvt" />  
+	<aura:handler action="{!c.openOrmMeasureNewCmp}" event="c:OrmEditMeasureClickedEvt" />
+	<aura:if isTrue="{!v.isOpen}">
+			<!--###### MODAL BOX Start From Here ######-->    		
+			<div role="dialog" tabindex="-1" aria-labelledby="header99"
+				class="slds-modal slds-fade-in-open slds-modal_medium">
+				<div class="slds-modal__container form-style-6">
+					<!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+					<div class="slds-modal__header">
+						<button
+							class="slds-button slds-modal__close slds-button--icon-inverse"
+							title="Close" onclick="{!c.closeModal}">
+							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+						</button>
+						<h1 id="header99" class="slds-text-heading--medium">
+							{!$Label.c.orm_edit_label + ' ' + $Label.c.orm_measure_label}
+						</h1>
+					</div>
+					<!--###### MODAL BOX BODY Part Start From Here ######-->
+					<div class="slds-modal__content slds-p-around--medium">
+						<!-- CREATE NEW Activity FORM -->
+							<div class="slds-grid slds-gutters">
+								<div class="slds-col">
+									<div class="slds-form-element">
+										<div class="slds-form-element__control">
+                                            <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_measure_name}" 
+                                            	 value="{!v.measureData.Name}" required="true"/>
+										</div>
+									</div>
+									<div class="slds-form-element">
+										<div class="slds-form-element__control">
+											<lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" 
+												value="{!v.measureData.orm_description__c}" />
+										</div>
+									</div>  
+									<div class="slds-form-element ">
+				                    <div class="slds-form-element__control">
+				                        <lightning:select aura:id="measureCategorie" name="{!$Label.c.orm_category_measure_label}" label="{!$Label.c.orm_category_measure_label}"   class="select-auto-width"  onchange="{!c.measureCategorieChange}">
+				                            <ui:inputSelectOption text="{!v.measureData.orm_measureCategorie__c}" label="{!v.measureData.orm_measureCategorie__c}" />
+				                            <aura:iteration items="{!v.measureCategorie}" var="measureCategorie">
+				                                <option text="{!measureCategorie}"></option>
+				                            </aura:iteration>
+				                        </lightning:select>  
+				                    </div>
+				                </div>                        
+								</div>								
+							</div>
+						<!-- / CREATE NEW Item FORM -->
+
+					</div>
+					<!--###### MODAL BOX FOOTER Part Start From Here ######-->
+					<div class="slds-modal__footer">
+						<button class="slds-button slds-button--neutral"
+							onclick="{!c.closeModal}">{!$Label.c.orm_cancel_button_title}</button>
+						<button class="slds-button slds-button--brand"
+							onclick="{!c.createItem}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.orm_save_button_title}
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+			<!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
+	
+</aura:component>

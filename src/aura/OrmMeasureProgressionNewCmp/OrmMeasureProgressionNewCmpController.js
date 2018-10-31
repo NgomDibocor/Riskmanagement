@@ -29,51 +29,39 @@
 	 *  @date: Creation: 31/08/2018
 	 *  @description: method for creating a Measure Progression */
 	createMeasureProgression: function(component, event, helper){
-	        
-		var dateProgression = component.find('dateProgression').get('v.value');
-        var poucentageProgression = component.find('poucentageProgression').get('v.value');
-        var Description = component.find('Description').get('v.value');
-        var status = component.find('status').get('v.value');
-       
-        	var newMeasureProgression = component.get('v.measureProgression');
-        	newMeasureProgression.orm_dateProgression__c = dateProgression ;
-        	newMeasureProgression.orm_poucentageProgression__c = poucentageProgression ;
-        	newMeasureProgression.Description = Description ;
-        	newMeasureProgression.Family = status ;
-        	newMeasureProgression.orm_measures__c = component.get("v.idMeasure");
+	        var newMeasureProgression = component.get('v.measureProgression');
+	        var status = component.find('status').get('v.value');
+	        newMeasureProgression.Family = status ;
         	newMeasureProgression.Name ='xxxx';
+        	newMeasureProgression.orm_measures__c = component.get("v.idMeasure");
         	
-        	var action = component.get('c.addMeasureProgression');
-            action.setParams({
-                "item": newMeasureProgression
-            });
-            action.setCallback(this, function(response) {
+	        var actionGetPercents = component.get('c.getPorgressPercentsOfMeasure');
+            actionGetPercents.setParams({"idMeasure": component.get("v.idMeasure")});
+            actionGetPercents.setCallback(this, function(response) {
             var state = response.getState();
-            if (state == "SUCCESS") {
-                component.set("v.measureProgression", response.getReturnValue());
-                var toastEvent = $A.get('e.force:showToast');
-                toastEvent.setParams({ 
-                    'message': $A.get('$Label.c.orm_success_created'),
-                    'type': 'success',
-                    'mode': 'dismissible'
-                });
-                toastEvent.fire();
-                var evt = $A.get("e.c:OrmMeasureProgressionCreatedEvt");
-                   evt.fire();
-                    component.set('v.measureProgression', {'sobjectType' : 'Product2',
-                                                               'Description' : '',
-                                                               'Family':'',
-                                                               'orm_poucentageProgression__c':'',
-                                                               'orm_dateProgression__c':'',
-                                                               'orm_measures__c':''
-                                                              
-                    });
-                component.set("v.isOpen", false);
-                
-            } else {
-                alert($A.get("$Label.c.orm_error"));
-            }
-        });
-        $A.enqueueAction(action);
+	            if (state === "SUCCESS") {
+	               var obj = response.getReturnValue();
+	               if(Object.keys(obj).length === 0){
+	                  if(newMeasureProgression.orm_poucentageProgression__c <= 100){
+	                      helper.addProgressMeasure(component, event, newMeasureProgression);
+	                  }else{
+	                     console.log("orm_poucentageProgression__c is > 100")
+	                     alert('Must not exceed 100');
+	                  }
+	               }else{
+	                  var result = Number(newMeasureProgression.orm_poucentageProgression__c) + Number(Object.values(obj)[0]);
+	                  if(result > 100){
+	                    console.log("result is > 100")
+	                    alert('Must not exceed 100');
+	                  }else{
+	                     helper.addProgressMeasure(component, event, newMeasureProgression);
+	                  }
+	               }
+	            } else {
+	                alert($A.get("$Label.c.orm_error"));
+	            }
+           });
+           $A.enqueueAction(actionGetPercents);
+
 	},
 })

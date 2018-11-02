@@ -25,7 +25,7 @@
 	    	component.find("status").set("v.value", event.getSource().get("v.value")); 
 	},
 	
-	/** @author: David
+	/** @author: David & Dibocor
 	 *  @date: Creation: 31/08/2018
 	 *  @description: method for creating a Measure Progression */
 	createMeasureProgression: function(component, event, helper){

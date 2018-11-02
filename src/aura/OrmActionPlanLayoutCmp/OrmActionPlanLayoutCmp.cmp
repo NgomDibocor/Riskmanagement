@@ -2,6 +2,9 @@
     <aura:attribute name="idAssessment" type="String" />
     <aura:attribute name="assessmentRisks" type="List" />
     <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    
+    
+    
     <div style="margin-bottom:20px;margin-top: 40px;">
         <h1 class="titleActionPlan"><span class="dot">{!$Label.c.orm_action_plan_menu}</span></h1>
     </div>
@@ -40,8 +43,7 @@
                     <aura:iteration items="{!item.Assessments__r}" var="measureName">
                         <tr class="slds-hint-parent">
                             <th data-label="Opportunity Name" scope="row">
-                               <a title="{!measureName.id}" href="javascript:void(0); " onclick="{!c.getIdMeasure}">
-                                <div class="slds-truncate styleAllText" title="{!measureName.Name}">{!measureName.Name}</div></a>
+                               <button class="slds-button styleAllText" id="{!measureName.Id}" onclick="{!c.getIdMeasure}">{!measureName.Name}</button>
                             </th>
                             <td data-label="Account Name" class="slds-truncate">
                                 <div class="slds-truncate styleAllText" title="{!item.orm_Risk__r.Name}">{!item.orm_Risk__r.Name}</div>

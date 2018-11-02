@@ -1,0 +1,83 @@
+<aura:component controller="OrmActivityController" extends="c:OrmAbstractNewCmp">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:OrmOpenEditActivityCmpEvt" action="{!c.openCurrentCmp}" />
+    <aura:registerEvent name="OrmActivityCreatedEvt" type="c:OrmActivityCreatedEvt" />
+
+    <!-- attributes -->
+    <aura:attribute name="activityData" type="Assessment__c"  />
+    <aura:attribute name="objInfo" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" />
+    <aura:attribute name="assessmentId" type="String" />
+    <aura:attribute name="idActivity" type="String" />
+    <aura:attribute name="allStatus" type="String[]" />
+
+    <!-- 
+    {!$Label.c.close_button_title}
+     -->
+
+    <aura:if isTrue="{!v.isOpen}">
+        <!--###### MODAL BOX Start From Here ######-->
+        <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container form-style-6">
+                <!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModal}">
+							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
+						</button>
+                    <h1 id="header99" class="slds-text-heading--medium">{!$Label.c.orm_edit_label + ' ' +$Label.c.orm_label_activity}</h1>
+                </div>
+                <!--###### MODAL BOX BODY Part Start From Here ######-->
+                <div class="slds-modal__content slds-p-around--medium">
+                    <!-- CREATE NEW Activity FORM -->
+                    <form class="slds-form--stacked">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                <div class="slds-form-element slds-is-required">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input aura:id="name" type="text" label="{!$Label.c.orm_name_activity}" value="{!v.activityData.Name}" required="true" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-is-required">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input aura:id="description" type="text" label="{!$Label.c.orm_description}" value="{!v.activityData.orm_description__c}" required="true" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control ">
+                                        <lightning:select aura:id="status" name="status" onchange="{!c.onChange}" class="select-auto-width" label="{!$Label.c.orm_activity_status}">
+                                           <ui:inputSelectOption text="{!v.activityData.orm_activityStatus__c}" label="{!v.activityData.orm_activityStatus__c}" />
+                                            <aura:iteration items="{!v.allStatus}" var="status">
+                                                <option text="{!status}"></option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input aura:id="startDate" type="date" label="{!$Label.c.orm_start_date}" value="{!v.activityData.orm_startDate__c}" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input aura:id="endDate" type="date" label="{!$Label.c.orm_end_date}" value="{!v.activityData.orm_endDate__c}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- / CREATE NEW Item FORM -->
+
+                </div>
+                <!--###### MODAL BOX FOOTER Part Start From Here ######-->
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.closeModal}">{!$Label.c.orm_cancel_button_title}</button>
+                    <button class="slds-button slds-button--brand" onclick="{!c.editActivity}">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.orm_update_button_title}
+						</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop--open"></div>
+        <!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
+
+</aura:component>

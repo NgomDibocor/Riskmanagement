@@ -1,24 +1,19 @@
 <aura:component controller="OrmActivityController" access="global" extends="c:ormAbstractListCmp" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
     <!--Init handler which is call initRecords js function on component Load-->
     <!-- aura register event -->
-    <aura:registerEvent name="OrmRemoveRecordActivityEvnt" type="c:OrmRemoveRecordActivityEvnt" />
     <aura:registerEvent name="OrmOpenNewActivityCmpEvt" type="c:OrmOpenNewActivityCmpEvt" description="" />
+    <aura:registerEvent name="OrmOpenEditActivityCmpEvt" type="c:OrmOpenEditActivityCmpEvt" description="" />
     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
+    <aura:registerEvent name="OrmShowActivityEvt" type="c:OrmShowActivityEvt" />
     <!--declare aura handler-->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:OrmRefreshActivityEvnt" action="{!c.doInit}" />
     <aura:handler event="c:OrmActivityCreatedEvt" action="{!c.doInit}" />
     <!--declare aura attributes-->
     <aura:attribute name="ActivityList" type="Assessment__c[]" description="store activity records list" />
-    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" description="flag for rendered save and cancel buttons in aura:if " />
     <aura:attribute name="objInfoForPicklistValues" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" description="object information to fetch picklist values" />
     <aura:attribute name="statusPicklistOpts" type="string[]" description="store picklist options values" />
-    <aura:attribute name="showErrorClass" type="boolean" default="false" />
-    <aura:attribute name="checkUpdateActivity" type="boolean" default="false" />
-    <aura:attribute name="sNo" type="string" />
-    <aura:attribute name="nameEditMode" type="boolean" default="false" />
-    <aura:attribute name="statusEditMode" type="boolean" default="false" />
-    <aura:attribute name="periodEditMode" type="boolean" default="false" />
+ 
     <aura:attribute name="assessmentData" type="Assessment__c" default="{
 																			'sobjectType' : 'Assessment__c',
 																			'Description':''
@@ -32,10 +27,10 @@
                                                                }" />
 
     <aura:attribute name="showConfirmRemoveActivity" type="boolean" default="false" description="is true show popup  message confirmation" />
-    <aura:attribute name="selectedCount" type="integer" default="0" />
     <aura:attribute name="key" type="string" />
-    <aura:attribute name="storeListActivity" type="List" />
 
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
 
 
     <div style="margin-bottom:20px;margin-top: 50px">
@@ -57,94 +52,51 @@
 			</span>
             <!-- 			    </aura:if> -->
             <br/><br/>
-            <aura:if isTrue="{!v.showSaveCancelBtn}">
-                <!--button for save and cancel Record after Inline Edit-->
-                <lightning:buttonGroup class="slds-m-around_medium">
-                    <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}" />
-                    <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.Save}" variant="success" />
-                </lightning:buttonGroup>
-            </aura:if>
-            <div class="slds-m-around_large">
-                <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                    <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols">
-                        <thead>
-                            <tr class="slds-text-title--caps">
-                                <th scope="col" style="width: 7.25rem;">
-                                    <div class="slds-truncate thTable" title="">N°</div>
-                                </th>
-
-                                <th scope="col">
-                                    <div class="slds-truncate thTable" title="{!$Label.c.orm_name_activity}">{!$Label.c.orm_name_activity}</div>
-                                </th>
-                                <th scope="col">
-                                    <div class="slds-truncate thTable" title="!$Label.c.orm_start_date + - +!$Label.c.orm_end_date}">{!$Label.c.orm_start_date} - {!$Label.c.orm_end_date}</div>
-                                </th>
-                                <th scope="col">
-                                    <div class="slds-truncate thTable" title="{!$Label.c.orm_activity_status}">{!$Label.c.orm_activity_status}
-                                    </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="slds-truncate thTable" title="{!$Label.c.orm_description}">{!$Label.c.orm_description}
-                                    </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="slds-truncate thTable" title="{!$Label.c.orm_table_action_label}">{!$Label.c.orm_table_action_label}</div>
-                                </th>
-                                <th style="width: 3.25rem;" class="slds-text-align--right ">
-                                    
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--### display all records of ActivitytList attribute one by one by aura:iteration ###-->
-                            <!--                             items="{!v.ActivityList}" var="activity" -->
-                            <aura:iteration items="{!v.PaginationList}" var="item" indexVar="sNo">
-                                <!-- start iteration -->
-                                <c:OrmActivityListchild singleRec="{!item}" selectedCount="{!v.selectedCount}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" />
-                            </aura:iteration>
-                        </tbody>
-                    </table>
-                    <center>
-                        <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+            <center>
+                <div style="width:80%;">
+                    <aura:if isTrue="{!not(empty(v.PaginationList))}">
+                        <lightning:datatable aura:id="datatableList"  columns="{! v.columns }" class="table-test" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" onrowselection="{!c.selectCauses}" onrowaction="{! c.selectActivity }" />
+                        <div style="margin-top:20px; padding-bottom:10px;">
                             <lightning:buttonGroup>
-                                <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
                             </lightning:buttonGroup>
                         </div>
-                    </center>
-                    <aura:set attribute="else">
-                        <div class="messageIsEmpty">
-                            {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_label_activities +' ' + $Label.c.orm_is_empty}
-                        </div>
-                    </aura:set>
-                </aura:if>
-            </div>
-            <aura:if isTrue="{!v.showConfirmRemoveActivity}">
-                <!--###### MODAL BOX Start From Here ######-->
-                <div class="demo-only" style="height: 640px;">
-                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-                        <div class="slds-modal__container">
-                            <header class="slds-modal__header slds-theme--error">
-                                <button class="slds-button slds-modal__close slds-button--icon-inverse" onclick="{!c.closeModalRemove}" title="Close">
+                        <aura:set attribute="else">
+                            <div class="messageIsEmpty" style="padding-top: 20px">
+                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                            </div>
+                        </aura:set>
+                    </aura:if>
+                </div>
+            </center>
+        </div>
+        <aura:if isTrue="{!v.showConfirmRemoveActivity}">
+            <!--###### MODAL BOX Start From Here ######-->
+            <div class="demo-only" style="height: 640px;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-theme--error">
+                            <button class="slds-button slds-modal__close slds-button--icon-inverse" onclick="{!c.closeModalRemove}" title="Close">
 							X <span class="slds-assistive-text">{!$Label.c.orm_close_button_title}</span>
 						</button>
-                                <h3 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
-                            </header>
-                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                                <p>{!$Label.c.orm_deletion_message}</p>
-                            </div>
-                            <footer class="slds-modal__footer">
-                                <button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
-                                <button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.orm_delete_button_title}</button>
-                            </footer>
+                            <h3 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.orm_confirm_remove}</h3>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <p>{!$Label.c.orm_deletion_message}</p>
                         </div>
-                    </section>
-                    <div class="slds-backdrop slds-backdrop_open"></div>
-                </div>
-                <!--###### MODAL BOX End  Here ######-->
-            </aura:if>
-        </div>
+                        <footer class="slds-modal__footer">
+                            <button class="slds-button slds-button_neutral" onclick="{!c.closeModalRemove}">{!$Label.c.orm_cancel_button_title}</button>
+                            <button class="slds-button slds-button_brand" onclick="{!c.removeActSelected}">{!$Label.c.orm_delete_button_title}</button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+            <!--###### MODAL BOX End  Here ######-->
+        </aura:if>
     </div>
 
     <c:OrmActivityNewCmp />
+     <c:OrmActivityEditCmp />
 </aura:component>

@@ -1,4 +1,4 @@
-<aura:component extends="c:OrmAbstractEditCmp" controller="OrmImpactController">
+<aura:component extends="c:OrmAbstractNewCmp" controller="OrmImpactController">
     <aura:handler action="{!c.openOrmImpactEditCmp}" event="c:OrmEditImpactClickedEvt" />
     <aura:registerEvent name="OrmImpactCreatedEvt" type="c:OrmImpactCreatedEvt" />
     <aura:attribute name="idImpact" type="string" />

@@ -252,7 +252,7 @@
             });
             evt.fire();
         }
-        if (actionName == $A.get("$Label.c.orm_files_label")) {
+        if (actionName == $A.get("$Label.c.orm_details_title")) {
             component.set('v.measureProgressionId', row.Id);
             
             

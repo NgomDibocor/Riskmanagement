@@ -70,5 +70,8 @@
         } else {
 			 alert("No Field Should be Empty");
 		}
-    }    
+    } ,
+    onChange : function(component, event, helper) {
+	    	component.find("status").set("v.value", event.getSource().get("v.value")); 
+	},   
 })

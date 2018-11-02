@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="idAssessment" type="String" />
+    <aura:attribute name="idActivity" type="String" />
+</aura:event>

@@ -59,8 +59,22 @@ public class OrmActivityController {
                     order by Name];
         return activities;
     }
-    
- 
+    /**
+ * find activity  
+ *
+ * @author Salimata NGOM
+ * @version 1.0
+ * @description get activity
+ * @history 
+ * 2018-07-24 : Salimata NGOM - Implementation
+ */ 
+    @AuraEnabled 
+    public static Assessment__c findActivity(String activityId){
+        return [Select Id, Name, orm_startDate__c, orm_endDate__c, orm_activityStatus__c, orm_user__c,
+                       orm_user__r.Name, orm_description__c, orm_assessment__c,orm_assessment__r.Name
+                    From Assessment__c 
+                    where Id=:activityId and  RecordTypeId=:OrmActivityController.getActivityRecordTypeId()];
+    }
  /**
  * save List activity
  *
@@ -124,6 +138,17 @@ public class OrmActivityController {
         item.RecordTypeId = OrmActivityController.getActivityRecordTypeId();
 		upsert item;
 		return item;
+	}
+	/**
+	 * @author Abdoulaye
+	 * @version 1.0
+	 * @description method to add an Activity
+	 */
+    @AuraEnabled
+	public static Assessment__c updateActivity(Assessment__c activity){        
+        activity.RecordTypeId = OrmActivityController.getActivityRecordTypeId();
+		update activity;
+		return activity;
 	}
 	 /**
  * remove activities selected

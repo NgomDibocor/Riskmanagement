@@ -12,7 +12,12 @@
         component.set('v.columns', [{
             label: $A.get("$Label.c.orm_DateProgression_label"),
             fieldName: 'orm_dateProgression__c',
-            type: 'date'
+            type: 'date',
+             typeAttributes: {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                }
         }, {
             label: $A.get("$Label.c.orm_PourcentageProgression_label"),
             fieldName: 'orm_poucentageProgression__c',

@@ -28,7 +28,7 @@
 								<div class="slds-col">
 								    <div class="slds-form-element slds-is-required ">
 										<div class="slds-form-element__control ">
-                                            <lightning:input aura:id="dateProgression" type="date" label="{!$Label.c.orm_DateProgression_label}" 
+                                            <lightning:input aura:id="dateProgression" format="yyyy-MM-dd" type="date" label="{!$Label.c.orm_DateProgression_label}" 
                                      			 value="{!v.measureProgressionData.orm_dateProgression__c}" />
 										</div>
 									</div>   

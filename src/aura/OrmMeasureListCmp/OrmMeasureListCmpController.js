@@ -15,6 +15,7 @@
             type: 'text'
         }, {
             type: 'button',
+            initialWidth: 90,
             typeAttributes: {
                 label: $A.get("$Label.c.orm_details_title"),
                 name: $A.get("$Label.c.orm_details_title"),
@@ -22,10 +23,12 @@
             }
         }, {
             type: 'button',
+            initialWidth: 90,
             typeAttributes: {
                 label: $A.get("$Label.c.orm_edit_button_title"),
                 name: $A.get("$Label.c.orm_edit_button_title"),
-                title: $A.get("$Label.c.orm_edit_button_title")
+                title: $A.get("$Label.c.orm_edit_button_title"),
+                class: 'widthBtn'
             }
         }]);
 		component.set("v.idAssessmentRisk", event.getParam('idAssessmentRisk'));

@@ -26,18 +26,15 @@
         component.set('v.columns', [{
             label: $A.get("$Label.c.orm_name_risk"),
             fieldName: 'RiskName',
-            type: 'text',
-            iconName: 'standard:orders'
+            type: 'text'
         }, {
             label: $A.get("$Label.c.orm_description_risk"),
             fieldName: 'RiskDescription',
-            type: 'text',
-            iconName: 'standard:orders'
+            type: 'text'
         }, {
             label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'RiskcategorieRisk',
-            type: 'picklist',
-            iconName: 'standard:orders'
+            type: 'picklist'
         }, {
             label: $A.get("$Label.c.orm_table_action_label"),
             type: 'button',
@@ -304,8 +301,7 @@
             label: $A.get("$Label.c.orm_name_risk"),
             fieldName: 'Name',
             editable:'true',
-            type: 'text',
-            iconName: 'standard:opportunity'
+            type: 'text'
         }, {
             label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'orm_categorieRisk__c',

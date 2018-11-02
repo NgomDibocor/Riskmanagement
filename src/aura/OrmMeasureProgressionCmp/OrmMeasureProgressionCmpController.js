@@ -32,14 +32,15 @@
             type: 'text'
         }, {
             type: 'button', 
+            initialWidth: 90,
             typeAttributes: {
                 label: $A.get("$Label.c.orm_details_title"),
                 name: $A.get("$Label.c.orm_details_title"),
                 title: $A.get("$Label.c.orm_details_title")
             }
         }, {
-        	label:'Action',
             type: 'button',
+            initialWidth: 90,
             cellAttributes: { alignment: 'center'},
             typeAttributes: {
                 label: $A.get("$Label.c.orm_edit_button_title"),

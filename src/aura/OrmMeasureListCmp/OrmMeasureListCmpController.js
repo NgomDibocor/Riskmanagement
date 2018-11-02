@@ -16,9 +16,9 @@
         }, {
             type: 'button',
             typeAttributes: {
-                label: $A.get("$Label.c.orm_show_button_title"),
-                name: $A.get("$Label.c.orm_show_button_title"),
-                title: $A.get("$Label.c.orm_show_button_title")
+                label: $A.get("$Label.c.orm_details_title"),
+                name: $A.get("$Label.c.orm_details_title"),
+                title: $A.get("$Label.c.orm_details_title")
             }
         }, {
             type: 'button',
@@ -171,7 +171,7 @@
             });
             evt.fire();
         }
-        if (actionName == $A.get("$Label.c.orm_show_button_title")) {
+        if (actionName == $A.get("$Label.c.orm_details_title")) {
         var evt = $A.get("e.c:OrmActiveRiskTraitementCmpEvt");
 	        evt.setParams({
 	            "idMeasure": row.Id

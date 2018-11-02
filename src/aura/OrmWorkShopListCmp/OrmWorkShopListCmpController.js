@@ -339,6 +339,7 @@
     },
     openModalContactWorkshop: function(component, event, helper) {
     var row = event.getParam('row');
+    console.log(JSON.stringify(row));
         var action = component.get("c.findAllContact");
         action
             .setCallback(
@@ -419,7 +420,7 @@
                                                 .setParams({
                                                     "contactList": component
                                                         .get("v.ContactList"),
-                                                    "workshop": row.Id
+                                                    "workshop": row
                                                 });
                                             evt.fire();
                                             console

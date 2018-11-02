@@ -219,7 +219,7 @@
 	 * @history 2018-09-17 : Salimata NGOM - Implementation
 	 */
 	openNewContact: function(component, event, helper) {
-		var idworkshop = component.get("v.workshop");
+		var idworkshop = component.get("v.workshop").Id;
 		if ($A.util.isEmpty(idworkshop)) {
 			var toast = $A.get('e.force:showToast');
 			toast.setParams({

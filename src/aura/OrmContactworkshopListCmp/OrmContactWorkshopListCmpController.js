@@ -68,6 +68,7 @@
 
 		component.set('v.contactsSearch', event.getParam('contactList'));
 		component.set('v.workshop', event.getParam('workshop'));
+		console.log("fgddg" ,event.getParam('workshop'));
 		component.set("v.isOpenModalContactWorkshop", true);
 		component.set("v.contactListSelected", []);
 		component.set("v.contactChecked", []);
@@ -218,7 +219,7 @@
 	 * @history 2018-09-17 : Salimata NGOM - Implementation
 	 */
 	openNewContact: function(component, event, helper) {
-		var idworkshop = component.get("v.workshop").Id;
+		var idworkshop = component.get("v.workshop");
 		if ($A.util.isEmpty(idworkshop)) {
 			var toast = $A.get('e.force:showToast');
 			toast.setParams({

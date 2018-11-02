@@ -1,5 +1,5 @@
 ({
- /**
+    /**
      *
      * @author Salimata NGOM
      * @version 1.0
@@ -8,6 +8,58 @@
      * 2018-08-24 : Salimata NGOM - Implementation
      */
     initRecords: function(component, event, helper) {
+        component.set('v.columns', [{
+            label: $A.get("$Label.c.orm_title_workshop"),
+            fieldName: 'Name',
+            editable: 'true',
+            type: 'text'
+        }, {
+            label: $A.get("$Label.c.orm_start_date"),
+            fieldName: 'StartDate',
+            editable: 'true',
+            type: 'date',
+            typeAttributes: {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            }
+        }, {
+            label: $A.get("$Label.c.orm_end_date"),
+            fieldName: 'orm_Contract_End_Date__c',
+            editable: 'true',
+            type: 'date',
+            typeAttributes: {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            }
+        }, {
+            label: $A.get("$Label.c.orm_message_workshop"),
+            fieldName: 'Description',
+            editable: 'true',
+            type: 'text'
+        }, {
+            label: $A.get("$Label.c.orm_date_invitation"),
+            fieldName: 'CompanySignedDate',
+            editable: 'true',
+            type: 'date',
+            typeAttributes: {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            }
+        }, {
+            label: 'Action',
+            type: 'button',
+            cellAttributes: {
+                alignment: 'center'
+            },
+            typeAttributes: {
+                label: $A.get("$Label.c.orm_edit_button_title"),
+                name: $A.get("$Label.c.orm_edit_button_title"),
+                title: $A.get("$Label.c.orm_edit_button_title")
+            }
+        }]);
         // call the apex class method and fetch activity list  
         var action = component.get("c.findWorkshopByAssessment");
         var assmntDataId = component.get('v.assessmentData').Id;
@@ -15,23 +67,16 @@
         action.setParam('asssessment', assmntDataId);
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {
-                var storeResponse = response.getReturnValue();
-                console.log(JSON.stringify(storeResponse));
-                // set WorkshopList list with return value from server.
-                // component.set("v.WorkshopList", storeResponse);
-                // component.set("v.storeListWorkshop", storeResponse);
-
-                component.set('v.initialData', response.getReturnValue());
-                component.set('v.items', response.getReturnValue());
-                // start pagination
-                var pageSize = component.get("v.pageSizeBis");
+            if (state === 'SUCCESS' && component.isValid()) {
+                var pageSize = component.get("v.pageSizeInlineEdit");
+                component.set('v.ListData', response.getReturnValue());
                 // get size of all the records and then hold into an attribute "totalRecords"
-                component.set("v.totalRecords", component.get("v.items").length);
+                component.set("v.totalRecords", component.get("v.ListData").length);
+                //Set the current Page as 0
+                component.set("v.currentPage", 0);
                 // set star as 0
                 component.set("v.startPage", 0);
-                var totalRecords = component.get("v.items").length;
-                //var div = Math.trunc(totalRecords / pageSize);
+                var totalRecords = component.get("v.ListData").length;
                 if (totalRecords === pageSize) {
                     component.set("v.hideNext", true);
                     component.set("v.endPage", pageSize - 1);
@@ -41,17 +86,18 @@
                 }
                 var PaginationList = [];
                 for (var i = 0; i < pageSize; i++) {
-                    if (component.get("v.items").length > i)
-                        PaginationList.push(component.get("v.items")[i]);
+                    if (component.get("v.ListData").length > i) {
+                        PaginationList.push(response.getReturnValue()[i]);
+                    }
                 }
                 component.set('v.PaginationList', PaginationList);
-                //end pagination
-
+            } else {
+                alert('ERROR');
             }
         });
         $A.enqueueAction(action);
     },
-     /**
+    /**
      *
      * @author Salimata NGOM
      * @version 1.0
@@ -90,11 +136,11 @@
         }
     },
     cancel: function(component, event, helper) {
-    	component.set("v.showSaveCancelBtn", false);
-    	helper.refreshList(component, event);
-    	
+        component.set("v.showSaveCancelBtn", false);
+        helper.refreshList(component, event);
+
     },
- /**
+    /**
      *
      * @author Salimata NGOM
      * @version 1.0
@@ -123,7 +169,7 @@
             evt.fire();
         }
     },
- /**
+    /**
      *
      * @author Salimata NGOM
      * @version 1.0
@@ -164,8 +210,8 @@
      * 2018-08-24 : Salimata NGOM - Implementation
      */
     filter: function(component, event, helper) {
-//        var ListWorkshop = component.get('v.storeListWorkshop');
-        var ListWorkshop = component.get('v.initialData');
+        //        var ListWorkshop = component.get('v.storeListWorkshop');
+        var ListWorkshop = component.get('v.ListData');
         var data = ListWorkshop;
         var key = component.get('v.key');
         var regex;
@@ -186,11 +232,25 @@
                 alert(e)
             }
 
-//            component.set("v.WorkshopList", data);
+            //            component.set("v.WorkshopList", data);
             component.set("v.filterPagination", data);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilterBis(component, event);
+            helper.paginationFilter(component, event);
         }
+    },
+
+
+    /**
+     * 
+     * @author Salimata NGOM
+     * @version 1.0
+     * @description cancel action and refresh the view
+     * @history 2018-10-08 : Salimata NGOM - Implementation
+     */
+    closeModalRemove: function(component, event, helper) {
+        // on cancel close modal
+        component.set("v.isEmptyMap", true);
+        component.set("v.showConfirmRemoveWorkshop", false);
     },
     /**
      * 
@@ -200,25 +260,42 @@
      * @history 2018-10-04 : Salimata NGOM - Implementation
      */
     removeWorkshop: function(component, event, helper) {
-        // is checked delete workshop show popup message confirmation
-        // get all checkboxes 
-        //if not checked show toast warning
-        var getSelectedNumber = component.get("v.selectedRowsCount");
-        console.log('getSelectedNumber'+getSelectedNumber);
-        if (getSelectedNumber == 0) {
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selected", selectedRows.length);
+        if (selectedRows.length != 0) {
+            var pgName = "page" + current;
+            component.get("v.SelectedItem")[pgName] = selectedRows;
+        } else {
+            var pgName = "page" + current;
+            component.get("v.SelectedItem")[pgName] = selectedRows;
+            console.log("***View else lenght =0*** ", Object(component.get("v.SelectedItem")));
+        }
+        var myMap = component.get("v.SelectedItem");
+        console.log("selectedRows in delete", Object.keys(myMap).length);
+        helper.checkIfMapContentIsEmpty(component, event, myMap);
+        if (Object.keys(myMap).length == 0) {
             var toast = $A.get('e.force:showToast');
             toast.setParams({
                 'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
                 'type': 'warning',
                 'mode': 'dismissible'
             });
-            toast.fire();
+            toast.fire()
+        } else if (component.get("v.isEmptyMap")) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
         } else {
             component.set("v.showConfirmRemoveWorkshop", true);
         }
-
-
     },
+    selectCauses: function(component, event, helper) {},
     /**
      * 
      * @author Salimata NGOM
@@ -227,33 +304,136 @@
      * @history 2018-10-04 : Salimata NGOM - Implementation
      */
     removeWorkshopSelected: function(component, event, helper) {
-        component.set("v.showConfirmRemoveWorkshop", false);
-        //fire event to childWorkshopList for delete workshop selected
-        var evt = $A.get("e.c:OrmRemoveRecordWorkshopEvnt");
-        evt.fire();
-    },
-   
-     /**
-     * 
-     * @author Salimata NGOM
-     * @version 1.0
-     * @description cancel action and refresh the view
-     * @history 2018-10-08 : Salimata NGOM - Implementation
-     */
-    closeModalRemove: function(component, event, helper) {
-        // on cancel close modal
-        component.set("v.showConfirmRemoveWorkshop", false);
-    },
-        // For select all Checkboxes 
-    selectAll: function(component, event, helper) {
-        //get the header checkbox value  
-        var selectedHeaderCheck = event.getSource().get("v.value");
+        var myMap = component.get("v.SelectedItem");
+        var idWorkshop = [];
+        var lengthMap = Object.keys(myMap).length;
 
-        var evt = $A.get('e.c:OrmEvtSelectAllWorkshop');
-        evt.setParams({
-            "selectAllCheckbox": selectedHeaderCheck
+        for (var i = 0; i < lengthMap; i++) {
+            var page = 'page' + i;
+            for (var j = 0; j < myMap[page].length; j++) {
+                idWorkshop.push(myMap[page][j].Id);
+            }
+        }
+
+        //		call apex class method
+        var action = component.get('c.deleteRecordWorkshop');
+        // pass the all selected record's Id's to apex method 
+        action.setParams({
+            "lstRecordId": idWorkshop
         });
-        evt.fire();
+        action.setCallback(this, function(response) {
+            //store state of response
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                myMap = {};
+                component.set("v.SelectedItem", myMap);
+                component.set("v.isEmptyMap", true);
+                component.set('v.showConfirmRemoveWorkshop', false);
+                helper.refreshList(component, event);
+            }
+        });
+        $A.enqueueAction(action);
     },
-    
+    onSave: function(component, event, helper) {
+        helper.saveDataTable(component, event, helper);
+    },
+    openModalContactWorkshop: function(component, event, helper) {
+    var row = event.getParam('row');
+        var action = component.get("c.findAllContact");
+        action
+            .setCallback(
+                this,
+                function(response) {
+                    var state = response.getState();
+                    if (state === "SUCCESS") {
+                        var storeResponse = response.getReturnValue();
+                        // console.log(JSON.stringify(storeResponse));
+
+                        // set ContactListTemp list with return value
+                        // from server.
+                        component.set("v.ContactListTemp",
+                            storeResponse);
+
+                        if (component.get("v.ContactListTemp").length > 0) {
+
+                            // call the apex class method and fetch
+                            // contact list workshop
+                            var action1 = component
+                                .get("c.findAllContactWorkshop");
+                            action1
+                                .setParams({
+                                    'item': row.Id
+                                });
+
+                            action1
+                                .setCallback(
+                                    this,
+                                    function(response) {
+                                        var stateworkshop = response
+                                            .getState();
+                                        if (stateworkshop == "SUCCESS") {
+
+                                            var storeResponseWorkshopcontact = response
+                                                .getReturnValue();
+                                            component
+                                                .set(
+                                                    "v.ContactWorkshopList",
+                                                    storeResponseWorkshopcontact);
+
+                                            // iterate and check
+                                            // if contact is
+                                            // associated to
+                                            // workshop
+                                            component
+                                                .get(
+                                                    "v.ContactListTemp")
+                                                .forEach(
+                                                    function(
+                                                        contact) {
+                                                        component
+                                                            .get(
+                                                                "v.ContactWorkshopList")
+                                                            .forEach(
+                                                                function(
+                                                                    contactworkshop) {
+
+                                                                    if (contactworkshop.orm_contact__c == contact.Id) {
+                                                                        contact.association = $A.get("$Label.c.orm_associatedContactWorkshop");
+                                                                        if (contactworkshop.orm_notification__c == true) {
+                                                                            contact.orm_notification__c = $A.get("$Label.c.orm_notification_c");
+                                                                        }
+                                                                    }
+                                                                });
+
+                                                    });
+
+                                            component
+                                                .set(
+                                                    "v.ContactList",
+                                                    component
+                                                    .get("v.ContactListTemp"));
+
+                                            var evt = $A
+                                                .get("e.c:OrmContactWorkshopListEvt");
+                                            evt
+                                                .setParams({
+                                                    "contactList": component
+                                                        .get("v.ContactList"),
+                                                    "workshop": row.Id
+                                                });
+                                            evt.fire();
+                                            console
+                                                .log(component
+                                                    .get("v.ContactListTemp"));
+
+                                        }
+                                    });
+                            $A.enqueueAction(action1);
+
+                        }
+                    }
+                });
+        $A.enqueueAction(action);
+
+    },
 })

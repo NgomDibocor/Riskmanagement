@@ -17,6 +17,9 @@
 						'Description':''
 						
 					}" />
+	<aura:attribute name="ContactList" type="Contact[]" description="store contact records list" />
+	<aura:attribute name="ContactListTemp" type="Contact[]"/>
+	<aura:attribute name="ContactWorkshopList" type="orm_ContactWorkshop__c[]" description="store contact workshop records list" />
     <aura:attribute name="assessmentData" type="Assessment__c" default="{
 																			'sobjectType' : 'Assessment__c',
 																			'Description':''
@@ -30,9 +33,11 @@
     <aura:handler event="c:OrmRefreshWorkshopEvnt" action="{!c.initRecords}" />
     <aura:registerEvent name="OrmNewWorkShopEvt" type="c:OrmNewWorkShopEvt" />
     <aura:registerEvent type="c:OrmNewContactEvt" name="OrmNewContactEvt" />
+    <aura:registerEvent name="OrmContactWorkshopListEvt"  type="c:OrmContactWorkshopListEvt"/>
     <!-- start header page content search bar and action button -->
 
-
+	<aura:attribute name="columns" type="List" />
+	<aura:attribute name="isEmptyMap" type="boolean" default="true" />
 
 
 
@@ -40,7 +45,7 @@
         <div class=" slds-size--2-of-12   slds-p-horizontal--small">
         </div>
         <div class=" slds-size--6-of-12   slds-p-horizontal--small">
-            <a href="javascript:void(0);" onclick="">
+            <a href="javascript:void(0);" >
                 <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
             </a>
         </div>
@@ -57,79 +62,28 @@
        	   </span>  
             <!--<button class="slds-button slds-button_brand" onclick="{!c.openNewContact}">{!$Label.c.new_title_label+'  '+ $Label.c.orm_contact_menu}</button>  -->
             <!-- use aura:if for show/hide buttons -->
-            <aura:if isTrue="{!v.showSaveCancelBtn}">
-                <!--button for save and cancel Record after Inline Edit-->
-                <lightning:buttonGroup class="slds-m-around_medium">
-                    <lightning:button label="{!$Label.c.orm_cancel_button_title}" onclick="{!c.cancel}" />
-                    <lightning:button label="{!$Label.c.orm_save_button_title}" onclick="{!c.Save}" variant="success" />
-                </lightning:buttonGroup>
-            </aura:if>
+         
         </div>
     </div>
-    <!-- end header page content search bar and action button -->
-    <div class="slds-m-around_large">
-        <aura:if isTrue="{!not(empty(v.PaginationList))}">
-            <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
-                <thead>
-                    <tr class="slds-text-title--caps">
-                        <th scope="col">
-                            <div class="slds-truncate" title="">N°</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate" title="{!$Label.c.orm_title_workshop}">{!$Label.c.orm_title_workshop}</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate" title="{!$Label.c.orm_start_date }">{!$Label.c.orm_start_date} - {!$Label.c.orm_end_date}</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate" title="{!$Label.c.orm_message_workshop}">{!$Label.c.orm_message_workshop}</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate" title="{!$Label.c.orm_date_invitation}">{!$Label.c.orm_date_invitation}</div>
-                        </th>
-                         <th class="slds-text-align--right">
-                                <div class="slds-form-element">
-                                    <div class="slds-form-element__control">
-                                        <label class="slds-checkbox">
-		                        	<!--header checkbox for select all-->
-		                        	<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
-		                        	<span class="slds-checkbox--faux"></span>
-		                        	<span class="slds-form-element__label text"></span>
-		                     	</label>
-                                    </div>
-                                </div>
-                            </th>
-                        
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                    <!--### display all records of workshop attribute one by one by aura:iteration ###-->
-<!--                     items="{!v.WorkshopList}" var="workshop"  -->
-                    <aura:iteration  items="{!v.PaginationList}" var="item" indexVar="sNo">
-                        <!-- start iteration -->
-                        <c:OrmWorkShopListChildCmp singleRec="{!item}" assessmentData="{!v.assessmentData}" showSaveCancelBtn="{!v.showSaveCancelBtn}" sNo="{!sNo + 1}" selectedRowsCount="{!v.selectedRowsCount}" />
-                    </aura:iteration>
-                </tbody>
-            </table>
-            <aura:set attribute="else">
-                <div class="messageIsEmpty">
-                          {!$Label.c.orm_WorkshopEmpty_message}
-                   
+    	<center>
+                <div style="width:80%;">
+                    <aura:if isTrue="{!not(empty(v.PaginationList))}">
+                        <lightning:datatable aura:id="datatableList" columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"  onrowselection="{!c.selectCauses}" onrowaction="{! c.openModalContactWorkshop }"/>
+                        <div style="margin-top:20px; padding-bottom:10px;">
+                            <lightning:buttonGroup>
+                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                            </lightning:buttonGroup>
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="messageIsEmpty" style="padding-top: 20px">
+                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                            </div>
+                        </aura:set>
+                    </aura:if>
                 </div>
-            </aura:set>
-        </aura:if>
-    </div>
-    <!-- 	 <c:OrmContactNewCmp/> -->
-    <center>
-        <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-            <lightning:buttonGroup>
-                <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
-            </lightning:buttonGroup>
-        </div>
-    </center>
+            </center>
+   
     <aura:if isTrue="{!v.showConfirmRemoveWorkshop}">
 		<!--###### MODAL BOX Start From Here ######-->
 		<div class="demo-only" style="height: 640px;">

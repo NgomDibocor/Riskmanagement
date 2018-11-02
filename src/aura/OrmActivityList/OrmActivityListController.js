@@ -139,7 +139,7 @@
      */
     filter: function(component, event, helper) {
         //		var ListActivity = component.get('v.storeListActivity');
-        var ListActivity = component.get('v.initialData');
+        var ListActivity = component.get('v.ListData');
         var data = ListActivity;
         var key = component.get('v.key');
         var regex;
@@ -163,7 +163,7 @@
             //			component.set("v.ActivityList", data);
             component.set("v.filterPagination", data);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilterBis(component, event);
+            helper.paginationFilter(component, event);
         }
     },
     sendDescriptionFieldCause: function(component, event, helper) {

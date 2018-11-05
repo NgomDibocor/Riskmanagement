@@ -13,3 +13,14 @@
 .THIS .table-test button{
 background-color: #16325c;
 color: white}
+.THIS div.workshop {
+    display: inline-block;
+    width:80%;
+    margin-left:12%;
+    margin-right:10%;
+}
+.THIS .workshopSearch {
+	display: inline-block;
+    width:80%;
+    margin-right: 15px;
+}

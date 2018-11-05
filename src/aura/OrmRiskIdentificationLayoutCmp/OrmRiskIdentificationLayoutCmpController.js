@@ -22,6 +22,13 @@
      *
      */
     doInit: function(component, event, helper) {
+    var today = new Date();
+    var monthDigit = today.getMonth() + 1;
+    if (monthDigit <= 9) {
+        monthDigit = '0' + monthDigit;
+    }
+    var dateDuJour = today.getFullYear()+"-"+ monthDigit+"-"+ today.getDate();
+    console.log(dateDuJour);
         // Set the columns of the Table
         component.set('v.columns', [{
             label: $A.get("$Label.c.orm_name_risk"),
@@ -144,12 +151,19 @@
     },
 
     openPopupAssociation: function(component, event, helper) {
+     var today = new Date();
+    var monthDigit = today.getMonth() + 1;
+    if (monthDigit <= 9) {
+        monthDigit = '0' + monthDigit;
+    }
+    var dateDuJour = today.getFullYear()+"-"+ monthDigit+"-"+ today.getDate();
         var selectedRows = event.getParam('selectedRows');
         var assessmentRisks = [];
         selectedRows.forEach(function(selectedRow) {
             var newAssessmentRisk = {};
             newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
             newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
+            newAssessmentRisk.orm_date__c = dateDuJour ;
             newAssessmentRisk.orm_Risk__c = selectedRow.Id;
             assessmentRisks.push(newAssessmentRisk);
         });

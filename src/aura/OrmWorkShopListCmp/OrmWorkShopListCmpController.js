@@ -52,12 +52,8 @@
             label: 'Action',
             type: 'button',
             cellAttributes: {
-                alignment: 'center'
-            },
-            typeAttributes: {
-                label: $A.get("$Label.c.orm_edit_button_title"),
-                name: $A.get("$Label.c.orm_edit_button_title"),
-                title: $A.get("$Label.c.orm_edit_button_title")
+            	iconName: 'action:new_group',
+                alignment: 'center',
             }
         }]);
         // call the apex class method and fetch activity list  

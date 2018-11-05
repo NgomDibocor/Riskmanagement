@@ -39,41 +39,31 @@
 	<aura:attribute name="columns" type="List" />
 	<aura:attribute name="isEmptyMap" type="boolean" default="true" />
 
-
-
-    <div class="slds-grid slds-gutters">
-        <div class=" slds-size--2-of-12   slds-p-horizontal--small">
-        </div>
-        <div class=" slds-size--6-of-12   slds-p-horizontal--small">
-            <a href="javascript:void(0);" >
+    <div class="slds-m-around_large">
+      <div class="workshop">
+      <div class="workshopSearch">
+      	<a href="javascript:void(0);" >
                 <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
-            </a>
-        </div>
-
-        <div class=" slds-size--4-of-12   slds-p-horizontal--small">
-            <br/>
-            <span class="btnNewWorkshop" onclick="{!c.openNewWorkshop}">
+        </a>
+      </div>
+    	<span class="btnNewWorkshop" onclick="{!c.openNewWorkshop}">
            <lightning:icon class="curseur" iconName="utility:new" size="medium" /></span>
           <span class="btnDeleteActivity" onclick="{!c.removeWorkshop}">
            <lightning:icon	 class="curseur" iconName="utility:delete" size="medium" />
 			</span> 
             <span>
        	    <lightning:icon class="curseur" onclick="{!c.openNewContact}" iconName="utility:adduser" size="medium" />
-       	   </span>  
-            <!--<button class="slds-button slds-button_brand" onclick="{!c.openNewContact}">{!$Label.c.new_title_label+'  '+ $Label.c.orm_contact_menu}</button>  -->
-            <!-- use aura:if for show/hide buttons -->
-         
-        </div>
-    </div>
-    	<center>
+       	   </span>  <br/><br/>
                 <div style="width:80%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
                         <lightning:datatable aura:id="datatableList"  columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"  onrowselection="{!c.selectCauses}" onrowaction="{! c.openModalContactWorkshop }"/>
                         <div style="margin-top:20px; padding-bottom:10px;">
+                            <center>
                             <lightning:buttonGroup>
                                 <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
                                 <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
                             </lightning:buttonGroup>
+                            </center>
                         </div>
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
@@ -82,7 +72,6 @@
                         </aura:set>
                     </aura:if>
                 </div>
-            </center>
    
     <aura:if isTrue="{!v.showConfirmRemoveWorkshop}">
 		<!--###### MODAL BOX Start From Here ######-->
@@ -117,5 +106,7 @@
 		</div>
 		<!--###### MODAL BOX End  Here ######-->
 	</aura:if>
+	</div>
+	</div>
     <c:OrmContactWorkshopListCmp assessmentData='{!v.assessmentData}' />
 </aura:component>

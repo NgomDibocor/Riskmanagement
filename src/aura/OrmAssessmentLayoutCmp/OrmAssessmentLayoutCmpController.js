@@ -1,10 +1,17 @@
 ({
+    /* @cretedBy: Dibocor NGOM
+	 * @createdDate: 02/07/2018
+     * @description: this method initialises the component and get the picklist values
+
+    */
     doInit : function(component, event, helper) {
        helper.fetchPicklist(component, event);
 	},
     
     /* @cretedBy: Dibocor NGOM
-	   @createdDate: 02/07/2018
+	 * @createdDate: 02/07/2018
+     * @description: this method allows to  create and update an assessment
+
     */
     createAssessment : function(component, event, helper) {
         var ta = component.find("typeAssessment");
@@ -101,6 +108,11 @@
         $A.enqueueAction(action);
     },
     
+    /* @cretedBy: Dibocor NGOM
+	 * @createdDate: 05/07/2018
+     * @description: this method is called when the Project Manager changes
+
+    */
 	onChangeProjectManager : function(component, event, helper){
 	    component.set("v.displaySaveCancelBtn",true);
 		component.find("projectManager").set("v.value", event.getSource().get("v.value"));

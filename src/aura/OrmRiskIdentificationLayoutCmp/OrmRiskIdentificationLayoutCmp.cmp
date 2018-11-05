@@ -91,6 +91,7 @@
                 data="{! v.PaginationList }" 
                 columns="{! v.columns }" 
                 keyField="Id" 
+                class="table-test"
                 resizeColumnDisabled="true" 
                 selectedRows="{! v.assessmentRisk}" 
                 showRowNumberColumn="true" 

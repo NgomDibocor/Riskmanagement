@@ -30,15 +30,17 @@
 					iconName="utility:delete" size="small" />
 			</span> <br/><br/>
 
-            <center>
-                <div style="width:50%;">
+            
+                <div style="width:70%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
                         <lightning:datatable aura:id="datatableList" columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" onrowselection="{!c.selectCauses}" />
                         <div style="margin-top:20px; padding-bottom:10px;">
+                            <center>
                             <lightning:buttonGroup>
                                 <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
                                 <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
                             </lightning:buttonGroup>
+                             </center>
                         </div>
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
@@ -47,7 +49,7 @@
                         </aura:set>
                     </aura:if>
                 </div>
-            </center>
+           
         </div>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAssumption}">

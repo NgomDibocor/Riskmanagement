@@ -32,14 +32,15 @@
             type: 'text'
         }, {
             type: 'button', 
+            initialWidth: 90,
             typeAttributes: {
-                label: $A.get("$Label.c.orm_files_label"),
-                name: $A.get("$Label.c.orm_files_label"),
-                title: $A.get("$Label.c.orm_files_label")
+                label: $A.get("$Label.c.orm_details_title"),
+                name: $A.get("$Label.c.orm_details_title"),
+                title: $A.get("$Label.c.orm_details_title")
             }
         }, {
-        	label:'Action',
             type: 'button',
+            initialWidth: 90,
             cellAttributes: { alignment: 'center'},
             typeAttributes: {
                 label: $A.get("$Label.c.orm_edit_button_title"),
@@ -251,7 +252,7 @@
             });
             evt.fire();
         }
-        if (actionName == $A.get("$Label.c.orm_files_label")) {
+        if (actionName == $A.get("$Label.c.orm_details_title")) {
             component.set('v.measureProgressionId', row.Id);
             
             

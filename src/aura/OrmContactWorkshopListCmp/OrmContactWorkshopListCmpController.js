@@ -68,6 +68,7 @@
 
 		component.set('v.contactsSearch', event.getParam('contactList'));
 		component.set('v.workshop', event.getParam('workshop'));
+		console.log("fgddg" ,event.getParam('workshop'));
 		component.set("v.isOpenModalContactWorkshop", true);
 		component.set("v.contactListSelected", []);
 		component.set("v.contactChecked", []);

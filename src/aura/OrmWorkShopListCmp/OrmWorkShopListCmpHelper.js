@@ -1,17 +1,4 @@
 ({
-	 requiredValidation : function(component,event) {
-        // get all workshop	
-        var allRecords = component.get("v.WorkshopList");
-        var isValid = true;
-        // play a for loop on all workshop list and check that workshop title is not null,   
-        for(var i = 0; i < allRecords.length;i++){
-            if(allRecords[i].Name == null || allRecords[i].Name.trim() == ''){
-   
-                isValid = false;
-            }  
-        }
-        return isValid;
-    },
      /**
  *
  * @author Salimata NGOM
@@ -57,5 +44,50 @@
             }
         });
         $A.enqueueAction(action);
-	}
+	},
+	 checkIfMapContentIsEmpty : function(component, event, myMap) {
+        console.log("checkIfMapContentIsEmpty start")
+        var lengthMap = Object.keys(myMap).length;
+        for (var i = 0; i < lengthMap; i++) {
+            var page = 'page' + i;
+            if(myMap[page].length != 0){
+              component.set("v.isEmptyMap", false);
+              console.log("isEmptyMap", component.get("v.isEmptyMap"));
+            }
+        }
+    },
+    saveDataTable: function(component, event, helper) {
+        var editedRecords = component.find("datatableList").get("v.draftValues");
+        var totalRecordEdited = editedRecords.length;
+        var action = component.get("c.saveWorkShop");
+        action.setParams({
+            'lstWorkshop': editedRecords
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                //if update is successful
+                 var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message':  totalRecordEdited + " workshop Records Updated",
+                'type': 'success',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+            	this.refreshList(component, event)
+                component.find("datatableList").set("v.draftValues", null);
+                //helper.reloadDataTable(component);
+            } else { //if update got failed
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': "error in update",
+                'type': 'error',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+            }
+
+        });
+        $A.enqueueAction(action);
+    },
 })

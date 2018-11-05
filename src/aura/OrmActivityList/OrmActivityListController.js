@@ -32,13 +32,14 @@
             type: 'text'
         }, {
             type: 'button',
+            initialWidth: 90,
             typeAttributes: {
-                label: $A.get("$Label.c.orm_show_button_title"),
-                name: $A.get("$Label.c.orm_show_button_title"),
-                title: $A.get("$Label.c.orm_show_button_title")
+                label: $A.get("$Label.c.orm_details_title"),
+                name: $A.get("$Label.c.orm_details_title"),
+                title: $A.get("$Label.c.orm_details_title")
             }
         }, {
-            label: 'Action',
+            initialWidth: 90,
             type: 'button',
             cellAttributes: {
                 alignment: 'center'
@@ -139,7 +140,7 @@
      */
     filter: function(component, event, helper) {
         //		var ListActivity = component.get('v.storeListActivity');
-        var ListActivity = component.get('v.initialData');
+        var ListActivity = component.get('v.ListData');
         var data = ListActivity;
         var key = component.get('v.key');
         var regex;
@@ -163,7 +164,7 @@
             //			component.set("v.ActivityList", data);
             component.set("v.filterPagination", data);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilterBis(component, event);
+            helper.paginationFilter(component, event);
         }
     },
     sendDescriptionFieldCause: function(component, event, helper) {
@@ -270,7 +271,7 @@
             });
             evt.fire();
         }
-        if (actionName == $A.get("$Label.c.orm_show_button_title")) {
+        if (actionName == $A.get("$Label.c.orm_details_title")) {
         var evt = $A.get("e.c:OrmShowActivityEvt");
 	        evt.setParams({
 	            "idActivity": row.Id

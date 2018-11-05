@@ -51,8 +51,9 @@
         }, {
             label: 'Action',
             type: 'button',
-            cellAttributes: {
+            typeAttributes: {
             	iconName: 'action:new_group',
+            	size: 'large',
                 alignment: 'center',
             }
         }]);

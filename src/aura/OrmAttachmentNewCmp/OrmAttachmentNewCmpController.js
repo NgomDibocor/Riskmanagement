@@ -7,7 +7,7 @@
 	 *               
 	 */
 	 openModalAttachment:function(component, event, helper) {
-	 component.set("v.isOpenfileUploadNewCmp", event.getParam('isOpenfileUploadNewCmp'));
+	    component.set("v.isOpenfileUploadNewCmp", event.getParam('isOpenfileUploadNewCmp'));
 		component.set('v.parentId', event.getParam('parentId'));
 	 },
 	/**
@@ -17,17 +17,26 @@
 	 *               
 	 */
     doSave: function(component, event, helper) {
-        if (component.find("file").get("v.files").length > 0) {
-            helper.save(component, event);
-            
-        } else {
-          	var toast = $A.get('e.force:showToast');
-            toast.setParams({
-            	'message' : $A.get("$Label.c.orm_check_valid_file_upload"),
-                'type' : 'warning',
-                'mode' : 'dismissible'
-            });      
-            toast.fire(); 
+       if(component.find("file").get("v.files") !== null){
+	        if (component.find("file").get("v.files").length > 0) {
+	            helper.save(component, event);
+	        } else {
+	          	var toast = $A.get('e.force:showToast');
+	            toast.setParams({
+	            	'message' : $A.get("$Label.c.orm_check_valid_file_upload"),
+	                'type' : 'warning',
+	                'mode' : 'dismissible'
+	            });      
+	            toast.fire(); 
+	        }
+        }else{
+                var toast = $A.get('e.force:showToast');
+	            toast.setParams({
+	            	'message' : "Please, select a file",
+	                'type' : 'warning',
+	                'mode' : 'dismissible'
+	            });      
+	            toast.fire(); 
         }
     },
  	/**

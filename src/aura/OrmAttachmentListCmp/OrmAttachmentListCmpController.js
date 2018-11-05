@@ -1,6 +1,37 @@
 ({
     doInit: function(component, event, helper) {
-
+    	
+    	component.set('v.columns', [{
+            label: $A.get("$Label.c.orm_title_file"),
+            fieldName: 'orm_title_document__c',
+            type: 'text'
+        }, {
+            label: $A.get("$Label.c.orm_author_file"),
+            fieldName: 'orm_auteur__c',
+            type: 'text'
+        }, {
+            label: $A.get("$Label.c.orm_reference_number"),
+            fieldName: 'orm_numeroDeReference__c',
+            type: 'text'
+        }, {
+            type: 'button',
+            initialWidth: 90,
+            typeAttributes: {
+                label: $A.get("$Label.c.orm_details_title"),
+                name: $A.get("$Label.c.orm_details_title"),
+                title: $A.get("$Label.c.orm_details_title")
+            }
+        }, {
+            type: 'button',
+            initialWidth: 90,
+            typeAttributes: {
+                label: $A.get("$Label.c.orm_edit_button_title"),
+                name: $A.get("$Label.c.orm_edit_button_title"),
+                title: $A.get("$Label.c.orm_edit_button_title"),
+                class: 'widthBtn'
+            }
+        }]);
+        
         helper.refreshList(component, event);
 
 

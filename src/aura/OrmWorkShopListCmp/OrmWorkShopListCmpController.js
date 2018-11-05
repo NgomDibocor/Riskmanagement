@@ -50,12 +50,12 @@
             }
         }, {
             label: 'Action',
-            type: 'button',
+            type: 'button-icon',
             typeAttributes: {
             	iconName: 'action:new_group',
             	size: 'large',
                 alignment: 'center',
-            }
+            }, class: 'btnContact'
         }]);
         // call the apex class method and fetch activity list  
         var action = component.get("c.findWorkshopByAssessment");

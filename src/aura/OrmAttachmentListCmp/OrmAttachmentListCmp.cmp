@@ -12,7 +12,9 @@
     <aura:registerEvent name="OrmSendValuesFieldDescription" type="c:OrmSendValuesFieldDescriptionEvt" />
     <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
     <aura:handler event="c:OrmNewFileUploadCreatedEvent" action="{!c.doInit}" />
-
+	
+		
+		<aura:attribute name="columns" type="List" />
 
 
 
@@ -125,6 +127,13 @@
                         </div>
                     </aura:set>
                 </aura:if>
+                <lightning:datatable aura:id="datatableList" class="table-test" columns="{! v.columns }" onrowaction="{! c.handleRowAction }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"  onrowselection="{!c.selectCauses}" />
+                        <div style="margin-top:20px; padding-bottom:10px;">
+                            <lightning:buttonGroup>
+                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                            </lightning:buttonGroup>
+                        </div>
             </div>
         </div>
     </div>

@@ -20,113 +20,113 @@
         <h1 class="titleAattachment"><span class="dot">{!$Label.c.orm_attachment_menu}</span></h1>
     </div>
     <div class="slds-m-around_large">
-    	<div class="assumption">
-           <div class="iAssumption">
-            <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
-                <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
-            </a>
-        </div>
-        <span class="btnNewAttachment" onclick="{!c.showformfileUploadNew}"> 
+        <div class="assumption">
+            <div class="iAssumption">
+                <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
+                    <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
+                </a>
+            </div>
+            <span class="btnNewAttachment" onclick="{!c.showformfileUploadNew}"> 
               <lightning:icon iconName="utility:new" size="small" />
 			</span>
             <span class="btnDeleteAttachment" onclick="{!c.removeAttachment}"> <lightning:icon
 					iconName="utility:delete" size="small" />
 			</span><br/><br/>
-        <!--Data Table-->
-       <div style="width:80%;">
-        <aura:if isTrue="{!not(empty(v.PaginationList))}">
-            <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
-                <thead>
-                    <tr class="slds-text-title--caps">
-                        <th style="width:3.25rem;" class="slds-text-align--right">
-                            <div class="slds-form-element">
-                                <div class="slds-form-element__control">
-                                    <label class="slds-checkbox">
+            <!--Data Table-->
+            <div style="width:80%;">
+                <aura:if isTrue="{!not(empty(v.PaginationList))}">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols">
+                        <thead>
+                            <tr class="slds-text-title--caps">
+                                <th style="width:3.25rem;" class="slds-text-align--right">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-checkbox">
 				                        <!--header checkbox for select all-->
 				                        <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
 				                        <span class="slds-checkbox--faux"></span>
 				                        <span class="slds-form-element__label text"></span>
 				                     </label>
-                                </div>
-                            </div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate thTable" title="">N°</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate thTable" title="{!$Label.c.orm_title_file}">{!$Label.c.orm_title_file}</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate thTable" title="{!$Label.c.orm_author_file}">{!$Label.c.orm_author_file}</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate thTable" title="{!$Label.c.orm_reference_number}">{!$Label.c.orm_reference_number}</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate thTable" title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--### display all records of attachment  one by one by aura:iteration ###-->
-                    <!-- 				items="{!v.items}" var="item" -->
-                    <aura:iteration items="{!v.PaginationList}" var="item" indexVar="i">
-                        <tr class="slds-hint-parent">
-                            <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
-                                <div class="slds-form-element">
-                                    <div class="slds-form-element__control">
-                                        <label class="slds-checkbox">
-                           <ui:inputCheckbox text="{!item.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
-                           <span class="slds-checkbox--faux"></span>
-                           <span class="slds-form-element__label text"></span>
-                        </label>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>{!i+1}</td>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate thTable" title="">N°</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate thTable" title="{!$Label.c.orm_title_file}">{!$Label.c.orm_title_file}</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate thTable" title="{!$Label.c.orm_author_file}">{!$Label.c.orm_author_file}</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate thTable" title="{!$Label.c.orm_reference_number}">{!$Label.c.orm_reference_number}</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate thTable" title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--### display all records of attachment  one by one by aura:iteration ###-->
+                            <!-- 				items="{!v.items}" var="item" -->
+                            <aura:iteration items="{!v.PaginationList}" var="item" indexVar="i">
+                                <tr class="slds-hint-parent">
+                                    <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-checkbox">
+						                           <ui:inputCheckbox text="{!item.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
+						                           <span class="slds-checkbox--faux"></span>
+						                           <span class="slds-form-element__label text"></span>
+						                        </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{!i+1}</td>
 
-                            <td><span class="slds-grid slds-grid_align-spread"> <span
-								class="slds-truncate" title="{!item.orm_title_document__c}">
-									{!item.ContentVersions[0].orm_title_document__c} </span>
-                                </span>
-                            </td>
-                            <td><span class="slds-grid slds-grid_align-spread"> <span
-								class="slds-truncate" title="{!item.orm_auteur__c}">
-									{!item.ContentVersions[0].orm_auteur__c} </span>
-                                </span>
-                            </td>
-                            <td><span class="slds-grid slds-grid_align-spread"> <span
-								class="slds-truncate" title="{!item.orm_numeroDeReference__c}">
-									{!item.ContentVersions[0].orm_numeroDeReference__c} </span>
-                                </span>
-                            </td>
-                            <td><span class="slds-grid slds-grid_align-spread"> <span
-								class="slds-truncate" title="{!item.Title}"> <a
-									data-index="{!i}" onclick="{!c.openSingleFile}">{!item.Title}</a></span>
-                                </span>
-                            </td>
-
-                        </tr>
-
-                    </aura:iteration>
-                </tbody>
-            </table>
-            <center>
-                <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-                    <lightning:buttonGroup>
-                        <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-                        <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
-                    </lightning:buttonGroup>
-                </div>
-            </center>
-            <aura:set attribute="else">
-                <div class="messageIsEmpty">
-                    {!$Label.c.orm_list_title_label +'  attachments  ' + $Label.c.orm_is_empty}
-                </div>
-            </aura:set>
-          </aura:if>
+                                    <td><span class="slds-grid slds-grid_align-spread"> 
+                                       <span class="slds-truncate" title="{!item.orm_title_document__c}">
+									        {!item.ContentVersions[0].orm_title_document__c} </span>
+                                        </span>
+                                    </td>
+                                    <td><span class="slds-grid slds-grid_align-spread"> 
+                                       <span class="slds-truncate" title="{!item.orm_auteur__c}">
+									       {!item.ContentVersions[0].orm_auteur__c} </span>
+                                        </span>
+                                    </td>
+                                    <td><span class="slds-grid slds-grid_align-spread"> 
+                                       <span class="slds-truncate" title="{!item.orm_numeroDeReference__c}">
+									      {!item.ContentVersions[0].orm_numeroDeReference__c} </span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                       <span class="slds-grid slds-grid_align-spread"> 
+	                                        <span class="slds-truncate" title="{!item.Title}"> <a
+										       data-index="{!i}" onclick="{!c.openSingleFile}">{!item.Title}</a>
+										    </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                    <center>
+                        <div style="margin-top:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+                            <lightning:buttonGroup>
+                                <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                            </lightning:buttonGroup>
+                        </div>
+                    </center>
+                    <aura:set attribute="else">
+                        <div class="messageIsEmpty">
+                            {!$Label.c.orm_list_title_label +' attachments ' + $Label.c.orm_is_empty}
+                        </div>
+                    </aura:set>
+                </aura:if>
+            </div>
         </div>
-    </div>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAttachment}">
         <!--###### MODAL BOX Start From Here ######-->

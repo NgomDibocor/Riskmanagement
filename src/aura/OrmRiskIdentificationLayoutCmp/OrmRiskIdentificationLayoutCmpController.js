@@ -45,6 +45,7 @@
         }, {
             label: $A.get("$Label.c.orm_table_action_label"),
             type: 'button',
+            initialWidth: 90,
             typeAttributes: {
                 label: $A.get("$Label.c.orm_edit_button_title"),
                 name: $A.get("$Label.c.orm_edit_button_title"),
@@ -314,19 +315,16 @@
         component.set('v.columns2', [{
             label: $A.get("$Label.c.orm_name_risk"),
             fieldName: 'Name',
-            editable:'true',
             type: 'text'
         }, {
             label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'orm_categorieRisk__c',
             type: 'text',
-            editable:'true',
             iconName: 'standard:opportunity'
         }, {
             label: $A.get("$Label.c.orm_description_risk"),
             fieldName: 'Description',
             type: 'text',
-            editable:'true',
             iconName: 'standard:opportunity'
         }]);
         helper.fetchlistRisks(component, event);

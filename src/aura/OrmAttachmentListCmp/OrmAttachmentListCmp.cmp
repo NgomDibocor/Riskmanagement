@@ -25,15 +25,15 @@
             <a href="javascript:void(0);" onclick="{!c.sendDescriptionSearchToFD}">
                 <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" label="{!$Label.c.search_title_label}" />
             </a>
-      </div><span class="btnNewAttachment" onclick="{!c.showformfileUploadNew}"> <lightning:icon
-					iconName="utility:new" size="small" />
+        </div>
+        <span class="btnNewAttachment" onclick="{!c.showformfileUploadNew}"> 
+              <lightning:icon iconName="utility:new" size="small" />
 			</span>
             <span class="btnDeleteAttachment" onclick="{!c.removeAttachment}"> <lightning:icon
 					iconName="utility:delete" size="small" />
 			</span><br/><br/>
-  
-    <!-- end header page content search bar and action button -->
         <!--Data Table-->
+       <div style="width:80%;">
         <aura:if isTrue="{!not(empty(v.PaginationList))}">
             <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_edit slds-table_fixed-layout slds-table_resizable-cols" style="width:80%; margin-left:0%;margin-right:10%;">
                 <thead>
@@ -42,11 +42,11 @@
                             <div class="slds-form-element">
                                 <div class="slds-form-element__control">
                                     <label class="slds-checkbox">
-                        <!--header checkbox for select all-->
-                        <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
-                        <span class="slds-checkbox--faux"></span>
-                        <span class="slds-form-element__label text"></span>
-                     </label>
+				                        <!--header checkbox for select all-->
+				                        <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
+				                        <span class="slds-checkbox--faux"></span>
+				                        <span class="slds-form-element__label text"></span>
+				                     </label>
                                 </div>
                             </div>
                         </th>
@@ -59,19 +59,14 @@
                         <th scope="col">
                             <div class="slds-truncate thTable" title="{!$Label.c.orm_author_file}">{!$Label.c.orm_author_file}</div>
                         </th>
-
                         <th scope="col">
                             <div class="slds-truncate thTable" title="{!$Label.c.orm_reference_number}">{!$Label.c.orm_reference_number}</div>
                         </th>
-
                         <th scope="col">
                             <div class="slds-truncate thTable" title="{!$Label.c.orm_attachment_button_title}">{!$Label.c.orm_attachment_button_title}</div>
                         </th>
-
                     </tr>
-
                 </thead>
-
                 <tbody>
                     <!--### display all records of attachment  one by one by aura:iteration ###-->
                     <!-- 				items="{!v.items}" var="item" -->
@@ -129,7 +124,8 @@
                     {!$Label.c.orm_list_title_label +'  attachments  ' + $Label.c.orm_is_empty}
                 </div>
             </aura:set>
-        </aura:if>
+          </aura:if>
+        </div>
     </div>
     </div>
     <aura:if isTrue="{!v.showConfirmRemoveAttachment}">

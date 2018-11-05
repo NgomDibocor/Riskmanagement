@@ -4,8 +4,8 @@
 
 .THIS div.impact {
     display: inline-block;
-    width: 80%;
-    margin-left:20%;
+    width: 90%;
+    margin-left:12%;
     margin-right:10%;
 }
 
@@ -18,7 +18,7 @@
 .THIS .deleteImpact {
     display: inline-block;
     width: 5%;
-    cursor: pointer;
+    cursor: pointer;	
 }
 
 .THIS span.btnNewImpact {
@@ -52,7 +52,7 @@
     line-height: 55px;
     width: 15%;
     border-radius: 0;
-    background-color: #5B86BE;
+    background-color: #16325c;
     display: inline-block;
 }
 .THIS .table-test button{

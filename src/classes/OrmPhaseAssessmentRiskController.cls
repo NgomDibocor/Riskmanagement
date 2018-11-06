@@ -13,7 +13,7 @@ public with sharing class OrmPhaseAssessmentRiskController {
 	@AuraEnabled
 	public static List<Macro> findAllPhaseByAssessmentRisk(String idAssRisk){
 		return [SELECT Id, Description, orm_assessmentRisk__c FROM Macro WHERE orm_assessmentRisk__c=: idAssRisk AND 
-					RecordTypeId =: OrmPhaseAssessmentRiskController.getPhaseRecordTypeId()];
+					RecordTypeId =: OrmPhaseAssessmentRiskController.getPhaseRecordTypeId() ORDER BY CreatedDate DESC];
 	}
 	  /**
 	 * @author: David

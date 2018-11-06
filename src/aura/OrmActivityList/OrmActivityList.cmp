@@ -13,7 +13,7 @@
     <aura:attribute name="ActivityList" type="Assessment__c[]" description="store activity records list" />
     <aura:attribute name="objInfoForPicklistValues" type="Assessment__c" default="{sobjectType : 'Assessment__c'}" description="object information to fetch picklist values" />
     <aura:attribute name="statusPicklistOpts" type="string[]" description="store picklist options values" />
- 
+
     <aura:attribute name="assessmentData" type="Assessment__c" default="{
 																			'sobjectType' : 'Assessment__c',
 																			'Description':''
@@ -45,33 +45,36 @@
             </div>
             <span onclick="{!c.openActivityNewCmp}" class="btnNewMeasure">
 				<lightning:icon iconName="utility:new" size="small" />
-			    </span>
-
+			</span>
             <span class="deleteMeasure" title="{!$Label.c.orm_delete_button_title}" onclick="{!c.removeActivity}"> <lightning:icon
 					iconName="utility:delete" size="small" />
 			</span>
-            <!-- 			    </aura:if> -->
             <br/><br/>
-            
-                <div style="width:80%;">
-                    <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                        <lightning:datatable aura:id="datatableList"  columns="{! v.columns }" class="table-test" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" onrowselection="{!c.selectCauses}" onrowaction="{! c.selectActivity }" />
-                        <div style="margin-top:20px; padding-bottom:10px;">
-                           <center>
+            <div style="width:80%;">
+                <aura:if isTrue="{!not(empty(v.PaginationList))}">
+                    <lightning:datatable aura:id="datatableList" 
+                                         columns="{! v.columns }" 
+                                         class="table-test" 
+                                         data="{! v.PaginationList  }" 
+                                         keyField="Id" onsave="{!c.onSave}" 
+                                         onrowselection="{!c.selectCauses}" 
+                                         onrowaction="{! c.selectActivity }" />
+                    <div style="margin-top:20px; padding-bottom:10px;">
+                        <center>
                             <lightning:buttonGroup>
                                 <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
                                 <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
                             </lightning:buttonGroup>
-                             </center>
+                        </center>
+                    </div>
+                    <aura:set attribute="else">
+                        <div class="messageIsEmpty" style="padding-top: 20px">
+                            {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
                         </div>
-                        <aura:set attribute="else">
-                            <div class="messageIsEmpty" style="padding-top: 20px">
-                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
-                            </div>
-                        </aura:set>
-                    </aura:if>
-                </div>
-           
+                    </aura:set>
+                </aura:if>
+            </div>
+
         </div>
         <aura:if isTrue="{!v.showConfirmRemoveActivity}">
             <!--###### MODAL BOX Start From Here ######-->
@@ -100,5 +103,5 @@
     </div>
 
     <c:OrmActivityNewCmp />
-     <c:OrmActivityEditCmp />
+    <c:OrmActivityEditCmp />
 </aura:component>

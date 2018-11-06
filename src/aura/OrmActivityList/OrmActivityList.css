@@ -1,5 +1,25 @@
-.THIS .inputFieldWidth {
-    width:85%;
+.THIS{}
+
+.THIS span.btnNewMeasure {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+.THIS .deleteMeasure{
+	display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+.THIS .measureSearch {
+	display: inline-block;
+    width: 80%;
+    margin-right: 15px;
+}
+.THIS div.measureProgression {
+    display: inline-block;
+    width: 90%;
+    margin-left:12%;
+    margin-right:10%;
 }
 .THIS .titleActivity {
   font-weight: 600;
@@ -15,25 +35,6 @@
   font-size: 1.2em;
   white-space: normal;
   color: green;
-}
-.THIS span.btnNewMeasure {
-    display: inline-block;
-    width: 5%;
-    cursor: pointer;
-}
-.THIS .deleteMeasure{
-	display: inline-block;
-    width: 5%;
-    cursor: pointer;
-}
-.THIS .measureSearch {
-	display: inline-block;
-    width:80%;
-    margin-right: 15px;
-}
-.THIS div.measureProgression {
-    display: inline-block;
-    width:100%;
 }
 
 .THIS .dot {

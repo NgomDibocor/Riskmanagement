@@ -6,16 +6,17 @@
     background-color: #5B86BE;
     display: inline-block;
 }
+
 .THIS .thTable {
-  font-weight: 600;
-  font-size: 1.2em;
+    font-weight: 600;
+    font-size: 1.2em;
 }
 
 .THIS .titleAssumtion {
     font-weight: 600;
     font-size: 2em;
     /* letter-spacing: -.07em; */
-    color:white;
+    color: white;
     text-align: center;
     white-space: normal;
 }
@@ -27,22 +28,26 @@
     white-space: normal;
     color: green;
 }
+
 .THIS .btnDeleteActivity {
     display: inline-block;
     width: 5%;
     cursor: pointer;
 }
-.THIS .btnNewAssumption{
-   display: inline-block;
+
+.THIS .btnNewAssumption {
+    display: inline-block;
     cursor: pointer;
     width: 5%;
 }
+
 .THIS div.phase {
     display: inline-block;
-     width: 90%;
-     margin-left:12%;
-     margin-right:10%;
+    width: 90%;
+    margin-left: 12%;
+    margin-right: 10%;
 }
+
 .THIS .iphase {
     display: inline-block;
     width: 80%;

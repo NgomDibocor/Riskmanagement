@@ -23,11 +23,11 @@
                     <lightning:input type="search" onchange="{!c.filter}" value="{!v.key}" placeholder="search assumption" />
                 </a>
             </div>
-
-            <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> <lightning:icon
-					iconName="utility:new" size="small" /></span>
-            <span class="btnDeleteActivity" onclick="{!c.openModalDeleteAssumption}"> <lightning:icon
-					iconName="utility:delete" size="small" />
+            <span class="btnNewAssumption" onclick="{!c.openNewAssumption}"> 
+                <lightning:icon iconName="utility:new" size="small" />
+            </span>
+            <span class="btnDeleteActivity" onclick="{!c.openModalDeleteAssumption}"> 
+                <lightning:icon iconName="utility:delete" size="small" />
 			</span> <br/><br/>
 
             

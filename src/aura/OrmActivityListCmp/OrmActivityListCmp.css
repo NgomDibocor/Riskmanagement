@@ -1,0 +1,62 @@
+.THIS {}
+
+.THIS span.btnNewMeasure {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+
+.THIS .deleteMeasure {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}
+
+.THIS .measureSearch {
+    display: inline-block;
+    width: 80%;
+    margin-right: 15px;
+}
+
+.THIS div.measureProgression {
+    display: inline-block;
+    width: 90%;
+    margin-left: 12%;
+    margin-right: 10%;
+}
+
+.THIS .titleActivity {
+    font-weight: 600;
+    font-size: 2em;
+    color: white;
+    /* letter-spacing: -.07em; */
+    text-align: center;
+    white-space: normal;
+}
+
+.THIS .messageIsEmpty {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
+    white-space: normal;
+    color: green;
+}
+
+.THIS .dot {
+    height: 50px;
+    line-height: 50px;
+    width: 300px;
+    border-radius: 0;
+    background-color: #5B86BE;
+    display: inline-block;
+}
+
+.THIS .thTable {
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.THIS .table-test button {
+    background-color: #16325c;
+    color: white;
+}

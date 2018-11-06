@@ -1,38 +1,41 @@
-.THIS {
-}
+.THIS {}
 
 .THIS .titleAssumtion {
-  font-weight: 600;
-  font-size: 2em;
-  color:white;
- /* letter-spacing: -.07em; */
-  text-align: center;
-  white-space: normal;
+    font-weight: 600;
+    font-size: 2em;
+    color: white;
+    /* letter-spacing: -.07em; */
+    text-align: center;
+    white-space: normal;
 }
+
 .THIS .messageIsEmpty {
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.2em;
-  white-space: normal;
-  color: green;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
+    white-space: normal;
+    color: green;
 }
+
 .THIS .dot {
     height: 55px;
     line-height: 55px;
     width: 300px;
-    border-radius:0;
+    border-radius: 0;
     background-color: #5B86BE;
     display: inline-block;
 }
+
 .THIS .thTable {
-  font-weight: 600;
-  font-size: 1.2em;
+    font-weight: 600;
+    font-size: 1.2em;
 }
+
 .THIS div.assumption {
     display: inline-block;
-     width: 90%;
-    margin-left:12%;
-    margin-right:10%;
+    width: 90%;
+    margin-left: 12%;
+    margin-right: 10%;
 }
 
 .THIS span.btnNewAssumption {

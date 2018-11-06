@@ -17,7 +17,7 @@ public with sharing class OrmAssumptionAssessmentRiskController {
 	@AuraEnabled
 	public static List<Macro> findAssumptionByAssessmentRisk(String asssessmentRiskId){
 		return [SELECT Id, Name,orm_assessmentRisk__c FROM Macro WHERE orm_assessmentRisk__c=: asssessmentRiskId AND 
-					RecordTypeId =:OrmAssumptionAssessmentRiskController.getAssumptionRecordTypeId()];
+					RecordTypeId =:OrmAssumptionAssessmentRiskController.getAssumptionRecordTypeId() ORDER BY CreatedDate DESC];
 	}
 /**
  * @author: SDavid diop

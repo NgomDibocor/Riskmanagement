@@ -1,8 +1,7 @@
 ({
-	refreshList : function(component, event) {
-		var action = component.get("c.findAllAssumptionByAssessmentRisk");
-		 var assmntDataId = component.get('v.assessmentData').Id;
-        action.setParam('asssessment', assmntDataId);
+    refreshList: function(component, event) {
+        var action = component.get("c.findAllAssumptionByAssessment");
+        action.setParam('asssessment', component.get('v.assessmentData').Id);
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === 'SUCCESS' && component.isValid()) {
@@ -33,9 +32,9 @@
                 alert('ERROR');
             }
         });
-		$A.enqueueAction(action);
-	},
-	saveDataTable: function(component, event, helper) {
+        $A.enqueueAction(action);
+    },
+    saveDataTable: function(component, event, helper) {
         var editedRecords = component.find("datatableList").get("v.draftValues");
         var totalRecordEdited = editedRecords.length;
         var action = component.get("c.saveAssumption");
@@ -46,37 +45,37 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 //if update is successful
-                 var toast = $A.get('e.force:showToast');
-            toast.setParams({
-                'message':  totalRecordEdited + " Causes Records Updated",
-                'type': 'success',
-                'mode': 'dismissible'
-            });
-            toast.fire()
-            	this.refreshList(component, event)
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message': totalRecordEdited + " Causes Records Updated",
+                    'type': 'success',
+                    'mode': 'dismissible'
+                });
+                toast.fire()
+                this.refreshList(component, event)
                 component.find("datatableList").set("v.draftValues", null);
                 //helper.reloadDataTable(component);
             } else { //if update got failed
-            var toast = $A.get('e.force:showToast');
-            toast.setParams({
-                'message': "error in update",
-                'type': 'error',
-                'mode': 'dismissible'
-            });
-            toast.fire()
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message': "error in update",
+                    'type': 'error',
+                    'mode': 'dismissible'
+                });
+                toast.fire()
             }
 
         });
         $A.enqueueAction(action);
     },
-    checkIfMapContentIsEmpty : function(component, event, myMap) {
+    checkIfMapContentIsEmpty: function(component, event, myMap) {
         console.log("checkIfMapContentIsEmpty start")
         var lengthMap = Object.keys(myMap).length;
         for (var i = 0; i < lengthMap; i++) {
             var page = 'page' + i;
-            if(myMap[page].length != 0){
-              component.set("v.isEmptyMap", false);
-              console.log("isEmptyMap", component.get("v.isEmptyMap"));
+            if (myMap[page].length != 0) {
+                component.set("v.isEmptyMap", false);
+                console.log("isEmptyMap", component.get("v.isEmptyMap"));
             }
         }
     },

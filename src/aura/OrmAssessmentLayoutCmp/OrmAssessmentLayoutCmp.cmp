@@ -1057,7 +1057,7 @@
                       <tr>
                           <td class="textInDivCmp">
                               <div class="slds-box widthBox slds-theme_alert-texture">
-                                  <c:OrmActivityList assessmentData="{!v.assessmentData}"/> 
+                                  <c:OrmActivityListCmp assessmentData="{!v.assessmentData}"/> 
                               </div>
                           </td>
                       </tr>

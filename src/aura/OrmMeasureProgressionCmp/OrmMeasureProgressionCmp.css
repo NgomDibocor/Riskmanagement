@@ -57,3 +57,6 @@
 .THIS .table-test button{
 background-color: #16325c;
 color: white}
+.THIS .slds-grid_align-end {
+    text-align: center;
+}

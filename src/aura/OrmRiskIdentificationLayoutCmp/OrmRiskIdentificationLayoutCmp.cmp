@@ -33,6 +33,7 @@
     <aura:attribute name="isOpen" type="boolean" default="false" />
     <aura:attribute name="isOpenAssessmentRisk" type="boolean" default="true" />
     <aura:attribute name="isOpenButton" type="boolean" default="false" />
+    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
     <!-- partie datatable 2 -->
     <aura:attribute name="allRiskList" type="Macro[]" />
     <aura:attribute name="allRiskListTemp" type="Macro[]" />

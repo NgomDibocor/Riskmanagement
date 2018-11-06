@@ -21,7 +21,10 @@
         }, {
             label: $A.get("$Label.c.orm_PourcentageProgression_label"),
             fieldName: 'orm_poucentageProgression__c',
-            type: 'number'
+            type: 'number',
+            typeAttributes: {
+                alignment: 'justify',
+            }
         }, {
             label: $A.get("$Label.c.orm_ProductDescription_label"),
             fieldName: 'Description',

@@ -27,7 +27,7 @@
                 });
                 $A.enqueueAction(actionMeasure);
             } else {
-                alert("l'Element n'a pas été retrouvé");
+                alert($A.get('$Label.c.orm_not_found'));
             }
         });
         $A.enqueueAction(actionstatus);

@@ -1006,7 +1006,6 @@
 									 <h1 class="titleOrganisationUnit"><span class="organisationUnit">{!$Label.c.orm_organisation_unit} </span></h1>
 								 </div>
 	                             <div class="slds-col" style="margin-bottom:50px;">
-	                                    <span class="startSpaceOrg"></span>                                  
 								        <div class="orgSelect">
 								            <div class="topSpacing"> 
 				                                 <label class="slds-form-element__label">{!$Label.c.orm_organisationUnit_label}</label>
@@ -1041,8 +1040,6 @@
 								        <span class="btnNewOrganisation" onclick="{!c.openOrganisationNew}">
 								            <lightning:icon iconName="utility:new" size="small" />
 								        </span>
-								        
-								        <span class="endSpaceOrg"></span>
 								 </div>
 							 </div>
                          </td>

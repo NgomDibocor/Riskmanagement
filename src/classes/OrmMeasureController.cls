@@ -127,7 +127,7 @@ public with sharing class OrmMeasureController {
 		return 	[SELECT Id, Name, orm_description__c,orm_AssessmentRisk__r.orm_assessment__c, orm_measureResponsable__c
 		        FROM Assessment__c 
 		        WHERE     RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() 
-		              AND (CreatedById = :UserInfo.getUserId() or orm_measureResponsable__c = :UserInfo.getUserId())
+		              AND (CreatedById = :UserInfo.getUserId() or orm_measureResponsable__c = :UserInfo.getUserId()) order by CreatedDate desc
 		        ];
 	}	
 	/**
@@ -215,7 +215,7 @@ public with sharing class OrmMeasureController {
 		orm_poucentageProgression__c,orm_dateProgression__c,orm_measures__c
 		        FROM Product2 
 		        WHERE orm_measures__c =: idMeasure 
-		        AND RecordTypeId =: OrmMeasureController.getMeasureProgressionRecordTypeId()];
+		        AND RecordTypeId =: OrmMeasureController.getMeasureProgressionRecordTypeId() order by CreatedDate desc ];
 	
 	}
 	/**

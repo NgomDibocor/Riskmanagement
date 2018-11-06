@@ -17,7 +17,7 @@
 
     <table class="slds-table">
         <tr>
-            <td>
+            <td class="tdWidth">
                 <lightning:card title="" iconName="">
                     <div class="styleText" style="padding-left:10px;padding-right: 6px;">
                         <i class="styleTitle">Name Measure: </i> {!v.measureData.Name}
@@ -27,8 +27,7 @@
                     </div>
                 </lightning:card>
             </td>
-
-            <td>
+            <td class="tdWidth">
                 <aura:if isTrue="{!v.displaySaveCancelBtn}">
                     <div style="margin-bottom:20px;">
                         <lightning:buttonGroup class="slds-m-around_medium">
@@ -41,7 +40,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="tdWidth">
                 <div class="topSpacing">
                     <b> <label class="slds-form-element__label styleAllText">{!$Label.c.orm_measure_dueDate}<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
@@ -51,7 +50,7 @@
                     </a>
                 </div>
             </td>
-            <td>
+            <td class="tdWidth">
                 <div class="topSpacing">
                     <b> <label class="slds-form-element__label styleAllText">{!$Label.c.orm_measure_status}<span class="cmn_mandatory_indicator">*</span></label></b>
                 </div>
@@ -68,7 +67,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="tdWidth">
                 <div class="topSpacing">
                     <b><label class="slds-form-element__label styleAllText">{!$Label.c.orm_costEffect_label}</label></b>
                 </div>
@@ -83,7 +82,7 @@
                     </div>
                 </div>
             </td>
-            <td>
+            <td class="tdWidth">
                 <div class="topSpacing">
                     <b><label class="slds-form-element__label styleAllText">{!$Label.c.orm_measure_description}</label></b>
                 </div>
@@ -96,7 +95,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="tdWidth">
             <div class="topSpacing">
                     <b><label class="slds-form-element__label styleAllText">{!$Label.c.orm_justification_cost_effect_label} </label></b>
                 </div>
@@ -109,7 +108,7 @@
             
                 
             </td>
-            <td>
+            <td class="tdWidth">
                <div class="topSpacing">
                     <b><label class="slds-form-element__label styleAllText ">{!$Label.c.orm_Measure_Responsable}</label></b>
                 </div>
@@ -126,7 +125,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="tdWidth">
                 <div class="topSpacing">
                     <b><label class="slds-form-element__label styleAllText ">{!$Label.c.orm_organisationUnit_label}</label></b>
                 </div>
@@ -141,9 +140,7 @@
                     </div>
                 </div>
             </td>
-            <td>
-
-            </td>
+            <td class="tdWidth"></td>
         </tr>
     </table>
 </aura:component>

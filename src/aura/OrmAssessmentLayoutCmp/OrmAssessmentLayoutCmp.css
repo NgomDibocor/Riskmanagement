@@ -77,22 +77,14 @@
 }
 .THIS .orgSelect {
     display: inline-block;
-    width:50%;
+    width: 69%;
+    margin-left:14%;
     margin-right: 15px;
-    margin-left:25%;
 }
 .THIS span.btnNewOrganisation {
     display: inline-block;
     cursor: pointer;
     width:5%;
-}
-.THIS .endSpaceOrg {
-    display: inline-block;
-    width:16%;
-}
-.THIS .startSpaceOrg {
-    display: inline-block;
-    width:2%;
 }
 .THIS #myBtn {
     display: none; /* Hidden by default */

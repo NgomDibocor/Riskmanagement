@@ -54,7 +54,7 @@ public with sharing class OrmRiskController {
                        orm_Risk__r.orm_categorieRisk__c,orm_Risk__r.Description 
                 From orm_assessmentRisk__c 
                 where  orm_assessment__r.Id =:assessment
-                order by CreatedDate];
+                order by CreatedDate desc];
     }
      /*
     *David mignane diop

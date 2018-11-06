@@ -55,7 +55,8 @@
             	iconName: 'action:new_group',
             	size: 'large',
                 alignment: 'center',
-            }, class: 'btnContact'
+                class: 'btnContact'
+            }
         }]);
         // call the apex class method and fetch activity list  
         var action = component.get("c.findWorkshopByAssessment");

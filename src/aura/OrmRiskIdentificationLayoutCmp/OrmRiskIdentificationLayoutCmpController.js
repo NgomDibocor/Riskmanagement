@@ -313,13 +313,11 @@
         }, {
             label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'orm_categorieRisk__c',
-            type: 'text',
-            iconName: 'standard:opportunity'
+            type: 'text'
         }, {
             label: $A.get("$Label.c.orm_description_risk"),
             fieldName: 'Description',
-            type: 'text',
-            iconName: 'standard:opportunity'
+            type: 'text'
         }]);
         helper.fetchlistRisks(component, event);
     },

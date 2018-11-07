@@ -80,5 +80,11 @@
     },
     previousInlineEdit: function(component, event, helper) {
         helper.previousInlineEdit(component, event);
+    },
+    nextInlineEditRiskIdentification: function(component, event, helper) {
+        helper.nextInlineEditRiskIdentification(component, event);
+    },
+    previousInlineEditRiskIdentification: function(component, event, helper) {
+        helper.previousInlineEditRiskIdentification(component, event);
     }
 })

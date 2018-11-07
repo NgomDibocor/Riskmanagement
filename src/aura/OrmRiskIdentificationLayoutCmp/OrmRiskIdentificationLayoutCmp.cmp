@@ -98,10 +98,13 @@
 <!--                 onrowselection="{!c.openPopupDissociate}" -->
 <!--                 onrowaction="{! c.handleRowAction }"  -->
 <!--                 /> -->
-                <lightning:datatable aura:id="datatableList" 
+                <lightning:datatable aura:id="datatable" 
+                							 class="table-test"
                                              columns="{! v.columns }" 
                                              data="{! v.PaginationList}" 
-                                             keyField="Id"  />
+                                             keyField="Id"  
+                                             onrowaction="{! c.handleRowAction }"
+                                             />
                 <aura:set attribute="else">
                     <div class="messageIsEmpty" style="padding-top: 20px">
                         {!$Label.c.orm_assessmentRiskEmpty_message}
@@ -212,8 +215,8 @@
 <!--                 <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' /> -->
 <!--             </lightning:buttonGroup> -->
 		<lightning:buttonGroup>
-	        <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-	        <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
+	        <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEditRiskIdentification}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+	        <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEditRiskIdentification}" variant="brand" iconName='utility:forward' iconPosition='right' />
 	    </lightning:buttonGroup>
         </div>
     </center>

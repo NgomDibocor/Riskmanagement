@@ -262,7 +262,48 @@
             dTable.set("v.selectedRows", selectedRowsIds);
         }
     },
-
+    
+    nextInlineEditRiskIdentification: function(component, event) {
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatable");
+        var selectedRows = dTable.getSelectedRows();
+        var pgName = "page" + current;
+        component.get("v.SelectedItem")[pgName] = selectedRows;
+        current = current + 1;
+        pgName = "page" + current;
+        var selectedRows = component.get("v.SelectedItem")[pgName];
+        component.set("v.currentPage", current);
+        console.log("Next SelectedItem " + JSON.stringify(component.get("v.SelectedItem")));
+        var sObjectList = component.get("v.ListData");
+        var end = component.get("v.endPage");
+        var start = component.get("v.startPage");
+        var pageSize = component.get("v.pageSizeInlineEdit");
+        var Paginationlist = [];
+        var counter = 0;
+        for (var i = end + 1; i < end + pageSize + 1; i++) {
+            if (sObjectList.length > i) {
+                Paginationlist.push(sObjectList[i]);
+            }
+            counter++;
+        }
+        start = start + counter;
+        end = end + counter;
+        var valueOfEnd = end + 1;
+        if (valueOfEnd == sObjectList.length) {
+            component.set("v.hideNext", true);
+        }
+        component.set("v.startPage", start);
+        component.set("v.endPage", end);
+        component.set('v.PaginationList', Paginationlist);
+        if (typeof selectedRows != 'undefined' && selectedRows) {
+            var selectedRowsIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                selectedRowsIds.push(selectedRows[i].Id);
+            }
+            var dTable = component.find("datatable");
+            dTable.set("v.selectedRows", selectedRowsIds);
+        }
+    },
     previousInlineEdit: function(component, event) {
         var current = component.get("v.currentPage");
         var dTable = component.find("datatableList");
@@ -304,6 +345,50 @@
                 selectedRowsIds.push(selectedRows[i].Id);
             }
             var dTable = component.find("datatableList");
+            dTable.set("v.selectedRows", selectedRowsIds);
+        }
+    },
+     previousInlineEditRiskIdentification: function(component, event) {
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatable");
+        var selectedRows = dTable.getSelectedRows();
+        var pgName = "page" + current;
+        component.get("v.SelectedItem")[pgName] = selectedRows;
+        current = current - 1;
+        pgName = "page" + current;
+        var selectedRows = component.get("v.SelectedItem")[pgName];
+        console.log("selectedRows in prev", selectedRows)
+        component.set("v.currentPage", current);
+        console.log("Prev SelectedItem " + JSON.stringify(component.get("v.SelectedItem")));
+        var sObjectList = component.get("v.ListData");
+        var end = component.get("v.endPage");
+        var start = component.get("v.startPage");
+        var pageSize = component.get("v.pageSizeInlineEdit");
+        var Paginationlist = [];
+        var counter = 0;
+        for (var i = start - pageSize; i < start; i++) {
+            if (i > -1) {
+                Paginationlist.push(sObjectList[i]);
+                counter++;
+            } else {
+                start++;
+            }
+        }
+        start = start - counter;
+        end = end - counter;
+        var LastvalueOfEnd = end - counter;
+        if (LastvalueOfEnd < sObjectList.length) {
+            component.set("v.hideNext", false);
+        }
+        component.set("v.startPage", start);
+        component.set("v.endPage", end);
+        component.set('v.PaginationList', Paginationlist);
+        if (typeof selectedRows != 'undefined' && selectedRows) {
+            var selectedRowsIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                selectedRowsIds.push(selectedRows[i].Id);
+            }
+            var dTable = component.find("datatable");
             dTable.set("v.selectedRows", selectedRowsIds);
         }
     },

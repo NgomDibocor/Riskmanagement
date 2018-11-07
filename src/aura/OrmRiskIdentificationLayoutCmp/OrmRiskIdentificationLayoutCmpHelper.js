@@ -14,7 +14,7 @@
                         row.RiskDescription = row.orm_Risk__r.Description;
                         row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
                     }
-                }
+                }	component.set('v.allRisk',response.getReturnValue());
                     component.set('v.initialData', response.getReturnValue());
                     component.set('v.items', response.getReturnValue());
                     // start pagination
@@ -83,27 +83,51 @@
                 component.set('v.initialData', rows);
                 component.set('v.items',rows);
                    // start pagination
-                    var pageSize = component.get("v.pageSizeBis");
-	                // get size of all the records and then hold into an attribute "totalRecords"
-	                component.set("v.totalRecords", component.get("v.items").length);
-	                // set star as 0
-	                component.set("v.startPage",0);
-	                var totalRecords = component.get("v.items").length;
-				    //var div = Math.trunc(totalRecords / pageSize);
-	                if(totalRecords === pageSize){
-	                  component.set("v.hideNext", true);
-	                  component.set("v.endPage", pageSize - 1);
-	                }else{
-	                  component.set("v.hideNext", false);
-	                  component.set("v.endPage", pageSize - 1);
-	                }
-	                var PaginationList = [];
-	                for(var i=0; i< pageSize; i++){
-	                    if(component.get("v.items").length> i)
-	                        PaginationList.push(component.get("v.items")[i]);    
-	                }
-	                component.set('v.PaginationList', PaginationList);
+//                    var pageSize = component.get("v.pageSizeBis");
+//	                // get size of all the records and then hold into an attribute "totalRecords"
+//	                component.set("v.totalRecords", component.get("v.items").length);
+//	                // set star as 0
+//	                component.set("v.startPage",0);
+//	                var totalRecords = component.get("v.items").length;
+//				    //var div = Math.trunc(totalRecords / pageSize);
+//	                if(totalRecords === pageSize){
+//	                  component.set("v.hideNext", true);
+//	                  component.set("v.endPage", pageSize - 1);
+//	                }else{
+//	                  component.set("v.hideNext", false);
+//	                  component.set("v.endPage", pageSize - 1);
+//	                }
+//	                var PaginationList = [];
+//	                for(var i=0; i< pageSize; i++){
+//	                    if(component.get("v.items").length> i)
+//	                        PaginationList.push(component.get("v.items")[i]);    
+//	                }
+//	                component.set('v.PaginationList', PaginationList);
                 //end pagination
+                
+                var pageSize = component.get("v.pageSizeInlineEdit");
+                component.set('v.ListData', rows);
+                // get size of all the records and then hold into an attribute "totalRecords"
+                component.set("v.totalRecords", component.get("v.ListData").length);
+                //Set the current Page as 0
+                component.set("v.currentPage", 0);
+                // set star as 0
+                component.set("v.startPage", 0);
+                var totalRecords = component.get("v.ListData").length;
+                if (totalRecords === pageSize) {
+                    component.set("v.hideNext", true);
+                    component.set("v.endPage", pageSize - 1);
+                } else {
+                    component.set("v.hideNext", false);
+                    component.set("v.endPage", pageSize - 1);
+                }
+                var PaginationList = [];
+                for (var i = 0; i < pageSize; i++) {
+                    if (component.get("v.ListData").length > i) {
+                        PaginationList.push(rows[i]);
+                    }
+                }
+                component.set('v.PaginationList', PaginationList);
                 var action = component.get('c.getSelectOptions');
                 action.setParams({
                     'objObject': component.get("v.risk"),
@@ -197,6 +221,17 @@
                 }
             });
             $A.enqueueAction(action);
+        }
+    },
+     checkIfMapContentIsEmpty : function(component, event, myMap) {
+        console.log("checkIfMapContentIsEmpty start")
+        var lengthMap = Object.keys(myMap).length;
+        for (var i = 0; i < lengthMap; i++) {
+            var page = 'page' + i;
+            if(myMap[page].length != 0){
+              component.set("v.isEmptyMap", false);
+              console.log("isEmptyMap", component.get("v.isEmptyMap"));
+            }
         }
     },
     

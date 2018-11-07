@@ -166,21 +166,101 @@
         component.set("v.relatedRisk", assessmentRisks);
     },
 
-    openPopupDissociate: function(component, event, helper) {
-        var selectedRows = event.getParam('selectedRows');
-        var assessmentRisks = [];
-        selectedRows.forEach(function(selectedRow) {
-            var newAssessmentRisk = {};
-            newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
-            newAssessmentRisk.Id = selectedRow.Id;
-            assessmentRisks.push(newAssessmentRisk);
-        });
-        if (assessmentRisks.length == 0) {
-            component.set("v.isOpenButton", false);
+     dissociateRiskfunction: function(component, event, helper) {
+//     openPopupDissociate
+//        var selectedRows = event.getParam('selectedRows');
+//        var assessmentRisks = [];
+//        selectedRows.forEach(function(selectedRow) {
+//            var newAssessmentRisk = {};
+//            newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
+//            newAssessmentRisk.Id = selectedRow.Id;
+//            assessmentRisks.push(newAssessmentRisk);
+//        });
+//        if (assessmentRisks.length == 0) {
+//            component.set("v.isOpenButton", false);
+//
+//        } else {
+//            component.set("v.isOpenButton", true);
+//            component.set("v.dissociateRisk", assessmentRisks);
+//        }
 
-        } else {
-            component.set("v.isOpenButton", true);
-            component.set("v.dissociateRisk", assessmentRisks);
+    	var pagination = component.get("v.PaginationList");
+    	if($A.util.isEmpty(pagination)){
+    		var toast = $A.get('e.force:showToast');
+                        toast.setParams({
+                            'message': $A.get("$Label.c.orm_no_risk") ,
+                            'type': 'warning',
+                            'mode': 'dismissible'
+                        });
+                        toast.fire();
+    	}else{
+        var current = component.get("v.currentPage");
+        var dTable = component.find("datatableList");
+        var selectedRows = dTable.getSelectedRows();
+        console.log("selected", selectedRows.length);
+        if (selectedRows.length != 0) {
+            var pgName = "page" + current;
+            component.get("v.SelectedItem")[pgName] = selectedRows;
+        }
+        else{
+           var pgName = "page" + current;
+           component.get("v.SelectedItem")[pgName] = selectedRows;
+           console.log("***View else lenght =0*** ", Object(component.get("v.SelectedItem")));
+        }
+        var myMap = component.get("v.SelectedItem");
+        console.log("selectedRows in delete", Object.keys(myMap).length);
+        helper.checkIfMapContentIsEmpty(component, event, myMap);
+        if (Object.keys(myMap).length == 0) {
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        }  else if(component.get("v.isEmptyMap")){
+            var toast = $A.get('e.force:showToast');
+            toast.setParams({
+                'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
+                'type': 'warning',
+                'mode': 'dismissible'
+            });
+            toast.fire()
+        }
+        else {
+         var myMap = component.get("v.SelectedItem");
+           var idCauses = [];
+           var lengthMap = Object.keys(myMap).length;
+
+        for (var i = 0; i < lengthMap; i++) {
+            var page = 'page' + i;
+            for (var j = 0; j < myMap[page].length; j++) {
+            	var newAssessmentRisk = {};
+                newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
+                newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
+                newAssessmentRisk.orm_Risk__c = myMap[page][j].Id;
+                idCauses.push(newAssessmentRisk);
+            }
+        }
+        console.log("id Cause",JSON.stringify( idCauses));
+        
+        var action = component.get('c.deleteAssessmentRisks');
+        // pass the all selected record's Id's to apex method 
+        action.setParams({
+            "items": idCauses
+        });
+        action.setCallback(this, function(response) {
+            //store state of response
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                myMap = {};
+                component.set("v.SelectedItem", myMap);
+                component.set("v.isEmptyMap", true);
+                helper.fetchPicklist(component, event);
+            }
+        });
+        $A.enqueueAction(action);
+        }
         }
 
     },
@@ -298,14 +378,6 @@
             toast.fire()
         }
         else {
-        var assessmentRisks = [];
-        selectedRows.forEach(function(selectedRow) {
-            var newAssessmentRisk = {};
-            newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
-            newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
-            newAssessmentRisk.orm_Risk__c = selectedRow.Id;
-            assessmentRisks.push(newAssessmentRisk);
-        });
            var myMap = component.get("v.SelectedItem");
            var idCauses = [];
            var lengthMap = Object.keys(myMap).length;
@@ -344,40 +416,40 @@
         }
     },
 
-    dissociateRiskfunction: function(component, event, helper) {
-        var deletedAssesmentRisk = component.get("v.dissociateRisk");
-        var action = component.get('c.deleteAssessmentRisks');
-        action.setParams({
-            "items": deletedAssesmentRisk
-        });
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (component.isValid() && state == "SUCCESS") {
-
-                var evtnotify = $A.get("e.c:OrmNotifyAfterdeletingAssessmentRiskEvt");
-                evtnotify.fire();
-
-                var toast = $A.get('e.force:showToast');
-                toast.setParams({
-                    'message': $A.get("$Label.c.orm_successful_dissociation"),
-                    'type': 'success',
-                    'mode': 'dismissible'
-                });
-                toast.fire();
-                component.set("v.isOpenButton", false);
-                helper.fetchPicklist(component, event);
-            } else {
-                var toast = $A.get('e.force:showToast');
-                toast.setParams({
-                    'message': $A.get("$Label.c.orm_failed_dissociation"),
-                    'type': 'warning',
-                    'mode': 'dismissible'
-                });
-                toast.fire();
-            }
-        });
-        $A.enqueueAction(action);
-    },
+//    dissociateRiskfunction: function(component, event, helper) {
+//        var deletedAssesmentRisk = component.get("v.dissociateRisk");
+//        var action = component.get('c.deleteAssessmentRisks');
+//        action.setParams({
+//            "items": deletedAssesmentRisk
+//        });
+//        action.setCallback(this, function(response) {
+//            var state = response.getState();
+//            if (component.isValid() && state == "SUCCESS") {
+//
+//                var evtnotify = $A.get("e.c:OrmNotifyAfterdeletingAssessmentRiskEvt");
+//                evtnotify.fire();
+//
+//                var toast = $A.get('e.force:showToast');
+//                toast.setParams({
+//                    'message': $A.get("$Label.c.orm_successful_dissociation"),
+//                    'type': 'success',
+//                    'mode': 'dismissible'
+//                });
+//                toast.fire();
+//                component.set("v.isOpenButton", false);
+//                helper.fetchPicklist(component, event);
+//            } else {
+//                var toast = $A.get('e.force:showToast');
+//                toast.setParams({
+//                    'message': $A.get("$Label.c.orm_failed_dissociation"),
+//                    'type': 'warning',
+//                    'mode': 'dismissible'
+//                });
+//                toast.fire();
+//            }
+//        });
+//        $A.enqueueAction(action);
+//    },
     sendDescriptionSearchToFD: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({

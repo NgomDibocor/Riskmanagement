@@ -36,7 +36,7 @@
         }, {
             label: $A.get("$Label.c.orm_table_action_label"),
             type: 'button',
-            initialWidth: 90,
+            initialWidth: 100,
             typeAttributes: {
                 label: $A.get("$Label.c.orm_edit_button_title"),
                 name: $A.get("$Label.c.orm_edit_button_title"),

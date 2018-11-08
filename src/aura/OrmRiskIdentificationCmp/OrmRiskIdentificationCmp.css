@@ -41,3 +41,7 @@
 background-color: #16325c;
 color: white;
 }
+.THIS .table-test thead th span {
+font-weight: 500;
+  font-size: 1.2em;
+}

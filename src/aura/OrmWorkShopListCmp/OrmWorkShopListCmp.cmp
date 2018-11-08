@@ -67,7 +67,7 @@
                         </div>
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
-                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_workshop_label +' ' + $Label.c.orm_is_empty}
                             </div>
                         </aura:set>
                     </aura:if>

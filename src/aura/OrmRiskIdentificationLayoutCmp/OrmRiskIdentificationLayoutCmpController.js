@@ -1,5 +1,5 @@
 ({
-
+    
     ormRiskCreatedEvent: function(component, event, helper) {
         component.set("v.categorieRisk", event.getParam('riskCategoriy'));
         helper.fetchPicklist(component, event);
@@ -22,13 +22,13 @@
      *
      */
     doInit: function(component, event, helper) {
-        var today = new Date();
-        var monthDigit = today.getMonth() + 1;
-        if (monthDigit <= 9) {
-            monthDigit = '0' + monthDigit;
-        }
-        var dateDuJour = today.getFullYear() + "-" + monthDigit + "-" + today.getDate();
-        console.log(dateDuJour);
+    var today = new Date();
+    var monthDigit = today.getMonth() + 1;
+    if (monthDigit <= 9) {
+        monthDigit = '0' + monthDigit;
+    }
+    var dateDuJour = today.getFullYear()+"-"+ monthDigit+"-"+ today.getDate();
+    console.log(dateDuJour);
         // Set the columns of the Table
         component.set('v.columns', [{
             label: $A.get("$Label.c.orm_name_risk"),
@@ -106,7 +106,7 @@
                             row.RiskcategorieRisk = row.orm_Risk__r.orm_categorieRisk__c;
                         }
                     }
-                    component.set('v.allRisk', rows);
+                     component.set('v.allRisk', rows);
                     component.set('v.initialData', response.getReturnValue());
                     component.set('v.items', response.getReturnValue());
                     // start pagination
@@ -152,7 +152,7 @@
     },
 
     openPopupAssociation: function(component, event, helper) {
-
+    
         var selectedRows = event.getParam('selectedRows');
         var assessmentRisks = [];
         selectedRows.forEach(function(selectedRow) {
@@ -166,105 +166,21 @@
         component.set("v.relatedRisk", assessmentRisks);
     },
 
-    dissociateRiskfunction: function(component, event, helper) {
-        //     openPopupDissociate
-        //        var selectedRows = event.getParam('selectedRows');
-        //        var assessmentRisks = [];
-        //        selectedRows.forEach(function(selectedRow) {
-        //            var newAssessmentRisk = {};
-        //            newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
-        //            newAssessmentRisk.Id = selectedRow.Id;
-        //            assessmentRisks.push(newAssessmentRisk);
-        //        });
-        //        if (assessmentRisks.length == 0) {
-        //            component.set("v.isOpenButton", false);
-        //
-        //        } else {
-        //            component.set("v.isOpenButton", true);
-        //            component.set("v.dissociateRisk", assessmentRisks);
-        //        }
+    openPopupDissociate: function(component, event, helper) {
+        var selectedRows = event.getParam('selectedRows');
+        var assessmentRisks = [];
+        selectedRows.forEach(function(selectedRow) {
+            var newAssessmentRisk = {};
+            newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
+            newAssessmentRisk.Id = selectedRow.Id;
+            assessmentRisks.push(newAssessmentRisk);
+        });
+        if (assessmentRisks.length == 0) {
+            component.set("v.isOpenButton", false);
 
-        var pagination = component.get("v.PaginationList");
-        if ($A.util.isEmpty(pagination)) {
-            var toast = $A.get('e.force:showToast');
-            toast.setParams({
-                'message': $A.get("$Label.c.orm_no_risk"),
-                'type': 'warning',
-                'mode': 'dismissible'
-            });
-            toast.fire();
         } else {
-            var current = component.get("v.currentPage");
-            var dTable = component.find("datatable");
-            var selectedRows = dTable.getSelectedRows();
-            console.log("selected", selectedRows.length);
-            if (selectedRows.length != 0) {
-                var pgName = "page" + current;
-                component.get("v.SelectedItem")[pgName] = selectedRows;
-            } else {
-                var pgName = "page" + current;
-                component.get("v.SelectedItem")[pgName] = selectedRows;
-                console.log("***View else lenght =0*** ", Object(component.get("v.SelectedItem")));
-            }
-            var myMap = component.get("v.SelectedItem");
-            console.log("selectedRows in delete", Object.keys(myMap).length);
-            helper.checkIfMapContentIsEmpty(component, event, myMap);
-            if (Object.keys(myMap).length == 0) {
-                var toast = $A.get('e.force:showToast');
-                toast.setParams({
-                    'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
-                    'type': 'warning',
-                    'mode': 'dismissible'
-                });
-                toast.fire()
-            } else if (component.get("v.isEmptyMap")) {
-                var toast = $A.get('e.force:showToast');
-                toast.setParams({
-                    'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
-                    'type': 'warning',
-                    'mode': 'dismissible'
-                });
-                toast.fire()
-            } else {
-                var myMap = component.get("v.SelectedItem");
-                var idCauses = [];
-                var lengthMap = Object.keys(myMap).length;
-
-                for (var i = 0; i < lengthMap; i++) {
-                    var page = 'page' + i;
-                    for (var j = 0; j < myMap[page].length; j++) {
-                        var newAssessmentRisk = {};
-                        newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
-                        newAssessmentRisk.Id = myMap[page][j].Id;
-                        idCauses.push(newAssessmentRisk);
-                    }
-                }
-                console.log("id Cause", JSON.stringify(idCauses));
-
-                var action = component.get('c.deleteAssessmentRisks');
-                // pass the all selected record's Id's to apex method 
-                action.setParams({
-                    "items": idCauses
-                });
-                action.setCallback(this, function(response) {
-                    //store state of response
-                    var state = response.getState();
-                    if (state === "SUCCESS") {
-                        var toast = $A.get('e.force:showToast');
-                        toast.setParams({
-                            'message': $A.get("$Label.c.orm_successful_dissociation"),
-                            'type': 'success',
-                            'mode': 'dismissible'
-                        });
-                        toast.fire();
-                        myMap = {};
-                        component.set("v.SelectedItem", myMap);
-                        component.set("v.isEmptyMap", true);
-                        helper.fetchPicklist(component, event);
-                    }
-                });
-                $A.enqueueAction(action);
-            }
+            component.set("v.isOpenButton", true);
+            component.set("v.dissociateRisk", assessmentRisks);
         }
 
     },
@@ -275,7 +191,7 @@
      */
     filter: function(component, event, helper) {
         //        var dataRisk = component.get('v.allRiskTemp');
-        var dataRisk = component.get('v.ListData');
+        var dataRisk = component.get('v.initialData');
         var term = component.get('v.filter');
         var regex;
         if ($A.util.isEmpty(term)) {
@@ -293,165 +209,87 @@
             //        component.set("v.allRisk",dataRisk);
             component.set("v.filterPagination", dataRisk);
             component.set("v.items", component.get("v.filterPagination"));
-            helper.paginationFilter(component, event);
+            helper.paginationFilterBis(component, event);
         }
     },
     relatedRiskfunction: function(component, event, helper) {
-        //        var relatedassesmentRisk = component.get("v.relatedRisk");
-        //        var riskCategory = component.get("v.categorieRisk");
-        //        var categorieRisk = component.find("categorieRiskList").get("v.value");
-        //        if ($A.util.isEmpty(categorieRisk)) {
-        //            component.find("categorieRisk").set("v.value", riskCategory);
-        //        } else {
-        //            component.set("v.categorieRisk", categorieRisk);
-        //            component.find("categorieRisk").set("v.value", categorieRisk);
-        //        }
-        //        var action = component.get('c.addAssessmentRisks');
-        //        action.setParams({
-        //            "items": relatedassesmentRisk
-        //        });
-        //        action.setCallback(this, function(response) {
-        //            var state = response.getState();
-        //            if (component.isValid() && state == "SUCCESS") {
-        //                //notify that list AssessmentRisk Is Not Empty now
-        //                var evt = $A.get("e.c:OrmListAssessmentRiskIsNotEmpty");
-        //                evt.fire();
-        //
-        //                var toast = $A.get('e.force:showToast');
-        //                toast.setParams({
-        //                    'message': $A.get("$Label.c.orm_success_associated"),
-        //                    'type': 'success',
-        //                    'mode': 'dismissible'
-        //                });
-        //                toast.fire();
-        //                component.set("v.isOpen", false);
-        //                helper.fetchPicklist(component, event);
-        //            } else {
-        //                var toast = $A.get('e.force:showToast');
-        //                toast.setParams({
-        //                    'message': $A.get("$Label.c.orm_failed_association"),
-        //                    'type': 'warning',
-        //                    'mode': 'dismissible'
-        //                });
-        //                toast.fire();
-        //                component.set("v.isOpen", false);
-        //            }
-        //        });
-        //        $A.enqueueAction(action);
-        var pagination = component.get("v.PaginationList");
-        if ($A.util.isEmpty(pagination)) {
-            var toast = $A.get('e.force:showToast');
-            toast.setParams({
-                'message': $A.get("$Label.c.orm_no_risk"),
-                'type': 'warning',
-                'mode': 'dismissible'
-            });
-            toast.fire();
+        var relatedassesmentRisk = component.get("v.relatedRisk");
+        var riskCategory = component.get("v.categorieRisk");
+        var categorieRisk = component.find("categorieRiskList").get("v.value");
+        if ($A.util.isEmpty(categorieRisk)) {
+            component.find("categorieRisk").set("v.value", riskCategory);
         } else {
-            var current = component.get("v.currentPage");
-            var dTable = component.find("datatableList");
-            var selectedRows = dTable.getSelectedRows();
-            console.log("selected", selectedRows.length);
-            if (selectedRows.length != 0) {
-                var pgName = "page" + current;
-                component.get("v.SelectedItem")[pgName] = selectedRows;
-            } else {
-                var pgName = "page" + current;
-                component.get("v.SelectedItem")[pgName] = selectedRows;
-                console.log("***View else lenght =0*** ", Object(component.get("v.SelectedItem")));
-            }
-            var myMap = component.get("v.SelectedItem");
-            console.log("selectedRows in delete", Object.keys(myMap).length);
-            helper.checkIfMapContentIsEmpty(component, event, myMap);
-            if (Object.keys(myMap).length == 0) {
-                var toast = $A.get('e.force:showToast');
-                toast.setParams({
-                    'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
-                    'type': 'warning',
-                    'mode': 'dismissible'
-                });
-                toast.fire()
-            } else if (component.get("v.isEmptyMap")) {
-                var toast = $A.get('e.force:showToast');
-                toast.setParams({
-                    'message': $A.get("$Label.c.orm_warning_checked_checkbox"),
-                    'type': 'warning',
-                    'mode': 'dismissible'
-                });
-                toast.fire()
-            } else {
-                var myMap = component.get("v.SelectedItem");
-                var idCauses = [];
-                var lengthMap = Object.keys(myMap).length;
-
-                for (var i = 0; i < lengthMap; i++) {
-                    var page = 'page' + i;
-                    for (var j = 0; j < myMap[page].length; j++) {
-                        var newAssessmentRisk = {};
-                        newAssessmentRisk.sobjectType = 'orm_assessmentRisk__c';
-                        newAssessmentRisk.orm_assessment__c = component.get("v.idAssessment");
-                        newAssessmentRisk.orm_Risk__c = myMap[page][j].Id;
-                        idCauses.push(newAssessmentRisk);
-                    }
-                }
-                console.log("id Cause", JSON.stringify(idCauses));
-
-                //		call apex class method
-                var action = component.get('c.addAssessmentRisks');
-                // pass the all selected record's Id's to apex method 
-                action.setParams({
-                    "items": idCauses
-                });
-                action.setCallback(this, function(response) {
-                    //store state of response
-                    var state = response.getState();
-                    if (state === "SUCCESS") {
-                        myMap = {};
-                        component.set("v.SelectedItem", myMap);
-                        component.set("v.isEmptyMap", true);
-                        component.set("v.isOpen", false);
-                        helper.fetchPicklist(component, event);
-                    }
-                });
-                $A.enqueueAction(action);
-            }
+            component.set("v.categorieRisk", categorieRisk);
+            component.find("categorieRisk").set("v.value", categorieRisk);
         }
+        var action = component.get('c.addAssessmentRisks');
+        action.setParams({
+            "items": relatedassesmentRisk
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (component.isValid() && state == "SUCCESS") {
+                //notify that list AssessmentRisk Is Not Empty now
+                var evt = $A.get("e.c:OrmListAssessmentRiskIsNotEmpty");
+                evt.fire();
+
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message': $A.get("$Label.c.orm_success_associated"),
+                    'type': 'success',
+                    'mode': 'dismissible'
+                });
+                toast.fire();
+                component.set("v.isOpen", false);
+                helper.fetchPicklist(component, event);
+            } else {
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message': $A.get("$Label.c.orm_failed_association"),
+                    'type': 'warning',
+                    'mode': 'dismissible'
+                });
+                toast.fire();
+                component.set("v.isOpen", false);
+            }
+        });
+        $A.enqueueAction(action);
     },
 
-    //    dissociateRiskfunction: function(component, event, helper) {
-    //        var deletedAssesmentRisk = component.get("v.dissociateRisk");
-    //        var action = component.get('c.deleteAssessmentRisks');
-    //        action.setParams({
-    //            "items": deletedAssesmentRisk
-    //        });
-    //        action.setCallback(this, function(response) {
-    //            var state = response.getState();
-    //            if (component.isValid() && state == "SUCCESS") {
-    //
-    //                var evtnotify = $A.get("e.c:OrmNotifyAfterdeletingAssessmentRiskEvt");
-    //                evtnotify.fire();
-    //
-    //                var toast = $A.get('e.force:showToast');
-    //                toast.setParams({
-    //                    'message': $A.get("$Label.c.orm_successful_dissociation"),
-    //                    'type': 'success',
-    //                    'mode': 'dismissible'
-    //                });
-    //                toast.fire();
-    //                component.set("v.isOpenButton", false);
-    //                helper.fetchPicklist(component, event);
-    //            } else {
-    //                var toast = $A.get('e.force:showToast');
-    //                toast.setParams({
-    //                    'message': $A.get("$Label.c.orm_failed_dissociation"),
-    //                    'type': 'warning',
-    //                    'mode': 'dismissible'
-    //                });
-    //                toast.fire();
-    //            }
-    //        });
-    //        $A.enqueueAction(action);
-    //    },
+    dissociateRiskfunction: function(component, event, helper) {
+        var deletedAssesmentRisk = component.get("v.dissociateRisk");
+        var action = component.get('c.deleteAssessmentRisks');
+        action.setParams({
+            "items": deletedAssesmentRisk
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (component.isValid() && state == "SUCCESS") {
+
+                var evtnotify = $A.get("e.c:OrmNotifyAfterdeletingAssessmentRiskEvt");
+                evtnotify.fire();
+
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message': $A.get("$Label.c.orm_successful_dissociation"),
+                    'type': 'success',
+                    'mode': 'dismissible'
+                });
+                toast.fire();
+                component.set("v.isOpenButton", false);
+                helper.fetchPicklist(component, event);
+            } else {
+                var toast = $A.get('e.force:showToast');
+                toast.setParams({
+                    'message': $A.get("$Label.c.orm_failed_dissociation"),
+                    'type': 'warning',
+                    'mode': 'dismissible'
+                });
+                toast.fire();
+            }
+        });
+        $A.enqueueAction(action);
+    },
     sendDescriptionSearchToFD: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
@@ -475,11 +313,13 @@
         }, {
             label: $A.get("$Label.c.orm_risk_category"),
             fieldName: 'orm_categorieRisk__c',
-            type: 'text'
+            type: 'text',
+            iconName: 'standard:opportunity'
         }, {
             label: $A.get("$Label.c.orm_description_risk"),
             fieldName: 'Description',
-            type: 'text'
+            type: 'text',
+            iconName: 'standard:opportunity'
         }]);
         helper.fetchlistRisks(component, event);
     },
@@ -512,53 +352,30 @@
                         rows = rows.filter(row => row.Id !== assessmentRisk.orm_Risk__c);
                     });
                     component.set('v.initialData', rows);
-                    component.set('v.items', rows);
-                    //                   // start pagination
-                    //                    var pageSize = component.get("v.pageSizeBis");
-                    //	                // get size of all the records and then hold into an attribute "totalRecords"
-                    //	                component.set("v.totalRecords", component.get("v.items").length);
-                    //	                // set star as 0
-                    //	                component.set("v.startPage",0);
-                    //	                var totalRecords = component.get("v.items").length;
-                    //				    //var div = Math.trunc(totalRecords / pageSize);
-                    //	                if(totalRecords === pageSize){
-                    //	                  component.set("v.hideNext", true);
-                    //	                  component.set("v.endPage", pageSize - 1);
-                    //	                }else{
-                    //	                  component.set("v.hideNext", false);
-                    //	                  component.set("v.endPage", pageSize - 1);
-                    //	                }
-                    //	                var PaginationList = [];
-                    //	                for(var i=0; i< pageSize; i++){
-                    //	                    if(component.get("v.items").length> i)
-                    //	                        PaginationList.push(component.get("v.items")[i]);    
-                    //	                }
-                    //	                component.set('v.PaginationList', PaginationList);
-                    //end pagination
-                    var pageSize = component.get("v.pageSizeInlineEdit");
-                    component.set('v.ListData', rows);
-                    // get size of all the records and then hold into an attribute "totalRecords"
-                    component.set("v.totalRecords", component.get("v.ListData").length);
-                    //Set the current Page as 0
-                    component.set("v.currentPage", 0);
-                    // set star as 0
-                    component.set("v.startPage", 0);
-                    var totalRecords = component.get("v.ListData").length;
-                    if (totalRecords === pageSize) {
-                        component.set("v.hideNext", true);
-                        component.set("v.endPage", pageSize - 1);
-                    } else {
-                        component.set("v.hideNext", false);
-                        component.set("v.endPage", pageSize - 1);
-                    }
-                    var PaginationList = [];
-                    for (var i = 0; i < pageSize; i++) {
-                        if (component.get("v.ListData").length > i) {
-                            PaginationList.push(rows[i]);
-                        }
-                    }
-                    component.set('v.PaginationList', PaginationList);
-
+                    component.set('v.items',rows);
+                   // start pagination
+                    var pageSize = component.get("v.pageSizeBis");
+	                // get size of all the records and then hold into an attribute "totalRecords"
+	                component.set("v.totalRecords", component.get("v.items").length);
+	                // set star as 0
+	                component.set("v.startPage",0);
+	                var totalRecords = component.get("v.items").length;
+				    //var div = Math.trunc(totalRecords / pageSize);
+	                if(totalRecords === pageSize){
+	                  component.set("v.hideNext", true);
+	                  component.set("v.endPage", pageSize - 1);
+	                }else{
+	                  component.set("v.hideNext", false);
+	                  component.set("v.endPage", pageSize - 1);
+	                }
+	                var PaginationList = [];
+	                for(var i=0; i< pageSize; i++){
+	                    if(component.get("v.items").length> i)
+	                        PaginationList.push(component.get("v.items")[i]);    
+	                }
+	                component.set('v.PaginationList', PaginationList);
+                //end pagination
+                    
                     if (rows.length == 0) {
                         var toast = $A.get('e.force:showToast');
                         toast.setParams({
@@ -581,7 +398,7 @@
      *
      */
     filterByRisk: function(component, event, helper) {
-        var data = component.get('v.ListData');
+        var data = component.get('v.initialData');
         var term = component.get("v.filterRisk");
         var regex;
         if ($A.util.isEmpty(term)) {
@@ -599,7 +416,7 @@
 
         component.set("v.filterPagination", data);
         component.set("v.items", component.get("v.filterPagination"));
-        helper.paginationFilter(component, event);
+        helper.paginationFilterBis(component, event);
     },
     closeModal: function(component, event, helper) {
         // for Hide/Close Model,set the "isOpen" attribute to "False"

@@ -1,6 +1,6 @@
-({	
-	getAllMeasuresByAssessmentRisk : function(component, event) {	
-		
+({
+    getAllMeasuresByAssessmentRisk: function(component, event) {
+
         var action = component.get("c.getAllMeasuresByAssessmentRisk");
         action.setParam('idAssRisk', component.get("v.idAssessmentRisk"));
         action.setCallback(this, function(response) {
@@ -29,21 +29,20 @@
                     }
                 }
                 component.set('v.PaginationList', PaginationList);
-            } 
-             else {
+            } else {
                 alert('ERROR');
             }
         });
         $A.enqueueAction(action);
-	},
-	checkIfMapContentIsEmpty : function(component, event, myMap) {
+    },
+    checkIfMapContentIsEmpty: function(component, event, myMap) {
         console.log("checkIfMapContentIsEmpty start")
         var lengthMap = Object.keys(myMap).length;
         for (var i = 0; i < lengthMap; i++) {
             var page = 'page' + i;
-            if(myMap[page].length != 0){
-              component.set("v.isEmptyMap", false);
-              console.log("isEmptyMap", component.get("v.isEmptyMap"));
+            if (myMap[page].length != 0) {
+                component.set("v.isEmptyMap", false);
+                console.log("isEmptyMap", component.get("v.isEmptyMap"));
             }
         }
     },

@@ -33,6 +33,7 @@
     <aura:attribute name="isOpen" type="boolean" default="false" />
     <aura:attribute name="isOpenAssessmentRisk" type="boolean" default="true" />
     <aura:attribute name="isOpenButton" type="boolean" default="false" />
+    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
     <!-- partie datatable 2 -->
     <aura:attribute name="allRiskList" type="Macro[]" />
     <aura:attribute name="allRiskListTemp" type="Macro[]" />
@@ -40,7 +41,6 @@
     <aura:attribute name="allCategorieRiskList" type="String[]" />
     <aura:attribute name="filterRisk" type="String" />
     <aura:attribute name="dissociateRisk" type="orm_assessmentRisk__c[]" />
-    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
     <!-- fin partie datatable 2 -->
     <aura:registerEvent name="OrmListAssessmentRiskIsNotEmpty" type="c:OrmListAssessmentRiskIsNotEmpty" />
     <aura:registerEvent name="NotifyAfterdeletingAssessmentRisk" type="c:OrmNotifyAfterdeletingAssessmentRiskEvt" />
@@ -82,29 +82,23 @@
 	</center>
     <div class="slds-grid slds-gutters">
         <div class="slds-col slds-size--10-of-12">
-<!--             <aura:if isTrue="{!v.isOpenButton}"> -->
+            <aura:if isTrue="{!v.isOpenButton}">
                 <button class="slds-button slds-button--brand" onclick="{!c.dissociateRiskfunction}">
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>{!$Label.c.dissociate_button_title}
 			</button>
-<!--             </aura:if> -->
+            </aura:if>
             <aura:if isTrue="{!not(empty(v.PaginationList ))}">
-<!--                 <lightning:datatable aura:id="datatableRisk"  -->
-<!--                 data="{! v.PaginationList }"  -->
-<!--                 columns="{! v.columns }"  -->
-<!--                 keyField="Id"  -->
-<!--                 resizeColumnDisabled="true"  -->
-<!--                 selectedRows="{! v.assessmentRisk}"  -->
-<!--                 showRowNumberColumn="true"  -->
-<!--                 onrowselection="{!c.openPopupDissociate}" -->
-<!--                 onrowaction="{! c.handleRowAction }"  -->
-<!--                 /> -->
-                <lightning:datatable aura:id="datatable" 
-                							 class="table-test"
-                                             columns="{! v.columns }" 
-                                             data="{! v.PaginationList}" 
-                                             keyField="Id"  
-                                             onrowaction="{! c.handleRowAction }"
-                                             />
+                <lightning:datatable aura:id="datatableRisk" 
+                data="{! v.PaginationList }" 
+                columns="{! v.columns }" 
+                keyField="Id" 
+                class="table-test"
+                resizeColumnDisabled="true" 
+                selectedRows="{! v.assessmentRisk}" 
+                showRowNumberColumn="true" 
+                onrowselection="{!c.openPopupDissociate}"
+                onrowaction="{! c.handleRowAction }" 
+                />
                 <aura:set attribute="else">
                     <div class="messageIsEmpty" style="padding-top: 20px">
                         {!$Label.c.orm_assessmentRiskEmpty_message}
@@ -159,30 +153,14 @@
                         </div>
                     </div> <br/><br/>
                     <aura:if isTrue="{!not(empty(v.PaginationList ))}">
-<!--                         <lightning:datatable aura:id="datatableRisk" -->
-<!--                          data="{! v.PaginationList }"  -->
-<!--                          class="slds-m-top_medium"  -->
-<!--                          columns="{! v.columns2 }"  -->
-<!--                          keyField="id"  -->
-<!--                          resizeColumnDisabled="true" -->
-<!--                           showRowNumberColumn="true" -->
-<!--                            selectedRows="{! v.assessmentRisk}" -->
-<!--                             onrowselection="{!c.openPopupAssociation}" -->
-<!--                         /><br/> -->
-                        <lightning:datatable aura:id="datatableList" 
-                                             columns="{! v.columns2 }" 
-                                             data="{! v.PaginationList  }" 
-                                             keyField="Id" />
+                        <lightning:datatable aura:id="datatableRisk" data="{! v.PaginationList }" class="slds-m-top_medium" columns="{! v.columns2 }" keyField="id" resizeColumnDisabled="true" showRowNumberColumn="true" selectedRows="{! v.assessmentRisk}" onrowselection="{!c.openPopupAssociation}"
+                        /><br/>
                         <center>
                             <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-<!--                                 <lightning:buttonGroup> -->
-<!--                                     <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp; -->
-<!--                                     <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' /> -->
-<!--                                 </lightning:buttonGroup> -->
-								 <lightning:buttonGroup>
-	                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-	                                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
-	                            </lightning:buttonGroup>
+                                <lightning:buttonGroup>
+                                    <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                                    <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
+                                </lightning:buttonGroup>
                             </div>
                         </center>
                         <aura:set attribute="else">
@@ -210,14 +188,10 @@
     <c:OrmRiskNewCmp/>
     <center>
         <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-<!--             <lightning:buttonGroup> -->
-<!--                 <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp; -->
-<!--                 <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' /> -->
-<!--             </lightning:buttonGroup> -->
-		<lightning:buttonGroup>
-	        <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEditRiskIdentification}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
-	        <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEditRiskIdentification}" variant="brand" iconName='utility:forward' iconPosition='right' />
-	    </lightning:buttonGroup>
+            <lightning:buttonGroup>
+                <lightning:button label="Prev" disabled="{!v.startPage == 0}" onclick="{!c.previousBis}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
+                <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" onclick="{!c.nextBis}" variant="brand" iconName='utility:forward' iconPosition='right' />
+            </lightning:buttonGroup>
         </div>
     </center>
 </aura:component>

@@ -2,51 +2,39 @@
     display: inline-block;
     cursor: pointer;
 }
-
 .THIS .slds-icon-standard svg {
-    fill: rgb(52, 168, 83);
+  fill: rgb(52,168,83);
 }
-
 .THIS .test {
     background-color: #80ffff;
     color: black;
-    size: 15px;
+    size:15px;
 }
-
-.THIS .table {
-    text-align: center;
+.THIS .table{
+     text-align: center;
 }
-
 .THIS .header {
-    background-color: rgba(27, 82, 151, 1.0);
+	background-color: rgba(27, 82, 151, 1.0);
 }
 
 .THIS .descriptionToolTip {
-    /* background-color: red; */
+	/* background-color: red; */
 }
-
 .THIS .messageIsEmpty {
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.2em;
-    white-space: normal;
-    color: green;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
+  white-space: normal;
+  color: green;
 }
-
-.THIS .textInDiv {
-    font-weight: 600;
+.THIS .textInDiv{
+	font-weight: 600;
     font-size: 1.2em;
-    white-space: normal;
-    text-align: justify;
+	white-space: normal;
+	text-align: justify;
     text-justify: inter-word;
-}
-
-.THIS .table-test button {
-    background-color: #16325c;
-    color: white;
-}
-
-.THIS .table-test button {
-    background-color: #16325c;
-    color: white;
+ }
+ .THIS .table-test button{
+background-color: #16325c;
+color: white;
 }

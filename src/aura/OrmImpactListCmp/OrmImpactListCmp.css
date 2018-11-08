@@ -37,8 +37,9 @@
 }
 
 .THIS .messageIsEmpty {
-    text-align: center;
-    font-size: 1em;
+   text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
     white-space: normal;
     color: green;
 }

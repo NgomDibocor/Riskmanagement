@@ -1,45 +1,40 @@
 <aura:component extends="c:ormAbstractListCmp" controller="OrmMeasureController">
-  
-  <!-- attributes -->
-  <aura:attribute name="measures" type="Assessment__c[]" />
-   <aura:attribute name="measuresTemp" type="Assessment__c[]" />
-  <aura:attribute name="idAssessmentRisk" type="string" />
-  <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
-  <aura:attribute name="key" type="string" description="" />
-  <aura:attribute name="openModalConfirmDeletion" type="Boolean"  default="false"/>
-  <aura:attribute name="showButtonDelete" type="Boolean" default="false" />
-  <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
-	
-	<aura:attribute name="columns" type="List" />
-	<aura:attribute name="isEmptyMap" type="boolean" default="true" />	
-	
-  <!-- events  -->
-  <aura:registerEvent name="OrmNewMeasureClickedEvt"  type="c:OrmNewMeasureClickedEvt"/>
-  <aura:registerEvent name="OrmDeleteMeasuresEvt" type="c:OrmDeleteMeasuresEvt" description="" />
-  <aura:registerEvent name="OrmEditMeasureClickedEvt"  type="c:OrmEditMeasureClickedEvt"/>
-  <aura:handler event="c:OrmMeasureCreatedEvt" action="{!c.refreshList}" />
-  <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.getIdAssessmentRisk}" />
-  <aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
-  
-    
-     <div class="slds-m-around_large">                                      
-	    <div class="measure">
-	    	<div class="measureSearch">
-		    	<a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldMeasure}">
-					<lightning:input type="search"  placeholder="{!$Label.c.orm_filter_mymeasure_placeholder}" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
-				</a>
-			</div>
-			<span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" onclick="{!c.openNewMeasureCmp}">
+    <!-- attributes -->
+    <aura:attribute name="measures" type="Assessment__c[]" />
+    <aura:attribute name="measuresTemp" type="Assessment__c[]" />
+    <aura:attribute name="idAssessmentRisk" type="string" />
+    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+    <aura:attribute name="key" type="string" description="" />
+    <aura:attribute name="openModalConfirmDeletion" type="Boolean" default="false" />
+    <aura:attribute name="showButtonDelete" type="Boolean" default="false" />
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="isEmptyMap" type="boolean" default="true" />
+    <!-- events  -->
+    <aura:registerEvent name="OrmNewMeasureClickedEvt" type="c:OrmNewMeasureClickedEvt" />
+    <aura:registerEvent name="OrmDeleteMeasuresEvt" type="c:OrmDeleteMeasuresEvt" description="" />
+    <aura:registerEvent name="OrmEditMeasureClickedEvt" type="c:OrmEditMeasureClickedEvt" />
+    <aura:handler event="c:OrmMeasureCreatedEvt" action="{!c.refreshList}" />
+    <aura:handler event="c:OrmSendIdAssesssmentRiskEvt" action="{!c.getIdAssessmentRisk}" />
+    <aura:handler action="{!c.showButtonDelete}" event="c:OrmShowButtondeleteMeasureEvt" />
+    <div class="slds-m-around_large">
+        <div class="measure">
+            <div class="measureSearch">
+                <a href="javascript:void(0);" onclick="{!c.sendDescriptionFieldMeasure}">
+                    <lightning:input type="search" placeholder="{!$Label.c.orm_filter_mymeasure_placeholder}" onchange="{!c.filterMeasure}" value="{!v.key}" label="" />
+                </a>
+            </div>
+            <span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" onclick="{!c.openNewMeasureCmp}">
 	        	<lightning:icon iconName="utility:new" size="small" />
 	        </span>
-	        	<span class="deleteMeasure" onclick="{!c.removeMeasure}">
+            <span class="deleteMeasure" onclick="{!c.removeMeasure}">
 					<lightning:icon iconName="utility:delete" size="small" />
 				</span><br/><br/>
-	        
-	        		<center>
+
+            <center>
                 <div style="width:80%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
-                        <lightning:datatable aura:id="datatableList" class="table-test" columns="{! v.columns }" onrowaction="{! c.handleRowAction }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"  onrowselection="{!c.selectCauses}" />
+                        <lightning:datatable aura:id="datatableList" class="table-test" columns="{! v.columns }" onrowaction="{! c.handleRowAction }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" onrowselection="{!c.selectCauses}" />
                         <div style="margin-top:20px; padding-bottom:10px;">
                             <lightning:buttonGroup>
                                 <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
@@ -48,42 +43,40 @@
                         </div>
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
-                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
+                                {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_measures_label +' ' + $Label.c.orm_is_empty}
                             </div>
                         </aura:set>
                     </aura:if>
                 </div>
             </center>
-	        
-		</div>
-	</div>
-	
-	<!-- openModalConfirmDeletion  -->
-	    <aura:if isTrue="{!v.openModalConfirmDeletion}">    
-	    	<div class="demo-only" style="height: 640px;">
-			  <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" 
-			  		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-			    <div class="slds-modal__container">
-			      <header class="slds-modal__header header">
-			      	<span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
-			        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-			        	title="{!$Label.c.close_button_title}">		          
+
+        </div>
+    </div>
+
+    <!-- openModalConfirmDeletion  -->
+    <aura:if isTrue="{!v.openModalConfirmDeletion}">
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header header">
+                        <span style="color: white;">{!$Label.c.orm_title_deletion_message}</span>
+                        <button onclick="{!c.closeOpenModalErrorIfFieldEmpty}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.c.close_button_title}">		          
 			          <span class="slds-assistive-text">{!$Label.c.close_button_title}</span>
 			        </button>
-			      </header>
-			      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-			        <p>{!$Label.c.deletion_message}</p>
-			      </div>
-			      <footer class="slds-modal__footer">			        
-					<button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteMeasure}">{!$Label.c.orm_cancel_button_title}</button>
-					<button class="slds-button slds-button_brand" onclick="{!c.confirmDeleteMeasure}">{!$Label.c.orm_confirm_button}</button>					
-			      </footer>
-			    </div>
-			  </section>
-			  <div class="slds-backdrop slds-backdrop_open"></div>
-			</div>	    
-	    </aura:if>
-	<!-- /openModalConfirmDeletion -->
-	<c:OrmMeasureNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
-	<c:OrmMeasureEditCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>{!$Label.c.deletion_message}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick="{!c.cancelDeleteMeasure}">{!$Label.c.orm_cancel_button_title}</button>
+                        <button class="slds-button slds-button_brand" onclick="{!c.confirmDeleteMeasure}">{!$Label.c.orm_confirm_button}</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+    <!-- /openModalConfirmDeletion -->
+    <c:OrmMeasureNewCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
+    <c:OrmMeasureEditCmp idAssessmentRisk="{!v.idAssessmentRisk}" />
 </aura:component>

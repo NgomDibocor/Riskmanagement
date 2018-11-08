@@ -37,9 +37,9 @@
             type: 'button', 
             initialWidth: 90,
             typeAttributes: {
-                label: $A.get("$Label.c.orm_details_title"),
-                name: $A.get("$Label.c.orm_details_title"),
-                title: $A.get("$Label.c.orm_details_title")
+                label: $A.get("$Label.c.orm_files_label"),
+                name: $A.get("$Label.c.orm_files_label"),
+                title: $A.get("$Label.c.orm_files_label")
             }
         }, {
             type: 'button',
@@ -210,7 +210,7 @@
             }
         }
         console.log("id Cause", idCauses);
-
+ 
         //		call apex class method
         var action = component.get('c.deleteMeasureProgress');
         // pass the all selected record's Id's to apex method 
@@ -255,7 +255,7 @@
             });
             evt.fire();
         }
-        if (actionName == $A.get("$Label.c.orm_details_title")) {
+        if (actionName == $A.get("$Label.c.orm_files_label")) {
             component.set('v.measureProgressionId', row.Id);
             
             

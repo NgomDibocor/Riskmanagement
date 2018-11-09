@@ -28,12 +28,13 @@
             var newItem = component.get("v.item");
            
            newItem.orm_Assessment__c = assess;
-        newItem.AccountId=org;
+            newItem.AccountId=org;
             newItem.Name=name.get('v.value');
             newItem.StartDate=datestart.get('v.value');
-           newItem.orm_Contract_End_Date__c=dateend.get('v.value');
-           newItem.CompanySignedDate=dateinvitation.get('v.value');
-            newItem.Description=message.get('v.value');
+            newItem.orm_Contract_End_Date__c=dateend.get('v.value');
+            newItem.CompanySignedDate=dateinvitation.get('v.value');
+            desc=message.get('v.value');
+             newItem.Description=desc;
             var action = component.get('c.addWorkShop');
             action.setParams({
                 "item": newItem

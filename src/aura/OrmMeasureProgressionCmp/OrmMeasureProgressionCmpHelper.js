@@ -8,6 +8,7 @@
             if (state === "SUCCESS") {
                 var pageSize = component.get("v.pageSizeInlineEdit");
                 component.set('v.ListData', response.getReturnValue());
+                console.log(JSON.stringify(response.getReturnValue()));
                 // get size of all the records and then hold into an attribute "totalRecords"
                 component.set("v.totalRecords", component.get("v.ListData").length);
                 //Set the current Page as 0
@@ -34,6 +35,7 @@
             }
         });
         $A.enqueueAction(action);
+      
     },
     checkIfMapContentIsEmpty: function(component, event, myMap) {
         console.log("checkIfMapContentIsEmpty start")

@@ -43,17 +43,22 @@
 	               var obj = response.getReturnValue();
 	               if(Object.keys(obj).length === 0){
 	                  if(newMeasureProgression.orm_poucentageProgression__c <= 100){
+	                	  var percentProgression = newMeasureProgression.orm_poucentageProgression__c / 100 ;
+	                	  newMeasureProgression.orm_poucentageProgression__c = percentProgression;
 	                      helper.addProgressMeasure(component, event, newMeasureProgression);
 	                  }else{
 	                     console.log("orm_poucentageProgression__c is > 100")
 	                     alert('Must not exceed 100');
 	                  }
 	               }else{
-	                  var result = Number(newMeasureProgression.orm_poucentageProgression__c) + Number(Object.values(obj)[0]);
+	            	  var a  = 100 * Number(Object.values(obj)[0]);				
+	                  var result = Number(newMeasureProgression.orm_poucentageProgression__c) + a;
 	                  if(result > 100){
 	                    console.log("result is > 100")
 	                    alert('Must not exceed 100');
 	                  }else{
+	                      var percentProgression = newMeasureProgression.orm_poucentageProgression__c /100 ;
+	                      newMeasureProgression.orm_poucentageProgression__c = percentProgression;
 	                     helper.addProgressMeasure(component, event, newMeasureProgression);
 	                  }
 	               }

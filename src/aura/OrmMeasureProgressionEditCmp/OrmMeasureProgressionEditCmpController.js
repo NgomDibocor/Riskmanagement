@@ -56,35 +56,46 @@
                 measureProgressionData.Family = status;
             }
         	measureProgressionData.orm_dateProgression__c = dateProgression ;
-        	measureProgressionData.orm_poucentageProgression__c = poucentageProgression ;
+        	measureProgressionData.orm_poucentageProgression__c = poucentageProgression /100;
         	measureProgressionData.Description = Description ;
         	measureProgressionData.orm_measures__c = component.get("v.idMeasure");
         	measureProgressionData.Name ='xxxx';
         	
-        	var action = component.get('c.updateMeasureProgression');
-            action.setParams({
-                "measureProgression": measureProgressionData
-            });
-            action.setCallback(this, function(response) {
+        	var actionGetPercents = component.get('c.getPorgressPercentsOfMeasure');
+            actionGetPercents.setParams({"idMeasure": component.get("v.idMeasure")});
+            
+            actionGetPercents.setCallback(this, function(response) {
             var state = response.getState();
-            if (state == "SUCCESS") {
-                component.set("v.measureProgressionData", response.getReturnValue());
-                var toastEvent = $A.get('e.force:showToast');
-                toastEvent.setParams({ 
-                    'message': $A.get('$Label.c.orm_success_created'),
-                    'type': 'success',
-                    'mode': 'dismissible'
-                });
-                toastEvent.fire();
-                var evt = $A.get("e.c:OrmMeasureProgressionCreatedEvt");
-                   evt.fire();
-                component.set("v.isOpen", false);
-                
-            } else {
-                alert($A.get("$Label.c.orm_error"));
-            }
-        });
-        $A.enqueueAction(action);
+	            if (state === "SUCCESS") {
+	               var obj = response.getReturnValue();
+	               if(Object.keys(obj).length === 0){
+	                  if(poucentageProgression <= 100){
+	                	  var percentProgression = poucentageProgression / 100 ;
+	                	  measureProgressionData.orm_poucentageProgression__c = percentProgression;
+	                      helper.addProgressMeasure(component, event, measureProgressionData);
+	                  }else{
+	                     console.log("orm_poucentageProgression__c is > 100")
+	                     alert('Must not exceed 100');
+	                  }
+	               }else{
+	            	  var a  = 100 * Number(Object.values(obj)[0]);				
+	                  var result = Number(poucentageProgression) + a;
+	                  if(result > 100){
+	                    console.log("result is > 100")
+	                    alert('Must not exceed 100');
+	                  }else{
+	                      var percentProgression = poucentageProgression /100 ;
+	                      measureProgressionData.orm_poucentageProgression__c = percentProgression;
+	                     helper.addProgressMeasure(component, event, measureProgressionData);
+	                  }
+	               }
+	            } else {
+	                alert($A.get("$Label.c.orm_error"));
+	            }
+           });
+           $A.enqueueAction(actionGetPercents);
+        	
+        
 	},
 	
 	onChangeStatus : function(component, event, helper) {

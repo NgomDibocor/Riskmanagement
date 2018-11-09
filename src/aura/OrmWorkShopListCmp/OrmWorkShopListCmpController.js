@@ -37,7 +37,8 @@
             label: $A.get("$Label.c.orm_message_workshop"),
             fieldName: 'Description',
             editable: 'true',
-            type: 'text'
+            type: 'button', initialWidth: 115,
+            typeAttributes: { label: $A.get('$Label.c.orm_message_workshop'), name: 'message_details', title: 'Click to View Details'}
         }, {
             label: $A.get("$Label.c.orm_date_invitation"),
             fieldName: 'CompanySignedDate',
@@ -50,8 +51,10 @@
             }
         }, {
             label: 'Action',
+            
             type: 'button-icon',
             typeAttributes: {
+             name: 'contact_details',
             	iconName: 'action:new_group',
             	size: 'large',
                 alignment: 'center',
@@ -336,103 +339,74 @@
         helper.saveDataTable(component, event, helper);
     },
     openModalContactWorkshop: function(component, event, helper) {
+    var actionRow = event.getParam('action');
+    console.log('name action'+actionRow.name);
     var row = event.getParam('row');
     console.log(JSON.stringify(row));
-        var action = component.get("c.findAllContact");
-        action
-            .setCallback(
-                this,
-                function(response) {
-                    var state = response.getState();
-                    if (state === "SUCCESS") {
-                        var storeResponse = response.getReturnValue();
-                        // console.log(JSON.stringify(storeResponse));
-
-                        // set ContactListTemp list with return value
-                        // from server.
-                        component.set("v.ContactListTemp",
-                            storeResponse);
-
-                        if (component.get("v.ContactListTemp").length > 0) {
-
-                            // call the apex class method and fetch
-                            // contact list workshop
-                            var action1 = component
-                                .get("c.findAllContactWorkshop");
-                            action1
-                                .setParams({
-                                    'item': row.Id
-                                });
-
-                            action1
-                                .setCallback(
-                                    this,
-                                    function(response) {
-                                        var stateworkshop = response
-                                            .getState();
-                                        if (stateworkshop == "SUCCESS") {
-
-                                            var storeResponseWorkshopcontact = response
-                                                .getReturnValue();
-                                            component
-                                                .set(
-                                                    "v.ContactWorkshopList",
-                                                    storeResponseWorkshopcontact);
-
-                                            // iterate and check
-                                            // if contact is
-                                            // associated to
-                                            // workshop
-                                            component
-                                                .get(
-                                                    "v.ContactListTemp")
-                                                .forEach(
-                                                    function(
-                                                        contact) {
-                                                        component
-                                                            .get(
-                                                                "v.ContactWorkshopList")
-                                                            .forEach(
-                                                                function(
-                                                                    contactworkshop) {
-
-                                                                    if (contactworkshop.orm_contact__c == contact.Id) {
-                                                                        contact.association = $A.get("$Label.c.orm_associatedContactWorkshop");
-                                                                        if (contactworkshop.orm_notification__c == true) {
-                                                                            contact.orm_notification__c = $A.get("$Label.c.orm_notification_c");
-                                                                        }
-                                                                    }
-                                                                });
-
-                                                    });
-
-                                            component
-                                                .set(
-                                                    "v.ContactList",
-                                                    component
-                                                    .get("v.ContactListTemp"));
-
-                                            var evt = $A
-                                                .get("e.c:OrmContactWorkshopListEvt");
-                                            evt
-                                                .setParams({
-                                                    "contactList": component
-                                                        .get("v.ContactList"),
-                                                    "workshop": row
-                                                });
-                                            evt.fire();
-                                            console
-                                                .log(component
-                                                    .get("v.ContactListTemp"));
-
-                                        }
-                                    });
-                            $A.enqueueAction(action1);
-
-                        }
-                    }
-                });
-        $A.enqueueAction(action);
-
+    switch (actionRow.name) {
+		
+		case 'contact_details':
+			helper.openContactModal(component,event,helper,row);
+			break;
+	   case  'message_details':
+			console.log('message_details');
+			helper.showDetailMessage(component,event,row);
+			break;
+		default:
+			break;
+		}
     },
+    /** @author: Salimata NGOM
+     *  @date: Creation: 09/11/2018
+     *  @description: method for show message workshop
+     */
+    closeShowDetailMessage:function(component,event){
+        component.set('v.showMessageDetail',false);
+
+        },
+        
+    /** @author: Salimata NGOM
+     *  @date: Creation: 09/11/2018
+     *  @description: method for update message workshop
+     */
+    editMessageWorkshop: function(component, event, helper) {
+    var message =  component.find('description');
+     var newItem = component.get("v.workshopEdit");
+      newItem.Description=message.get('v.value');
+            var action = component.get('c.addWorkShop');
+            action.setParams({
+                "item": newItem
+            });
+               action
+                .setCallback(
+                    this,
+                    function(response) {
+                        var state = response.getState();
+                        if (state == "SUCCESS") {
+                            component.set('v.showMessageDetail',false);
+                            var toast = $A.get('e.force:showToast');
+            		toast.setParams({
+			           'message' : 'workshop updated'+ ' ' 
+			           		+ $A.get('$Label.c.orm_toast_success'),
+			           'type' : 'success',
+			           'mode' : 'dismissible'
+		            });	
+		            toast.fire();
+                         
+                        } else if(state ==="ERROR") {
+              let errors = response.getError();
+              let message = 'Unknown error'; // Default error message
+              // Retrieve the error message sent by the server
+              if (errors && Array.isArray(errors) && errors.length > 0) {
+                 message = errors[0].message;
+                    }
+                  // Display the message
+                console.error(message);
+            }
+                    });
+            $A.enqueueAction(action);
+           
+    }
+    
+	
 })

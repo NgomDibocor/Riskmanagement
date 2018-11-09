@@ -90,4 +90,109 @@
         });
         $A.enqueueAction(action);
     },
+        openContactModal: function(component, event, helper,row) {
+            var action = component.get("c.findAllContact");
+        action
+            .setCallback(
+                this,
+                function(response) {
+                    var state = response.getState();
+                    if (state === "SUCCESS") {
+                        var storeResponse = response.getReturnValue();
+                        // console.log(JSON.stringify(storeResponse));
+
+                        // set ContactListTemp list with return value
+                        // from server.
+                        component.set("v.ContactListTemp",
+                            storeResponse);
+
+                        if (component.get("v.ContactListTemp").length > 0) {
+
+                            // call the apex class method and fetch
+                            // contact list workshop
+                            var action1 = component
+                                .get("c.findAllContactWorkshop");
+                            action1
+                                .setParams({
+                                    'item': row.Id
+                                });
+
+                            action1
+                                .setCallback(
+                                    this,
+                                    function(response) {
+                                        var stateworkshop = response
+                                            .getState();
+                                        if (stateworkshop == "SUCCESS") {
+
+                                            var storeResponseWorkshopcontact = response
+                                                .getReturnValue();
+                                            component
+                                                .set(
+                                                    "v.ContactWorkshopList",
+                                                    storeResponseWorkshopcontact);
+
+                                            // iterate and check
+                                            // if contact is
+                                            // associated to
+                                            // workshop
+                                            component
+                                                .get(
+                                                    "v.ContactListTemp")
+                                                .forEach(
+                                                    function(
+                                                        contact) {
+                                                        component
+                                                            .get(
+                                                                "v.ContactWorkshopList")
+                                                            .forEach(
+                                                                function(
+                                                                    contactworkshop) {
+
+                                                                    if (contactworkshop.orm_contact__c == contact.Id) {
+                                                                        contact.association = $A.get("$Label.c.orm_associatedContactWorkshop");
+                                                                        if (contactworkshop.orm_notification__c == true) {
+                                                                            contact.orm_notification__c = $A.get("$Label.c.orm_notification_c");
+                                                                        }
+                                                                    }
+                                                                });
+
+                                                    });
+
+                                            component
+                                                .set(
+                                                    "v.ContactList",
+                                                    component
+                                                    .get("v.ContactListTemp"));
+
+                                            var evt = $A
+                                                .get("e.c:OrmContactWorkshopListEvt");
+                                            evt
+                                                .setParams({
+                                                    "contactList": component
+                                                        .get("v.ContactList"),
+                                                    "workshop": row
+                                                });
+                                            evt.fire();
+                                            console
+                                                .log(component
+                                                    .get("v.ContactListTemp"));
+
+                                        }
+                                    });
+                            $A.enqueueAction(action1);
+
+                        }
+                    }
+                });
+        $A.enqueueAction(action);
+        },
+        showDetailMessage:function(component,event,row ){
+         console.log('v.showMessageDetail');
+         component.set('v.descriptionMessage',row.Description);
+         component.set('v.workshopEdit',row);
+        component.set('v.showMessageDetail',true);
+       
+        }
+        
 })

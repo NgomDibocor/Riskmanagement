@@ -52,7 +52,6 @@
                         newMeasureProgression.orm_poucentageProgression__c = percentProgression;
                         helper.addProgressMeasure(component, event, newMeasureProgression);
                     } else {
-                        console.log("orm_poucentageProgression__c is > 100")
                         var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
                             'message': 'Must not exceed 100',
@@ -65,7 +64,6 @@
                     var a = 100 * Number(Object.values(obj)[0]);
                     var result = Number(newMeasureProgression.orm_poucentageProgression__c) + a;
                     if (result > 100) {
-                        console.log("result is > 100")
                         var toastEvent = $A.get('e.force:showToast');
                         toastEvent.setParams({
                             'message': 'Must not exceed 100',

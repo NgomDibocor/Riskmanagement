@@ -21,10 +21,7 @@
         }, {
             label: $A.get("$Label.c.orm_PourcentageProgression_label"),
             fieldName: 'orm_poucentageProgression__c',
-            type: 'number',
-            typeAttributes: {
-                alignment: 'justify',
-            }
+            type: 'percent'
         }, {
             label: $A.get("$Label.c.orm_ProductDescription_label"),
             fieldName: 'Description',
@@ -32,10 +29,14 @@
         }, {
             label: $A.get("$Label.c.orm_statusProgress_label"),
             fieldName: 'Family',
-            type: 'text'
+            type: 'text',
+            
+            cellAttributes: {
+                class: "buttonStyle"
+            }
         }, {
             type: 'button', 
-            initialWidth: 90,
+            initialWidth: 80,
             typeAttributes: {
                 label: $A.get("$Label.c.orm_files_label"),
                 name: $A.get("$Label.c.orm_files_label"),
@@ -261,5 +262,5 @@
             
             component.set("v.openfilesList", true);
         }
-    },
+    }
 })

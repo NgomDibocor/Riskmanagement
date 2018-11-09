@@ -24,4 +24,6 @@ color: white}
     width:80%;
     margin-right: 15px;
 }
-
+.THIS .buttonStyle {
+	background-color: red;
+}

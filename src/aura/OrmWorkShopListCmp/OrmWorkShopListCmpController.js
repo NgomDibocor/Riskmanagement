@@ -386,8 +386,7 @@
                             component.set('v.showMessageDetail',false);
                             var toast = $A.get('e.force:showToast');
             		toast.setParams({
-			           'message' : 'workshop updated'+ ' ' 
-			           		+ $A.get('$Label.c.orm_toast_success'),
+			           'message' : $A.get('$Label.c.orm_workshop_label')+ ' '+ $A.get('$Label.c.orm_success_updated'),
 			           'type' : 'success',
 			           'mode' : 'dismissible'
 		            });	

@@ -20,7 +20,9 @@
                 actionMeasure.setCallback(this, function(response) {
                     var state = response.getState();
                     if (state === 'SUCCESS') {
+                    var percentMeasure = response.getReturnValue().orm_poucentageProgression__c * 100;
                         component.set('v.measureProgressionData', response.getReturnValue());
+                        component.set('v.measureProgressionData.orm_poucentageProgression__c',percentMeasure);
                         console.log("measureProgressionData", JSON.stringify(component.get("v.measureProgressionData")));
 
                     } else {

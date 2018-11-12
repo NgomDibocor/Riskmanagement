@@ -17,6 +17,7 @@
             label: $A.get("$Label.c.orm_start_date"),
             fieldName: 'StartDate',
             editable: 'true',
+             initialWidth: 150,
             type: 'date',
             typeAttributes: {
                 year: 'numeric',
@@ -27,6 +28,7 @@
             label: $A.get("$Label.c.orm_end_date"),
             fieldName: 'orm_Contract_End_Date__c',
             editable: 'true',
+            initialWidth: 150,
             type: 'date',
             typeAttributes: {
                 year: 'numeric',
@@ -36,13 +38,15 @@
         }, {
             label: $A.get("$Label.c.orm_message_workshop"),
             fieldName: 'Description',
+           
             editable: 'true',
-            type: 'button', initialWidth: 115,
+            type: 'button', initialWidth: 170,
             typeAttributes: { label: $A.get('$Label.c.orm_message_workshop'), name: 'message_details', title: 'Click to View Details'}
         }, {
             label: $A.get("$Label.c.orm_date_invitation"),
             fieldName: 'CompanySignedDate',
             editable: 'true',
+             initialWidth: 150,
             type: 'date',
             typeAttributes: {
                 year: 'numeric',
@@ -51,7 +55,7 @@
             }
         }, {
             label: 'Action',
-            
+            initialWidth: 80,
             type: 'button-icon',
             typeAttributes: {
              name: 'contact_details',

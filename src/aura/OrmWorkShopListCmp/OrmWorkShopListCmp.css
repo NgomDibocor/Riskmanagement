@@ -3,9 +3,9 @@
 .THIS .messageIsEmpty {
   text-align: center;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.5em;
   white-space: normal;
-  color: green;
+  color: black;
 }
 .THIS .curseur {
   cursor: pointer;
@@ -16,13 +16,13 @@ color: white}
 .THIS div.workshop {
     display: inline-block;
     width:80%;
-    margin-left:12%;
-    margin-right:10%;
+    margin-left:4%;
+    margin-right:5%;
 }
 .THIS .workshopSearch {
 	display: inline-block;
-    width:80%;
-    margin-right: 15px;
+    width:90%;
+    margin-right: 4px;
 }
 .THIS .buttonStyle {
 	background-color: red;

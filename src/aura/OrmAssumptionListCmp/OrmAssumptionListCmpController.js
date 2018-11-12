@@ -90,7 +90,7 @@
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
             "nomField": "Assumption",
-            "descriptionField": "Description"
+            "descriptionField": $A.get('$Label.c.orm_filter_assumption') 
         });
         evt.fire();
     },

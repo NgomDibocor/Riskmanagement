@@ -23,8 +23,8 @@
     sendDescriptionFieldCause: function(component, event, helper) {
         var evt = $A.get("e.c:OrmSendValuesFieldDescriptionEvt");
         evt.setParams({
-            "nomField": $A.get('$Label.c.orm_label_cause'),
-            "descriptionField": $A.get('$Label.c.orm_describe_cause')
+            "nomField": "Assumption",
+            "descriptionField":  $A.get('$Label.c.orm_filter_assumption')
         });
         evt.fire();
     },

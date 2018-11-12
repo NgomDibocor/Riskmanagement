@@ -15,6 +15,7 @@
         {
             label: $A.get("$Label.c.orm_files_label"),
             type: 'button',
+            initialWidth: 90,
             typeAttributes: {
                 label: $A.get("$Label.c.orm_files_label"),
                 name: $A.get("$Label.c.orm_files_label"),

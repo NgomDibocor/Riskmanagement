@@ -32,17 +32,20 @@
 .THIS .messageIsEmpty {
   text-align: center;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.5em;
   white-space: normal;
-  color: green;
+  color: black;
 }
 .THIS .dot {
     height: 55px;
     line-height: 55px;
     width: 300px;
     border-radius: 0;
-    background-color: #5B86BE;
+    background-color: #16325c;
     display: inline-block;
+}
+.THIS .dot:hover {
+	background-color:#16325c;	
 }
 .THIS .styleAllText{
     text-justify: inter-character;

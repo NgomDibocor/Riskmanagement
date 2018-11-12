@@ -30,9 +30,9 @@
 .THIS .messageIsEmpty {
   text-align: center;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.5em;
   white-space: normal;
-  color: green;
+  color: black;
 }
 .THIS .styleAllText{
     text-justify: inter-character;

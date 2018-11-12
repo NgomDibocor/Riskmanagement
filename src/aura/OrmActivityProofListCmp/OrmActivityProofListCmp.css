@@ -1,7 +1,7 @@
 .THIS div.activityProof {
     display: inline-block;
-    width: 70%;
-    margin-left:20%;
+    width: 90%;
+    margin-left:12%;
     margin-right:10%;
 }
 .THIS .activityProofSearch {
@@ -18,12 +18,22 @@
 }
 .THIS .messageIsEmpty {
   text-align: center;
-  font-size: 1em;
+  font-size: 1.5em;
   white-space: normal;
-  color: green;
+  color: black;
 }
 .THIS .thTable {
   font-weight: 600;
   font-size: 1.2em;
 }
+.THIS .btnNewProof {
+    display: inline-block;
+    cursor: pointer;
+    width: 5%;
+}
 
+.THIS .btnDeleteProof {
+    display: inline-block;
+    width: 5%;
+    cursor: pointer;
+}

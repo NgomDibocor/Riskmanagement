@@ -29,26 +29,28 @@
                     <lightning:input type="search" placeholder="{!$Label.c.orm_filter_activityProof_placeholder}" onchange="{!c.filterActivityProof}" value="{!v.filter}" label="" />
                 </a>
             </div>
-            <span title="{!$Label.c.new_title_label + ' ' + $Label.c.orm_measure_label}" class="btnNewMeasure" onclick="{!c.openNewActivityProof}">
+            <span title="" class="btnNewProof" onclick="{!c.openNewActivityProof}">
 	        	<lightning:icon iconName="utility:new" size="small" />
 	        </span>
-            <span class="btnDeleteActivity" onclick="{!c.removeActivityProof}"> <lightning:icon
+            <span class="btnDeleteProof"  onclick="{!c.removeActivityProof}"> <lightning:icon
 					iconName="utility:delete" size="small" />
 			</span>
             <br/><br/>
             
-			<center>
-                <div style="width:80%;">
+			
+                <div style="width:80%; margin-right: 15px;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
                         <lightning:datatable aura:id="datatableList"  columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}" 
                         onrowaction="{! c.selectActivity }"
                         onrowselection="{!c.selectCauses}" />
-                        <div style="margin-top:20px; padding-bottom:10px;">
+                       <center>
+                        <div style="margin-top:20px;">
                             <lightning:buttonGroup>
                                 <lightning:button label="Previous" disabled="{!v.startPage == 0}" onclick="{!c.previousInlineEdit}" variant="brand" iconName='utility:back' /> &nbsp; &nbsp; &nbsp;
                                 <lightning:button label="Next" disabled="{!or(v.endPage >= v.totalRecords,v.hideNext)}" onclick="{!c.nextInlineEdit}" variant="brand" iconName='utility:forward' iconPosition='right' />
                             </lightning:buttonGroup>
                         </div>
+                       </center>
                         <aura:set attribute="else">
                             <div class="messageIsEmpty" style="padding-top: 20px">
                                 {!$Label.c.orm_list_title_label +' '+ $Label.c.orm_phase +' ' + $Label.c.orm_is_empty}
@@ -56,7 +58,7 @@
                         </aura:set>
                     </aura:if>
                 </div>
-            </center>
+            
             
         </div>
     </div>

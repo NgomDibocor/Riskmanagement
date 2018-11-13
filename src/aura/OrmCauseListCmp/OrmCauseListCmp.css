@@ -65,3 +65,7 @@
 .THIS .dot:hover {
 	background-color:#16325c;	
 }
+.THIS .table-test thead th span {
+  font-weight: 500;
+  font-size: 1.2em;
+}

@@ -8,46 +8,70 @@
             "objObject": component.get("v.objInfo"),
             "fld": 'orm_workingEnvironment__c'
         });
+        var arrayWorkingEnvironment = [];
         actionWorkingEnvironment.setCallback(this, function(response) {
             var state = response.getState();
             if (state === 'SUCCESS') {
-                component.set('v.workingEnvironments', response.getReturnValue());
+                var allValuesWorkingEnvironment = response.getReturnValue();
+                if (allValuesWorkingEnvironment != undefined && allValuesWorkingEnvironment.length > 0) {
+                    var none="---None---";
+                    arrayWorkingEnvironment = [none, ...allValuesWorkingEnvironment];
+                }
+                component.set('v.workingEnvironments', arrayWorkingEnvironment);
                 //manageAbility
                 var actionManageability = component.get("c.getSelectOptions");
                 actionManageability.setParams({
                     "objObject": component.get("v.objInfo"),
                     "fld": 'orm_manageability__c'
                 });
+                var arrayManageability = [];
                 actionManageability.setCallback(this, function(response) {
                     var state = response.getState();
                     if (state === 'SUCCESS') {
-                        component.set('v.manageAbility', response.getReturnValue());
+                        var allValuesManageability = response.getReturnValue();
+		                if (allValuesManageability != undefined && allValuesManageability.length > 0) {
+		                    var none="---None---";
+		                    arrayManageability = [none, ...allValuesManageability];
+		                }
+                        component.set('v.manageAbility', arrayManageability);
                                         //status
                                         var actionstatus = component.get("c.getSelectOptions");
                                         actionstatus.setParams({
                                             "objObject": component.get("v.objInfo"),
                                             "fld": 'orm_status__c'
                                         });
+                                        var arrayStatus = [];
                                         actionstatus.setCallback(this, function(response) {
                                             var state = response.getState();
                                             if (state === 'SUCCESS') {
-                                                component.set('v.status', response.getReturnValue());
-
+                                                var allValuesStatus = response.getReturnValue();
+								                if (allValuesStatus != undefined && allValuesStatus.length > 0) {
+								                    var none="---None---";
+								                    arrayStatus = [none, ...allValuesStatus];
+								                }
+                                                component.set('v.status', arrayStatus);
                                                 //Uncertainty
                                                 var actionUncertainty = component.get("c.getSelectOptions");
                                                 actionUncertainty.setParams({
                                                     "objObject": component.get("v.objInfo"),
                                                     "fld": 'orm_uncertainty__c'
                                                 });
+                                                var arrayUncertainty = [];
                                                 actionUncertainty.setCallback(this, function(response) {
                                                     var state = response.getState();
                                                     if (state === 'SUCCESS') {
-                                                        component.set('v.uncertainties', response.getReturnValue());
-                                                       
+                                                        var allValuesUncertainty = response.getReturnValue();
+										                if (allValuesUncertainty != undefined && allValuesUncertainty.length > 0) {
+										                    var none="---None---";
+										                    arrayUncertainty = [none, ...allValuesUncertainty];
+										                }
+                                                        component.set('v.uncertainties', arrayUncertainty);
+                                                        
                                                         var actionUser = component.get("c.getUsers");
 													    actionUser.setCallback(this, function(response){
 													            var state = response.getState();
 													            if(state === 'SUCCESS'){
+													               
 													                component.set('v.allUser', response.getReturnValue());
 			                                                        //get AssessmentRisk
 			                                                        var actionGetAssessmentRisk = component.get("c.findAssessmentRisk");
@@ -57,16 +81,11 @@
 			                                                        actionGetAssessmentRisk.setCallback(this, function(response) {
 			                                                            var state = response.getState();
 			                                                            if (state === 'SUCCESS') {
-			                                                                //component.set("v.afterLoadAllAssessmentRiskField", true);
 			                                                                component.set("v.showBtnMatricePicture", true);
-			                                                                component.set('v.assessmentRiskData', response.getReturnValue());
-			                                                                component.find("manageAbility").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
+			                                                                component.set('v.assessmentRiskData', response.getReturnValue());			          
+			                                                                component.find("workingEnvironment").set("v.value", component.get('v.assessmentRiskData').orm_manageability__c);
 			                                                                component.find("workingEnvironment").set("v.value", component.get('v.assessmentRiskData').orm_workingEnvironment__c);
-			                                                                /*if(component.get("v.assessmentRiskData").orm_workingEnvironment__c != undefined){
-			                                                                    var data = component.get("v.data");
-																			    data.orm_workingEnvironment__c = component.get("v.assessmentRiskData").orm_workingEnvironment__c ;
-																			    component.set("v.data", data);
-			                                                                }*/
+			                                                                
 			                                                                component.find("slider1").set("v.value", component.get('v.assessmentRiskData').orm_probability__c);
 			                                                                component.find("status").set("v.value", component.get('v.assessmentRiskData').orm_status__c);
 			                                                                component.find("uncertainty").set("v.value", component.get('v.assessmentRiskData').orm_uncertainty__c);
@@ -79,31 +98,20 @@
 				                                                                if (sliderValue >= component.get("v.RareData.orm_pourcentageMin__c") && sliderValue <= component.get("v.RareData.orm_pourcentageMax__c")) {
 				                                                                    document.getElementById("divColor").style.backgroundColor = "green";
 				                                                                    document.getElementById("divColor").innerHTML = component.get("v.RareData.orm_probability__c") + '(' + sliderValue +')';
-				                                                                  /*var data = component.get("v.data");
-																				    data.orm_probability__c = component.get("v.RareData.orm_probability__c");
-																				    component.set("v.data", data);*/
+				                                                                  
 				                                                                
 				                                                                } else if (sliderValue > component.get("v.unlikelyData.orm_pourcentageMin__c") && sliderValue <= component.get("v.unlikelyData.orm_pourcentageMax__c")) {
 				                                                                    document.getElementById("divColor").style.backgroundColor = "yellow";
 				                                                                    document.getElementById("divColor").innerHTML = component.get("v.unlikelyData.orm_probability__c")+ '(' + sliderValue +')';
-				                                                                  /*var data = component.get("v.data");
-																				    data.orm_probability__c = component.get("v.unlikelyData.orm_probability__c");
-																				    component.set("v.data", data);*/
 				                                                                
 				                                                                } else if (sliderValue > component.get("v.possibleData.orm_pourcentageMin__c") && sliderValue <= component.get("v.possibleData.orm_pourcentageMax__c")) {
 				                                                                    document.getElementById("divColor").style.backgroundColor = "orange";
 				                                                                    document.getElementById("divColor").innerHTML = component.get("v.possibleData.orm_probability__c")+ '(' + sliderValue +')';
-				                                                                  /*var data = component.get("v.data");
-																				    data.orm_probability__c = component.get("v.possibleData.orm_probability__c");
-																				    component.set("v.data", data);*/
 				                                                                
 				                                                                } else {
 				                                                                    document.getElementById("divColor").style.backgroundColor = "red";
 				                                                                    document.getElementById("divColor").innerHTML = component.get("v.probableData.orm_probability__c")+ '(' + sliderValue +')';
-				                                                                
-				                                                                  /*var data = component.get("v.data");
-																				    data.orm_probability__c = component.get("v.probableData.orm_probability__c");
-																				    component.set("v.data", data);*/
+				                                                               
 				                                                                }
 			                                                                
 			                                                             }

@@ -1,3 +1,6 @@
+.THIS{
+	width:95%;
+}
 .THIS .borderColapse{
 	border-collapse: initial;
 }
@@ -10,11 +13,11 @@
 	font-style: normal;
 	font-size: 18px;
 	letter-spacing: -.003em;
-	padding-left: 20px;
+/*	padding-left: 20px; */
     padding-top: 20px;
 }
-.THIS .paddingLeft{
-	padding-left: 20px;
+.THIS .widthMarginCard{
+	width: auto;
 }
 .THIS #security{
 	font-weight: 400;
@@ -50,10 +53,11 @@
 	font-weight: 600;
     font-size: 1.5em;
 }
-.THIS span{
-	
-}
+
 .THIS .tdWidth{
+	width: 45%;
+}
+.THIS .tdWidthCard{
 	width: 45%;
 	white-space: normal !important;
 	text-align: justify;
@@ -65,7 +69,7 @@
 	font-size: 20px;
 	letter-spacing: -.003em;
 	text-align:center;
-	padding-left: 20px;
+/*	padding-left: 20px; */
     padding-top: 20px;
 }
 .THIS .thTableBI {
@@ -73,7 +77,7 @@
 	font-style: normal;
 	font-size: 20px;
 	letter-spacing: -.003em;
-	padding-left: 20px;
+/*	padding-left: 20px; */
     padding-top: 20px;
 }
 .THIS .thTablehithoutPadding {
@@ -88,7 +92,7 @@
 	font-style: normal;
 	font-size: 20px;
 	letter-spacing: -.003em;
-	padding-left: 100px;
+/*	padding-left: 100px; */
     padding-top: 20px;
 }
 .THIS .divColor {
@@ -99,18 +103,18 @@
 .THIS .messageIsEmpty {
   text-align: center;
   font-weight: 600;
-  font-size: 1.3em;
+  font-size: 1.5em;
   white-space: normal;
-  color: green;
+  color: white;
 }
 .THIS .widthBtn {
-  width: 150px;
+ /* width: 150px; */
 } 
 .THIS .widthCard {
   width: 100%;
 }
 .THIS .centerBtnGroup {
-  margin-left: 20px;
+/*  margin-left: 20px; */
   margin-top:auto;
   margin-bottom:auto;
 }

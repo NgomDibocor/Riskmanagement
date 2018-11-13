@@ -12,6 +12,7 @@
             label: $A.get("$Label.c.orm_title_workshop"),
             fieldName: 'Name',
             editable: 'true',
+            initialWidth: 150,
             type: 'text'
         }, {
             label: $A.get("$Label.c.orm_start_date"),

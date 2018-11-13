@@ -25,8 +25,6 @@
 		       var risk = component.get("v.assessmentRiskData.orm_Risk__c");
 		       assessmentRisk.orm_assessment__c = assessment;
 		       assessmentRisk.orm_Risk__c = risk;
-		       var riskManager = component.find("riskManager");
-               assessmentRisk.orm_riskManager__c = riskManager.get("v.value");
 		       assessmentRisk.orm_environmentAndCommunity__c =environmentAndCommunity;
 		       var workingEnvironment = component.find("workingEnvironment");
 		       assessmentRisk.orm_workingEnvironment__c = workingEnvironment.get("v.value");
@@ -36,6 +34,8 @@
 		       assessmentRisk.orm_status__c =status.get("v.value");
 		       var uncertainty = component.find("uncertainty");
 		       assessmentRisk.orm_uncertainty__c =uncertainty.get("v.value");
+		       var riskManager = component.find("riskManager");
+               assessmentRisk.orm_riskManager__c = riskManager.get("v.value");
 		       assessmentRisk.orm_security__c =security;
 		       assessmentRisk.orm_reputation__c =reputation;
 		       assessmentRisk.orm_cost__c =cost;	
@@ -100,7 +100,7 @@
 	            "descriptionField": $A.get("$Label.c.orm_riskmanager_description") 
 	        });
            evt.fire();
-        component.find("riskManager").set("v.value", event.getSource().get("v.value"));
+           component.find("riskManager").set("v.value", event.getSource().get("v.value"));
      
         component.set("v.displaySaveCancelBtn", true);
     },

@@ -171,27 +171,25 @@
 	
 	
 	<aura:registerEvent name="ShowMatriceAssessmentRiskt" type="c:OrmShowMatriceAssessmentRiskEvt" />													
-	  
-  <div style="width:100%">
-   <table class="slds-table" style="margin-bottom:30px">
-        <tr>
-            <td class="tdWidth">
-              <aura:if isTrue="{!v.showBtnMatricePicture}">
+   
+   
+   <div style="width:100%;display: flex;margin-bottom: 40px"> 
+      <div style="width:75%;"> 
+      		<aura:if isTrue="{!v.showBtnMatricePicture}">
                 <lightning:card  title="" iconName="">
-                    <div class="styleText" style="padding-left:10px;padding-right: 6px;">
+                    <div class="styleText" style="padding-left:2%;padding-right: 2%;">
                         <i class="styleTitle">Risk: </i> {!v.assessmentRiskData.orm_Risk__r.Name}
                     </div>
-                    <div class="styleText" style="padding-left:10px;padding-right: 6px;">
+                    <div class="styleText" style="padding-left:2%;padding-right: 2%;">
                         <i class="styleTitle">Desciption: </i> {!v.assessmentRiskData.orm_Risk__r.Description}
                     </div>
                 </lightning:card>
               </aura:if>
-            </td>
-            <td class="tdWidth">
-              <aura:if isTrue="{!v.showBtnMatricePicture}">
-               <!--<lightning:card  title="" class="widthCard">  -->
-                  <div style="width:100%;height: 50px;display: flex;">
-		                   <div style="width:40%;">
+      </div>
+      <div style="width:25%;"> 
+      		<aura:if isTrue="{!v.showBtnMatricePicture}">
+                  <div style="width:100%;height: 50px;">
+		                   <div>
 		                        <aura:if isTrue="{!v.displaySaveCancelBtn}">
 					                    <lightning:buttonGroup class="slds-m-around_medium centerBtnGroup">
 					                        <lightning:button label="Cancel" onclick="{!c.cancel}" />
@@ -199,7 +197,7 @@
 					                    </lightning:buttonGroup>
 				                </aura:if>
 		                   </div>
-		                   <div style="width:60%;">
+		                   <div style="margin-top: 15px">
 		                        <aura:if isTrue="{!v.showBtnMatricePicture}">
 					                   <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
 						                    <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null || v.assessmentRiskData.orm_reputation__c != null || v.assessmentRiskData.orm_workingEnvironment__c != null)}">
@@ -214,13 +212,11 @@
 				                </aura:if>
 		                   </div>
                   </div>
-               <!-- </lightning:card>  -->
               </aura:if>
-            </td>
-        </tr>
-        </table>
-        
-        <table class="slds-table" style="margin-bottom:30px">
+      </div>
+   </div>
+   
+      <table class="slds-table" style="margin-bottom:30px">
         <tr>
             <td class="tdWidth">
                  <div class="topSpacing"> 
@@ -228,11 +224,13 @@
                  </div>
                  <div class="slds-form-element">
                    <div class="slds-form-element__control">
-                         <ui:inputSelect aura:id="workingEnvironment" 
+                        <ui:inputSelect aura:id="workingEnvironment" 
                                    change="{!c.onChangeWorkingEnvironment}" class="slds-select"
                                    labelClass="slds-form-element__label">
-                                    <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_workingEnvironment__c}"
-                                                  label="{!v.assessmentRiskData.orm_workingEnvironment__c}"/>
+                                   <aura:if isTrue="{!v.assessmentRiskData.orm_workingEnvironment__c != undefined }">
+                                      <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_workingEnvironment__c}"
+                                                             label="{!v.assessmentRiskData.orm_workingEnvironment__c}"/>
+                                   </aura:if>
                                    <aura:iteration items="{!v.workingEnvironments}" var="workingEnvironment">
                                         <ui:inputSelectOption text="{!workingEnvironment}"
                                                               label="{!workingEnvironment}" />
@@ -247,16 +245,19 @@
 	               </div>
 	               <div class="slds-form-element">
 	                    <div class="slds-form-element__control">
-	                          <ui:inputSelect aura:id="manageAbility" 
-	                                    change="{!c.onChangeManageAbility}" class="slds-select"
-	                                    labelClass="slds-form-element__label">
-	                                     <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_manageability__c}"
-	                                                   label="{!v.assessmentRiskData.orm_manageability__c}"/>
-	                                    <aura:iteration items="{!v.manageAbility}" var="manageability">
-	                                         <ui:inputSelectOption text="{!manageability}"
-	                                                               label="{!manageability}" />
-	                                </aura:iteration>
-	                          </ui:inputSelect>
+	                       <ui:inputSelect aura:id="manageAbility" 
+                                    change="{!c.onChangeManageAbility}" class="slds-select"
+                                    labelClass="slds-form-element__label">
+                                    <aura:if isTrue="{!v.assessmentRiskData.orm_manageability__c != undefined }">
+                                       <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_manageability__c}"
+                                                              label="{!v.assessmentRiskData.orm_manageability__c}"/>
+                                    </aura:if>
+                                     
+                                    <aura:iteration items="{!v.manageAbility}" var="manageability">
+                                         <ui:inputSelectOption text="{!manageability}"
+                                                               label="{!manageability}" />
+                                </aura:iteration>
+                         </ui:inputSelect>
 	                    </div>
 	               </div>
             </td>
@@ -268,16 +269,18 @@
                </div>
                <div class="slds-form-element">
                     <div class="slds-form-element__control">
-                          <ui:inputSelect aura:id="status" 
-                                    change="{!c.onChangeStatus}" class="slds-select"
-                                    labelClass="slds-form-element__label">
-                                     <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_status__c}"
-                                                   label="{!v.assessmentRiskData.orm_status__c}"/>
-                                    <aura:iteration items="{!v.status}" var="status">
-                                         <ui:inputSelectOption text="{!status}"
-                                                               label="{!status}" />
-                                </aura:iteration>
-                          </ui:inputSelect>
+                        <ui:inputSelect aura:id="status" 
+                                   change="{!c.onChangeStatus}" class="slds-select"
+                                   labelClass="slds-form-element__label">
+                                   <aura:if isTrue="{!v.assessmentRiskData.orm_status__c != undefined }">
+                                       <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_status__c}"
+                                                  label="{!v.assessmentRiskData.orm_status__c}"/>
+                                    </aura:if>
+                                   <aura:iteration items="{!v.status}" var="status">
+                                        <ui:inputSelectOption text="{!status}"
+                                                              label="{!status}" />
+                               </aura:iteration>
+                         </ui:inputSelect>                  
                     </div>
                </div>
             </td>
@@ -287,16 +290,18 @@
                </div>
                <div class="slds-form-element">
                     <div class="slds-form-element__control">
-                          <ui:inputSelect aura:id="uncertainty" 
-                                    change="{!c.onChangeUncertainty}" class="slds-select"
-                                    labelClass="slds-form-element__label">
-                                     <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_uncertainty__c}"
-                                                   label="{!v.assessmentRiskData.orm_uncertainty__c}"/>
-                                    <aura:iteration items="{!v.uncertainties}" var="uncertainty">
-                                         <ui:inputSelectOption text="{!uncertainty}"
-                                                               label="{!uncertainty}" />
-                                </aura:iteration>
-                          </ui:inputSelect>
+                       <ui:inputSelect aura:id="uncertainty" 
+                                  change="{!c.onChangeUncertainty}" class="slds-select"
+                                  labelClass="slds-form-element__label">
+                                  <aura:if isTrue="{!v.assessmentRiskData.orm_status__c != undefined }">
+                                       <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_uncertainty__c}"
+                                                 label="{!v.assessmentRiskData.orm_uncertainty__c}"/>
+                                  </aura:if>
+                                  <aura:iteration items="{!v.uncertainties}" var="uncertainty">
+                                       <ui:inputSelectOption text="{!uncertainty}"
+                                                             label="{!uncertainty}" />
+                                  </aura:iteration>
+                        </ui:inputSelect>
                     </div>
                </div>
            </td>
@@ -308,16 +313,16 @@
                 </div>
                      <div class="slds-form-element">
                           <div class="slds-form-element__control">
-                                <ui:inputSelect aura:id="riskManager" 
-                                          change="{!c.onChangeRiskManager}" class="slds-select"
-                                          labelClass="slds-form-element__label">
-                                           <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_riskManager__c}"
-			                                                   label="{!v.assessmentRiskData.orm_riskManager__r.Name}"/>
-                                      <aura:iteration items="{!v.allUser}" var="rm">
-                                          <ui:inputSelectOption text="{!rm.Id}"
-                                                                label="{!rm.Name}" />
-                                      </aura:iteration>
-                                 </ui:inputSelect>
+                               <ui:inputSelect aura:id="riskManager" 
+                                         change="{!c.onChangeRiskManager}" class="slds-select"
+                                         labelClass="slds-form-element__label">
+                                          <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_riskManager__c}"
+		                                                   label="{!v.assessmentRiskData.orm_riskManager__r.Name}"/>
+                                     <aura:iteration items="{!v.allUser}" var="rm">
+                                         <ui:inputSelectOption text="{!rm.Id}"
+                                                               label="{!rm.Name}" />
+                                     </aura:iteration>
+                                </ui:inputSelect>
                          </div>
                     </div>
             </td>
@@ -357,25 +362,25 @@
                  </div>
             </td>
         </tr>
-    </table>
+     </table>
     
     <div style="width:100%;height:600px;overflow-y:scroll;overflow-x: hidden;margin-top:70px;background-color: #5B86BE;">
-      <div class="slds-box borderBox" style="width:96%;margin-bottom:30px;margin-top:30px;margin-left:auto;margin-right:auto;">
-	      <table class="slds-table" width="100%" cellspacing="10">
+      <div style="width:96%;margin-bottom:30px;margin-top:30px;margin-left:auto;margin-right:auto;">
+	      <table class="slds-table" >
 		            <tr>
-		                <td width="37%"></td> 
+		                <td width="36%"></td> 
 		                <td width="30%">
-		                    <div style="width:120px; height:50px;line-height: 50px;" id="divColor" class="divColor">
+		                    <div style="height:50px;line-height: 50px;" id="divColor" class="divColor">
 		                        <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c == null }">You didn't choose yet a probability</aura:if>
 		                    </div>
 		                </td>
 		                <td width="33%"></td>
 		           </tr>
 		    </table>
-		    <table class="slds-table"  width="100%" cellspacing="10">
+		    <table class="slds-table" >
 		            <tr> 
 		                <td width="1%"></td>
-		                <td width="98%">
+		                <td width="97%">
 			    	        <div>
 			                    <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.onProbabilityChange }"  disabled="{!v.disabledSlider}"/>
 			                </div>
@@ -386,8 +391,8 @@
 		    </table>
 		 </div>
 	    <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
-	     <div class="slds-box borderBox" style="width: 96%;margin-bottom:30px;margin-left:auto;margin-right:auto">
-		     <table class="slds-table borderColapse"  cellspacing="10">
+	     <div style="width: 96%;margin-bottom:30px;margin-left:auto;margin-right:auto">
+		     <table class="slds-table borderColapse">
 	            <thead>
 	            <tr> 
 	                <th class="thTableBI" width="33%" height="100">{!$Label.c.orm_healthandSafety_title }</th>
@@ -466,8 +471,8 @@
 		</aura:set>
       </aura:if>  
       <aura:if isTrue="{!not(empty(v.businessImpacts))}">
-           <div class="slds-box borderBox" style="width: 96%;margin-bottom:50px;margin-left:auto;margin-right:auto">
-             <table class="slds-table borderColapse"  cellspacing="10">
+           <div class=" " style="width: 96%;margin-bottom:50px;margin-left:auto;margin-right:auto">
+             <table class="slds-table borderColapse">
 	            <tr> 
 	                <th  class="thTableBI" height="100"> {!$Label.c.orm_cost_title} </th>
 	                <th  class="thTablehithoutPadding" height="100">{!$Label.c.orm_schedule_title} </th>
@@ -551,7 +556,6 @@
 		        </div>
 			</aura:set>
            </aura:if>
-    </div>
-  </div>
+    </div> 
         
 </aura:component>

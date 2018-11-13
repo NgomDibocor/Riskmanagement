@@ -48,7 +48,7 @@
                 //if update is successful
                  var toast = $A.get('e.force:showToast');
             toast.setParams({
-                'message':  totalRecordEdited + " Causes Records Updated",
+                'message':  totalRecordEdited + $A.get('$Label.c.orm_assumption_updated'),
                 'type': 'success',
                 'mode': 'dismissible'
             });

@@ -932,6 +932,22 @@
                        <button onclick="{!c.backToTopFunction}" id="myBtn" title="Go to top">Top</button> 
                    </td>
                 </tr>    
+                <aura:if isTrue="{!v.displaySaveCancelBtn}"> 
+                      <tr>
+                          <td class="textInDiv">
+                             <div style="margin-bottom:20px;">
+                                 <lightning:buttonGroup class="slds-m-around_medium">
+                                 <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
+                                 <lightning:button label="{!$Label.c.orm_save_button}"
+                                                  variant="neutral"
+                                                  class="slds-button slds-button_success"
+                                                  onclick="{!c.createAssessment}"/>
+                                 </lightning:buttonGroup>
+                                  <span style="color:red">{!v.assessmentData.Id == null ? $Label.c.orm_message_save : $Label.c.orm_message_update}</span>
+                             </div>
+                          </td>
+                      </tr>
+                    </aura:if>
             </aura:if>
             <aura:if isTrue="{!v.showContext2}">
                    <tr>
@@ -1261,22 +1277,7 @@
                         </td>
                     </tr>
                 </aura:if>
-                <aura:if isTrue="{!v.displaySaveCancelBtn}"> 
-                      <tr>
-                          <td class="textInDiv">
-                             <div style="margin-bottom:20px;">
-                                 <lightning:buttonGroup class="slds-m-around_medium">
-                                 <lightning:button label="{!$Label.c.orm_cancel_button}" onclick="{!c.cancel}"/>
-                                 <lightning:button label="{!$Label.c.orm_save_button}"
-                                                  variant="neutral"
-                                                  class="slds-button slds-button_success"
-                                                  onclick="{!c.createAssessment}"/>
-                                 </lightning:buttonGroup>
-                                  <span style="color:red">{!v.assessmentData.Id == null ? $Label.c.orm_message_save : $Label.c.orm_message_update}</span>
-                             </div>
-                          </td>
-                      </tr>
-                    </aura:if>
+                
              </table>
        </div>
       <aura:if isTrue="{!v.closeFieldDescription == false}">

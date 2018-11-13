@@ -21,57 +21,64 @@
 		</span>
    </div>
    
-   <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px;margin-bottom: 20px">
-    <aura:iteration items="{!v.PaginationList}" var="item">
-   
-        <div class="slds-size_1-of-3">
-            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:95%;">
-                <article class="slds-card" style="height:130px;">
-                    <div class="slds-card__header slds-grid">
-                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
-                            <div class="slds-media__figure">
-                                <span class="slds-icon_container " title="Assessment">
-                                  <lightning:icon iconName="utility:trail" size="medium" />
-                                </span>
-                            </div>
-                            <div class="slds-media__body">
-                                <h2>
-	                                <i class="styleTitre">Name: </i><i class="styleText"><ui:outputText value="{!item.value.assessment.Name}" /></i> 
-	                            </h2>
-                            </div>
-                            <div class="slds-no-flex">
-                                <button id="{!item.value.assessment.Id}" 
-                                        class="slds-button slds-button_neutral styleTitre"
-                                        onclick="{!c.showAssessment}">
-							       {!$Label.c.orm_show_button_title}<span id="{!item.value.nbreRisk}"></span>
-                                </button>
-                            </div>
-                        </header>
-                    </div>
-                    <div class="slds-card__body slds-card__body_inner  truncateText" >
-                        <i class="styleTitre">Description: </i><i class="styleText"><ui:outputText value="{!item.value.assessment.orm_description__c}" /></i> 
-                    </div>
-                    <div class="slds-card__body slds-card__body_inner">
-                       <i class="styleTitre">Number of Risks: </i><i class="cercle">{!item.value.nbreRisk}</i>
-                    </div>
-                   
-                </article>
-            </div>
+   <aura:if isTrue="{!not(empty(v.PaginationList))}">
+      <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px;margin-bottom: 20px">
+		    <aura:iteration items="{!v.PaginationList}" var="item">	   
+		        <div class="slds-size_1-of-3">
+		            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;width:95%;">
+		                <article class="slds-card" style="height:130px;">
+		                    <div class="slds-card__header slds-grid">
+		                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+		                            <div class="slds-media__figure">
+		                                <span class="slds-icon_container " title="Assessment">
+		                                  <lightning:icon iconName="utility:trail" size="medium" />
+		                                </span>
+		                            </div>
+		                            <div class="slds-media__body">
+		                                <h2>
+			                                <i class="styleTitre">Name: </i><i class="styleText"><ui:outputText value="{!item.value.assessment.Name}" /></i> 
+			                            </h2>
+		                            </div>
+		                            <div class="slds-no-flex">
+		                                <button id="{!item.value.assessment.Id}" 
+		                                        class="slds-button slds-button_neutral styleTitre"
+		                                        onclick="{!c.showAssessment}">
+									       {!$Label.c.orm_show_button_title}<span id="{!item.value.nbreRisk}"></span>
+		                                </button>
+		                            </div>
+		                        </header>
+		                    </div>
+		                    <div class="slds-card__body slds-card__body_inner  truncateText" >
+		                        <i class="styleTitre">Description: </i><i class="styleText"><ui:outputText value="{!item.value.assessment.orm_description__c}" /></i> 
+		                    </div>
+		                    <div class="slds-card__body slds-card__body_inner">
+		                       <i class="styleTitre">Number of Risks: </i><i class="cercle">{!item.value.nbreRisk}</i>
+		                    </div>
+		                   
+		                </article>
+		            </div>
+		        </div>
+		       
+		    </aura:iteration>
+      </div>
+	  <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
+	    <lightning:buttonGroup >
+	          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
+	                            onclick="{!c.previous}" variant="brand"
+	                            iconName='utility:back'/>
+	          &nbsp; &nbsp; &nbsp;
+	          <lightning:button label="Next" 
+	          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
+	                            onclick="{!c.next}" variant="brand"
+	                            iconName='utility:forward' iconPosition='right'/>
+	      </lightning:buttonGroup>
+	  </div>
+     <aura:set attribute="else">
+        <br/>
+        <div class="" style="width:200px; margin:auto;text-align: center;color:white;">
+            Elements not found
         </div>
-       
-    </aura:iteration>
-  </div>
-  <div style="margin-bottom:20px; padding-bottom:10px;margin-left :auto;margin-right:auto">
-    <lightning:buttonGroup >
-          <lightning:button label="Prev" disabled="{!v.startPage == 0}"  
-                            onclick="{!c.previous}" variant="brand"
-                            iconName='utility:back'/>
-          &nbsp; &nbsp; &nbsp;
-          <lightning:button label="Next" 
-          disabled="{!or(v.endPage >= v.totalRecords, v.hideNext)}" 
-                            onclick="{!c.next}" variant="brand"
-                            iconName='utility:forward' iconPosition='right'/>
-      </lightning:buttonGroup>
-  </div>
+    </aura:set>
+   </aura:if>
    
 </aura:component>

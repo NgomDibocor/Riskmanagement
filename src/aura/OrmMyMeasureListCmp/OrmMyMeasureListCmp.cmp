@@ -5,7 +5,7 @@
 	    
 	    
 	    <div  style="width:100%;padding-top:10px;padding-left:10px">
-		    <h1 class="titleListMeasure">List of Measures</h1>
+		    <h1 class="titleListMeasure"> {!$Label.c.orm_list_of_measures} </h1>
 		</div>
 		<div class="slds-col" style="margin-bottom:20px">									
 			<div class="space"></div>
@@ -13,7 +13,7 @@
 	        	<lightning:input aura:id="searchMeasure" class="search" placeholder="{!$Label.c.orm_filter_mymeasure_placeholder}" type="search" onchange="{!c.filter}" value="{!v.key}" />
 	        </span>
    		</div>
-	
+	<aura:if isTrue="{!not(empty(v.PaginationList))}">
     <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px;margin-bottom: 20px">
        <aura:iteration items="{!v.PaginationList}" var="item"> 
         <div class="slds-size_1-of-3">
@@ -28,7 +28,7 @@
                             </div>
                             <div class="slds-media__body" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
                                <h2>
-                                  <i class="styleTitre">Measure: </i><i class="styleText">{!item.Name} </i>
+                                  <i class="styleTitre">{!$Label.c.orm_measure_label}: </i><i class="styleText">{!item.Name} </i>
                               </h2>
                             </div>
                             
@@ -43,7 +43,7 @@
                         </header>
                     </div>
                     <div class="slds-card__body slds-card__body_inner slds-truncate">
-                       <i class="styleTitre">Description: </i><i class="styleText">{!item.orm_description__c}</i>
+                       <i class="styleTitre">(!$Label.c.orm_measure_description): </i><i class="styleText">{!item.orm_description__c}</i>
                     </div>
                     <div class=" slds-card__body slds-card__body_inner">
 	                   
@@ -67,4 +67,11 @@
 	                            iconName='utility:forward' iconPosition='right'/>
 	      </lightning:buttonGroup>
 	</div>
+	 <aura:set attribute="else">
+        <br/>
+        <div class="" style="width:200px; margin:auto;text-align: center;color:white; font-weight: 600; font-size: 1.2em;">
+            Elements not found
+        </div>
+    </aura:set>
+   </aura:if>
 </aura:component>

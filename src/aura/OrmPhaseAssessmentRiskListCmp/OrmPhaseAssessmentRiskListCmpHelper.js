@@ -48,7 +48,7 @@
                 //if update is successful
                  var toast = $A.get('e.force:showToast');
             toast.setParams({
-                'message':  totalRecordEdited + " Causes Records Updated",
+                'message':  totalRecordEdited + " phase Records Updated",
                 'type': 'success',
                 'mode': 'dismissible'
             });

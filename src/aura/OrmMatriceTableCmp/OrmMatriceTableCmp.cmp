@@ -179,28 +179,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs11" class="" onmouseover="{!c.showRiskHS11}" ></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="hs12" class="" onmouseover="{!c.showRiskHS12}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="hs13" class="" onmouseover="{!c.showRiskHS13}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="hs14" class="" onmouseover="{!c.showRiskHS14}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs11" class="" onclick="{!c.showRiskHS11}" ></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="hs12" class="" onclick="{!c.showRiskHS12}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="hs13" class="" onclick="{!c.showRiskHS13}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="hs14" class="" onclick="{!c.showRiskHS14}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="hs21" class="" onmouseover="{!c.showRiskHS21}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs22" class="" onmouseover="{!c.showRiskHS22}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="hs23" class="" onmouseover="{!c.showRiskHS23}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="hs24" class="" onmouseover="{!c.showRiskHS24}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs21" class="" onclick="{!c.showRiskHS21}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs22" class="" onclick="{!c.showRiskHS22}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="hs23" class="" onclick="{!c.showRiskHS23}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="hs24" class="" onclick="{!c.showRiskHS24}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="hs31" class="" onmouseover="{!c.showRiskHS31}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs32" class="" onmouseover="{!c.showRiskHS32}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs33" class="" onmouseover="{!c.showRiskHS33}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="hs34" class="" onmouseover="{!c.showRiskHS34}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs31" class="" onclick="{!c.showRiskHS31}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs32" class="" onclick="{!c.showRiskHS32}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs33" class="" onclick="{!c.showRiskHS33}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="hs34" class="" onclick="{!c.showRiskHS34}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="hs41" class="" onmouseover="{!c.showRiskHS41}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="hs42" class="" onmouseover="{!c.showRiskHS42}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="hs43" class="" onmouseover="{!c.showRiskHS43}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="hs44" class="" onmouseover="{!c.showRiskHS44}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs41" class="" onclick="{!c.showRiskHS41}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs42" class="" onclick="{!c.showRiskHS42}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="hs43" class="" onclick="{!c.showRiskHS43}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="hs44" class="" onclick="{!c.showRiskHS44}"></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -215,28 +215,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec11" class="" onmouseover="{!c.showRiskSEC11}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="sec12" class="" onmouseover="{!c.showRiskSEC12}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="sec13" class="" onmouseover="{!c.showRiskSEC13}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="sec14" class="" onmouseover="{!c.showRiskSEC14}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec11" class="" onclick="{!c.showRiskSEC11}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="sec12" class="" onclick="{!c.showRiskSEC12}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="sec13" class="" onclick="{!c.showRiskSEC13}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="sec14" class="" onclick="{!c.showRiskSEC14}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="sec21" class="" onmouseover="{!c.showRiskSEC21}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec22" class="" onmouseover="{!c.showRiskSEC22}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="sec23" class="" onmouseover="{!c.showRiskSEC23}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="sec24" class="" onmouseover="{!c.showRiskSEC24}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec21" class="" onclick="{!c.showRiskSEC21}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec22" class="" onclick="{!c.showRiskSEC22}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="sec23" class="" onclick="{!c.showRiskSEC23}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="sec24" class="" onclick="{!c.showRiskSEC24}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="sec31" class="" onmouseover="{!c.showRiskSEC31}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec32" class="" onmouseover="{!c.showRiskSEC32}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec33" class="" onmouseover="{!c.showRiskSEC33}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="sec34" class="" onmouseover="{!c.showRiskSEC34}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec31" class="" onclick="{!c.showRiskSEC31}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec32" class="" onclick="{!c.showRiskSEC32}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec33" class="" onclick="{!c.showRiskSEC33}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="sec34" class="" onclick="{!c.showRiskSEC34}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="sec41" class="" onmouseover="{!c.showRiskSEC41}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="sec42" class="" onmouseover="{!c.showRiskSEC42}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="sec43" class="" onmouseover="{!c.showRiskSEC43}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="sec44" class="" onmouseover="{!c.showRiskSEC44}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec41" class="" onclick="{!c.showRiskSEC41}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec42" class="" onclick="{!c.showRiskSEC42}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="sec43" class="" onclick="{!c.showRiskSEC43}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="sec44" class="" onclick="{!c.showRiskSEC44}"></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -251,28 +251,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="env11" class="" onmouseover="{!c.showRiskENV11}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="env12" class="" onmouseover="{!c.showRiskENV12}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="env13" class="" onmouseover="{!c.showRiskENV13}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="env14" class="" onmouseover="{!c.showRiskENV14}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env11" class="" onclick="{!c.showRiskENV11}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="env12" class="" onclick="{!c.showRiskENV12}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="env13" class="" onclick="{!c.showRiskENV13}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="env14" class="" onclick="{!c.showRiskENV14}"></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="env21" class="" onmouseover="{!c.showRiskENV21}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="env22" class="" onmouseover="{!c.showRiskENV22}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="env23" class="" onmouseover="{!c.showRiskENV23}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="env24" class="" onmouseover="{!c.showRiskENV24}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env21" class="" onclick="{!c.showRiskENV21}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env22" class="" onclick="{!c.showRiskENV22}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="env23" class="" onclick="{!c.showRiskENV23}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="env24" class="" onclick="{!c.showRiskENV24}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="env31" class="" onmouseover="{!c.showRiskENV31}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="env32" class="" onmouseover="{!c.showRiskENV32}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="env33" class="" onmouseover="{!c.showRiskENV33}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="env34" class="" onmouseover="{!c.showRiskENV34}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env31" class="" onclick="{!c.showRiskENV31}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env32" class="" onclick="{!c.showRiskENV32}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env33" class="" onclick="{!c.showRiskENV33}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="env34" class="" onclick="{!c.showRiskENV34}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="env41" class="" onmouseover="{!c.showRiskENV41}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="env42" class="" onmouseover="{!c.showRiskENV42}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env41" class="" onclick="{!c.showRiskENV41}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="env42" class="" onclick="{!c.showRiskENV42}"></span></td>
 					        <td class="greenColor" width="50px" height="50"><span id="env43" class="" onclick="{!c.showRiskENV43}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="env44" class="" onmouseover="{!c.showRiskENV44}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="env44" class="" onclick="{!c.showRiskENV44}"></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -287,28 +287,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep11" class="" onmouseover="{!c.listIDREP11}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="rep12" class="" onmouseover="{!c.listIDREP12}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="rep13" class="" onmouseover="{!c.listIDREP13}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="rep14" class="" onmouseover="{!c.listIDREP14}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep11" class="" onclick="{!c.listIDREP11}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="rep12" class="" onclick="{!c.listIDREP12}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="rep13" class="" onclick="{!c.listIDREP13}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="rep14" class="" onclick="{!c.listIDREP14}"></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="rep21" class="" onmouseover="{!c.listIDREP21}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep22" class="" onmouseover="{!c.listIDREP22}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="rep23" class="" onmouseover="{!c.listIDREP23}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="rep24" class="" onmouseover="{!c.listIDREP24}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep21" class="" onclick="{!c.listIDREP21}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep22" class="" onclick="{!c.listIDREP22}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="rep23" class="" onclick="{!c.listIDREP23}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="rep24" class="" onclick="{!c.listIDREP24}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="rep31" class="" onmouseover="{!c.listIDREP31}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep32" class="" onmouseover="{!c.listIDREP32}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep33" class="" onmouseover="{!c.listIDREP33}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="rep34" class="" onmouseover="{!c.listIDREP34}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep31" class="" onclick="{!c.listIDREP31}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep32" class="" onclick="{!c.listIDREP32}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep33" class="" onclick="{!c.listIDREP33}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="rep34" class="" onclick="{!c.listIDREP34}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="rep41" class="" onmouseover="{!c.listIDREP41}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="rep42" class="" onmouseover="{!c.listIDREP42}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="rep43" class="" onmouseover="{!c.listIDREP43}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="rep44" class="" onmouseover="{!c.listIDREP44}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep41" class="" onclick="{!c.listIDREP41}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep42" class="" onclick="{!c.listIDREP42}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="rep43" class="" onclick="{!c.listIDREP43}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="rep44" class="" onclick="{!c.listIDREP44}"></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -323,28 +323,28 @@
 					   <table>    
 					      <tr><td rowspan="5" width="50px" class="removeBorderFirstColumn"><span class="monTexte">Probability</span></td></tr>
 					      <tr>
-					        <td class="yellowColor" width="50px" height="50"><span id="we11" class="" onmouseover="{!c.listIDWE11}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="we12" class="" onmouseover="{!c.listIDWE12}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="we13" class="" onmouseover="{!c.listIDWE13}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="we14" class="" onmouseover="{!c.listIDWE14}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we11" class="" onclick="{!c.listIDWE11}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="we12" class="" onclick="{!c.listIDWE12}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="we13" class="" onclick="{!c.listIDWE13}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="we14" class="" onclick="{!c.listIDWE14}"></span></td>
 					      </tr>  
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="we21" class="" onmouseover="{!c.listIDWE21}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="we22" class="" onmouseover="{!c.listIDWE22}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="we23" class="" onmouseover="{!c.listIDWE23}"></span></td>
-					        <td class="redColor" width="50px" height="50"><span id="we24" class="" onmouseover="{!c.listIDWE24}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we21" class="" onclick="{!c.listIDWE21}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we22" class="" onclick="{!c.listIDWE22}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="we23" class="" onclick="{!c.listIDWE23}"></span></td>
+					        <td class="redColor" width="50px" height="50"><span id="we24" class="" onclick="{!c.listIDWE24}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="we31" class="" onmouseover="{!c.listIDWE31}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="we32" class="" onmouseover="{!c.listIDWE32}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="we33" class="" onmouseover="{!c.listIDWE33}"></span></td>
-					        <td class="orangeColor" width="50px" height="50"><span id="we34" class="" onmouseover="{!c.listIDWE34}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we31" class="" onclick="{!c.listIDWE31}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we32" class="" onclick="{!c.listIDWE32}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we33" class="" onclick="{!c.listIDWE33}"></span></td>
+					        <td class="orangeColor" width="50px" height="50"><span id="we34" class="" onclick="{!c.listIDWE34}"></span></td>
 					      </tr>
 					      <tr>
-					        <td class="greenColor" width="50px" height="50"><span id="we41" class="" onmouseover="{!c.listIDWE41}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="we42" class="" onmouseover="{!c.listIDWE42}"></span></td>
-					        <td class="greenColor" width="50px" height="50"><span id="we43" class="" onmouseover="{!c.listIDWE43}"></span></td>
-					        <td class="yellowColor" width="50px" height="50"><span id="we44" class="" onmouseover="{!c.listIDWE44}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we41" class="" onclick="{!c.listIDWE41}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we42" class="" onclick="{!c.listIDWE42}"></span></td>
+					        <td class="greenColor" width="50px" height="50"><span id="we43" class="" onclick="{!c.listIDWE43}"></span></td>
+					        <td class="yellowColor" width="50px" height="50"><span id="we44" class="" onclick="{!c.listIDWE44}"></span></td>
 					      </tr>
 					      <tr>
 					          <td class="removeAllBorder" height="50"></td>
@@ -389,7 +389,7 @@
 				      <aura:iteration items="{!v.assessmentRisks}" var="item" indexVar="index">
 						    <div class="slds-size_1-of-1">
 					            <div class="slds-text-align_left slds-m-around_x-small" style="word-wrap: break-word;">
-					                <article class="slds-card" style="height:350px;margin-bottom: 20px;padding-left: 8px;">
+					                <article class="slds-card" style="margin-bottom: 20px;padding-left: 8px;">
 					                    <div class="slds-card__header slds-grid">
 					                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
 					                            
@@ -412,41 +412,41 @@
 			                                <span class="styleText">Probability: <ui:outputText value="{!item.Price_Books__r[0].orm_probability__c}" /></span>
 			                                <span class="styleText">Manageability: <ui:outputText value="{!item.orm_manageability__c}" /></span>
 			                                <span class="styleText">Uncertainty: <ui:outputText value="{!item.orm_uncertainty__c}" /></span>
-			                                <div style="margin-top:20px;width:100%;">
-			                                    <div class="rowDiv">
-			                                       <span style="display: inline-block;width:40%;">
-			                                          <span style="display:block;">Working Environ...</span>
-			                                          <span id="{!item.Id+'we'}" class="we"></span>
-			                                       </span>
-			                                       <span class="space"></span>
-			                                       <span style="display: inline-block;width:40%;">
-			                                          <span style="display:block;">Environment</span>
-			                                          <span id="{!item.Id+'env'}" class="env"></span>
-			                                       </span>
-			                                    </div>
-			                                    <div class="rowDiv">
-			                                       <span style="display: inline-block;width:40%;">
-			                                          <span style="display:block;">Health &amp; Safety</span>
-			                                          <span id="{!item.Id+'HS'}"  class="hs"></span>
-			                                       </span>
-			                                       <span class="space"></span>
-			                                       <span style="display: inline-block;width:40%;">
-			                                          <span style="display:block;">Security</span>
-			                                          <span id="{!item.Id+'sec'}" class="sec"></span>
-			                                       </span>
-			                                    </div>
-			                                    <div class="rowDiv">
-			                                       <span style="display: inline-block;width:40%;">
-			                                          <span style="display:block;">Reputation</span>
-			                                          <span id="{!item.Id+'rep'}" class="rep"></span>
-			                                       </span>
-			                                       <span class="space"></span>
-			                                       <span style="display: inline-block;width:40%;">
-			                                          <span style="display:block;"></span>
-			                                          <span class=""></span>
-			                                       </span>
-			                                    </div>
-			                                  </div>
+<!-- 			                                <div style="margin-top:20px;width:100%;"> -->
+<!-- 			                                    <div class="rowDiv"> -->
+<!-- 			                                       <span style="display: inline-block;width:40%;"> -->
+<!-- 			                                          <span style="display:block;">Working Environ...</span> -->
+<!-- 			                                          <span id="{!item.Id+'we'}" class="we"></span> -->
+<!-- 			                                       </span> -->
+<!-- 			                                       <span class="space"></span> -->
+<!-- 			                                       <span style="display: inline-block;width:40%;"> -->
+<!-- 			                                          <span style="display:block;">Environment</span> -->
+<!-- 			                                          <span id="{!item.Id+'env'}" class="env"></span> -->
+<!-- 			                                       </span> -->
+<!-- 			                                    </div> -->
+<!-- 			                                    <div class="rowDiv"> -->
+<!-- 			                                       <span style="display: inline-block;width:40%;"> -->
+<!-- 			                                          <span style="display:block;">Health &amp; Safety</span> -->
+<!-- 			                                          <span id="{!item.Id+'HS'}"  class="hs"></span> -->
+<!-- 			                                       </span> -->
+<!-- 			                                       <span class="space"></span> -->
+<!-- 			                                       <span style="display: inline-block;width:40%;"> -->
+<!-- 			                                          <span style="display:block;">Security</span> -->
+<!-- 			                                          <span id="{!item.Id+'sec'}" class="sec"></span> -->
+<!-- 			                                       </span> -->
+<!-- 			                                    </div> -->
+<!-- 			                                    <div class="rowDiv"> -->
+<!-- 			                                       <span style="display: inline-block;width:40%;"> -->
+<!-- 			                                          <span style="display:block;">Reputation</span> -->
+<!-- 			                                          <span id="{!item.Id+'rep'}" class="rep"></span> -->
+<!-- 			                                       </span> -->
+<!-- 			                                       <span class="space"></span> -->
+<!-- 			                                       <span style="display: inline-block;width:40%;"> -->
+<!-- 			                                          <span style="display:block;"></span> -->
+<!-- 			                                          <span class=""></span> -->
+<!-- 			                                       </span> -->
+<!-- 			                                    </div> -->
+<!-- 			                                  </div> -->
 			                            </div>
 					                </article>
 					            </div>

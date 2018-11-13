@@ -260,7 +260,7 @@ public with sharing class OrmMeasureController {
 	*/
     @AuraEnabled
     public static Product2  updateMeasureProgression( Product2 measureProgression) {
-        update measureProgression;
+        upsert measureProgression;
         return measureProgression;
     }
 	/**

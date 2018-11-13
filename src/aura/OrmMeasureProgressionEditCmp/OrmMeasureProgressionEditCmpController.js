@@ -93,6 +93,7 @@
                 } else {
                     var a = 100 * Number(Object.values(obj)[0]);
                     var result = Number(poucentageProgression) + a;
+                    console.log(a);
                     if (result > 100) {
                         console.log("result is > 100")
                         var toastEvent = $A.get('e.force:showToast');

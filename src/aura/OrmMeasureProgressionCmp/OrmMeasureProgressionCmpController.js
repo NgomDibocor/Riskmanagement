@@ -257,7 +257,7 @@
         if (actionName == $A.get("$Label.c.orm_edit_button_title")) {
             var evt = $A.get("e.c:OrmEditMeasureProgressClickedEvt");
             evt.setParams({
-                "measureProgressionId" : row.Id,
+                "measureProgression" : row,
                 "idMeasure" : idMeasure
             });
             evt.fire();

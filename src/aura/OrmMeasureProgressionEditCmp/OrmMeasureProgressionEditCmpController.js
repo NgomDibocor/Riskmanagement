@@ -2,8 +2,9 @@
     openOrmMeasureProgressionEditCmp: function(component, event, helper) {
         component.set("v.isOpen", true);
         component.set('v.idMeasure', event.getParam('idMeasure'));
-        component.set('v.measureProgressionId', event.getParam('measureProgressionId'));
-        console.log(component.get("v.idMeasure"));
+        component.set('v.measureProgression', event.getParam('measureProgression'));
+        component.set('v.pourcentage',component.get("v.measureProgression").orm_poucentageProgression__c * 100);
+        console.log(component.get("v.pourcentage"));
         var action = component.get('c.getSelectOptions');
         action.setParams({
             'objObject': component.get("v.objInfo"),
@@ -15,7 +16,7 @@
                 component.set('v.allStatusMeasure', response.getReturnValue());
                 var actionMeasure = component.get("c.getMeasuresProgression");
                 actionMeasure.setParams({
-                    "measureProgressionId": component.get("v.measureProgressionId")
+                    "measureProgressionId": component.get("v.measureProgression").Id
                 });
                 actionMeasure.setCallback(this, function(response) {
                     var state = response.getState();
@@ -47,6 +48,7 @@
      *  @date: Creation: 31/08/2018
      *  @description: method for creating a Measure Progression */
     createMeasureProgression: function(component, event, helper) {
+        var pourcentage = component.get('v.pourcentage');
         var dateProgression = component.find('dateProgression').get('v.value');
         var poucentageProgression = component.find('poucentageProgression').get('v.value');
         var Description = component.find('Description').get('v.value');
@@ -92,8 +94,9 @@
                     }
                 } else {
                     var a = 100 * Number(Object.values(obj)[0]);
-                    var result = Number(poucentageProgression) + a;
-                    console.log(a);
+                    var result =  a - Number(pourcentage) ;
+                     result =  result + Number(poucentageProgression);
+                    console.log("result", result);
                     if (result > 100) {
                         console.log("result is > 100")
                         var toastEvent = $A.get('e.force:showToast');

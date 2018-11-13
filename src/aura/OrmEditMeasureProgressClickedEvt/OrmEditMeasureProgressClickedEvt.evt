@@ -1,4 +1,4 @@
 <aura:event type="APPLICATION" description="Event template" >
 <aura:attribute name="idMeasure" type="string" />
-<aura:attribute name="measureProgressionId" type="string" />
+<aura:attribute name="measureProgression" type="Product2" />
 </aura:event>

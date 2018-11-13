@@ -2,7 +2,8 @@
 	<aura:handler action="{!c.openOrmMeasureProgressionEditCmp}" event="c:OrmEditMeasureProgressClickedEvt" />
 	<aura:registerEvent name="OrmMeasureProgressionCreatedEvt" type="c:OrmMeasureProgressionCreatedEvt" />
 	<aura:attribute name="idMeasure" type="string" />
-	<aura:attribute name="measureProgressionId" type="string" />
+	<aura:attribute name="pourcentage" type="string" />
+	<aura:attribute name="measureProgression" type="Product2" />
 	<aura:attribute name="allStatusMeasure" type="String[]" />
 	<aura:attribute name="objInfo" type="Product2" default="{sobjectType : 'Product2'}" />
 	<aura:attribute name="measureProgressionData" type="Product2" />

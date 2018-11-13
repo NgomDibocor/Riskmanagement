@@ -7,7 +7,7 @@
     <aura:attribute name="workingEnvironments" type="String[]" />
     <aura:attribute name="manageAbility" type="String[]" />
     <aura:attribute name="productionLoss" type="String[]" />
-<!--     <aura:attribute name="schedule" type="String[]" /> -->
+    <!--     <aura:attribute name="schedule" type="String[]" /> -->
     <aura:attribute name="status" type="String[]" />
     <aura:attribute name="uncertainties" type="String[]" />
     <aura:attribute name="allUser" type="User[]" />
@@ -35,33 +35,33 @@
     <aura:attribute name="displaySaveCancelBtn" type="boolean" default="false" />
     <aura:attribute name="assessmentData" type="Assessment__c" default="{ 'sobjectType': 'Assessment__c','Name': ''}" />
     <aura:attribute name="sliderValue" type="String" />
-      <!-- start for prabability -->
+    <!-- start for prabability -->
     <aura:attribute name="probableData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'orm_probability__c' : '',
 																  'orm_pourcentageMin__c' : '',
 																  'orm_pourcentageMax__c' : ''
-																}"/>
-																
-   <aura:attribute name="possibleData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																}" />
+
+    <aura:attribute name="possibleData" type="Macro" default="{ 'sobjectType' : 'Macro',
 															  'orm_probability__c' : '',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
-														   }"/>
-														   
+														   }" />
+
     <aura:attribute name="unlikelyData" type="Macro" default="{ 'sobjectType' : 'Macro',
 															  'orm_probability__c' : '',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
-														   }"/>
-														   
+														   }" />
+
     <aura:attribute name="RareData" type="Macro" default="{ 'sobjectType' : 'Macro',
 															  'orm_probability__c' : '',
 															  'orm_pourcentageMin__c' : '',
 															  'orm_pourcentageMax__c' : ''
-														   }"/>	
-	
-	<aura:attribute name="probabilities" type="Macro[]" />													   
-    <!-- end for prabability --> 
+														   }" />
+
+    <aura:attribute name="probabilities" type="Macro[]" />
+    <!-- end for prabability -->
     <!-- start for HSSE impact -->
     <aura:attribute name="hsseVeryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
@@ -69,7 +69,7 @@
 																  'orm_healthAndSafety__c' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
-																}"/>
+																}" />
 
     <aura:attribute name="hsseHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
@@ -77,7 +77,7 @@
 																  'orm_healthAndSafety__c' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
-																}"/>
+																}" />
 
     <aura:attribute name="hsseMediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
@@ -85,30 +85,30 @@
 																  'orm_healthAndSafety__c' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
-																}"/>
-																
+																}" />
+
     <aura:attribute name="hsseLowData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
 																  'orm_rating__c' : 'Low',
 																  'orm_healthAndSafety__c' : '', 
 																  'orm_security__c' : '',
 																  'orm_environmentAndCommunity__c' : ''
-																}"/>																
-	
-	<aura:attribute name="hsseImpacts" type="Macro[]" />
-	<aura:attribute name="healthAndSafety" type="String"/>
-	<aura:attribute name="reputation" type="String"/>
-	<aura:attribute name="cost" type="String" />
-	<aura:attribute name="schedule" type="String" />
-	<aura:attribute name="production" type="String" />
-	<aura:attribute name="security" type="String"/>
-	<aura:attribute name="environmentAndCommunity" type="String"/>
-	<aura:attribute name="selected" type="String"/>
-	<aura:attribute name="selectedReputation" type="String"/>  
-	<aura:attribute name="disabledSlider" type="boolean" default="false"/>
-	<aura:attribute name="afterLoadAllAssessmentRiskField" type="boolean" default="false"/>
-	<!-- end for HSSE impact -->
-	 <!-- Objects Business Impacts -->
+																}" />
+
+    <aura:attribute name="hsseImpacts" type="Macro[]" />
+    <aura:attribute name="healthAndSafety" type="String" />
+    <aura:attribute name="reputation" type="String" />
+    <aura:attribute name="cost" type="String" />
+    <aura:attribute name="schedule" type="String" />
+    <aura:attribute name="production" type="String" />
+    <aura:attribute name="security" type="String" />
+    <aura:attribute name="environmentAndCommunity" type="String" />
+    <aura:attribute name="selected" type="String" />
+    <aura:attribute name="selectedReputation" type="String" />
+    <aura:attribute name="disabledSlider" type="boolean" default="false" />
+    <aura:attribute name="afterLoadAllAssessmentRiskField" type="boolean" default="false" />
+    <!-- end for HSSE impact -->
+    <!-- Objects Business Impacts -->
     <aura:attribute name="businessImpVeryHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
                                                                   'Name' : 'XXXX',
 																  'orm_rating__c' : 'VeryHigh',
@@ -117,9 +117,9 @@
 																  'orm_scheduleProjectBaselineMin__c' : '',
 																  'orm_scheduleProjectBaselineMax__c' : '',
 																  'orm_reputation__c' : 'Severe Damage'
-																}"/>
-	
-	<aura:attribute name="businessImpHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																}" />
+
+    <aura:attribute name="businessImpHighData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
 																  'orm_rating__c' : 'High',
 																  'orm_costProjectBudgetMin__c' : '',
@@ -129,9 +129,9 @@
 																  'orm_productionLossMin__c' : '',
 																  'orm_productionLossMax__c' : '',
 																  'orm_reputation__c' : 'Long Term Damage'
-																}"/>
-							
-	<aura:attribute name="businessImpMediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																}" />
+
+    <aura:attribute name="businessImpMediumData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
 																  'orm_rating__c' : 'Medium',
 																  'orm_costProjectBudgetMin__c' : '',
@@ -141,9 +141,9 @@
 																  'orm_productionLossMin__c' : '',
 																  'orm_productionLossMax__c' : '',
 																  'orm_reputation__c' : 'Medium Term Damage'
-																}"/>	
-																
-	<aura:attribute name="businessImpLowData" type="Macro" default="{ 'sobjectType' : 'Macro',
+																}" />
+
+    <aura:attribute name="businessImpLowData" type="Macro" default="{ 'sobjectType' : 'Macro',
 																  'Name' : 'XXXX',
 																  'CommunityId' : '000000123',
 																  'orm_rating__c' : 'Low',
@@ -154,29 +154,29 @@
 																  'orm_productionLossMin__c' : '',
 																  'orm_productionLossMax__c' : '',
 																  'orm_reputation__c' : 'Short Term Damage' 
-																}"/>
-		
-	<aura:attribute name="businessImpacts" type="Macro[]" />
-	<aura:attribute name="businessImpacts2" type="Macro[]" />	
-	
-	<aura:attribute name="showBtnMatricePicture" type="boolean" default="false" />
-	<aura:attribute name="data" type="Pricebook2" default="{  
+																}" />
+
+    <aura:attribute name="businessImpacts" type="Macro[]" />
+    <aura:attribute name="businessImpacts2" type="Macro[]" />
+
+    <aura:attribute name="showBtnMatricePicture" type="boolean" default="false" />
+    <aura:attribute name="data" type="Pricebook2" default="{  
 		                                                    'sobjectType' : 'Pricebook2',
 		                                                    'Name' : 'XXXX',
 		                                                    'orm_assessmentRisk__c' : '',
 														    'orm_probability__c' : '',
 														    'orm_security__c' : '',
 														    'orm_environment__c' : ''
-													 }"/> 
-	
-	
-	<aura:registerEvent name="ShowMatriceAssessmentRiskt" type="c:OrmShowMatriceAssessmentRiskEvt" />													
-   
-   
-   <div style="width:100%;display: flex;margin-bottom: 40px"> 
-      <div style="width:75%;"> 
-      		<aura:if isTrue="{!v.showBtnMatricePicture}">
-                <lightning:card  title="" iconName="">
+													 }" />
+
+
+    <aura:registerEvent name="ShowMatriceAssessmentRiskt" type="c:OrmShowMatriceAssessmentRiskEvt" />
+
+
+    <div style="width:100%;display: flex;margin-bottom: 40px">
+        <div style="width:75%;">
+            <aura:if isTrue="{!v.showBtnMatricePicture}">
+                <lightning:card title="" iconName="">
                     <div class="styleText" style="padding-left:2%;padding-right: 2%;">
                         <i class="styleTitle">Risk: </i> {!v.assessmentRiskData.orm_Risk__r.Name}
                     </div>
@@ -184,378 +184,349 @@
                         <i class="styleTitle">Desciption: </i> {!v.assessmentRiskData.orm_Risk__r.Description}
                     </div>
                 </lightning:card>
-              </aura:if>
-      </div>
-      <div style="width:25%;"> 
-      		<aura:if isTrue="{!v.showBtnMatricePicture}">
-                  <div style="width:100%;height: 50px;">
-		                   <div>
-		                        <aura:if isTrue="{!v.displaySaveCancelBtn}">
-					                    <lightning:buttonGroup class="slds-m-around_medium centerBtnGroup">
-					                        <lightning:button label="Cancel" onclick="{!c.cancel}" />
-					                        <lightning:button label="Save" variant="brand" class="slds-button slds-button_success" onclick="{!c.updateAssessmentRisk}" />
-					                    </lightning:buttonGroup>
-				                </aura:if>
-		                   </div>
-		                   <div style="margin-top: 15px">
-		                        <aura:if isTrue="{!v.showBtnMatricePicture}">
-					                   <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
-						                    <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null || v.assessmentRiskData.orm_reputation__c != null || v.assessmentRiskData.orm_workingEnvironment__c != null)}">
-						                           <lightning:buttonGroup class="slds-m-around_medium centerBtnGroupMatice">
-							                           <lightning:button label="View Risk Picture"
-							                                            variant="neutral"
-							                                            class="slds-button  slds-button_brand widthBtn"
-							                                            onclick="{!c.goToRiskPucture}"/>
-							                           </lightning:buttonGroup>
-						                    </aura:if>
-					                   </aura:if>
-				                </aura:if>
-		                   </div>
-                  </div>
-              </aura:if>
-      </div>
-   </div>
-   
-      <table class="slds-table" style="margin-bottom:30px">
+            </aura:if>
+        </div>
+        <div style="width:25%;">
+            <aura:if isTrue="{!v.showBtnMatricePicture}">
+                <div style="width:100%;height: 50px;">
+                    <div>
+                        <aura:if isTrue="{!v.displaySaveCancelBtn}">
+                            <lightning:buttonGroup class="slds-m-around_medium centerBtnGroup">
+                                <lightning:button label="Cancel" onclick="{!c.cancel}" />
+                                <lightning:button label="Save" variant="brand" class="slds-button slds-button_success" onclick="{!c.updateAssessmentRisk}" />
+                            </lightning:buttonGroup>
+                        </aura:if>
+                    </div>
+                    <div style="margin-top: 15px">
+                        <aura:if isTrue="{!v.showBtnMatricePicture}">
+                            <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c != null }">
+                                <aura:if isTrue="{!(v.assessmentRiskData.orm_healthAndSafety__c != null || v.assessmentRiskData.orm_security__c != null || v.assessmentRiskData.orm_environmentAndCommunity__c != null || v.assessmentRiskData.orm_reputation__c != null || v.assessmentRiskData.orm_workingEnvironment__c != null)}">
+                                    <lightning:buttonGroup class="slds-m-around_medium centerBtnGroupMatice">
+                                        <lightning:button label="View Risk Picture" variant="neutral" class="slds-button  slds-button_brand widthBtn" onclick="{!c.goToRiskPucture}" />
+                                    </lightning:buttonGroup>
+                                </aura:if>
+                            </aura:if>
+                        </aura:if>
+                    </div>
+                </div>
+            </aura:if>
+        </div>
+    </div>
+
+    <table class="slds-table" style="margin-bottom:30px">
         <tr>
             <td class="tdWidth">
-                 <div class="topSpacing"> 
-                   <label class="slds-form-element__label styleAllText">{!$Label.c.orm_workingEnvironment_label}</label>
-                 </div>
-                 <div class="slds-form-element">
-                   <div class="slds-form-element__control">
-                        <ui:inputSelect aura:id="workingEnvironment" 
-                                   change="{!c.onChangeWorkingEnvironment}" class="slds-select"
-                                   labelClass="slds-form-element__label">
-                                   <aura:if isTrue="{!v.assessmentRiskData.orm_workingEnvironment__c != undefined }">
-                                      <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_workingEnvironment__c}"
-                                                             label="{!v.assessmentRiskData.orm_workingEnvironment__c}"/>
-                                   </aura:if>
-                                   <aura:iteration items="{!v.workingEnvironments}" var="workingEnvironment">
-                                        <ui:inputSelectOption text="{!workingEnvironment}"
-                                                              label="{!workingEnvironment}" />
-                               </aura:iteration>
-                         </ui:inputSelect>
-                    </div>
-                 </div>
-            </td>
-            <td class="tdWidth">
-	               <div class="topSpacing"> 
-	                   <label class="slds-form-element__label styleAllText">{!$Label.c.orm_manageAbility_assessmentRisk}</label>
-	               </div>
-	               <div class="slds-form-element">
-	                    <div class="slds-form-element__control">
-	                       <ui:inputSelect aura:id="manageAbility" 
-                                    change="{!c.onChangeManageAbility}" class="slds-select"
-                                    labelClass="slds-form-element__label">
-                                    <aura:if isTrue="{!v.assessmentRiskData.orm_manageability__c != undefined }">
-                                       <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_manageability__c}"
-                                                              label="{!v.assessmentRiskData.orm_manageability__c}"/>
-                                    </aura:if>
-                                     
-                                    <aura:iteration items="{!v.manageAbility}" var="manageability">
-                                         <ui:inputSelectOption text="{!manageability}"
-                                                               label="{!manageability}" />
-                                </aura:iteration>
-                         </ui:inputSelect>
-	                    </div>
-	               </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdWidth">
-                <div class="topSpacing"> 
-                   <label class="slds-form-element__label styleAllText">{!$Label.c.orm_status_assessmentRisk}</label>
-               </div>
-               <div class="slds-form-element">
+                <div class="topSpacing">
+                    <label class="slds-form-element__label styleAllText">{!$Label.c.orm_workingEnvironment_label}</label>
+                </div>
+                <div class="slds-form-element">
                     <div class="slds-form-element__control">
-                        <ui:inputSelect aura:id="status" 
-                                   change="{!c.onChangeStatus}" class="slds-select"
-                                   labelClass="slds-form-element__label">
-                                   <aura:if isTrue="{!v.assessmentRiskData.orm_status__c != undefined }">
-                                       <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_status__c}"
-                                                  label="{!v.assessmentRiskData.orm_status__c}"/>
-                                    </aura:if>
-                                   <aura:iteration items="{!v.status}" var="status">
-                                        <ui:inputSelectOption text="{!status}"
-                                                              label="{!status}" />
-                               </aura:iteration>
-                         </ui:inputSelect>                  
-                    </div>
-               </div>
-            </td>
-            <td class="tdWidth">
-               <div class="topSpacing"> 
-                   <label class="slds-form-element__label styleAllText">{!$Label.c.orm_uncertainty_assessmentRisk}</label>
-               </div>
-               <div class="slds-form-element">
-                    <div class="slds-form-element__control">
-                       <ui:inputSelect aura:id="uncertainty" 
-                                  change="{!c.onChangeUncertainty}" class="slds-select"
-                                  labelClass="slds-form-element__label">
-                                  <aura:if isTrue="{!v.assessmentRiskData.orm_status__c != undefined }">
-                                       <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_uncertainty__c}"
-                                                 label="{!v.assessmentRiskData.orm_uncertainty__c}"/>
-                                  </aura:if>
-                                  <aura:iteration items="{!v.uncertainties}" var="uncertainty">
-                                       <ui:inputSelectOption text="{!uncertainty}"
-                                                             label="{!uncertainty}" />
-                                  </aura:iteration>
+                        <ui:inputSelect aura:id="workingEnvironment" change="{!c.onChangeWorkingEnvironment}" class="slds-select" labelClass="slds-form-element__label">
+                            <aura:if isTrue="{!v.assessmentRiskData.orm_workingEnvironment__c != undefined }">
+                                <ui:inputSelectOption text="{!v.assessmentRiskData.orm_workingEnvironment__c}" label="{!v.assessmentRiskData.orm_workingEnvironment__c}" />
+                            </aura:if>
+                            <aura:iteration items="{!v.workingEnvironments}" var="workingEnvironment">
+                                <ui:inputSelectOption text="{!workingEnvironment}" label="{!workingEnvironment}" />
+                            </aura:iteration>
                         </ui:inputSelect>
                     </div>
-               </div>
-           </td>
-        </tr>
-        <tr>
-            <td class="tdWidth">
-                <div class="topSpacing"> 
-                   <label class="slds-form-element__label styleAllText">{!$Label.c.orm_risk_manager_label}</label>
                 </div>
-                     <div class="slds-form-element">
-                          <div class="slds-form-element__control">
-                               <ui:inputSelect aura:id="riskManager" 
-                                         change="{!c.onChangeRiskManager}" class="slds-select"
-                                         labelClass="slds-form-element__label">
-                                          <ui:inputSelectOption  text="{!v.assessmentRiskData.orm_riskManager__c}"
-		                                                   label="{!v.assessmentRiskData.orm_riskManager__r.Name}"/>
-                                     <aura:iteration items="{!v.allUser}" var="rm">
-                                         <ui:inputSelectOption text="{!rm.Id}"
-                                                               label="{!rm.Name}" />
-                                     </aura:iteration>
-                                </ui:inputSelect>
-                         </div>
-                    </div>
             </td>
             <td class="tdWidth">
-                 <div class="topSpacing">
-                     <label class="slds-form-element__label styleAllText">{!$Label.c.orm_justificationUncertainty_label}</label>
-                 </div>
-                 <div class="width"> 
-                       <ui:inputText class="slds-input" aura:id="justification" 
-                                value="{!v.assessmentRiskData.orm_justificationUncertainty__c}" 
-                                keyup="{!c.onChangeJustificationUncertainty}" focus="{!c.sendJustificationUncertaintyToFD}">
-                      </ui:inputText>
-                 </div>
+                <div class="topSpacing">
+                    <label class="slds-form-element__label styleAllText">{!$Label.c.orm_manageAbility_assessmentRisk}</label>
+                </div>
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <ui:inputSelect aura:id="manageAbility" change="{!c.onChangeManageAbility}" class="slds-select" labelClass="slds-form-element__label">
+                            <aura:if isTrue="{!v.assessmentRiskData.orm_manageability__c != undefined }">
+                                <ui:inputSelectOption text="{!v.assessmentRiskData.orm_manageability__c}" label="{!v.assessmentRiskData.orm_manageability__c}" />
+                            </aura:if>
+
+                            <aura:iteration items="{!v.manageAbility}" var="manageability">
+                                <ui:inputSelectOption text="{!manageability}" label="{!manageability}" />
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div>
+                </div>
             </td>
         </tr>
         <tr>
             <td class="tdWidth">
                 <div class="topSpacing">
-                                      <label class="slds-form-element__label styleAllText">{!$Label.c.orm_justificationConsequence_label}</label>
-                 </div>
-                 <div class="width"> 
-                       <ui:inputText class="slds-input" aura:id="justificationConsequence" 
-                                value="{!v.assessmentRiskData.orm_justificationConsequence__c}" 
-                                keyup="{!c.onChangeJustificationConsequence}" focus="{!c.sendJustificationConsequenceToFD}">
-                      </ui:inputText>
-                 </div>
+                    <label class="slds-form-element__label styleAllText">{!$Label.c.orm_status_assessmentRisk}</label>
+                </div>
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <ui:inputSelect aura:id="status" change="{!c.onChangeStatus}" class="slds-select" labelClass="slds-form-element__label">
+                            <aura:if isTrue="{!v.assessmentRiskData.orm_status__c != undefined }">
+                                <ui:inputSelectOption text="{!v.assessmentRiskData.orm_status__c}" label="{!v.assessmentRiskData.orm_status__c}" />
+                            </aura:if>
+                            <aura:iteration items="{!v.status}" var="status">
+                                <ui:inputSelectOption text="{!status}" label="{!status}" />
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div>
+                </div>
             </td>
             <td class="tdWidth">
                 <div class="topSpacing">
-                     <label class="slds-form-element__label styleAllText">{!$Label.c.orm_vulnerability_label}</label>
-                 </div>
-                 <div class="width"> 
-                       <ui:inputText class="slds-input" aura:id="vulnerability" 
-                                value="{!v.assessmentRiskData.orm_vulnerabilityAssessmentRisk__c}" 
-                                keyup="{!c.onChangeVulnerability}" focus="{!c.sendVulnerabilityToFD}">
-                      </ui:inputText>
-                 </div>
+                    <label class="slds-form-element__label styleAllText">{!$Label.c.orm_uncertainty_assessmentRisk}</label>
+                </div>
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <ui:inputSelect aura:id="uncertainty" change="{!c.onChangeUncertainty}" class="slds-select" labelClass="slds-form-element__label">
+                            <aura:if isTrue="{!v.assessmentRiskData.orm_status__c != undefined }">
+                                <ui:inputSelectOption text="{!v.assessmentRiskData.orm_uncertainty__c}" label="{!v.assessmentRiskData.orm_uncertainty__c}" />
+                            </aura:if>
+                            <aura:iteration items="{!v.uncertainties}" var="uncertainty">
+                                <ui:inputSelectOption text="{!uncertainty}" label="{!uncertainty}" />
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div>
+                </div>
             </td>
         </tr>
-     </table>
-    
+        <tr>
+            <td class="tdWidth">
+                <div class="topSpacing">
+                    <label class="slds-form-element__label styleAllText">{!$Label.c.orm_risk_manager_label}</label>
+                </div>
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <ui:inputSelect aura:id="riskManager" change="{!c.onChangeRiskManager}" class="slds-select" labelClass="slds-form-element__label">
+                            <ui:inputSelectOption text="{!v.assessmentRiskData.orm_riskManager__c}" label="{!v.assessmentRiskData.orm_riskManager__r.Name}" />
+                            <aura:iteration items="{!v.allUser}" var="rm">
+                                <ui:inputSelectOption text="{!rm.Id}" label="{!rm.Name}" />
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div>
+                </div>
+            </td>
+            <td class="tdWidth">
+                <div class="topSpacing">
+                    <label class="slds-form-element__label styleAllText">{!$Label.c.orm_justificationUncertainty_label}</label>
+                </div>
+                <div class="width">
+                    <ui:inputText class="slds-input" aura:id="justification" value="{!v.assessmentRiskData.orm_justificationUncertainty__c}" keyup="{!c.onChangeJustificationUncertainty}" focus="{!c.sendJustificationUncertaintyToFD}">
+                    </ui:inputText>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdWidth">
+                <div class="topSpacing">
+                    <label class="slds-form-element__label styleAllText">{!$Label.c.orm_justificationConsequence_label}</label>
+                </div>
+                <div class="width">
+                    <ui:inputText class="slds-input" aura:id="justificationConsequence" value="{!v.assessmentRiskData.orm_justificationConsequence__c}" keyup="{!c.onChangeJustificationConsequence}" focus="{!c.sendJustificationConsequenceToFD}">
+                    </ui:inputText>
+                </div>
+            </td>
+            <td class="tdWidth">
+                <div class="topSpacing">
+                    <label class="slds-form-element__label styleAllText">{!$Label.c.orm_vulnerability_label}</label>
+                </div>
+                <div class="width">
+                    <ui:inputText class="slds-input" aura:id="vulnerability" value="{!v.assessmentRiskData.orm_vulnerabilityAssessmentRisk__c}" keyup="{!c.onChangeVulnerability}" focus="{!c.sendVulnerabilityToFD}">
+                    </ui:inputText>
+                </div>
+            </td>
+        </tr>
+    </table>
+
     <div style="width:100%;height:600px;overflow-y:scroll;overflow-x: hidden;margin-top:70px;background-color: #5B86BE;">
-      <div style="width:96%;margin-bottom:30px;margin-top:30px;margin-left:auto;margin-right:auto;">
-	      <table class="slds-table" >
-		            <tr>
-		                <td width="36%"></td> 
-		                <td width="30%">
-		                    <div style="height:50px;line-height: 50px;" id="divColor" class="divColor">
-		                        <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c == null }">You didn't choose yet a probability</aura:if>
-		                    </div>
-		                </td>
-		                <td width="33%"></td>
-		           </tr>
-		    </table>
-		    <table class="slds-table" >
-		            <tr> 
-		                <td width="1%"></td>
-		                <td width="97%">
-			    	        <div>
-			                    <lightning:slider label="Probability" aura:id="slider1"   value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.onProbabilityChange }"  disabled="{!v.disabledSlider}"/>
-			                </div>
-			            </td>
-		                <td width="1%"></td>
-		           </tr>
-		           <tr><td height="50"></td></tr>
-		    </table>
-		 </div>
-	    <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
-	     <div style="width: 96%;margin-bottom:30px;margin-left:auto;margin-right:auto">
-		     <table class="slds-table borderColapse">
-	            <thead>
-	            <tr> 
-	                <th class="thTableBI" width="33%" height="100">{!$Label.c.orm_healthandSafety_title }</th>
-	                <th  class="thTableSec" width="33%" height="100">{!$Label.c.orm_security_title} </th>
-	                <th  class="thTable" width="33%" height="100">{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
-	            </tr>
-	            </thead>
-	            <tr>
-		            <td id="healthAndSafety" class="healthAndSafety" ></td>
-		            <td id="security"></td>
-		            <td id="environment"></td>
-	            </tr>
-	            <tr style="border-bottom:1px solid;" >
-	                <td class="styleAllText" height="100">
-		                <lightning:input class="paddingLeft" type="radio" name="healthAndSafety" aura:id="r0"  onchange="{!c.checkboxSelect}" value="{!v.hsseVeryHighData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseVeryHighData.orm_healthAndSafety__c  }"/>
-				          <span id="r0" class="paddingLeft">{!v.hsseVeryHighData.orm_healthAndSafety__c}</span>	        
-	                </td>
-	                <td class="styleAllText" height="100">
-		                <lightning:input  type="radio" name="security" aura:id="rr0" onchange="{!c.checkboxSelect}" value="{!v.hsseVeryHighData.orm_security__c}" checked="{!v.assessmentRiskData.orm_security__c == v.hsseVeryHighData.orm_security__c  }"/>
-				           <span id="rr0">{!v.hsseVeryHighData.orm_security__c}</span>
-	                </td>
-	                <td class="styleAllText" height="100">
-		                <lightning:input  type="radio" name="environmentAndCommunity" aura:id="rrr0" onchange="{!c.checkboxSelect}" value="{!v.hsseVeryHighData.orm_environmentAndCommunity__c}" checked="{!v.assessmentRiskData.orm_environmentAndCommunity__c == v.hsseVeryHighData.orm_environmentAndCommunity__c  }"/>
-				            <span id="rrr0">{!v.hsseVeryHighData.orm_environmentAndCommunity__c}</span>
-	                </td>
-	            </tr>
-	            <tr style="border-bottom:1px solid;">
-	                <td class="styleAllText" height="100">
-		                 <lightning:input class="paddingLeft" type="radio" name="healthAndSafety" aura:id="r1" onchange="{!c.checkboxSelect}" value="{!v.hsseHighData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseHighData.orm_healthAndSafety__c }"/>
-				           <span id="r1" class="paddingLeft">{!v.hsseHighData.orm_healthAndSafety__c}</span>
-	                </td>
-	                <td class="styleAllText" height="100">
-		                <lightning:input type="radio" name="security" aura:id="rr1" onchange="{!c.checkboxSelect}" value="{!v.hsseHighData.orm_security__c}" checked="{!v.assessmentRiskData.orm_security__c == v.hsseHighData.orm_security__c  }"/>
-				           <span id="rr1">{!v.hsseHighData.orm_security__c}</span>
-	                </td>
-	                <td class="styleAllText" height="100">
-		                <lightning:input type="radio" name="environmentAndCommunity" aura:id="rrr1" onchange="{!c.checkboxSelect}" value="{!v.hsseHighData.orm_environmentAndCommunity__c}" checked="{!v.assessmentRiskData.orm_environmentAndCommunity__c == v.hsseHighData.orm_environmentAndCommunity__c  }"/>
-				           <span id="rrr1">{!v.hsseHighData.orm_environmentAndCommunity__c}</span>
-	                </td>
-	            </tr>
-	            <tr style="border-bottom:1px solid;">
-	                <td class="styleAllText" height="100">
-		                <lightning:input class="paddingLeft" type="radio" name="healthAndSafety" aura:id="r2" onchange="{!c.checkboxSelect}" value="{!v.hsseMediumData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseMediumData.orm_healthAndSafety__c }"/>
-				           <span id="r2" class="paddingLeft">{!v.hsseMediumData.orm_healthAndSafety__c}</span>
-	                </td>
-	                <td class="styleAllText" height="100">
-		                 <lightning:input type="radio" name="security" aura:id="rr2" onchange="{!c.checkboxSelect}" value="{!v.hsseMediumData.orm_security__c}" checked="{!v.assessmentRiskData.orm_security__c == v.hsseMediumData.orm_security__c  }"/>
-				            <span id="rr2">{!v.hsseMediumData.orm_security__c}</span>
-	                </td>
-	                <td class="styleAllText" height="100">
-		                <lightning:input type="radio" name="environmentAndCommunity" aura:id="rrr2" onchange="{!c.checkboxSelect}" value="{!v.hsseMediumData.orm_environmentAndCommunity__c}" checked="{!v.assessmentRiskData.orm_environmentAndCommunity__c == v.hsseMediumData.orm_environmentAndCommunity__c  }"/>
-				           <span id="rrr2">{!v.hsseMediumData.orm_environmentAndCommunity__c}</span>
-	                </td>
-	            </tr>
-	            <tr>
-	                <td class="styleAllText"  height="100">
-		                <lightning:input class="paddingLeft" type="radio" name="healthAndSafety" aura:id="r3" onchange="{!c.checkboxSelect}" value="{!v.hsseLowData.orm_healthAndSafety__c }"  checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseLowData.orm_healthAndSafety__c  }"/>
-				            <span id="r3" class="paddingLeft">{!v.hsseLowData.orm_healthAndSafety__c}</span>
-	                </td>
-	                <td class="styleAllText" height="100">
-		                <lightning:input  type="radio" name="security" aura:id="rr3" onchange="{!c.checkboxSelect}" value="{!v.hsseLowData.orm_security__c}" checked="{!v.assessmentRiskData.orm_security__c == v.hsseLowData.orm_security__c  }"/>
-				            <span id="rr3">{!v.hsseLowData.orm_security__c}</span>
-	                </td>
-	                <td class="styleAllText" height="100">
-		                <lightning:input type="radio" name="environmentAndCommunity" aura:id="rrr3" onchange="{!c.checkboxSelect}" value="{!v.hsseLowData.orm_environmentAndCommunity__c}" checked="{!v.assessmentRiskData.orm_environmentAndCommunity__c == v.hsseLowData.orm_environmentAndCommunity__c  }"/>
-				           <span id="rrr3">{!v.hsseLowData.orm_environmentAndCommunity__c}</span>
-	                </td>
-	            </tr>
-	        </table>
-	    </div>      
-       
-        <aura:set attribute="else">
-		    <div class="messageIsEmpty" style="padding-top: 20px">
-	 		   HSSE  Impacts Ranking is not configured yet
-	        </div>
-		</aura:set>
-      </aura:if>  
-      <aura:if isTrue="{!not(empty(v.businessImpacts))}">
-           <div class=" " style="width: 96%;margin-bottom:50px;margin-left:auto;margin-right:auto">
-             <table class="slds-table borderColapse">
-	            <tr> 
-	                <th  class="thTableBI" height="100"> {!$Label.c.orm_cost_title} </th>
-	                <th  class="thTablehithoutPadding" height="100">{!$Label.c.orm_schedule_title} </th>
-	                <th  class="thTablehithoutPadding" height="100"> {!$Label.c.orm_production_title} </th>
-	                <th  class="thTablehithoutPadding" height="100"> {!$Label.c.orm_reputation_title}</th>
-	            </tr>
-	            <tr>
-		            <td id="cost"></td>
-		            <td id="schedule"></td>
-		            <td id="production"></td>
-		            <td id="reputation"></td>
-	            </tr>
-	             <tr>
-	                <td style="white-space: normal !important;" height="100" class="borderRight">
-		                 <div style="width:100%;height:auto;display: flex;">
-		                     <div style="width:40%;height:auto;"></div>
-		                     <div style="width:60%;height:auto;">
-		                         <lightning:slider type="vertical" aura:id="cost1"  
-			                                     value="{!v.assessmentRiskData.orm_cost__c}"  
-			                                     onchange="{! c.handleRangeChangeCost }" />
-		                     </div>
-		                 </div>    
-	                </td>
-	                <td style="white-space: normal !important;" height="100" class="borderRightAndLeft">
-	                     <div style="width:100%;height:auto;display: flex;">
-		                     <div style="width:40%;height:auto;"></div>
-		                     <div style="width:60%;height:auto;">
-		                         <lightning:slider  type="vertical" aura:id="schedule1"   
-	                                       value="{!v.assessmentRiskData.orm_ScheduleRisk__c}"  
-	                                       onchange="{! c.handleRangeChangeSchedule }" />
-		                     </div>
-		                 </div> 
-	                </td>
-	                <td style="white-space: normal !important;" height="100" class="borderRightAndLeft">
-	                    <div style="width:100%;height:auto;display: flex;">
-		                     <div style="width:40%;height:auto;"></div>
-		                     <div style="width:60%;height:auto;">
-		                         <lightning:slider  type="vertical" aura:id="production"  
-	                                       min="0" max="52" value="{!v.assessmentRiskData.orm_production_Loss_Risk__c}" 
-	                                       onchange="{! c.handleRangeChangeProduction }"  />
-		                     </div>
-		                 </div>
-	                </td>
-	                <td style="white-space: normal !important;" height="100" class="borderLeft">
-	                      <div style="width:100%;height:auto;display: flex;">
-		                     <div style="width:30%;height:auto;"></div>
-		                     <div style="width:70%;height:auto;">
-		                            <lightning:input class="styleAllText"  aura:id="reputation1"
-					                                 type="radio" name="reputation" 
-					                                 value="{!v.businessImpVeryHighData.orm_reputation__c}" 
-					                                 onchange="{!c.checkboxSelectreputation}"  
-					                                 checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpVeryHighData.orm_reputation__c }" />
-					                <span id="reputation1">{!v.businessImpVeryHighData.orm_reputation__c}</span><br/>
-					                <lightning:input class="styleAllText" aura:id="reputation2" 
-					                                 type="radio" name="reputation" 
-					                                 value="{!v.businessImpHighData.orm_reputation__c}" 
-					                                 onchange="{!c.checkboxSelectreputation}" 
-					                                 checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpHighData.orm_reputation__c }" />
-					                <span id="reputation2" >{!v.businessImpHighData.orm_reputation__c}</span><br/>
-					                <lightning:input class="styleAllText" aura:id="reputation3" 
-					                                 type="radio" name="reputation" 
-					                                 value="{!v.businessImpMediumData.orm_reputation__c}" 
-					                                 onchange="{!c.checkboxSelectreputation}" 
-					                                 checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpMediumData.orm_reputation__c }"/>
-			                        <span id="reputation3" >{!v.businessImpMediumData.orm_reputation__c}</span><br/>
-					                <lightning:input class="styleAllText" aura:id="reputation4" 
-					                                 type="radio" name="reputation" 
-					                                 value="{!v.businessImpLowData.orm_reputation__c}" 
-					                                 onchange="{!c.checkboxSelectreputation}" 
-					                                 checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpLowData.orm_reputation__c }"/>
-					                <span id="reputation4">{!v.businessImpLowData.orm_reputation__c}</span>
-		                     </div>
-		                 </div>
-	                </td>
-	            </tr>
-              </table>
-             </div> 
-           <aura:set attribute="else">
-			    <div class="messageIsEmpty" style="padding-top: 20px">
-		 		   Business Impacts Ranking is not configured yet
-		        </div>
-			</aura:set>
-           </aura:if>
-    </div> 
-        
+        <div style="width:96%;margin-bottom:30px;margin-top:30px;margin-left:auto;margin-right:auto;">
+            <table class="slds-table">
+                <tr>
+                    <td width="36%"></td>
+                    <td width="30%">
+                        <div style="height:50px;line-height: 50px;" id="divColor" class="divColor">
+                            <aura:if isTrue="{!v.assessmentRiskData.orm_probability__c == null }">You didn't choose yet a probability</aura:if>
+                        </div>
+                    </td>
+                    <td width="33%"></td>
+                </tr>
+            </table>
+            <table class="slds-table">
+                <tr>
+                    <td width="1%"></td>
+                    <td width="97%">
+                        <div>
+                            <lightning:slider label="Probability" aura:id="slider1" value="{!v.assessmentRiskData.orm_probability__c}" onchange="{! c.onProbabilityChange }" disabled="{!v.disabledSlider}" />
+                        </div>
+                    </td>
+                    <td width="1%"></td>
+                </tr>
+                <tr>
+                    <td height="50"></td>
+                </tr>
+            </table>
+        </div>
+        <aura:if isTrue="{!not(empty(v.hsseImpacts))}">
+            <div style="width: 96%;margin-bottom:30px;margin-left:auto;margin-right:auto">
+                <table class="slds-table borderColapse">
+                    <thead>
+                        <tr>
+                            <th class="thTableBI" width="33%" height="100">{!$Label.c.orm_healthandSafety_title }</th>
+                            <th class="thTableSec" width="33%" height="100">{!$Label.c.orm_security_title} </th>
+                            <th class="thTable" width="33%" height="100">{!$Label.c.orm_EnvironmentAndCommunity_title} </th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td id="healthAndSafety" class="healthAndSafety"></td>
+                        <td id="security"></td>
+                        <td id="environment"></td>
+                    </tr>
+                    <tr style="border-bottom:1px solid;">
+                        <td class="styleAllText" height="100">
+                            <lightning:input class="paddingLeft" type="radio" name="healthAndSafety" aura:id="r0" onchange="{!c.checkboxSelect}" value="{!v.hsseVeryHighData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseVeryHighData.orm_healthAndSafety__c  }"
+                            />
+                            <span id="r0" class="paddingLeft">{!v.hsseVeryHighData.orm_healthAndSafety__c}</span>
+                        </td>
+                        <td class="styleAllText" height="100">
+                            <lightning:input type="radio" name="security" aura:id="rr0" onchange="{!c.checkboxSelect}" value="{!v.hsseVeryHighData.orm_security__c}" checked="{!v.assessmentRiskData.orm_security__c == v.hsseVeryHighData.orm_security__c  }" />
+                            <span id="rr0">{!v.hsseVeryHighData.orm_security__c}</span>
+                        </td>
+                        <td class="styleAllText" height="100">
+                            <lightning:input type="radio" name="environmentAndCommunity" aura:id="rrr0" onchange="{!c.checkboxSelect}" value="{!v.hsseVeryHighData.orm_environmentAndCommunity__c}" checked="{!v.assessmentRiskData.orm_environmentAndCommunity__c == v.hsseVeryHighData.orm_environmentAndCommunity__c  }"
+                            />
+                            <span id="rrr0">{!v.hsseVeryHighData.orm_environmentAndCommunity__c}</span>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid;">
+                        <td class="styleAllText" height="100">
+                            <lightning:input class="paddingLeft" type="radio" name="healthAndSafety" aura:id="r1" onchange="{!c.checkboxSelect}" value="{!v.hsseHighData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseHighData.orm_healthAndSafety__c }"
+                            />
+                            <span id="r1" class="paddingLeft">{!v.hsseHighData.orm_healthAndSafety__c}</span>
+                        </td>
+                        <td class="styleAllText" height="100">
+                            <lightning:input type="radio" name="security" aura:id="rr1" onchange="{!c.checkboxSelect}" value="{!v.hsseHighData.orm_security__c}" checked="{!v.assessmentRiskData.orm_security__c == v.hsseHighData.orm_security__c  }" />
+                            <span id="rr1">{!v.hsseHighData.orm_security__c}</span>
+                        </td>
+                        <td class="styleAllText" height="100">
+                            <lightning:input type="radio" name="environmentAndCommunity" aura:id="rrr1" onchange="{!c.checkboxSelect}" value="{!v.hsseHighData.orm_environmentAndCommunity__c}" checked="{!v.assessmentRiskData.orm_environmentAndCommunity__c == v.hsseHighData.orm_environmentAndCommunity__c  }"
+                            />
+                            <span id="rrr1">{!v.hsseHighData.orm_environmentAndCommunity__c}</span>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid;">
+                        <td class="styleAllText" height="100">
+                            <lightning:input class="paddingLeft" type="radio" name="healthAndSafety" aura:id="r2" onchange="{!c.checkboxSelect}" value="{!v.hsseMediumData.orm_healthAndSafety__c}" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseMediumData.orm_healthAndSafety__c }"
+                            />
+                            <span id="r2" class="paddingLeft">{!v.hsseMediumData.orm_healthAndSafety__c}</span>
+                        </td>
+                        <td class="styleAllText" height="100">
+                            <lightning:input type="radio" name="security" aura:id="rr2" onchange="{!c.checkboxSelect}" value="{!v.hsseMediumData.orm_security__c}" checked="{!v.assessmentRiskData.orm_security__c == v.hsseMediumData.orm_security__c  }" />
+                            <span id="rr2">{!v.hsseMediumData.orm_security__c}</span>
+                        </td>
+                        <td class="styleAllText" height="100">
+                            <lightning:input type="radio" name="environmentAndCommunity" aura:id="rrr2" onchange="{!c.checkboxSelect}" value="{!v.hsseMediumData.orm_environmentAndCommunity__c}" checked="{!v.assessmentRiskData.orm_environmentAndCommunity__c == v.hsseMediumData.orm_environmentAndCommunity__c  }"
+                            />
+                            <span id="rrr2">{!v.hsseMediumData.orm_environmentAndCommunity__c}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="styleAllText" height="100">
+                            <lightning:input class="paddingLeft" type="radio" name="healthAndSafety" aura:id="r3" onchange="{!c.checkboxSelect}" value="{!v.hsseLowData.orm_healthAndSafety__c }" checked="{!v.assessmentRiskData.orm_healthAndSafety__c == v.hsseLowData.orm_healthAndSafety__c  }"
+                            />
+                            <span id="r3" class="paddingLeft">{!v.hsseLowData.orm_healthAndSafety__c}</span>
+                        </td>
+                        <td class="styleAllText" height="100">
+                            <lightning:input type="radio" name="security" aura:id="rr3" onchange="{!c.checkboxSelect}" value="{!v.hsseLowData.orm_security__c}" checked="{!v.assessmentRiskData.orm_security__c == v.hsseLowData.orm_security__c  }" />
+                            <span id="rr3">{!v.hsseLowData.orm_security__c}</span>
+                        </td>
+                        <td class="styleAllText" height="100">
+                            <lightning:input type="radio" name="environmentAndCommunity" aura:id="rrr3" onchange="{!c.checkboxSelect}" value="{!v.hsseLowData.orm_environmentAndCommunity__c}" checked="{!v.assessmentRiskData.orm_environmentAndCommunity__c == v.hsseLowData.orm_environmentAndCommunity__c  }"
+                            />
+                            <span id="rrr3">{!v.hsseLowData.orm_environmentAndCommunity__c}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <aura:set attribute="else">
+                <div class="messageIsEmpty" style="padding-top: 20px">
+                    HSSE Impacts Ranking is not configured yet
+                </div>
+            </aura:set>
+        </aura:if>
+        <aura:if isTrue="{!not(empty(v.businessImpacts))}">
+            <div class=" " style="width: 96%;margin-bottom:50px;margin-left:auto;margin-right:auto">
+                <table class="slds-table borderColapse">
+                    <tr>
+                        <th class="thTableBI" height="100"> {!$Label.c.orm_cost_title} </th>
+                        <th class="thTablehithoutPadding" height="100">{!$Label.c.orm_schedule_title} </th>
+                        <th class="thTablehithoutPadding" height="100"> {!$Label.c.orm_production_title} </th>
+                        <th class="thTablehithoutPadding" height="100"> {!$Label.c.orm_reputation_title}</th>
+                    </tr>
+                    <tr>
+                        <td id="cost"></td>
+                        <td id="schedule"></td>
+                        <td id="production"></td>
+                        <td id="reputation"></td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: normal !important;" height="100" class="borderRight">
+                            <div style="width:100%;height:auto;display: flex;">
+                                <div style="width:40%;height:auto;"></div>
+                                <div style="width:60%;height:auto;">
+                                    <lightning:slider type="vertical" aura:id="cost1" value="{!v.assessmentRiskData.orm_cost__c}" onchange="{! c.handleRangeChangeCost }" />
+                                </div>
+                            </div>
+                        </td>
+                        <td style="white-space: normal !important;" height="100" class="borderRightAndLeft">
+                            <div style="width:100%;height:auto;display: flex;">
+                                <div style="width:40%;height:auto;"></div>
+                                <div style="width:60%;height:auto;">
+                                    <lightning:slider type="vertical" aura:id="schedule1" value="{!v.assessmentRiskData.orm_ScheduleRisk__c}" onchange="{! c.handleRangeChangeSchedule }" />
+                                </div>
+                            </div>
+                        </td>
+                        <td style="white-space: normal !important;" height="100" class="borderRightAndLeft">
+                            <div style="width:100%;height:auto;display: flex;">
+                                <div style="width:40%;height:auto;"></div>
+                                <div style="width:60%;height:auto;">
+                                    <lightning:slider type="vertical" aura:id="production" min="0" max="52" value="{!v.assessmentRiskData.orm_production_Loss_Risk__c}" onchange="{! c.handleRangeChangeProduction }" />
+                                </div>
+                            </div>
+                        </td>
+                        <td style="white-space: normal !important;" height="100" class="borderLeft">
+                            <div style="width:100%;height:auto;display: flex;">
+                                <div style="width:30%;height:auto;"></div>
+                                <div style="width:70%;height:auto;">
+                                    <lightning:input class="styleAllText" aura:id="reputation1" type="radio" name="reputation" value="{!v.businessImpVeryHighData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}" checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpVeryHighData.orm_reputation__c }"
+                                    />
+                                    <span id="reputation1">{!v.businessImpVeryHighData.orm_reputation__c}</span><br/>
+                                    <lightning:input class="styleAllText" aura:id="reputation2" type="radio" name="reputation" value="{!v.businessImpHighData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}" checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpHighData.orm_reputation__c }"
+                                    />
+                                    <span id="reputation2">{!v.businessImpHighData.orm_reputation__c}</span><br/>
+                                    <lightning:input class="styleAllText" aura:id="reputation3" type="radio" name="reputation" value="{!v.businessImpMediumData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}" checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpMediumData.orm_reputation__c }"
+                                    />
+                                    <span id="reputation3">{!v.businessImpMediumData.orm_reputation__c}</span><br/>
+                                    <lightning:input class="styleAllText" aura:id="reputation4" type="radio" name="reputation" value="{!v.businessImpLowData.orm_reputation__c}" onchange="{!c.checkboxSelectreputation}" checked="{!v.assessmentRiskData.orm_reputation__c == v.businessImpLowData.orm_reputation__c }"
+                                    />
+                                    <span id="reputation4">{!v.businessImpLowData.orm_reputation__c}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <aura:set attribute="else">
+                <div class="messageIsEmpty" style="padding-top: 20px">
+                    Business Impacts Ranking is not configured yet
+                </div>
+            </aura:set>
+        </aura:if>
+    </div>
+    <div>
+        <aura:if isTrue="{!v.displaySaveCancelBtn}">
+            <lightning:buttonGroup class="slds-m-around_medium centerBtnGroup">
+                <lightning:button label="Cancel" onclick="{!c.cancel}" />
+                <lightning:button label="Save" variant="brand" class="slds-button slds-button_success" onclick="{!c.updateAssessmentRisk}" />
+            </lightning:buttonGroup>
+        </aura:if>
+    </div>
+
 </aura:component>

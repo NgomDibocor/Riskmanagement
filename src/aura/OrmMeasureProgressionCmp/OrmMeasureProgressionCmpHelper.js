@@ -16,11 +16,12 @@
                // console.log('row='+JSON.stringify(row));
                 	for(let col of columns){
                 		if(col.type=='text' && row[col.fieldName]=='open' ){
-                			row[col.fieldName+'_chk'] ='utility:open';
+                			row[col.fieldName+'_chk'] ='action:approval';
+                				row[col.class] ='openclass';
                 		}else if (col.type=='text' && row[col.fieldName]=='close' ){
-                		row[col.fieldName+'_chk'] ='utility:close';
+                		row[col.fieldName+'_chk'] ='action:close';
                 		}else if(col.type=='text' && row[col.fieldName]=='draft' ){
-                		row[col.fieldName+'_chk'] ='utility:edit';
+                		row[col.fieldName+'_chk'] ='action:new_note';
                 		}
                 		}
                 		}

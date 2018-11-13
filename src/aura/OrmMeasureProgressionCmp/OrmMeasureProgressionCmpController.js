@@ -33,7 +33,7 @@
             cellAttributes: {
              iconName: {fieldName:'Family_chk'},
              iconPosition:'left',
-             iconAlternativeText:'status family' 
+             iconAlternativeText:'status progress' 
              
                }
               

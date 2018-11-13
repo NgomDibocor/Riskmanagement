@@ -30,10 +30,14 @@
             label: $A.get("$Label.c.orm_statusProgress_label"),
             fieldName: 'Family',
             type: 'text',
-            
             cellAttributes: {
-                class: "buttonStyle"
-            }
+             iconName: {fieldName:'Family_chk'},
+             iconPosition:'left',
+             iconAlternativeText:'status family' 
+             
+               }
+              
+
         }, {
             type: 'button', 
             initialWidth: 80,
@@ -51,7 +55,9 @@
                 name: $A.get("$Label.c.orm_edit_button_title"),
                 title: $A.get("$Label.c.orm_edit_button_title")
             }
-        }]);
+        }
+ 
+        ]);
         component.set("v.idMeasure", event.getParam('MeasureId'));
         helper.getAllMeasuresProgressionByMeasure(component, event);
     },

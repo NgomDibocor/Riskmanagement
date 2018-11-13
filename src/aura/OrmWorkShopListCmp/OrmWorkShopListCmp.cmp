@@ -51,17 +51,17 @@
         </a>
       </div>
     	<span class="btnNewWorkshop" onclick="{!c.openNewWorkshop}">
-           <lightning:icon class="curseur" iconName="utility:new" size="medium" /></span>
+           <lightning:icon class="curseur" iconName="utility:new" size="small" /></span>
           <span class="btnDeleteActivity" onclick="{!c.removeWorkshop}">
-           <lightning:icon	 class="curseur" iconName="utility:delete" size="medium" />
+           <lightning:icon	 class="curseur" iconName="utility:delete" size="small" />
 			</span> 
             <span>
-       	    <lightning:icon class="curseur" onclick="{!c.openNewContact}" iconName="utility:adduser" size="medium" />
+       	    <lightning:icon class="curseur" onclick="{!c.openNewContact}" iconName="utility:adduser" size="small" />
        	   </span>  <br/><br/>
-                <div style="width:80%;">
+                <div style="width:95%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
                     
-                        <lightning:datatable aura:id="datatableList"   columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"  onrowselection="{!c.selectCauses}"  resizeColumnDisabled="true" onrowaction="{! c.openModalContactWorkshop }"/>
+                        <lightning:datatable aura:id="datatableList"  class="table-test"  columns="{! v.columns }" data="{! v.PaginationList  }" keyField="Id" onsave="{!c.onSave}"  onrowselection="{!c.selectCauses}"   onrowaction="{! c.openModalContactWorkshop }"/>
                        
                         <div style="margin-top:20px; padding-bottom:10px;">
                             <center>

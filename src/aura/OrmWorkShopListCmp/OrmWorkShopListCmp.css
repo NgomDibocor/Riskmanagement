@@ -10,9 +10,7 @@
 .THIS .curseur {
   cursor: pointer;
 }
-.THIS .table-test button{
-background-color: #16325c;
-color: white}
+
 .THIS div.workshop {
     display: inline-block;
     width:80%;
@@ -26,4 +24,8 @@ color: white}
 }
 .THIS .buttonStyle {
 	background-color: red;
+}
+.THIS .table-test thead th span {
+ font-weight: 600;
+  font-size: 1.2em;
 }

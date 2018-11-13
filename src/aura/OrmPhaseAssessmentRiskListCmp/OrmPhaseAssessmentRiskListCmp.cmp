@@ -35,6 +35,7 @@
                 <div style="width:80%;">
                     <aura:if isTrue="{!not(empty(v.PaginationList))}">
                         <lightning:datatable aura:id="datatableList" 
+                        					 class="table-test"
                                              columns="{! v.columns }" 
                                              data="{! v.PaginationList  }" 
                                              keyField="Id" onsave="{!c.onSave}"  

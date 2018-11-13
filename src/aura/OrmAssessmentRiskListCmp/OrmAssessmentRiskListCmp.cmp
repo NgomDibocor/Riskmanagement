@@ -16,7 +16,8 @@
         </span>
         
     </div>
- 
+    <br/><br/>
+ 	<aura:if isTrue="{!not(empty(v.PaginationList))}">
     <div class="slds-grid slds-wrap" style="width:100%;margin-top: 10px;margin-bottom: 20px">
       <aura:iteration items="{!v.PaginationList}" var="item">  
         <div class="slds-size_1-of-3">
@@ -81,4 +82,11 @@
 	                            iconName='utility:forward' iconPosition='right'/>
 	      </lightning:buttonGroup>
 	</div>
+	 <aura:set attribute="else">
+        <br/>
+        <div class="" style="width:200px; margin:auto;text-align: center;color:white; font-weight: 600; font-size: 1.2em;">
+            Elements not found
+        </div>
+    </aura:set>
+   </aura:if>
 </aura:component>

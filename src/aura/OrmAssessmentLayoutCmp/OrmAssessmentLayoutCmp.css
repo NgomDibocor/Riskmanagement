@@ -122,6 +122,51 @@
     border-radius: 50%;
     display: inline-block;
 }
+.THIS .backgroundTitleDetailsMeasure{
+	display: block;
+    width: 25%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+	background-color: #16325c;
+	color: white;
+}
+.THIS .backgroundTitleListMeasure{
+	display: block;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+	background-color: #16325c;
+	color: white;
+}
+.THIS .backgroundTitleDetailsRisk{
+	display: block;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+	background-color: #16325c;
+	color: white;
+}
+.THIS .backgroundTitleRiskConfiguration{
+	display: block;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+	background-color: #16325c;
+	color: white;
+}
+.THIS .backgroundTitleWorkshop{
+	display: block;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+	background-color: #16325c;
+	color: white;
+}
 .THIS .dot:hover{
    background-color:#B0C4DF;
 }

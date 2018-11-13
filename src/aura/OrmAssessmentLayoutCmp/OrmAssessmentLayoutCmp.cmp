@@ -1100,7 +1100,7 @@
                      <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;">
-	                               <h1 class="intro-title">{!$Label.c.orm_Workshops} </h1>
+	                               <h1 class="intro-title"><span class="backgroundTitleWorkshop" >{!$Label.c.orm_Workshops}</span> </h1>
 	                           </div>
 	                     </td>
 	                 </tr>
@@ -1121,7 +1121,7 @@
                       <tr>
 	                     <td >
 	                          <div style="margin-bottom:40px;">
-	                               <h1 class="intro-title">{!$Label.c.orm_risk_configuration} </h1>
+	                               <h1 class="intro-title"><span class="backgroundTitleRiskConfiguration">{!$Label.c.orm_risk_configuration} </span></h1>
 	                           </div>
 	                     </td> 
 	                 </tr>
@@ -1166,7 +1166,7 @@
 	                <tr>
                        <td >
                           <div style="margin-bottom:20px;margin-top: 10px">
-                               <h1 class="intro-title"> {!$Label.c.orm_details_risk} </h1>
+                               <h1 class="intro-title"><span class="backgroundTitleDetailsRisk" >{!$Label.c.orm_details_risk} </span></h1>
                            </div>
                        </td>
 		            </tr>
@@ -1225,7 +1225,7 @@
                     <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;margin-top:10px">
-	                               <h1 class="intro-title">{!$Label.c.orm_list_of_measures} </h1>
+	                               <h1 class="intro-title"><span class="backgroundTitleListMeasure" >{!$Label.c.orm_list_of_measures} </span></h1>
 	                           </div>
 	                     </td>
 	                </tr>                 
@@ -1248,7 +1248,7 @@
                     <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;">
-	                               <h1 class="intro-title">{!$Label.c.orm_detail_of_measures}	</h1>
+	                               <h1 class="intro-title"><span class="backgroundTitleDetailsMeasure" >{!$Label.c.orm_detail_of_measures}	</span></h1>
 	                           </div>
 	                     </td>
 	                </tr>  

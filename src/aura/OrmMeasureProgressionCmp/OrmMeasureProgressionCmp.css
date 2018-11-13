@@ -57,14 +57,14 @@
 	white-space: normal !important;
 }
 
-.THIS .table-test button{
+.THIS .table-mprogress button{
   background-color: #16325c;
   color: white
  }
 .THIS lightning-primitive-cell-wrapper {
 	justify-content: start !important;
 }
-.THIS .table-test thead th span {
+.THIS .table-mprogress thead th span {
 font-weight: 600;
   font-size: 1.2em;
 }

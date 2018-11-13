@@ -9,6 +9,22 @@
                 var pageSize = component.get("v.pageSizeInlineEdit");
                 component.set('v.ListData', response.getReturnValue());
                 console.log(JSON.stringify(response.getReturnValue()));
+                                               //add icon status
+                let sObjs =response.getReturnValue();
+             let columns=component.get('v.columns');
+                for(let row of  sObjs){
+               // console.log('row='+JSON.stringify(row));
+                	for(let col of columns){
+                		if(col.type=='text' && row[col.fieldName]=='open' ){
+                			row[col.fieldName+'_chk'] ='utility:open';
+                		}else if (col.type=='text' && row[col.fieldName]=='close' ){
+                		row[col.fieldName+'_chk'] ='utility:close';
+                		}else if(col.type=='text' && row[col.fieldName]=='draft' ){
+                		row[col.fieldName+'_chk'] ='utility:edit';
+                		}
+                		}
+                		}
+                //end add icon status
                 // get size of all the records and then hold into an attribute "totalRecords"
                 component.set("v.totalRecords", component.get("v.ListData").length);
                 //Set the current Page as 0
@@ -30,6 +46,7 @@
                     }
                 }
                 component.set('v.PaginationList', PaginationList);
+
             } else {
                 alert($A.get('$Label.c.orm_not_found'));
             }

@@ -1,117 +1,150 @@
-.THIS .widthBox{
-  width:90%;
-  margin-left:auto;
-  margin-right:auto;
-  margin-bottom:50px 
+.THIS .widthBox {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px
 }
-.THIS a{
+
+.THIS a {
     text-decoration: none;
 }
-.THIS .textInDiv{
-	font-weight: 400;
-	font-style: normal;
-	font-size: 18px;
-	letter-spacing: -.003em;
-	white-space: normal;
-	text-align: justify;
+
+.THIS .textInDiv {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    letter-spacing: -.003em;
+    white-space: normal;
+    text-align: justify;
     text-justify: inter-character;
- }
- .THIS .styleLabel{
-	font-weight: 400;
-	font-style: normal;
-	font-size: 16px;
-	letter-spacing: -.003em;
- }
- .THIS .textInDivCmp{
-	white-space: normal;
-	text-align: justify;
+}
+
+.THIS .styleLabel {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    letter-spacing: -.003em;
+}
+
+.THIS .textInDivCmp {
+    white-space: normal;
+    text-align: justify;
     text-justify: inter-character;
- }
- .THIS .textInDivMatriceCmp{
-	white-space: nowrap;
- }
+}
+
+.THIS .textInDivMatriceCmp {
+    white-space: nowrap;
+}
+
 .THIS div.organisation {
     display: inline-block;
-    width:95%;
+    width: 95%;
 }
+
 .THIS span.btnNewOrg {
     display: inline-block;
     cursor: pointer;
 }
+
 .THIS div.activity {
     display: inline-block;
-    width:95%;
+    width: 95%;
 }
+
 .THIS span.btnNewAct {
     display: inline-block;
 }
 
 .THIS div.cause {
     display: inline-block;
-    width:95%;
+    width: 95%;
 }
+
 .THIS span.btnNewCause {
     display: inline-block;
 }
-.THIS .spanClass{
-	display: block;
+
+.THIS .spanClass {
+    display: block;
 }
-.THIS .slid{
-	display: block;
-	width: 90%;
+
+.THIS .slid {
+    display: block;
+    width: 90%;
 }
-.THIS .scheduleInput{
-	width: 80%;
+
+.THIS .scheduleInput {
+    width: 80%;
 }
-.THIS .scheduleSelect{
-	width: 20%;
-}  
-.THIS .heightHiddenInput{
-	height: 2px;
+
+.THIS .scheduleSelect {
+    width: 20%;
 }
-.THIS .iconPrev{
-	cursor: pointer;
+
+.THIS .heightHiddenInput {
+    height: 2px;
 }
-.THIS .iconNext{
-	cursor: pointer;
+
+.THIS .iconPrev {
+    cursor: pointer;
 }
+
+.THIS .iconNext {
+    cursor: pointer;
+}
+
 .THIS .orgSelect {
     display: inline-block;
     width: 69%;
-    margin-left:14%;
+    margin-left: 14%;
     margin-right: 15px;
 }
+
 .THIS span.btnNewOrganisation {
     display: inline-block;
     cursor: pointer;
-    width:5%;
-}
-.THIS #myBtn {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 20px; /* Place the button at the bottom of the page */
-    right: 30px; /* Place the button 30px from the right */
-    z-index: 99; /* Make sure it does not overlap */
-    border: none; /* Remove borders */
-    outline: none; /* Remove outline */
-    background-color: red; /* Set a background color */
-    color: white; /* Text color */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 15px; /* Some padding */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 18px; /* Increase font size */
+    width: 5%;
 }
 
-.THIS .tdClass{
-	width: 50%;
+.THIS #myBtn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 20px;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    /* Remove borders */
+    outline: none;
+    /* Remove outline */
+    background-color: red;
+    /* Set a background color */
+    color: white;
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 15px;
+    /* Some padding */
+    border-radius: 10px;
+    /* Rounded corners */
+    font-size: 18px;
+    /* Increase font size */
+}
+
+.THIS .tdClass {
+    width: 50%;
 }
 
 .THIS .intro-title {
-  font-weight: 600;
-  font-size: 2em;
- /* letter-spacing: -.07em; */
-  text-align: center;
-  white-space: normal;
+    font-weight: 600;
+    font-size: 2em;
+    /* letter-spacing: -.07em; */
+    text-align: center;
+    white-space: normal;
 }
 
 .THIS .dot {
@@ -122,54 +155,107 @@
     border-radius: 50%;
     display: inline-block;
 }
-.THIS .backgroundTitleDetailsMeasure{
-	display: block;
+
+.THIS .backgroundTitleDetailsMeasure {
+    display: block;
     width: 25%;
     height: 50px;
     line-height: 50px;
     margin: auto;
-	background-color: #16325c;
-	color: white;
+    background-color: #16325c;
+    color: white;
 }
-.THIS .backgroundTitleListMeasure{
+
+.THIS .backgroundTitleListMeasure {
+    display: block;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    background-color: #16325c;
+    color: white;
+}
+
+.THIS .backgroundTitleDetailsRisk {
+    display: block;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    background-color: #16325c;
+    color: white;
+}
+
+.THIS .backgroundTitleRiskConfiguration {
+    display: block;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    background-color: #16325c;
+    color: white;
+}
+
+.THIS .backgroundTitleWorkshop {
+    display: block;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    background-color: #16325c;
+    color: white;
+}
+
+.THIS .backgroundTitleAssociationRisk {
+    display: block;
+    width: 30%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    background-color: #16325c;
+    color: white;
+}
+.THIS .backgroundTitleActivityProof{
+	display: block;
+    width: 30%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    background-color: #16325c;
+    color: white;
+}
+.THIS .backgroundTitlePhaseActivity{
+	display: block;
+    width: 30%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    background-color: #16325c;
+    color: white;
+}
+.THIS .backgroudTitleShowAssessment{
 	display: block;
     width: 20%;
     height: 50px;
     line-height: 50px;
     margin: auto;
-	background-color: #16325c;
-	color: white;
+    background-color: #16325c;
+    color: white;
 }
-.THIS .backgroundTitleDetailsRisk{
+.THIS .backgroundTitleNewAssessment{
 	display: block;
     width: 20%;
     height: 50px;
     line-height: 50px;
     margin: auto;
-	background-color: #16325c;
-	color: white;
+    background-color: #16325c;
+    color: white;
 }
-.THIS .backgroundTitleRiskConfiguration{
-	display: block;
-    width: 20%;
-    height: 50px;
-    line-height: 50px;
-    margin: auto;
-	background-color: #16325c;
-	color: white;
+
+.THIS .dot:hover {
+    background-color: #B0C4DF;
 }
-.THIS .backgroundTitleWorkshop{
-	display: block;
-    width: 20%;
-    height: 50px;
-    line-height: 50px;
-    margin: auto;
-	background-color: #16325c;
-	color: white;
-}
-.THIS .dot:hover{
-   background-color:#B0C4DF;
-}
+
 .THIS .organisationUnit {
     height: 55px;
     width: 300px;
@@ -178,10 +264,11 @@
     display: inline-block;
     color: white;
 }
+
 .THIS .titleOrganisationUnit {
-  font-weight: 600;
-  font-size: 2em;
- /* letter-spacing: -.07em; */
-  text-align: center;
-  white-space: normal;
+    font-weight: 600;
+    font-size: 2em;
+    /* letter-spacing: -.07em; */
+    text-align: center;
+    white-space: normal;
 }

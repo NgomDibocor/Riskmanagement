@@ -1,6 +1,6 @@
 ({
     openOrmMeasureProgressionNewCmp: function(component, event, helper) {
-        component.set("v.isOpen", true);
+        
         component.set('v.idMeasure', event.getParam('idMeasure'));
 
         var action = component.get('c.getSelectOptions');
@@ -23,6 +23,33 @@
             }
         });
         $A.enqueueAction(action);
+        var actionGetPercents = component.get('c.getPorgressPercentsOfMeasure');
+        actionGetPercents.setParams({
+            "idMeasure": component.get("v.idMeasure")
+        });
+
+        actionGetPercents.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var obj = response.getReturnValue();
+                    var result = 100 * Number(Object.values(obj)[0]);
+                    if (result >= 100) {
+                        var toastEvent = $A.get('e.force:showToast');
+                        toastEvent.setParams({
+                            'message': 'The progression is already 100%',
+                            'type': 'error',
+                            'mode': 'dismissible'
+                        });
+                        toastEvent.fire();
+                    } else {
+                    	component.set("v.isOpen", true);
+                    }
+                }
+             else {
+                alert($A.get("$Label.c.orm_error"));
+            }
+        });
+        $A.enqueueAction(actionGetPercents);
     },
     onChangeStatus: function(component, event, helper) {
         component.find("status").set("v.value", event.getSource().get("v.value"));

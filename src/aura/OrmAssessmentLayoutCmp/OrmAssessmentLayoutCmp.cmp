@@ -219,7 +219,7 @@
 							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
 							                              iconName='utility:back'/>
                                    </span>
-	                               <h1 class="intro-title">{!$Label.c.orm_new_assessment}</h1>
+	                               <h1 class="intro-title"><span class="backgroundTitleNewAssessment" >{!$Label.c.orm_new_assessment}</span></h1>
 	                           </div>
 	                     </td>
 	                </tr>
@@ -232,7 +232,7 @@
 							                              onclick="{!c.navigateToListAssessment}" variant="neutral"
 							                              iconName='utility:back'/>
                                    </span>
-                                   <h1 class="intro-title">{!$Label.c.orm_show_assessment}</h1>
+                                   <h1 class="intro-title"><span class="backgroudTitleShowAssessment">{!$Label.c.orm_show_assessment}</span></h1>
 	                           </div>
 	                     </td>
 	                </tr>
@@ -1004,7 +1004,7 @@
                       <tr>
 	                     <td class="textInDiv">
 	                          <div style="margin-bottom:20px;">
-	                               <h1 class="intro-title">{!$Label.c.orm_phase_activites} </h1>
+	                               <h1 class="intro-title"><span class="backgroundTitlePhaseActivity">{!$Label.c.orm_phase_activites} </span> </h1>
 	                           </div>
 	                     </td>
 	                  </tr>
@@ -1084,7 +1084,7 @@
                      <tr>
 	                     <td >
 	                          <div style="margin-bottom:20px;">
-	                               <h1 class="intro-title"> {!$Label.c.orm_proofs_of_activity} </h1>
+	                               <h1 class="intro-title"> <span class="backgroundTitleActivityProof">{!$Label.c.orm_proofs_of_activity} </span></h1>
 	                           </div>
 	                     </td>
 	                 </tr>
@@ -1135,7 +1135,7 @@
                        <tr>
 	                       <td >
 	                          <div style="margin-bottom:20px;margin-top: 10px">
-	                               <h1 class="intro-title">{!$Label.c.orm_creation_and_associationRisk}</h1>
+	                               <h1 class="intro-title"><span class="backgroundTitleAssociationRisk">{!$Label.c.orm_creation_and_associationRisk}</span></h1>
 	                           </div>
 	                       </td>
 		               </tr>

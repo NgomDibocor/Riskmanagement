@@ -6,18 +6,48 @@
 public with sharing class Orm_TestFactory {
     /**
    * @author : David
-   * @date : 17/10/2018
+   * @date : 14/11/2018
    * @description :generer une liste d'assessment
    */
     public static List<Assessment__c> generateAssessment()
     {
-        List<Assessment__c> assessment = new List<Assessment__c>();
+        List<Assessment__c> assessmentOrg = new List<Assessment__c>();
         for(Integer i=0;i<20; i++)
         {
-            assessment.add(new Assessment__c(Name='assessment'+ i));
-        } 
-        insert assessment;
-        return assessment;
+            assessmentOrg.add(new Assessment__c(Name='assessmentOrg'+ i,orm_typeAssessment__c = 'Organisation'));
+       } 
+        insert assessmentOrg;
+        return assessmentOrg;
+    }
+     /**
+   * @author : David
+   * @date : 14/11/2018
+   * @description :generate   list of organisation
+   */
+    public static List<Account> generateOrganisation()
+    {
+        List<Account> organisations = new List<Account>();
+        for(Integer i=0;i<20; i++)
+        {
+            organisations.add(new Account(Name='organisation'+ i));
+       } 
+        insert organisations;
+        return organisations;
+    }
+        /**
+   * @author : David
+   * @date : 14/11/2018
+   * @description :generate   list of Activity
+   */
+    public static List<Assessment__c> generateActivity(String  idAssessment)
+    {
+        List<Assessment__c> activities = new List<Assessment__c>();
+        for(Integer i=0;i<20; i++)
+        {
+            activities.add(new Assessment__c(Name='activity'+i,orm_assessment__c=idAssessment,RecordTypeId = OrmActivityController.getActivityRecordTypeId()));
+       } 
+        insert activities;
+        return activities;
     }
   /**
    * @author : Salimata NGOM

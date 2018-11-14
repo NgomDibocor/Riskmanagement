@@ -65,7 +65,7 @@ public class OrmAssessmentController {
 	 * @description  this method returns all assessments
 	 * @history 
 	 * 2018-07-24 : Dibocor NGOM - Implementation
-	 */
+	 
     @AuraEnabled 
     public static List<Assessment__c> findAll(){
         List<Assessment__c> assessments = new List<Assessment__c>();
@@ -74,7 +74,7 @@ public class OrmAssessmentController {
                        order by Name desc LIMIT 6 ];
         return assessments;
     }
-    
+    */
  	/**
 	 *
 	 * @author Dibocor NGOM

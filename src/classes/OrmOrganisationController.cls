@@ -35,7 +35,7 @@ public class OrmOrganisationController {
         List<Account> accounts = new List<Account>();
         accounts = [Select Id, Name, Description, orm_region__c, orm_pays__c
                     From Account where RecordTypeId=: OrmOrganisationController.getOrganisationRecordTypeId() 
-                    order by Name desc LIMIT 8 ];
+                    order by Name];
         return accounts;
     }
     

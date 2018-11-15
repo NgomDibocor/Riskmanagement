@@ -7,12 +7,12 @@
 public class OrmAssessmentController_test {
      @testSetup
     static void setUp(){
-   		List<Account> organisations = Orm_TestFactory.generateOrganisation(); 
-   		List<Assessment__c> assessments = Orm_TestFactory.generateAssessment(); 
-   		List<Assessment__c> activities= Orm_TestFactory.generateActivity(assessments[0].Id); 
-   		List<Macro> risques = Orm_TestFactory.generateRisk(); 
-   		List<orm_assessmentRisk__c> assessmentRisk= Orm_TestFactory.generateAssessmentRisk(assessments[0].Id ,risques[0].Id);
-   		List<Assessment__c> measures = Orm_TestFactory.generateMeasure(assessmentRisk[0].Id);  
+   		List<Account> organisations = OrmAssessmentFactory.generateOrganisation(); 
+   		List<Assessment__c> assessments = OrmAssessmentFactory.generateAssessment(); 
+   		List<Assessment__c> activities= OrmAssessmentFactory.generateActivity(assessments[0].Id); 
+   		List<Macro> risques = OrmAssessmentFactory.generateRisk(); 
+   		List<orm_assessmentRisk__c> assessmentRisk= OrmAssessmentFactory.generateAssessmentRisk(assessments[0].Id ,risques[0].Id);
+   		List<Assessment__c> measures = OrmMeasureFactory.generateMeasure(assessmentRisk[0].Id);  
    		
     }
     

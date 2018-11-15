@@ -79,7 +79,21 @@ public with sharing class Orm_TestFactory {
         insert assessmentRisques;
         return assessmentRisques;
     }
-    
+   /**
+   * @author : David
+   * @date : 15/11/2018
+   * @description :generate   list of Measure
+   */
+    public static List<Assessment__c> generateMeasure(String  idAssessmentRisk )
+    {
+        List<Assessment__c> measures = new List<Assessment__c>();
+        for(Integer i=0;i<20; i++)
+        {
+            measures.add(new Assessment__c( Name= 'measure'+i,orm_measureCategorie__c ='Corrective' ,orm_assessmentRisk__c = idAssessmentRisk,RecordTypeId = OrmMeasureController.getMeasureRecordTypeId()));
+       } 
+        insert measures;
+        return measures;
+    }
   /**
    * @author : Salimata NGOM
    * @date : 15/11/2018

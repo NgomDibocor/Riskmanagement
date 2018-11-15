@@ -14,7 +14,7 @@ public with sharing class Orm_TestFactory {
         List<Assessment__c> assessmentOrg = new List<Assessment__c>();
         for(Integer i=0;i<20; i++)
         {
-            assessmentOrg.add(new Assessment__c(Name='assessmentOrg'+ i,orm_typeAssessment__c = 'Organisation'));
+            assessmentOrg.add(new Assessment__c(Name='assessmentOrg'+ i,orm_typeAssessment__c = 'Organisation', RecordTypeId = OrmAssessmentController.getOrganisationRecordTypeId()));
        } 
         insert assessmentOrg;
         return assessmentOrg;

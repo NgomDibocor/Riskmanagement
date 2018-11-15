@@ -26,11 +26,11 @@ public class OrmAssessmentController_test {
     static void add_Test(){
         String methodName='add';
         System.debug('### start- '+methodName);
-        Assessment__c assessment = new Assessment__c(Name= 'assessmentOrg', orm_typeAssessment__c= 'Organisation');
+        Assessment__c assessment = new Assessment__c(Name= 'assessmentOrg', orm_typeAssessment__c= 'Organisation',RecordTypeId = OrmAssessmentController.getOrganisationRecordTypeId());
         assessment = OrmAssessmentController.add(assessment);
         System.assertNotEquals(assessment.Id, null);
         
-         Assessment__c assessmentProject = new Assessment__c(Name= 'assessmentProject', orm_typeAssessment__c= 'Project');
+         Assessment__c assessmentProject = new Assessment__c(Name= 'assessmentProject', orm_typeAssessment__c= 'Project', RecordTypeId = OrmAssessmentController.getProjetRecordTypeId());
         assessmentProject = OrmAssessmentController.add(assessmentProject);
         System.assertNotEquals(assessmentProject.Id, null);
         System.debug('### end- '+methodName);

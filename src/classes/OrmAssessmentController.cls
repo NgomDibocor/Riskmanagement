@@ -133,20 +133,6 @@ public class OrmAssessmentController {
     public static List<Assessment__c> findAllActiviteByAssessment(string idAssessment){
         return OrmActivityController.findAllActivity();
     }
-    
-    /**
-	 *
-	 * @author Abdoulaye Diop
-	 * @version 1.0
-	 * @description  this method returns all causes of Assessment
-	 * @history 
-	 * 2018-07-24 : Abdoulaye Diop - Implementation
-	 */
-   /* @AuraEnabled
-    public static List<Macro> findAllCauseByAssessment(string idAssessment){
-    	return OrmCauseController.findAll();
-    }
-    */
     /**
 	 *
 	 * @author Dibocor NGOM

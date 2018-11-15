@@ -5,8 +5,22 @@
  */
 @isTest
 private class OrmWorkshopControllerTest {
+
+	  @testSetup
+    static void setUp(){
+	 Orm_TestFactory.generateWorkshop();      
+    }
 @isTest
-	static void findWorkshopByAssessment_TEST() {
+	static void addWorkShop_TEST() {
+	List<Contract>	listworkshop=[select Id, Name,RecordTypeId from Contract];
+		String thisMethod = '##### addWorkShop_TEST';
+        System.debug(thisMethod + ' - START');
+        //start test implementation
+        //get list workshop from TestFactory
+        for( Contract singleWorkshop: listWorkshop){
+        	OrmWorkshopController.addWorkShop(singleWorkshop);
+        }
+        System.debug(thisMethod + ' - STOP');
 		
 	}
     

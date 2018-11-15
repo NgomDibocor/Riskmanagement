@@ -130,8 +130,26 @@ public class OrmAssessmentController_test {
         String methodName='ifListNotEmptyGetIdFirstAssessmentRisk';
         System.debug('### start- '+methodName);
         Id idAssessment = [SELECT Id FROM Assessment__c limit 1].Id;
+        Id idAssessment2 = [SELECT Id FROM orm_assessmentRisk__c limit 1].Id;
         String assessmentRisk = OrmAssessmentController.ifListNotEmptyGetIdFirstAssessmentRisk(idAssessment);
+         String assessmentRisk2 = OrmAssessmentController.ifListNotEmptyGetIdFirstAssessmentRisk(idAssessment2);
         System.assertNotEquals(assessmentRisk, null);
+         System.assertNotEquals(assessmentRisk2, null);
+        System.debug('### end- '+methodName);
+    }
+    /**
+     * @author: david
+     * @date: Creation:  15/11/2018
+     * @date: Modification:  15/11/2018
+     * @description: methode de test ifListNotEmptyGetIdFirstMeasure
+     */
+    @isTest
+    static void ifListNotEmptyGetIdFirstMeasure_Test(){
+        String methodName='ifListNotEmptyGetIdFirstMeasure';
+        System.debug('### start- '+methodName);
+        Id assessmentRisk = [SELECT Id FROM orm_assessmentRisk__c limit 1].Id;
+        String measure = OrmAssessmentController.ifListNotEmptyGetIdFirstMeasure(assessmentRisk);
+       System.assertNotEquals(measure, null);
         System.debug('### end- '+methodName);
     }
 }

@@ -142,11 +142,11 @@ public class OrmAssessmentController {
 	 * @history 
 	 * 2018-07-24 : Abdoulaye Diop - Implementation
 	 */
-    @AuraEnabled
+   /* @AuraEnabled
     public static List<Macro> findAllCauseByAssessment(string idAssessment){
     	return OrmCauseController.findAll();
     }
-    
+    */
     /**
 	 *
 	 * @author Dibocor NGOM

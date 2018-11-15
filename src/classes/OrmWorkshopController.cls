@@ -129,7 +129,7 @@ public with sharing class OrmWorkshopController {
  *
  * @author Salimata NGOM
  * @version 1.0
- * @description  method for remove all assumptions checked
+ * @description  method for remove all workshop checked
  * @history 
  * 2018-09-05 : Salimata NGOM - Implementation
  */

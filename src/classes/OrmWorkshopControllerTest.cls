@@ -7,10 +7,10 @@
 private class OrmWorkshopControllerTest {
 
 	  @testSetup
-    static void setUp(){
-    	List<Assessment__c> listAssessment=Orm_TestFactory.generateAssessment();  
-	     List<Account> listOrganisation=Orm_TestFactory.generateOrganisation();
-	     Orm_TestFactory.generateWorkshop(listAssessment[0].Id,listOrganisation[0].Id);  
+    static void setup(){
+    	List<Assessment__c> listAssessment=OrmAssessmentFactory.generateAssessment();  
+	     List<Account> listOrganisation=OrmAssessmentFactory.generateOrganisation();
+	     OrmWorkShopFactory.generateWorkshop(listAssessment[0].Id,listOrganisation[0].Id);  
     }
      /**
      * @author: Salimata NGOM
@@ -91,11 +91,33 @@ private class OrmWorkshopControllerTest {
      */
 	    @isTest
 	static void findAllContactWorkshop_TEST() {
-	List<Contract>	workshop=[select Id, Name,RecordTypeId from Contract where RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId() ];
+	List<Contract>	workshop=[select Id, Name,RecordTypeId from Contract where RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId()];
 		String thisMethod = '##### findAllContactWorkshop_TEST';
         System.debug(thisMethod + ' - START');
         //start test implementation
         	OrmWorkshopController.findAllContactWorkshop(workshop[0].Id);
+        System.debug(thisMethod + ' - STOP');
+	}
+	 /**
+     * @author: Salimata NGOM
+     * @date: Creation 15/11/2018
+     * @description: cover deleteRecordWorkshop test method in the OrmWorkshopController
+     */
+	    @isTest
+	static void deleteRecordWorkshop_TEST() {
+	List<Contract>	listworkshop=[select Id, Name,RecordTypeId from Contract where RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId()];
+	List <String> listIdworkshop= new List<String> ();
+	for(Contract workshop:listworkshop){
+		listIdworkshop.add(workshop.Id);
+	}
+	// add string different to string workshop for produce Operation failed
+	listIdworkshop.add('11');
+		String thisMethod = '##### deleteRecordWorkshop_TEST';
+        System.debug(thisMethod + ' - START');
+        //start test implementation
+        	OrmWorkshopController.deleteRecordWorkshop(listIdworkshop);
+        	List <String> listIdworkshopEmpty= new List<String> ();
+        	   	OrmWorkshopController.deleteRecordWorkshop(listIdworkshopEmpty);
         System.debug(thisMethod + ' - STOP');
 	}
 }

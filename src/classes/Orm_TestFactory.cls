@@ -29,7 +29,7 @@ public with sharing class Orm_TestFactory {
         List<Account> organisations = new List<Account>();
         for(Integer i=0;i<20; i++)
         {
-            organisations.add(new Account(Name='organisation'+ i));
+            organisations.add(new Account(Name='organisation'+ i,RecordTypeId=OrmOrganisationController.getOrganisationRecordTypeId()));
        } 
         insert organisations;
         return organisations;
@@ -82,14 +82,16 @@ public with sharing class Orm_TestFactory {
     
   /**
    * @author : Salimata NGOM
-   * @date : 30/10/2018
+   * @date : 15/11/2018
    * @description :generate list of workshop
    */
-    public static List<Contract> generateWorkshop(){
+    public static List<Contract> generateWorkshop(String idAssessment,String idOrganisation){
+    	
     	List<Contract> listWorkshop=new List<Contract> ();
     	 for(Integer i=0;i<20; i++)
         {
-        	listWorkshop.add (new Contract(Name='workshop'+i,RecordTypeId=OrmWorkshopController.getWorkshopRecordTypeId()));
+        	listWorkshop.add (new Contract(Name='workshop'+i,orm_assessment__c=idAssessment,AccountId=idOrganisation,
+        	RecordTypeId=OrmWorkshopController.getWorkshopRecordTypeId()));
         }
         insert listWorkshop;
         return listWorkshop;

@@ -10,6 +10,8 @@ public class OrmAssessmentController_test {
    		List<Account> organisations = Orm_TestFactory.generateOrganisation(); 
    		List<Assessment__c> assessments = Orm_TestFactory.generateAssessment(); 
    		List<Assessment__c> activities= Orm_TestFactory.generateActivity(assessments[0].Id); 
+   		List<Macro> risques = Orm_TestFactory.generateRisk(); 
+   		List<orm_assessmentRisk__c> assessmentRisk= Orm_TestFactory.generateAssessmentRisk(assessments[0].Id ,risques[0].Id); 
    		
     }
     
@@ -100,6 +102,36 @@ public class OrmAssessmentController_test {
         String methodName='getAssessment';
         System.debug('### start- '+methodName);
         System.assertNotEquals(OrmAssessmentController.getUsers().size(), 0);
+        System.debug('### end- '+methodName);
+    }
+     /**
+     * @author: david
+     * @date: Creation:  14/11/2018
+     * @date: Modification:  14/11/2018
+     * @description: methode de test getUsers
+     */
+    @isTest
+    static void getIdFirstAssessmentRisk_Test(){
+        String methodName='getIdFirstAssessmentRisk';
+        System.debug('### start- '+methodName);
+        Id idAssessment = [SELECT Id FROM Assessment__c limit 1].Id;
+        String assessmentRisk = OrmAssessmentController.getIdFirstAssessmentRisk(idAssessment);
+        System.assertNotEquals(assessmentRisk, null);
+        System.debug('### end- '+methodName);
+    }
+     /**
+     * @author: david
+     * @date: Creation:  14/11/2018
+     * @date: Modification:  14/11/2018
+     * @description: methode de test getUsers
+     */
+    @isTest
+    static void ifListNotEmptyGetIdFirstAssessmentRisk_Test(){
+        String methodName='ifListNotEmptyGetIdFirstAssessmentRisk';
+        System.debug('### start- '+methodName);
+        Id idAssessment = [SELECT Id FROM Assessment__c limit 1].Id;
+        String assessmentRisk = OrmAssessmentController.ifListNotEmptyGetIdFirstAssessmentRisk(idAssessment);
+        System.assertNotEquals(assessmentRisk, null);
         System.debug('### end- '+methodName);
     }
 }

@@ -49,6 +49,37 @@ public with sharing class Orm_TestFactory {
         insert activities;
         return activities;
     }
+   /**
+   * @author : David
+   * @date : 15/11/2018
+   * @description :generate   list of Risk
+   */
+    public static List<Macro> generateRisk()
+    {
+        List<Macro> risques = new List<Macro>();
+        for(Integer i=0;i<20; i++)
+        {
+            risques.add(new Macro(Name='risk'+i,orm_categorieRisk__c='Budget Risk',RecordTypeId=OrmRiskController.getRiskRecordTypeId()));
+       } 
+        insert risques;
+        return risques;
+    }
+       /**
+   * @author : David
+   * @date : 15/11/2018
+   * @description :generate   list of AssessmentRisk
+   */
+    public static List<orm_assessmentRisk__c> generateAssessmentRisk(String  idAssessment , String idRisk)
+    {
+        List<orm_assessmentRisk__c> assessmentRisques = new List<orm_assessmentRisk__c>();
+        for(Integer i=0;i<20; i++)
+        {
+            assessmentRisques.add(new orm_assessmentRisk__c(orm_Risk__c = idRisk ,orm_assessment__c = idAssessment));
+       } 
+        insert assessmentRisques;
+        return assessmentRisques;
+    }
+    
   /**
    * @author : Salimata NGOM
    * @date : 30/10/2018

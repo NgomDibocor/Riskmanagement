@@ -11,7 +11,8 @@ public class OrmAssessmentController_test {
    		List<Assessment__c> assessments = Orm_TestFactory.generateAssessment(); 
    		List<Assessment__c> activities= Orm_TestFactory.generateActivity(assessments[0].Id); 
    		List<Macro> risques = Orm_TestFactory.generateRisk(); 
-   		List<orm_assessmentRisk__c> assessmentRisk= Orm_TestFactory.generateAssessmentRisk(assessments[0].Id ,risques[0].Id); 
+   		List<orm_assessmentRisk__c> assessmentRisk= Orm_TestFactory.generateAssessmentRisk(assessments[0].Id ,risques[0].Id);
+   		List<Assessment__c> measures = Orm_TestFactory.generateMeasure(assessmentRisk[0].Id);  
    		
     }
     
@@ -25,11 +26,11 @@ public class OrmAssessmentController_test {
     static void add_Test(){
         String methodName='add';
         System.debug('### start- '+methodName);
-        Assessment__c assessment = new Assessment__c(Name= 'assessmentOrg', orm_typeAssessment__c= 'Organisation');
+        Assessment__c assessment = new Assessment__c(Name= 'assessmentOrg', orm_typeAssessment__c= 'Organisation',RecordTypeId = OrmAssessmentController.getOrganisationRecordTypeId());
         assessment = OrmAssessmentController.add(assessment);
         System.assertNotEquals(assessment.Id, null);
         
-         Assessment__c assessmentProject = new Assessment__c(Name= 'assessmentProject', orm_typeAssessment__c= 'Project');
+         Assessment__c assessmentProject = new Assessment__c(Name= 'assessmentProject', orm_typeAssessment__c= 'Project', RecordTypeId = OrmAssessmentController.getProjetRecordTypeId());
         assessmentProject = OrmAssessmentController.add(assessmentProject);
         System.assertNotEquals(assessmentProject.Id, null);
         System.debug('### end- '+methodName);
@@ -130,11 +131,10 @@ public class OrmAssessmentController_test {
         String methodName='ifListNotEmptyGetIdFirstAssessmentRisk';
         System.debug('### start- '+methodName);
         Id idAssessment = [SELECT Id FROM Assessment__c limit 1].Id;
-        Id idAssessment2 = [SELECT Id FROM orm_assessmentRisk__c limit 1].Id;
+        Id idAssessment2 = null;
         String assessmentRisk = OrmAssessmentController.ifListNotEmptyGetIdFirstAssessmentRisk(idAssessment);
          String assessmentRisk2 = OrmAssessmentController.ifListNotEmptyGetIdFirstAssessmentRisk(idAssessment2);
         System.assertNotEquals(assessmentRisk, null);
-         System.assertNotEquals(assessmentRisk2, null);
         System.debug('### end- '+methodName);
     }
     /**
@@ -149,7 +149,7 @@ public class OrmAssessmentController_test {
         System.debug('### start- '+methodName);
         Id assessmentRisk = [SELECT Id FROM orm_assessmentRisk__c limit 1].Id;
         String measure = OrmAssessmentController.ifListNotEmptyGetIdFirstMeasure(assessmentRisk);
-       System.assertNotEquals(measure, null);
+        System.assertNotEquals(measure, null);
         System.debug('### end- '+methodName);
     }
 }

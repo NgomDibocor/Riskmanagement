@@ -65,22 +65,7 @@ public with sharing class OrmAssumptionController {
 	  List < String > oErrorMsg = new List < String > ();
 	  // Query Records for delete where id in lstRecordId [which is pass from client side controller] 
 	  List <Macro> lstDeleteRec = [select Id from Macro where id IN: lstRecordId and RecordTypeId=:OrmAssumptionController.getAssumptionRecordTypeId()];
-	 
-	  Database.DeleteResult[] DR_Dels = Database.delete(lstDeleteRec, false);
-	  // Iterate through each returned result
-	  for (Database.DeleteResult dr: DR_Dels) {
-	   if (dr.isSuccess()) {
-	      system.debug('successful delete contact');
-	     // Operation was successful
-	   } else {
-	    // Operation failed, so get all errors   
-	    oErrorMsg.add('');
-	    for (Database.Error err: dr.getErrors()) {
-	     // add Error message to oErrorMsg list and return the list
-	     oErrorMsg.add(err.getStatusCode() + ': ' + err.getMessage());
-	    }
-	   }
-	  }
+	  delete lstDeleteRec;
 	  return oErrorMsg;
 	 
  }

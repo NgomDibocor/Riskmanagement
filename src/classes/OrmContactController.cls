@@ -88,8 +88,10 @@ public with sharing class OrmContactController {
 		List<Contact> contactDB= new List<Contact>();
 		Contact newcontact=new Contact();
 		Integer contactfailed=0;
+        System.debug('email='+item.email);
 		contactDB=[select id, Email from Contact where Email=:item.email and RecordTypeId=:OrmContactController.getContactRecordTypeId()];
-		if(contactDB.size()>0){
+		System.debug('size='+contactDB);
+        if(contactDB.size()>0){
 			contactfailed=1;
 				
 		}else
@@ -106,28 +108,7 @@ public with sharing class OrmContactController {
      return new Map<String, Object>{'contactAdded' => newcontact, 'contactfailed' => contactfailed};
 
 }       
-       
-	
-/**
- * @author Salimata NGOM
- * @version 1.0
- * @description method to associate contact to workshop
- * @history 
- * 2018-08-07: Salimata NGOM - Implementation
- */
-  @AuraEnabled
-	public static List<orm_ContactWorkshop__c> addWorkShopContact(List<orm_ContactWorkshop__c> items){ 
-		List<orm_ContactWorkshop__c> listcontactworkshop  = new List<orm_ContactWorkshop__c>();
-		for (orm_ContactWorkshop__c contactworkshop:items){
-			contactworkshop.RecordTypeId = OrmContactController.getContactWorkshopRecordTypeId();
-			contactworkshop.orm_dateAjout__c=Date.today();
-			listcontactworkshop.add(contactworkshop);
-		}
-			insert listcontactworkshop;
-		return listcontactworkshop;
-		       
-		
-	}
+
 	/**
  * @author Salimata NGOM
  * @version 1.0
@@ -164,7 +145,7 @@ public with sharing class OrmContactController {
         return allContact;
     }
     
-    /**
+  /**
  * @author Salimata NGOM
  * @version 1.0
  * @description method to dissociate contacts  with workshop

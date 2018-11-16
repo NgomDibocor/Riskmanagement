@@ -38,12 +38,10 @@ public with sharing class OrmImpactController {
     */
      @AuraEnabled
     public static Macro add (Macro item){
-        if(item!=null){
            item.RecordTypeId=OrmImpactController.getImpactRecordTypeId();
             upsert item;
             return item;
-        }   
-        return item;
+       
         
     }
     /**
@@ -111,21 +109,7 @@ public with sharing class OrmImpactController {
   		// Query Records for delete where id in lstRecordId [which is pass from client side controller]
   		List<Macro> impacts = [SELECT Id FROM Macro WHERE Id IN :impactIds AND 
   			RecordTypeId =:OrmImpactController.getImpactRecordTypeId()];
-  		Database.DeleteResult[] drDels = Database.delete(impacts, false);
-  		// Iterate through each returned result
-  		for (Database.DeleteResult dr: drDels) {
-	   		if (dr.isSuccess()) {
-	      		system.debug('successful delete contact');
-	     		// Operation was successful
-	   		} else {
-	    		// Operation failed, so get all errors   
-	    		oErrorMsg.add('');
-	    		for (Database.Error err: dr.getErrors()) {
-	     			// add Error message to oErrorMsg list and return the list
-	     			oErrorMsg.add(err.getStatusCode() + ': ' + err.getMessage());
-	    		}
-	   		}
-	  	}
+  		delete impacts;
 	  	return oErrorMsg;  		
 	}
     

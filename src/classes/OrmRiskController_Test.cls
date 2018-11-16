@@ -110,4 +110,5 @@ public with sharing class OrmRiskController_Test {
         System.assertEquals(OrmRiskController.findAllAssessmentRisk(assessmentId).size(), size-1);
         System.debug('### end- '+methodName);
     }
+  
 }

@@ -24,7 +24,7 @@ public with sharing class OrmMeasureFactory {
         List<Product2> measuresProgress = new List<Product2>();
         for(Integer i=0;i<20; i++)
         {
-            measuresProgress.add(new Product2( Name= 'measureProgress'+i,Family ='draft' ,orm_measures__c = idMeasure,RecordTypeId = OrmMeasureController.getMeasureProgressionRecordTypeId()));
+            measuresProgress.add(new Product2( Name= 'measureProgress'+i,Family ='draft' ,orm_measures__c = idMeasure,RecordTypeId = OrmMeasureController.getMeasureProgressionRecordTypeId(), orm_poucentageProgression__c =10));
        } 
         insert measuresProgress;
         return measuresProgress;

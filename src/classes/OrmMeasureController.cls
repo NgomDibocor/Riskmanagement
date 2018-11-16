@@ -344,6 +344,7 @@ public with sharing class OrmMeasureController {
     public static AggregateResult getPorgressPercentsOfMeasure(String idMeasure){
         AggregateResult groupedResults = [Select SUM(orm_poucentageProgression__c) sumPercent 
                     From Product2 where orm_measures__c =: idMeasure];
+        System.debug('groupedResults'+groupedResults.get('sumPercent'));
         return groupedResults;
         
     }

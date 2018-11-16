@@ -66,7 +66,7 @@ public with sharing class OrmCauseController {
      * @author: Laye
      * @dateCreation: 03/08/2018
      * @description: method for filtering cause related to an AssessmentRisk
-    */
+   
     @AuraEnabled 
     public static List<Macro> filter(String key, String idAssessmentRisk) {
     	
@@ -74,7 +74,7 @@ public with sharing class OrmCauseController {
                                         (Name,Description WHERE Id=: idAssessmentRisk AND 
                                         	RecordTypeId =: OrmCauseController.getCauseRecordTypeId() )][0];                                
     }
-    
+     */
     /**
 	 * @author: Laye
 	 * @date: Creation: 13/08/2018
@@ -106,10 +106,10 @@ public with sharing class OrmCauseController {
 	  	return oErrorMsg;  		
 	}
 
-     @AuraEnabled
+    /* @AuraEnabled
     public static List <Macro> updateCauseRecords(List<Macro> causes) {
         update causes;
         return causes;
     }
-    
+    */
 }

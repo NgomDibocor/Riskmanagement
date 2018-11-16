@@ -12,6 +12,7 @@ public  class OrmMeasureController_test {
    		List<orm_assessmentRisk__c> assessmentRisk= OrmAssessmentFactory.generateAssessmentRisk(assessments[0].Id ,risques[0].Id);
    		List<Assessment__c> measures = OrmMeasureFactory.generateMeasure(assessmentRisk[0].Id);  
    		List<Product2> measuresProgress = OrmMeasureFactory.generateMeasureProgress(measures[0].Id); 
+   		List<Account> organisations = OrmAssessmentFactory.generateOrganisation();
     }
      /**
      * @author: david
@@ -93,7 +94,7 @@ public  class OrmMeasureController_test {
      * @description: methode de test getAssessment
      */
     @isTest
-    static void getOrganisations_Test(){
+    static void getAssessment_Test(){
         String methodName='getAssessment';
         System.debug('### start- '+methodName);
         Assessment__c assessment = [SELECT Id FROM Assessment__c limit 1];
@@ -239,6 +240,61 @@ public  class OrmMeasureController_test {
          String measure = OrmMeasureController.ifListNotEmptyGetIdFirstMeasure(idAssessmentRisk);
          String measure2 = OrmMeasureController.ifListNotEmptyGetIdFirstMeasure(idAssessmentRisk2);
         System.assertNotEquals(measure, null);
+        System.debug('### end- '+methodName);
+    }
+    /**
+     * @author: david
+     * @date: Creation:  15/11/2018
+     * @date: Modification:  15/11/2018
+     * @description: methode de test deleteMeasureProgress
+     */
+    @isTest
+    static void deleteMeasureProgress_Test(){
+        String methodName='deleteMeasureProgress';
+        System.debug('### start- '+methodName);
+        Assessment__c measure = [SELECT Id FROM Assessment__c where   RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() limit 1];
+        Product2 measureProgress = [SELECT Id FROM Product2 where orm_measures__c =: measure.Id and  RecordTypeId =: OrmMeasureController.getMeasureProgressionRecordTypeId() limit 1];
+        List<String> measureProgressIds = new List<String>();
+        			measureProgressIds.add(measureProgress.Id);
+        integer size = OrmMeasureController.getAllMeasuresProgressionByMeasure(measure.Id).size();
+        OrmMeasureController.deleteMeasureProgress(measureProgressIds);
+        System.assertEquals(OrmMeasureController.getAllMeasuresProgressionByMeasure(measure.Id).size(), size-1);
+        /* test if measureIds is null*/
+        List<String> measureProgressIds2 = new List<String>();
+                     measureProgressIds2.add('abc');
+        OrmMeasureController.deleteMeasureProgress(measureProgressIds2);
+        System.assertEquals(OrmMeasureController.getAllMeasuresProgressionByMeasure(measure.Id).size(), size-1);
+        System.debug('### end- '+methodName);
+    }
+    /**
+     * @author: david
+     * @date: Creation:  15/11/2018
+     * @date: Modification:  15/11/2018
+     * @description: methode de test getOrganisations
+     */
+    @isTest
+    static void getOrganisations_Test(){
+        String methodName='getOrganisations';
+        System.debug('### start- '+methodName);
+        Test.startTest();
+        System.assertNotEquals(OrmMeasureController.getOrganisations().size(), 0);
+        Test.stopTest();
+        System.debug('### end- '+methodName);
+    }
+    /**
+     * @author: david
+     * @date: Creation:  15/11/2018
+     * @date: Modification:  15/11/2018
+     * @description: methode de test getOrganisations
+     */
+    @isTest
+    static void getPorgressPercentsOfMeasure_Test(){
+        String methodName='getPorgressPercentsOfMeasure';
+        System.debug('### start- '+methodName);
+        Test.startTest();
+        Assessment__c measure = [SELECT Id FROM Assessment__c where   RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() limit 1];
+        System.assertEquals(OrmMeasureController.getPorgressPercentsOfMeasure(measure.Id).get('sumPercent'), 200);
+        Test.stopTest();
         System.debug('### end- '+methodName);
     }
 }

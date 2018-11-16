@@ -1,21 +1,4 @@
 public with sharing class OrmActionPlanController {
-    public static Id getAssessmentRiskRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.orm_assessmentRisk__c.getRecordTypeInfosByName()
-                  .get('orm RT asssessmentRisk').getRecordTypeId();
-        return recordTypeId;
-    }
-    
-    public static Id getCauseRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
-                  .get('RT cause').getRecordTypeId();
-        return RecordTypeId;
-    }
-    
-    public static Id getImpactRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
-                  .get('RT impact').getRecordTypeId();
-        return RecordTypeId;
-    }
     public static Id getMeasureRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
                   .get('RT Measure').getRecordTypeId();

@@ -159,11 +159,6 @@ public  class OrmMeasureController_test {
         integer size = OrmMeasureController.getAllMeasures().size();
         OrmMeasureController.deleteMeasures(measureIds);
         System.assertEquals(OrmMeasureController.getAllMeasures().size(), size-1);
-        /* test if measureIds is null*/
-        List<String> measureIds2 = new List<String>();
-                     measureIds2.add('abc');
-        OrmMeasureController.deleteMeasures(measureIds2);
-        System.assertEquals(OrmMeasureController.getAllMeasures().size(), size-1);
         System.debug('### end- '+methodName);
     }
      /**

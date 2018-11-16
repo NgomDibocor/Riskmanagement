@@ -88,21 +88,7 @@ public with sharing class OrmCauseController {
   		// Query Records for delete where id in lstRecordId [which is pass from client side controller]
   		List<Macro> causes = [SELECT Id FROM Macro WHERE Id IN :causeIds AND 
   			RecordTypeId =:OrmCauseController.getCauseRecordTypeId()];
-  		Database.DeleteResult[] drDels = Database.delete(causes, false);
-  		// Iterate through each returned result
-  		for (Database.DeleteResult dr: drDels) {
-	   		if (dr.isSuccess()) {
-	      		system.debug('successful delete contact');
-	     		// Operation was successful
-	   		} else {
-	    		// Operation failed, so get all errors   
-	    		oErrorMsg.add('');
-	    		for (Database.Error err: dr.getErrors()) {
-	     			// add Error message to oErrorMsg list and return the list
-	     			oErrorMsg.add(err.getStatusCode() + ': ' + err.getMessage());
-	    		}
-	   		}
-	  	}
+  		delete causes;
 	  	return oErrorMsg;  		
 	}
 

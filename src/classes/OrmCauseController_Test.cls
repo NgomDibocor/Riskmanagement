@@ -90,11 +90,7 @@ public class OrmCauseController_Test {
         integer size = OrmCauseController.findAll().size();
         OrmCauseController.deleteCauses(causeIds);
         System.assertEquals( OrmCauseController.findAll().size(), size-1);
-        /* test if measureIds is null*/
-        List<String> causeIds2 = new List<String>();
-                     causeIds2.add('abc');
-        OrmCauseController.deleteCauses(causeIds2);
-        System.assertEquals(OrmCauseController.findAll().size(), size-1);
+     
         System.debug('### end- '+methodName);
     }
      

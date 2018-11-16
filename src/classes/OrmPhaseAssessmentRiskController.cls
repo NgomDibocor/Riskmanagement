@@ -47,21 +47,7 @@ public with sharing class OrmPhaseAssessmentRiskController {
   		List <String> oErrorMsg = new List <String>();
   		// Query Records for delete where id in lstRecordId [which is pass from client side controller]
   		List<Macro> phases = [SELECT Id FROM Macro WHERE Id IN :phaseIds AND RecordTypeId =:OrmPhaseAssessmentRiskController.getPhaseRecordTypeId()];
-  		Database.DeleteResult[] drDels = Database.delete(phases, false);
-  		// Iterate through each returned result
-  		for (Database.DeleteResult dr: drDels) {
-	   		if (dr.isSuccess()) {
-	      		system.debug('successful delete contact');
-	     		// Operation was successful
-	   		} else {
-	    		// Operation failed, so get all errors   
-	    		oErrorMsg.add('');
-	    		for (Database.Error err: dr.getErrors()) {
-	     			// add Error message to oErrorMsg list and return the list
-	     			oErrorMsg.add(err.getStatusCode() + ': ' + err.getMessage());
-	    		}
-	   		}
-	  	}
+  	    delete phases;
 	  	return oErrorMsg;  		
 	}
 }

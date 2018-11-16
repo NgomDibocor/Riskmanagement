@@ -14,4 +14,19 @@ public with sharing class OrmPhaseFactory {
         insert phases;
         return phases;
     }
+      /**
+   * @author : David
+   * @date : 16/11/2018
+   * @description :generate   list of phaseAssessmentRisk
+   */
+    public static List<Macro> generatePhaseAssessmentRisk(String  idAssessmentRisk )
+    {
+        List<Macro> phases = new List<Macro>();
+        for(Integer i=0;i<20; i++)
+        {
+            phases.add(new Macro( Name= 'phase'+i,orm_assessmentRisk__c = idAssessmentRisk,RecordTypeId = OrmPhaseAssessmentRiskController.getPhaseRecordTypeId()));
+       } 
+        insert phases;
+        return phases;
+    }
 }

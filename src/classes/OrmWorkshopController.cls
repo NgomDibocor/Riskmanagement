@@ -142,7 +142,6 @@ public with sharing class OrmWorkshopController {
   List <Contract> lstDeleteRec = [select Id from Contract where id IN: lstRecordId and RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId()];
   
   // delte contact list with Database.DeleteResult[] database class.
-  // It deletes some queried contacts using <samp class="codeph apex_code">Database.<span class="statement">delete</span></samp> 
   // with a false second parameter to allow partial processing of records on failure.
   // Next, it iterates through the results to determine whether the operation was successful or not
   // for each record. and check if delete contact successful so print msg on debug, 
@@ -151,7 +150,7 @@ public with sharing class OrmWorkshopController {
   // Iterate through each returned result
   for (Database.DeleteResult dr: DR_Dels) {
    if (dr.isSuccess()) {
-      system.debug('successful delete contact');
+      system.debug('successful delete workhop');
      // Operation was successful
    } else {
     // Operation failed, so get all errors   

@@ -101,12 +101,10 @@ public with sharing class OrmRiskController {
     */
      @AuraEnabled
     public static Macro add (Macro item){
-        if(item!=null){
+      
            item.RecordTypeId=OrmRiskController.getRiskRecordTypeId();
             upsert item;
            return item;
-        }   
-        return item;
         
     }
      /*

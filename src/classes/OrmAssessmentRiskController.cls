@@ -163,12 +163,8 @@ public with sharing class OrmAssessmentRiskController {
 	 */
     @AuraEnabled
     public static orm_assessmentRisk__c add (orm_assessmentRisk__c item){
-        if(item!=null){
             upsert item;
             return item;
-        }   
-        return item;
-        
     }
     
      /**

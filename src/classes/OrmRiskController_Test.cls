@@ -110,5 +110,81 @@ public with sharing class OrmRiskController_Test {
         System.assertEquals(OrmRiskController.findAllAssessmentRisk(assessmentId).size(), size-1);
         System.debug('### end- '+methodName);
     }
-  
+     /**
+     * @author: david
+     * @date: Creation:  19/11/2018
+     * @date: Modification:  19/11/2018
+     * @description: methode de test addAssessmentRisks
+     */
+    @isTest
+    static void addAssessmentRisks_Test(){
+        String methodName='addAssessmentRisks';
+        System.debug('### start- '+methodName);
+        Id assessmentId = [SELECT Id FROM Assessment__c limit 1].Id;
+        Id risque = [SELECT Id FROM Macro where RecordTypeId =: OrmRiskController.getRiskRecordTypeId() limit 1].Id;
+        orm_assessmentRisk__c assessmentRisk = new orm_assessmentRisk__c( orm_Risk__c = risque ,orm_assessment__c = assessmentId);
+        List<orm_assessmentRisk__c> assessmentRiskIds = new List<orm_assessmentRisk__c>();
+        			assessmentRiskIds.add(assessmentRisk);
+        integer size = OrmRiskController.findAllAssessmentRisk(assessmentId).size();
+        OrmRiskController.addAssessmentRisks(assessmentRiskIds);
+        System.assertEquals(OrmRiskController.findAllAssessmentRisk(assessmentId).size(), size+1);
+        System.debug('### end- '+methodName);
+    }
+      /**
+     * @author: david
+     * @date: Creation:  19/11/2018
+     * @date: Modification:  19/11/2018
+     * @description: methode de test getSelectOptions
+     */
+    @isTest
+    static void getSelectOptions_Test(){
+        String methodName='getSelectOptions';
+        System.debug('### start- '+methodName);
+        Macro risque = new Macro();
+        List<String> lstPick = OrmRiskController.getSelectOptions(risque,'orm_categorieRisk__c');
+        System.assertNotEquals(lstPick.size(), 0);
+        System.debug('### end- '+methodName);
+    }
+    /**
+     * @author: david
+     * @date: Creation:  16/11/2018
+     * @date: Modification:  16/11/2018
+     * @description: methode de test assessmentRiskId
+     */
+    @isTest
+    static void assessmentRiskId_Test(){
+        String methodName='assessmentRiskId';
+        System.debug('### start- '+methodName);
+        Id assessmentId = [SELECT Id FROM Assessment__c limit 1].Id;
+        Id assessmentRiskId = [SELECT Id FROM orm_assessmentRisk__c where orm_assessment__c=:assessmentId  limit 1].Id;
+        OrmRiskController.findAssessmentRisk(assessmentRiskId);
+        System.debug('### end- '+methodName);
+    }
+	 /**
+     * @author: david
+     * @date: Creation:  19/11/2018
+     * @date: Modification:  1ç/11/2018
+     * @description: methode de test getUsers
+     */
+    @isTest
+    static void getUsers_Test(){
+        String methodName='getAssessment';
+        System.debug('### start- '+methodName);
+        System.assertNotEquals(OrmRiskController.getUsers().size(), 0);
+        System.debug('### end- '+methodName);
+    }
+	    /**
+     * @author: david
+     * @date: Creation:  19/11/2018
+     * @date: Modification:19/11/2018
+     * @description: methode de test getAssessment
+     */
+    @isTest
+    static void getAssessment_Test(){
+        String methodName='getAssessment';
+        System.debug('### start- '+methodName);
+        Id assessmentId = [SELECT Id FROM Assessment__c limit 1].Id;
+        OrmRiskController.getAssessment(assessmentId);
+        System.debug('### end- '+methodName);
+    }
 }

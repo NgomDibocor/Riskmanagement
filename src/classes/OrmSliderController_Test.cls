@@ -10,6 +10,7 @@ public with sharing class OrmSliderController_Test {
     	List<Assessment__c> assessments = OrmAssessmentFactory.generateAssessment();  
    		List<Macro> probabilities = OrmSliderFactory.generateProbability(assessments[0].Id); 
    		List<Macro> HsseImpacts = OrmSliderFactory.generateHsseImpacts(assessments[0].Id); 
+   		List<Macro> BusinessImpacts = OrmSliderFactory.generateBusinessImpacts(assessments[0].Id);
     }
          /**
      * @author: david

@@ -50,7 +50,6 @@ private class  OrmContactController_Test {
      * @date: Creation 16/11/2018
      * @description: cover add test method in the OrmContactController
      */
-	   // @isTest
 	static testmethod void add_TEST1() {
         List <Contact> listContacts=new List<Contact>();
         listContacts=[select Id, Name,Email,orm_organisation__c from Contact where RecordTypeId=:OrmContactController.getContactRecordTypeId()];
@@ -72,7 +71,6 @@ private class  OrmContactController_Test {
      * @date: Creation 16/11/2018
      * @description: cover add test method in the OrmContactController
      */
-	   // @isTest
 	static testmethod void add_TEST2() {
       
         List <Contact> listContacts=new List<Contact>();
@@ -95,7 +93,6 @@ private class  OrmContactController_Test {
      * @date: Creation 16/11/2018
      * @description: cover addOneContactWorkShop test method in the OrmContactController
      */
-	   // @isTest
 	static testmethod void addOneContactWorkShop_Test() {
         	orm_ContactWorkshop__c contactworkshop  = new orm_ContactWorkshop__c();
          List <Contact> listContacts=new List<Contact>();
@@ -117,7 +114,6 @@ private class  OrmContactController_Test {
      * @date: Creation 16/11/2018
      * @description: cover findAllContactWorkShop test method in the OrmContactController
      */
-	   // @isTest
 	static testmethod void findAllContactWorkShop_Test() {
         	List<Contract>	listworkshop=[select Id, Name,RecordTypeId from Contract where RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId()];
 		String thisMethod = '##### findAllContactWorkShop_Test';
@@ -134,7 +130,6 @@ private class  OrmContactController_Test {
      * @date: Creation 16/11/2018
      * @description: cover getContactWorkshop test method in the OrmContactController
      */
-	   // @isTest
 	static testmethod void getContactWorkshop_Test() {
  List <Contact> listContacts=new List<Contact>();
          List <Contract> listWorkshops=new List<Contract>();
@@ -155,7 +150,6 @@ private class  OrmContactController_Test {
      * @date: Creation 16/11/2018
      * @description: cover updateContactWorkshop test method in the OrmContactController
      */
-	   // @isTest
 	static testmethod void updateContactWorkshop_Test() {
         	List<orm_ContactWorkshop__c> listcontactworkshop  = [select Id,orm_contact__c, orm_Workshop__c,orm_Workshop__r.Name from orm_ContactWorkshop__c where RecordTypeId=:OrmContactController.getContactWorkshopRecordTypeId()];
 		String thisMethod = '##### updateContactWorkshop_Test';
@@ -173,7 +167,6 @@ private class  OrmContactController_Test {
      * @date: Creation 16/11/2018
      * @description: cover deleteContactWorkshop test method in the OrmContactController
      */
-	   // @isTest
 	static testmethod void deleteContactWorkshop_Test() {
         	List<orm_ContactWorkshop__c> listcontactworkshop  = [select Id from orm_ContactWorkshop__c where RecordTypeId=:OrmContactController.getContactWorkshopRecordTypeId()];
 		String thisMethod = '##### addOneContactWorkShop_Test';

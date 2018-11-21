@@ -1,10 +1,6 @@
 trigger ormMeasureTrigger on Assessment__c (before delete) {
     
-     public static Id getMeasureProgressionRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Product2.getRecordTypeInfosByName()
-                  .get('RT measure Progression').getRecordTypeId();
-        return RecordTypeId;
-    }
+
     
      if(Trigger.isBefore)
      { 

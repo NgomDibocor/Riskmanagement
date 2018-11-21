@@ -74,4 +74,19 @@ public with sharing class OrmAssessmentFactory {
         insert assessmentRisques;
         return assessmentRisques;
     }
+           /**
+   * @author : David
+   * @date : 15/11/2018
+   * @description :generate   list of AssessmentRiskForTable
+   */
+    public static List<Pricebook2> generateAssessmentRiskForTable(String  idAssessment)
+    {
+        List<Pricebook2> AssessmentRiskForTable = new List<Pricebook2>();
+        for(Integer i=0;i<20; i++)
+        {
+            AssessmentRiskForTable.add(new Pricebook2(Name = 'priceBook' ,orm_assessmentRisk__c = idAssessment));
+       } 
+        insert AssessmentRiskForTable;
+        return AssessmentRiskForTable;
+    }
 }

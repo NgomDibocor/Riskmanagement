@@ -25,7 +25,7 @@ public with sharing class OrmRiskController {
        return  [Select Id,Name,Description,orm_categorieRisk__c,orm_assessment__r.name From Macro where 
        RecordTypeId=:OrmRiskController.getRiskRecordTypeId() and orm_categorieRisk__c=:item ];
     }
-    
+    /*
       public static Id getProbabilityRecordTypeId(){
          Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
                   .get('RT probabilite').getRecordTypeId();
@@ -41,7 +41,7 @@ public with sharing class OrmRiskController {
          Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
                   .get('RT Business Impact').getRecordTypeId();
         return recordTypeId;
-    }
+    }*/
     /*
     *David mignane diop
     *risk list function

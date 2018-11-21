@@ -100,21 +100,7 @@ public with sharing class OrmMeasureController {
   		// Query Records for delete where id in lstRecordId [which is pass from client side controller]
   		List<Assessment__c> measures = [SELECT Id FROM Assessment__c WHERE Id IN :measureIds AND 
   			RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId()];
-  		Database.DeleteResult[] drDels = Database.delete(measures, false);
-  		// Iterate through each returned result
-  		for (Database.DeleteResult dr: drDels) {
-	   		if (dr.isSuccess()) {
-	      		system.debug('successful delete contact');
-	     		// Operation was successful
-	   		} else {
-	    		// Operation failed, so get all errors   
-	    		oErrorMsg.add('');
-	    		for (Database.Error err: dr.getErrors()) {
-	     			// add Error message to oErrorMsg list and return the list
-	     			oErrorMsg.add(err.getStatusCode() + ': ' + err.getMessage());
-	    		}
-	   		}
-	  	}
+  		delete measures;
 	  	return oErrorMsg;  		
 	}
 	 /**

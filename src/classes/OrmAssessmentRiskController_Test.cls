@@ -10,6 +10,8 @@ public with sharing class OrmAssessmentRiskController_Test {
    		List<Assessment__c> assessments = OrmAssessmentFactory.generateAssessment(); 
    		List<Macro> risques = OrmAssessmentFactory.generateRisk(); 
    		List<orm_assessmentRisk__c> assessmentRisk= OrmAssessmentFactory.generateAssessmentRisk(assessments[0].Id ,risques[0].Id); 
+   		List<Assessment__c> measures = OrmMeasureFactory.generateMeasure(assessmentRisk[0].Id); 
+   		List<Macro> causes = OrmCauseFactory.generateMeasureProgress(assessmentRisk[0].Id); 
     }
      /**
      * @author: david
@@ -53,6 +55,40 @@ public with sharing class OrmAssessmentRiskController_Test {
         orm_assessmentRisk__c assessmentRisk = new orm_assessmentRisk__c(orm_assessment__c=assessmentId,orm_Risk__c = risque);
         assessmentRisk= OrmAssessmentRiskController.add(assessmentRisk);
         System.assertNotEquals(assessmentRisk.Id, null);
+        System.debug('### end- '+methodName);
+    }
+             /**
+     * @author: david
+     * @date: Creation:  21/11/2018
+     * @date: Modification:  21/11/2018
+     * @description: methode de test getAllAssessmentRisks
+     */
+    @isTest
+    static void getAllAssessmentRisks_Test(){
+        String methodName='getAllAssessmentRisks';
+        System.debug('### start- '+methodName);
+      List<orm_assessmentRisk__c> assRiskList = [Select id, orm_Risk__r.Name, orm_Risk__r.Description,orm_assessment__r.Id,orm_assessment__r.Name,
+                       (SELECT id 
+                        FROM Macros__r 
+                        WHERE RecordTypeId =: OrmAssessmentRiskController.getCauseRecordTypeId()),
+                       (SELECT id FROM Assessments__r 
+                        WHERE RecordTypeId =: OrmAssessmentRiskController.getMeasureRecordTypeId())
+                        FROM orm_assessmentRisk__c  WHERE CreatedById = :UserInfo.getUserId()];
+                        List<List<String>> listAssRisk = new List<List<String>>();
+                        System.assertNotEquals(OrmAssessmentRiskController.getAllAssessmentRisks(), null);
+        System.debug('### end- '+methodName);
+    }
+     /**
+     * @author: david
+     * @date: Creation:  21/11/2018
+     * @date: Modification:  21/11/2018
+     * @description: methode de test getAssessmentRisks
+     */
+    @isTest
+    static void getAssessmentRisks_Test(){
+        String methodName='getAssessmentRisks';
+        System.debug('### start- '+methodName);   
+        System.assertEquals(OrmAssessmentRiskController.getAssessmentRisks().isEmpty(), false);
         System.debug('### end- '+methodName);
     }
 }

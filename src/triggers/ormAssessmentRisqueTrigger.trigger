@@ -1,32 +1,4 @@
 trigger ormAssessmentRisqueTrigger on orm_assessmentRisk__c (before delete) {
-    
-     public static Id getCauseRecordTypeId()
-	  {
-         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
-                  .get('RT cause').getRecordTypeId();
-        return RecordTypeId;
-      } 
-       public static Id getImpactRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
-                  .get('RT impact').getRecordTypeId();
-        return RecordTypeId;
-    	}
-	
-	 public static Id getAssumptionRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
-                  .get('RT Assumption').getRecordTypeId();
-        return RecordTypeId;
-       }
-      public static Id getPhaseRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Macro.getRecordTypeInfosByName()
-                  .get('RT Phase').getRecordTypeId();
-        return RecordTypeId;
-    	}
-    	 public static Id getMeasureRecordTypeId(){
-         Id recordTypeId = Schema.SObjectType.Assessment__c.getRecordTypeInfosByName()
-                  .get('RT Measure').getRecordTypeId();
-        return RecordTypeId;
-    	}
     if(Trigger.isBefore)
      {
 		if(Trigger.isDelete)

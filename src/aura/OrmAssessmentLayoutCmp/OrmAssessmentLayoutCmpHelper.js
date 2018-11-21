@@ -131,8 +131,11 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesStatus = response.getReturnValue();
-                for (var i = 0; i < allValuesStatus.length; i++) {
-                    opts3.push(allValuesStatus[i]);
+                if(component.get("v.createAssessmentButtonClicked")== true){
+                	opts3 = allValuesStatus.filter( item => item !== 'Close')
+                }
+                if(component.get("v.showAssessmentButtonClicked")== true){
+                	 allValuesStatus.forEach( item => opts3.push(item));
                 }
                 component.set('v.allStatus', opts3);
             } else {

@@ -17,6 +17,7 @@ public with sharing class OrmAttachmentController {
     public static Id saveTheFiles(Id parentId, String fileName,String titleFile,String authorFile,String referenceNumber, String base64Data, String contentType)  
     { 
 	    system.debug('Saving chatter files '+fileName + ' '+ contentType);
+	    system.debug('Saving chatter files '+base64Data + ' '+ base64Data);
 	    ContentVersion testContentInsert =new ContentVersion(); 
 	    testContentInsert.Title =fileName; 
 	    testContentInsert.VersionData=EncodingUtil.base64Decode(base64Data);
@@ -36,7 +37,7 @@ public with sharing class OrmAttachmentController {
 	    cl.Visibility = 'AllUsers';
 	    insert cl;
 	
-	    system.debug('testContentInsert.id');
+	    System.debug('testContentInsert.id');
 	    return testContentInsert.id;
 
     } 

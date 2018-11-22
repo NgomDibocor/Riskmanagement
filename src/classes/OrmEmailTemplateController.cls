@@ -123,41 +123,4 @@ public with sharing class OrmEmailTemplateController {
 	public static orm_ContactWorkshop__c updateContactWorkshop(orm_ContactWorkshop__c item){        
         return OrmContactController.updateContactWorkshop(item);
 	}
-	 /**
- * get select options picklist
- 
- *
- * @author Salimata NGOM
- * @version 1.0
- * @description  method for fetch picklist values dynamic 
- * @history 
- * 2018-10-02 : Salimata NGOM - Implementation
- */
-   
-    @AuraEnabled
-    public static List <String> getSelectOptions(sObject objObject, string fld) {
-
-        List <String> allOpts = new list <String> ();
-        // Get the object type of the SObject.
-        Schema.sObjectType objType = objObject.getSObjectType();
-        
-        // Describe the SObject using its object type.
-        Schema.DescribeSObjectResult objDescribe = objType.getDescribe();
-        
-        // Get a map of fields for the SObject
-        map <String, Schema.SObjectField> fieldMap = objDescribe.fields.getMap();
-        
-        // Get the list of picklist values for this field.
-        list <Schema.PicklistEntry> values =
-            fieldMap.get(fld).getDescribe().getPickListValues();
-        
-        // Add these values to the selectoption list.
-        for (Schema.PicklistEntry a: values) {
-            allOpts.add(a.getValue());
-        }
-        system.debug('allOpts ---->' + allOpts);
-        allOpts.sort();
-        return allOpts;
-    }
-
 }

@@ -48,10 +48,33 @@ public with sharing class OrmEmailTemplateController_Test {
      * @description: cover updateContactWorkshop 
      */
 	static testmethod void updateContactWorkshop_Test() {
-		String thisMethod = '##### getTemplateDetails_Test';
+		String thisMethod = '##### updateContactWorkshop_Test';
         System.debug(thisMethod + ' - START');
-        Id contactWorkshop= [SELECT Id FROM orm_ContactWorkshop__c limit 1].Id;
+        orm_ContactWorkshop__c contactWorkshop= [SELECT Id FROM orm_ContactWorkshop__c limit 1];
             Test.startTest();
+            System.assertNotEquals(OrmEmailTemplateController.updateContactWorkshop(contactWorkshop).Id,Null);
+       		Test.stopTest();
+        System.debug(thisMethod + ' - STOP');
+	}
+	
+		 /**
+     * @author: David diop
+     * @date: Creation 22/11/2018
+     * @description: cover sendMailMethod 
+     */
+	static testmethod void sendMailMethod_Test() {
+		String thisMethod = '##### sendMailMethod_Test';
+        System.debug(thisMethod + ' - START');
+        Id templateId= [SELECT Id FROM orm_ContactWorkshop__c limit 1].Id;
+        Contact mailcontacts = [SELECT Id,orm_organisation__c FROM Contact limit 1];
+        Id workshop = [Select Id From Contract where  RecordTypeId=:OrmWorkshopController.getWorkshopRecordTypeId() limit 1].Id;
+        String mSubject = 'message';
+        String htmlbody = '';
+        String textbody = '';
+        List<Contact> contact = new List<Contact>();
+        			contact.add(mailcontacts);
+            Test.startTest();
+            System.assertEquals(OrmEmailTemplateController.sendMailMethod(contact,mSubject,templateId,workshop).isEmpty(),false);
        		Test.stopTest();
         System.debug(thisMethod + ' - STOP');
 	}

@@ -295,7 +295,9 @@
                 <div class="slds-form-element">
                     <div class="slds-form-element__control">
                         <ui:inputSelect aura:id="riskManager" change="{!c.onChangeRiskManager}" class="slds-select" labelClass="slds-form-element__label">
-                            <ui:inputSelectOption text="{!v.assessmentRiskData.orm_riskManager__c}" label="{!v.assessmentRiskData.orm_riskManager__r.Name}" />
+                              <aura:if isTrue="{!v.assessmentRiskData.orm_riskManager__c != null }">
+                                   <ui:inputSelectOption text="{!v.assessmentRiskData.orm_riskManager__c}" label="{!v.assessmentRiskData.orm_riskManager__r.Name}" />
+                              </aura:if>
                             <aura:iteration items="{!v.allUser}" var="rm">
                                 <ui:inputSelectOption text="{!rm.Id}" label="{!rm.Name}" />
                             </aura:iteration>
@@ -308,7 +310,11 @@
                     <label class="slds-form-element__label styleAllText">{!$Label.c.orm_justificationUncertainty_label}</label>
                 </div>
                 <div class="width">
-                    <ui:inputText class="slds-input" aura:id="justification" value="{!v.assessmentRiskData.orm_justificationUncertainty__c}" keyup="{!c.onChangeJustificationUncertainty}" focus="{!c.sendJustificationUncertaintyToFD}">
+                    <ui:inputText class="slds-input" aura:id="justification" 
+                                                     value="{!v.assessmentRiskData.orm_justificationUncertainty__c}" 
+                                                     keyup="{!c.onChangeJustificationUncertainty}" 
+                                                     focus="{!c.sendJustificationUncertaintyToFD}"
+                                                     placeholder="Enter Justification Uncertainty">
                     </ui:inputText>
                 </div>
             </td>
@@ -319,7 +325,11 @@
                     <label class="slds-form-element__label styleAllText">{!$Label.c.orm_justificationConsequence_label}</label>
                 </div>
                 <div class="width">
-                    <ui:inputText class="slds-input" aura:id="justificationConsequence" value="{!v.assessmentRiskData.orm_justificationConsequence__c}" keyup="{!c.onChangeJustificationConsequence}" focus="{!c.sendJustificationConsequenceToFD}">
+                    <ui:inputText class="slds-input" aura:id="justificationConsequence" 
+                                                     value="{!v.assessmentRiskData.orm_justificationConsequence__c}" 
+                                                     keyup="{!c.onChangeJustificationConsequence}" 
+                                                     focus="{!c.sendJustificationConsequenceToFD}"
+                                                     placeholder="Enter Justification Consequence" >
                     </ui:inputText>
                 </div>
             </td>
@@ -328,7 +338,11 @@
                     <label class="slds-form-element__label styleAllText">{!$Label.c.orm_vulnerability_label}</label>
                 </div>
                 <div class="width">
-                    <ui:inputText class="slds-input" aura:id="vulnerability" value="{!v.assessmentRiskData.orm_vulnerabilityAssessmentRisk__c}" keyup="{!c.onChangeVulnerability}" focus="{!c.sendVulnerabilityToFD}">
+                    <ui:inputText class="slds-input" aura:id="vulnerability" 
+                                                     value="{!v.assessmentRiskData.orm_vulnerabilityAssessmentRisk__c}" 
+                                                     keyup="{!c.onChangeVulnerability}" 
+                                                     focus="{!c.sendVulnerabilityToFD}"
+                                                     placeholder="Enter Vulnerability" >
                     </ui:inputText>
                 </div>
             </td>

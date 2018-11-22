@@ -171,7 +171,7 @@ public with sharing class OrmRiskController {
             allOpts.add(a.getValue());
         }
         system.debug('allOpts ---->' + allOpts);
-        allOpts.sort();
+        //allOpts.sort();
         return allOpts;
     }
     /*

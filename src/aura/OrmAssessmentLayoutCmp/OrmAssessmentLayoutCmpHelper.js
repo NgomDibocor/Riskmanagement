@@ -80,9 +80,7 @@
                     var none="---None---";
                     opts.push(none);
                 }
-                for (var i = 0; i < allValues.length; i++) {
-                    opts.push(allValues[i]);
-                }
+                allValues.forEach( item => opts.push(item));
                 component.set('v.allTypeAssessment', opts);
                 
                 //Hide the Spinner
@@ -115,9 +113,7 @@
                     var none="---None---";
                     opts2.push(none);
                 }
-                for (var i = 0; i < allValuesTP.length; i++) {
-                    opts2.push(allValuesTP[i]);
-                }
+                allValuesTP.forEach( item => opts2.push(item));                
                 component.set('v.allTypeProjet', opts2);
             } else {
                 alert($A.get("$Label.c.orm_not_found"));
@@ -131,8 +127,11 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesStatus = response.getReturnValue();
-                for (var i = 0; i < allValuesStatus.length; i++) {
-                    opts3.push(allValuesStatus[i]);
+                if(component.get("v.createAssessmentButtonClicked")== true){
+                	opts3 = allValuesStatus.filter( item => item !== 'Close')
+                }
+                if(component.get("v.showAssessmentButtonClicked")== true){
+                	 allValuesStatus.forEach( item => opts3.push(item));
                 }
                 component.set('v.allStatus', opts3);
             } else {
@@ -146,9 +145,7 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesSize = response.getReturnValue();
-                for (var i = 0; i < allValuesSize.length; i++) {
-                    optsSize.push(allValuesSize[i]);
-                }
+                allValuesSize.forEach( item => optsSize.push(item));
                 component.set('v.allSize', optsSize);
             } else {
                 alert($A.get("$Label.c.orm_not_found"));
@@ -162,9 +159,7 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesCurrency = response.getReturnValue();
-                for (var i = 0; i < allValuesCurrency.length; i++) {
-                    opts4.push(allValuesCurrency[i]);
-                }
+                allValuesCurrency.forEach( item => opts4.push(item));               
                 component.set('v.allCurrency', opts4);
             } else {
                 alert($A.get("$Label.c.orm_not_found"));
@@ -177,9 +172,7 @@
             var state = response.getState();
             if(state === 'SUCCESS'){
                 var allValuesSchedule = response.getReturnValue();
-                for (var i = 0; i < allValuesSchedule.length; i++) {
-                    opts5.push(allValuesSchedule[i]);
-                }
+                allValuesSchedule.forEach( item => opts5.push(item));
                 component.set('v.allSchedule', opts5);
             } else {
                 alert($A.get("$Label.c.orm_not_found"));

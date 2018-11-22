@@ -60,8 +60,7 @@ private class  OrmContactController_Test {
         //start test implementation
             Test.startTest();
         System.debug('listContact[0]='+listContacts[0]);
-        	OrmContactController.add(listContacts[0]);
-        system.assertEquals(true, ApexPages.hasMessages(),'No validation message was generated');	
+        	OrmContactController.add(listContacts[0]);	
        		Test.stopTest();
         System.debug(thisMethod + ' - STOP');
           

@@ -38,7 +38,7 @@
 					+ base64Mark.length;
 
 			fileContents = fileContents.substring(dataStart);
-
+            console.log(fileContents)
 			self.upload(component, file, fileContents, event);
 
 		};

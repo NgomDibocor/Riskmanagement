@@ -14,8 +14,7 @@ public with sharing class OrmAttachmentController {
 */
 	
 	@AuraEnabled
-    public static Id saveTheFiles(Id parentId, String fileName,String titleFile,String authorFile,String referenceNumber, String base64Data, String contentType)  
-    { 
+    public static Id saveTheFiles(Id parentId, String fileName,String titleFile,String authorFile,String referenceNumber, String base64Data, String contentType){ 
 	    system.debug('Saving chatter files '+fileName + ' '+ contentType);
 	    system.debug('Saving chatter files '+base64Data + ' '+ base64Data);
 	    ContentVersion testContentInsert =new ContentVersion(); 
@@ -70,15 +69,13 @@ public with sharing class OrmAttachmentController {
 
 		system.debug('ORM_Attachment --> DeleteAttachment');
 		try{
-	  List <ContentDocument> lstDeleteRec = [select Id from ContentDocument where id IN: att];
-	delete(lstDeleteRec );
-  
+	       List <ContentDocument> lstDeleteRec = [select Id from ContentDocument where id IN: att];
+	       delete(lstDeleteRec );
 		} catch (Exception ex) {
 
 			String message = 'EXCEPTION - Message: ' + ex.getMessage() + 'Cause: ' + ex.getCause();
 			system.debug('message error'+message);
 		
-  }
+        }
       }  
-	
 }

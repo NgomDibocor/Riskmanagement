@@ -247,18 +247,18 @@ public  class OrmMeasureController_test {
     static void deleteMeasureProgress_Test(){
         String methodName='deleteMeasureProgress';
         System.debug('### start- '+methodName);
-        Assessment__c measure = [SELECT Id FROM Assessment__c where   RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() limit 1];
-        Product2 measureProgress = [SELECT Id FROM Product2 where orm_measures__c =: measure.Id and  RecordTypeId =: OrmMeasureController.getMeasureProgressionRecordTypeId() limit 1];
+        Id measureId = [SELECT Id FROM Assessment__c where   RecordTypeId =: OrmMeasureController.getMeasureRecordTypeId() limit 1].Id;
+        Product2 measureProgress = [SELECT Id FROM Product2 where orm_measures__c =: measureId and  RecordTypeId =: OrmMeasureController.getMeasureProgressionRecordTypeId() limit 1];
         List<String> measureProgressIds = new List<String>();
         			measureProgressIds.add(measureProgress.Id);
-        integer size = OrmMeasureController.getAllMeasuresProgressionByMeasure(measure.Id).size();
+        integer size = OrmMeasureController.getAllMeasuresProgressionByMeasure(measureId).size();
         OrmMeasureController.deleteMeasureProgress(measureProgressIds);
-        System.assertEquals(OrmMeasureController.getAllMeasuresProgressionByMeasure(measure.Id).size(), size-1);
+        System.assertEquals(OrmMeasureController.getAllMeasuresProgressionByMeasure(measureId).size(), size-1);
         /* test if measureIds is null*/
         List<String> measureProgressIds2 = new List<String>();
                      measureProgressIds2.add('abc');
         OrmMeasureController.deleteMeasureProgress(measureProgressIds2);
-        System.assertEquals(OrmMeasureController.getAllMeasuresProgressionByMeasure(measure.Id).size(), size-1);
+        System.assertEquals(OrmMeasureController.getAllMeasuresProgressionByMeasure(measureId).size(), size-1);
         System.debug('### end- '+methodName);
     }
     /**

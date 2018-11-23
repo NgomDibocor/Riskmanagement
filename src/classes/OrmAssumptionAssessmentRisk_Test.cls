@@ -46,18 +46,18 @@ public with sharing class OrmAssumptionAssessmentRisk_Test {
      * @author: david
      * @date: Creation:  16/11/2018
      * @date: Modification:  16/11/2018
-     * @description: methode de test save
+     * @description: methode de test updateAssumption
      */
     @isTest
-    static void save_Test(){
-        String methodName='updatePhases';
+    static void updateAssumption_Test(){
+        String methodName='updateAssumption';
         System.debug('### start- '+methodName);
         Id assessmentRiskId = [SELECT Id FROM orm_assessmentRisk__c limit 1].Id;
         Macro assumption = [SELECT Id FROM Macro where orm_assessmentRisk__c =: assessmentRiskId AND  RecordTypeId =:  OrmAssumptionAssessmentRiskController.getAssumptionRecordTypeId() limit 1];
         List<Macro> assumptions = new List<Macro>();
         			assumptions.add(assumption);
         integer size = OrmAssumptionAssessmentRiskController.findAssumptionByAssessmentRisk(assessmentRiskId).size();
-        OrmAssumptionAssessmentRiskController.save(assumptions);
+        OrmAssumptionAssessmentRiskController.updateAssumption(assumptions);
         System.assertEquals(OrmAssumptionAssessmentRiskController.findAssumptionByAssessmentRisk(assessmentRiskId).size(), size);
         System.debug('### end- '+methodName);
     }

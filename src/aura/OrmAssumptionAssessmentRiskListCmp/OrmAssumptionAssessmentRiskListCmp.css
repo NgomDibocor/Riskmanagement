@@ -1,7 +1,7 @@
 .THIS .dot {
     height: 55px;
     line-height: 55px;
-    width: 23%;
+    width: 25%;
     border-radius: 0;
     background-color: #16325c;
     display: inline-block;
@@ -16,7 +16,7 @@
 
 .THIS .titleAssumtion {
     font-weight: 600;
-    font-size: 2em;
+    font-size: 1.5em;
     /* letter-spacing: -.07em; */
     color: white;
     text-align: center;

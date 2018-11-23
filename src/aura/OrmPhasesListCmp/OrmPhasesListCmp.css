@@ -30,7 +30,7 @@
 }
 .THIS .titlePhase {
   font-weight: 600;
-  font-size: 2em;
+  font-size: 1.5em;
   color:white;
  /* letter-spacing: -.07em; */
   text-align: center;
@@ -45,7 +45,7 @@
 }
 .THIS .dot {
     height: 50px;
-    width: 15%;
+    width: 20%;
     line-height: 50px;
     border-radius:0;
     background-color: #16325c;

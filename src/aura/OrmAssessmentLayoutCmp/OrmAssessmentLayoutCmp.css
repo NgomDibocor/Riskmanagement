@@ -141,7 +141,7 @@
 
 .THIS .intro-title {
     font-weight: 600;
-    font-size: 2em;
+    font-size: 1.5em;
     /* letter-spacing: -.07em; */
     text-align: center;
     white-space: normal;
@@ -158,7 +158,7 @@
 
 .THIS .backgroundTitleDetailsMeasure {
     display: block;
-    width: 25%;
+    width: 30%;
     height: 50px;
     line-height: 50px;
     margin: auto;
@@ -168,7 +168,7 @@
 
 .THIS .backgroundTitleListMeasure {
     display: block;
-    width: 20%;
+    width: 30%;
     height: 50px;
     line-height: 50px;
     margin: auto;
@@ -208,9 +208,9 @@
 
 .THIS .backgroundTitleAssociationRisk {
     display: block;
-    width: 30%;
+    width: 50%;
     height: 50px;
-    line-height: 100%;
+    line-height: 50px;
     margin: auto;
     background-color: #16325c;
     color: white;

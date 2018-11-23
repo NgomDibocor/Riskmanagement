@@ -38,7 +38,7 @@ public with sharing class OrmAssumptionAssessmentRiskController {
  * 2018-08-30 :David - Implementation
  */ 
     @AuraEnabled
-    public static List <Macro> save(List<Macro> listAssumption) {
+    public static List <Macro> updateAssumption(List<Macro> listAssumption) {
         update listAssumption;
         return listAssumption;
     }

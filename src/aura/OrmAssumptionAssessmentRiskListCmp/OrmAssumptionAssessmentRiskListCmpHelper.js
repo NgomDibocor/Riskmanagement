@@ -38,7 +38,7 @@
 	saveDataTable: function(component, event, helper) {
         var editedRecords = component.find("datatableList").get("v.draftValues");
         var totalRecordEdited = editedRecords.length;
-        var action = component.get("c.save");
+        var action = component.get("c.updateAssumption");
         action.setParams({
             'listAssumption': editedRecords
         });

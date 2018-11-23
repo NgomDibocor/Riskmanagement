@@ -51,9 +51,10 @@ private class  OrmContactController_Test {
      * @description: cover add test method in the OrmContactController
      */
 	static testmethod void add_TEST1() {
+		Contact contact =new Contact(Email='contact@gmail.com',orm_organisation__c=null,RecordTypeId=OrmContactController.getContactRecordTypeId());
         List <Contact> listContacts=new List<Contact>();
         listContacts=[select Id, Name,Email,orm_organisation__c from Contact where RecordTypeId=:OrmContactController.getContactRecordTypeId()];
-       listContacts[0].Email=null;
+        listContacts[0].Email=null;
         // listContacts[0].orm_organisation__c=null;
 		String thisMethod = '##### add_TEST';
         System.debug(thisMethod + ' - START');
